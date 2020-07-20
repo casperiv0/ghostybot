@@ -1,0 +1,25 @@
+{
+  "name": "ghostybotv2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@k3rn31p4nic/google-translate-api": "^1.1.1",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "moment": "^2.27.0",
+    "moment-duration-format": "^2.3.2",
+    "moment-timezone": "^0.5.31",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
+    "randomcolor": "^0.6.2",
+    "word-definition": "^2.1.6"
+  }
+}
