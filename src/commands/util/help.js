@@ -6,8 +6,6 @@ module.exports = {
     execute(bot, message, args) {
         const commands = bot.commands
 
-        console.log(commands);
-
         const embed = new MessageEmbed()
             .addField("All Commands:", commands.map((cmd) => {
                 return `\`${cmd.name}\``
