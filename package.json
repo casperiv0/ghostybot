@@ -14,11 +14,13 @@
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "mathjs": "^7.1.0",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
+    "one-liner-joke": "^1.2.0",
     "randomcolor": "^0.6.2",
     "word-definition": "^2.1.6"
   }
