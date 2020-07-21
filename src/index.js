@@ -8,7 +8,7 @@ bot.commands = new Discord.Collection();
 require("./utils/command")(bot);
 
 bot.once("ready", () => {
-    console.log("Ready!");
+    console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`)
 });
 
 const stickyData = {

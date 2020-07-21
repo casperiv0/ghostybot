@@ -1,15 +1,19 @@
 {
   "name": "ghostybotv2",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Custom Discord bot with a lot of commands for Discord communities.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "discord-bot",
+    "discord.js",
+    "discord-js"
+  ],
+  "author": "Dev-CasperTheGhost",
+  "license": "MIT",
   "dependencies": {
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "discord.js": "^12.2.0",
