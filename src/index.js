@@ -25,7 +25,7 @@ bot.on("message", async message => {
 
         stickyData.channelId = message.channel.id;
         stickyData.id = message.id;
-        stickyData.msg = stickyMsg;
+        stickyData.msg = `__***:warning: Sticky Message, Read Before Typing! :warning:***__ \n\n ${stickyMsg}`;
     }
 
     if (message.content.startsWith(`${prefix}unsticky`)) {
