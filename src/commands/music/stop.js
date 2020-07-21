@@ -7,7 +7,7 @@ module.exports = {
         }
 
         if (!serverQueue) {
-            return message.channel.send("There are no songs to be stopped")
+            return message.channel.send("There are no songs currently playing")
         }
 
         serverQueue.songs = [];
