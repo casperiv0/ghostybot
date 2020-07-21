@@ -11,6 +11,7 @@ bot.once("ready", () => {
     console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`)
 });
 
+const queue = new Map();
 const stickyData = {
     channelId: "",
     id: "",
@@ -55,8 +56,11 @@ bot.on("message", async message => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
+    // music queue
+    const serverQueue = queue.get(message.guild.id);
+
     try {
-        bot.commands.get(command).execute(bot, message, args);
+        bot.commands.get(command).execute(bot, message, args, serverQueue, queue);
     }
     catch (e) {
         if (e.message === "Cannot read property 'execute' of undefined") {

@@ -15,9 +15,12 @@
   "author": "Dev-CasperTheGhost",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
     "mathjs": "^7.1.0",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
@@ -26,6 +29,8 @@
     "nodemon": "^2.0.4",
     "one-liner-joke": "^1.2.0",
     "randomcolor": "^0.6.2",
-    "word-definition": "^2.1.6"
+    "simple-youtube-api": "^5.2.1",
+    "word-definition": "^2.1.6",
+    "ytdl-core": "^3.1.2"
   }
 }
