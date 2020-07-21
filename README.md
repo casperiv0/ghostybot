@@ -16,7 +16,6 @@ A cool Discord bot
 4. Create a bot at [Discord Developers](https://discord.com/developers/applications)
 5. Copy your token and paste into `config.json`
 6. Run the bot: `npm start`
-
    - Using pm2: `pm2 start src/index.js --name ghostybot`
 
 ## Commands
