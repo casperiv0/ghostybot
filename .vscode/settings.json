@@ -1,11 +1,15 @@
 {
     "cSpell.words": [
         "Ghostybot",
+        "botinfo",
+        "bugreport",
+        "channelinfo",
         "minecraft",
         "motd",
         "randomcolor",
         "userinfo",
         "worldclock",
         "ytld"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

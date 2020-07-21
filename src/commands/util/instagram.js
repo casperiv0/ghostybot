@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "instagram",
     description: "Search someone on instagram",
-    async execute(message, args) {
+    async execute(bot, message, args) {
         const username = args[0];
         const url = `https://instagram.com/${username}/?__a=1`;
         const result = await fetch(url).then(res => res.json());
