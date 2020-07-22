@@ -41,4 +41,4 @@ A cool Discord bot
 |             |        |          | randomnumber |        |       | serverinfo   |
 |             |        |          | rps          |        |       | translate    |
 |             |        |          | wyr          |        |       | userinfo     |
-|             |        |          | wyr          |        |       | wordclock    |
+|             |        |          | ascii          |        |       | wordclock    |
