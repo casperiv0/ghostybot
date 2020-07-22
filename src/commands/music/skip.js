@@ -10,6 +10,6 @@ module.exports = {
             return message.channel.send("There are no songs currently playing")
         }
 
-        serverQueue.connection.dispatcher.end();
+        serverQueue.connection.dispatcher.destroy();
     }
 }

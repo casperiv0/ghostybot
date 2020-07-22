@@ -15,7 +15,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle(`${message.guild.name}'s Music Queue`)
             .setColor("BLUE")
-            .setDescription(serverQueue.songs.splice(0, 20).map((song) => {
+            .setDescription(serverQueue.songs.splice(0, 1024).map((song) => {
                 return `- ${song.title}`
             }))
 

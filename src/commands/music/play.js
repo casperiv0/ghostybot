@@ -39,7 +39,7 @@ module.exports = {
             }
         }
 
-        if (!serverQueue || serverQueue === null) {
+        if (!serverQueue) {
             const queueContruct = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,

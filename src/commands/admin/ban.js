@@ -6,7 +6,7 @@ module.exports = {
             message.mentions.users.first() ||
             message.guild.members.cache.get(args[0])
         );
-        const banReason = args.join(" ").slice(22);
+        const banReason = args.join(" ").slice(23);
 
         if (!message.member.hasPermission("BAN_MEMBERS" || "ADMINISTRATOR"))
             return message.channel.send("You don't have permissions for that!");
