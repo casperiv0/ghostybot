@@ -17,8 +17,8 @@ module.exports = {
             .addField("**Output:**", ` \`\`\`${evaluated}\`\`\``)
             .setColor("BLUE")
             .setTimestamp()
-            .setFooter(message.author.username)
+            .setFooter(message.author.username);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

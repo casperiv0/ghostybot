@@ -5,7 +5,7 @@ const randomColor = require("randomcolor");
 module.exports = {
     name: "randomcolor",
     description: "Get a random color",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const color = randomColor();
 
         const embed = new MessageEmbed()
@@ -14,6 +14,6 @@ module.exports = {
             .setColor(color)
             .setTitle(color);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

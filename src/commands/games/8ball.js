@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const answers = require("../../data/8ball.json")
+const answers = require("../../data/8ball.json");
 
 module.exports = {
     name: "8ball",
@@ -9,7 +9,7 @@ module.exports = {
 
         if (!question) return message.channel.send("Please provide a valid question");
 
-        const answer = answers[Math.floor(Math.random() * answers.length)]
+        const answer = answers[Math.floor(Math.random() * answers.length)];
 
         const embed = new MessageEmbed()
             .setTitle("8Ball")
@@ -17,8 +17,8 @@ module.exports = {
             .addField("Answer:", answer)
             .setColor("BLUE")
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

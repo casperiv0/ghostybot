@@ -9,7 +9,7 @@ module.exports = (bot) => {
         for (const file of commands) {
             const cmd = require(`../commands/${dirs}/${file}`);
 
-            bot.commands.set(cmd.name, cmd)
+            bot.commands.set(cmd.name, cmd);
         }
-    })
-}
+    });
+};

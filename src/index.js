@@ -8,7 +8,7 @@ bot.commands = new Discord.Collection();
 require("./utils/command")(bot);
 
 bot.once("ready", () => {
-    console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`)
+    console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`);
 });
 
 const queue = new Map();
@@ -16,12 +16,12 @@ const stickyData = {
     channelId: "",
     id: "",
     msg: ""
-}
+};
 
 bot.on("message", async message => {
     // Sticky Command
     if (message.content.startsWith(`${prefix}sticky`)) {
-        const args = message.content.slice(prefix.length + 7).split(/ +/)
+        const args = message.content.slice(prefix.length + 7).split(/ +/);
         const stickyMsg = args.join(" ");
 
         stickyData.channelId = message.channel.id;
@@ -30,11 +30,11 @@ bot.on("message", async message => {
     }
 
     if (message.content.startsWith(`${prefix}unsticky`)) {
-        stickyData.channelId = ""
-        stickyData.id = ""
-        stickyData.msg = ""
+        stickyData.channelId = "";
+        stickyData.id = "";
+        stickyData.msg = "";
 
-        message.channel.send(`Cleared sticky for ${message.channel.name}`)
+        message.channel.send(`Cleared sticky for ${message.channel.name}`);
     }
     // Check if 
     const isSticky = message.channel.id === stickyData?.channelId;
@@ -64,7 +64,7 @@ bot.on("message", async message => {
     }
     catch (e) {
         if (e.message === "Cannot read property 'execute' of undefined") {
-            return console.log("Command not found")
+            return console.log("Command not found");
         }
         console.log(e);
     }

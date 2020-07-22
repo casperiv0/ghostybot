@@ -15,6 +15,6 @@ module.exports = {
             .setTimestamp()
             .setTitle("Google Translate");
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

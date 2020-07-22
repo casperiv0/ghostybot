@@ -4,7 +4,7 @@ const moment = require("moment");
 module.exports = {
     name: "serverinfo",
     description: "Get info about the server",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const guild = message.guild;
         const name = guild.name;
         const roles = guild.roles.cache.size;
@@ -16,11 +16,11 @@ module.exports = {
 
         const region = guild.region;
         const verLevel = guild.verificationLevel;
-        const mfaLevel = guild.mfaLevel
+        const mfaLevel = guild.mfaLevel;
 
         const embed = new MessageEmbed()
             .setTitle(name)
-            .setThumbnail(guild.iconURL({ format: 'png', dynamic: true, size: 1024 }))
+            .setThumbnail(guild.iconURL({ format: "png", dynamic: true, size: 1024 }))
             .setColor("BLUE")
             .addField("Server Information", `
                 **Server Owner:** ${owner}
@@ -34,8 +34,8 @@ module.exports = {
                 **Region:** ${region}
                 **Verification level:** ${verLevel}
                 **MFA Level:** ${mfaLevel}
-            `)
+            `);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

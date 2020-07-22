@@ -12,12 +12,12 @@ module.exports = {
             .setTitle(question)
             .setDescription(`Poll created by ${message.author.tag}`)
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
         const sendMessage = await message.channel.send(embed);
 
-        sendMessage.react("👍🏻")
-        sendMessage.react("👎🏻")
-        sendMessage.react("🤷🏻")
+        sendMessage.react("👍🏻");
+        sendMessage.react("👎🏻");
+        sendMessage.react("🤷🏻");
     }
-}
+};

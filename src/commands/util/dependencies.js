@@ -4,15 +4,15 @@ const pkg = require("../../../package.json");
 module.exports = {
     name: "dependencies",
     description: "Shows a list of all bots dependencies",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const dependencies = Object.keys(pkg.dependencies).join(",\n");
 
         const embed = new MessageEmbed()
             .setTitle("All Dependencies")
             .setDescription(dependencies)
             .setTimestamp()
-            .setFooter(message.author.username)
+            .setFooter(message.author.username);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

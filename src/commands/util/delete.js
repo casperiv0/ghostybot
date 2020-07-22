@@ -14,6 +14,6 @@ module.exports = {
             message.channel
                 .send(`Deleted ${args[0]} messages.`)
                 .then(msg => msg.delete({ timeout: 2000 }, true));
-        })
+        });
     }
-}
+};

@@ -16,4 +16,4 @@ module.exports = {
 
         message.channel.send(`Successfully removed **${role.name}** from ${needsRole}`);
     }
-}
+};

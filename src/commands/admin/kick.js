@@ -14,9 +14,9 @@ module.exports = {
         if (kickUser.hasPermission("KICK_MEMBERS" || "ADMINISTRATOR"))
             return message.channel.send("That person can't be kicked!");
 
-        kickUser.kick(kickReason)
+        kickUser.kick(kickReason);
 
-        message.channel.send(`${kickUser} was successfully kicked from the server.`)
+        message.channel.send(`${kickUser} was successfully kicked from the server.`);
 
     }
-}
+};

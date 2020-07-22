@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "dice",
     description: "Roll a dice",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const roll = Math.floor(Math.random() * 6) + 1;
 
         const embed = new MessageEmbed()
@@ -11,8 +11,8 @@ module.exports = {
             .setTitle("🎲 You landed on: " + roll)
             .setColor("BLUE")
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

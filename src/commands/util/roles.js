@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "roles",
     description: "Get a random color",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const roles = message.guild.roles.cache
             .filter(r => r.id !== message.guild.id)
             .map(r => r)
@@ -14,8 +14,8 @@ module.exports = {
             .addField("Roles:", `${roles}`)
             .setTimestamp()
             .setFooter(message.author.username)
-            .setColor("BLUE")
+            .setColor("BLUE");
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

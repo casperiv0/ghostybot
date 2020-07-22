@@ -8,7 +8,7 @@ module.exports = {
 
         figlet.text(text, (e, txt) => {
             if (e) return console.log(e);
-            message.channel.send(`\`\`\`\ ${txt.trimRight()} \`\`\``);
-        })
+            message.channel.send(`\`\`\` ${txt.trimRight()} \`\`\``);
+        });
     }
-}
+};

@@ -14,8 +14,8 @@ module.exports = {
         if (banUser.hasPermission("BAN_MEMBERS"))
             return message.channel.send("That person can't be banned!");
 
-        banUser.ban(banReason)
+        banUser.ban(banReason);
 
-        message.channel.send(`${banUser} was successfully banned from the server.`)
+        message.channel.send(`${banUser} was successfully banned from the server.`);
     }
-}
+};

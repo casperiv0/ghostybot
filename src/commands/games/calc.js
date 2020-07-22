@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const math = require("mathjs")
+const math = require("mathjs");
 
 module.exports = {
     name: "calc",
@@ -13,8 +13,8 @@ module.exports = {
             .addField("Output:", `\`\`\`js\n${calculation}\`\`\``)
             .setColor("BLUE")
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

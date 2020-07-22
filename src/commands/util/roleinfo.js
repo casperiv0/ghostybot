@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment")
+const moment = require("moment");
 
 module.exports = {
     name: "roleinfo",
@@ -13,7 +13,7 @@ module.exports = {
         const createdAt = moment(role.createdAt).format("MM/DD/YYYY");
         const mentionable = role.mentionable ? "Yes" : "No";
         const name = role.name;
-        const id = role.id
+        const id = role.id;
 
         const embed = new MessageEmbed()
             .setTitle(`**${name}**`)
@@ -24,8 +24,8 @@ module.exports = {
                 **Id:** ${id}
             `)
             .setTimestamp()
-            .setFooter(message.author.username)
+            .setFooter(message.author.username);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

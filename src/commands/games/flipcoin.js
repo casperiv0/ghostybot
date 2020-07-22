@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "flipcoin",
     description: "Flip a coin",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const replies = ["**You landed on Heads**", "**You landed on Tails**"];
 
         const reply = replies[Math.floor(Math.random() * replies.length)];
@@ -13,8 +13,8 @@ module.exports = {
             .setTitle(`${reply}`)
             .setColor("BLUE")
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

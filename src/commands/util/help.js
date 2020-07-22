@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "help",
     description: "Shows all commands",
-    execute(bot, message, args) {
+    execute(bot, message) {
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -18,6 +18,6 @@ module.exports = {
             .addField("Util Commands", "```avatar, botinfo, bugreport, channelinfo, define, delete, dependencies, emojis, help, instagram, invite, minecraft, morse, poll, randomcolor, roleinfo, roles, serverinfo, translate, userinfo, worldclock```")
             .setTitle("Help");
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

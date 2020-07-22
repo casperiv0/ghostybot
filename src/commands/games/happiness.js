@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "happiness",
     description: "Get a happiness returned",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const happiness = Math.floor(Math.random() * 100) + 1;
 
         const embed = new MessageEmbed()
@@ -11,8 +11,8 @@ module.exports = {
             .setTitle(`${happiness}`)
             .setColor("BLUE")
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

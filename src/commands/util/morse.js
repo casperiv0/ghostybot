@@ -59,7 +59,7 @@ module.exports = {
             "=": dah + dit + dit + dit + dah,
             "+": dit + dah + dit + dah + dit,
             "-": dah + dit + dit + dit + dit + dah,
-            '"': dit + dah + dit + dit + dah + dit,
+            "\"": dit + dah + dit + dit + dah + dit,
             $: dit + dit + dit + dah + dit + dit + dah,
             "@": dit + dah + dah + dit + dah + dit,
             à: dit + dah + dah + dit + dah,
@@ -101,8 +101,8 @@ module.exports = {
             .setColor("BLUE")
             .setTitle("Morse code")
             .setDescription(args)
-            .setFooter(message.author.username)
+            .setFooter(message.author.username);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { reportsChannelId } = require("../../../config.json")
+const { reportsChannelId } = require("../../../config.json");
 
 module.exports = {
     name: "bugreport",
@@ -16,9 +16,9 @@ module.exports = {
             .setTitle(`${message.author.username} has reported a bug`)
             .setDescription(bug)
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
-        bot.channels.cache.get(reportsChannelId).send(embed)
+        bot.channels.cache.get(reportsChannelId).send(embed);
 
     }
-}
+};

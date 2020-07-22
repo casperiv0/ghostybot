@@ -4,7 +4,7 @@ module.exports = {
     name: "avatar",
     description: "Get user avatar",
     execute(bot, message, args) {
-        if (!args[0]) return message.reply("Please provide a mention")
+        if (!args[0]) return message.reply("Please provide a mention");
 
         const user = message.mentions.users.first() || message.author;
         const avatar = user.displayAvatarURL();
@@ -17,6 +17,6 @@ module.exports = {
             .setColor("BLUE")
             .setTimestamp();
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

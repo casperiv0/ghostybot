@@ -1,17 +1,17 @@
 require("moment-duration-format");
 const { version, MessageEmbed } = require("discord.js");
-const moment = require("moment")
+const moment = require("moment");
 
 module.exports = {
     name: "botinfo",
     description: "Shows info about the bot",
-    execute(bot, message, args) {
+    execute(bot, message) {
         const uptime = moment
             .duration(bot.uptime)
             .format(" D [days], H [hrs], m [mins], s [secs]");
         const nodev = process.version;
-        const game = bot.user.presence.game ? bot.user.presence.game : "Not playing any game"
-        const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY")
+        const game = bot.user.presence.game ? bot.user.presence.game : "Not playing any game";
+        const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY");
 
         const embed = new MessageEmbed()
             .setColor("BLUE")
@@ -37,8 +37,8 @@ module.exports = {
                 **Bot Uptime:** ${uptime}
                 **Node Version:** ${nodev}
                 **Discord.js version:** ${version}`
-            )
+            );
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

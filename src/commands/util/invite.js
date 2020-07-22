@@ -1,7 +1,7 @@
 module.exports = {
     name: "invite",
     description: "Get a random color",
-    execute(bot, message, args) {
+    execute(bot, message) {
         if (message.member.hasPermission("CREATE_INSTANT_INVITE")) {
             message.channel
                 .createInvite()
@@ -12,4 +12,4 @@ module.exports = {
                 );
         } else message.reply("You don't have the Create Invite permission!");
     }
-}
+};

@@ -23,6 +23,6 @@ module.exports = {
         console.log(topic);
 
         await channel.setTopic(topic);
-        await message.channel.send(`Successfully updated channel topic to ${topic}`)
+        await message.channel.send(`Successfully updated channel topic to ${topic}`);
     }
-}
+};

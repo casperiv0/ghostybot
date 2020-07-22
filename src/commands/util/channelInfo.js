@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment")
+const moment = require("moment");
 
 module.exports = {
     name: "channelinfo",
@@ -13,7 +13,7 @@ module.exports = {
             } else channel = message.channel;
         }
 
-        const topic = channel.topic ? channel.topic : "No channel topic"
+        const topic = channel.topic ? channel.topic : "No channel topic";
         const channelId = channel.id;
         const createdAt = moment(channel.createdAt).format("MM/DD/YYYY");
         const type = channel.type === "text" ? "Text Channel" : "Voice Channel";
@@ -26,9 +26,9 @@ module.exports = {
             .addField("Channel Id:", channelId)
             .addField("Created At:", createdAt)
             .setFooter(message.author.username)
-            .setTimestamp()
+            .setTimestamp();
 
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

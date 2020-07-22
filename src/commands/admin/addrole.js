@@ -11,10 +11,10 @@ module.exports = {
 
         if (!needsRole) return message.channel.send("User wasn't found");
         if (!role) return message.channel.send("Please provide a valid role");
-        if (needsRole.roles.cache.some(r => role.id === r.id)) return message.channel.send("User already has that role")
+        if (needsRole.roles.cache.some(r => role.id === r.id)) return message.channel.send("User already has that role");
 
         needsRole.roles.add(role.id);
 
         message.channel.send(`Successfully Added **${role.name}** to ${needsRole}`);
     }
-}
+};

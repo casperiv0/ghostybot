@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const fetch = require("node-fetch")
+const fetch = require("node-fetch");
 
 module.exports = {
     name: "minecraft",
@@ -33,8 +33,8 @@ module.exports = {
             `)
             .setColor("BLUE")
             .setTimestamp()
-            .setFooter(message.author.username)
+            .setFooter(message.author.username);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};

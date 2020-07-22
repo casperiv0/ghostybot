@@ -15,8 +15,8 @@ module.exports = {
             .setImage(data.message)
             .setFooter(message.author.username)
             .setColor("BLUE")
-            .setDescription(`[Click here if the image failed to load.](${data.message})`)
+            .setDescription(`[Click here if the image failed to load.](${data.message})`);
 
-        message.channel.send(embed)
+        message.channel.send(embed);
     }
-}
+};
