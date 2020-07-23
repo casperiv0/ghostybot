@@ -2,6 +2,13 @@
 
 A cool Discord bot
 
+## Table of contents
+
+- [Requirements](https://github.com/Dev-CasperTheGhost/ghostybot#requirements)
+- [Usage](https://github.com/Dev-CasperTheGhost/ghostybot#usage)
+- [Commands](https://github.com/Dev-CasperTheGhost/ghostybot#commands)
+- [API's used](https://github.com/Dev-CasperTheGhost/ghostybot#apis-used)
+
 ## Requirements
 
 - [Discord bot token](https://discord.com/developers/applications)
