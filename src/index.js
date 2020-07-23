@@ -1,7 +1,15 @@
+require("./utils/checkVersion")();
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableMentions: "everyone" });
 
 const { token, prefix } = require("../config.json");
+
+const queue = new Map();
+const stickyData = {
+    channelId: "",
+    id: "",
+    msg: ""
+};
 
 // Commands
 bot.commands = new Discord.Collection();
@@ -11,12 +19,6 @@ bot.once("ready", () => {
     console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`);
 });
 
-const queue = new Map();
-const stickyData = {
-    channelId: "",
-    id: "",
-    msg: ""
-};
 
 bot.on("message", async message => {
     // Sticky Command
@@ -68,8 +70,7 @@ bot.on("message", async message => {
         }
         console.log(e);
     }
-
-
 });
+
 
 bot.login(token);
