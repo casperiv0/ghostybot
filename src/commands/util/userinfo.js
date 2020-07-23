@@ -5,6 +5,7 @@ module.exports = {
     name: "userinfo",
     description: "Get user info",
     usage: "!userinfo <user>",
+    aliases: ["whois"], 
     async execute(bot, message, args) {
         if (!args[0]) return message.reply("Please provide a user mention");
         const member = message.guild.members.cache.get(args.join(" ")) || message.mentions.members.first();

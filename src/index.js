@@ -1,6 +1,6 @@
 require("./utils/checkValid")();
-const Discord = require("discord.js");
-const bot = new Discord.Client({ disableMentions: "everyone" });
+const { Collection, Client } = require("discord.js");
+const bot = new Client({ disableMentions: "everyone" });
 
 const { token, prefix } = require("../config.json");
 
@@ -12,7 +12,8 @@ const stickyData = {
 };
 
 // Commands
-bot.commands = new Discord.Collection();
+bot.commands = new Collection();
+bot.aliases = new Collection();
 require("./utils/command")(bot);
 
 bot.once("ready", () => {
@@ -62,7 +63,10 @@ bot.on("message", async message => {
     const serverQueue = queue.get(message.guild.id);
 
     try {
-        bot.commands.get(command).execute(bot, message, args, serverQueue, queue);
+        const cmd = bot.commands.get(command) ||
+            bot.commands.get(bot.aliases.get(command));
+
+        cmd.execute(bot, message, args, serverQueue, queue);
     }
     catch (e) {
         if (e.message === "Cannot read property 'execute' of undefined") {

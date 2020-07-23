@@ -6,6 +6,7 @@ const youtube = new YtApi(youtubeApiKey);
 module.exports = {
     name: "play",
     description: "Play a song",
+    aliases: ["p"],
     async execute(bot, message, args, serverQueue, queue) {
         const voiceChannel = message.member.voice.channel;
 

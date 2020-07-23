@@ -9,6 +9,11 @@ module.exports = (bot) => {
         for (const file of commands) {
             const cmd = require(`../commands/${dirs}/${file}`);
 
+            if (cmd.aliases) {
+                for (const alias of cmd.aliases) {
+                    bot.aliases.set(alias, cmd.name);
+                }
+            }
             bot.commands.set(cmd.name, cmd);
         }
     });
