@@ -49,8 +49,8 @@ A cool Discord bot
 |             |        |          | rps          |        |       | translate    |
 |             |        |          | wyr          |        |       | userinfo     |
 |             |        |          | ascii        |        |       | wordclock    |
-|             |        |          | ascii        |        |       | uptime       |
-|             |        |          | ascii        |        |       | github       |
+|             |        |          |              |        |       | uptime       |
+|             |        |          |              |        |       | github       |
 
 ## API's used
 
