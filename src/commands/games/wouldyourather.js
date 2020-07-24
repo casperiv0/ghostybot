@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "wyr",
     description: "Would you rather",
+    category: "games",
     execute(bot, message) {
         const replies = require("../../data/wouldYouRather.json");
 

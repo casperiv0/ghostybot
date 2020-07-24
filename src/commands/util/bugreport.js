@@ -4,6 +4,7 @@ const { reportsChannelId } = require("../../../config.json");
 module.exports = {
     name: "bugreport",
     description: "Report a bug to your staff",
+    category: "util",
     execute(bot, message, args) {
         const bug = args.join(" ");
 

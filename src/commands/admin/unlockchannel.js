@@ -1,6 +1,7 @@
 module.exports = {
     name: "unlockchannel",
     description: "Unlock A channel",
+    category: "admin",
     execute(bot, message) {
         const user = message.member;
 

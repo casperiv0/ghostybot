@@ -4,6 +4,7 @@ module.exports = {
     name: "queue",
     description: "Show top 20 songs in the queue",
     aliases: ["q"],
+    category: "music",
     execute(bot, message, args, serverQueue) {
         if (!message.member.voice.channel) {
             return message.channel.send("You need to be in a voice channel!");

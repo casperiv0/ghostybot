@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "snailfact",
     description: "Returns a snail fact",
+    category: "animal",
     async execute(bot, message) {
         fetch("https://cat-fact.herokuapp.com/facts?animal_type=snail")
             .then(res => res.json())

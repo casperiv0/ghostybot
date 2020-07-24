@@ -5,6 +5,7 @@ const wd = require("word-definition");
 module.exports = {
     name: "define",
     description: "Define a word",
+    category: "util",
     async execute(bot, message, args) {
         const word = args[0].toLowerCase();
 

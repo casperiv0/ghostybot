@@ -1,6 +1,7 @@
 module.exports = {
     name: "ban",
     description: "ban",
+    category: "admin",
     async execute(bot, message, args) {
         const banUser = message.guild.member(
             message.mentions.users.first() ||

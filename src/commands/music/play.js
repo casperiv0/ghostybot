@@ -7,6 +7,7 @@ module.exports = {
     name: "play",
     description: "Play a song",
     aliases: ["p"],
+    category: "music",
     async execute(bot, message, args, serverQueue, queue) {
         const voiceChannel = message.member.voice.channel;
 

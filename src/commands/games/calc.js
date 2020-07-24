@@ -4,6 +4,7 @@ const math = require("mathjs");
 module.exports = {
     name: "calc",
     description: "Calculate something",
+    category: "games",
     execute(bot, message, args) {
         const calculation = math.evaluate(args.join(" "));
 

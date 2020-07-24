@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "block",
     description: "Write text with blocks",
+    category: "games",
     execute(bot, message, args) {
         const blocks = args
             .join(" ")

@@ -1,6 +1,7 @@
 module.exports = {
     name: "invite",
     description: "Get a random color",
+    category: "util",
     execute(bot, message) {
         if (message.member.hasPermission("CREATE_INSTANT_INVITE")) {
             message.channel

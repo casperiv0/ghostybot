@@ -5,6 +5,7 @@ module.exports = {
     name: "userinfo",
     description: "Get user info",
     usage: "!userinfo <user>",
+    category: "util",
     aliases: ["whois"], 
     async execute(bot, message, args) {
         if (!args[0]) return message.reply("Please provide a user mention");

@@ -1,6 +1,7 @@
 module.exports = {
     name: "kick",
     description: "Kick a user",
+    category: "admin",
     async execute(bot, message, args) {
         const kickUser = message.guild.member(
             message.mentions.users.first() ||

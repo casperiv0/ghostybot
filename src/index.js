@@ -22,26 +22,7 @@ bot.once("ready", () => {
 
 
 bot.on("message", async message => {
-    // Sticky Command
-    if (message.content.startsWith(`${prefix}sticky`)) {
-        const args = message.content.slice(prefix.length + 7).split(/ +/);
-        const stickyMsg = args.join(" ");
-
-        if (stickyMsg === "") return message.reply("Please provide a message");
-
-        stickyData.channelId = message.channel.id;
-        stickyData.id = message.id;
-        stickyData.msg = `__***:warning: Sticky Message, Read Before Typing! :warning:***__ \n\n ${stickyMsg}`;
-    }
-
-    if (message.content.startsWith(`${prefix}unsticky`)) {
-        stickyData.channelId = "";
-        stickyData.id = "";
-        stickyData.msg = "";
-
-        message.channel.send(`Cleared sticky for ${message.channel.name}`);
-    }
-    // Check if 
+    // Check if sticky
     const isSticky = message.channel.id === stickyData?.channelId;
 
     if (isSticky) {
@@ -68,7 +49,7 @@ bot.on("message", async message => {
         const cmd = bot.commands.get(command) ||
             bot.commands.get(bot.aliases.get(command));
 
-        cmd.execute(bot, message, args, serverQueue, queue);
+        cmd.execute(bot, message, args, serverQueue, queue, stickyData);
     }
     catch (e) {
         if (e.message === "Cannot read property 'execute' of undefined") {

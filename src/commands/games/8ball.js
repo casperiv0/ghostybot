@@ -4,6 +4,7 @@ const answers = require("../../data/8ball.json");
 module.exports = {
     name: "8ball",
     description: "8Ball",
+    category: "games",
     execute(bot, message, args) {
         const question = args.join(" ");
 

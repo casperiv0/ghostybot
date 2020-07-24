@@ -5,6 +5,7 @@ module.exports = {
     name: "translate",
     description: "Translate a sentence",
     usage: "!translate <to> <sentence>",
+    category: "util",
     async execute(bot, message, args) {
         const result = await translate(args.slice(1).join(" "), { to: args[0] });
 

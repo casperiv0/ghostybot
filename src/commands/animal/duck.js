@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "duck",
     description: "Shows a picture of a duck",
+    category: "animal",
     async execute(bot, message) {
         const data = await fetch("https://random-d.uk/api/v1/random?type=gif").then(res => res.json());
 

@@ -4,6 +4,7 @@ const moment = require("moment");
 module.exports = {
     name: "serverinfo",
     description: "Get info about the server",
+    category: "util",
     execute(bot, message) {
         const guild = message.guild;
         const name = guild.name;

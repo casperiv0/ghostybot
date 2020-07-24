@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "fox",
     description: "Shows a picture of a fox",
+    category: "animal",
     async execute(bot, message) {
         const data = await fetch("https://randomfox.ca/floof/").then(res => res.json());
 

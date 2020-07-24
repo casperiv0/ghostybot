@@ -5,6 +5,7 @@ const randomColor = require("randomcolor");
 module.exports = {
     name: "randomcolor",
     description: "Get a random color",
+    category: "util",
     execute(bot, message) {
         const color = randomColor();
 

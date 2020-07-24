@@ -1,6 +1,7 @@
 module.exports = {
-    name: "stop",
-    description: "stop",
+    name: "leave",
+    description: "Let the bot disconnect",
+    aliases: ["disconnect", "l"],
     category: "music",
     execute(bot, message, args, serverQueue) {
         if (!message.member.voice.channel) {
@@ -14,5 +15,6 @@ module.exports = {
         serverQueue.songs = [];
         serverQueue.playing = false;
         serverQueue.connection.dispatcher.destroy();
+        serverQueue.voiceChannel.leave();
     }
 };

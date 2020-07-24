@@ -4,6 +4,7 @@ const pkg = require("../../../package.json");
 module.exports = {
     name: "dependencies",
     description: "Shows a list of all bots dependencies",
+    category: "util",
     execute(bot, message) {
         const dependencies = Object.keys(pkg.dependencies).join(",\n");
 

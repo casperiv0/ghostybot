@@ -1,6 +1,7 @@
 module.exports = {
     name: "delete",
     description: "Delete message, up to 100",
+    category: "util",
     execute(bot, message, args) {
         // check for perms
         const user = message.member;

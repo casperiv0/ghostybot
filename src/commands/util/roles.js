@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "roles",
     description: "Get a random color",
+    category: "util",
     execute(bot, message) {
         const roles = message.guild.roles.cache
             .filter(r => r.id !== message.guild.id)

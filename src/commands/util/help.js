@@ -2,20 +2,50 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "help",
-    description: "Shows all commands",
-    execute(bot, message) {
+    description: "Shows all commands Or shows more info about a command",
+    category: "util",
+    execute(bot, message, args) {
+
+        const cmdArgs = args[0];
+
+        if (cmdArgs) {
+            const cmd = bot.commands.get(cmdArgs) || bot.commands.get(bot.aliases.get(cmdArgs));
+            if (!cmd) return message.channel.send("Command or alias not found");
+
+
+            const aliases = cmd.aliases ? cmd.aliases.map(a => a) : "None";
+            const embed = new MessageEmbed()
+                .setColor("BLUE")
+                .setTitle(`Command: ${cmd.name}`)
+                .addField("Aliases", aliases)
+                .addField("Description", cmd.description ? cmd.description : "Not specified")
+                .addField("Usage", cmd.usage ? cmd.usage : "Not specified");
+
+            return message.channel.send(embed);
+        }
+
+        const commands = bot.commands;
+        const utilsCmds = commands.filter(cmd => cmd.category === "util").map(cmd => cmd.name);
+        const adminCmds = commands.filter(cmd => cmd.category === "admin").map(cmd => cmd.name);
+        const animalCmds = commands.filter(cmd => cmd.category === "animal").map(cmd => cmd.name);
+        const botOwnerCmds = commands.filter(cmd => cmd.category === "botowner").map(cmd => cmd.name);
+        const gameCmds = commands.filter(cmd => cmd.category === "games").map(cmd => cmd.name);
+        const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name);
+        const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name);
+
 
         const embed = new MessageEmbed()
             .setTimestamp()
             .setFooter(message.author.username)
             .setColor("BLUE")
-            .addField("Admin Commands", "```addrole, ban, ctopic, kick, lockchannel, removerole, say, unlockchannel```")
-            .addField("Animal Commands", "```bunny, cat, catfact, dog, dogfact, duck, fox, lizard, owl, snailyfact```")
-            .addField("BotOwner Commands", "```eval, shutdown```")
-            .addField("Game Commands", "```8ball, advice, bet, block, calc, clyde, dadjoke, dice, flipcoin, happiness, hug, iq, kiss, owo, ping, randomjoke, randomnumber, rps, wyr, ascii```")
-            .addField("Music Commands", "```pause, play, queue, resume, skip, stop```")
-            .addField("NSFW Commands", "```boobs, butt, neko```")
-            .addField("Util Commands", "```avatar, botinfo, bugreport, channelinfo, define, delete, dependencies, emojis, help, instagram, invite, minecraft, morse, poll, randomcolor, roleinfo, roles, serverinfo, translate, userinfo, worldclock```")
+            .addField("Admin Commands", `\`\`\`${adminCmds.join(", ")}\`\`\``)
+            .addField("Animal Commands", `\`\`\`${animalCmds.join(", ")}\`\`\``)
+            .addField("BotOwner Commands", `\`\`\`${botOwnerCmds.join(", ")}\`\`\``)
+            .addField("Game Commands", `\`\`\`${gameCmds.join(", ")}\`\`\``)
+            .addField("Music Commands", `\`\`\`${musicCmds.join(", ")}\`\`\``)
+            .addField("NSFW Commands", `\`\`\`${nsfwCmds.join(", ")}\`\`\``)
+            .addField("Util Commands", `\`\`\`${utilsCmds.join(", ")}\`\`\``)
+            .setDescription("use `!help <command name | alias>` to view more info about a command ")
             .setTitle("Help");
 
         message.channel.send(embed);

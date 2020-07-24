@@ -1,6 +1,7 @@
 module.exports = {
     name: "say",
     description: "Let the bot say something",
+    category: "admin",
     execute(bot, message, args) {
         message.delete();
         if (!message.member.hasPermission("ADMINISTRATOR"))

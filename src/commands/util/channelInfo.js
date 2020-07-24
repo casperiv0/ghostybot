@@ -4,6 +4,7 @@ const moment = require("moment");
 module.exports = {
     name: "channelinfo",
     description: "Get information about a channel",
+    category: "util",
     execute(bot, message, args) {
         let channel = message.mentions.channels.first();
 

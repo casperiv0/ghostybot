@@ -1,6 +1,7 @@
 module.exports = {
     name: "addrole",
     description: "Add a role to a user",
+    category: "admin",
     async execute(bot, message, args) {
 
         if (!message.member.hasPermission("MANAGE_ROLES" || "ADMINISTRATOR"))

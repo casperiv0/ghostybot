@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "morse",
     description: "Convert a string to morse code",
+    category: "util",
     execute(bot, message, args) {
 
         args = args.join(" ").toLowerCase();

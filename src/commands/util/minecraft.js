@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "minecraft",
     description: "Get info about a minecraft server",
+    category: "util",
     async execute(bot, message, args) {
         const server = args[0];
 

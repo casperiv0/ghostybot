@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "cat",
     description: "Shows a picture of a cat",
+    category: "animal",
     async execute(bot, message) {
         const data = await fetch("https://nekos.life/api/v2/img/meow").then(res => res.json());
 

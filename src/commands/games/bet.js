@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "bet",
     description: "Bet on somebody",
+    category: "games",
     execute(bot, message) {
         const member = message.mentions.members.first();
 

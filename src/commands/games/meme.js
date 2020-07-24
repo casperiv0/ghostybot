@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "meme",
     description: "Returns a meme",
+    category: "games",
     async execute(bot, message) {
         const data = await fetch("https://meme-api.herokuapp.com/gimme").then(res => res.json());
 

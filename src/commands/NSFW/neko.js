@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "neko",
     description: "None",
+    category: "nsfw",
     async execute(bot, message) {
 
         if (!message.channel.nsfw) return message.reply("This channel is not a NSFW channel!");

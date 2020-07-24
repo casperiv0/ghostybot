@@ -1,6 +1,7 @@
 module.exports = {
     name: "lockchannel",
     description: "Lock A channel",
+    category: "admin",
     execute(bot, message, args) {
         const user = message.member;
         const lockReason = args.join(" ");

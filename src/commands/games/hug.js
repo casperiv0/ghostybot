@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "hug",
     description: "Shows a picture of people hugging",
+    category: "games",
     async execute(bot, message) {
         const data = await fetch("https://nekos.life/api/hug").then(res => res.json());
 

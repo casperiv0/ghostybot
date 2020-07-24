@@ -4,6 +4,7 @@ const moment = require("moment-timezone");
 module.exports = {
     name: "worldclock",
     description: "Shows the time from other countries",
+    category: "util",
     execute(bot, message) {
 
         const newYork = moment.tz("America/New_York").format("hh:mm:ss");

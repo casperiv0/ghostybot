@@ -1,6 +1,7 @@
 module.exports = {
     name: "removerole",
     description: "Remove a role from a user",
+    category: "admin",
     async execute(bot, message, args) {
 
         if (!message.member.hasPermission("MANAGE_ROLES" || "ADMINISTRATOR"))

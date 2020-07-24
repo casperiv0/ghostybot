@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "flipcoin",
     description: "Flip a coin",
+    category: "games",
     execute(bot, message) {
         const replies = ["**You landed on Heads**", "**You landed on Tails**"];
 

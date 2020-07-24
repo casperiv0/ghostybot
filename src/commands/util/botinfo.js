@@ -5,6 +5,7 @@ const moment = require("moment");
 module.exports = {
     name: "botinfo",
     description: "Shows info about the bot",
+    category: "util",
     execute(bot, message) {
         const uptime = moment
             .duration(bot.uptime)

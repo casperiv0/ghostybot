@@ -35,9 +35,9 @@ A cool Discord bot
 | kick        | duck   |          | block        | resume |       | channelinfo  |
 | lockchannel | fox    |          | calc         | skip   |       | define       |
 | removerole  | lizard |          | clyde        | stop   |       | delete       |
-| say         | owl    |          | dadjoke      |        |       | dependencies |
-|             |        |          | dice         |        |       | emojis       |
-|             |        |          | flipcoin     |        |       | help         |
+| say         | owl    |          | dadjoke      | leave  |       | dependencies |
+| sticky      | cow    |          | dice         |        |       | emojis       |
+| unsticky    |        |          | flipcoin     |        |       | help         |
 |             |        |          | happiness    |        |       | instagram    |
 |             |        |          | hug          |        |       | minecraft    |
 |             |        |          | iq           |        |       | morse        |
@@ -49,6 +49,8 @@ A cool Discord bot
 |             |        |          | rps          |        |       | translate    |
 |             |        |          | wyr          |        |       | userinfo     |
 |             |        |          | ascii        |        |       | wordclock    |
+|             |        |          | ascii        |        |       | uptime       |
+|             |        |          | ascii        |        |       | github       |
 
 ## API's used
 

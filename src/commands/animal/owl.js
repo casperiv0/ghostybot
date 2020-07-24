@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
     name: "owl",
     description: "Shows a picture of a owl",
+    category: "animal",
     async execute(bot, message) {
         const data = await fetch("http://pics.floofybot.moe/owl").then(res => res.json());
 

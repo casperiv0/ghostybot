@@ -1,6 +1,7 @@
 module.exports = {
     name: "ctopic",
     description: "Update the channel topic",
+    category: "admin",
     async execute(bot, message, args) {
 
         let channel = message.mentions.channels.first();

@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "iq",
     description: "Get a random Iq returned",
+    category: "games",
     execute(bot, message) {
         const iq = Math.floor(Math.random() * 100) + 1;
 

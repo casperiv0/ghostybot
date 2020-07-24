@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "rps",
     description: "Rock Paper Scissors",
+    category: "games",
     execute(bot, message) {
         const replies = ["Rock", "Paper", "Scissors"];
 

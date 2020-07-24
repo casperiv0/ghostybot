@@ -4,6 +4,7 @@ const moment = require("moment");
 module.exports = {
     name: "roleinfo",
     description: "Shows info about a role",
+    category: "util",
     execute(bot, message, args) {
         const role = message.mentions.roles.first() ||
             message.guild.roles.cache.find(role => role.name === args[0]);

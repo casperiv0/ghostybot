@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "dice",
     description: "Roll a dice",
+    category: "games",
     execute(bot, message) {
         const roll = Math.floor(Math.random() * 6) + 1;
 
