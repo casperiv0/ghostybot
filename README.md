@@ -78,3 +78,4 @@ A cool Discord bot
 | neko      | [https://nekobot.xyz/api/image?type=neko](https://nekobot.xyz/api/image?type=neko)                                               |
 | instagram | [https://instagram.com](https://instagram.com)                                                                                   |
 | minecraft | [https://mcapi.us/server/status?ip=](https://mcapi.us/server/status?ip=)                                                         |
+| github    | [https://api.github.com/](https://api.github.com/)                                                                               |
