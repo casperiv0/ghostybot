@@ -27,6 +27,8 @@ bot.on("message", async message => {
         const args = message.content.slice(prefix.length + 7).split(/ +/);
         const stickyMsg = args.join(" ");
 
+        if (stickyMsg === "") return message.reply("Please provide a message");
+
         stickyData.channelId = message.channel.id;
         stickyData.id = message.id;
         stickyData.msg = `__***:warning: Sticky Message, Read Before Typing! :warning:***__ \n\n ${stickyMsg}`;
