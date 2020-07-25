@@ -38,8 +38,9 @@ module.exports = {
             song = {
                 title: songInfo.videoDetails.title,
                 url: songInfo.videoDetails.video_url,
+                thumbnail: songInfo.videoDetails.thumbnail.thumbnails[0].url,
             };
-        }
+        }        
 
         if (!serverQueue) {
             const queueContruct = {
@@ -49,6 +50,7 @@ module.exports = {
                 songs: [],
                 volume: 3,
                 playing: true,
+                nowPlaying: null
             };
 
             queue.set(message.guild.id, queueContruct);
@@ -59,6 +61,7 @@ module.exports = {
                 const connection = await voiceChannel.join();
                 queueContruct.connection = connection;
 
+                queueContruct.nowPlaying = queueContruct.songs[0];
                 play(message.guild, queueContruct.songs[0], queue);
             }
             catch (e) {
@@ -80,6 +83,7 @@ function play(guild, song, queue) {
         queue.delete(guild.id);
         return;
     }
+    serverQueue.nowPlaying = serverQueue.songs[0];
 
     const dispatcher = serverQueue.connection
         .play(ytld(song.url), { bitrate: 96 })

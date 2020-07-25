@@ -27,33 +27,32 @@ A cool Discord bot
 
 ## Commands
 
-| Admin       | Animal | Botowner | Games        | Music  | NSFW  | util         | Economy |
-| ----------- | ------ | -------- | ------------ | ------ | ----- | ------------ | ------- |
-| addrole     | bunny  | eval     | 8ball        | pause  | boobs | avatar       | balance |
-| ban         | cat    | shutdown | advice       | play   | butt  | botinfo      | daily   |
-| ctopic      | dog    |          | bet          | queue  | neko  | bugreport    | deposit |
-| kick        | duck   |          | block        | resume |       | channelinfo  | work    |
-| lockchannel | fox    |          | calc         | skip   |       | define       |
-| removerole  | lizard |          | clyde        | stop   |       | delete       |
-| say         | owl    |          | dadjoke      | leave  |       | dependencies |
-| sticky      | cow    |          | dice         |        |       | emojis       |
-| unsticky    |        |          | flipcoin     |        |       | help         |
-|             |        |          | happiness    |        |       | instagram    |
-|             |        |          | hug          |        |       | minecraft    |
-|             |        |          | iq           |        |       | morse        |
-|             |        |          | kiss         |        |       | poll         |
-|             |        |          | owo          |        |       | randomcolor  |
-|             |        |          | ping         |        |       | roleinfo     |
-|             |        |          | randomjoke   |        |       | roles        |
-|             |        |          | randomnumber |        |       | serverinfo   |
-|             |        |          | rps          |        |       | translate    |
-|             |        |          | wyr          |        |       | userinfo     |
-|             |        |          | ascii        |        |       | wordclock    |
-|             |        |          |              |        |       | uptime       |
-|             |        |          |              |        |       | github       |
+| Admin       | Animal | Botowner | Games        | Music      | NSFW  | util         | Economy |
+| ----------- | ------ | -------- | ------------ | ---------- | ----- | ------------ | ------- |
+| addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance |
+| ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily   |
+| ctopic      | dog    |          | bet          | queue      | neko  | bugreport    | deposit |
+| kick        | duck   |          | block        | resume     |       | channelinfo  | work    |
+| lockchannel | fox    |          | calc         | skip       |       | define       |
+| removerole  | lizard |          | clyde        | stop       |       | delete       |
+| say         | owl    |          | dadjoke      | leave      |       | dependencies |
+| sticky      | cow    |          | dice         | volume     |       | emojis       |
+| unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
+|             |        |          | happiness    |            |       | instagram    |
+|             |        |          | hug          |            |       | minecraft    |
+|             |        |          | iq           |            |       | morse        |
+|             |        |          | kiss         |            |       | poll         |
+|             |        |          | owo          |            |       | randomcolor  |
+|             |        |          | ping         |            |       | roleinfo     |
+|             |        |          | randomjoke   |            |       | roles        |
+|             |        |          | randomnumber |            |       | serverinfo   |
+|             |        |          | rps          |            |       | translate    |
+|             |        |          | wyr          |            |       | userinfo     |
+|             |        |          | ascii        |            |       | wordclock    |
+|             |        |          |              |            |       | uptime       |
+|             |        |          |              |            |       | github       |
 
 ## API's used
-
 
 | Command   | URL                                                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------- |

@@ -49,12 +49,14 @@ bot.on("message", async message => {
         const cmd = bot.commands.get(command) ||
             bot.commands.get(bot.aliases.get(command));
 
-        cmd.execute(bot, message, args, serverQueue, queue, stickyData);
+
+        if (bot.commands.has(cmd?.name)) {
+            cmd.execute(bot, message, args, serverQueue, queue, stickyData);
+        } else {
+            console.log("Command not found");
+        }
     }
     catch (e) {
-        if (e.message === "Cannot read property 'execute' of undefined") {
-            return console.log("Command not found");
-        }
         console.log(e);
     }
 });

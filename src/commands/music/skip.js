@@ -12,6 +12,7 @@ module.exports = {
             return message.channel.send("There are no songs currently playing");
         }
 
-        serverQueue.connection.dispatcher.destroy();
+        serverQueue.connection.dispatcher?.destroy();
+        message.react("👍");
     }
 };

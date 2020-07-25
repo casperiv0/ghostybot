@@ -1,6 +1,6 @@
 module.exports = {
-    name: "stop",
-    description: "stop",
+    name: "volume",
+    description: "Set the volume between 1 to 100",
     category: "music",
     execute(bot, message, args, serverQueue) {
         if (!message.member.voice.channel) {
@@ -11,10 +11,9 @@ module.exports = {
             return message.channel.send("There are no songs currently playing");
         }
 
-        serverQueue.songs = [];
-        serverQueue.playing = false;
-        serverQueue.connection.dispatcher.destroy();
-
-        message.react("👍");
+        const volume = args[0] / 100;
+        serverQueue.volume = volume;
+        serverQueue.connection.dispatcher.setVolume(volume);
+        message.channel.send(`Successfully set volume to ${args[0]}%`);
     }
 };
