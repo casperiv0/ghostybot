@@ -33,6 +33,7 @@
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
     "one-liner-joke": "^1.2.0",
+    "quick.db": "^7.1.1",
     "randomcolor": "^0.6.2",
     "simple-youtube-api": "^5.2.1",
     "word-definition": "^2.1.6",

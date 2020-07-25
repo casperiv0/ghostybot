@@ -32,7 +32,7 @@ module.exports = {
         const gameCmds = commands.filter(cmd => cmd.category === "games").map(cmd => cmd.name);
         const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name);
         const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name);
-
+        const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name);
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -45,6 +45,7 @@ module.exports = {
             .addField("Music Commands", `\`\`\`${musicCmds.join(", ")}\`\`\``)
             .addField("NSFW Commands", `\`\`\`${nsfwCmds.join(", ")}\`\`\``)
             .addField("Util Commands", `\`\`\`${utilsCmds.join(", ")}\`\`\``)
+            .addField("Economy Commands", `\`\`\`${economyCmds.join(", ")}\`\`\``)
             .setDescription("use `!help <command name | alias>` to view more info about a command ")
             .setTitle("Help");
 

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Developer",
+        "amount": 500
+    },
+    {
+        "name": "Designer",
+        "amount": 400
+    },
+    {
+        "name": "Construction Worker",
+        "amount": 250
+    },
+    {
+        "name": "Chief",
+        "amount": 200
+    },
+    {
+        "name": "Mechanic",
+        "amount": 250
+    },
+    {
+        "name": "Content Creator",
+        "amount": 450
+    }
+]

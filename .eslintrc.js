@@ -16,6 +16,7 @@ module.exports = {
     "rules": {
         "quotes": ["error", "double"],
         "semi": ["error", "always"],
-        "no-multi-spaces": ["error"]
+        "no-multi-spaces": ["error"],
+        "eqeqeq": ["warn", "always"]
     }
 };
