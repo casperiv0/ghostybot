@@ -27,12 +27,12 @@ A cool Discord bot
 
 ## Commands
 
-| Admin       | Animal | Botowner | Games        | Music  | NSFW  | util         |
-| ----------- | ------ | -------- | ------------ | ------ | ----- | ------------ |
-| addrole     | bunny  | eval     | 8ball        | pause  | boobs | avatar       |
-| ban         | cat    | shutdown | advice       | play   | butt  | botinfo      |
-| ctopic      | dog    |          | bet          | queue  | neko  | bugreport    |
-| kick        | duck   |          | block        | resume |       | channelinfo  |
+| Admin       | Animal | Botowner | Games        | Music  | NSFW  | util         | Economy |
+| ----------- | ------ | -------- | ------------ | ------ | ----- | ------------ | ------- |
+| addrole     | bunny  | eval     | 8ball        | pause  | boobs | avatar       | balance |
+| ban         | cat    | shutdown | advice       | play   | butt  | botinfo      | daily   |
+| ctopic      | dog    |          | bet          | queue  | neko  | bugreport    | deposit |
+| kick        | duck   |          | block        | resume |       | channelinfo  | work    |
 | lockchannel | fox    |          | calc         | skip   |       | define       |
 | removerole  | lizard |          | clyde        | stop   |       | delete       |
 | say         | owl    |          | dadjoke      | leave  |       | dependencies |
