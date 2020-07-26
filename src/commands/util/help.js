@@ -1,11 +1,12 @@
 const { MessageEmbed } = require("discord.js");
+const { getServerPrefix } = require("../../utils/functions");
 
 module.exports = {
     name: "help",
     description: "Shows all commands Or shows more info about a command",
     category: "util",
     aliases: ["h"],
-    execute(bot, message, args) {
+    async execute(bot, message, args) {
 
         const cmdArgs = args[0];
 
@@ -34,6 +35,7 @@ module.exports = {
         const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
         const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
         const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
+        const prefix = await getServerPrefix(message.guild.id);
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -47,7 +49,8 @@ module.exports = {
             .addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
             .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
             .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
-            .setDescription("use `!help <command name | alias>` to view more info about a command ")
+            .addField("Server prefix: ", prefix)
+            .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command`)
             .setTitle("Help");
 
         message.channel.send(embed);

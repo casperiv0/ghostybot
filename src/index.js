@@ -2,14 +2,9 @@ require("./utils/checkValid")();
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
 
-const { token, prefix } = require("../config.json");
-
+const { getStickyData, getServerPrefix } = require("./utils/functions");
+const { token } = require("../config.json");
 const queue = new Map();
-const stickyData = {
-    channelId: "",
-    id: "",
-    msg: ""
-};
 
 // Commands
 bot.commands = new Collection();
@@ -18,17 +13,20 @@ require("./utils/command")(bot);
 
 bot.once("ready", () => {
     console.log(`Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`);
+    bot.user.setActivity(`${bot.users.cache.size} Users`, { type: "WATCHING" });
 });
 
 
 bot.on("message", async message => {
     if (message.channel.type === "dm") return;
+    const stickyData = await getStickyData(message.guild.id);
+    const prefix = await getServerPrefix(message.guild.id) || "!"; //* Change using !prefix <new prefix>
 
     // Check if sticky
     const isSticky = message.channel.id === stickyData?.channelId;
 
     if (isSticky) {
-        if (message.author.bot && message.content === stickyData.msg) return;
+        if (message.author.bot || message.content === stickyData.msg) return;
 
         const fMessage = message.channel.messages.cache.get(stickyData.id);
         if (fMessage) {
@@ -53,7 +51,7 @@ bot.on("message", async message => {
 
 
         if (bot.commands.has(cmd?.name)) {
-            cmd.execute(bot, message, args, serverQueue, queue, stickyData);
+            cmd.execute(bot, message, args, serverQueue, queue);
         } else {
             console.log("Command not found");
         }

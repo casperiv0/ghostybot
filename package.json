@@ -7,7 +7,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "format": "eslint src/*.js src/commands/**/*.js utils/*.js --fix || true",
+    "format": "eslint src/*.js src/commands/**/*.js utils/*.js --fix",
     "start": "nodemon src/index.js"
   },
   "repository": {

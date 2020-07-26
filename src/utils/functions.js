@@ -70,8 +70,27 @@ const setUserWork = (guildId, userId, date) => db.set(`work_${guildId}_${userId}
  */
 const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
+/**
+ * @param {string} guildId
+ */
+const getStickyData = (guildId) => db.fetch(`sticky_${guildId}`);
 
+/**
+ * @param {string} guildId
+ * @param {Object} data
+ */
+const setStickyData = (guildId, data) => db.set(`sticky_${guildId}`, data);
 
+/**
+ * @param {string} guildId
+ */
+const getServerPrefix = (guildId) => db.fetch(`prefix_${guildId}`);
+
+/**
+ * @param {string} guildId
+ * @param {string} newPrefix
+ */
+const setServerPrefix = (guildId, newPrefix) => db.set(`prefix_${guildId}`, newPrefix);
 
 module.exports = {
     getUserMoney,
@@ -83,5 +102,9 @@ module.exports = {
     setUserDaily,
     getUserWork,
     setUserWork,
-    formatDate
+    formatDate,
+    getStickyData,
+    setStickyData,
+    getServerPrefix,
+    setServerPrefix
 };
