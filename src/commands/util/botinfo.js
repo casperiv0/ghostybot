@@ -11,22 +11,24 @@ module.exports = {
             .duration(bot.uptime)
             .format(" D [days], H [hrs], m [mins], s [secs]");
         const nodev = process.version;
-        const game = bot.user.presence.game ? bot.user.presence.game : "Not playing any game";
+        const game = bot.user.presence ? { name: bot.user.presence.activities[0].name, type: bot.user.presence.activities[0].type } : "Not playing any game";
         const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY");
 
         const embed = new MessageEmbed()
             .setColor("BLUE")
             .setFooter(message.author.username)
             .setTitle("Bot Information")
-            .addField("Bot Id", bot.user.id)
-            .addField("Bot username", bot.user.username)
+            .addField("Bot Id:", bot.user.id)
+            .addField("Bot username:", bot.user.username)
+            .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
             .addField("__**Bot info:**__", `
-            **Game:** ${game}
+            **Game:** ${game.type.toLowerCase()} ${game.name}
             **Status:** ${bot.user.presence.status}
             **Users:** ${bot.users.cache.size}
             **Servers:** ${bot.guilds.cache.size}
             **Channels:** ${bot.channels.cache.size}
             **Created on:** ${createdAt}
+            **Command Count:** ${bot.commands.size}
             `)
             .addField(
                 "__**System Info**__",
