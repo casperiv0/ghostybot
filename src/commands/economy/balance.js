@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
+const { getUserMoney, getUserBank } = require("../../utils/functions");
 
 module.exports = {
     name: "balance",
@@ -7,9 +7,9 @@ module.exports = {
     category: "economy",
     async execute(bot, message) {
         const user = message.mentions.members.first() || message.author;
-        let money = await db.fetch(`money_${message.guild.id}_${user.id}`);
-        let bank = await db.fetch(`bank_${message.guild.id}_${user.id}`);
-
+        let money = await getUserMoney(message.guild.id, user.id);
+        let bank = await getUserBank(message.guild.id, user.id);
+        
         if (money === null) money = 0;
         if (bank === null) bank = 0;
 

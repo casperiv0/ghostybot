@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
+const { formatDate } = require("../../utils/functions");
+
 
 module.exports = {
     name: "roleinfo",
@@ -11,7 +12,7 @@ module.exports = {
 
         if (!role) return message.channel.send("Couldn't find that role");
 
-        const createdAt = moment(role.createdAt).format("MM/DD/YYYY");
+        const createdAt = formatDate(role.createdAt);
         const mentionable = role.mentionable ? "Yes" : "No";
         const name = role.name;
         const id = role.id;

@@ -1,6 +1,8 @@
-const db = require("quick.db");
+require("moment-duration-format");
+const { addUserMoney, getUserWork, setUserWork } = require("../../utils/functions");
 const jobs = require("../../data/jobs.json");
 const { MessageEmbed } = require("discord.js");
+const moment = require("moment");
 
 module.exports = {
     name: "work",
@@ -8,12 +10,14 @@ module.exports = {
     category: "economy",
     async execute(bot, message) {
         const user = message.author;
-        const timeout = 600000;
+        const timeout = 3600000;
 
-        const work = await db.fetch(`work_${message.guild.id}_${user.id}`);
+
+        const work = await getUserWork(message.guild.id, user.id);
 
         if (work !== null && timeout - (Date.now() - work) > 0) {
-            message.channel.send("You have already worked recently!");
+            const timeUntillWork = moment(timeout - (Date.now() - work)).format("H [hrs], m [mins], s [secs]");
+            message.channel.send(`You have already worked recently, ${timeUntillWork} remaining`);
         } else {
             const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
@@ -24,8 +28,8 @@ module.exports = {
 
             message.channel.send(embed);
 
-            db.add(`money_${message.guild.id}_${user.id}`, amount);
-            db.set(`work_${message.guild.id}_${user.id}`, Date.now());
+            addUserMoney(message.guild.id, user.id, amount);
+            setUserWork(message.guild.id, user.id, Date.now());
         }
 
     }

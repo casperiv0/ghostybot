@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
+const { formatDate } = require("../../utils/functions");
+
 
 module.exports = {
     name: "serverinfo",
@@ -12,8 +13,8 @@ module.exports = {
         const channels = guild.channels.cache.size;
         const emojis = guild.emojis.cache.size;
         const owner = guild.owner;
-        const createdAt = moment(guild.createdAt).format("MM/DD/YYYY");
-        const joined = moment(message.member.joinedAt).format("MM/DD/YYYY");
+        const createdAt = formatDate(guild.createdAt);
+        const joined = formatDate(message.member.joinedAt);
 
         const region = guild.region;
         const verLevel = guild.verificationLevel;

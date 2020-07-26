@@ -1,18 +1,18 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
+const { formatDate } = require("../../utils/functions");
 
 module.exports = {
     name: "userinfo",
     description: "Get user info",
     usage: "!userinfo <user>",
     category: "util",
-    aliases: ["whois"], 
+    aliases: ["whois"],
     async execute(bot, message, args) {
         if (!args[0]) return message.reply("Please provide a user mention");
         const member = message.guild.members.cache.get(args.join(" ")) || message.mentions.members.first();
 
-        const joinedAt = moment(member.user.joinedAt).format("MM/DD/YYYY");
-        const createdAt = moment(member.user.createdAt).format("MM/DD/YYYY");
+        const joinedAt = formatDate(member.user.joinedAt);
+        const createdAt = formatDate(member.user.createdAt);
         const roles = member.roles.cache
             .filter(r => r.id !== message.guild.id)
             .map(r => r)

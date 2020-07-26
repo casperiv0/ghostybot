@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment");
+const { formatDate } = require("../../utils/functions");
 
 module.exports = {
     name: "channelinfo",
@@ -16,7 +16,7 @@ module.exports = {
 
         const topic = channel.topic ? channel.topic : "No channel topic";
         const channelId = channel.id;
-        const createdAt = moment(channel.createdAt).format("MM/DD/YYYY");
+        const createdAt = formatDate(channel.createdAt);
         const type = channel.type === "text" ? "Text Channel" : "Voice Channel";
 
         const embed = new MessageEmbed()

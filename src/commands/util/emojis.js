@@ -1,6 +1,5 @@
 const { MessageEmbed } = require("discord.js");
 
-
 module.exports = {
     name: "emojis",
     description: "Get a random color",

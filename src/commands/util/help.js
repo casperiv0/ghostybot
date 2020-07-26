@@ -4,6 +4,7 @@ module.exports = {
     name: "help",
     description: "Shows all commands Or shows more info about a command",
     category: "util",
+    aliases: ["h"],
     execute(bot, message, args) {
 
         const cmdArgs = args[0];
@@ -25,27 +26,27 @@ module.exports = {
         }
 
         const commands = bot.commands;
-        const utilsCmds = commands.filter(cmd => cmd.category === "util").map(cmd => cmd.name);
-        const adminCmds = commands.filter(cmd => cmd.category === "admin").map(cmd => cmd.name);
-        const animalCmds = commands.filter(cmd => cmd.category === "animal").map(cmd => cmd.name);
-        const botOwnerCmds = commands.filter(cmd => cmd.category === "botowner").map(cmd => cmd.name);
-        const gameCmds = commands.filter(cmd => cmd.category === "games").map(cmd => cmd.name);
-        const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name);
-        const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name);
-        const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name);
+        const utilsCmds = commands.filter(cmd => cmd.category === "util").map(cmd => cmd.name).join(", ");
+        const adminCmds = commands.filter(cmd => cmd.category === "admin").map(cmd => cmd.name).join(", ");
+        const animalCmds = commands.filter(cmd => cmd.category === "animal").map(cmd => cmd.name).join(", ");
+        const botOwnerCmds = commands.filter(cmd => cmd.category === "botowner").map(cmd => cmd.name).join(", ");
+        const gameCmds = commands.filter(cmd => cmd.category === "games").map(cmd => cmd.name).join(", ");
+        const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
+        const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
+        const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
 
         const embed = new MessageEmbed()
             .setTimestamp()
             .setFooter(message.author.username)
             .setColor("BLUE")
-            .addField("Admin Commands", `\`\`\`${adminCmds.join(", ")}\`\`\``)
-            .addField("Animal Commands", `\`\`\`${animalCmds.join(", ")}\`\`\``)
-            .addField("BotOwner Commands", `\`\`\`${botOwnerCmds.join(", ")}\`\`\``)
-            .addField("Game Commands", `\`\`\`${gameCmds.join(", ")}\`\`\``)
-            .addField("Music Commands", `\`\`\`${musicCmds.join(", ")}\`\`\``)
-            .addField("NSFW Commands", `\`\`\`${nsfwCmds.join(", ")}\`\`\``)
-            .addField("Util Commands", `\`\`\`${utilsCmds.join(", ")}\`\`\``)
-            .addField("Economy Commands", `\`\`\`${economyCmds.join(", ")}\`\`\``)
+            .addField("Admin Commands", `\`\`\`${adminCmds}\`\`\``)
+            .addField("Animal Commands", `\`\`\`${animalCmds}\`\`\``)
+            .addField("BotOwner Commands", `\`\`\`${botOwnerCmds}\`\`\``)
+            .addField("Game Commands", `\`\`\`${gameCmds}\`\`\``)
+            .addField("Music Commands", `\`\`\`${musicCmds}\`\`\``)
+            .addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
+            .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
+            .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
             .setDescription("use `!help <command name | alias>` to view more info about a command ")
             .setTitle("Help");
 

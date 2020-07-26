@@ -5,8 +5,11 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js",
-    "fix-js": "eslint-auto-fix"
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dev-CasperTheGhost/ghostybot"
   },
   "keywords": [
     "discord-bot",

@@ -10,6 +10,9 @@ module.exports = (bot) => {
         for (const file of commands) {
             const cmd = require(`../commands/${dirs}/${file}`);
 
+            if (!cmd.execute) 
+                throw new TypeError(`[ERROR]: execute function is required for commands! (${file})`);
+
             if (!cmd.name)
                 throw new TypeError(`[ERROR]: name is required for commands! (${file})`);
 
