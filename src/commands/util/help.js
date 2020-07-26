@@ -35,7 +35,7 @@ module.exports = {
         const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
         const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
         const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
-        const prefix = await getServerPrefix(message.guild.id);
+        const prefix = await getServerPrefix(message.guild.id) || "!";
 
         const embed = new MessageEmbed()
             .setTimestamp()

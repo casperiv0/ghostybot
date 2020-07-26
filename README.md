@@ -2,6 +2,8 @@
 
 A cool Discord bot
 
+[Invite ghostybot here](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
+
 ## Table of contents
 
 - [Requirements](https://github.com/Dev-CasperTheGhost/ghostybot#requirements)
@@ -14,6 +16,7 @@ A cool Discord bot
 - [Discord bot token](https://discord.com/developers/applications)
 - [Node](https://nodejs.org/)
 - [Youtube Api key](https://developers.google.com/youtube/v3/getting-started)
+- [FFmpeg](https://ffmpeg.org/download.html)
 
 ## Usage
 
@@ -38,7 +41,7 @@ A cool Discord bot
 | say         | owl    |          | dadjoke      | leave      |       | dependencies |
 | sticky      | cow    |          | dice         | volume     |       | emojis       |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
-|             |        |          | happiness    |            |       | instagram    |
+| prefix      |        |          | happiness    |            |       | instagram    |
 |             |        |          | hug          |            |       | minecraft    |
 |             |        |          | iq           |            |       | morse        |
 |             |        |          | kiss         |            |       | poll         |
@@ -51,6 +54,7 @@ A cool Discord bot
 |             |        |          | ascii        |            |       | wordclock    |
 |             |        |          |              |            |       | uptime       |
 |             |        |          |              |            |       | github       |
+|             |        |          |              |            |       | channels     |
 
 ## API's used
 
