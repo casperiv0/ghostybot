@@ -17,6 +17,7 @@ module.exports = {
         "quotes": ["error", "double"],
         "semi": ["error", "always"],
         "no-multi-spaces": ["error"],
-        "eqeqeq": ["warn", "always"]
+        "eqeqeq": ["warn", "always"],
+        "no-unused-vars": ["error"]
     }
 };

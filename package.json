@@ -3,14 +3,22 @@
   "version": "1.0.0",
   "description": "A Custom Discord bot with a lot of commands for Discord communities.",
   "main": "src/index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "eslint src/*.js src/commands/**/*.js utils/*.js --fix || true",
     "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Dev-CasperTheGhost/ghostybot"
   },
+  "bugs": {
+    "url": "https://github.com/Dev-CasperTheGhost/ghostybot/issues",
+    "email": "casper.iversen2@gmail.com"
+  },
+  "homepage": "https://github.com/Dev-CasperTheGhost/ghostybot#readme",
   "keywords": [
     "discord-bot",
     "discord.js",
