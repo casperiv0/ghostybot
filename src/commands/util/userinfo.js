@@ -11,6 +11,9 @@ module.exports = {
         if (!args[0]) return message.reply("Please provide a user mention");
         const member = message.guild.members.cache.get(args.join(" ")) || message.mentions.members.first();
 
+        if (!member)
+            return message.channel.send("User wasn't found!");
+
         const joinedAt = formatDate(member.user.joinedAt);
         const createdAt = formatDate(member.user.createdAt);
         const roles = member.roles.cache

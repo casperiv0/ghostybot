@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const moment = require("moment-timezone");
+const { tz } = require("moment-timezone");
 
 module.exports = {
     name: "worldclock",
@@ -7,23 +7,23 @@ module.exports = {
     category: "util",
     execute(bot, message) {
 
-        const newYork = moment.tz("America/New_York").format("hh:mm:ss");
-        const LosAngelos = moment.tz("America/Los_Angeles").format("hh:mm:ss");
-        const Toronto = moment.tz("America/Toronto").format("hh:mm:ss");
-        const Chicago = moment.tz("America/Chicago").format("hh:mm:ss");
-        const Belgium = moment.tz("Europe/Brussels").format("hh:mm:ss");
-        const London = moment.tz("Europe/London").format("hh:mm:ss");
-        const Paris = moment.tz("Europe/Paris").format("hh:mm:ss");
-        const Berlin = moment.tz("Europe/Berlin").format("hh:mm:ss");
-        const Tokyo = moment.tz("Asia/Tokyo").format("hh:mm:ss");
-        const Perth = moment.tz("Australia/Perth").format("hh:mm:ss");
-        const Sydney = moment.tz("Australia/Sydney").format("hh:mm:ss");
-        const Rome = moment.tz("Europe/Rome").format("hh:mm:ss");
-        const Singapore = moment.tz("Asia/Singapore").format("hh:mm:ss");
+        const newYork = tz("America/New_York").format("hh:mm:ss");
+        const LosAngeles = tz("America/Los_Angeles").format("hh:mm:ss");
+        const Toronto = tz("America/Toronto").format("hh:mm:ss");
+        const Chicago = tz("America/Chicago").format("hh:mm:ss");
+        const Belgium = tz("Europe/Brussels").format("hh:mm:ss");
+        const London = tz("Europe/London").format("hh:mm:ss");
+        const Paris = tz("Europe/Paris").format("hh:mm:ss");
+        const Berlin = tz("Europe/Berlin").format("hh:mm:ss");
+        const Tokyo = tz("Asia/Tokyo").format("hh:mm:ss");
+        const Perth = tz("Australia/Perth").format("hh:mm:ss");
+        const Sydney = tz("Australia/Sydney").format("hh:mm:ss");
+        const Rome = tz("Europe/Rome").format("hh:mm:ss");
+        const Singapore = tz("Asia/Singapore").format("hh:mm:ss");
 
         const embed = new MessageEmbed()
             .setTitle("World time zones")
-            .addField("Los Angeles, US", LosAngelos, true)
+            .addField("Los Angeles, US", LosAngeles, true)
             .addField("New York, US", newYork, true)
             .addField("Chicago, US", Chicago, true)
             .addField("Toronto, Canada", Toronto, true)

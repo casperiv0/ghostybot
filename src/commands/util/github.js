@@ -17,14 +17,20 @@ module.exports = {
             .then(() => msg.delete());
 
         msg.delete();
+
+        const twitter = user.twitter_username ? `[@${user.twitter_username}](https://twitter.com/${user.twitter_username})` : "N/A";
+        const website = user.blog ? user.blog : "N/A";
+        const location = user.location ? user.location : "N/A";
+        const bio = user.bio ? user.bio : "N/A";
+
         const embed = new MessageEmbed()
             .setAuthor(user.name)
             .setTitle(`${user.login}'s Profile`)
             .setDescription(`
-            **Bio:** ${user.bio}
-            **Twitter:** [@${user.twitter_username}](https://twitter.com/${user.twitter_username})
-            **Website:** ${user.blog}
-            **Location:** ${user.location}
+            **Bio:** ${bio}
+            **Twitter:** ${twitter}
+            **Website:** ${website}
+            **Location:** ${location}
             **Public Repos:** ${user.public_repos}
             `)
             .addField("**Followers**", user.followers)
