@@ -1,6 +1,6 @@
 # Ghostybot
 
-A cool Discord bot
+A Custom Discord bot with a lot of commands for Discord communities. (+80 commands)
 
 [Invite ghostybot here](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 
