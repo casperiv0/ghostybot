@@ -21,8 +21,6 @@ module.exports = {
         if (!message.member.hasPermission("MANAGE_CHANNELS"))
             return message.channel.send("You don't the correct permissions for this command");
 
-        console.log(topic);
-
         await channel.setTopic(topic);
         await message.channel.send(`Successfully updated channel topic to ${topic}`);
     }
