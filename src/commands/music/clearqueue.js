@@ -13,7 +13,7 @@ module.exports = {
         }
 
         serverQueue.songs = [];
-        serverQueue.connection.dispatcher.destroy();
+        serverQueue.connection.dispatcher?.destroy();
         message.channel.send("The queue was cleared");
     }
 };
