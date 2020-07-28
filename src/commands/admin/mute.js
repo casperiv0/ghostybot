@@ -4,6 +4,10 @@ module.exports = {
   category: "admin",
   usage: "mute <@user>",
   async execute(bot, message, args) {
+
+    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+      return message.reply("I don't have the correct permissions to add a role to somebody! (Manage Roles)");
+
     const muteUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
@@ -11,7 +15,7 @@ module.exports = {
     if (muteUser.roles.cache.find((r) => r.name === "muted"))
       return message.channel.send("User is already muted!");
 
-    if (muteUser.hasPermission("MANAGE_ROLES") || message.member.user.id === muteUser.id)
+    if (muteUser.hasPermission("MANAGE_ROLES"))
       return message.channel.send("User can't be muted");
 
     if (!message.member.hasPermission("MANAGE_ROLES"))

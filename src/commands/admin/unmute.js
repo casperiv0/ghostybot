@@ -4,6 +4,11 @@ module.exports = {
   category: "admin",
   usage: "unmute <@user>",
   async execute(bot, message, args) {
+    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
+      return message.reply(
+        "I don't have the correct permissions to add a role to somebody! (Manage Roles)"
+      );
+
     const mutedUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
