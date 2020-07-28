@@ -1,5 +1,7 @@
 # Ghostybot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2d5dfb844dc4626bd813a4ca831eb43)](https://app.codacy.com/manual/Dev-CasperTheGhost/ghostybot?utm_source=github.com&utm_medium=referral&utm_content=Dev-CasperTheGhost/ghostybot&utm_campaign=Badge_Grade_Dashboard)
+
 A Custom Discord bot with a lot of commands for Discord communities. (+80 commands)
 
 [Invite ghostybot here](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
