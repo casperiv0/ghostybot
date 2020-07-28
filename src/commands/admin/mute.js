@@ -11,7 +11,7 @@ module.exports = {
     if (muteUser.roles.cache.find((r) => r.name === "muted"))
       return message.channel.send("User is already muted!");
 
-    if (muteUser.hasPermission("MANAGE_ROLES") || message.user.id === muteUser.id)
+    if (muteUser.hasPermission("MANAGE_ROLES") || message.member.user.id === muteUser.id)
       return message.channel.send("User can't be muted");
 
     if (!message.member.hasPermission("MANAGE_ROLES"))
