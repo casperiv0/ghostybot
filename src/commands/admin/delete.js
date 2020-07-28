@@ -4,6 +4,12 @@ module.exports = {
     usage: "delete <1-100>",
     category: "admin",
     execute(bot, message, args) {
+
+        if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
+        return message.reply(
+          "I don't have the correct permissions to manage messages! (Manage Messages)"
+        );  
+
         const user = message.member;
         const amount = args[0];
         if (!user.hasPermission("MANAGE_MESSAGES"))

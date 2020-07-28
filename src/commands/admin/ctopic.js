@@ -4,6 +4,11 @@ module.exports = {
     category: "admin",
     async execute(bot, message, args) {
 
+        if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
+        return message.reply(
+          "I don't have the correct permissions to manage channels! (Manage Channels)"
+        );  
+
         let channel = message.mentions.channels.first();
         let topic;
         if (!channel) {

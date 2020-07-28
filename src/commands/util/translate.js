@@ -4,7 +4,7 @@ const translate = require("@k3rn31p4nic/google-translate-api");
 module.exports = {
     name: "translate",
     description: "Translate a sentence",
-    usage: "!translate <to> <sentence>",
+    usage: "!translate <language> <sentence>",
     category: "util",
     async execute(bot, message, args) {
         const result = await translate(args.slice(1).join(" "), { to: args[0] });

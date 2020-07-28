@@ -3,6 +3,13 @@ module.exports = {
     description: "Kick a user",
     category: "admin",
     async execute(bot, message, args) {
+
+        if (!message.guild.me.hasPermission("KICK_MEMBERS"))
+        return message.reply(
+          "I don't have the correct permissions to kick users! (Kick Members)"
+        );  
+
+
         const kickUser = message.guild.member(
             message.mentions.users.first() ||
             message.guild.members.cache.get(args[0])

@@ -13,8 +13,6 @@ module.exports = {
             else nonAnimated.push(e.toString());
         });
 
-        console.log(animated, nonAnimated);
-
         const embed = new MessageEmbed()
             .addField("Animated:", animated.length === 0 ? "None" : animated.join(" "))
             .addField("Non Animated:", nonAnimated.length === 0 ? "None" : nonAnimated.join(" "))

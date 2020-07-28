@@ -6,6 +6,7 @@ module.exports = {
     name: "randomcolor",
     description: "Get a random color",
     category: "util",
+    aliases: ["color"],
     execute(bot, message) {
         const color = randomColor();
 

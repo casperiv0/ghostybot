@@ -4,9 +4,7 @@ module.exports = {
     name: "avatar",
     description: "Get user avatar",
     category: "util",
-    execute(bot, message, args) {
-        if (!args[0]) return message.reply("Please provide a mention");
-
+    execute(bot, message) {
         const user = message.mentions.users.first() || message.author;
         const avatar = user.displayAvatarURL();
 

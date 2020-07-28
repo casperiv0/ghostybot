@@ -5,6 +5,12 @@ module.exports = {
     description: "Sticky a message to the bottom of the screen",
     category: "admin",
     async execute(bot, message, args) {
+
+        if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
+        return message.reply(
+          "I don't have the correct permissions to manage messages! (Manage Messages)"
+        );
+
         message.delete();
 
         const member = message.member;

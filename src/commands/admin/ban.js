@@ -3,6 +3,12 @@ module.exports = {
     description: "ban",
     category: "admin",
     async execute(bot, message, args) {
+
+        if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+        return message.reply(
+          "I don't have the correct permissions to ban users! (Ban Members)"
+        );  
+
         const banUser = message.guild.member(
             message.mentions.users.first() ||
             message.guild.members.cache.get(args[0])

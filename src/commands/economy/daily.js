@@ -15,7 +15,7 @@ module.exports = {
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             message.channel.send("You have already collected your daily!");
         } else {
-            message.channel.send(`You collected your daily of ${amount} coins`);
+            message.channel.send(`You collected your daily of **${amount}** coins`);
             addUserMoney(message.guild.id, user.id, amount);
             setUserDaily(message.guild.id, user.id, Date.now());
         }

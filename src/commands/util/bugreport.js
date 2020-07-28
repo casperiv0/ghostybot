@@ -10,8 +10,6 @@ module.exports = {
 
         if (!bug) return message.channel.send("Please provide a bug");
 
-
-
         const embed = new MessageEmbed()
             .setColor("BLUE")
             .setTitle(`${message.author.username} has reported a bug`)

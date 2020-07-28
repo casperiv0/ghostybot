@@ -6,7 +6,7 @@ module.exports = {
     description: "balance",
     category: "economy",
     async execute(bot, message) {
-        const user = message.mentions.members.first() || message.author;
+        const user = message.mentions.users.first() || message.author;
         let money = await getUserMoney(message.guild.id, user.id);
         let bank = await getUserBank(message.guild.id, user.id);
         
