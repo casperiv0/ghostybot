@@ -18,7 +18,7 @@ module.exports = {
         kickUser.kick(kickReason);
 
         kickUser.user.send(`You've been **kicked** from **${message.guild.name}**, Reason: **${kickReason}**`);
-        message.channel.send(`${kickUser} was successfully kicked from the server. Reason: **${kickUser}**. I have also send a DM letting the person know.`);
+        message.channel.send(`${kickUser} was successfully kicked from the server. Reason: **${kickReason}**. I have also send a DM letting the person know.`);
 
     }
 };

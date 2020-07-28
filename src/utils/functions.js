@@ -6,7 +6,8 @@ const moment = require("moment");
  * @param {string} userId
  * @returns {Promise}
  */
-const getUserMoney = (guildId, userId) => db.fetch(`money_${guildId}_${userId}`);
+const getUserMoney = (guildId, userId) =>
+  db.fetch(`money_${guildId}_${userId}`);
 
 /**
  * @param {string} guildId
@@ -20,34 +21,39 @@ const getUserBank = (guildId, userId) => db.fetch(`bank_${guildId}_${userId}`);
  * @param {string} userId
  * @param {number} amount
  */
-const addUserMoney = (guildId, userId, amount) => db.add(`money_${guildId}_${userId}`, amount);
+const addUserMoney = (guildId, userId, amount) =>
+  db.add(`money_${guildId}_${userId}`, amount);
 
 /**
  * @param {string} guildId
  * @param {string} userId
  * @param {number} amount
  */
-const addUserBank = (guildId, userId, amount) => db.add(`bank_${guildId}_${userId}`, amount);
+const addUserBank = (guildId, userId, amount) =>
+  db.add(`bank_${guildId}_${userId}`, amount);
 
 /**
  * @param {string} guildId
  * @param {string} userId
  * @param {number} amount
  */
-const removeUserMoney = (guildId, userId, amount) => db.subtract(`money_${guildId}_${userId}`, amount);
+const removeUserMoney = (guildId, userId, amount) =>
+  db.subtract(`money_${guildId}_${userId}`, amount);
 
 /**
  * @param {string} guildId
  * @param {string} userId
  */
-const getUserDaily = (guildId, userId) => db.fetch(`daily_${guildId}_${userId}`);
+const getUserDaily = (guildId, userId) =>
+  db.fetch(`daily_${guildId}_${userId}`);
 
 /**
  * @param {string} guildId
  * @param {string} userId
  * @param {string} date
  */
-const setUserDaily = (guildId, userId, date) => db.set(`daily_${guildId}_${userId}`, date);
+const setUserDaily = (guildId, userId, date) =>
+  db.set(`daily_${guildId}_${userId}`, date);
 
 /**
  * @param {string} guildId
@@ -55,14 +61,13 @@ const setUserDaily = (guildId, userId, date) => db.set(`daily_${guildId}_${userI
  */
 const getUserWork = (guildId, userId) => db.fetch(`work_${guildId}_${userId}`);
 
-
 /**
  * @param {string} guildId
  * @param {string} userId
  * @param {string} date
  */
-const setUserWork = (guildId, userId, date) => db.set(`work_${guildId}_${userId}`, date);
-
+const setUserWork = (guildId, userId, date) =>
+  db.set(`work_${guildId}_${userId}`, date);
 
 /**
  * @param {string} data
@@ -90,21 +95,22 @@ const getServerPrefix = (guildId) => db.fetch(`prefix_${guildId}`);
  * @param {string} guildId
  * @param {string} newPrefix
  */
-const setServerPrefix = (guildId, newPrefix) => db.set(`prefix_${guildId}`, newPrefix);
+const setServerPrefix = (guildId, newPrefix) =>
+  db.set(`prefix_${guildId}`, newPrefix);
 
 module.exports = {
-    getUserMoney,
-    getUserBank,
-    addUserMoney,
-    addUserBank,
-    removeUserMoney,
-    getUserDaily,
-    setUserDaily,
-    getUserWork,
-    setUserWork,
-    formatDate,
-    getStickyData,
-    setStickyData,
-    getServerPrefix,
-    setServerPrefix
+  getUserMoney,
+  getUserBank,
+  addUserMoney,
+  addUserBank,
+  removeUserMoney,
+  getUserDaily,
+  setUserDaily,
+  getUserWork,
+  setUserWork,
+  formatDate,
+  getStickyData,
+  setStickyData,
+  getServerPrefix,
+  setServerPrefix,
 };
