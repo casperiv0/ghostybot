@@ -1,5 +1,5 @@
 require("./utils/checkValid")();
-const { Collection, Client } = require("discord.js");
+const { Collection, Client, MessageEmbed } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
 
 const { getStickyData, getServerPrefix } = require("./utils/functions");
@@ -56,6 +56,15 @@ bot.on("message", async (message) => {
       console.log("Command not found");
     }
   } catch (e) {
+    const errorEmbed = new MessageEmbed()
+    .setTitle(
+      "Whoops! That wasn't supposed to happen, I have reported this error to my developer."
+    )
+    .setColor("RED")
+    .setFooter(message.author.username)
+    .setTimestamp();
+
+    message.channel.send(errorEmbed);
     console.log(e);
   }
 });
