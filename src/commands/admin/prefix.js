@@ -16,6 +16,6 @@ module.exports = {
 
 
         setServerPrefix(message.guild.id, prefix);
-        message.channel.send(`Successfully updated prefix to ${prefix}`);
+        message.channel.send(`Successfully updated prefix to \`${prefix}\``);
     }
 };

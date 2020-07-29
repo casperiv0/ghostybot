@@ -1,5 +1,7 @@
 const db = require("quick.db");
 const moment = require("moment");
+const { MessageEmbed } = require("discord.js");
+const { ownerId } = require("../../config.json");
 
 /**
  * @param {string} guildId
@@ -98,6 +100,35 @@ const getServerPrefix = (guildId) => db.fetch(`prefix_${guildId}`);
 const setServerPrefix = (guildId, newPrefix) =>
   db.set(`prefix_${guildId}`, newPrefix);
 
+const sendToDev = (message, bot, error) => {
+  const errorEmbed = new MessageEmbed()
+    .setTitle("Whoops! That wasn't supposed to happen!")
+    .setDescription(`Send error to developer? y/n \n \`\`\` ${error} \`\`\` `)
+    .setColor("RED")
+    .setFooter(message.author.username)
+    .setTimestamp();
+
+  message.channel.send(errorEmbed);
+
+  const filter = (m) => message.author.id === m.author.id;
+
+  message.channel
+    .awaitMessages(filter, { time: 600000, max: 1, errors: ["time"] })
+    .then((messages) => {
+      const msg = messages.first();
+      if (msg.content === "y") {
+        bot.users.cache.get(ownerId).send(
+`**New Error!** 
+**Server ID:** ${message.guild.id}
+**Error:** \`\`\`${error} \`\`\` `
+        );
+        msg.react("👍");
+      } else {
+        return console.log(error);
+      }
+    });
+};
+
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -113,4 +144,5 @@ module.exports = {
   setStickyData,
   getServerPrefix,
   setServerPrefix,
+  sendToDev,
 };

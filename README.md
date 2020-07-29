@@ -1,7 +1,6 @@
 ![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr) ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot?color=gr&style=for-the-badge) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2d5dfb844dc4626bd813a4ca831eb43?style=for-the-badge)](https://app.codacy.com/manual/Dev-CasperTheGhost/ghostybot?utm_source=github.com&utm_medium=referral&utm_content=Dev-CasperTheGhost/ghostybot&utm_campaign=Badge_Grade_Dashboard?style=for-the-badge)
+
 # Ghostybot
-
-
 
 A Custom Discord bot with a lot of commands for Discord communities. (+80 commands)
 
@@ -44,8 +43,8 @@ A Custom Discord bot with a lot of commands for Discord communities. (+80 comman
 | say         | owl    |          | dadjoke      | leave      |       | dependencies |
 | sticky      | cow    |          | dice         | volume     |       | emojis       |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
-| prefix      |        |          | happiness    |            |       | instagram    |
-|             |        |          | hug          |            |       | minecraft    |
+| prefix      | cowsay |          | happiness    |            |       | instagram    |
+| announce    |        |          | hug          |            |       | minecraft    |
 |             |        |          | iq           |            |       | morse        |
 |             |        |          | kiss         |            |       | poll         |
 |             |        |          | owo          |            |       | randomcolor  |
