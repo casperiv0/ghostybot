@@ -22,5 +22,25 @@
     {
         "name": "Content Creator",
         "amount": 450
+    },
+    {
+        "name": "Artist",
+        "amount": 450
+    },
+    {
+        "name": "Painter",
+        "amount": 300
+    },
+    {
+        "name": "Truck Driver",
+        "amount": 350
+    },
+    {
+        "name": "Uber Driver",
+        "amount": 150
+    },
+    {
+        "name": "Project manager",
+        "amount": 400
     }
 ]
