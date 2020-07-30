@@ -1,4 +1,7 @@
-[![banner](.github/Ghostybot-banner.png)](https://caspertheghost.me)
+<a href="https://caspertheghost.me" align="center">
+     <img src=".github/Ghostybot-banner.png" alt="banner" />               
+</a>
+
 ![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr) ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot?color=gr&style=for-the-badge) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2d5dfb844dc4626bd813a4ca831eb43?style=for-the-badge)](https://app.codacy.com/manual/Dev-CasperTheGhost/ghostybot?utm_source=github.com&utm_medium=referral&utm_content=Dev-CasperTheGhost/ghostybot&utm_campaign=Badge_Grade_Dashboard?style=for-the-badge)
 
 # Ghostybot
