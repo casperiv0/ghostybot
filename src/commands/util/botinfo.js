@@ -40,7 +40,8 @@ module.exports = {
                 **Bot Uptime:** ${uptime}
                 **Node Version:** ${nodev}
                 **Discord.js version:** ${version}`
-            );
+            )
+            .setImage("https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png");
 
         message.channel.send(embed);
     }
