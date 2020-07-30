@@ -1,21 +1,35 @@
 const { MessageEmbed } = require("discord.js");
+const { getAnnounceChannel } = require("../../utils/functions");
 
 module.exports = {
   name: "announce",
   description: "Announce something in a channel",
   usage: "announce <channel> <text>",
   category: "admin",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    if (!args[0]) {
+      return message.channel.send(
+        "Please provide text or a valid channel!\n You can also set a default channel using `set announce-channel <channel mention>`"
+      );
+    }
+
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
       return message.channel.send(
         "You don't have the correct permissions for that!"
       );
 
-    const channel = message.mentions.channels.first();
-    const text = args.splice(1).join(" ");
+    const defaultChannel = await getAnnounceChannel(message.guild.id);
+    let channel = message.mentions.channels.first();
+    let text;
 
-    if (!channel || !text)
+    if (channel) {
+      text = args.splice(1).join(" ");
+    } else if (defaultChannel !== null) {
+      channel = defaultChannel;
+      text = args.join(" ");
+    } else {
       return message.channel.send("Please provide text or a valid channel");
+    }
 
     const embed = new MessageEmbed()
       .setTitle("📢 Announcement 📢")

@@ -16,12 +16,14 @@ module.exports = {
 
 
             const aliases = cmd.aliases ? cmd.aliases.map(a => a) : "None";
+            const options = cmd.options ? cmd.options.map(option => option) : "None"; 
             const embed = new MessageEmbed()
                 .setColor("BLUE")
                 .setTitle(`Command: ${cmd.name}`)
                 .addField("Aliases", aliases)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")
-                .addField("Usage", cmd.usage ? cmd.usage : "Not specified");
+                .addField("Usage", cmd.usage ? cmd.usage : "Not specified")
+                .addField("Options", options);
 
             return message.channel.send(embed);
         }

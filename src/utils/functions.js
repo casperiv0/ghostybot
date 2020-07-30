@@ -118,7 +118,7 @@ const sendToDev = (message, bot, error) => {
       const msg = messages.first();
       if (msg.content === "y") {
         bot.users.cache.get(ownerId).send(
-`**New Error!** 
+          `**New Error!** 
 **Server ID:** ${message.guild.id}
 **Error:** \`\`\`${error} \`\`\` `
         );
@@ -128,6 +128,22 @@ const sendToDev = (message, bot, error) => {
       }
     });
 };
+
+// Settings
+/**
+ * @param {string} guildId
+ * @param {Object} channel
+ */
+
+const setSuggestChannel = (guildId, channel) =>
+  db.set(`suggestchannel_${guildId}`, channel);
+
+const getSuggestChannel = (guildId) => db.fetch(`suggestchannel_${guildId}`);
+
+const setAnnounceChannel = (guildId, channel) =>
+  db.set(`announcechannel_${guildId}`, channel);
+
+const getAnnounceChannel = (guildId) => db.fetch(`announcechannel_${guildId}`);
 
 module.exports = {
   getUserMoney,
@@ -145,4 +161,8 @@ module.exports = {
   getServerPrefix,
   setServerPrefix,
   sendToDev,
+  setSuggestChannel,
+  getSuggestChannel,
+  setAnnounceChannel,
+  getAnnounceChannel
 };

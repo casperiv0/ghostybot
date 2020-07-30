@@ -45,7 +45,7 @@ A Custom Discord bot with a lot of commands for Discord communities. (+80 comman
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
 | announce    |        |          | hug          |            |       | minecraft    |
-|             |        |          | iq           |            |       | morse        |
+| set         |        |          | iq           |            |       | morse        |
 |             |        |          | kiss         |            |       | poll         |
 |             |        |          | owo          |            |       | randomcolor  |
 |             |        |          | ping         |            |       | roleinfo     |
@@ -57,6 +57,7 @@ A Custom Discord bot with a lot of commands for Discord communities. (+80 comman
 |             |        |          |              |            |       | uptime       |
 |             |        |          |              |            |       | github       |
 |             |        |          |              |            |       | channels     |
+|             |        |          |              |            |       | suggest      |
 
 ## API's used
 

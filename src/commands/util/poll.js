@@ -13,6 +13,7 @@ module.exports = {
             .setTitle(question)
             .setDescription(`Poll created by ${message.author.tag}`)
             .setFooter(message.author.username)
+            .setColor("BLUE")
             .setTimestamp();
 
         const sendMessage = await message.channel.send(embed);
