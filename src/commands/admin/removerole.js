@@ -1,11 +1,13 @@
+const { errorEmbed } = require("../../utils/functions");
+
 module.exports = {
   name: "removerole",
   description: "Remove a role from a user",
   category: "admin",
   async execute(bot, message, args) {
     if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-      return message.reply(
-        "I don't have the correct permissions to add a role to somebody! (Manage Roles)"
+      return message.channel.send(
+        errorEmbed("manage roles! (Manage Roles)", message)
       );
 
     if (!message.member.hasPermission("MANAGE_ROLES" || "ADMINISTRATOR"))

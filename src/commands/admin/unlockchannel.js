@@ -1,11 +1,13 @@
+const { errorEmbed } = require("../../utils/functions");
+
 module.exports = {
   name: "unlockchannel",
   description: "Unlock A channel",
   category: "admin",
   execute(bot, message) {
     if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
-      return message.reply(
-        "I don't have the correct permissions to manage channels! (Manage Channels)"
+      return message.channel.send(
+        errorEmbed("manage channels! (Manage Channels)", message)
       );
 
     const user = message.member;

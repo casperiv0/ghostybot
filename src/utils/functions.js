@@ -134,7 +134,6 @@ const sendToDev = (message, bot, error) => {
  * @param {string} guildId
  * @param {Object} channel
  */
-
 const setSuggestChannel = (guildId, channel) =>
   db.set(`suggestchannel_${guildId}`, channel);
 
@@ -144,6 +143,15 @@ const setAnnounceChannel = (guildId, channel) =>
   db.set(`announcechannel_${guildId}`, channel);
 
 const getAnnounceChannel = (guildId) => db.fetch(`announcechannel_${guildId}`);
+
+const errorEmbed = (error, message) => {
+  return new MessageEmbed()
+    .setTitle("Woah!")
+    .setDescription(`❌ I don't have the correct permissions to ${error}`)
+    .setColor("ORANGE")
+    .setFooter(message.author.username)
+    .setTimestamp();
+};
 
 module.exports = {
   getUserMoney,
@@ -164,5 +172,6 @@ module.exports = {
   setSuggestChannel,
   getSuggestChannel,
   setAnnounceChannel,
-  getAnnounceChannel
+  getAnnounceChannel,
+  errorEmbed
 };

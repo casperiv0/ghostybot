@@ -1,4 +1,4 @@
-const { setStickyData } = require("../../utils/functions");
+const { setStickyData, errorEmbed } = require("../../utils/functions");
 
 module.exports = {
   name: "unsticky",
@@ -7,10 +7,9 @@ module.exports = {
   category: "admin",
   execute(bot, message) {
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message.reply(
-        "I don't have the correct permissions to manage messages! (Manage Messages)"
+      return message.channel.send(
+        errorEmbed("manage messages! (Manage Messages)", message)
       );
-
     message.delete();
 
     const member = message.member;

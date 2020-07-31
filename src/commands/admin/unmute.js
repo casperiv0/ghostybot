@@ -1,3 +1,5 @@
+const { errorEmbed } = require("../../utils/functions");
+
 module.exports = {
   name: "unmute",
   description: "Unmute a user",
@@ -5,8 +7,8 @@ module.exports = {
   usage: "unmute <@user>",
   async execute(bot, message, args) {
     if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-      return message.reply(
-        "I don't have the correct permissions to add a role to somebody! (Manage Roles)"
+      return message.channel.send(
+        errorEmbed("manage roles! (Manage Roles)", message)
       );
 
     const mutedUser = message.guild.member(
