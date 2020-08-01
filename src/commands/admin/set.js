@@ -18,13 +18,13 @@ module.exports = {
       );
 
     let channel = message.mentions.channels.first();
-    const option = args[0].toLowerCase();
+    const option = args[0];
 
     if (!option) return message.channel.send("Please provide an valid option");
     if (!channel)
       return message.channel.send("Please provide a valid channel!");
 
-    switch (option) {
+    switch (option.toLowerCase()) {
       case "suggest-channel":
         setSuggestChannel(message.guild.id, channel);
         message.channel.send(`Suggest channel is now: ${channel}`);
