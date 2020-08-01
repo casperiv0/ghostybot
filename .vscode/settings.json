@@ -12,6 +12,7 @@
         "unsticky",
         "userinfo",
         "worldclock",
+        "youtube",
         "ytld"
     ],
     "git.ignoreLimitWarning": true

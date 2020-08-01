@@ -13,7 +13,7 @@ module.exports = {
 
         serverQueue.songs = [];
         serverQueue.playing = false;
-        serverQueue.connection.dispatcher.destroy();
+        serverQueue.connection.dispatcher?.end();
 
         message.react("👍");
     }
