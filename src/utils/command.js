@@ -39,7 +39,7 @@ module.exports = (bot) => {
       }
       bot.commands.set(cmd.name, cmd);
       // debug
-      //   console.log(`[INFO]: Loaded ${cmd.name}`);
+      //   console.log(`[INFO][COMMAND]: Loaded ${cmd.name}`);
     }
   });
 };

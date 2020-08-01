@@ -1,4 +1,4 @@
-<a href="https://caspertheghost.me" align="center">
+<a href="https://ghostybot.tk" align="center">
      <img src=".github/Ghostybot-banner.png" alt="banner" />               
 </a>
 
@@ -50,7 +50,7 @@ A Custom Discord bot with a lot of commands for Discord communities. (+90 comman
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
 | announce    |        |          | hug          |            |       | minecraft    |
 | set         |        |          | iq           |            |       | morse        |
-|             |        |          | kiss         |            |       | poll         |
+| unset       |        |          | kiss         |            |       | poll         |
 |             |        |          | owo          |            |       | randomcolor  |
 |             |        |          | ping         |            |       | roleinfo     |
 |             |        |          | randomjoke   |            |       | roles        |

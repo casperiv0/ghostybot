@@ -137,13 +137,44 @@ const sendToDev = (message, bot, error) => {
 const setSuggestChannel = (guildId, channel) =>
   db.set(`suggestchannel_${guildId}`, channel);
 
+/**
+ * @param {string} guildId
+ */
 const getSuggestChannel = (guildId) => db.fetch(`suggestchannel_${guildId}`);
 
+/**
+ * @param {string} guildId
+ * @param {Object} channel
+ */
 const setAnnounceChannel = (guildId, channel) =>
   db.set(`announcechannel_${guildId}`, channel);
 
+/**
+ * @param guildId
+ */
 const getAnnounceChannel = (guildId) => db.fetch(`announcechannel_${guildId}`);
 
+/**
+ * @param {string} guildId
+ */
+const getWelcomeChannel = (guildId) => db.fetch(`welcomechannel_${guildId}`);
+
+/**
+ * @param {string} guildId
+ * @param {Object} channel
+ */
+const setWelcomeChannel = (guildId, channel) =>
+  db.set(`welcomechannel_${guildId}`, channel);
+
+/**
+ * @param {string} guildId
+ */
+const unsetWelcomeChannel = (guildId) => db.delete(`welcomechannel_${guildId}`);
+
+/**
+ * @param {string} error
+ * @param {Object} message
+ */
 const errorEmbed = (error, message) => {
   return new MessageEmbed()
     .setTitle("Woah!")
@@ -173,5 +204,8 @@ module.exports = {
   getSuggestChannel,
   setAnnounceChannel,
   getAnnounceChannel,
-  errorEmbed
+  getWelcomeChannel,
+  setWelcomeChannel,
+  unsetWelcomeChannel,
+  errorEmbed,
 };
