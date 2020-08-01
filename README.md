@@ -12,10 +12,21 @@ A Custom Discord bot with a lot of commands for Discord communities. (+90 comman
 
 ## Table of contents
 
+- [Features](#features)
 - [Requirements](https://github.com/Dev-CasperTheGhost/ghostybot#requirements)
 - [Usage](https://github.com/Dev-CasperTheGhost/ghostybot#usage)
 - [Commands](https://github.com/Dev-CasperTheGhost/ghostybot#commands)
 - [API's used](https://github.com/Dev-CasperTheGhost/ghostybot#apis-used)
+
+## Features
+
+- Easy to use
+- Enable/disable welcome messages
+- Play games
+- Use util commands to get your avatar, botinfo, channelinfo and more
+- Play music
+- Get animal pictures/gifs
+- And more!
 
 ## Requirements
 
