@@ -37,7 +37,7 @@ module.exports = {
 
       switch (option.toLowerCase()) {
         case "add":
-          if (storeItems.includes(item))
+          if (storeItems?.includes(item))
             return message.channel.send(
               `**${item}** Already exists in the store!`
             );
@@ -53,7 +53,7 @@ module.exports = {
           break;
 
         case "remove":
-          const exists = storeItems.filter((i) => i.name === item)[0];
+          const exists = storeItems?.filter((i) => i.name === item)[0];
           if (!exists)
             return message.channel.send(
               `**${item}** doesn't exist in the store!`
