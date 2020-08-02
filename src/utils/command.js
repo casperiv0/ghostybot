@@ -14,21 +14,21 @@ module.exports = (bot) => {
 
       if (!cmd.execute)
         throw new TypeError(
-          `[ERROR]: execute function is required for commands! (${file})`
+          `[ERROR][COMMANDS]: execute function is required for commands! (${file})`
         );
 
       if (!cmd.name)
         throw new TypeError(
-          `[ERROR]: name is required for commands! (${file})`
+          `[ERROR][COMMANDS]: name is required for commands! (${file})`
         );
 
       if (cmd.name.trim() === "")
-        throw new TypeError(`[ERROR]: name cannot be empty! (${file})`);
+        throw new TypeError(`[ERROR][COMMANDS]: name cannot be empty! (${file})`);
 
       if (!cmd.category)
         console.warn(
           chalk.yellow(
-            `[WARNING]: Command: ${cmd.name} will not be shown in the help command because no category is set.`
+            `[WARNING][COMMANDS]: Command: ${cmd.name} will not be shown in the help command because no category is set.`
           )
         );
 
@@ -39,7 +39,7 @@ module.exports = (bot) => {
       }
       bot.commands.set(cmd.name, cmd);
       // debug
-      //   console.log(`[INFO][COMMAND]: Loaded ${cmd.name}`);
+      //   console.log(`[INFO][COMMANDS]: Loaded ${cmd.name}`);
     }
   });
 };

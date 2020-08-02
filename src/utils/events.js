@@ -16,13 +16,11 @@ module.exports = (bot) => {
     if (!event.name)
       throw new TypeError(`[ERROR]: name is required for events! (${file})`);
 
-    const eventName = event.name;
-
-    bot.on(eventName, event.execute.bind(null, bot));
+    bot.on(event.name, event.execute.bind(null, bot));
 
     delete require.cache[require.resolve(`../events/${file}`)];
 
     // debug
-    // console.log(`[INFO][EVENT]: Loaded ${eventName}`);
+    // console.log(`[INFO][EVENT]: Loaded ${event.name}`);
   });
 };

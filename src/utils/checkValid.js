@@ -12,27 +12,27 @@ function checkValid() {
   }
 
   if (config.token === "") {
-    throw Error("[ERROR]: Bot token is required");
+    throw Error("[ERROR][BOT]: Bot token is required");
   }
 
   if (config.prefix === "") {
-    throw Error("[ERROR]: Prefix is required");
+    throw Error("[ERROR][BOT]: Prefix is required");
   }
 
   if (config.youtubeApiKey === "") {
-    throw Error("[ERROR]: Youtube API token is required");
+    throw Error("[ERROR][BOT]: Youtube API token is required");
   }
 
   if (config.ownerId === "") {
     console.warn(
-      chalk.yellow("[WARNING]: ownerId is required for bot-owner commands")
+      chalk.yellow("[WARNING][BOT]: ownerId is required for bot-owner commands")
     );
   }
 
   if (config.reportsChannelId === "") {
     console.warn(
       chalk.yellow(
-        "[WARNING]: reportsChannelId is required for the bugreport command"
+        "[WARNING][BOT]: reportsChannelId is required for the bugreport command"
       )
     );
   }
