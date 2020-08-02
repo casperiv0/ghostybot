@@ -1,3 +1,6 @@
+//* this file is for creating small mostly database related functions to keep stuff clean in the command files.
+//! If you are contributing, please use this file for db functions!
+
 const db = require("quick.db");
 const moment = require("moment");
 const { MessageEmbed } = require("discord.js");
@@ -70,6 +73,40 @@ const getUserWork = (guildId, userId) => db.fetch(`work_${guildId}_${userId}`);
  */
 const setUserWork = (guildId, userId, date) =>
   db.set(`work_${guildId}_${userId}`, date);
+
+/**
+ * @param {string} guildId
+ * @param {string} userId
+ */
+const getUserInventory = (guildId, userId) =>
+  db.fetch(`inventory_${guildId}_${userId}`);
+
+/**
+ * @param {string} guildId
+ * @param {string} userId
+ * @param {string} newItem
+ */
+const setUserInventory = (guildId, userId, newItem) =>
+  db.push(`inventory_${guildId}_${userId}`, newItem);
+
+/**
+ * @param {string} guildId
+ */
+const getStoreItems = (guildId) => db.fetch(`store_${guildId}`);
+
+/**
+ * @param {string} guildId
+ * @param {string} newItem
+ */
+const setStoreItems = (guildId, newItem) =>
+  db.push(`store_${guildId}`, newItem);
+
+/**
+ * @param {string} guildId
+ * @param {Array} updatedItems
+ */
+const removeStoreItem = (guildId, updatedItems) =>
+  db.set(`store_${guildId}`, updatedItems);
 
 /**
  * @param {string} data
@@ -194,6 +231,11 @@ module.exports = {
   setUserDaily,
   getUserWork,
   setUserWork,
+  getUserInventory,
+  setUserInventory,
+  getStoreItems,
+  setStoreItems,
+  removeStoreItem,
   formatDate,
   getStickyData,
   setStickyData,

@@ -47,15 +47,15 @@ A Custom Discord bot with a lot of commands for Discord communities. (+90 comman
 
 ## Commands
 
-| Admin       | Animal | Botowner | Games        | Music      | NSFW  | util         | Economy |
-| ----------- | ------ | -------- | ------------ | ---------- | ----- | ------------ | ------- |
-| addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance |
-| ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily   |
-| ctopic      | dog    |          | bet          | queue      | neko  | bugreport    | deposit |
-| kick        | duck   |          | block        | resume     |       | channelinfo  | work    |
-| lockchannel | fox    |          | calc         | skip       |       | define       |
-| removerole  | lizard |          | clyde        | stop       |       | delete       |
-| say         | owl    |          | dadjoke      | leave      |       | dependencies |
+| Admin       | Animal | Botowner | Games        | Music      | NSFW  | util         | Economy   |
+| ----------- | ------ | -------- | ------------ | ---------- | ----- | ------------ | --------- |
+| addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance   |
+| ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily     |
+| ctopic      | dog    |          | bet          | queue      | neko  | bugreport    | deposit   |
+| kick        | duck   |          | block        | resume     |       | channelinfo  | work      |
+| lockchannel | fox    |          | calc         | skip       |       | define       | store     |
+| removerole  | lizard |          | clyde        | stop       |       | delete       | inventory |
+| say         | owl    |          | dadjoke      | leave      |       | dependencies | buy       |
 | sticky      | cow    |          | dice         | volume     |       | emojis       |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
