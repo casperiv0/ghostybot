@@ -7,7 +7,7 @@ module.exports = {
     category: "util",
     aliases: ["h"],
     async execute(bot, message, args) {
-
+        const prefix = await getServerPrefix(message.guild.id) || "!";
         const cmdArgs = args[0];
 
         if (cmdArgs) {
@@ -22,7 +22,7 @@ module.exports = {
                 .setTitle(`Command: ${cmd.name}`)
                 .addField("Aliases", aliases)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")
-                .addField("Usage", cmd.usage ? cmd.usage : "Not specified")
+                .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified")
                 .addField("Options", options);
 
             return message.channel.send(embed);
@@ -37,7 +37,6 @@ module.exports = {
         const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
         const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
         const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
-        const prefix = await getServerPrefix(message.guild.id) || "!";
 
         const embed = new MessageEmbed()
             .setTimestamp()

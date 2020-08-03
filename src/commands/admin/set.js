@@ -2,7 +2,8 @@
 const {
   setSuggestChannel,
   setAnnounceChannel,
-  setWelcomeChannel
+  setWelcomeChannel,
+  setLeaveChannel
 } = require("../../utils/functions");
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
   description: "Set a default channel",
   category: "admin",
   usage: "set <option> <channel>",
-  options: ["suggest-channel", "announce-channel", "welcome-channel"],
+  options: ["suggest-channel", "announce-channel", "welcome-channel", "leave-channel"],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("ADMINISTRATOR"))
       return message.reply(
@@ -36,6 +37,10 @@ module.exports = {
       case "welcome-channel":
         setWelcomeChannel(message.guild.id, channel);
         message.channel.send(`Enabled welcome messages. Welcome channel is now: ${channel}`);
+        break;
+      case "leave-channel":
+        setLeaveChannel(message.guild.id, channel);
+        message.channel.send(`Enabled user leave messages. User Leave channel is now: ${channel}`);
         break;
       default:
         message.channel.send(`**${option}** is not a option!`);

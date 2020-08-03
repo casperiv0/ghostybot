@@ -209,6 +209,18 @@ const setWelcomeChannel = (guildId, channel) =>
 const unsetWelcomeChannel = (guildId) => db.delete(`welcomechannel_${guildId}`);
 
 /**
+ * @param {string} guildId
+ * @param {Object} channel
+ */
+const setLeaveChannel = (guildId, channel) =>
+  db.set(`leavechannel_${guildId}`, channel);
+
+/**
+ * @param {string} guildId
+ */
+const getLeaveChannel = (guildId) => db.fetch(`leavechannel_${guildId}`);
+
+/**
  * @param {string} error
  * @param {Object} message
  */
@@ -249,5 +261,7 @@ module.exports = {
   getWelcomeChannel,
   setWelcomeChannel,
   unsetWelcomeChannel,
+  setLeaveChannel,
+  getLeaveChannel,
   errorEmbed,
 };

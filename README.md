@@ -63,7 +63,7 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 | sticky      | cow    |          | dice         | volume     |       | emojis       |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
-| announce    |        |          | hug          |            |       | minecraft    |
+| announce    | shibe  |          | hug          |            |       | minecraft    |
 | set         |        |          | iq           |            |       | morse        |
 | unset       |        |          | kiss         |            |       | poll         |
 |             |        |          | owo          |            |       | randomcolor  |

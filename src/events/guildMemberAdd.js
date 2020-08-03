@@ -9,6 +9,12 @@ module.exports = {
     // not enabled
     if (welcomeChannel === null || !welcomeChannel) return;
 
+    // channel not found/deleted
+    if (
+      !member.guild.channels.cache.some((ch) => ch.name === welcomeChannel.name)
+    )
+      return;
+
     const embed = new MessageEmbed()
       .setTitle("👋 New Member!")
       .setDescription(`Welcome ${member} to ${member.guild.name}`)
