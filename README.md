@@ -2,7 +2,7 @@
      <img src=".github/Ghostybot-banner.png" alt="banner" />               
 </a>
 
-![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr) ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot?color=gr&style=for-the-badge)
+![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr) ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot?color=gr&style=for-the-badge) ![stars](https://img.shields.io/github/stars/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr)
 
 # Ghostybot
 
