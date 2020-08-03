@@ -1,4 +1,5 @@
 require("./utils/checkValid")();
+const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
 const { token } = require("../config.json");
@@ -12,3 +13,8 @@ require("./utils/command")(bot);
 require("./utils/events")(bot);
 
 bot.login(token);
+
+// Unhandled errors
+process.on("unhandledRejection", (error) =>
+  console.error(chalk.redBright(`Uncaught Error ${error}`))
+);

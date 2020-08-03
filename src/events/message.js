@@ -11,7 +11,10 @@ module.exports = {
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
     const stickyData = await getStickyData(message.guild.id);
-    const prefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
+
+    const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const serverPrefix = (await getServerPrefix(message.guild.id))|| "!"; //* Change using !prefix <new prefix>
+    const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
 
     // Check if sticky
     const isSticky = message.channel.id === stickyData?.channelId;
@@ -28,9 +31,10 @@ module.exports = {
       stickyData.id = stickyMessage.id;
     }
 
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!prefix.test(message.content) || message.author.bot || message.author.id === bot.user.id) return;
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const [, matchedPrefix] = message.content.match(prefix);
+    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
     // music queue
