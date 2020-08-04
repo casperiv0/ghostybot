@@ -51,10 +51,10 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 
 ## Commands
 
-| Admin       | Animal | Botowner | Games        | Music      | NSFW  | util         | Economy   |
-| ----------- | ------ | -------- | ------------ | ---------- | ----- | ------------ | --------- |
-| addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance   |
-| ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily     |
+| Admin       | Animal | Botowner | Games        | Music      | NSFW  | util         | Economy   | Levels      |
+| ----------- | ------ | -------- | ------------ | ---------- | ----- | ------------ | --------- | ----------- |
+| addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance   | xp          |
+| ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily     | leaderboard |
 | ctopic      | dog    |          | bet          | queue      | neko  | bugreport    | deposit   |
 | kick        | duck   |          | block        | resume     |       | channelinfo  | work      |
 | lockchannel | fox    |          | calc         | skip       |       | define       | store     |
