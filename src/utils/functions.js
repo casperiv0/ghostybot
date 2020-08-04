@@ -221,6 +221,10 @@ const setLeaveChannel = (guildId, channel) =>
 const getLeaveChannel = (guildId) => db.fetch(`leavechannel_${guildId}`);
 
 /**
+ * @param {string} guildId
+ */
+const unsetLeaveChannel = (guildId) => db.delete(`leavechannel_${guildId}`);
+/**
  * @param {string} error
  * @param {Object} message
  */
@@ -232,6 +236,35 @@ const errorEmbed = (error, message) => {
     .setFooter(message.author.username)
     .setTimestamp();
 };
+
+// xp
+/**
+ * @param {String} guildId
+ * @param {String} userId
+ * @param {Number} amount
+ */
+const setUserXp = (guildId, userId, amount) =>
+  db.set(`xp_${guildId}_${userId}`, amount);
+
+/**
+ * @param {String} guildId
+ * @param {String} userId
+ * @param {Number} amount
+ */
+const addUserXp = (guildId, userId, amount) =>
+  db.add(`xp_${guildId}_${userId}`, amount);
+
+/**
+ * @param {String} guildId
+ * @param {String} userId
+ */
+const getUserXp = (guildId, userId) => db.fetch(`xp_${guildId}_${userId}`);
+
+/**
+ * @param {Number} min
+ * @param {Number} max
+ */
+const generateXp = (min, max) => Math.ceil(Math.random() * (min * max));
 
 module.exports = {
   getUserMoney,
@@ -263,5 +296,10 @@ module.exports = {
   unsetWelcomeChannel,
   setLeaveChannel,
   getLeaveChannel,
+  unsetLeaveChannel,
   errorEmbed,
+  setUserXp,
+  addUserXp,
+  getUserXp,
+  generateXp,
 };

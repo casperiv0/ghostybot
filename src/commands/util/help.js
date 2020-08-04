@@ -37,6 +37,7 @@ module.exports = {
         const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
         const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
         const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
+        const levelCmds = commands.filter(cmd => cmd.category=== "levels").map(cmd => cmd.name).join(", ");
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -50,6 +51,7 @@ module.exports = {
             .addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
             .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
             .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
+            .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
             .addField("Server prefix: ", prefix)
             .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command`)
             .setTitle("Help");

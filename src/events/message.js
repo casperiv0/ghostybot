@@ -2,6 +2,10 @@ const {
   getStickyData,
   getServerPrefix,
   sendToDev,
+  generateXp,
+  getUserXp,
+  setUserXp,
+  addUserXp,
 } = require("../utils/functions");
 
 const queue = new Map();
@@ -11,10 +15,14 @@ module.exports = {
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
     const stickyData = await getStickyData(message.guild.id);
+    const guildId = message.guild.id;
+    const userId = message.author.id;
 
-    const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const serverPrefix = (await getServerPrefix(message.guild.id))|| "!"; //* Change using !prefix <new prefix>
-    const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
+    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
+    const prefix = new RegExp(
+      `^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`
+    );
 
     // Check if sticky
     const isSticky = message.channel.id === stickyData?.channelId;
@@ -31,7 +39,24 @@ module.exports = {
       stickyData.id = stickyMessage.id;
     }
 
-    if (!prefix.test(message.content) || message.author.bot || message.author.id === bot.user.id) return;
+    // xp - levels
+    if (!message.author.bot) {
+      const userXp = await getUserXp(guildId, userId);
+
+      if (userXp === null || !userXp) {
+        setUserXp(guildId, userId, generateXp(10, 15));
+      } else {
+        addUserXp(guildId, userId, generateXp(10, 15));
+      }
+    }
+
+    // Commands
+    if (
+      !prefix.test(message.content) ||
+      message.author.bot ||
+      message.author.id === bot.user.id
+    )
+      return;
 
     const [, matchedPrefix] = message.content.match(prefix);
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);

@@ -73,7 +73,7 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 |             |        |          | rps          |            |       | translate    |
 |             |        |          | wyr          |            |       | userinfo     |
 |             |        |          | ascii        |            |       | wordclock    |
-|             |        |          |              |            |       | uptime       |
+|             |        |          | compliment   |            |       | uptime       |
 |             |        |          |              |            |       | github       |
 |             |        |          |              |            |       | channels     |
 |             |        |          |              |            |       | suggest      |
