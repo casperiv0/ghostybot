@@ -22,7 +22,9 @@ module.exports = {
       const guildId = message.guild.id;
       const userId = data[i].ID.replace(`xp_${guildId}_`, ""); // get user id
       const user = bot.users.cache.get(userId); // Get user
-      embed.addField(user.username, `${data[i].data}xp`, true);
+      if (user) {
+        embed.addField(user.username, `${data[i].data}xp`, true);
+      }
     }
 
     message.channel.send({ embed });
