@@ -15,12 +15,15 @@ module.exports = {
     )
       return;
 
+    const user = bot.users.cache.get(member.id);
+
     const embed = new MessageEmbed()
       .setTitle("👋 New Member!")
       .setDescription(`Welcome ${member} to ${member.guild.name}`)
       .setColor("BLUE")
       .setTimestamp()
-      .setFooter(bot.user.username);
+      .setThumbnail(user.displayAvatarURL())
+      .setFooter(`UserId: ${member.id} - Tag: ${user.tag}`);
 
     bot.channels.cache.get(welcomeChannel.id).send({ embed });
   },

@@ -29,6 +29,7 @@ module.exports = {
             **Channels:** ${bot.channels.cache.size}
             **Created on:** ${createdAt}
             **Command Count:** ${bot.commands.size}
+            **Voice connections:** ${bot.voice.connections.size}
             `)
             .addField(
                 "__**System Info**__",
