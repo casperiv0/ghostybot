@@ -74,10 +74,10 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 |             |        |          | wyr          |            |       | userinfo     |
 |             |        |          | ascii        |            |       | wordclock    |
 |             |        |          | compliment   |            |       | uptime       |
-|             |        |          |              |            |       | github       |
-|             |        |          |              |            |       | channels     |
-|             |        |          |              |            |       | suggest      |
-|             |        |          |              |            |       | bmi          |
+|             |        |          | pat          |            |       | github       |
+|             |        |          | slap         |            |       | channels     |
+|             |        |          | poke         |            |       | suggest      |
+|             |        |          | smug         |            |       | bmi          |
 |             |        |          |              |            |       | npm          |
 
 ## API's used
