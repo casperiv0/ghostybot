@@ -77,6 +77,8 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 |             |        |          |              |            |       | github       |
 |             |        |          |              |            |       | channels     |
 |             |        |          |              |            |       | suggest      |
+|             |        |          |              |            |       | bmi          |
+|             |        |          |              |            |       | npm          |
 
 ## API's used
 

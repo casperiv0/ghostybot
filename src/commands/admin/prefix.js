@@ -1,11 +1,12 @@
 const { setServerPrefix, getServerPrefix } = require("../../utils/functions");
+const {ownerId} = require("../../../config.json");
 
 module.exports = {
     name: "prefix",
     description: "Set a prefix for your server",
     category: "admin",
     async execute(bot, message, args) {
-        if (!message.member.hasPermission("ADMINISTRATOR"))
+        if (message.author.id !== ownerId || !message.member.hasPermission("ADMINISTRATOR"))
             return message.reply("Sorry, You don't have the correct permissions for this command.");
 
         const prefix = args[0];
