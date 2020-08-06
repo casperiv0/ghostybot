@@ -7,6 +7,7 @@ module.exports = {
   usage: "announce <channel> <text>",
   category: "admin",
   async execute(bot, message, args) {
+    message.delete();
     if (!args[0]) {
       return message.channel.send(
         "Please provide text or a valid channel!\n You can also set a default channel using `set announce-channel <channel mention>`"
