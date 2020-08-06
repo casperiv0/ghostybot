@@ -16,7 +16,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle("New Emoji Created")
       .setDescription(`Emoji: **${emoji}** was created`)
-      .setColor("BLUE")
+      .setColor("GREEN")
       .setTimestamp();
 
     bot.channels.cache.get(auditChannel.id).send({ embed });

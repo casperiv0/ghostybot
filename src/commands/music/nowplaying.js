@@ -19,7 +19,7 @@ module.exports = {
             .setColor("BLUE")
             .setDescription(`${serverQueue.nowPlaying.title}`
             )
-            .setThumbnail(serverQueue.nowPlaying.thumbnail);
+            .setImage(serverQueue.nowPlaying.thumbnail);
         message.channel.send(embed);
     }
 };

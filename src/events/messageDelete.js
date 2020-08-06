@@ -2,21 +2,21 @@ const { MessageEmbed } = require("discord.js");
 const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
-  name: "roleCreate",
-  async execute(bot, role) {
-    const auditChannel = await getAuditChannel(role.guild.id);
+  name: "messageDelete",
+  async execute(bot, msg) {
+    const auditChannel = await getAuditChannel(msg.guild.id);
 
     // not enabled
     if (auditChannel === null || !auditChannel) return;
 
     // channel not found/deleted
-    if (!role.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
+    if (!msg.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
       return;
 
     const embed = new MessageEmbed()
-      .setTitle("New role Created")
-      .setDescription(`Role: **${role}** was created`)
-      .setColor("GREEN")
+      .setTitle("Message deleted")
+      .setDescription(`Message: \`${msg}\` was deleted in ${msg.channel}`)
+      .setColor("RED")
       .setTimestamp();
 
     bot.channels.cache.get(auditChannel.id).send({ embed });

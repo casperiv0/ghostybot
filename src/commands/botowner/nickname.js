@@ -14,6 +14,6 @@ module.exports = {
       .get(bot.user.id)
       .setNickname(nickname, "Updated by bot-owner");
 
-    message.channel.send(`Successfully updated bot' nickname to ${nickname}`);
+    message.channel.send(`Successfully updated bot' nickname to **${nickname}**`);
   },
 };

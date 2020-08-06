@@ -18,7 +18,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle("Channel Created")
       .setDescription(`Channel: **${channel}** was created`)
-      .setColor("BLUE")
+      .setColor("GREEN")
       .setTimestamp();
 
     bot.channels.cache.get(auditChannel.id).send({ embed });

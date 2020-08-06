@@ -31,18 +31,13 @@ module.exports = {
     const embed = new MessageEmbed()
       .setAuthor(user.name)
       .setTitle(`${user.login}'s Profile`)
-      .setDescription(
-        `
-            **Bio:** ${bio}
-            **Twitter:** ${twitter}
-            **Website:** ${website}
-            **Location:** ${location}
-            **Public Repos:** ${user.public_repos}
-            `
-      )
-      .addField("**Followers**", user.followers)
-      .addField("**Following**", user.following)
+      .addField("**Twitter**", twitter, true)
+      .addField("**Following**", user.following, true)
+      .addField("**Followers**", user.followers, true)
+      .addField("**Website**", website, true)
+      .addField("**Location**", location, true)
       .addField("Profile URL", user.html_url)
+      .setDescription(`Bio: ${bio}`)
       .setColor("BLUE")
       .setThumbnail(user.avatar_url)
       .setFooter(message.author.username);

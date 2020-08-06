@@ -4,6 +4,7 @@ module.exports = {
   name: "unlockchannel",
   description: "Unlock A channel",
   category: "admin",
+  usage: "unlockchannel <channel mention | current channel>",
   execute(bot, message) {
     if (!message.guild.me.hasPermission("MANAGE_CHANNELS"))
       return message.channel.send(
@@ -11,13 +12,14 @@ module.exports = {
       );
 
     const user = message.member;
+    const channel = message.mentions.channels.first() || message.channel;
 
     if (!user.hasPermission(["MANAGE_CHANNELS"]))
       return message.channel.send("You don't have to correct permissions!");
 
-    message.channel.updateOverwrite(message.guild.id, {
+    channel.updateOverwrite(message.guild.id, {
       SEND_MESSAGES: true,
     });
-    message.channel.send("Channel was successfully unlocked");
+    message.channel.send(`${channel} was successfully unlocked`);
   },
 };

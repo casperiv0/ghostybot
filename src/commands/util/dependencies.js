@@ -6,7 +6,7 @@ module.exports = {
     description: "Shows a list of all bots dependencies",
     category: "util",
     execute(bot, message) {
-        const dependencies = Object.keys(pkg.dependencies).join(",\n");
+        const dependencies = Object.entries(pkg.dependencies).join(",\n");
 
         const embed = new MessageEmbed()
             .setTitle("All Dependencies")

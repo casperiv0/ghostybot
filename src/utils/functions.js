@@ -38,6 +38,14 @@ const addUserBank = (guildId, userId, amount) =>
   db.add(`bank_${guildId}_${userId}`, amount);
 
 /**
+ * @param {String} guildId
+ * @param {String} userId
+ * @param {Number} amount
+ */
+const removeUserBank = (guildId, userId, amount) =>
+  db.subtract(`bank_${guildId}_${userId}`, amount);
+
+/**
  * @param {string} guildId
  * @param {string} userId
  * @param {number} amount
@@ -289,6 +297,7 @@ module.exports = {
   getUserBank,
   addUserMoney,
   addUserBank,
+  removeUserBank,
   removeUserMoney,
   getUserDaily,
   setUserDaily,

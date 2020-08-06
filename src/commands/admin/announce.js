@@ -19,14 +19,14 @@ module.exports = {
         "You don't have the correct permissions for that!"
       );
 
-    const defaultChannel = await getAnnounceChannel(message.guild.id);
+    const announceChannel = await getAnnounceChannel(message.guild.id);
     let channel = message.mentions.channels.first();
     let text;
 
     if (channel) {
       text = args.splice(1).join(" ");
-    } else if (defaultChannel !== null) {
-      channel = defaultChannel;
+    } else if (announceChannel !== null) {
+      channel = announceChannel;
       text = args.join(" ");
     } else {
       return message.channel.send("Please provide text or a valid channel");

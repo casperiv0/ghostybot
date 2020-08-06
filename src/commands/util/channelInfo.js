@@ -22,10 +22,10 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor("BLUE")
             .setTitle(`${channel.name}'s info`)
-            .addField("Type:", type)
-            .addField("Channel Topic:", topic)
-            .addField("Channel Id:", channelId)
-            .addField("Created At:", createdAt)
+            .addField("Type", type, true)
+            .addField("Channel Topic", topic, true)
+            .addField("Channel Id", channelId, true)
+            .addField("Created At", createdAt, true)
             .setFooter(message.author.username)
             .setTimestamp();
 

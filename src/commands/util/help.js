@@ -53,7 +53,7 @@ module.exports = {
             .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
             .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
             .addField("Server prefix: ", prefix)
-            .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command`)
+            .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`)
             .setTitle("Help");
 
         message.channel.send(embed);

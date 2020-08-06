@@ -35,6 +35,6 @@ module.exports = {
         addUserBank(message.guild.id, user.id, amount);
         removeUserMoney(message.guild.id, user.id, amount);
 
-        message.channel.send(`Successfully deposited ${amount} coins`);
+        message.channel.send(`Successfully deposited **${amount} coins**`);
     }
 };
