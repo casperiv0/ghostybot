@@ -25,17 +25,17 @@ module.exports = {
             .setThumbnail(guild.iconURL({ format: "png", dynamic: true, size: 1024 }))
             .setColor("BLUE")
             .addField("Server Information", `
-                **Server Owner:** ${owner}
-                **Roles Count:** ${roles}
-                **Channels Count:** ${channels}
-                **Emoji Count:** ${emojis}
-                **Created At:** ${createdAt}
-                **Joined:** ${joined}
+**Server Owner:** ${owner}
+**Roles Count:** ${roles}
+**Channels Count:** ${channels}
+**Emoji Count:** ${emojis}
+**Created At:** ${createdAt}
+**Joined:** ${joined}
             `)
             .addField("Other Info", `
-                **Region:** ${region}
-                **Verification level:** ${verLevel}
-                **MFA Level:** ${mfaLevel}
+**Region:** ${region}
+**Verification level:** ${verLevel}
+**MFA Level:** ${mfaLevel}
             `);
 
         message.channel.send(embed);

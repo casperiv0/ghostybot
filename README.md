@@ -88,9 +88,9 @@ these are the used events for the audit logs, more coming soon
 
 #### welcome message
 
-| Name              | Description                            |
-| ----------------- | -------------------------------------- |
-| guildMemberAdd    | A new member joined the server/guild   |
+| Name              | Description                              |
+| ----------------- | ---------------------------------------- |
+| guildMemberAdd    | A new member joined the server/guild     |
 | guildMemberRemove | A member left/was kicked from the server |
 
 #### Audit logs
@@ -131,3 +131,7 @@ these are the used events for the audit logs, more coming soon
 | instagram | [https://instagram.com](https://instagram.com)                                                                                   |
 | minecraft | [https://mcapi.us/server/status?ip=](https://mcapi.us/server/status?ip=)                                                         |
 | github    | [https://api.github.com/](https://api.github.com/)                                                                               |
+
+## Workflows
+
+Workflows are currently disable since a few dependencies got deleted that were needed for the workflows.

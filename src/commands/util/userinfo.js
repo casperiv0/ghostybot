@@ -8,8 +8,8 @@ module.exports = {
     category: "util",
     aliases: ["whois"],
     async execute(bot, message, args) {
-        if (!args[0]) return message.reply("Please provide a user mention");
-        const member = message.guild.members.cache.get(args.join(" ")) || message.mentions.members.first();
+        // if (!args[0]) return message.reply("Please provide a user mention");
+        const member = message.guild.members.cache.get(args.join(" ")) || message.mentions.members.first() || message.member;
 
         if (!member)
             return message.channel.send("User wasn't found!");
@@ -24,12 +24,12 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .addField("User Information", `
-                **Id:** ${id}
-                **Username:** ${username}
-                **Tag:** ${tag}
-                **Created At:** ${createdAt}
-                **Joined At:** ${joinedAt}
-                **Roles:** ${roles}
+**Id:** ${id}
+**Username:** ${username}
+**Tag:** ${tag}
+**Created At:** ${createdAt}
+**Joined At:** ${joinedAt}
+**Roles:** ${roles}
             `)
             .setTitle(`${username}'s info`)
             .setColor("BLUE")

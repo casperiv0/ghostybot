@@ -22,14 +22,14 @@ module.exports = {
             .addField("Bot username:", bot.user.username)
             .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
             .addField("__**Bot info:**__", `
-            **Game:** ${game.type.toLowerCase()} ${game.name}
-            **Status:** ${bot.user.presence.status}
-            **Users:** ${bot.users.cache.size}
-            **Servers:** ${bot.guilds.cache.size}
-            **Channels:** ${bot.channels.cache.size}
-            **Created on:** ${createdAt}
-            **Command Count:** ${bot.commands.size}
-            **Voice connections:** ${bot.voice.connections.size}
+**Game:** ${game.type.toLowerCase()} ${game.name}
+**Status:** ${bot.user.presence.status}
+**Users:** ${bot.users.cache.size}
+**Servers:** ${bot.guilds.cache.size}
+**Channels:** ${bot.channels.cache.size}
+**Created on:** ${createdAt}
+**Command Count:** ${bot.commands.size}
+**Voice connections:** ${bot.voice.connections.size}
             `)
             .addField(
                 "__**System Info**__",
@@ -38,9 +38,9 @@ module.exports = {
                     1024 /
                     1024
                 ).toFixed(2)}MB
-                **Bot Uptime:** ${uptime}
-                **Node Version:** ${nodev}
-                **Discord.js version:** ${version}`
+**Bot Uptime:** ${uptime}
+**Node Version:** ${nodev}
+**Discord.js version:** ${version}`
             )
             .setImage("https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png");
 
