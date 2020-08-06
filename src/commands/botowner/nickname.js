@@ -13,5 +13,7 @@ module.exports = {
     message.guild.members.cache
       .get(bot.user.id)
       .setNickname(nickname, "Updated by bot-owner");
+
+    message.channel.send(`Successfully updated bot' nickname to ${nickname}`);
   },
 };

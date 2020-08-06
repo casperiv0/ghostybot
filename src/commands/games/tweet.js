@@ -15,7 +15,12 @@ module.exports = {
 
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=tweet&text=${text}&username=${username}`
-    ).then((res) => res.json());
+    )
+      .then((res) => res.json())
+      .catch((e) => {
+        console.error(e);
+        message.channel.send("Something went wrong!");
+      });
 
     sendMsg.delete();
     const embed = new MessageEmbed()
