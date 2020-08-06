@@ -14,15 +14,20 @@ module.exports = {
         `Current server prefix: \`${currentPrefix}\` \n Use \`${currentPrefix}prefix <prefix>\` to set a new prefix`
       );
 
-    if (
-      ownerId.toString() !== message.author.id.toString() ||
-      !message.member.permissions.has(["MANAGE_GUILD"])
-    )
+    if (message.author.id === ownerId) {
+      setPrefix(message, prefix);
+    } else if (message.member.permissions.has(["MANAGE_GUILD"])) {
+      setPrefix(message, prefix);
+    } else {
       return message.reply(
         "Sorry, You don't have the correct permissions for this command."
       );
-
-    setServerPrefix(message.guild.id, prefix);
-    message.channel.send(`Successfully updated prefix to \`${prefix}\``);
+    }
   },
 };
+
+function setPrefix(message, prefix) {
+  setServerPrefix(message.guild.id, prefix);
+
+  message.channel.send(`Successfully updated prefix to \`${prefix}\``);
+}
