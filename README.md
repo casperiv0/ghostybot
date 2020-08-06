@@ -78,7 +78,8 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 |             |        |          | slap         |            |       | channels     |
 |             |        |          | poke         |            |       | suggest      |
 |             |        |          | smug         |            |       | bmi          |
-|             |        |          |              |            |       | npm          |
+|             |        |          | lmgtfy       |            |       | npm          |
+|             |        |          |              |            |       | servericon   |
 
 ## API's used
 
