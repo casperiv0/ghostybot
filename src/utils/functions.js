@@ -266,6 +266,24 @@ const getUserXp = (guildId, userId) => db.fetch(`xp_${guildId}_${userId}`);
  */
 const generateXp = (min, max) => Math.ceil(Math.random() * (min * max));
 
+// Audit logs
+/**
+ * @param {String} guildId
+ * @param {Object} channel
+ */
+const setAuditChannel = (guildId, channel) =>
+  db.set(`auditchannel_${guildId}`, channel);
+
+/**
+ * @param {String} guildId
+ */
+const getAuditChannel = (guildId) => db.fetch(`auditchannel_${guildId}`);
+
+/**
+ * @param {String} guildId
+ */
+const unsetAuditChannel = (guildId) => db.delete(`auditchannel_${guildId}`);
+
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -302,4 +320,7 @@ module.exports = {
   addUserXp,
   getUserXp,
   generateXp,
+  setAuditChannel,
+  getAuditChannel,
+  unsetAuditChannel,
 };

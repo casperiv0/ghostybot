@@ -20,6 +20,7 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 - [Requirements](https://github.com/Dev-CasperTheGhost/ghostybot#requirements)
 - [Usage](https://github.com/Dev-CasperTheGhost/ghostybot#usage)
 - [Commands](https://github.com/Dev-CasperTheGhost/ghostybot#commands)
+- [Bot Events](#bot-events)
 - [API's used](https://github.com/Dev-CasperTheGhost/ghostybot#apis-used)
 
 ## Features
@@ -80,6 +81,19 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 |             |        |          | smug         |            |       | bmi          |
 |             |        |          | lmgtfy       |            |       | npm          |
 |             |        |          |              |            |       | servericon   |
+
+## Bot events
+
+these are the used events for the audit logs, more coming soon
+
+| Name          | Description               |
+| ------------- | ------------------------- |
+| channelCreate | A new channel was created |
+| channelDelete | A channel was deleted     |
+| emojiCreate   | A new emoji was created   |
+| emojiDelete   | An emoji was deleted      |
+| roleCreate    | A role was created        |
+| roleDelete    | A role was deleted        |
 
 ## API's used
 
