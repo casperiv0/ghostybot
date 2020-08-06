@@ -6,13 +6,13 @@
 
 # Ghostybot
 
-A Custom Discord bot with a lot of commands for Discord communities. (+90 commands)
+A Custom Discord bot with a lot of commands for Discord communities. (+100 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
 
 [Invite ghostybot here](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 
 ### Disclaimer (if self-hosted)
 
-You are not allowed to upload this bot to any service such as discordbotlist & top.gg, you are only allowed to host this bot for your community.
+You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community.
 
 ## Table of contents
 
@@ -85,6 +85,15 @@ You are not allowed to upload this bot to any service such as discordbotlist & t
 ## Bot events
 
 these are the used events for the audit logs, more coming soon
+
+#### welcome message
+
+| Name              | Description                            |
+| ----------------- | -------------------------------------- |
+| guildMemberAdd    | A new member joined the server/guild   |
+| guildMemberRemove | A member left/was kicked from the server |
+
+#### Audit logs
 
 | Name          | Description               |
 | ------------- | ------------------------- |
