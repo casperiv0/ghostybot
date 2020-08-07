@@ -12,7 +12,7 @@ module.exports = {
             .setTitle(`${user.username}'s Avatar`)
             .setFooter(message.author.username)
             .setDescription(`Click __[Here](${avatar})__ to download`)
-            .setImage(`${avatar}?sizes2048`, true)
+            .setImage(`${avatar}`)
             .setColor("BLUE")
             .setTimestamp();
 

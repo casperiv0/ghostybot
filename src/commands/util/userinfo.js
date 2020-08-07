@@ -23,6 +23,7 @@ module.exports = {
         .filter((r) => r.id !== message.guild.id)
         .map((r) => r)
         .join(", ") || "None";
+    const roleCount = member.roles.cache.filter(r => r.id !== message.guild.id).size;
     const { username, id, tag } = member.user;
 
     const embed = new MessageEmbed()
@@ -31,7 +32,7 @@ module.exports = {
       .addField("**Tag**", tag, true)
       .addField("**Created At**", createdAt, true)
       .addField("**Joined At**", joinedAt, true)
-      .addField("**Roles**", roles)
+      .addField(`**Roles (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
       .setColor("BLUE")
       .setThumbnail(avatar, { dynamic: true })
