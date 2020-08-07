@@ -15,9 +15,17 @@ module.exports = {
     )
       return;
 
+    let msg = "";
+
+    if (channel.type === "category") {
+      msg = `Category: **${channel}** was created`;
+    } else {
+      msg = `Channel: **${channel}** was created`;
+    }
+
     const embed = new MessageEmbed()
       .setTitle("Channel Created")
-      .setDescription(`Channel: **${channel}** was created`)
+      .setDescription(msg)
       .setColor("GREEN")
       .setTimestamp();
 

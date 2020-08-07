@@ -15,9 +15,16 @@ module.exports = {
     )
       return;
 
+    let msg = "";
+    if (channel.type === "category") {
+      msg = `Category: **${channel.name}** was deleted`;
+    } else {
+      msg = `Channel: **${channel.name}** was deleted`;
+    }
+
     const embed = new MessageEmbed()
       .setTitle("Channel deleted")
-      .setDescription(`Channel: **${channel.name}** was deleted`)
+      .setDescription(msg)
       .setColor("RED")
       .setTimestamp();
 
