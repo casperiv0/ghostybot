@@ -57,7 +57,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | addrole     | bunny  | eval     | 8ball        | pause      | boobs | avatar       | balance   | xp          |
 | ban         | cat    | shutdown | advice       | play       | butt  | botinfo      | daily     | leaderboard |
 | ctopic      | dog    |          | bet          | queue      | neko  | bugreport    | deposit   | level       |
-| kick        | duck   |          | block        | resume     |       | channelinfo  | work      |
+| kick        | duck   |          | block        | resume     |       | channelinfo  | work      | givepx      |
 | lockchannel | fox    |          | calc         | skip       |       | define       | store     |
 | removerole  | lizard |          | clyde        | stop       |       | delete       | inventory |
 | say         | owl    |          | dadjoke      | leave      |       | dependencies | buy       |

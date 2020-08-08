@@ -8,9 +8,8 @@ module.exports = {
   async execute(bot, message) {
     const data = db
       .fetchAll()
-      .filter((da) => da.ID.includes("xp_"))
-      .sort((a, b) => b.data - a.data)
-      .slice(0, 10);
+      .filter((da) => da.ID.startsWith("xp_"))
+      .sort((a, b) => b.data - a.data);
 
     const embed = new MessageEmbed()
       .setTitle(`${message.guild.name}'s Leaderboard`)
