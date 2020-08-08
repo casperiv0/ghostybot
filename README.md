@@ -81,7 +81,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 |             |        |          | smug         |            |       | bmi          |
 |             |        |          | lmgtfy       |            |       | npm          |
 |             |        |          | changemymind |            |       | servericon   |
-|             |        |          | supreme      |            |       |              |
+|             |        |          | supreme      |            |       | weather      |
 |             |        |          | tweet        |            |       |              |
 
 ## Bot events
@@ -139,6 +139,7 @@ these are the used events for the audit logs, more coming soon
 | birb         | [https://api.alexflipnote.dev/birb](https://api.alexflipnote.dev/birb)                                                                   |
 | changemymind | [https://nekobot.xyz/api/imagegen?type=changemymind&text=helloworld](https://nekobot.xyz/api/imagegen?type=changemymind&text=helloworld) |
 | supreme      | [https://api.alexflipnote.dev/supreme?text=helloworld](https://api.alexflipnote.dev/supreme?text=helloworld)                             |
+| weather      | [http://api.openweathermap.org/data/2.5/weather](http://api.openweathermap.org/data/2.5/weather)                             |
 
 ## Workflows
 

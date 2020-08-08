@@ -2,5 +2,6 @@
     "token": "",
     "ownerId": "",
     "youtubeApiKey": "",
-    "reportsChannelId": ""
+    "reportsChannelId": "",
+    "openWeatherMapKey": ""
 }

@@ -36,6 +36,14 @@ function checkValid() {
       )
     );
   }
+
+  if (config.openWeatherMapKey === "") {
+    console.warn(
+      chalk.yellow(
+        "[WARNING][BOT]: openWeatherMapKey is required for the weather command"
+      )
+    );
+  }
 }
 
 module.exports = checkValid;
