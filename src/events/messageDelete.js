@@ -3,19 +3,25 @@ const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "messageDelete",
-  async execute(bot, msg) {
-    const auditChannel = await getAuditChannel(msg.guild.id);
+  async execute(bot, message) {
+    const auditChannel = await getAuditChannel(message.guild.id);
 
     // not enabled
     if (auditChannel === null || !auditChannel) return;
 
     // channel not found/deleted
-    if (!msg.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
+    if (
+      !message.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
+    )
       return;
+
+    if (message.author.id === bot.user.id) return;
 
     const embed = new MessageEmbed()
       .setTitle("Message deleted")
-      .setDescription(`Message: \`${msg}\` was deleted in ${msg.channel}`)
+      .setDescription(
+        `Message: \`${message}\` was deleted in ${message.channel}`
+      )
       .setColor("RED")
       .setTimestamp();
 

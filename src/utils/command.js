@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { sep } = require("path");
 const chalk = require("chalk");
+const { Collection } = require("discord.js");
 
 module.exports = (bot) => {
   const dir = "./src/commands";
@@ -37,7 +38,14 @@ module.exports = (bot) => {
           bot.aliases.set(alias, cmd.name);
         }
       }
+      
       bot.commands.set(cmd.name, cmd);
+
+      const cooldowns = bot.cooldowns;
+      
+      if (!cooldowns.has(cmd.name)) {
+        cooldowns.set(cmd.name, new Collection());
+      }
       // debug
       //   console.log(`[INFO][COMMANDS]: Loaded ${cmd.name}`);
     }

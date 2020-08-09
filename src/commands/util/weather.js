@@ -26,6 +26,7 @@ module.exports = {
     const temp = data.main.temp;
     const windSpeed = data.wind.speed;
     const windDeg = data.wind.deg;
+    const country = data.sys.country;
 
     const embed = new MessageEmbed()
       .setTitle(`${data.name}'s Weather`)
@@ -35,6 +36,7 @@ module.exports = {
       .addField("**Feels like**", `${feelsLike}°C`, true)
       .addField("**Wind speed**", `${windSpeed}Km/h`, true)
       .addField("**Wind degrees**", windDeg, true)
+      .addField("**Country**", country)
       .setColor("BLUE")
       .setFooter(message.author.username)
       .setTimestamp();

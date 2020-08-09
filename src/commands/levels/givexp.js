@@ -6,7 +6,7 @@ module.exports = {
   category: "levels",
   async execute(bot, message, args) {
     const user = message.mentions.users.first();
-    const xp = args.join(" ").slice(23);
+    const xp = args.join(" ").slice(22);
     const usersXp = await getUserXp(message.guild.id, user.id);
 
     if (!message.member.hasPermission("MANAGE_MEMBERS"))

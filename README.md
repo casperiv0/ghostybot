@@ -61,7 +61,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | lockchannel | fox    |          | calc         | skip       |       | define       | store     |
 | removerole  | lizard |          | clyde        | stop       |       | delete       | inventory |
 | say         | owl    |          | dadjoke      | leave      |       | dependencies | buy       |
-| sticky      | cow    |          | dice         | volume     |       | emojis       |
+| sticky      | cow    |          | tweet        | volume     |       | emojis       | dice      |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
 | announce    | shibe  |          | hug          |            |       | minecraft    |
@@ -82,7 +82,6 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 |             |        |          | lmgtfy       |            |       | npm          |
 |             |        |          | changemymind |            |       | servericon   |
 |             |        |          | supreme      |            |       | weather      |
-|             |        |          | tweet        |            |       |              |
 
 ## Bot events
 
@@ -139,7 +138,7 @@ these are the used events for the audit logs, more coming soon
 | birb         | [https://api.alexflipnote.dev/birb](https://api.alexflipnote.dev/birb)                                                                   |
 | changemymind | [https://nekobot.xyz/api/imagegen?type=changemymind&text=helloworld](https://nekobot.xyz/api/imagegen?type=changemymind&text=helloworld) |
 | supreme      | [https://api.alexflipnote.dev/supreme?text=helloworld](https://api.alexflipnote.dev/supreme?text=helloworld)                             |
-| weather      | [http://api.openweathermap.org/data/2.5/weather](http://api.openweathermap.org/data/2.5/weather)                             |
+| weather      | [http://api.openweathermap.org/data/2.5/weather](http://api.openweathermap.org/data/2.5/weather)                                         |
 
 ## Workflows
 

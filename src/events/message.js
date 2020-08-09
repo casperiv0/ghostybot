@@ -17,6 +17,7 @@ module.exports = {
     const stickyData = await getStickyData(message.guild.id);
     const guildId = message.guild.id;
     const userId = message.author.id;
+    const cooldowns = bot.cooldowns;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
@@ -49,12 +50,11 @@ module.exports = {
         addUserXp(guildId, userId, generateXp(10, 15));
       }
     }
-
     // Commands
     if (
       !prefix.test(message.content) ||
       message.author.bot ||
-      message.author.id === bot.user.id
+      userId === bot.user.id
     )
       return;
 
@@ -68,6 +68,26 @@ module.exports = {
     try {
       const cmd =
         bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
+
+      const now = Date.now();
+      const timestamps = cooldowns.get(cmd.name);
+      const cooldownAmount = cmd.cooldown * 1000;
+
+      if (timestamps.has(userId)) {
+        const expTime = timestamps.get(userId) + cooldownAmount;
+
+        if (now < expTime) {
+          const timeleft = (expTime - now) / 1000;
+          return message.reply(
+            `Please wait **${timeleft.toFixed(
+              1
+            )}** more seconds before using the **${cmd.name}** command`
+          );
+        }
+      }
+
+      timestamps.set(userId, now);
+      setTimeout(() => timestamps.delete(userId), cooldownAmount);
 
       if (bot.commands.has(cmd?.name)) {
         cmd.execute(bot, message, args, serverQueue, queue);

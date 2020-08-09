@@ -6,6 +6,8 @@
         "botowner",
         "bugreport",
         "channelinfo",
+        "cooldown",
+        "cooldowns",
         "minecraft",
         "motd",
         "randomcolor",

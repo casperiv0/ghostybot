@@ -20,9 +20,10 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setColor("BLUE")
                 .setTitle(`Command: ${cmd.name}`)
-                .addField("Aliases", aliases)
+                .addField("Aliases", aliases, true)
+                .addField("Cooldown", cmd.cooldown, true)
+                .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified", true)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")
-                .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified")
                 .addField("Options", options);
 
             return message.channel.send(embed);

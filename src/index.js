@@ -7,6 +7,7 @@ const { token } = require("../config.json");
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
+bot.cooldowns = new Collection();
 require("./utils/command")(bot);
 
 // events
