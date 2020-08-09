@@ -3,23 +3,30 @@ const { ownerId } = require("../../../config.json");
 const util = require("util");
 
 module.exports = {
-    name: "eval",
-    description: "Eval",
-    category: "botowner",
-    async execute(bot, message, args) {
-        if (message.author.id !== ownerId) return message.reply("Only the owner is allowed to run this command");
+  name: "eval",
+  description: "Eval",
+  category: "botowner",
+  async execute(bot, message, args) {
+    if (message.author.id !== ownerId)
+      return message.reply("Only the owner is allowed to run this command");
 
-        const toEval = args.join(" ");
-        const evaluated = util.inspect(eval(toEval, { depth: 0 }));
+    const toEval = args.join(" ");
+    if (!toEval) return message.channel.send("Please provide text");
 
-        const embed = new MessageEmbed()
-            .setTitle("Eval Command")
-            .addField("**Input:**", `\`\`\`${toEval}\`\`\``)
-            .addField("**Output:**", ` \`\`\`${evaluated}\`\`\``)
-            .setColor("BLUE")
-            .setTimestamp()
-            .setFooter(message.author.username);
+    try {
+      const evaluated = util.inspect(eval(toEval, { depth: 0 }));
 
-        message.channel.send(embed);
+      const embed = new MessageEmbed()
+        .setTitle("Eval Command")
+        .addField("**Input:**", `\`\`\`${toEval}\`\`\``)
+        .addField("**Output:**", ` \`\`\`${evaluated}\`\`\``)
+        .setColor("BLUE")
+        .setTimestamp()
+        .setFooter(message.author.username);
+
+      message.channel.send(embed);
+    } catch (e) {
+      return message.channel.send(`Something went wrong!  \`\`\`${e}\`\`\`  `);
     }
+  },
 };

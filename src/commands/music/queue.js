@@ -10,7 +10,7 @@ module.exports = {
             return message.channel.send("You need to be in a voice channel!");
         }
 
-        if (!serverQueue) {
+        if (!serverQueue || serverQueue.songs.length <= 0) {
             return message.channel.send("There are no songs in the queue");
         }
 

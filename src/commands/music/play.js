@@ -8,6 +8,7 @@ module.exports = {
     description: "Play a song",
     aliases: ["p"],
     category: "music",
+    usage: "play <youtube link | song name>",
     async execute(bot, message, args, serverQueue, queue) {
         const voiceChannel = message.member.voice.channel;
 
@@ -42,7 +43,7 @@ module.exports = {
             };
         }        
 
-        if (!serverQueue) {
+        if (!serverQueue || serverQueue.songs.length <= 0) {
             const queueContruct = {
                 textChannel: message.channel,
                 voiceChannel: voiceChannel,

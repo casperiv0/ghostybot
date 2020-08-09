@@ -18,14 +18,14 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setAuthor(account.username)
-            .setDescription(`Bio: ${account.biography}`)
-            .setColor("BLUE")
-            .addField("Private?", isPrivate)
-            .addField("Verified?", isVerified)
             .setTitle(`${account.full_name ? account.full_name : account.username}'s Profile`)
-            .addField("Followers Count", account.edge_followed_by.count)
-            .addField("Following Count", account.edge_follow.count)
-            .addField("External URL", account.external_url)
+            .setColor("BLUE")
+            .addField("Private?", isPrivate, true)
+            .addField("Verified?", isVerified, true)
+            .addField("Followers Count", account.edge_followed_by.count, true)
+            .addField("Following Count", account.edge_follow.count, true)
+            .addField("External URL", account.external_url, true)
+            .setDescription(`Bio: ${account.biography}`)
             .setThumbnail(account.profile_pic_url_hd)
             .setFooter(message.author.username);
 
