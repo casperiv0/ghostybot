@@ -69,27 +69,27 @@ module.exports = {
       const cmd =
         bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
 
-      const now = Date.now();
-      const timestamps = cooldowns.get(cmd.name);
-      const cooldownAmount = cmd.cooldown * 1000;
-
-      if (timestamps.has(userId)) {
-        const expTime = timestamps.get(userId) + cooldownAmount;
-
-        if (now < expTime) {
-          const timeleft = (expTime - now) / 1000;
-          return message.reply(
-            `Please wait **${timeleft.toFixed(
-              1
-            )}** more seconds before using the **${cmd.name}** command`
-          );
-        }
-      }
-
-      timestamps.set(userId, now);
-      setTimeout(() => timestamps.delete(userId), cooldownAmount);
-
       if (bot.commands.has(cmd?.name)) {
+        const now = Date.now();
+        const timestamps = cooldowns.get(cmd.name);
+        const cooldownAmount = cmd.cooldown * 1000;
+
+        if (timestamps.has(userId)) {
+          const expTime = timestamps.get(userId) + cooldownAmount;
+
+          if (now < expTime) {
+            const timeleft = (expTime - now) / 1000;
+            return message.reply(
+              `Please wait **${timeleft.toFixed(
+                1
+              )}** more seconds before using the **${cmd.name}** command`
+            );
+          }
+        }
+
+        timestamps.set(userId, now);
+        setTimeout(() => timestamps.delete(userId), cooldownAmount);
+
         cmd.execute(bot, message, args, serverQueue, queue);
       } else {
         console.log("Command not found");
