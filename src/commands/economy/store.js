@@ -1,5 +1,6 @@
 /* eslint-disable no-case-declarations */
 const { MessageEmbed } = require("discord.js");
+const { ownerId } = require("../../../config.json");
 const {
   getStoreItems,
   setStoreItems,
@@ -23,51 +24,14 @@ module.exports = {
     const price = args.slice(1)[1]; // take second argument after option (price)
 
     if (option) {
-      if (!message.member.hasPermission("MANAGE_GUILD"))
+      if (ownerId === message.author.id) {
+        updateStore(message, item, price, option, storeItems, guildId);
+      } else if (message.member.hasPermission("MANAGE_GUILD")) {
+        updateStore(message, item, price, option, storeItems, guildId);
+      } else {
         return message.channel.send(
           `You don't have the correct permissions to **${option}** an item! (Manage Server)`
         );
-
-      if (!item)
-        return message.channel.send(
-          "Please provide a valid item to add/remove!"
-        );
-
-      item = item.toLowerCase();
-
-      switch (option.toLowerCase()) {
-        case "add":
-          if (storeItems?.includes(item))
-            return message.channel.send(
-              `**${item}** Already exists in the store!`
-            );
-
-          if (!price)
-            return message.channel.send("Please provide a price for the item!");
-
-          if (isNaN(price))
-            return message.channel.send("Price must be a number!");
-
-          setStoreItems(guildId, { name: item, price: price });
-          message.channel.send(`**${item}** was added to the store!`);
-          break;
-
-        case "remove":
-          const exists = storeItems?.filter((i) => i.name === item)[0];
-          if (!exists)
-            return message.channel.send(
-              `**${item}** doesn't exist in the store!`
-            );
-
-          const updatedItems = storeItems.filter(
-            (storeItem) => storeItem.name !== item
-          );
-          removeStoreItem(guildId, updatedItems);
-          message.channel.send(`${item} was removed from the store!`);
-          break;
-
-        default:
-          message.channel.send(`${option} Is not a valid option`);
       }
     } else {
       if (storeItems === null || !storeItems[0])
@@ -90,3 +54,41 @@ module.exports = {
     }
   },
 };
+
+function updateStore(message, item, price, option, storeItems, guildId) {
+  if (!item)
+    return message.channel.send("Please provide a valid item to add/remove!");
+
+  item = item.toLowerCase();
+
+  switch (option.toLowerCase()) {
+    case "add":
+      const exists = storeItems?.filter((i) => i.name === item)[0];
+      if (exists)
+        return message.channel.send(`**${item}** already exist in the store!`);
+
+      if (!price)
+        return message.channel.send("Please provide a price for the item!");
+
+      if (isNaN(price)) return message.channel.send("Price must be a number!");
+
+      setStoreItems(guildId, { name: item, price: price });
+      message.channel.send(`**${item}** was added to the store!`);
+      break;
+
+    case "remove":
+      const existing = storeItems?.filter((i) => i.name === item)[0];
+      if (!existing)
+        return message.channel.send(`**${item}** doesn't exist in the store!`);
+
+      const updatedItems = storeItems.filter(
+        (storeItem) => storeItem.name !== item
+      );
+      removeStoreItem(guildId, updatedItems);
+      message.channel.send(`${item} was removed from the store!`);
+      break;
+
+    default:
+      message.channel.send(`${option} Is not a valid option`);
+  }
+}

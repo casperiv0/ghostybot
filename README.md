@@ -19,8 +19,8 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 - [Features](#features)
 - [Commands](#commands)
 - [Installation](docs/INSTALLATION.md)
-   - [Requirements](docs/INSTALLATION.md#requirements)
-   - [Usage](docs/INSTALLATION.md#usage)
+  - [Requirements](docs/INSTALLATION.md#requirements)
+  - [Usage](docs/INSTALLATION.md#usage)
 - [Bot Events](/docs/BOT_EVENTS)
 - [API's used](/docs/APIS_USED.md)
 
@@ -46,7 +46,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | removerole  | lizard |          | clyde        | stop       |       | delete       | inventory |
 | say         | owl    |          | dadjoke      | leave      |       | dependencies | buy       |
 | sticky      | cow    |          | tweet        | volume     |       | emojis       | dice      |
-| unsticky    | panda  |          | flipcoin     | nowplaying |       | help         |
+| unsticky    | panda  |          | flipcoin     | nowplaying |       | help         | profile   |
 | prefix      | cowsay |          | happiness    |            |       | instagram    |
 | announce    | shibe  |          | hug          |            |       | minecraft    |
 | set         | birb   |          | iq           |            |       | morse        |
