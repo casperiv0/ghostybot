@@ -33,4 +33,4 @@ these are the api url's that ghostybot uses.
 | weather      | [http://api.openweathermap.org/data/2.5/weather](http://api.openweathermap.org/data/2.5/weather)                                         |
 
 ##
-[Return to index](INDEX.md)
+[Return to index](README.md)

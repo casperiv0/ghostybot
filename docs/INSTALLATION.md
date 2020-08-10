@@ -25,4 +25,4 @@ How to install Ghostybot on your machine
 
 ##
 
-[Return to index](INDEX.md)
+[Return to index](README.md)

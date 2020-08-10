@@ -1,4 +1,4 @@
-# GhostyBot Docs
+# GhostyBot Docs - Index
 
 - [Installation](INSTALLATION.md)
   - [Requirements](INSTALLATION.md#requirements)

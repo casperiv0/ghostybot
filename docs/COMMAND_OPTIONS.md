@@ -14,4 +14,4 @@ these are the available options for the commands
 
 
 ##
-[Return to index](INDEX.md)
+[Return to index](README.md)

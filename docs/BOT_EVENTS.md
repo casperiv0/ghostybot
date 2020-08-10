@@ -26,4 +26,4 @@ all events the bot uses for audit-logs and welcome messages
 
 ##
 
-[Return to index](INDEX.md)
+[Return to index](README.md)
