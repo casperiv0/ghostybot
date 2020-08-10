@@ -3,8 +3,8 @@
 - [Installation](INSTALLATION.md)
   - [Requirements](INSTALLATION.md#requirements)
   - [Usage](INSTALLATION.md#usage)
-- [Bot Events](BOT_EVENTS)
-- [API's used](https://github.com/Dev-CasperTheGhost/ghostybot#apis-used)
+- [Bot Events](BOT_EVENTS.md)
+- [API's used](APIS_USED.md)
 
 ##
 
