@@ -1,21 +1,29 @@
 const { MessageEmbed } = require("discord.js");
 const { formatDate } = require("../../utils/functions");
+const regions = require("../../data/regions.json");
 
 module.exports = {
   name: "serverinfo",
   description: "Get info about the server",
   category: "util",
+  aliases: ["guild"],
   execute(bot, message) {
-    const guild = message.guild;
-    const name = guild.name;
+    const { guild } = message;
+    const { name } = guild;
+    const { owner } = guild;
+    const { memberCount } = guild;
     const roles = guild.roles.cache.size;
     const channels = guild.channels.cache.size;
     const emojis = guild.emojis.cache.size;
-    const owner = guild.owner;
     const createdAt = formatDate(guild.createdAt);
     const joined = formatDate(message.member.joinedAt);
 
-    const region = guild.region;
+    const regionKey = guild.region;
+    const regionFlag = regions.filter((region) =>
+      region.keys.includes(regionKey)
+    )[0].flag;
+    const region = `${regionFlag} ${regionKey}`;
+
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
 
@@ -27,6 +35,7 @@ module.exports = {
       .addField("**Roles Count**", roles, true)
       .addField("**Channel Count**", channels, true)
       .addField("**Emoji Count**", emojis, true)
+      .addField("**Member Count**", memberCount, true)
       .addField("**Created At**", createdAt, true)
       .addField("**Joined At**", joined, true)
       .addField("**Region**", region, true)

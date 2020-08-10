@@ -1,0 +1,42 @@
+[
+    {
+        "keys": ["europe"],
+        "flag": ":flag_eu:"
+    },
+    {
+        "keys": ["brazil"],
+        "flag": ":flag_br:"
+    },
+    {
+        "keys": ["hongkong"],
+        "flag": ":flag_hk:"
+    },
+    {
+        "keys":[ "india"],
+        "flag": ":flag_in:"
+    },
+    {
+        "keys": ["japan"],
+        "flag": ":flag_jp:"
+    },
+    {
+        "keys": ["russia"],
+        "flag": ":flag_ru:"
+    },
+    {
+        "keys": ["singapore"],
+        "flag": ":flag_sg:"
+    },
+    {
+        "keys": ["southafrica"],
+        "flag": ":flag_za:"
+    },
+    {
+        "keys": ["sydney"],
+        "flag": ":flag_au:"
+    },
+    {
+        "keys": ["us-central", "us-east", "us-west", "us-south"],
+        "flag": ":flag_us:"
+    }
+]

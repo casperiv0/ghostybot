@@ -5,6 +5,7 @@ module.exports = {
     name: "help",
     description: "Shows all commands Or shows more info about a command",
     category: "util",
+    cooldown: 2,
     aliases: ["h"],
     async execute(bot, message, args) {
         const prefix = await getServerPrefix(message.guild.id) || "!";
@@ -30,15 +31,15 @@ module.exports = {
         }
 
         const commands = bot.commands;
-        const utilsCmds = commands.filter(cmd => cmd.category === "util").map(cmd => cmd.name).join(", ");
-        const adminCmds = commands.filter(cmd => cmd.category === "admin").map(cmd => cmd.name).join(", ");
-        const animalCmds = commands.filter(cmd => cmd.category === "animal").map(cmd => cmd.name).join(", ");
-        const botOwnerCmds = commands.filter(cmd => cmd.category === "botowner").map(cmd => cmd.name).join(", ");
-        const gameCmds = commands.filter(cmd => cmd.category === "games").map(cmd => cmd.name).join(", ");
-        const musicCmds = commands.filter(cmd => cmd.category === "music").map(cmd => cmd.name).join(", ");
-        const nsfwCmds = commands.filter(cmd => cmd.category === "nsfw").map(cmd => cmd.name).join(", ");
-        const economyCmds = commands.filter(cmd => cmd.category === "economy").map(cmd => cmd.name).join(", ");
-        const levelCmds = commands.filter(cmd => cmd.category=== "levels").map(cmd => cmd.name).join(", ");
+        const utilsCmds = commands.filter(({category}) => category === "util").map(({name}) => name).join(", ");
+        const adminCmds = commands.filter(({category}) => category === "admin").map(({name}) => name).join(", ");
+        const animalCmds = commands.filter(({category}) => category === "animal").map(({name}) => name).join(", ");
+        const botOwnerCmds = commands.filter(({category}) => category === "botowner").map(({name}) => name).join(", ");
+        const gameCmds = commands.filter(({category}) => category === "games").map(({name}) => name).join(", ");
+        const musicCmds = commands.filter(({category}) => category === "music").map(({name}) => name).join(", ");
+        const nsfwCmds = commands.filter(({category}) => category === "nsfw").map(({name}) => name).join(", ");
+        const economyCmds = commands.filter(({category}) => category === "economy").map(({name}) => name).join(", ");
+        const levelCmds = commands.filter(({category}) => category=== "levels").map(({name}) => name).join(", ");
 
         const embed = new MessageEmbed()
             .setTimestamp()
