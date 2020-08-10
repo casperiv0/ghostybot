@@ -123,6 +123,12 @@ const removeStoreItem = (guildId, updatedItems) =>
 const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
 /**
+ * @param {String} str
+ * @returns {String}
+ */
+const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+/**
  * @param {string} guildId
  */
 const getStickyData = (guildId) => db.fetch(`sticky_${guildId}`);
@@ -309,6 +315,7 @@ module.exports = {
   setStoreItems,
   removeStoreItem,
   formatDate,
+  toCapitalize,
   getStickyData,
   setStickyData,
   getServerPrefix,

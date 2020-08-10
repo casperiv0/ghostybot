@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { formatDate } = require("../../utils/functions");
+const { formatDate, toCapitalize } = require("../../utils/functions");
 const regions = require("../../data/regions.json");
 
 module.exports = {
@@ -22,14 +22,14 @@ module.exports = {
     const regionFlag = regions.filter((region) =>
       region.keys.includes(regionKey)
     )[0].flag;
-    const region = `${regionFlag} ${regionKey}`;
+    const region = `${regionFlag} ${toCapitalize(regionKey)}`;
 
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
 
     const embed = new MessageEmbed()
       .setTitle(name)
-      .setThumbnail(guild.iconURL({ format: "png", dynamic: true, size: 1024 }))
+      .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
       .setColor("BLUE")
       .addField("**Server Owner**", owner, true)
       .addField("**Roles Count**", roles, true)
