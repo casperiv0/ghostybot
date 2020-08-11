@@ -4,6 +4,7 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "messageDelete",
   async execute(bot, message) {
+    if (!message.guild) return;
     const auditChannel = await getAuditChannel(message.guild.id);
 
     // not enabled

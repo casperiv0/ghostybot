@@ -5,6 +5,7 @@ module.exports = {
     name: "calc",
     description: "Calculate something",
     category: "games",
+    aliases: ["math"],
     execute(bot, message, args) {
         const calculation = math.evaluate(args.join(" "));
 
