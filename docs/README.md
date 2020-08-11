@@ -5,6 +5,7 @@
   - [Usage](INSTALLATION.md#usage)
 - [Bot Events](BOT_EVENTS.md)
 - [API's used](APIS_USED.md)
+- [Docs in 1 page](FULL_DOC.md)
 
 ##
 
