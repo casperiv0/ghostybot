@@ -17,7 +17,7 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setTitle("👋 Goodbye!")
-      .setDescription(`User: ${member} has left the server`)
+      .setDescription(`User: ${member} has left ${member.guild.name}`)
       .setColor("BLUE")
       .setTimestamp()
       .setFooter(bot.user.username);

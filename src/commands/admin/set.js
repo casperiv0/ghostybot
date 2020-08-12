@@ -4,7 +4,8 @@ const {
   setAnnounceChannel,
   setWelcomeChannel,
   setLeaveChannel,
-  setAuditChannel
+  setAuditChannel,
+  setWelcomeRole,
 } = require("../../utils/functions");
 
 module.exports = {
@@ -12,40 +13,59 @@ module.exports = {
   description: "Set a default channel",
   category: "admin",
   usage: "set <option> <channel>",
-  options: ["suggest-channel", "announce-channel", "welcome-channel", "leave-channel", "audit-channel"],
+  options: [
+    "suggest-channel",
+    "announce-channel",
+    "welcome-channel",
+    "leave-channel",
+    "audit-channel",
+    "welcome-role",
+  ],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("ADMINISTRATOR"))
       return message.reply(
         "Sorry, You don't have the correct permissions for this command. (Administrator)"
       );
 
-    const channel = message.mentions.channels.first();
+    const guildId = message.guild.id;
     const option = args[0];
+    const item =
+      message.mentions.channels.first() || message.mentions.roles.first();
 
     if (!option) return message.channel.send("Please provide an valid option");
-    if (!channel)
-      return message.channel.send("Please provide a valid channel!");
+    if (!item)
+      return message.channel.send("Please provide a valid channel or role!");
 
     switch (option.toLowerCase()) {
       case "suggest-channel":
-        setSuggestChannel(message.guild.id, channel);
-        message.channel.send(`Suggest channel is now: ${channel}`);
+        setSuggestChannel(guildId, item);
+        message.channel.send(`Suggest channel is now: ${item}`);
         break;
       case "announce-channel":
-        setAnnounceChannel(message.guild.id, channel);
-        message.channel.send(`Announcement channel is now: ${channel}`);
+        setAnnounceChannel(guildId, item);
+        message.channel.send(`Announcement channel is now: ${item}`);
         break;
       case "welcome-channel":
-        setWelcomeChannel(message.guild.id, channel);
-        message.channel.send(`Enabled welcome messages. Welcome channel is now: ${channel}`);
+        setWelcomeChannel(guildId, item);
+        message.channel.send(
+          `Enabled welcome messages. Welcome channel is now: ${item}`
+        );
         break;
       case "leave-channel":
-        setLeaveChannel(message.guild.id, channel);
-        message.channel.send(`Enabled user leave messages. User Leave channel is now: ${channel}`);
+        setLeaveChannel(guildId, item);
+        message.channel.send(
+          `Enabled user leave messages. User Leave channel is now: ${item}`
+        );
         break;
       case "audit-channel":
-        setAuditChannel(message.guild.id, channel);
-        message.channel.send(`Enabled audit logs. Audit logs channel is now: ${channel}`);
+        setAuditChannel(guildId, item);
+        message.channel.send(
+          `Enabled audit logs. Audit logs channel is now: ${item}`
+        );
+        break;
+      case "welcome-role":
+        setWelcomeRole(guildId, item);
+        message.channel.send(`Enabled welcome roles. Welcome role: ${item}`);
         break;
       default:
         message.channel.send(`**${option}** is not a option!`);

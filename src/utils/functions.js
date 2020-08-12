@@ -298,6 +298,19 @@ const getAuditChannel = (guildId) => db.fetch(`auditchannel_${guildId}`);
  */
 const unsetAuditChannel = (guildId) => db.delete(`auditchannel_${guildId}`);
 
+/**
+ * @param {String} guildId
+ * @param {Object} role
+ */
+const setWelcomeRole = (guildId, role) =>
+  db.set(`welcomerole_${guildId}`, role);
+
+/**
+ * @param {String} guildId
+ */
+const getWelcomeRole = (guildId) =>
+  db.fetch(`welcomerole_${guildId}`);
+
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -339,4 +352,6 @@ module.exports = {
   setAuditChannel,
   getAuditChannel,
   unsetAuditChannel,
+  setWelcomeRole,
+  getWelcomeRole
 };
