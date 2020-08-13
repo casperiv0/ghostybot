@@ -1,4 +1,4 @@
 config.json
 node_modules
 json.sqlite
-src\commands\giveaway
+src/commands/giveaway/*
