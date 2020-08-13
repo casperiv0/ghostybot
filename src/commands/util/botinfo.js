@@ -21,6 +21,7 @@ module.exports = {
             .addField("Bot Id:", bot.user.id)
             .addField("Bot username:", bot.user.username)
             .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
+            .addField("Support server", "https://discord.gg/XxHrtkA")
             .addField("__**Bot info:**__", `
 **Game:** ${game.type.toLowerCase()} ${game.name}
 **Status:** ${bot.user.presence.status}

@@ -22,7 +22,7 @@ module.exports = {
     const option = args[0];
     let item = args.slice(1)[0]; // Take first argument after option (item)
     const price = args.slice(1)[1]; // take second argument after option (price)
-
+    
     if (option) {
       if (ownerId === message.author.id) {
         updateStore(message, item, price, option, storeItems, guildId);
