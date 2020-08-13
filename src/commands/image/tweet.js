@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
   name: "tweet",
   description: "Returns an image with your tweet",
-  category: "games",
+  category: "image",
   async execute(bot, message, args) {
     const text = args.join(" ");
     const { username } = message.author;

@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 module.exports = {
   name: "changemymind",
   description: "Change my mind",
-  category: "games",
+  category: "image",
   async execute(bot, message, args) {
     const text = args.join(" ");
 

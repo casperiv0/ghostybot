@@ -16,7 +16,7 @@ module.exports = {
             if (!cmd) return message.channel.send("Command or alias not found");
 
 
-            const aliases = cmd.aliases ? cmd.aliases.map(a => a) : "None";
+            const aliases = cmd.aliases ? cmd.aliases.map(alias => alias) : "None";
             const options = cmd.options ? cmd.options.map(option => option) : "None"; 
             const embed = new MessageEmbed()
                 .setColor("BLUE")
@@ -24,6 +24,7 @@ module.exports = {
                 .addField("Aliases", aliases, true)
                 .addField("Cooldown", cmd.cooldown, true)
                 .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified", true)
+                .addField("Category", cmd.category, true)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")
                 .addField("Options", options);
 
@@ -40,6 +41,8 @@ module.exports = {
         const nsfwCmds = commands.filter(({category}) => category === "nsfw").map(({name}) => name).join(", ");
         const economyCmds = commands.filter(({category}) => category === "economy").map(({name}) => name).join(", ");
         const levelCmds = commands.filter(({category}) => category=== "levels").map(({name}) => name).join(", ");
+        const imageCmds = commands.filter(({category}) => category=== "image").map(({name}) => name).join(", ");
+
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -49,6 +52,7 @@ module.exports = {
             .addField("Animal Commands", `\`\`\`${animalCmds}\`\`\``)
             .addField("BotOwner Commands", `\`\`\`${botOwnerCmds}\`\`\``)
             .addField("Game Commands", `\`\`\`${gameCmds}\`\`\``)
+            .addField("Image Commands", `\`\`\`${imageCmds}\`\`\``)
             .addField("Music Commands", `\`\`\`${musicCmds}\`\`\``)
             .addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
             .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)

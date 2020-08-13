@@ -2,11 +2,11 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 
 module.exports = {
-    name: "hug",
-    description: "Shows a picture of people hugging",
-    category: "games",
+    name: "kiss",
+    description: "Shows a picture of people kissing",
+    category: "image",
     async execute(bot, message) {
-        const data = await fetch("https://nekos.life/api/hug").then(res => res.json());
+        const data = await fetch("https://nekos.life/api/kiss").then(res => res.json());
 
         const embed = new MessageEmbed()
             .setFooter(message.author.username)

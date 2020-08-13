@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "supreme",
   description: "Display custom text as the Supreme logo",
-  category: "games",
+  category: "image",
   execute(bot, message, args) {
     const text = args.join(" ");
 

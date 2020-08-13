@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "clyde",
     description: "Let clyde say something",
-    category: "games",
+    category: "image",
     async execute(bot, message, args) {
         const text = args.join(" ");
         if (!text) return message.reply("Please provide text");
