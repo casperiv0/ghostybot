@@ -16,7 +16,7 @@ module.exports = {
       premiumSubscriptionCount,
       premiumTier,
       verified,
-      partnered
+      partnered,
     } = guild;
     const roles = guild.roles.cache.size;
     const channels = guild.channels.cache.size;
@@ -31,7 +31,11 @@ module.exports = {
     const isPartnered = partnered
       ? "Yes, this server is partnered"
       : "Nope, this server isn't partnered";
-    const inviteBanner = guild.splashURL();
+    const inviteBanner = guild.bannerURL({
+      size: 2048,
+      format: "png",
+      dynamic: true,
+    });
 
     const regionKey = guild.region;
     const regionFlag = regions.filter((region) =>
