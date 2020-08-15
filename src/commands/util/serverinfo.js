@@ -9,14 +9,29 @@ module.exports = {
   aliases: ["guild"],
   execute(bot, message) {
     const { guild } = message;
-    const { name } = guild;
-    const { owner } = guild;
-    const { memberCount } = guild;
+    const {
+      name,
+      owner,
+      memberCount,
+      premiumSubscriptionCount,
+      premiumTier,
+      verified,
+      partnered
+    } = guild;
     const roles = guild.roles.cache.size;
     const channels = guild.channels.cache.size;
     const emojis = guild.emojis.cache.size;
     const createdAt = formatDate(guild.createdAt);
     const joined = formatDate(message.member.joinedAt);
+    const boosts = premiumSubscriptionCount;
+    const boostLevel = premiumTier;
+    const isVerified = verified
+      ? "Yes, this server is verified"
+      : "Nope, this server isn't verified";
+    const isPartnered = partnered
+      ? "Yes, this server is partnered"
+      : "Nope, this server isn't partnered";
+    const inviteBanner = guild.splashURL();
 
     const regionKey = guild.region;
     const regionFlag = regions.filter((region) =>
@@ -40,7 +55,12 @@ module.exports = {
       .addField("**Joined At**", joined, true)
       .addField("**Region**", region, true)
       .addField("**Verification level**", verLevel, true)
-      .addField("**MFA level**", mfaLevel, true);
+      .addField("**MFA level**", mfaLevel, true)
+      .addField("**Boosts**", boosts, true)
+      .addField("**Boost Level**", boostLevel, true)
+      .addField("**Verified**", isVerified, true)
+      .addField("**Partnered**", isPartnered, true)
+      .setImage(inviteBanner);
     message.channel.send(embed);
   },
 };
