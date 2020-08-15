@@ -310,45 +310,6 @@ const setWelcomeRole = (guildId, role) =>
  */
 const getWelcomeRole = (guildId) => db.fetch(`welcomerole_${guildId}`);
 
-// Giveaway
-/**
- * @param {String} guildId
- * @param {Number} milliseconds
- */
-const setGiveawayEndTime = (guildId, milliseconds) =>
-  db.set(`giveawayendtime_${guildId}`, milliseconds);
-
-/**
- * @param {String} guildId
- */
-const getGiveawayEndTime = (guildId) => db.fetch(`giveawayendtime_${guildId}`);
-
-/**
- * @param {String} guildId
- * @param {String} price
- */
-const setGiveawayPrice = (guildId, price) =>
-  db.set(`giveawayprice_${guildId}`, price);
-
-/**
- * @param {String} guildId
- */
-const getGiveawayPrice = (guildId) => db.fetch(`giveawayprice_${guildId}`);
-
-/**
- * @param {String} guildId
- * @param {Object} user
- */
-const addGiveawayUsers = (guildId, user) =>
-  db.push(`giveawayusers_${guildId}`, user);
-
-/**
- * @param {String} guildId
- */
-const getGiveawayUsers = (guildId) => db.fetch(`giveawayusers_${guildId}`);
-
-const removeGiveawayUsers = (guildId) => db.delete(`giveawayusers_${guildId}`);
-
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -392,11 +353,4 @@ module.exports = {
   unsetAuditChannel,
   setWelcomeRole,
   getWelcomeRole,
-  setGiveawayEndTime,
-  getGiveawayEndTime,
-  setGiveawayPrice,
-  getGiveawayPrice,
-  addGiveawayUsers,
-  getGiveawayUsers,
-  removeGiveawayUsers
 };

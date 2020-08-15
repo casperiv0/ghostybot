@@ -3,12 +3,26 @@ const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
 const { token } = require("../config.json");
+const { GiveawaysManager } = require("discord-giveaways");
 
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
 require("./utils/command")(bot);
+
+const giveawayManager = new GiveawaysManager(bot, {
+  storage: "src/data/giveaways.json",
+  updateCountdownEvery: 10000,
+  default: {
+    embedColor: "BLUE",
+    botsCanWin: false,
+    reaction: "🎉",
+    embedColorEnd: "BLUE",
+  },
+});
+
+bot.giveawayManager = giveawayManager;
 
 // events
 require("./utils/events")(bot);

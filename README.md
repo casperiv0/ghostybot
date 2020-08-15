@@ -51,7 +51,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | announce    | shibe  |          | hug          |            |       | minecraft    |
 | set         | birb   |          | iq           |            |       | morse        |
 | unset       |        |          | kiss         |            |       | poll         |
-|             |        |          | owo          |            |       | randomcolor  |
+| giveaway    |        |          | owo          |            |       | randomcolor  |
 |             |        |          | ping         |            |       | roleinfo     |
 |             |        |          | randomjoke   |            |       | roles        |
 |             |        |          | randomnumber |            |       | serverinfo   |
