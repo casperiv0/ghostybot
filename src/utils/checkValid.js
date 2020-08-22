@@ -1,5 +1,6 @@
 const config = require("../../config.json");
 const chalk = require("chalk");
+const fs = require("fs");
 
 // Runs checks to see if config is valid
 function checkValid() {
@@ -44,6 +45,12 @@ function checkValid() {
       )
     );
   }
+
+  fs.stat("src/data/giveaways.json", (e, stat) => {
+    if (e === "ENOENT") {
+      throw Error("[ERROR]: File: src/data/giveaway.json is required.");
+    }
+  });
 }
 
 module.exports = checkValid;
