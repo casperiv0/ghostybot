@@ -11,3 +11,9 @@
 ##
 
 [Return to Readme](/README.md)
+
+
+# Links
+
+- [Support server](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
+- [Invite link](https://discord.gg/XxHrtkA)
