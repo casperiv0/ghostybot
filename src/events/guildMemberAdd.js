@@ -8,26 +8,29 @@ module.exports = {
     const welcomeRole = await getWelcomeRole(member.guild.id);
 
     // not enabled
-    if (welcomeRole === null || !welcomeRole) return;
-    if (welcomeChannel === null || !welcomeChannel) return;
+    if (welcomeRole !== null || welcomeRole) {
+      member.roles.add(welcomeRole.id);
+    }
 
-    // channel not found/deleted
-    if (
-      !member.guild.channels.cache.some((ch) => ch.name === welcomeChannel.name)
-    )
-      return;
+    if (welcomeChannel !== null || welcomeChannel) {
+      if (
+        !member.guild.channels.cache.some(
+          (ch) => ch.name === welcomeChannel.name
+        )
+      )
+        return;
 
-    const user = bot.users.cache.get(member.id);
+      const user = bot.users.cache.get(member.id);
 
-    const embed = new MessageEmbed()
-      .setTitle("👋 New Member!")
-      .setDescription(`Welcome ${member} to ${member.guild.name}`)
-      .setColor("BLUE")
-      .setTimestamp()
-      .setThumbnail(user.displayAvatarURL())
-      .setFooter(`UserId: ${member.id} - Tag: ${user.tag}`);
+      const embed = new MessageEmbed()
+        .setTitle("👋 New Member!")
+        .setDescription(`Welcome ${member} to ${member.guild.name}`)
+        .setColor("BLUE")
+        .setTimestamp()
+        .setThumbnail(user.displayAvatarURL())
+        .setFooter(`UserId: ${member.id} - Tag: ${user.tag}`);
 
-    member.roles.add(welcomeRole.id);
-    bot.channels.cache.get(welcomeChannel.id).send({ embed });
+      bot.channels.cache.get(welcomeChannel.id).send({ embed });
+    }
   },
 };

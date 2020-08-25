@@ -2,6 +2,7 @@ const {
   unsetWelcomeChannel,
   unsetLeaveChannel,
   unsetAuditChannel,
+  unsetWelcomeRole
 } = require("../../utils/functions");
 
 module.exports = {
@@ -9,7 +10,12 @@ module.exports = {
   description: "Unset/disable an option",
   usage: "unset <option>",
   aliases: ["disable"],
-  options: ["welcome-channel", "leave-channel", "audit-channel"],
+  options: [
+    "welcome-channel",
+    "leave-channel",
+    "audit-channel",
+    "welcome-role",
+  ],
   category: "admin",
   execute(bot, message, args) {
     const option = args[0].toLowerCase();
@@ -28,6 +34,10 @@ module.exports = {
       case "audit-channel":
         unsetAuditChannel(message.guild.id);
         message.channel.send("Successfully disabled audit-channel");
+        break;
+      case "welcome-role":
+        unsetWelcomeRole(message.guild.id);
+        message.channel.send("Successfully disabled welcome-role");
         break;
       default:
         message.channel.send(`${option} is not a valid option!`);
