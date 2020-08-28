@@ -70,3 +70,12 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 ## Docs
 
 [View docs](/docs/README.md)
+
+## Support ghostybot
+
+**All stars/forks are appreciated! ⚡**
+
+**Feel free to open a pull request with a new feature.**
+
+
+<p align="center">Made with ❤️ and JavaScript!</p>
