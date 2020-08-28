@@ -15,4 +15,4 @@
 
 ##
 
-[Return to Readme](/README.md)
+[Return to Readme](https://github.com/dev-caspertheghost/ghostybot)
