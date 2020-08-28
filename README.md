@@ -69,4 +69,4 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## Docs
 
-[View docs](/docs/INDEX.md)
+[View docs](/docs/README.md)
