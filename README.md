@@ -47,7 +47,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | say         | owl    |          | dadjoke      | leave      |       | dependencies | buy       |
 | sticky      | cow    |          | tweet        | volume     |       | emojis       | dice      |
 | unsticky    | panda  |          | flipcoin     | nowplaying |       | help         | profile   |
-| prefix      | cowsay |          | happiness    |            |       | instagram    |
+| prefix      | cowsay |          | happiness    |            |       | instagram    | rob       |
 | announce    | shibe  |          | hug          |            |       | minecraft    |
 | set         | birb   |          | iq           |            |       | morse        |
 | unset       |        |          | kiss         |            |       | poll         |
@@ -76,6 +76,5 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 **All stars/forks are appreciated! ⚡**
 
 **Feel free to open a pull request with a new feature.**
-
 
 <p align="center">Made with ❤️ and JavaScript!</p>

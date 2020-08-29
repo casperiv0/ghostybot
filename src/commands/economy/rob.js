@@ -2,7 +2,7 @@ const { getUserMoney, removeUserMoney } = require("../../utils/functions");
 
 module.exports = {
   name: "rob",
-  cooldown: 2,
+  cooldown: 120,
   description: "Rob up to 1000coins from somebody",
   category: "economy",
   execute(bot, message, args) {
