@@ -22,7 +22,7 @@ module.exports = {
                 .setColor("BLUE")
                 .setTitle(`Command: ${cmd.name}`)
                 .addField("Aliases", aliases, true)
-                .addField("Cooldown", cmd.cooldown, true)
+                .addField("Cooldown", `${cmd.cooldown}s`, true)
                 .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified", true)
                 .addField("Category", cmd.category, true)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")

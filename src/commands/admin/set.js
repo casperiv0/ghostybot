@@ -68,8 +68,7 @@ module.exports = {
         message.channel.send(`Enabled welcome roles. Welcome role: ${item}`);
         break;
       default:
-        message.channel.send(`**${option}** is not a option!`);
-        break;
+        return message.channel.send(`\`${option}\` is not a option!`);
     }
   },
 };

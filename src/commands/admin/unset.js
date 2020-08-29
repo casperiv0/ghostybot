@@ -2,7 +2,7 @@ const {
   unsetWelcomeChannel,
   unsetLeaveChannel,
   unsetAuditChannel,
-  unsetWelcomeRole
+  unsetWelcomeRole,
 } = require("../../utils/functions");
 
 module.exports = {
@@ -25,23 +25,20 @@ module.exports = {
     switch (option) {
       case "welcome-channel":
         unsetWelcomeChannel(message.guild.id);
-        message.channel.send("Successfully disabled welcome-channel");
         break;
       case "leave-channel":
         unsetLeaveChannel(message.guild.id);
-        message.channel.send("Successfully disabled leave-channel");
         break;
       case "audit-channel":
         unsetAuditChannel(message.guild.id);
-        message.channel.send("Successfully disabled audit-channel");
         break;
       case "welcome-role":
         unsetWelcomeRole(message.guild.id);
-        message.channel.send("Successfully disabled welcome-role");
         break;
       default:
-        message.channel.send(`${option} is not a valid option!`);
-        break;
+        return message.channel.send(`\`${option}\` is not a valid option!`);
     }
+
+    return message.channel.send(`Successfully disabled \`${option}\` `);
   },
 };
