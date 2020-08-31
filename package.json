@@ -39,7 +39,7 @@
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
     "fluent-ffmpeg": "^2.1.2",
-    "mathjs": "^7.1.0",
+    "mathjs": "^7.2.0",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
