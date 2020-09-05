@@ -18,11 +18,12 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 - [Features](#features)
 - [Commands](#commands)
-- [Installation](docs/INSTALLATION.md)
-  - [Requirements](docs/INSTALLATION.md#requirements)
-  - [Usage](docs/INSTALLATION.md#usage)
-- [Bot Events](/docs/BOT_EVENTS)
-- [API's used](/docs/APIS_USED.md)
+- Docs:
+     - [Installation](docs/INSTALLATION.md)
+          - [Requirements](docs/INSTALLATION.md#requirements)
+          - [Usage](docs/INSTALLATION.md#usage)
+     - [Bot Events](/docs/BOT_EVENTS)
+     - [API's used](/docs/APIS_USED.md)
 
 ## Features
 
