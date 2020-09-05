@@ -2,7 +2,9 @@
      <img src=".github/Ghostybot-banner.png" alt="banner" />               
 </a>
 
-![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr) ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot?color=gr&style=for-the-badge) ![stars](https://img.shields.io/github/stars/dev-caspertheghost/ghostybot?style=for-the-badge&color=gr)
+![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?color=gr)
+![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot)
+![stars](https://img.shields.io/github/stars/dev-caspertheghost/ghostybot?color=gr)
 
 # Ghostybot
 
@@ -20,11 +22,11 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 - [Features](#features)
 - [Commands](#commands)
 - [Docs](docs/README.md):
-     - [Installation](docs/INSTALLATION.md)
-          - [Requirements](docs/INSTALLATION.md#requirements)
-          - [Usage](docs/INSTALLATION.md#usage)
-     - [Bot Events](/docs/BOT_EVENTS)
-     - [API's used](/docs/APIS_USED.md)
+  - [Installation](docs/INSTALLATION.md)
+    - [Requirements](docs/INSTALLATION.md#requirements)
+    - [Usage](docs/INSTALLATION.md#usage)
+  - [Bot Events](/docs/BOT_EVENTS)
+  - [API's used](/docs/APIS_USED.md)
 
 ## Features
 
