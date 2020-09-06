@@ -13,6 +13,6 @@ module.exports = {
       bot.user.setActivity(`${userCount} Users`, {
         type: "WATCHING",
       });
-    }, 7200000);
+    }, 1800000);
   },
 };
