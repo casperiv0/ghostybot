@@ -6,7 +6,7 @@ module.exports = {
   name: "serverinfo",
   description: "Get info about the server",
   category: "util",
-  aliases: ["guild"],
+  aliases: ["guild", "server"],
   execute(bot, message) {
     const { guild } = message;
     const {

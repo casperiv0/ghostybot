@@ -6,7 +6,7 @@ module.exports = {
   description: "Get user info",
   usage: "!userinfo <user>",
   category: "util",
-  aliases: ["whois"],
+  aliases: ["whois", "user"],
   async execute(bot, message, args) {
     const member =
       message.guild.members.cache.get(args.join(" ")) ||

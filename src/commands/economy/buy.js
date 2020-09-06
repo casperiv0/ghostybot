@@ -12,6 +12,7 @@ module.exports = {
   description: "Buy an item from the store",
   category: "economy",
   usage: "buy <item name>",
+  cooldown: 10,
   async execute(bot, message, args) {
     const guildId = message.guild.id;
     const storeItems = await getStoreItems(guildId);

@@ -92,7 +92,7 @@ module.exports = {
 
         cmd.execute(bot, message, args, serverQueue, queue);
       } else {
-        console.log("Command not found");
+        return;
       }
     } catch (e) {
       sendToDev(message, bot, e);

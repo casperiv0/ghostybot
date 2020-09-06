@@ -18,11 +18,13 @@ module.exports = {
 
             const aliases = cmd.aliases ? cmd.aliases.map(alias => alias) : "None";
             const options = cmd.options ? cmd.options.map(option => option) : "None"; 
+            const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : "None";
+
             const embed = new MessageEmbed()
                 .setColor("BLUE")
                 .setTitle(`Command: ${cmd.name}`)
                 .addField("Aliases", aliases, true)
-                .addField("Cooldown", `${cmd.cooldown}s`, true)
+                .addField("Cooldown", `${cooldown}`, true)
                 .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : "Not specified", true)
                 .addField("Category", cmd.category, true)
                 .addField("Description", cmd.description ? cmd.description : "Not specified")
