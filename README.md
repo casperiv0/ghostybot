@@ -82,3 +82,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 **Feel free to open a pull request with a new feature.**
 
 <p align="center">Made with ❤️ and JavaScript!</p>
+
+## License
+
+[MIT](./LICENSE)
