@@ -3,7 +3,8 @@ module.exports = {
   execute(bot) {
     const userCount = bot.users.cache.filter((u) => !u.bot).size;
     const channelCount = bot.channels.cache.size;
-    
+    const interval = 1800000; /* 30 minutes */
+
     console.log(
       `[BOT]: Bot is running with ${channelCount} channels and ${userCount} users`
     );
@@ -13,6 +14,6 @@ module.exports = {
       bot.user.setActivity(`${userCount} Users`, {
         type: "WATCHING",
       });
-    }, 1800000);
+    }, interval);
   },
 };
