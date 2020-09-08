@@ -1,6 +1,6 @@
 const { getAuditChannel } = require("../utils/functions");
 const { MessageEmbed } = require('discord.js');
-const Discord = require('discord.js')
+
 module.exports = {
     name: "guildMemberUpdate",
     async execute(bot, newMember, oldMember) {
@@ -11,7 +11,7 @@ module.exports = {
         const embed = new MessageEmbed()
     .setAuthor(`${newMember.user.tag}`, newMember.user.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
-    .setColor(oldMember.guild.me.displayHexColor);
+    .setColor("ORANGE");
 
   // Nickname change
   if (oldMember.nickname != newMember.nickname) {
