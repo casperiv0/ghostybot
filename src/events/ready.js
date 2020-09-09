@@ -1,14 +1,17 @@
 module.exports = {
   name: "ready",
   execute(bot) {
+    const serverCount = bot.guilds.cache.size;
+    const userCount = bot.users.cache.filter((u) => !u.bot).size;
+    const channelCount = bot.channels.cache.size;
     const statuses = [
-      ` ${bot.guilds.cache.size} servers.`,
-      `!help || ${bot.channels.cache.size} channels`,
-      `${bot.users.cache.filter((u) => !u.bot).size} users`,
+      ` ${serverCount} servers.`,
+      `!help || ${channelCount} channels`,
+      `${userCount} users`,
     ]
     
     console.log(
-      `[BOT]: Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`
+      `[BOT]: Bot is running with ${channelCount} channels,  ${userCount} users and ${serverCount} servers`
     );
     setInterval(() => {
     const status = statuses[Math.floor(Math.random() * statuses.length)]
