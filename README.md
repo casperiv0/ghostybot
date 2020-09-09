@@ -55,6 +55,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | prefix        | lizard    |           | iq           | tweet        |            |       | github       | withdraw         |
 | removerole    | owl       |           | lmgtfy       |              |            |       | help         | work             |
 | say           | panda     |           | meme         |              |            |       | instagram    |
+| stealemoji    |           |           |              |              |            |       |              |                  |
 | set           | shibe     |           | ping         |              |            |       | invite       |
 | sticky        | snailfact |           | randomjoke   |              |            |       | membercount  |
 | unlockchannel |           |           | randomnumber |              |            |       | minecraft    |
