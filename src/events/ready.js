@@ -4,7 +4,7 @@ module.exports = {
     const statuses = [
       ` ${bot.guilds.cache.size} servers.`,
       `!help || ${bot.channels.cache.size} channels`,
-      `${bot.users.cache.size} users`,
+      `${bot.users.cache.filter((u) => !u.bot).size} users`,
     ]
     
     console.log(
