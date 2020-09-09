@@ -1,7 +1,8 @@
 const { setServerPrefix } = require("../utils/functions");
+
 module.exports = {
-    name: "guildCreate",
-    async execute(bot, guild) {
-        setServerPrefix(guild.id, "!");
-    }
-}
+  name: "guildCreate",
+  async execute(bot, guild) {
+    setServerPrefix(guild.id, "!");
+  },
+};
