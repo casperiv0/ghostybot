@@ -51,6 +51,7 @@
     "quick.db": "^7.1.1",
     "randomcolor": "^0.6.2",
     "simple-youtube-api": "^5.2.1",
+    "twemoji-parser": "^13.0.0",
     "word-definition": "^2.1.6",
     "ytdl-core": "^3.2.2"
   }
