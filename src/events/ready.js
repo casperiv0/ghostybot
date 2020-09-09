@@ -1,19 +1,18 @@
 module.exports = {
   name: "ready",
   execute(bot) {
-    const userCount = bot.users.cache.filter((u) => !u.bot).size;
-    const channelCount = bot.channels.cache.size;
-    const interval = 1800000; /* 30 minutes */
-
+    const statuses = [
+      ` ${bot.guilds.cache.size} servers.`,
+      `!help || ${bot.channels.cache.size} channels`,
+      `${bot.users.cache.size} users`,
+    ]
+    
     console.log(
-      `[BOT]: Bot is running with ${channelCount} channels and ${userCount} users`
+      `[BOT]: Bot is running with ${bot.channels.cache.size} channels and ${bot.users.cache.size} users`
     );
-    bot.user.setActivity(`${userCount} Users`, { type: "WATCHING" });
-
     setInterval(() => {
-      bot.user.setActivity(`${userCount} Users`, {
-        type: "WATCHING",
-      });
-    }, interval);
+    const status = statuses[Math.floor(Math.random() * statuses.length)]
+    bot.user.setActivity(status, { type: "WATCHING"})
+  }, 60000)
   },
 };
