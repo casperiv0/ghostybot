@@ -17,8 +17,7 @@ module.exports = {
       `https://nekobot.xyz/api/imagegen?type=tweet&text=${text}&username=${username}`
     )
       .then((res) => res.json())
-      .catch((e) => {
-        console.error(e);
+      .catch(() => {
         message.channel.send("Something went wrong!");
       });
 

@@ -24,7 +24,9 @@ module.exports = (bot) => {
         );
 
       if (cmd.name.trim() === "")
-        throw new TypeError(`[ERROR][COMMANDS]: name cannot be empty! (${file})`);
+        throw new TypeError(
+          `[ERROR][COMMANDS]: name cannot be empty! (${file})`
+        );
 
       if (!cmd.category)
         console.warn(
@@ -38,11 +40,11 @@ module.exports = (bot) => {
           bot.aliases.set(alias, cmd.name);
         }
       }
-      
+
       bot.commands.set(cmd.name, cmd);
 
       const cooldowns = bot.cooldowns;
-      
+
       if (!cooldowns.has(cmd.name)) {
         cooldowns.set(cmd.name, new Collection());
       }

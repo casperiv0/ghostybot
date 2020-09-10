@@ -46,7 +46,7 @@ function checkValid() {
     );
   }
 
-  fs.stat("src/data/giveaways.json", (e, stat) => {
+  fs.stat("src/data/giveaways.json", (e) => {
     if (e === "ENOENT") {
       throw Error("[ERROR]: File: src/data/giveaway.json is required.");
     }
