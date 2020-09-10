@@ -4,6 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "guildMemberUpdate",
   async execute(bot, newMember, oldMember) {
+    if (!oldMember.guild) return;
     const auditChannel = await getAuditChannel(newMember.guild.id);
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 

@@ -4,6 +4,7 @@ const { getLeaveChannel } = require("../utils/functions");
 module.exports = {
   name: "guildMemberRemove",
   async execute(bot, member) {
+    if (!member.guild) return;
     const leaveChannel = await getLeaveChannel(member.guild.id);
 
     // not enabled
