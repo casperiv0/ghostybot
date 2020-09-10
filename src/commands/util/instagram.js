@@ -20,7 +20,7 @@ module.exports = {
     } catch (e) {
       console.error(e);
     }
-    const account = result.graphql.user;
+    const account = result.graphql?.user;
 
     if (!account)
       return message.channel.send("The requested account was not found");

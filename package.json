@@ -44,6 +44,7 @@
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
     "ms": "^2.1.2",
+    "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
     "one-liner-joke": "^1.2.0",

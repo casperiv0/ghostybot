@@ -4,11 +4,14 @@ const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
 const { token } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
+const NekoClient = require("nekos.life");
+const neko = new NekoClient();
 
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
+bot.neko = neko;
 require("./utils/command")(bot);
 
 const giveawayManager = new GiveawaysManager(bot, {
