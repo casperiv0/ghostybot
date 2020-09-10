@@ -15,7 +15,7 @@ module.exports = {
             }
         }  
         let currentPrefix = getServerPrefix(guild.id)
-        let channel = client.channels.cache.get(guild.systemChannelID || channelID);
+        let channel = bot.channels.cache.get(guild.systemChannelID || channelID);
         let welcomebed = new MessageEmbed()
         .setTitle('Thanks for inviting me!')
         .setDescription(`Get a list of my commands by doing ${currentPrefix}help`)
