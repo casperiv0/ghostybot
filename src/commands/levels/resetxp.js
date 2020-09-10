@@ -6,6 +6,8 @@ module.exports = {
     category: "levels",
     usage: "resetxp all",
     async execute(bot, message, args) {
+        if(!message.member.hasPermission("MANAGE_GUILD"))
+        return message.channel.send("You need Manage Guild permission")
         const users = await message.guild.members.fetch();
 
         users.forEach(user => {
@@ -13,7 +15,7 @@ module.exports = {
             setUserXp(message.guild.id, user.id, 0)
         })
 
-        
+        // send message
         message.channel.send("Succesfully reseted everyone's xp")
     }
 }
