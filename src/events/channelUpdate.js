@@ -23,7 +23,7 @@ module.exports = {
 
     if (type === "category") {
       if (oldChannel.name !== newChannel.name) {
-        msg = `Category name in chanel **${newChannel}** was updated from \`${oldChannel.name}\` to \`${newChannel.name}\``;
+        msg = `Category **${newChannel}** was updated from \`${oldChannel.name}\` to \`${newChannel.name}\``;
       } else {
         msg = `Category: ${newChannel} was updated`;
       }
