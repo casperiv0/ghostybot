@@ -25,6 +25,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
   - [Installation](docs/INSTALLATION.md)
     - [Requirements](docs/INSTALLATION.md#requirements)
     - [Usage](docs/INSTALLATION.md#usage)
+  - [Contributing](docs/CONTRIBUTING.md)
   - [Bot Events](/docs/BOT_EVENTS)
   - [API's used](/docs/APIS_USED.md)
 

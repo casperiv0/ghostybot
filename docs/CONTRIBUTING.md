@@ -6,3 +6,7 @@
 4. Commit your changes (`git commit -m "Added a cool new feature!"`)
 5. Push to your branch (`git push origin my-cool-feature`)
 6. [Open a pull request](https://github.com/Dev-CasperTheGhost/ghostybot/pulls)
+
+##
+
+[Return to index](README.md)
