@@ -37,6 +37,15 @@ function checkValid() {
       )
     );
   }
+  
+
+  if (config.feedBackChannelId === "") {
+    console.warn(
+      chalk.yellow(
+        "[WARNING][BOT]: feedBackChannelId is required for the feedback command"
+      )
+    );
+  }
 
   if (config.openWeatherMapKey === "") {
     console.warn(

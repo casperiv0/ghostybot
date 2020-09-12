@@ -13,17 +13,20 @@ module.exports = {
       return message.channel.send("Please provide a username");
     }
 
-    const url = `https://instagram.com/${username.toLowerCase()}/?__a=1`;
+    const url = `https://instagram.com/${username}/?__a=1`;
     let result;
     try {
       result = await fetch(url).then((res) => res.json());
     } catch (e) {
-      console.error(e);
+      return message.channel.send("The requested account was not found.");
     }
-    const account = result.graphql?.user;
 
-    if (!account)
+    if (!result.graphql) {
       return message.channel.send("The requested account was not found");
+    }
+
+
+    const account = result.graphql?.user;
     const isPrivate = account.is_private
       ? "Yes, this profile is private."
       : "Nope, this isn't private.";

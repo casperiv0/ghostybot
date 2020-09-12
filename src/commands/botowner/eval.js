@@ -6,6 +6,7 @@ module.exports = {
   name: "eval",
   description: "Eval",
   category: "botowner",
+  aliases: ["e"],
   async execute(bot, message, args) {
     if (message.author.id !== ownerId)
       return message.reply("Only the owner is allowed to run this command");
