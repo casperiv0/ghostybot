@@ -18,7 +18,6 @@ module.exports = {
       return;
 
     let msg = "";
-    // todo: check type
     const type = oldChannel.type;
 
     if (type === "category") {
