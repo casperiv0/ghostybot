@@ -3,5 +3,6 @@
     "ownerId": "",
     "youtubeApiKey": "",
     "reportsChannelId": "",
-    "openWeatherMapKey": ""
+    "openWeatherMapKey": "",
+    "feedBackChannelId": ""
 }
