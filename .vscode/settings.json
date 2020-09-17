@@ -18,5 +18,6 @@
         "youtube",
         "ytld"
     ],
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "discord.enabled": true
 }

@@ -3,9 +3,9 @@
 
 const db = require("quick.db");
 const moment = require("moment");
+const fetch = require('node-fetch')
 const { MessageEmbed } = require("discord.js");
 const { ownerId } = require("../../config.json");
-
 /**
  * @param {string} guildId
  * @param {string} userId
@@ -13,7 +13,6 @@ const { ownerId } = require("../../config.json");
  */
 const getUserMoney = (guildId, userId) =>
   db.fetch(`money_${guildId}_${userId}`);
-
 /**
  * @param {string} guildId
  * @param {string} userId
@@ -259,6 +258,8 @@ const errorEmbed = (error, message) => {
  */
 const setUserXp = (guildId, userId, amount) =>
   db.set(`xp_${guildId}_${userId}`, amount);
+
+
 
 /**
  * @param {String} guildId

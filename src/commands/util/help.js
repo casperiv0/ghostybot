@@ -61,7 +61,6 @@ module.exports = {
             .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
             .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
             .addField("Server prefix: ", prefix)
-            .addField("Support server", "https://discord.gg/XxHrtkA")
             .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`)
             .setTitle("Help");
 
