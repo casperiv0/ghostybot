@@ -23,5 +23,7 @@ module.exports = {
       .setTimestamp();
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
+
+    message.channel.send("Successfully send feedback!");
   },
 };
