@@ -34,6 +34,12 @@ module.exports = {
         ":x: This command name is already added in guild custom commands."
       );
 
+    if (bot.commands.has(cmdName)) {
+      return message.channel.send(
+        ":x: This command name is already in use by the bot!"
+      );
+    }
+
     const data = {
       name: cmdName.toLowerCase(),
       response: cmdResponse,
