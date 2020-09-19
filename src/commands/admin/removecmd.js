@@ -5,7 +5,7 @@ module.exports = {
   usage: "delcmd <cmd_name>",
   description: "Delete the custom commannd",
   category: "admin",
-  execute(client, message, args) {
+  execute(bot, message, args) {
 
     let cmdname = args[0]
 

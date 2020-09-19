@@ -39,6 +39,9 @@ module.exports = {
 **Node Version:** ${nodev}
 **Discord.js version:** ${version}`
             )
+            .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
+            .addField("Support server", "https://discord.gg/XxHrtkA")
+            .setImage("https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png");
 
         message.channel.send(embed);
     }

@@ -1,12 +1,17 @@
+const { MessageEmbed } = require("discord.js")
 const db = require("quick.db")
-
+const { getModlog } = require("../../utils/functions")
 module.exports = {
   name: "addcmd",
   usage: "addcmd <cmd_name> <cmd_responce>",
   description: "add guild custom commands",
   category: "admin",
-  execute(client, message, args)  {
-
+  execute(bot, message, args)  {
+     const modlog = getModlog(message.guild.id)
+     let embed = new MessageEmbed()
+     .setTitle(`ACTION: \`addcmd\``)
+     .setDescription(`MODERATOR: ${message.author.username}`)
+     bot.channels.cache.get(modlog.id).send(embed)
 
     if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(":x: You need `MANAGE_MESSAGES` perms to use this command")
 
@@ -29,7 +34,7 @@ module.exports = {
 
     db.push(`cmd_${message.guild.id}`, data)
 
-    return message.channel.send("Added **" + cmdname.toLowerCase() + "** as a custom command in guild.")
+    return message.channel.send("Added **" + cmdname.toLowerCase() + "** as a custom command in guild.");
 
 
   }
