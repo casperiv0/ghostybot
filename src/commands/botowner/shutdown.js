@@ -8,6 +8,6 @@ module.exports = {
         if (message.author.id !== ownerId) return message.reply("Only the owner is allowed to run this command");
 
         await message.channel.send("Bot is shutting down...");
-        process.exit();
+        process.exit(1);
     }
 };

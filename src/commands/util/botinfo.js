@@ -19,8 +19,6 @@ module.exports = {
             .setTitle("Bot Information")
             .addField("Bot Id:", bot.user.id)
             .addField("Bot username:", bot.user.username)
-            .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
-            .addField("Support server", "https://discord.gg/XxHrtkA")
             .addField("__**Bot info:**__", `
 **Status:** ${bot.user.presence.status}
 **Users:** ${bot.users.cache.size}
@@ -41,6 +39,8 @@ module.exports = {
 **Node Version:** ${nodev}
 **Discord.js version:** ${version}`
             )
+            .addField("Repository:", "https://github.com/dev-caspertheghost/ghostybot")
+            .addField("Support server", "https://discord.gg/XxHrtkA")
             .setImage("https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png");
 
         message.channel.send(embed);

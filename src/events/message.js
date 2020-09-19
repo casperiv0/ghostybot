@@ -7,7 +7,7 @@ const {
   setUserXp,
   addUserXp,
 } = require("../utils/functions");
-
+const db = require('quick.db')
 const queue = new Map();
 
 module.exports = {
@@ -50,6 +50,7 @@ module.exports = {
         addUserXp(guildId, userId, generateXp(10, 15));
       }
     }
+
     // Commands
     if (
       !prefix.test(message.content) ||
@@ -61,7 +62,12 @@ module.exports = {
     const [, matchedPrefix] = message.content.match(prefix);
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
+    let cmdx = db.get(`cmd_${message.guild.id}`)
 
+   if(cmdx) {
+    let cmdy = cmdx.find(x => x.name === command)
+     if(cmdy) message.channel.send(cmdy.responce)
+}
     // music queue
     const serverQueue = queue.get(message.guild.id);
 

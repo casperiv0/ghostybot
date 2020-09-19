@@ -3,6 +3,7 @@ const {
   unsetLeaveChannel,
   unsetAuditChannel,
   unsetWelcomeRole,
+  unsetModlog,
 } = require("../../utils/functions");
 
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
+    "mod-log",
   ],
   category: "admin",
   execute(bot, message, args) {
@@ -35,6 +37,9 @@ module.exports = {
       case "welcome-role":
         unsetWelcomeRole(message.guild.id);
         break;
+        case "mod-log":
+          unsetModlog(message.guild.id)
+          break;
       default:
         return message.channel.send(`\`${option}\` is not a valid option!`);
     }
