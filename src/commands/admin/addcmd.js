@@ -1,41 +1,57 @@
-const { MessageEmbed } = require("discord.js")
-const db = require("quick.db")
-const { getModlog } = require("../../utils/functions")
+const { MessageEmbed } = require("discord.js");
+const db = require("quick.db");
+const { getModLog } = require("../../utils/functions");
+
 module.exports = {
   name: "addcmd",
-  usage: "addcmd <cmd_name> <cmd_responce>",
+  usage: "addcmd <cmd_name> <cmd_response>",
   description: "add guild custom commands",
   category: "admin",
-  execute(bot, message, args)  {
-     const modlog = getModlog(message.guild.id)
-     let embed = new MessageEmbed()
-     .setTitle(`ACTION: \`addcmd\``)
-     .setDescription(`MODERATOR: ${message.author.username}`)
-     bot.channels.cache.get(modlog.id).send(embed)
+  execute(bot, message, args) {
+    if (!message.member.hasPermission("MANAGE_MESSAGES"))
+      return message.channel.send(
+        ":x: You need `MANAGE_MESSAGES` perms to use this command"
+      );
 
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(":x: You need `MANAGE_MESSAGES` perms to use this command")
+    const cmdName = args[0];
 
-    let cmdname = args[0]
+    if (!cmdName)
+      return message.channel.send(
+        ":x: You have to give command name, `addcmd <cmd_name> <cmd_response>`"
+      );
 
-    if(!cmdname) return message.channel.send(`:x: You have to give command name, \`addcmd <cmd_name> <cmd_responce>\``)
+    const cmdResponse = args.slice(1).join(" ");
 
-    let cmdresponce = args.slice(1).join(" ")
+    if (!cmdResponse)
+      return message.channel.send(
+        ":x: You have to give command cmd response, `addcmd <cmd_name> <cmd_response>`"
+      );
 
-    if(!cmdresponce) return message.channel.send(`:x: You have to give command cmd responce, \`addcmd <cmd_name> <cmd_responce>\``)
+    const database = db.get(`cmds_${message.guild.id}`);
 
-    let database = db.get(`cmd_${message.guild.id}`)
+    if (database && database.find((x) => x.name === cmdName.toLowerCase()))
+      return message.channel.send(
+        ":x: This command name is already added in guild custom commands."
+      );
 
-    if(database && database.find(x => x.name === cmdname.toLowerCase())) return message.channel.send(":x: This command name is already added in guild custom commands.")
+    const data = {
+      name: cmdName.toLowerCase(),
+      response: cmdResponse,
+    };
 
-    let data = {
-      name: cmdname.toLowerCase(),
-      responce: cmdresponce
+    db.push(`cmds_${message.guild.id}`, data);
+
+    message.channel.send(
+      "Added **" + cmdName.toLowerCase() + "** as a custom command in guild."
+    );
+
+    const modLog = getModLog(message.guild.id);
+    const embed = new MessageEmbed()
+      .setTitle("ACTION: `addcmd`")
+      .setDescription(`MODERATOR: ${message.author.username}`)
+      .setColor("ORANGE");
+    if (modLog !== null) {
+      bot.channels.cache.get(modLog.id).send(embed);
     }
-
-    db.push(`cmd_${message.guild.id}`, data)
-
-    return message.channel.send("Added **" + cmdname.toLowerCase() + "** as a custom command in guild.");
-
-
-  }
-}
+  },
+};

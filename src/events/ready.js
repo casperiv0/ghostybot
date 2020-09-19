@@ -8,14 +8,14 @@ module.exports = {
       ` ${serverCount} servers.`,
       `!help || ${channelCount} channels`,
       `${userCount} users`,
-    ]
-    
+    ];
+
     console.log(
       `[BOT]: Bot is running with ${channelCount} channels,  ${userCount} users and ${serverCount} servers`
     );
     setInterval(() => {
-    const status = statuses[Math.floor(Math.random() * statuses.length)]
-    bot.user.setActivity(status, { type: "WATCHING"})
-  }, 60000)
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+      bot.user.setActivity(status, { type: "WATCHING" });
+    }, 60000);
   },
 };

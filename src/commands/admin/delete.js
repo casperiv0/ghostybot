@@ -8,7 +8,7 @@ module.exports = {
   category: "admin",
   execute(bot, message, args) {
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-    return message.channel.send(
+      return message.channel.send(
         errorEmbed("manage messages! (Manage Messages)", message)
       );
 
