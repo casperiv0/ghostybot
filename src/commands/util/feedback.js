@@ -48,6 +48,8 @@ module.exports = {
       .setTimestamp();
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
+
+    message.channel.send("Successfully send feedback!");
   },
 };
 >>>>>>> 91a522f1c99949c7047af0036772d7d5cf1f08f5
