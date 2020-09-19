@@ -4,6 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "guildMemberUpdate",
   async execute(bot, newMember, oldMember) {
+    if (!oldMember.guild) return;
     const auditChannel = await getAuditChannel(newMember.guild.id);
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
@@ -24,6 +25,9 @@ module.exports = {
         .setTitle("Member Update: `Nickname`")
         .setDescription(`${newMember}'s **nickname** was changed.`)
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
+
+      // send message
+      bot.channels.cache.get(auditChannel.id).send({ embed });
     }
 
     // Role add
@@ -35,6 +39,9 @@ module.exports = {
       embed
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${newMember} was **given** the ${role} role.`);
+
+      // send message
+      bot.channels.cache.get(auditChannel.id).send({ embed });
     }
 
     // Role remove
@@ -46,9 +53,9 @@ module.exports = {
       embed
         .setTitle("Member Update: `Role Remove`")
         .setDescription(`${newMember} was **removed** from ${role} role.`);
-    }
 
-    // send message
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+      // send message
+      bot.channels.cache.get(auditChannel.id).send({ embed });
+    }
   },
 };

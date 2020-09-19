@@ -4,6 +4,7 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "roleUpdate",
   async execute(bot, oldRole, newRole) {
+    if (!newRole.guild) return;
     const auditChannel = await getAuditChannel(oldRole.guild.id);
 
     // not enabled

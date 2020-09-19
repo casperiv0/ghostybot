@@ -4,7 +4,7 @@ module.exports = {
   category: "util",
   execute(bot, message) {
     const botInvite =
-      "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8";
+      `https://discord.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=8`;
 
     return message.channel.send(`Invite me here! ${botInvite}`);
   },

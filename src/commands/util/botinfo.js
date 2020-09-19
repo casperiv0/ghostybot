@@ -11,7 +11,6 @@ module.exports = {
             .duration(bot.uptime)
             .format(" D [days], H [hrs], m [mins], s [secs]");
         const nodev = process.version;
-        const game = bot.user.presence ? { name: bot.user.presence.activities[0].name, type: bot.user.presence.activities[0].type } : "Not playing any game";
         const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY");
 
         const embed = new MessageEmbed()
@@ -21,7 +20,6 @@ module.exports = {
             .addField("Bot Id:", bot.user.id)
             .addField("Bot username:", bot.user.username)
             .addField("__**Bot info:**__", `
-**Game:** ${game.type.toLowerCase()} ${game.name}
 **Status:** ${bot.user.presence.status}
 **Users:** ${bot.users.cache.size}
 **Servers:** ${bot.guilds.cache.size}
