@@ -1,5 +1,6 @@
-const { setServerPrefix, getServerPrefix } = require("../../utils/functions");
+const { setServerPrefix, getServerPrefix, getModlog } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "prefix",
@@ -18,6 +19,7 @@ module.exports = {
       setPrefix(message, prefix);
     } else if (message.member.permissions.has(["MANAGE_GUILD"])) {
       setPrefix(message, prefix);
+
     } else {
       return message.reply(
         "Sorry, You don't have the correct permissions for this command."
@@ -26,8 +28,9 @@ module.exports = {
   },
 };
 
+
 function setPrefix(message, prefix) {
   setServerPrefix(message.guild.id, prefix);
-
+  
   message.channel.send(`Successfully updated prefix to \`${prefix}\``);
 }

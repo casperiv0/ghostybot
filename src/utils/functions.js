@@ -298,7 +298,23 @@ const getAuditChannel = (guildId) => db.fetch(`auditchannel_${guildId}`);
  * @param {String} guildId
  */
 const unsetAuditChannel = (guildId) => db.delete(`auditchannel_${guildId}`);
-
+/**
+ * 
+ * @param {String} guildId 
+ * @param {Object} channel 
+ */
+const setModlog = (guildId, channel) => db.set(`modlog_${guildId}`, channel);
+/**
+ * 
+ * @param {String} guildId 
+ * 
+ */
+const getModlog = (guildId) => db.fetch(`modlog_${guildId}`);
+/**
+ * 
+ * @param {String} guildId 
+ */
+const unsetModlog = (guildId) => db.delete(`modlog_${guildId}`);
 /**
  * @param {String} guildId
  * @param {Object} role
@@ -357,6 +373,9 @@ module.exports = {
   setAuditChannel,
   getAuditChannel,
   unsetAuditChannel,
+  setModlog,
+  getModlog,
+  unsetModlog,
   setWelcomeRole,
   getWelcomeRole,
   unsetWelcomeRole,

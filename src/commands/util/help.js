@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { getServerPrefix } = require("../../utils/functions");
-
+const { ownerId } = require("../../../config.json");
 module.exports = {
     name: "help",
     description: "Shows all commands Or shows more info about a command",
@@ -32,7 +32,7 @@ module.exports = {
 
             return message.channel.send(embed);
         }
-
+        let nsfw = message.channel.nsfw;
         const commands = bot.commands;
         const utilsCmds = commands.filter(({category}) => category === "util").map(({name}) => name).join(", ");
         const adminCmds = commands.filter(({category}) => category === "admin").map(({name}) => name).join(", ");
@@ -52,18 +52,26 @@ module.exports = {
             .setColor("BLUE")
             .addField("Admin Commands", `\`\`\`${adminCmds}\`\`\``)
             .addField("Animal Commands", `\`\`\`${animalCmds}\`\`\``)
-            .addField("BotOwner Commands", `\`\`\`${botOwnerCmds}\`\`\``)
-            .addField("Game Commands", `\`\`\`${gameCmds}\`\`\``)
+            if(ownerId === message.author.id) {
+                embed.addField("BotOwner Commands", `\`\`\`${botOwnerCmds}\`\`\``)
+            }
+            if(ownerId !== message.author.id) {
+                embed.addField("BotOwner Commands", `only the owner is allowed to see this!`)
+            }
+            embed.addField("Game Commands", `\`\`\`${gameCmds}\`\`\``)
             .addField("Image Commands", `\`\`\`${imageCmds}\`\`\``)
             .addField("Music Commands", `\`\`\`${musicCmds}\`\`\``)
-            .addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
             .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
             .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
             .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
-            .addField("Server prefix: ", prefix)
-            .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`)
-            .setTitle("Help");
-
+         if(nsfw) {
+            embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
+             }
+              if(!nsfw) embed.addField("NSFW Commands", `To view nfsw commands check in an nfsw channel!`)
+              .addField("Server prefix: ", prefix)
+              .setDescription(`use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`)
+              .setTitle("Help");
+             
         message.channel.send(embed);
-    }
+        } 
 };
