@@ -1,6 +1,6 @@
 const { setServerPrefix, getServerPrefix } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
-const { MessageEmbed } = require("discord.js");
+
 
 module.exports = {
   name: "prefix",
