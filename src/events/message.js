@@ -21,7 +21,7 @@ module.exports = {
     const cooldowns = bot.cooldowns;
     const blacklistedUsers = getBlacklistUsers();
 
-    if (blacklistedUsers[0]) {
+    if (blacklistedUsers !== null) {
       const isBlacklisted = getBlacklistUsers().filter(
         (u) => u.id === message.author.id
       )[0];
