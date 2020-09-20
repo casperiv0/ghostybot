@@ -5,10 +5,11 @@ module.exports = {
   description: "ban",
   category: "admin",
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+    if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
       return message.channel.send(
         errorEmbed("ban users! (Ban Members)", message)
       );
+    }
 
     const banUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
