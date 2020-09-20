@@ -6,12 +6,14 @@ const { token } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
 const NekoClient = require("nekos.life");
 const neko = new NekoClient();
-
+const client = require("tnai");
+const tnai = new client();
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
 bot.neko = neko;
+bot.tnai = tnai;
 require("./utils/command")(bot);
 
 const giveawayManager = new GiveawaysManager(bot, {
