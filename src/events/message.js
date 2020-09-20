@@ -19,12 +19,16 @@ module.exports = {
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
-    const isBlacklisted = getBlacklistUsers().filter(
-      (u) => u.id === message.author.id
-    )[0];
+    const blacklistedUsers = getBlacklistUsers();
 
-    if (isBlacklisted) {
-      return message.reply("You've been blacklisted from using this bot.");
+    if (blacklistedUsers.length > 0) {
+      const isBlacklisted = getBlacklistUsers().filter(
+        (u) => u.id === message.author.id
+      )[0];
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
     }
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
