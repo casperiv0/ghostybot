@@ -1,10 +1,10 @@
 const { setUserXp } = require("../../utils/functions");
 
 module.exports = {
-  name: "resetxp", // name can't have a space, use args instead
+  name: "resetxp",
   description: "reset all users xp for current server",
   category: "levels",
-  usage: "resetxp",
+  usage: "resetxp all",
   async execute(bot, message) {
     if (!message.member.hasPermission("MANAGE_GUILD"))
       return message.channel.send("You need Manage Guild permission");
@@ -15,6 +15,6 @@ module.exports = {
     });
 
     // send message
-    message.channel.send("Succesfully reseted everyone's xp");
+    message.channel.send("Successfully reset everyone's xp");
   },
 };
