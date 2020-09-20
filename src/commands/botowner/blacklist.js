@@ -37,7 +37,7 @@ module.exports = {
     switch (type) {
       case "add":
         if (users === null) {
-          return setBlacklistUsers([...user]);
+          return setBlacklistUsers([user]);
         }
         const existing =
           users !== null && users.filter((u) => u.id === user.id)[0];
