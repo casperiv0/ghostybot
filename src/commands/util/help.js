@@ -44,7 +44,7 @@ module.exports = {
         const economyCmds = commands.filter(({category}) => category === "economy").map(({name}) => name).join(", ");
         const levelCmds = commands.filter(({category}) => category=== "levels").map(({name}) => name).join(", ");
         const imageCmds = commands.filter(({category}) => category=== "image").map(({name}) => name).join(", ");
-
+        const hentaiCmds = commands.filter(({category}) => category === "hentainsfw").map(({name}) => name).join(", ");
 
         const embed = new MessageEmbed()
             .setTimestamp()
@@ -66,6 +66,7 @@ module.exports = {
             .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
          if(nsfw) {
             embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
+            embed.addField("Hentai NSFW Commands", `\`\`\`${hentaiCmds}\`\`\``)
              }
               if(!nsfw) embed.addField("NSFW Commands", `To view nfsw commands check in an nfsw channel!`)
               .addField("Server prefix: ", prefix)

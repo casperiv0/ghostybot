@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "hentai",
-  category: "nsfw",
+  category: "hentainsfw",
   description: "None",
   async execute(bot, message) {
     if (!message.channel.nsfw)
