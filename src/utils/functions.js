@@ -329,6 +329,19 @@ const getWelcomeRole = (guildId) => db.fetch(`welcomerole_${guildId}`);
  */
 const unsetWelcomeRole = (guildId) => db.delete(`welcomerole_${guildId}`);
 
+// Blacklist
+/**
+ * @param {Object} user
+ */
+const addBlacklistUser = (user) => db.push("blacklist", user);
+
+const getBlacklistUsers = () => db.fetch("blacklist");
+
+/**
+ * @param {Array} users
+ */
+const setBlacklistUsers = (users) => db.set("blacklist", users);
+
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -376,4 +389,7 @@ module.exports = {
   setWelcomeRole,
   getWelcomeRole,
   unsetWelcomeRole,
+  addBlacklistUser,
+  getBlacklistUsers,
+  setBlacklistUsers,
 };

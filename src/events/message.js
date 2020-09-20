@@ -6,6 +6,7 @@ const {
   getUserXp,
   setUserXp,
   addUserXp,
+  getBlacklistUsers,
 } = require("../utils/functions");
 const db = require("quick.db");
 const queue = new Map();
@@ -18,6 +19,13 @@ module.exports = {
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
+    const isBlacklisted = getBlacklistUsers().filter(
+      (u) => u.id === message.author.id
+    )[0];
+
+    if (isBlacklisted) {
+      return message.reply("You've been blacklisted from using this bot.");
+    }
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
