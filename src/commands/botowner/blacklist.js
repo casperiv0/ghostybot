@@ -11,7 +11,7 @@ module.exports = {
   description: "Remove/add blacklist from a user",
   category: "botowner",
   options: ["add", "remove", "view"],
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
     if (message.author.id !== ownerId)
       return message.reply("Only the owner is allowed to run this command");
 
@@ -32,16 +32,26 @@ module.exports = {
       return message.channel.send("Cannot blacklist the owner");
     }
 
+    const users = await getBlacklistUsers();
+
     switch (type) {
       case "add":
-        const existing = getBlacklistUsers().filter((u) => u.id === user.id)[0];
+        if (users === null) {
+          return setBlacklistUsers([...user]);
+        }
+        const existing =
+          users !== null && users.filter((u) => u.id === user.id)[0];
         if (existing) {
           return message.channel.send(`${user.tag} is already blacklisted`);
         }
+
         addBlacklistUser(user);
         break;
       case "remove":
-        const exists = getBlacklistUsers().filter((u) => u.id === user?.id)[0];
+        if (users === null) {
+          return message.channel.send(`${user.tag} is not blacklisted`);
+        }
+        const exists = getBlacklistUsers()?.filter((u) => u.id === user?.id)[0];
         if (!exists) {
           return message.channel.send(`${user.tag} is not blacklisted`);
         }

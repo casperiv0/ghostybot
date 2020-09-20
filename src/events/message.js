@@ -19,10 +19,10 @@ module.exports = {
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
-    const blacklistedUsers = getBlacklistUsers();
+    const blacklistedUsers = await getBlacklistUsers();
 
     if (blacklistedUsers !== null) {
-      const isBlacklisted = getBlacklistUsers().filter(
+      const isBlacklisted = blacklistedUsers.filter(
         (u) => u.id === message.author.id
       )[0];
 
