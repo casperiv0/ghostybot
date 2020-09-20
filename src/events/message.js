@@ -21,16 +21,6 @@ module.exports = {
     const cooldowns = bot.cooldowns;
     const blacklistedUsers = await getBlacklistUsers();
 
-    if (blacklistedUsers !== null) {
-      const isBlacklisted = blacklistedUsers.filter(
-        (u) => u.id === message.author.id
-      )[0];
-
-      if (isBlacklisted) {
-        return message.reply("You've been blacklisted from using this bot.");
-      }
-    }
-
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
     const prefix = new RegExp(
@@ -75,6 +65,16 @@ module.exports = {
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
     let customCmds = db.get(`cmds_${message.guild.id}`);
+
+    if (blacklistedUsers !== null) {
+      const isBlacklisted = blacklistedUsers.filter(
+        (u) => u.id === message.author.id
+      )[0];
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
+    }
 
     if (customCmds) {
       const customCmd = customCmds.find((x) => x.name === command);
