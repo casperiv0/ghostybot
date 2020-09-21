@@ -83,8 +83,12 @@ module.exports = {
       .filter(({ category }) => category === "image")
       .map(({ name }) => name)
       .join(", ");
+      const hentaiCmds = commands
+      .filter(({ category }) => category === "hentainsfw")
+      .map(({ name }) => name)
+      .join(", ");
 
-    const embed = new MessageEmbed()
+    const embed = new MessageEmbed() 
       .setTimestamp()
       .setFooter(message.author.username)
       .setColor("BLUE")
@@ -100,7 +104,8 @@ module.exports = {
       );
     }
     if (nsfw) {
-      embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``);
+      embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
+      embed.addField("NSFW Commands", `\`\`\`${hentaiCmds}\`\`\``)
     } else {
       embed.addField(
         "NSFW Commands",

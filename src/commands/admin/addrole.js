@@ -18,7 +18,7 @@ module.exports = {
     const role =
       message.guild.roles.cache.find(
         (role) => role.name === args.join(" ").slice(23)
-      ) || message.mentions.roles.first();
+      ) || message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ").slice(23));
 
     if (!needsRole) return message.channel.send("User wasn't found");
     if (!role) return message.channel.send("Please provide a valid role");

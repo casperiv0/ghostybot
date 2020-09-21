@@ -24,5 +24,5 @@ module.exports = {
     embed.setDescription(description);
 
     message.channel.send({ embed });
-  },
-};
+  }
+}

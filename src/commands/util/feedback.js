@@ -1,6 +1,4 @@
-const { MessageEmbed } = require("discord.js");
-const { feedBackChannelId } = require("../../../config.json");
-
+const { feedBackChannelId } = require("../../../config.json")
 module.exports = {
   name: "feedback",
   description: "Give feedback about the bot",
@@ -27,3 +25,4 @@ module.exports = {
     message.channel.send("Successfully send feedback!");
   },
 };
+

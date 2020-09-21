@@ -28,4 +28,4 @@ module.exports = {
       return message.channel.send("An error occurred leaving that guild");
     }
   },
-};
+}

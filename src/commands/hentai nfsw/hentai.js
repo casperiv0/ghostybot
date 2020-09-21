@@ -1,27 +1,22 @@
 const { MessageEmbed } = require("discord.js");
-const fetch = require("node-fetch");
 
 module.exports = {
-  name: "neko",
+  name: "hentai",
+  category: "hentainsfw",
   description: "None",
-  category: "nsfw",
   async execute(bot, message) {
     if (!message.channel.nsfw)
       return message.channel.send("This channel is not a NSFW channel!");
 
-    const data = await fetch(
-      "https://nekobot.xyz/api/image?type=neko"
-    ).then((res) => res.json());
+    const data = await bot.neko.nsfw.randomHentaiGif();
 
     const embed = new MessageEmbed()
       .setFooter(message.author.username)
       .setColor("BLUE")
-      .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
-      )
-      .setImage(`${data.message}`)
+      .setDescription(`[Click here if the image failed to load.](${data.url})`)
+      .setImage(`${data.url}`)
       .setTimestamp();
 
-    message.channel.send(embed);
+    message.channel.send({ embed });
   },
 };
