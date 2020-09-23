@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable no-case-declarations */
 const {
   addBlacklistUser,
@@ -5,6 +6,7 @@ const {
   setBlacklistUsers,
 } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "blacklist",
@@ -15,13 +17,19 @@ module.exports = {
     if (message.author.id !== ownerId)
       return message.reply("Only the owner is allowed to run this command");
 
+    const levels = ["1", "2"];
     const type = args[0];
+    const level = args[1];
     const user =
-      bot.users.cache.find((user) => user.id === args[1]) ||
+      bot.users.cache.find((user) => user.id === args[2]) ||
       message.mentions.users.first();
 
     if (!type) {
       return message.channel.send("Please provide a type");
+    }
+
+    if (!level) {
+      return message.channel.send("Please provide a level (1 or 2)");
     }
 
     if (!user) {
@@ -35,28 +43,48 @@ module.exports = {
     const users = await getBlacklistUsers();
 
     switch (type) {
+      case "view":
+        const usr =
+          users !== null && users.filter((u) => u.user.id === user.id)[0];
+
+        if (!usr) {
+          return message.channel.send("User is not blacklisted");
+        }
+
+        const embed = new MessageEmbed()
+          .setTitle(`Blacklist status: ${usr.user.username}`)
+          .setColor("BLUE")
+          .setTimestamp()
+          .addField("Blacklist level", usr.level ? usr.level : "0");
+
+        return message.channel.send({ embed });
       case "add":
+        if (!levels.includes(level)) {
+          return message.channel.send("Level can only be **1** or **2**");
+        }
         if (users === null) {
           return setBlacklistUsers([user]);
         }
         const existing =
-          users !== null && users.filter((u) => u.id === user.id)[0];
+          users !== null && users.filter((u) => u.user.id === user.id)[0];
         if (existing) {
           return message.channel.send(`${user.tag} is already blacklisted`);
         }
 
-        addBlacklistUser(user);
+        addBlacklistUser({ user, level });
         break;
       case "remove":
         if (users === null) {
           return message.channel.send(`${user.tag} is not blacklisted`);
         }
-        const exists = getBlacklistUsers()?.filter((u) => u.id === user?.id)[0];
+        const exists = getBlacklistUsers()?.filter(
+          (u) => u.user.id === user?.id
+        )[0];
         if (!exists) {
           return message.channel.send(`${user.tag} is not blacklisted`);
         }
         const blacklisted = getBlacklistUsers().filter(
-          (u) => u.id !== user?.id
+          (u) => u.user.id !== user?.id
         );
         setBlacklistUsers(blacklisted);
         break;

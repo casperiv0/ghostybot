@@ -68,7 +68,7 @@ module.exports = {
 
     if (blacklistedUsers !== null) {
       const isBlacklisted = blacklistedUsers.filter(
-        (u) => u.id === message.author.id
+        (u) => u.user.id === message.author.id
       )[0];
 
       if (isBlacklisted) {
