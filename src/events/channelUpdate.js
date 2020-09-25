@@ -24,7 +24,7 @@ module.exports = {
       if (oldChannel.name !== newChannel.name) {
         msg = `Category **${newChannel}** was updated from \`${oldChannel.name}\` to \`${newChannel.name}\``;
       } else {
-        msg = `Category: ${newChannel} was updated`;
+        return;
       }
     } else {
       if (oldChannel.name !== newChannel.name) {
@@ -32,7 +32,7 @@ module.exports = {
       } else if (oldChannel.topic !== newChannel.topic) {
         msg = `Channel topic in channel ${newChannel} was updated from \`${oldChannel.topic}\` to \`${newChannel.topic}\``;
       } else {
-        msg = `Channel: ${newChannel} was updated`;
+        return;
       }
     }
 
