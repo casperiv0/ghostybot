@@ -43,7 +43,7 @@ module.exports = {
       .addField(`**Roles (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
       .setColor("BLUE")
-      .setThumbnail(avatar, { dynamic: true })
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true}))
       .setTimestamp()
       .setFooter(message.author.username);
 
