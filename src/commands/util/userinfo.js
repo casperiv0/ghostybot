@@ -18,20 +18,28 @@ module.exports = {
     const joinedAt = formatDate(member.user.joinedAt);
     const createdAt = formatDate(member.user.createdAt);
     const avatar = member.user.displayAvatarURL();
+    const nickname = member.nickname || "None";
+    const isBot = member.user.bot;
+
     const roles =
       member.roles.cache
         .filter((r) => r.id !== message.guild.id)
         .map((r) => r)
         .join(", ") || "None";
-    const roleCount = member.roles.cache.filter(r => r.id !== message.guild.id).size;
+    const roleCount = member.roles.cache.filter(
+      (r) => r.id !== message.guild.id
+    ).size;
+
     const { username, id, tag } = member.user;
 
     const embed = new MessageEmbed()
       .addField("**Id**", id, true)
       .addField("**Username**", username, true)
+      .addField("**Bot**", isBot, true)
       .addField("**Tag**", tag, true)
       .addField("**Created At**", createdAt, true)
       .addField("**Joined At**", joinedAt, true)
+      .addField("**Server Nickname**", nickname, true)
       .addField(`**Roles (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
       .setColor("BLUE")
