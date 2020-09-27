@@ -342,6 +342,26 @@ const getBlacklistUsers = () => db.fetch("blacklist");
  */
 const setBlacklistUsers = (users) => db.set("blacklist", users);
 
+/* warnings */
+/**
+ * @param {Sting} guildId
+ * @param {Object} warnings
+ */
+const setWarningUsers = (guildId, warnings) =>
+  db.set(`warnings_${guildId}`, warnings);
+
+/**
+ * @param {String} guildId
+ * @param {Object} warning
+ */
+const addWarningUser = (guildId, warning) =>
+  db.push(`warnings_${guildId}`, warning);
+
+/**
+ * @param {String} guildId
+ */
+const getWarningUsers = (guildId) => db.fetch(`warnings_${guildId}`);
+
 module.exports = {
   getUserMoney,
   getUserBank,
@@ -392,4 +412,7 @@ module.exports = {
   addBlacklistUser,
   getBlacklistUsers,
   setBlacklistUsers,
+  setWarningUsers,
+  addWarningUser,
+  getWarningUsers,
 };
