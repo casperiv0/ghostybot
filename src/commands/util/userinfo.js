@@ -15,9 +15,8 @@ module.exports = {
 
     if (!member) return message.channel.send("User wasn't found!");
 
-    const joinedAt = formatDate(member.user.joinedAt);
+    const joinedAt = formatDate(member.joinedAt);
     const createdAt = formatDate(member.user.createdAt);
-    const avatar = member.user.displayAvatarURL();
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
 
