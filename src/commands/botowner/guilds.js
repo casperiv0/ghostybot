@@ -1,13 +1,11 @@
 const { MessageEmbed } = require("discord.js");
-const { ownerId } = require("../../../config.json");
 
 module.exports = {
   name: "guilds",
   description: "View all guilds the bot is in",
   category: "botowner",
+  ownerOnly: true,
   execute(bot, message) {
-    if (message.author.id !== ownerId)
-      return message.reply("Only the owner is allowed to run this command");
 
     const guilds = bot.guilds.cache;
 

@@ -1,15 +1,13 @@
 const { MessageEmbed } = require("discord.js");
-const { ownerId } = require("../../../config.json");
 const util = require("util");
 
 module.exports = {
   name: "eval",
   description: "Eval",
   category: "botowner",
+  ownerOnly: true,
   aliases: ["e"],
   async execute(bot, message, args) {
-    if (message.author.id !== ownerId)
-      return message.reply("Only the owner is allowed to run this command");
 
     const toEval = args.join(" ");
     if (!toEval) return message.channel.send("Please provide text");

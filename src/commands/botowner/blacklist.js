@@ -4,16 +4,16 @@ const {
   getBlacklistUsers,
   setBlacklistUsers,
 } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
+
 
 module.exports = {
   name: "blacklist",
   description: "Remove/add blacklist from a user",
   category: "botowner",
   options: ["add", "remove", "view"],
+  ownerOnly: true,
   execute(bot, message, args) {
-    if (message.author.id !== ownerId)
-      return message.reply("Only the owner is allowed to run this command");
+
 
     const type = args[0];
     const user =
