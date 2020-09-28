@@ -10,19 +10,15 @@ module.exports = {
     if (auditChannel === null || !auditChannel) return;
 
     // channel not found/deleted
-    if (
-      !oldEm.guild.channels.cache.some(
-        (ch) => ch.name === auditChannel.name
-      )
-    )
+    if (!oldEm.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
       return;
 
     let msg = "";
 
     if (oldEm.name !== newEm.name) {
       msg = `Emoji: **${oldEm.name}** was renamed to **${newEm.name}** (${newEm})`;
-    } {
-      msg = `Emoji: **${newEm.name}** was updated (${newEm})`;
+    } else {
+      return;
     }
 
     const embed = new MessageEmbed()

@@ -8,7 +8,7 @@
 
 # Ghostybot
 
-A Custom Discord bot with a lot of commands for Discord communities. (+100 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
+A Custom Discord bot with a lot of commands for Discord communities. (+140 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
 
 [![Add ghostybot](./.github/add-ghostybot.svg)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 [![Ghostybot Support server](./.github/join-support-server.svg)](https://discord.gg/XxHrtkA)
@@ -80,7 +80,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 **Feel free to open a pull request with a new feature.**
 
-<p align="center">Made with ❤️ and JavaScript!</p>
+<p>Made with ❤️ and JavaScript!</p>
 
 ## License
 

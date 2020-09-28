@@ -12,17 +12,17 @@ module.exports = {
 
     // channel not found/deleted
     if (
-      !oldRole.guild.channels.cache.some(
-        (ch) => ch.name === auditChannel.name
-      )
+      !oldRole.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
     )
       return;
 
     let msg = "";
     if (oldRole.name !== newRole.name) {
       msg = `Role: **${oldRole.name}** was renamed to **${newRole.name}** (${newRole})`;
-    } {
-      msg = `Role: **${newRole.name}** was updated (${newRole})`;
+    } else if (oldRole.color !== newRole.color) {
+      msg = `Role: **${newRole.name}**,  color: **${oldRole.color}** was recolored to **${newRole.color}** (${newRole})`;
+    } else {
+      return;
     }
 
     const embed = new MessageEmbed()

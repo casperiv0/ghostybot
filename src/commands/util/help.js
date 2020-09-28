@@ -41,8 +41,10 @@ module.exports = {
 
       return message.channel.send(embed);
     }
+
     let nsfw = message.channel.nsfw;
     const commands = bot.commands;
+
     const utilsCmds = commands
       .filter(({ category }) => category === "util")
       .map(({ name }) => name)
@@ -83,12 +85,12 @@ module.exports = {
       .filter(({ category }) => category === "image")
       .map(({ name }) => name)
       .join(", ");
-      const hentaiCmds = commands
+    const hentaiCmds = commands
       .filter(({ category }) => category === "hentainsfw")
       .map(({ name }) => name)
       .join(", ");
 
-    const embed = new MessageEmbed() 
+    const embed = new MessageEmbed()
       .setTimestamp()
       .setFooter(message.author.username)
       .setColor("BLUE")
@@ -104,8 +106,8 @@ module.exports = {
       );
     }
     if (nsfw) {
-      embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``)
-      embed.addField("NSFW Commands", `\`\`\`${hentaiCmds}\`\`\``)
+      embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``);
+      embed.addField("Hentai Commands", `\`\`\`${hentaiCmds}\`\`\``);
     } else {
       embed.addField(
         "NSFW Commands",

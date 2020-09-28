@@ -19,6 +19,7 @@ module.exports = {
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
+
     const blacklistedUsers = getBlacklistUsers();
 
     if (blacklistedUsers !== null) {
@@ -31,6 +32,8 @@ module.exports = {
       }
     }
   
+    const blacklistedUsers = await getBlacklistUsers();
+
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
     const prefix = new RegExp(
@@ -78,6 +81,17 @@ module.exports = {
       return message.reply("Only for owners!")
     }
     let customCmds = db.get(`cmds_${message.guild.id}`);
+
+    if (blacklistedUsers !== null) {
+      const isBlacklisted = blacklistedUsers.filter(
+        (u) => u.user.id === message.author.id
+      )[0];
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
+    }
+
     if (customCmds) {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
