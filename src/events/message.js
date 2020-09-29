@@ -10,7 +10,7 @@ const {
 } = require("../utils/functions");
 const db = require("quick.db");
 const queue = new Map();
-
+const ownerId = require("../../config.json")
 module.exports = {
   name: "message",
   async execute(bot, message) {
@@ -19,6 +19,19 @@ module.exports = {
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
+
+    const blacklistedUsers = getBlacklistUsers();
+
+    if (blacklistedUsers !== null) {
+      const isBlacklisted = getBlacklistUsers().filter(
+        (u) => u.id === message.author.id
+      )[0];
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
+    }
+  
     const blacklistedUsers = await getBlacklistUsers();
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -64,6 +77,9 @@ module.exports = {
     const [, matchedPrefix] = message.content.match(prefix);
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
+    if(command.ownerOnly && message.author.id !== ownerId) {
+      return message.reply("Only for owners!")
+    }
     let customCmds = db.get(`cmds_${message.guild.id}`);
 
     if (blacklistedUsers !== null) {
