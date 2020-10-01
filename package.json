@@ -35,7 +35,7 @@
     "discord-giveaways": "^4.2.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
     "fluent-ffmpeg": "^2.1.2",
