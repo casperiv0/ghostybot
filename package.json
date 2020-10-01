@@ -56,6 +56,6 @@
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "word-definition": "^2.1.6",
-    "ytdl-core": "^3.2.2"
+    "ytdl-core": "^3.3.0"
   }
 }
