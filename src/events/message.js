@@ -10,7 +10,7 @@ const {
 } = require("../utils/functions");
 const db = require("quick.db");
 const queue = new Map();
-const ownerId = require("../../config.json");
+const { ownerId } = require("../../config.json");
 module.exports = {
   name: "message",
   async execute(bot, message) {
