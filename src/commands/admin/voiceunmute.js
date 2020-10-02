@@ -13,18 +13,23 @@ module.exports = {
     const unmuteUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
-    const unmuteReason = args.join(" ").slice(23);
 
     if (!message.member.hasPermission("MUTE_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
+    if (!unmuteUser.voice.serverMute) {
+      return message.channel.send(
+        "User is not in a voice channel or isn't muted"
+      );
+    }
+
     unmuteUser.voice.setMute(false, "unmuteReason");
 
     unmuteUser.user.send(
-      `You've been **Unmuted** from **${message.guild.name}**, Reason: **${unmuteReason}**`
+      `You've been **Unmuted** from **${message.guild.name}**`
     );
     message.channel.send(
-      `${unmuteUser} was successfully unmuted from the server. Reason: **${unmuteReason}**. I have also send a DM letting the person know.`
+      `${unmuteUser} was successfully unmuted from the server. I have also send a DM letting the person know.`
     );
   },
 };

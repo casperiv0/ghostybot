@@ -18,6 +18,12 @@ module.exports = {
     if (!message.member.hasPermission("DEAFEN_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
+    if (deafenUser.voice.serverDeaf) {
+      return message.channel.send(
+        "User is not in a voice channel or isn't deafened"
+      );
+    }
+
     deafenUser.voice.setDeaf(true, "deafenReason");
 
     deafenUser.user.send(

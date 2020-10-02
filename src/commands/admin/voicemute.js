@@ -18,6 +18,12 @@ module.exports = {
     if (!message.member.hasPermission("MUTE_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
+    if (muteUser.voice.serverMute) {
+      return message.channel.send(
+        "User is not in a voice channel or is already muted"
+      );
+    }
+
     muteUser.voice.setMute(true, "muteReason");
 
     muteUser.user.send(
