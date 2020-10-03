@@ -8,6 +8,12 @@ module.exports = {
   execute(bot, message, args) {
     const bug = args.join(" ");
 
+    if (!reportsChannelId) {
+      return message.channel.send(
+        "reportsChannelId needs to be provided, for this command to work."
+      );
+    }
+
     if (!bug) return message.channel.send("Please provide a bug");
 
     const embed = new MessageEmbed()
@@ -17,12 +23,8 @@ module.exports = {
       .setFooter(message.author.username)
       .setTimestamp();
 
-    if (!reportsChannelId) {
-      return message.channel.send(
-        "reportsChannelId needs to be provided, for this command to work."
-      );
-    }
-
     bot.channels.cache.get(reportsChannelId).send(embed);
+
+    return message.channel.send("Bug report was send!");
   },
 };
