@@ -30,7 +30,7 @@ module.exports = {
       `You've been **Muted** from **${message.guild.name}**, Reason: **${muteReason}**`
     );
     message.channel.send(
-      `${muteUser} was successfully muted from the server. Reason: **${muteReason}**. I have also send a DM letting the person know.`
+      `**${muteUser.user.tag}** was successfully muted from the server. Reason: **${muteReason}**. I have also send a DM letting the person know.`
     );
   },
 };

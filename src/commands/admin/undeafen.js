@@ -29,7 +29,7 @@ module.exports = {
       `You've been **undeafened** from **${message.guild.name}**`
     );
     message.channel.send(
-      `${undeafenUser} was successfully undeafened from the server. I have also send a DM letting the person know.`
+      `**${undeafenUser.user.tag}** was successfully undeafened from the server. I have also send a DM letting the person know.`
     );
   },
 };

@@ -29,7 +29,7 @@ module.exports = {
       `You've been **Unmuted** from **${message.guild.name}**`
     );
     message.channel.send(
-      `${unmuteUser} was successfully unmuted from the server. I have also send a DM letting the person know.`
+      `**${unmuteUser.user.tag}** was successfully unmuted from the server. I have also send a DM letting the person know.`
     );
   },
 };
