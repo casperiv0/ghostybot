@@ -2,6 +2,7 @@ const { errorEmbed } = require("../../utils/functions");
 
 module.exports = {
   name: "removerole",
+  aliases: ["rr","rrole","takerole"],
   description: "Remove a role from a user",
   category: "admin",
   async execute(bot, message, args) {
@@ -20,6 +21,18 @@ module.exports = {
       message.guild.roles.cache.find(
         (role) => role.name === args.join(" ").slice(23)
       ) || message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ").slice(23));
+
+    if (message.guild.me.roles.highest.comparePositionTo(role) < 0)
+      return message.channel.send(`My role is not high enough than ${role} role !`);
+
+    if (message.member.roles.highest.comparePositionTo(role) < 0)
+      return message.channel.send(`Your role is not high enough than ${role} role !`);
+
+    if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0)
+      return message.channel.send(`My role is not high enough than ${needsRole} !`);
+
+    if (message.member.roles.highest.comparePositionTo(needsRole.roles.highest) < 0)
+      return message.channel.send(`Your role is not high enough than ${needsRole} !`);
 
     if (!needsRole) return message.channel.send("User wasn't found");
     if (!role) return message.channel.send("Please provide a valid role");
