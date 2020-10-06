@@ -22,14 +22,18 @@ module.exports = {
     if (!message.member.hasPermission("BAN_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
-    if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS"))
+    if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS")) {
       return message.channel.send("That person can't be banned!");
+    }
 
-    if (message.guild.me.roles.highest.comparePositionTo(banUser.roles.highest) < 0)
-      return message.channel.send(`My role is not high enough than ${banUser} !`);
-
-    if (message.member.roles.highest.comparePositionTo(banUser.roles.highest) < 0)
-      return message.channel.send(`Your role is not high enough than ${banUser} !`);
+    if (
+      message.guild.me.roles.highest.comparePositionTo(banUser.roles.highest) <
+      0
+    ) {
+      return message.channel.send(
+        `My role must be higher than **${banUser.tag}** highest role!`
+      );
+    }
 
     banUser.ban({ days: 7, reason: banReason });
 

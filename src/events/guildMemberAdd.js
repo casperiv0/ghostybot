@@ -28,19 +28,22 @@ module.exports = {
         .setDiscriminator(`${user.discriminator}`)
         .setGuildName(`${member.guild.name}`)
         .setMemberCount(`${member.guild.members.cache.size}`)
-        .setAvatar(user.displayAvatarURL({ dynamic: false, format: 'png' }))
+        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
         .setColor("border", "#4D5E94")
-      /*  .setColor("username-box", "#4D5E94")
-        .setColor("discriminator-box", "#4D5E94")
-        .setColor("message-box", "#4D5E94")
-        .setColor("title", "#4D5E94")
-        .setColor("avatar", "#4D5E94")*/
         .setBackground("https://wallpapercave.com/wp/wp2563380.jpg")
         .toAttachment();
 
-      let attachment = new Discord.MessageAttachment(image.toBuffer(), "welcome-image.png");
+      let attachment = new Discord.MessageAttachment(
+        image.toBuffer(),
+        "welcome-image.png"
+      );
 
-      bot.channels.cache.get(welcomeChannel.id).send(`Hey **${member}**, Welcome to **${member.guild.name}**`, attachment);
+      bot.channels.cache
+        .get(welcomeChannel.id)
+        .send(
+          `Hey **${member}**, Welcome to **${member.guild.name}**`,
+          attachment
+        );
     }
   },
 };

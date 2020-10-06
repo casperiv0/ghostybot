@@ -13,24 +13,25 @@ module.exports = {
     const kickUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
-    const kickReason = args.join(" ").slice(23);
+    let kickReason = args.join(" ").slice(23);
 
-    if (!kickUser)
+    if (!kickUser) {
       return message.channel.send("User wasn't found");
+    }
 
     if (!kickReason) kickReason = "Not Specified";
 
     if (!message.member.hasPermission("KICK_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
-    if (!kickUser.kickable || kickUser.hasPermission("KICK_MEMBERS"))
+    if (!kickUser.kickable || kickUser.hasPermission("KICK_MEMBERS")) {
       return message.channel.send("That person can't be kicked!");
+    }
 
-    if (message.guild.me.roles.highest.comparePositionTo(kickUser.roles.highest) < 0)
-      return message.channel.send(`My role is not high enough than ${kickUser} !`);
+    if (message.guild.me.roles.highest.comparePositionTo(kickUser.roles.highest) < 0) {
+      return message.channel.send(`My role must be higher than **${kickUser.tag}** highest role!`);
+    }
 
-    if (message.member.roles.highest.comparePositionTo(kickUser.roles.highest) < 0)
-      return message.channel.send(`Your role is not high enough than ${kickUser} !`);
 
     kickUser.kick(kickReason);
 

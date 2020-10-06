@@ -9,9 +9,7 @@ module.exports = {
 
     if (leaveChannel !== null || leaveChannel) {
       if (
-        !member.guild.channels.cache.some(
-          (ch) => ch.name === leaveChannel.name
-        )
+        !member.guild.channels.cache.some((ch) => ch.name === leaveChannel.name)
       )
         return;
 
@@ -22,14 +20,22 @@ module.exports = {
         .setDiscriminator(`${user.discriminator}`)
         .setGuildName(`${member.guild.name}`)
         .setMemberCount(`${member.guild.members.cache.size}`)
-        .setAvatar(user.displayAvatarURL({ dynamic: false, format: 'png' }))
+        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
         .setColor("border", "#4D5E94")
         .setBackground("https://wallpapercave.com/wp/wp2563380.jpg")
         .toAttachment();
 
-      let attachment = new Discord.MessageAttachment(image.toBuffer(), "goodbye-image.png");
+      let attachment = new Discord.MessageAttachment(
+        image.toBuffer(),
+        "goodbye-image.png"
+      );
 
-      bot.channels.cache.get(leaveChannel.id).send(`**${user.usernme}#${user.discriminator}** just left us.`, attachment);
+      bot.channels.cache
+        .get(leaveChannel.id)
+        .send(
+          `**${user.usernme}#${user.discriminator}** just left us.`,
+          attachment
+        );
     }
   },
 };

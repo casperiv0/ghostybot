@@ -21,22 +21,28 @@ module.exports = {
         (role) => role.name === args.join(" ").slice(23)
       ) || message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ").slice(23));
 
-    if (message.guild.me.roles.highest.comparePositionTo(role) < 0)
-      return message.channel.send(`My role is not high enough than ${role} role !`);
+    if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
+      return message.channel.send(`My role is not high enough than **${role.name}** role!`);
+    }
 
-    if (message.member.roles.highest.comparePositionTo(role) < 0)
-      return message.channel.send(`Your role is not high enough than ${role} role !`);
+    if (message.member.roles.highest.comparePositionTo(role) < 0) {
+      return message.channel.send(`Your role must be higher than **${role.name}** role!`);
+    }
 
     if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0)
-      return message.channel.send(`My role is not high enough than ${needsRole} !`);
+      return message.channel.send(`My role must be higher than **${needsRole.tag}** highest role!`);
 
-    if (message.member.roles.highest.comparePositionTo(needsRole.roles.highest) < 0)
-      return message.channel.send(`Your role is not high enough than ${needsRole} !`);
+    if (!needsRole) {
+      return message.channel.send("User wasn't found");
+    }
+    
+    if (!role) {
+      return message.channel.send("Please provide a valid role");
+    }
 
-    if (!needsRole) return message.channel.send("User wasn't found");
-    if (!role) return message.channel.send("Please provide a valid role");
-    if (needsRole.roles.cache.some((r) => role.id === r.id))
+    if (needsRole.roles.cache.some((r) => role.id === r.id)) {
       return message.channel.send("User already has that role");
+    }
 
     needsRole.roles.add(role.id);
 
