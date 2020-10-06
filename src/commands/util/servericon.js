@@ -5,7 +5,7 @@ module.exports = {
   description: "Shows the server icon",
   category: "util",
   execute(bot, message) {
-    const icon = message.guild.iconURL({ dynamic: true });
+    const icon = message.guild.iconURL({ dynamic: true, size: 1024 });
 
     const embed = new MessageEmbed()
       .setTitle(`${message.guild.name}'s icon`)

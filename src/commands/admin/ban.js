@@ -16,6 +16,7 @@ module.exports = {
     );
     let banReason = args.join(" ").slice(23);
 
+    if (!banUser) return message.channel.send("User wasn't found");
     if (!banReason) banReason = "Not Specified";
 
     if (!message.member.hasPermission("BAN_MEMBERS" || "ADMINISTRATOR"))
@@ -23,6 +24,12 @@ module.exports = {
 
     if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS"))
       return message.channel.send("That person can't be banned!");
+
+    if (message.guild.me.roles.highest.comparePositionTo(banUser.roles.highest) < 0)
+      return message.channel.send(`My role is not high enough than ${banUser} !`);
+
+    if (message.member.roles.highest.comparePositionTo(banUser.roles.highest) < 0)
+      return message.channel.send(`Your role is not high enough than ${banUser} !`);
 
     banUser.ban({ days: 7, reason: banReason });
 
