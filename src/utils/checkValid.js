@@ -37,7 +37,12 @@ function checkValid() {
       )
     );
   }
-  
+
+  if (config.imdbKey === "") {
+    console.warn(
+      chalk.yellow("[WARNING][BOT]:   imdbKey is required for the imdb command")
+    );
+  }
 
   if (config.feedBackChannelId === "") {
     console.warn(

@@ -2,8 +2,9 @@ require("./utils/checkValid")();
 const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
-const { token } = require("../config.json");
+const { token, imdbKey } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
+const imdb = require("imdb-api");
 const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 const client = require("tnai");
@@ -14,6 +15,7 @@ bot.aliases = new Collection();
 bot.cooldowns = new Collection();
 bot.neko = neko;
 bot.tnai = tnai;
+bot.imdb = new imdb.Client({ apiKey: imdbKey });
 require("./utils/command")(bot);
 
 const giveawayManager = new GiveawaysManager(bot, {
