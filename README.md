@@ -8,7 +8,7 @@
 
 # Ghostybot
 
-A Custom Discord bot with a lot of commands for Discord communities. (+140 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
+A Custom Discord bot with a lot of commands for Discord communities. (+150 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
 
 [![Add ghostybot](./.github/add-ghostybot.svg)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 [![Ghostybot Support server](./.github/join-support-server.svg)](https://discord.gg/XxHrtkA)
@@ -44,6 +44,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 | Admin         | Animal    | Bot owner  | Games        | Images       | Music      | NSFW     | Util         | Economy          | Levels      |
 | :------------ | :-------- | :--------- | :----------- | :----------- | :--------- | :------- | :----------- | :--------------- | :---------- |
 | addrole       | birb      | eval       | 8ball        | changemymind | clearqueue | boobs    | avatar       | balance          | givexp      |
+|               |           |            |              |              |            |          | anime        |                  |
 | announce      | bunny     | nickname   | advice       | clyde        | leave      | butt     | bmi          | buy              | leaderboard |
 | ban           | cat       | shutdown   | ascii        | hug          | nowplaying | neko     | botinfo      | daily            | level       |
 | config        | catfact   | leaveguild | bet          | kiss         | pause      | hentai   | botinvite    | deposit          | xp          |
