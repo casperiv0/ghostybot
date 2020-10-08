@@ -5,6 +5,7 @@ these are the api url's that ghostybot uses.
 | Command      | URL                                                                                                                                      |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | meme         | [https://meme-api.herokuapp.com/gimme](https://meme-api.herokuapp.com/gimme)                                                             |
+| imdb         | [https://developer.imdb.com/](https://developer.imdb.com/)                                                                               |
 | bunny        | [https://api.bunnies.io/v2/loop/random/?media=gif,png](https://api.bunnies.io/v2/loop/random/?media=gif,png)                             |
 | cat          | [https://nekos.life/api/v2/img/meow](https://nekos.life/api/v2/img/meow)                                                                 |
 | catfact      | [https://cat-fact.herokuapp.com/facts?animal_type=cat](https://cat-fact.herokuapp.com/facts?animal_type=cat)                             |
