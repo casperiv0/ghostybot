@@ -32,10 +32,7 @@ module.exports = {
 
       bot.channels.cache
         .get(leaveChannel.id)
-        .send(
-          `**${user.usernme}#${user.discriminator}** just left us.`,
-          attachment
-        );
+        .send(`**${user.tag}** just left us.`, attachment);
     }
   },
 };
