@@ -15,16 +15,22 @@ module.exports = {
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
 
-    if (muteUser.roles.cache.find((r) => r.name === "muted"))
+    if (muteUser.roles.cache.find((r) => r.name === "muted")) {
       return message.channel.send("User is already muted!");
+    }
 
-    if (muteUser.hasPermission("MANAGE_ROLES"))
+    if (muteUser.hasPermission("MANAGE_ROLES")) {
       return message.channel.send("User can't be muted");
+    }
 
-    if (!message.member.hasPermission("MANAGE_ROLES"))
+    if (!message.member.hasPermission("MANAGE_ROLES")) {
       return message.channel.send("You don't have permissions for that!");
+    }
 
-    const muteReason = args.join(" ").slice(23);
+    if (message.guild.me.roles.highest.comparePositionTo(muteUser.roles.highest) < 0)
+      return message.channel.send(`My role must be higher than **${muteUser.tag}** highest role!`);
+
+    let muteReason = args.join(" ").slice(23);
 
     const muteRole =
       message.guild.roles.cache.find((r) => r.name === "muted") ||
@@ -35,6 +41,9 @@ module.exports = {
         },
         reason: "Mute a user",
       }));
+
+    if (!muteUser) return message.channel.send("User wasn't found");
+    if (!muteReason) muteReason = "Not Specified";
 
     // overwrite permissions for every channel in the guild
     message.guild.channels.cache.forEach(async (channel) => {

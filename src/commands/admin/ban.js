@@ -16,13 +16,24 @@ module.exports = {
     );
     let banReason = args.join(" ").slice(23);
 
+    if (!banUser) return message.channel.send("User wasn't found");
     if (!banReason) banReason = "Not Specified";
 
     if (!message.member.hasPermission("BAN_MEMBERS" || "ADMINISTRATOR"))
       return message.channel.send("You don't have permissions for that!");
 
-    if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS"))
+    if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS")) {
       return message.channel.send("That person can't be banned!");
+    }
+
+    if (
+      message.guild.me.roles.highest.comparePositionTo(banUser.roles.highest) <
+      0
+    ) {
+      return message.channel.send(
+        `My role must be higher than **${banUser.tag}** highest role!`
+      );
+    }
 
     banUser.ban({ days: 7, reason: banReason });
 
