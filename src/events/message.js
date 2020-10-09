@@ -10,10 +10,7 @@ const {
 } = require("../utils/functions");
 const db = require("quick.db");
 const queue = new Map();
-
-const ownerId = require("../../config.json")
-const { MessageEmbed }
-
+const { MessageEmbed } = require("discord.js");
 const { ownerId } = require("../../config.json");
 
 module.exports = {
@@ -85,14 +82,15 @@ module.exports = {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
-     if(message.mentions.has(client.user) && !message.mentions.everyone) {
-       let embed = new MessageEmbed()
-       .setTitle("Server info")
-       .addField("Prefix", matchedPrefix)
-       .addField("Support", "https://discord.gg/VYaKWZ6")
-       .addField("Vote for me", "https://top.gg/bot/632843197600759809")
-       message.channel.send(embed)
-     }
+    if (message.mentions.has(bot.user) && !message.mentions.everyone) {
+      const embed = new MessageEmbed()
+        .setTitle("Quick Info")
+        .addField("Prefix", serverPrefix)
+        .addField("Support", "https://discord.gg/XxHrtkA")
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
+        .setColor("BLUE");
+      message.channel.send(embed);
+    }
     // music queue
     const serverQueue = queue.get(message.guild.id);
 
