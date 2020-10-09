@@ -11,6 +11,7 @@ const {
 const db = require("quick.db");
 const queue = new Map();
 const ownerId = require("../../config.json")
+const { MessageEmbed }
 module.exports = {
   name: "message",
   async execute(bot, message) {
@@ -96,7 +97,14 @@ module.exports = {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
-
+     if(message.mentions.has(client.user) && !message.mentions.everyone) {
+       let embed = new MessageEmbed()
+       .setTitle("Server info")
+       .addField("Prefix", matchedPrefix)
+       .addField("Support", "https://discord.gg/VYaKWZ6")
+       .addField("Vote for me", "https://top.gg/bot/632843197600759809")
+       message.channel.send(embed)
+     }
     // music queue
     const serverQueue = queue.get(message.guild.id);
 
