@@ -82,7 +82,7 @@ module.exports = {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
-    if (message.mentions.has(bot.user) && !message.mentions.everyone) {
+    if (message.content.startsWith(`<@!${bot.user.id}>`) && !message.mentions.everyone && !command) {
       const embed = new MessageEmbed()
         .setTitle("Quick Info")
         .addField("Prefix", serverPrefix)
