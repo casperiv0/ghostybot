@@ -22,6 +22,7 @@ bot.neko = neko;
 bot.tnai = tnai;
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.kitsu = kitsu;
+bot.snipes = new Map()
 require("./utils/command")(bot);
 
 const giveawayManager = new GiveawaysManager(bot, {
