@@ -5,12 +5,8 @@ module.exports = {
   category: "nsfw",
   usage: "None",
   async execute(bot, message) {
-    //Checks channel for nsfw
-    const errMessage = "This is not an NSFW Channel";
     if (!message.channel.nsfw) {
-      return message.reply(errMessage).then((msg) => {
-        msg.delete({ timeout: 3000 });
-      });
+      return message.channel.send("This channel is not a NSFW channel!");
     }
 
     const data = await bot.neko.nsfw.spank();
