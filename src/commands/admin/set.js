@@ -21,6 +21,7 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
+    "mod-log",
   ],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("ADMINISTRATOR"))
