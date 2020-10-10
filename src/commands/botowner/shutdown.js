@@ -1,4 +1,3 @@
-
 module.exports = {
   name: "shutdown",
   description: "Shuts the bot down",
