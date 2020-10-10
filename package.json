@@ -40,6 +40,8 @@
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
     "fluent-ffmpeg": "^2.1.2",
+    "google-play-scraper": "^8.0.2",
+    "hastebin-gen": "^2.0.5",
     "imdb-api": "^4.2.0",
     "kitsu.js": "^2.0.0",
     "mathjs": "^7.3.0",
@@ -59,8 +61,6 @@
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "word-definition": "^2.1.6",
-    "ytdl-core": "^3.3.0",
-    "google-play-scraper": "^8.0.2",
-    "hastebin-gen": "^2.0.5"
+    "ytdl-core": "^3.3.0"
   }
 }
