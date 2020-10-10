@@ -59,6 +59,7 @@
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "word-definition": "^2.1.6",
-    "ytdl-core": "^3.3.0"
+    "ytdl-core": "^3.3.0",
+    "google-play-scraper": "^8.0.2"
   }
 }
