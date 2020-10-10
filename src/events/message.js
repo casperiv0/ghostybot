@@ -68,6 +68,17 @@ module.exports = {
     const command = args.shift().toLowerCase();
     let customCmds = db.get(`cmds_${message.guild.id}`);
 
+    if (message.mentions.has(bot.user.id) && !command) {
+      const embed = new MessageEmbed()
+        .setTitle("Quick Info")
+        .addField("Prefix", serverPrefix)
+        .addField("Support", "https://discord.gg/XxHrtkA")
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
+        .setColor("BLUE");
+
+      message.channel.send(embed);
+    }
+
     if (blacklistedUsers !== null) {
       const isBlacklisted = blacklistedUsers.filter(
         (u) => u.user.id === message.author.id
@@ -81,15 +92,6 @@ module.exports = {
     if (customCmds) {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
-    }
-    if (message.content.startsWith(`<@!${bot.user.id}>`) && !message.mentions.everyone && !command) {
-      const embed = new MessageEmbed()
-        .setTitle("Quick Info")
-        .addField("Prefix", serverPrefix)
-        .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-        .setColor("BLUE");
-      message.channel.send(embed);
     }
     // music queue
     const serverQueue = queue.get(message.guild.id);
