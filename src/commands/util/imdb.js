@@ -18,15 +18,19 @@ module.exports = {
 
     try {
       const movie = await bot.imdb.get({ name: search });
+      const released = new Date(movie.released).toLocaleDateString();
 
       const embed = new MessageEmbed()
         .setTitle(movie.title)
         .setColor("BLUE")
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)
-        .setFooter(`Ratings: ${movie.rating}`)
+        .addField("Ratings", movie.rating, true)
         .addField("Country", movie.country, true)
+        .addField("Genres", movie.genres, true)
+        .addField("Awards", movie.awards, true)
         .addField("Languages", movie.languages, true)
+        .addField("Released", released, true)
         .addField("Type", movie.type, true);
 
       message.channel.send({ embed });
