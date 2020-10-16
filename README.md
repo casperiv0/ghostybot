@@ -91,5 +91,5 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 <p>Made with ❤️ and JavaScript!</p>
 
 ## License
-
-[MIT](./LICENSE)
+ 
+[MIT © Dev-CasperTheGhost](./LICENSE)
