@@ -10,10 +10,14 @@ module.exports = {
     const extension = args[0];
     const code = args.slice(1).join(" ");
 
-    if (!args.length) {
+    if (!extension) {
       return message.channel.send(
-        "Please write your text or code to generate hastebin link"
+        "Please provide an extension, e.g.: `ts`, `js`, `html`, ..."
       );
+    }
+
+    if (!code) {
+      return message.channel.send("Please provide some code");
     }
 
     try {

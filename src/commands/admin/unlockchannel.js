@@ -14,6 +14,12 @@ module.exports = {
     const user = message.member;
     const channel = message.mentions.channels.first() || message.channel;
 
+    if (
+      channel.permissionsFor(message.guild.id).has("SEND_MESSAGES") === true
+    ) {
+      return message.channel.send("That channel is not locked!");
+    }
+
     if (!user.hasPermission(["MANAGE_CHANNELS"]))
       return message.channel.send("You don't have to correct permissions!");
 
