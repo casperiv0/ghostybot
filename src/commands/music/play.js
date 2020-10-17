@@ -56,7 +56,9 @@ module.exports = {
         duration: songInfo.videoDetails.lengthSeconds,
         uploadedBy: songInfo.videoDetails.author.name,
         uploadedAt: songInfo.videoDetails.uploadDate,
-        likes: songInfo.videoDetails.likes.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        likes: songInfo.videoDetails.likes
+          .toString()
+          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
         thumbnail: songInfo.videoDetails.thumbnail.thumbnails[0].url,
         requestedBy: message.author,
       };
@@ -88,9 +90,20 @@ module.exports = {
       }
     } else {
       serverQueue.songs.push(song);
-      return message.channel.send(
-        `🎵 **${song.title}** has been added to the queue`
-      );
+      const embed = new MessageEmbed()
+        .setTitle(song.title)
+        .setURL(song.url)
+        .setAuthor(
+          `Song has been added to the queue | ${
+            serverQueue.songs.length - 1
+          } songs in queue`
+        )
+        .setImage(song.thumbnail)
+        .setColor("BLUE")
+        .setDescription(`Duration: ${song.duration}s`)
+        .setFooter(`Requested by ${song.requestedBy.username}`);
+
+      serverQueue.textChannel.send({ embed });
     }
   },
 };
