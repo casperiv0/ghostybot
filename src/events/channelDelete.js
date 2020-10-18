@@ -1,11 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "channelDelete",
   async execute(bot, channel) {
-    const w = await channel.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    const w = await channel.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
 
     let msg = "";
     if (channel.type === "category") {
@@ -20,6 +19,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };

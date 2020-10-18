@@ -1,12 +1,11 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "roleUpdate",
   async execute(bot, oldRole, newRole) {
     if (!newRole.guild) return;
-    const w = await newRole.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    const w = await newRole.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
 
     let msg = "";
     if (oldRole.name !== newRole.name) {
@@ -23,6 +22,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };

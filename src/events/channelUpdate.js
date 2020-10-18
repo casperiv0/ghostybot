@@ -1,11 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "channelUpdate",
   async execute(bot, oldChannel, newChannel) {
-    const w = await oldChannel.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    const w = await oldChannel.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
 
     let msg = "";
     const type = oldChannel.type;
@@ -32,6 +31,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };

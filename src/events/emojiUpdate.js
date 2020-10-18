@@ -1,11 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "emojiUpdate",
   async execute(bot, oldEm, newEm) {
-    const w = await oldEm.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    const w = await oldEm.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
 
     let msg = "";
 
@@ -21,6 +20,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };

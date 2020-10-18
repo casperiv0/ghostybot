@@ -1,4 +1,3 @@
-const { getAuditChannel } = require("../utils/functions");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -8,8 +7,8 @@ module.exports = {
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
     // not enabled
-    const w = await newMember.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    const w = await newMember.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)
       .setTimestamp()
@@ -26,7 +25,7 @@ module.exports = {
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
 
       // send message
-      webhook.send(embed)
+      webhook.send(embed);
     }
 
     // Role add
@@ -40,7 +39,7 @@ module.exports = {
         .setDescription(`${newMember} was **given** the ${role} role.`);
 
       // send message
-      webhook.send(embed)
+      webhook.send(embed);
     }
 
     // Role remove
@@ -54,7 +53,7 @@ module.exports = {
         .setDescription(`${newMember} was **removed** from ${role} role.`);
 
       // send message
-      webhook.send(embed)
+      webhook.send(embed);
     }
   },
 };
