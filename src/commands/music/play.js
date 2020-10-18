@@ -56,10 +56,10 @@ module.exports = {
         duration: songInfo.videoDetails.lengthSeconds,
         uploadedBy: songInfo.videoDetails.author.name,
         uploadedAt: songInfo.videoDetails.uploadDate,
-        likes: songInfo.videoDetails.likes
-          .toString()
-          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
-        thumbnail: songInfo.videoDetails.thumbnail.thumbnails[0].url,
+        views: songInfo.videoDetails.viewCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        likes: songInfo.videoDetails.likes.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        dislikes: songInfo.videoDetails.dislikes.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        videoId: songInfo.videoDetails.videoId,
         requestedBy: message.author,
       };
     }
@@ -132,10 +132,10 @@ function play(guild, song, queue) {
     .setTitle(song.title)
     .setURL(song.url)
     .setAuthor("🎵 Now playing:")
-    .setImage(song.thumbnail)
+    .setImage(`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`)
     .setColor("BLUE")
-    .setDescription(`Duration: ${song.duration}s`)
-    .setFooter(`Requested by ${song.requestedBy.username}`);
+    .setDescription(`Requested by ${song.requestedBy}`)
+    .setFooter(`Duration : ${song.duration} Seconds | Looping : ${serverQueue.loop ? "Enabled" : "Disabled"} \nVolume : ${serverQueue.volume}%`);
 
   serverQueue.textChannel.send({ embed });
 }
