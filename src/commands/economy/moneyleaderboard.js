@@ -23,7 +23,7 @@ module.exports = {
       const userId = data[i].ID.replace(`money_${guildId}_`, ""); // get user id
       const user = bot.users.cache.get(userId); // Get user
       if (user) {
-        embed.addField(user.username, `${data[i].data}Coins`, true);
+        embed.addField(user.username, `${data[i].data} Coins`, true);
       }
     }
 

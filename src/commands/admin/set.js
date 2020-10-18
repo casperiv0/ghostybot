@@ -21,6 +21,7 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
+    "mod-log",
   ],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("ADMINISTRATOR"))
@@ -59,7 +60,7 @@ module.exports = {
         );
         break;
       case "audit-channel":
-        setAuditChannel(guildId, item);
+        setAuditChannel(item);
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );

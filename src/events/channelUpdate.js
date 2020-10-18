@@ -4,18 +4,8 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "channelUpdate",
   async execute(bot, oldChannel, newChannel) {
-    const auditChannel = await getAuditChannel(oldChannel.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (
-      !oldChannel.guild.channels.cache.some(
-        (ch) => ch.name === auditChannel.name
-      )
-    )
-      return;
+    const w = await oldChannel.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     let msg = "";
     const type = oldChannel.type;
@@ -42,6 +32,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };
