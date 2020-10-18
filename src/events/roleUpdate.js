@@ -4,6 +4,9 @@ module.exports = {
   name: "roleUpdate",
   async execute(bot, oldRole, newRole) {
     if (!newRole.guild) return;
+    if (!newRole.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     const w = await newRole.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
 

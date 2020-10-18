@@ -3,6 +3,10 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "channelCreate",
   async execute(bot, channel) {
+    if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
+
     const w = await channel.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
 

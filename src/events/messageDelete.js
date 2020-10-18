@@ -3,6 +3,9 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "messageDelete",
   async execute(bot, message) {
+    if (!message.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     if (!message.guild) return;
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");

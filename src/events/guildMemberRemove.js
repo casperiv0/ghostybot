@@ -5,6 +5,9 @@ const { getLeaveChannel } = require("../utils/functions");
 module.exports = {
   name: "guildMemberRemove",
   async execute(bot, member) {
+    if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     const leaveChannel = await getLeaveChannel(member.guild.id);
 
     if (leaveChannel !== null || leaveChannel) {

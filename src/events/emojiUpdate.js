@@ -3,6 +3,9 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "emojiUpdate",
   async execute(bot, oldEm, newEm) {
+    if (!oldEm.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     const w = await oldEm.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
 

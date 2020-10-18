@@ -4,6 +4,9 @@ module.exports = {
   name: "guildMemberUpdate",
   async execute(bot, newMember, oldMember) {
     if (!oldMember.guild) return;
+    if (!oldMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
     // not enabled

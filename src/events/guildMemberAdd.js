@@ -5,6 +5,9 @@ const { getWelcomeChannel, getWelcomeRole } = require("../utils/functions");
 module.exports = {
   name: "guildMemberAdd",
   async execute(bot, member) {
+    if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
     const welcomeChannel = await getWelcomeChannel(member.guild.id);
     const welcomeRole = await getWelcomeRole(member.guild.id);
 
