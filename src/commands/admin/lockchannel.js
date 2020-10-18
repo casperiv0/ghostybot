@@ -20,6 +20,12 @@ module.exports = {
       channel = message.channel;
     }
 
+    if (
+      channel.permissionsFor(message.guild.id).has("SEND_MESSAGES") === false
+    ) {
+      return message.channel.send("That channel is already locked!");
+    }
+
     if (!lockReason)
       return message.reply("Please provide a reason to lock this channel");
 

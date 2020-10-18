@@ -2,12 +2,12 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 
 module.exports = {
-  name: "foodporn",
-  description: "Shows Food images",
-  category: "games",
+  name: "amazeme",
+  description: "Shows interesting images or facts",
+  category: "image",
   async execute(bot, message) {
     const data = await fetch(
-      "https://www.reddit.com/r/food/random/.json"
+      "https://www.reddit.com/r/interestingasfuck/random.json"
     ).then((res) => res.json());
 
     const children = data[0].data.children[0];
@@ -23,7 +23,7 @@ module.exports = {
       .setTitle(`${title}`)
       .setURL(url)
       .setImage(image)
-      .setFooter(`👍: ${upvotes} 💬 ${comments}`);
+      .setFooter(`👍 ${upvotes} 💬 ${comments}`);
 
     message.channel.send({ embed });
   },

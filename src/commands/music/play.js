@@ -1,6 +1,7 @@
 const ytld = require("ytdl-core");
 const { youtubeApiKey } = require("../../../config.json");
 const YtApi = require("simple-youtube-api");
+const { MessageEmbed } = require("discord.js");
 const youtube = new YtApi(youtubeApiKey);
 
 module.exports = {
@@ -11,8 +12,9 @@ module.exports = {
   usage: "play <youtube link | song name>",
   async execute(bot, message, args, serverQueue, queue) {
     const voiceChannel = message.member.voice.channel;
+    const search = args[0];
 
-    if (!args[0]) {
+    if (!search) {
       return message.channel.send("Please provide a search query");
     }
 
@@ -51,7 +53,14 @@ module.exports = {
       song = {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
+        duration: songInfo.videoDetails.lengthSeconds,
+        uploadedBy: songInfo.videoDetails.author.name,
+        uploadedAt: songInfo.videoDetails.uploadDate,
+        likes: songInfo.videoDetails.likes
+          .toString()
+          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
         thumbnail: songInfo.videoDetails.thumbnail.thumbnails[0].url,
+        requestedBy: message.author,
       };
     }
 
@@ -81,9 +90,20 @@ module.exports = {
       }
     } else {
       serverQueue.songs.push(song);
-      return message.channel.send(
-        `🎵 **${song.title}** has been added to the queue`
-      );
+      const embed = new MessageEmbed()
+        .setTitle(song.title)
+        .setURL(song.url)
+        .setAuthor(
+          `Song has been added to the queue | ${
+            serverQueue.songs.length - 1
+          } songs in queue`
+        )
+        .setImage(song.thumbnail)
+        .setColor("BLUE")
+        .setDescription(`Duration: ${song.duration}s`)
+        .setFooter(`Requested by ${song.requestedBy.username}`);
+
+      serverQueue.textChannel.send({ embed });
     }
   },
 };
@@ -107,5 +127,15 @@ function play(guild, song, queue) {
 
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.connection.voice.setSelfDeaf(true);
-  serverQueue.textChannel.send(`🎵 Now playing: **${song.title}**`);
+
+  const embed = new MessageEmbed()
+    .setTitle(song.title)
+    .setURL(song.url)
+    .setAuthor("🎵 Now playing:")
+    .setImage(song.thumbnail)
+    .setColor("BLUE")
+    .setDescription(`Duration: ${song.duration}s`)
+    .setFooter(`Requested by ${song.requestedBy.username}`);
+
+  serverQueue.textChannel.send({ embed });
 }
