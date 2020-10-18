@@ -4,16 +4,8 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "channelDelete",
   async execute(bot, channel) {
-    const auditChannel = await getAuditChannel(channel.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (
-      !channel.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
-    )
-      return;
+    const w = await channel.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     let msg = "";
     if (channel.type === "category") {
@@ -28,6 +20,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

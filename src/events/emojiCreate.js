@@ -4,14 +4,8 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "emojiCreate",
   async execute(bot, emoji) {
-    const auditChannel = await getAuditChannel(emoji.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (!emoji.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
-      return;
+    const w = await emoji.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     const embed = new MessageEmbed()
       .setTitle("New Emoji Created")
@@ -19,6 +13,6 @@ module.exports = {
       .setColor("GREEN")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

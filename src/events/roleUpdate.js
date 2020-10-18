@@ -5,16 +5,8 @@ module.exports = {
   name: "roleUpdate",
   async execute(bot, oldRole, newRole) {
     if (!newRole.guild) return;
-    const auditChannel = await getAuditChannel(oldRole.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (
-      !oldRole.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
-    )
-      return;
+    const w = await newRole.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     let msg = "";
     if (oldRole.name !== newRole.name) {
@@ -31,6 +23,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

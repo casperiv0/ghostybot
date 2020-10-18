@@ -5,16 +5,8 @@ module.exports = {
   name: "messageUpdate",
   async execute(bot, oldMsg, newMsg) {
     if (!newMsg.guild) return;
-    const auditChannel = await getAuditChannel(newMsg.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (
-      !newMsg.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
-    )
-      return;
+    const w = await oldMsg.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     if (newMsg.author.id === bot.user.id) return;
 
@@ -26,6 +18,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

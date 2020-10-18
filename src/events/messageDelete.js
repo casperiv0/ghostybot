@@ -5,16 +5,8 @@ module.exports = {
   name: "messageDelete",
   async execute (bot, message) {
     if (!message.guild) return;
-    const auditChannel = await getAuditChannel(message.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (
-      !message.guild.channels.cache.some((ch) => ch.name === auditChannel.name)
-    )
-      return;
+    const w = await message.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     if (message.author.id === bot.user.id) return;
 
@@ -26,6 +18,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

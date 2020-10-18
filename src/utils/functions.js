@@ -280,21 +280,13 @@ const generateXp = (min, max) => Math.ceil(Math.random() * (min * max));
 
 // Audit logs
 /**
- * @param {String} guildId
  * @param {Object} channel
  */
-const setAuditChannel = (guildId, channel) =>
-  db.set(`auditchannel_${guildId}`, channel);
-
-/**
- * @param {String} guildId
- */
-const getAuditChannel = (guildId) => db.fetch(`auditchannel_${guildId}`);
-
-/**
- * @param {String} guildId
- */
-const unsetAuditChannel = (guildId) => db.delete(`auditchannel_${guildId}`);
+const setAuditChannel = (channel) =>
+channel.createWebhook('GhostyBot', {
+  avatar: 'https://cdn.discordapp.com/avatars/632843197600759809/186f3162d3b2836933765f0a51cd6f20.webp?size=1024',
+  channel: channel
+})
 /**
  *
  * @param {String} guildId

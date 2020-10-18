@@ -5,14 +5,8 @@ module.exports = {
   name: "roleDelete",
   async execute(bot, role) {
     if (!role.guild) return;
-    const auditChannel = await getAuditChannel(role.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (!role.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
-      return;
+    const w = await role.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     const embed = new MessageEmbed()
       .setTitle("Role deleted")
@@ -20,6 +14,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };

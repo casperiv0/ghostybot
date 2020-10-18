@@ -4,14 +4,8 @@ const { getAuditChannel } = require("../utils/functions");
 module.exports = {
   name: "emojiUpdate",
   async execute(bot, oldEm, newEm) {
-    const auditChannel = await getAuditChannel(oldEm.guild.id);
-
-    // not enabled
-    if (auditChannel === null || !auditChannel) return;
-
-    // channel not found/deleted
-    if (!oldEm.guild.channels.cache.some((ch) => ch.name === auditChannel.name))
-      return;
+    const w = await oldEm.guild.fetchWebhooks()
+    const webhook = w.find(w => w.name === "GhostyBot");
 
     let msg = "";
 
@@ -27,6 +21,6 @@ module.exports = {
       .setColor("ORANGE")
       .setTimestamp();
 
-    bot.channels.cache.get(auditChannel.id).send({ embed });
+    webhook.send(embed)
   },
 };
