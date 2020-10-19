@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["europe"],
+        "keys": ["europe", "eu_west", "eu-central"],
         "flag": ":flag_eu:"
     },
     {
@@ -36,7 +36,27 @@
         "flag": ":flag_au:"
     },
     {
+        "keys": ["frankfurt"],
+        "flag": ":flag_de:"
+    },
+        {
         "keys": ["us-central", "us-east", "us-west", "us-south"],
         "flag": ":flag_us:"
-    }
+    },
+    {
+        "keys": ["amsterdam"],
+        "flag": ":flag_nl:"
+    },
+    {
+        "keys": ["dubai"],
+        "flag": ":flag_ae:"
+    },
+    {
+        "keys": ["south-korea"],
+        "flag": ":flag_kr:"
+    },
+    {
+        "keys": ["london"],
+        "flag": ":flag_gb"
+    },
 ]
