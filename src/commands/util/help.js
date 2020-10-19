@@ -21,6 +21,7 @@ module.exports = {
   description: "Shows all commands Or shows more info about a command",
   category: "util",
   cooldown: 2,
+  usage: "h <category name | command name>",
   aliases: ["h"],
   async execute(bot, message, args) {
     const prefix = (await getServerPrefix(message.guild.id)) || "!";
@@ -31,6 +32,10 @@ module.exports = {
         .filter((com) => com.category === cmdArgs)
         .map((cmd) => cmd.name)
         .join(", ");
+
+      if (cmds.length < 0) {
+        return message.channel.send("That category does not exist");
+      }
 
       const embed = new MessageEmbed()
         .setTitle(`Commands: ${cmdArgs}`)
