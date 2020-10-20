@@ -283,9 +283,9 @@ const generateXp = (min, max) => Math.ceil(Math.random() * (min * max));
  * @param {Object} channel
  */
 const setAuditChannel = (channel) =>
-  channel.createWebhook("GhostyBot", {
+  channel.createWebhook(bot.user.username, {
     avatar:
-      "https://cdn.discordapp.com/avatars/632843197600759809/186f3162d3b2836933765f0a51cd6f20.webp?size=1024",
+      bot.user.displayAvatarURL({ format: 'png' }),
     channel: channel,
   });
 /**
