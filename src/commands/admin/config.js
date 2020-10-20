@@ -2,7 +2,6 @@ const { MessageEmbed } = require("discord.js");
 const {
   getServerPrefix,
   getAnnounceChannel,
-  getAuditChannel,
   getSuggestChannel,
 } = require("../../utils/functions");
 
@@ -16,14 +15,12 @@ module.exports = {
     const { name, id: guildId } = guild;
     const prefix = (await getServerPrefix(guildId)) || "!";
     const announceCh = (await getAnnounceChannel(guildId)) || "None";
-    const auditCh = (await getAuditChannel(guildId)) || "None";
     const suggestCh = (await getSuggestChannel(guildId)) || "None";
 
     const embed = new MessageEmbed()
       .setTitle(`${name}'s config`)
       .addField("**Prefix**", prefix, true)
       .addField("**Announce Channel**", announceCh.id ? `<#${announceCh.id}>` : announceCh, true)
-      .addField("**Audit Channel**", auditCh.id ? `<#${auditCh.id}>` : auditCh, true)
       .addField("Suggestion Channel", suggestCh ? `<#${suggestCh.id}>` : suggestCh, true)
       .setColor("BLUE")
       .setFooter(message.author.username)

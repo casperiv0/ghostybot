@@ -18,9 +18,9 @@ module.exports = {
     "mod-log",
   ],
   category: "admin",
-  execute(bot, message, args) {
-    const w = await message.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+  async execute(bot, message, args) {
+    const w = await message.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
     const option = args[0].toLowerCase();
 
     if (!option) return message.channel.send("Please provide a valid option!");
@@ -33,10 +33,13 @@ module.exports = {
         unsetLeaveChannel(message.guild.id);
         break;
       case "audit-channel":
-        if(!webhook) return message.reply("Cannot reset this! As there is no webhook for logging")
-        if(webhook) {
-          webhook.delete()
-          message.channel.send("Succesfully reset logging!")
+        if (!webhook)
+          return message.reply(
+            "Cannot reset this! As there is no webhook for logging"
+          );
+        if (webhook) {
+          webhook.delete();
+          message.channel.send("Succesfully reset logging!");
         }
         break;
       case "welcome-role":

@@ -1,17 +1,49 @@
 const { MessageEmbed } = require("discord.js");
 const { getServerPrefix } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
+
+const categories = [
+  "admin",
+  "animal",
+  "botowner",
+  "economy",
+  "games",
+  "hentainsfw",
+  "image",
+  "levels",
+  "music",
+  "nsfw",
+  "util",
+];
+
 module.exports = {
   name: "help",
   description: "Shows all commands Or shows more info about a command",
   category: "util",
   cooldown: 2,
+  usage: "h <category name | command name>",
   aliases: ["h"],
   async execute(bot, message, args) {
     const prefix = (await getServerPrefix(message.guild.id)) || "!";
     const cmdArgs = args[0];
 
-    if (cmdArgs) {
+    if (categories.includes(cmdArgs)) {
+      const cmds = bot.commands
+        .filter((com) => com.category === cmdArgs)
+        .map((cmd) => cmd.name)
+        .join(", ");
+
+      if (cmds.length < 0) {
+        return message.channel.send("That category does not exist");
+      }
+
+      const embed = new MessageEmbed()
+        .setTitle(`Commands: ${cmdArgs}`)
+        .setColor("BLUE")
+        .setDescription(`\`\`\`${cmds}\`\`\``);
+
+      return message.channel.send({ embed });
+    } else if (cmdArgs) {
       const cmd =
         bot.commands.get(cmdArgs) || bot.commands.get(bot.aliases.get(cmdArgs));
       if (!cmd) return message.channel.send("Command or alias not found");

@@ -1,11 +1,17 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "emojiDelete",
   async execute(bot, emoji) {
-    const w = await emoji.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    if (!emoji.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
+    const w = await emoji.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
 
     const embed = new MessageEmbed()
       .setTitle("Emoji Deleted")
@@ -13,6 +19,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };

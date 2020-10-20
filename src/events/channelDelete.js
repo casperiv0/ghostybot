@@ -1,11 +1,17 @@
 const { MessageEmbed } = require("discord.js");
-const { getAuditChannel } = require("../utils/functions");
 
 module.exports = {
   name: "channelDelete",
   async execute(bot, channel) {
-    const w = await channel.guild.fetchWebhooks()
-    const webhook = w.find(w => w.name === "GhostyBot");
+    if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
+      return;
+    }
+    const w = await channel.guild.fetchWebhooks();
+    const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
 
     let msg = "";
     if (channel.type === "category") {
@@ -20,6 +26,6 @@ module.exports = {
       .setColor("RED")
       .setTimestamp();
 
-    webhook.send(embed)
+    webhook.send(embed);
   },
 };
