@@ -12,6 +12,11 @@ module.exports = {
     // not enabled
     const w = await newMember.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
+
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)
       .setTimestamp()

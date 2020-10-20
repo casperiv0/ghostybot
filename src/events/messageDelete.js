@@ -9,6 +9,10 @@ module.exports = {
     if (!message.guild) return;
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
 
     if (message.author.id === bot.user.id) return;
 

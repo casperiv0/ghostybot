@@ -53,7 +53,6 @@ module.exports = {
       (r) => r.id !== message.guild.id
     ).size;
 
-
     const { username, id, tag } = member.user;
 
     const embed = new MessageEmbed()

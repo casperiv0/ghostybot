@@ -9,6 +9,10 @@ module.exports = {
 
     const w = await channel.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
 
     let msg = "";
 

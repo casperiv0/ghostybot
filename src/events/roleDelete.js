@@ -9,6 +9,10 @@ module.exports = {
     }
     const w = await role.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
 
     const embed = new MessageEmbed()
       .setTitle("Role deleted")

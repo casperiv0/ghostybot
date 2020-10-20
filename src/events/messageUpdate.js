@@ -9,7 +9,16 @@ module.exports = {
     const w = await oldMsg.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === "GhostyBot");
 
+    // Couldn't find webhook/webhook doesn't exist
+    if (!webhook) {
+      return;
+    }
+
     if (newMsg.author.id === bot.user.id) return;
+
+    if (!oldMsg) {
+      return;
+    }
 
     const embed = new MessageEmbed()
       .setTitle(`Message updated in **${newMsg.channel.name}**`)
