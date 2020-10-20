@@ -282,7 +282,7 @@ const generateXp = (min, max) => Math.ceil(Math.random() * (min * max));
 /**
  * @param {Object} channel
  */
-const setAuditChannel = (channel) =>
+const setAuditChannel = (channel, bot) =>
   channel.createWebhook(bot.user.username, {
     avatar:
       bot.user.displayAvatarURL({ format: 'png' }),
