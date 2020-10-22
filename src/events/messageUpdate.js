@@ -16,15 +16,15 @@ module.exports = {
 
     if (newMsg.author.id === bot.user.id) return;
 
-    if (!oldMsg) {
+    if (!oldMsg && !newMsg) {
       return;
     }
 
     const embed = new MessageEmbed()
       .setTitle(`Message updated in **${newMsg.channel.name}**`)
       .setDescription(`Message send by **${newMsg.author.tag}** was edited`)
-      .addField("**Old Message**", oldMsg)
-      .addField("**New Message**", newMsg)
+      .addField("**Old Message**", `${oldMsg}`)
+      .addField("**New Message**", `${newMsg}`)
       .setColor("ORANGE")
       .setTimestamp();
 

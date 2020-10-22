@@ -38,10 +38,12 @@ module.exports = {
     });
 
     const regionKey = guild.region;
-    const regionFlag = regions.filter((region) =>
+    const regionData = regions.filter((region) =>
       region.keys.includes(regionKey)
-    )[0].flag;
-    const region = `${regionFlag} ${toCapitalize(regionKey)}`;
+    )[0];
+    const region = `${regionData.flag ? regionData.flag : ""} ${toCapitalize(
+      regionKey
+    )}`;
 
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
