@@ -11,7 +11,7 @@ module.exports = {
 
     // not enabled
     const w = await newMember.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === "GhostyBot");
+    const webhook = w.find((w) => w.name === bot.user.username);
     // Couldn't find webhook/webhook doesn't exist
     if (!webhook) {
       return;
