@@ -20,7 +20,7 @@ module.exports = {
   category: "admin",
   async execute(bot, message, args) {
     const w = await message.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === "GhostyBot");
+    const webhook = w.find((w) => w.name === bot.user.username);
     const option = args[0].toLowerCase();
 
     if (!option) return message.channel.send("Please provide a valid option!");

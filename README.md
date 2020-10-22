@@ -92,4 +92,4 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## License
  
-[MIT © Dev-CasperTheGhost](./LICENSE)
+[Apache © Dev-CasperTheGhost](./LICENSE)
