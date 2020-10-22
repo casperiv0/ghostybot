@@ -60,7 +60,7 @@ module.exports = {
         );
         break;
       case "audit-channel":
-        setAuditChannel(item);
+        setAuditChannel(item, bot);
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );
