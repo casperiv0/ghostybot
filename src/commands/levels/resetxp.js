@@ -6,15 +6,38 @@ module.exports = {
   category: "levels",
   usage: "resetxp all",
   async execute(bot, message) {
-    if (!message.member.hasPermission("MANAGE_GUILD"))
+    if (!message.member.hasPermission("MANAGE_GUILD")) {
       return message.channel.send("You need Manage Guild permission");
-    const users = await message.guild.members.fetch();
+    }
 
-    users.forEach((user) => {
-      setUserXp(message.guild.id, user.id, 0);
-    });
+    const filter = (m) => message.author.id === m.author.id;
 
-    // send message
-    message.channel.send("Successfully reset everyone's xp");
+    message.channel.send("Reset All XP? y/n");
+
+    message.channel
+      .awaitMessages(filter, {
+        time: 600000,
+        max: 1,
+        errors: ["time"],
+      })
+      .then(async (msgs) => {
+        const msg = msgs.first();
+        if (msg.content.toLowerCase() === "y") {
+          const users = await message.guild.members.fetch();
+
+          users.forEach((user) => {
+            setUserXp(message.guild.id, user.id, 0);
+          });
+
+          // send message
+          message.channel.send("Successfully reset everyone's xp");
+        } else {
+          message.channel.send("resetxp was canceled");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        message.channel.send("An error occurred");
+      });
   },
 };

@@ -9,6 +9,7 @@ module.exports = {
   description: "Withdraw money to your bank",
   category: "economy",
   usage: "withdraw <all | amount>",
+  aliases: ["with"],
   async execute(bot, message, args) {
     const user = message.author;
     let amount = args[0];

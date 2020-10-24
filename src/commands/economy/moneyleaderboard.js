@@ -5,6 +5,7 @@ module.exports = {
   name: "moneyleaderboard",
   description: "Returns a leaderboard with the top 10 users money",
   category: "economy",
+  aliases: ["mlb"],
   execute(bot, message) {
     const data = db
       .fetchAll()
