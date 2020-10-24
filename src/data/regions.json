@@ -57,6 +57,6 @@
     },
     {
         "keys": ["london"],
-        "flag": ":flag_gb"
+        "flag": ":flag_gb:"
     }
 ]
