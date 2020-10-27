@@ -58,6 +58,7 @@ module.exports = {
     }
 
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
+      if (blacklistedWords === null) return;
       blacklistedWords.forEach((word) => {
         if (message.content.includes(word)) {
           message.delete();
