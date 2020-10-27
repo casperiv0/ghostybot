@@ -58,15 +58,15 @@ module.exports = {
     }
 
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
-      if (blacklistedWords === null) return;
-      blacklistedWords.forEach((word) => {
-        if (message.content.includes(word)) {
-          message.delete();
-          return message.reply(
-            "You used a bad word the admin has set, therefor your message was deleted!"
-          );
-        }
-      });
+      blacklistedWords !== null &&
+        blacklistedWords.forEach((word) => {
+          if (message.content.includes(word)) {
+            message.delete();
+            return message.reply(
+              "You used a bad word the admin has set, therefor your message was deleted!"
+            );
+          }
+        });
     }
 
     // Commands
