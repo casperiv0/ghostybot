@@ -7,6 +7,7 @@ const {
   setUserXp,
   addUserXp,
   getBlacklistUsers,
+  getBlacklistWords,
 } = require("../utils/functions");
 const db = require("quick.db");
 const queue = new Map();
@@ -22,6 +23,7 @@ module.exports = {
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
     const blacklistedUsers = await getBlacklistUsers();
+    const blacklistedWords = await getBlacklistWords(guildId);
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
@@ -53,6 +55,17 @@ module.exports = {
       } else {
         addUserXp(guildId, userId, generateXp(10, 15));
       }
+    }
+
+    if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
+      blacklistedWords.forEach((word) => {
+        if (message.content.includes(word)) {
+          message.delete();
+          return message.reply(
+            "You used a bad word the admin has set, therefor your message was deleted!"
+          );
+        }
+      });
     }
 
     // Commands
