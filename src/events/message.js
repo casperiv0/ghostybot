@@ -60,10 +60,10 @@ module.exports = {
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
       blacklistedWords !== null &&
         blacklistedWords.forEach((word) => {
-          if (message.content.includes(word)) {
+          if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
             return message.reply(
-              "You used a bad word the admin has set, therefor your message was deleted!"
+              "You used a bad word the admin has set, therefore your message was deleted!"
             );
           }
         });
