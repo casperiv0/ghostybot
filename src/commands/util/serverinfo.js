@@ -11,7 +11,6 @@ module.exports = {
     const { guild } = message;
     const {
       name,
-      owner,
       memberCount,
       premiumSubscriptionCount,
       premiumTier,
@@ -25,6 +24,7 @@ module.exports = {
     const joined = formatDate(message.member.joinedAt);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
+    const owner = guild.owner.user.tag;
     const isVerified = verified
       ? "Yes, this server is verified"
       : "Nope, this server isn't verified";
