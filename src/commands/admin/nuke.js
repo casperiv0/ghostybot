@@ -20,10 +20,12 @@ module.exports = {
 
     let channel = bot.channels.cache.get(message.channel.id);
     const position = channel.position;
+    const topic = channel.topic;
 
     const channel2 = await channel.clone();
 
     channel2.setPosition(position);
+    channel2.setTopic(topic);
     channel.delete();
     channel2.send("Channel has been nuked!");
   },
