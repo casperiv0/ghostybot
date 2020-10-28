@@ -12,6 +12,12 @@ module.exports = {
     if (!search) {
       return message.channel.send("Please write the name of the skin");
     }
+    
+    function isCyrillic(str) {
+      return /[a-z]/i.test(str);
+    }
+    
+    if(!isCyrillic(args)) return message.channel.send(`Player \`${search}\` not found!`))
 
     MojangAPI.nameToUuid(search, (err, res) => {
       if (err) {
