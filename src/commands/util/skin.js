@@ -17,7 +17,9 @@ module.exports = {
       return /[a-z]/i.test(str);
     }
     
-    if(!Latin(args)) return message.channel.send(`Player \`${search}\` not found!`))
+    if(!Latin(args)) {
+      retun message.channel.send(`Player \`${search}\` not found!`)
+    }
 
     MojangAPI.nameToUuid(search, (err, res) => {
       if (err) {
