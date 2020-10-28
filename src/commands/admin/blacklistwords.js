@@ -10,6 +10,12 @@ module.exports = {
   category: "admin",
   options: ["get", "add", "remove"],
   async execute(bot, message, args) {
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+      return message.reply(
+        "Sorry, You don't have the correct permissions for this command. (Administrator)"
+      );
+    }
+
     const option = args[0];
     const item = args[1];
     const guildId = message.guild.id;
@@ -21,6 +27,11 @@ module.exports = {
 
     switch (option) {
       case "add": {
+        if (blacklistWords.includes(item)) {
+          return message.channel.send(
+            `${item} already exist in blacklisted words`
+          );
+        }
         if (blacklistWords === null || !blacklistWords) {
           setBlacklistWords(guildId, [item]);
         } else {
