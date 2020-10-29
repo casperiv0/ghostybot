@@ -1,5 +1,4 @@
-const canvas = require("discord-canvas"),
-  Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { getWelcomeChannel, getWelcomeRole } = require("../utils/functions");
 
 module.exports = {
@@ -25,28 +24,24 @@ module.exports = {
         return;
 
       const user = bot.users.cache.get(member.id);
+      const guild = member.guild;
+      const avatar = user.displayAvatarURL({ dynamic: true });
 
-      let image = await new canvas.Welcome()
-        .setUsername(`${user.username}`)
-        .setDiscriminator(`${user.discriminator}`)
-        .setGuildName(`${member.guild.name}`)
-        .setMemberCount(`${member.guild.members.cache.size}`)
-        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
-        .setColor("border", "#4D5E94")
-        .setBackground("https://wallpapercave.com/wp/wp2563380.jpg")
-        .toAttachment();
+      const embed = new MessageEmbed()
+        .setTitle(`Welcome to **${guild.name}**`)
+        .setThumbnail(avatar)
+        .setDescription(
+          `
+        **Username:** ${user.username}
+        **Tag:** ${user.tag}
+        **Id:** ${user.id}
+        `
+        )
+        .setColor("BLUE")
+        .setTimestamp()
+        .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
 
-      let attachment = new Discord.MessageAttachment(
-        image.toBuffer(),
-        "welcome-image.png"
-      );
-
-      bot.channels.cache
-        .get(welcomeChannel.id)
-        .send(
-          `Hey **${member}**, Welcome to **${member.guild.name}**`,
-          attachment
-        );
+      bot.channels.cache.get(welcomeChannel.id).send(embed);
     }
   },
 };

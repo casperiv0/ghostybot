@@ -1,5 +1,4 @@
-const canvas = require("discord-canvas"),
-  Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { getLeaveChannel } = require("../utils/functions");
 
 module.exports = {
@@ -17,25 +16,22 @@ module.exports = {
         return;
 
       const user = bot.users.cache.get(member.id);
+      const avatar = user.displayAvatarURL({ dynamic: true });
 
-      let image = await new canvas.Goodbye()
-        .setUsername(`${user.username}`)
-        .setDiscriminator(`${user.discriminator}`)
-        .setGuildName(`${member.guild.name}`)
-        .setMemberCount(`${member.guild.members.cache.size}`)
-        .setAvatar(user.displayAvatarURL({ dynamic: false, format: "png" }))
-        .setColor("border", "#4D5E94")
-        .setBackground("https://wallpapercave.com/wp/wp2563380.jpg")
-        .toAttachment();
+      const embed = new MessageEmbed()
+        .setTitle("👋 User left")
+        .setThumbnail(avatar)
+        .setDescription(
+          `
+        **Tag:** ${user.tag}
+        **Id:** ${user.id}
+        `
+        )
+        .setColor("RED")
+        .setTimestamp()
+        .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
 
-      let attachment = new Discord.MessageAttachment(
-        image.toBuffer(),
-        "goodbye-image.png"
-      );
-
-      bot.channels.cache
-        .get(leaveChannel.id)
-        .send(`**${user.tag}** just left us.`, attachment);
+      bot.channels.cache.get(leaveChannel.id).send(embed);
     }
   },
 };

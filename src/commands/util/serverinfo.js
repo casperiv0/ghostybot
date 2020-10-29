@@ -24,7 +24,7 @@ module.exports = {
     const joined = formatDate(message.member.joinedAt);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
-    const owner = guild.owner.user.tag;
+    const owner = (guild.owner && guild.owner.user.tag) || "error";
     const isVerified = verified
       ? "Yes, this server is verified"
       : "Nope, this server isn't verified";
