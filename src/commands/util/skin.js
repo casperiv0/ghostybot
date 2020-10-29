@@ -17,7 +17,11 @@ module.exports = {
       return /[a-z]/i.test(str);
     }
     
-    if(!Latin(args)) {
+    function isNumber(str) {
+      return /[0-9]/i.test(str);
+    }
+    
+    if(!Latin(args) && !isNumber(args)) {
       return message.channel.send(`Player \`${search}\` not found!`)
     }
 
