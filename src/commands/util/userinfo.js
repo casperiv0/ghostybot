@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { formatDate } = require("../../utils/functions");
+const badges = require("../../data/badges.json");
 
 module.exports = {
   name: "userinfo",
@@ -19,21 +20,30 @@ module.exports = {
     const createdAt = formatDate(member.user.createdAt);
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
-    const badges = (await member.user.fetchFlags())
+    const userFlags = (await member.user.fetchFlags())
       .toArray()
-      .map((badges) => badges);
+      .map((flag) => badges[flag])
+      .join(" ");
 
     let statuses = {
-        online: "🟢",
-        idle: "🟠",
-        dnd: "🔴"
-    }
+      online: "🟢",
+      idle: "🟠",
+      dnd: "🔴",
+    };
 
     const embedStatus = [];
-    if(member.presence.status === "offline") embedStatus.push("⚫ Offline")
-    else if (member.presence.clientStatus.web) embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
-    else if (member.presence.clientStatus.mobile) embedStatus.push(`\n${statuses[member.presence.clientStatus.mobile]} Mobile`);
-    else if (member.presence.clientStatus.desktop) embedStatus.push(`\n${statuses[member.presence.clientStatus.desktop]} Desktop`);
+    if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
+    else if (member.presence.clientStatus.web) {
+      embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
+    } else if (member.presence.clientStatus.mobile) {
+      embedStatus.push(
+        `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
+      );
+    } else if (member.presence.clientStatus.desktop) {
+      embedStatus.push(
+        `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
+      );
+    }
 
     const roles =
       member.roles.cache
@@ -52,7 +62,7 @@ module.exports = {
       .addField("**Username**", username, true)
       .addField("**Bot**", isBot, true)
       .addField("**Tag**", tag, true)
-      .addField("**Badges**", badges.length > 0 ? badges : "None", true)
+      .addField("**Badges**", userFlags.length > 0 ? userFlags : "None", true)
       .addField("**Created At**", createdAt, true)
       .addField("**Joined At**", joinedAt, true)
       .addField("**Server Nickname**", nickname, true)
