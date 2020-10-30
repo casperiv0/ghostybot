@@ -33,13 +33,13 @@ module.exports = {
 
     const embedStatus = [];
     if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
-    else if (member.presence.clientStatus.web) {
+    if (member.presence.clientStatus.web) {
       embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
-    } else if (member.presence.clientStatus.mobile) {
+    } if (member.presence.clientStatus.mobile) {
       embedStatus.push(
         `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
       );
-    } else if (member.presence.clientStatus.desktop) {
+    } if (member.presence.clientStatus.desktop) {
       embedStatus.push(
         `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
       );
