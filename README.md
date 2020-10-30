@@ -41,42 +41,48 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## Commands
 
-| Admin         | Animal    | Bot Owner  | Games        | Images       | Music      | NSFW     | Util         | Economy          | Levels      |
-| :------------ | :-------- | :--------- | :----------- | :----------- | :--------- | :------- | :----------- | ---------------- | ----------- |
-| addcmd        | birb      | blacklist  | 8ball        | baka         | clearqueue | 4k       | anime        | balance          | givexp      |
-| addrole       | bunny     | eval       | advice       | changemymind | leave      | anal     | avatar       | buy              | leaderboard |
-| announce      | cat       | guilds     | ascii        | clyde        | nowplaying | blowjob  | bmi          | daily            | level       |
-| ban           | catfact   | leaveguild | bet          | cuddle       | pause      | boobs    | botinfo      | deposit          | resetxp     |
-| config        | cow       | nickname   | block        | hug          | play       | butt     | botinvite    | dice             | xp          |
-| ctopic        | cowsay    | shutdown   | calc         | kiss         | queue      | gif      | bugreport    | inventory        |             |
-| deafen        | dog       |            | compliment   | owo          | resume     | gonewild | channelinfo  | moneyleaderboard |             |
-| delcmd        | dogfact   |            | dadjoke      | pat          | skip       | pussy    | channels     | profile          |             |
-| delete        | duck      |            | flipcoin     | poke         | stop       | hass     | define       | rob              |             |
-| giveaway      | fox       |            | happiness    | slap         | volume     | hboobs   | dependencies | store            |             |
-| kick          | lizard    |            | iq           | smug         |            | hentai   | emojis       | withdraw         |             |
-| lockchannel   | owl       |            | lmgtfy       | supreme      |            | neko     | enlarge      | work             |
-| mute          | panda     |            | meme         | tweet        |            |          | feedback     |                  |             |
-| nuke          | shibe     |            | ping         | wallpaper    |            |          | github       |                  |             |
-| prefix        | snailfact |            | randomjoke   |              |            |          | help         |                  |             |
-| removerole    |           |            | randomnumber |              |            |          | imdb         |                  |             |
-| say           |           |            | rps          |              |            |          | instagram    |                  |             |
-| set           |           |            | wyr          |              |            |          | invite       |                  |             |
-| softban       |           |            |              |              |            |          | membercount  |                  |             |
-| stealemoji    |           |            |              |              |            |          | minecraft    |                  |             |
-| sticky        |           |            |              |              |            |          | morse        |                  |             |
-| undeafen      |           |            |              |              |            |          | npm          |                  |             |
-| unlockchannel |           |            |              |              |            |          | playstore    |                  |             |
-| unmute        |           |            |              |              |            |          | poll         |                  |             |
-| unset         |           |            |              |              |            |          | randomcolor  |                  |             |
-| unsticky      |           |            |              |              |            |          | roleinfo     |                  |             |
-| voicekick     |           |            |              |              |            |          | roles        |                  |             |
-| voicemute     |           |            |              |              |            |          | servericon   |                  |             |
-| voiceunmute   |           |            |              |              |            |          | suggest      |                  |             |
-| warn          |           |            |              |              |            |          | translate    |                  |             |
-| warnings      |           |            |              |              |            |          | uptime       |                  |             |
-|               |           |            |              |              |            |          | userinfo     |                  |             |
-|               |           |            |              |              |            |          | weather      |                  |             |
-|               |           |            |              |              |            |          | worldclock   |                  |             |
+| Admin          | Animal    | Bot Owner  | Games          | Images       | Music      | NSFW     | Util         | Economy          | Levels      | HentaiNSFW |
+| :------------- | :-------- | :--------- | :------------- | :----------- | :--------- | :------- | :----------- | :--------------- | :---------- | :--------- |
+| addcmd         | bear      | blacklist  | 8ball          | amazeme      | clearqueue | 4k       | anime        | balance          | givexp      | hanal      |
+| addrole        | birb      | eval       | advice         | amazingearth | leave      | anal     | avatar       | buy              | leaderboard | hass       |
+| addroleall     | bunny     | guilds     | ascii          | baka         | nowplaying | blowjob  | bmi          | daily            | level       | hboobs     |
+| announce       | cat       | leaveguild | bet            | changemymind | pause      | boobs    | botinfo      | deposit          | resetxp     | hentai     |
+| ban            | catfact   | nickname   | block          | clyde        | play       | butt     | botinvite    | dice             | xp          | neko       |
+| blacklistwords | cows      | shutdown   | calc           | cuddle       | queue      | gif      | bugreport    | inventory        |             |            |
+| config         | cowsay    |            | compliment     | feed         | resume     | gonewild | channelInfo  | moneyleaderboard |             |            |
+| createrole     | dog       |            | dadjoke        | hug          | skip       | pussy    | channels     | profile          |             |            |
+| ctopic         | dogfact   |            | flipcoin       | imgfy        | stop       | spank    | define       | rob              |             |            |
+| deafen         | duck      |            | foodporn       | kiss         | volume     |          | dependencies | store            |             |            |
+| delcmd         | fox       |            | happiness      | owo          |            |          | emojis       | withdraw         |             |            |
+| delete         | koala     |            | iq             | pat          |            |          | enlarge      | work             |             |            |
+| giveaway       | lizard    |            | lmgtfy         | poke         |            |          | feedback     |                  |             |            |
+| kick           | owl       |            | meme           | slap         |            |          | github       |                  |             |            |
+| lockchannel    | panda     |            | ping           | smug         |            |          | hastebin     |                  |             |            |
+| mute           | shibe     |            | randomjoke     | supreme      |            |          | help         |                  |             |            |
+| nuke           | snailfact |            | randomnumber   | tweet        |            |          | imdb         |                  |             |            |
+| prefix         |           |            | rps            | wallpaper    |            |          | instagram    |                  |             |            |
+| removerole     |           |            | wouldyourather |              |            |          | invite       |                  |             |            |
+| removeroleall  |           |            |                |              |            |          | minecraft    |                  |             |            |
+| say            |           |            |                |              |            |          | morse        |                  |             |            |
+| set            |           |            |                |              |            |          | npm          |                  |             |            |
+| softban        |           |            |                |              |            |          | playstore    |                  |             |            |
+| stealemoji     |           |            |                |              |            |          | pokemon      |                  |             |            |
+| sticky         |           |            |                |              |            |          | poll         |                  |             |            |
+| undeafen       |           |            |                |              |            |          | randomcolor  |                  |             |            |
+| unlockchannel  |           |            |                |              |            |          | reddit       |                  |             |            |
+| unmute         |           |            |                |              |            |          | roleinfo     |                  |             |            |
+| unset          |           |            |                |              |            |          | roles        |                  |             |            |
+| unsticky       |           |            |                |              |            |          | servericon   |                  |             |            |
+| voicekick      |           |            |                |              |            |          | serverinfo   |                  |             |            |
+| voicemute      |           |            |                |              |            |          | skin         |                  |             |            |
+| voiceunmute    |           |            |                |              |            |          | spotify      |                  |             |            |
+| warn           |           |            |                |              |            |          | suggest      |                  |             |            |
+| warnings       |           |            |                |              |            |          | translate    |                  |             |            |
+|                |           |            |                |              |            |          | uptime       |                  |             |            |
+|                |           |            |                |              |            |          | userinfo     |                  |             |            |
+|                |           |            |                |              |            |          | weather      |                  |             |            |
+|                |           |            |                |              |            |          | worldclock   |                  |             |            |
+
 
 ## Docs
 
