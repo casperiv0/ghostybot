@@ -22,26 +22,18 @@ module.exports = {
     const badges = (await member.user.fetchFlags())
       .toArray()
       .map((badges) => badges);
-    const status = member.user.presence.status;
-    let embedStatus;
 
-    switch (status) {
-      case "online":
-        embedStatus = "🟢 Online";
-        break;
-      case "idle":
-        embedStatus = "🟠 Idle";
-        break;
-      case "dnd":
-        embedStatus = "🔴 Do not disturb";
-        break;
-      case "offline":
-        embedStatus = "⚫ Offline";
-        break;
-      default:
-        embedStatus = status;
-        break;
+    let statuses = {
+        online: "🟢",
+        idle: "🟠",
+        dnd: "🔴"
     }
+
+    const embedStatus = [];
+    if(member.presence.status === "offline") embedStatus.push("⚫ Offline")
+    else if (member.presence.clientStatus.web) embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
+    else if (member.presence.clientStatus.mobile) embedStatus.push(`\n${statuses[member.presence.clientStatus.mobile]} Mobile`);
+    else if (member.presence.clientStatus.desktop) embedStatus.push(`\n${statuses[member.presence.clientStatus.desktop]} Desktop`);
 
     const roles =
       member.roles.cache
