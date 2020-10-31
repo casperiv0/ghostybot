@@ -4,10 +4,10 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "spotify",
-  category: "fun",
+  category: "util",
   aliases: ["spot"],
   description: "Shows status of users",
-  usage: " ",
+  usage: "",
   execute(bot, message, args) {
     let user =
       message.mentions.members.first() ||
@@ -35,11 +35,14 @@ module.exports = {
         const trackName = activity.details;
         const trackAuthor = activity.state?.replace(/;/g, ",");
         const trackAlbum = activity.assets.largeText;
-        
+
         const duration = moment
-        .duration(new Date(activity.timestamps.end) / 1000 - new Date(activity.timestamps.start) / 1000, "seconds")
-        .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
-        
+          .duration(
+            new Date(activity.timestamps.end) / 1000 -
+              new Date(activity.timestamps.start) / 1000,
+            "seconds"
+          )
+          .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
 
         const embed = new MessageEmbed()
           .setAuthor(
