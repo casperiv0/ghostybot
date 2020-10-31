@@ -1,3 +1,5 @@
+const moment = require("moment");
+require("moment-duration-format");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
@@ -33,6 +35,11 @@ module.exports = {
         const trackName = activity.details;
         const trackAuthor = activity.state?.replace(/;/g, ",");
         const trackAlbum = activity.assets.largeText;
+        
+        const duration = moment
+        .duration(new Date(activity.timestamps.end) / 1000 - new Date(activity.timestamps.start) / 1000, "seconds")
+        .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
+        
 
         const embed = new MessageEmbed()
           .setAuthor(
@@ -45,6 +52,7 @@ module.exports = {
           .addField("Album", trackAlbum, true)
           .addField("Author", trackAuthor, false)
           .addField("Listen to Track", `${trackURL}`, false)
+          .addField("Duration", duration, false)
           .setFooter(
             user.displayName,
             user.user.displayAvatarURL({ dynamic: true }),
