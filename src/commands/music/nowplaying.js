@@ -1,5 +1,5 @@
 const moment = require("moment");
-const momentDurationFormatSetup = require("moment-duration-format");
+require("moment-duration-format");
 const createBar = require("string-progressbar");
 const { MessageEmbed } = require("discord.js");
 
@@ -18,8 +18,13 @@ module.exports = {
     }
 
     const song = serverQueue.nowPlaying;
-    const time = moment.duration(song.duration, "seconds").format("d [Days] h [Hours] m [Minutes] s [Seconds]");
-    const seek = (serverQueue.connection.dispatcher.streamTime - serverQueue.connection.dispatcher.pausedTime) / 1000;
+    const time = moment
+      .duration(song.duration, "seconds")
+      .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
+    const seek =
+      (serverQueue.connection.dispatcher.streamTime -
+        serverQueue.connection.dispatcher.pausedTime) /
+      1000;
     const left = song.duration - seek;
 
     const embed = new MessageEmbed()
@@ -37,7 +42,13 @@ module.exports = {
       **Likes:** ${song.likes}
       **Dislikes:** ${song.dislikes}`
       )
-      .addField(new Date(seek * 1000).toISOString().substr(11, 8) + " / " + new Date(left * 1000).toISOString().substr(11, 8), createBar((song.duration == 0 ? seek : song.duration), seek, 20)[0], false)
+      .addField(
+        new Date(seek * 1000).toISOString().substr(11, 8) +
+          " / " +
+          new Date(left * 1000).toISOString().substr(11, 8),
+        createBar(song.duration === 0 ? seek : song.duration, seek, 20)[0],
+        false
+      )
       .setFooter(`Requested by ${song.requestedBy.tag}`);
     message.channel.send(embed);
   },
