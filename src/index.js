@@ -18,6 +18,7 @@ const kitsu = new Kitsu();
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
+bot.afk = new Map()
 bot.neko = neko;
 bot.tnai = tnai;
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
