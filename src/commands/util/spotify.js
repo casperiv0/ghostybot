@@ -4,8 +4,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "spotify",
-  category: "botowner",
-  admin: true,
+  category: "fun",
   aliases: ["spot"],
   description: "Shows status of users",
   usage: " ",
