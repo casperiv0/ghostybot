@@ -62,9 +62,15 @@ module.exports = {
         blacklistedWords.forEach((word) => {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
-            return message.reply(
-              "You used a bad word the admin has set, therefore your message was deleted!"
-            );
+            return message
+              .reply(
+                "You used a bad word the admin has set, therefore your message was deleted!"
+              )
+              .then((msg) => {
+                setTimeout(() => {
+                  msg.delete();
+                }, 5000);
+              });
           }
         });
     }
