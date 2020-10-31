@@ -37,31 +37,41 @@ module.exports = {
 
     // check if URL
     // eslint-disable-next-line no-useless-escape
-    if (
-      new RegExp(
-        /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi
-      ).test(args.join(" "))
-    ) {
-      songInfo = await ytld.getInfo(args.join(" "));
-      song = {
-        title: songInfo.videoDetails.title,
-        url: songInfo.videoDetails.video_url,
-      };
-    } else {
-      const results = await youtube.searchVideos(args.join(" "), 1);
-      songInfo = await ytld.getInfo(results[0].url);
-      song = {
-        title: songInfo.videoDetails.title,
-        url: songInfo.videoDetails.video_url,
-        duration: songInfo.videoDetails.lengthSeconds,
-        uploadedBy: songInfo.videoDetails.author.name,
-        uploadedAt: songInfo.videoDetails.uploadDate,
-        likes: songInfo.videoDetails.likes
-          .toString()
-          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
-        thumbnail: songInfo.videoDetails.thumbnail.thumbnails[0].url,
-        requestedBy: message.author,
-      };
+    try {
+      if (
+        new RegExp(
+          /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi
+        ).test(args.join(" "))
+      ) {
+        songInfo = await ytld.getInfo(args.join(" "));
+        song = {
+          title: songInfo.videoDetails.title,
+          url: songInfo.videoDetails.video_url,
+        };
+      } else {
+        const results = await youtube.searchVideos(args.join(" "), 1);
+        songInfo = await ytld.getInfo(results[0].url);
+        song = {
+          title: songInfo.videoDetails.title,
+          url: songInfo.videoDetails.video_url,
+          duration: songInfo.videoDetails.lengthSeconds,
+          uploadedBy: songInfo.videoDetails.author.name,
+          uploadedAt: songInfo.videoDetails.uploadDate,
+          views: songInfo.videoDetails.viewCount
+            .toString()
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+          likes: songInfo.videoDetails.likes
+            ?.toString()
+            ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+          dislikes: songInfo.videoDetails.dislikes
+            ?.toString()
+            ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+          videoId: songInfo.videoDetails.videoId,
+          requestedBy: message.author,
+        };
+      }
+    } catch (e) {
+      console.log(e);
     }
 
     if (!serverQueue || serverQueue.songs.length <= 0) {
@@ -132,10 +142,14 @@ function play(guild, song, queue) {
     .setTitle(song.title)
     .setURL(song.url)
     .setAuthor("🎵 Now playing:")
-    .setImage(song.thumbnail)
+    .setImage(`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`)
     .setColor("BLUE")
-    .setDescription(`Duration: ${song.duration}s`)
-    .setFooter(`Requested by ${song.requestedBy.username}`);
+    .setDescription(`Requested by ${song.requestedBy}`)
+    .setFooter(
+      `Duration : ${song.duration} Seconds | Looping : ${
+        serverQueue.loop ? "Enabled" : "Disabled"
+      } \nVolume : ${serverQueue.volume * 10}%`
+    );
 
   serverQueue.textChannel.send({ embed });
 }

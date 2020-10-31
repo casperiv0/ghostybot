@@ -3,6 +3,7 @@
         "Cmds",
         "Ghostybot",
         "addcmd",
+        "blacklistedwords",
         "botinfo",
         "botowner",
         "bugreport",

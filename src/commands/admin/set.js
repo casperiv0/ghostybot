@@ -34,7 +34,10 @@ module.exports = {
     const item =
       message.mentions.channels.first() || message.mentions.roles.first();
 
-    if (!option) return message.channel.send("Please provide an valid option (`suggest-channel`, `announce-channel`, `welcome-channel`, `leave-channel`, `audit-channel`, `welcome-role` or `mod-log`)");
+    if (!option)
+      return message.channel.send(
+        "Please provide an valid option (`suggest-channel`, `announce-channel`, `welcome-channel`, `leave-channel`, `audit-channel`, `welcome-role` or `mod-log`)"
+      );
     if (!item)
       return message.channel.send("Please provide a valid channel or role!");
 
@@ -60,7 +63,7 @@ module.exports = {
         );
         break;
       case "audit-channel":
-        setAuditChannel(item);
+        setAuditChannel(item, bot);
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );

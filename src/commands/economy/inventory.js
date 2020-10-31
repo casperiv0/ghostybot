@@ -6,6 +6,7 @@ module.exports = {
   description: "View your or a user inventory",
   category: "economy",
   usage: "inventory <user>",
+  aliases: ["inv"],
   async execute(bot, message) {
     const user = message.mentions.users.first() || message.author;
     const usersInventory = await getUserInventory(message.guild.id, user.id);

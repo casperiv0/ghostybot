@@ -11,7 +11,6 @@ module.exports = {
     const { guild } = message;
     const {
       name,
-      owner,
       memberCount,
       premiumSubscriptionCount,
       premiumTier,
@@ -25,6 +24,7 @@ module.exports = {
     const joined = formatDate(message.member.joinedAt);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
+    const owner = (guild.owner && guild.owner.user.tag) || "error";
     const isVerified = verified
       ? "Yes, this server is verified"
       : "Nope, this server isn't verified";
@@ -38,10 +38,12 @@ module.exports = {
     });
 
     const regionKey = guild.region;
-    const regionFlag = regions.filter((region) =>
+    const regionData = regions.filter((region) =>
       region.keys.includes(regionKey)
-    )[0].flag;
-    const region = `${regionFlag} ${toCapitalize(regionKey)}`;
+    )[0];
+    const region = `${regionData.flag ? regionData.flag : ""} ${toCapitalize(
+      regionKey
+    )}`;
 
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
