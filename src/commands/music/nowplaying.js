@@ -39,8 +39,8 @@ module.exports = {
       **Uploaded by:** ${song.uploadedBy}
       **Uploaded at:** ${song.uploadedAt}
       **Views :** ${song.views}
-      **Likes:** ${song.likes}
-      **Dislikes:** ${song.dislikes}`
+      **Likes:** ${song.likes || "N/A"}
+      **Dislikes:** ${song.dislikes || "N/A"}`
       )
       .addField(
         new Date(seek * 1000).toISOString().substr(11, 8) +

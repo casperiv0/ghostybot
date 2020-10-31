@@ -148,7 +148,7 @@ function play(guild, song, queue) {
     .setFooter(
       `Duration : ${song.duration} Seconds | Looping : ${
         serverQueue.loop ? "Enabled" : "Disabled"
-      } \nVolume : ${serverQueue.volume}%`
+      } \nVolume : ${serverQueue.volume * 10}%`
     );
 
   serverQueue.textChannel.send({ embed });
