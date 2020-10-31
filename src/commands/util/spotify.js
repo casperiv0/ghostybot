@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["spot"],
   description: "Shows status of users",
   usage: " ",
-  execute(message, args) {
+  execute(bot, message, args) {
     let user =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]) ||
