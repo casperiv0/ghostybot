@@ -134,7 +134,6 @@ function play(guild, song, queue) {
       play(guild, serverQueue.songs[0], queue);
     })
     .on("error", (e) => console.log(e));
-
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.connection.voice.setSelfDeaf(true);
 
