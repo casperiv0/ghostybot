@@ -27,7 +27,7 @@
   "author": "Dev-CasperTheGhost",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "^0.3.3",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "chalk": "^4.1.0",
     "cows": "^2.1.0",
