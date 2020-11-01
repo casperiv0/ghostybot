@@ -25,7 +25,9 @@ module.exports = {
       .setTitle(`${title} (read more)`)
       .setURL(url)
       .setDescription(
-        `${description.slice(0, 2045)}${description.length > 2048 && "..."}`
+        `${description.slice(0, 2045)}${
+          description.length > 2048 ? "..." : ""
+        }`
       )
       .setColor("BLUE")
       .setFooter(message.author.username);
