@@ -9,6 +9,10 @@ module.exports = {
   description: "Warns a user",
   category: "admin",
   async execute(bot, message, args) {
+    if (!message.member.hasPermission("MANAGE_GUILD")) {
+      return message.channel.send("You don't have permissions to do that!");
+    }
+
     const guildId = message.guild.id;
     const reason = args.slice(1).join(" ");
     const member =
