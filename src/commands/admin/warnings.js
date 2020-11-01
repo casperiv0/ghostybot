@@ -36,7 +36,7 @@ module.exports = {
 
       embed
         .setTitle(`Warning: ${warningNr}`)
-        .addField("**Reason**", warning.reason);
+        .addField("**Reason**", warning?.reason || "No reason");
 
       return message.channel.send({ embed });
     }
