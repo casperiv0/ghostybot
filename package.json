@@ -62,6 +62,7 @@
     "tnai": "^1.0.5",
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
+    "wikijs": "^6.0.1",
     "word-definition": "^2.1.6",
     "ytdl-core": "^4.0.1"
   }
