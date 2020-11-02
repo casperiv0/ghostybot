@@ -72,6 +72,9 @@ module.exports = {
       }
     } catch (e) {
       console.log(e);
+      return message.channel.send(
+        "There was an error getting the song details"
+      );
     }
 
     if (!serverQueue || serverQueue.songs.length <= 0) {
@@ -97,6 +100,9 @@ module.exports = {
         play(message.guild, queueContruct.songs[0], queue);
       } catch (e) {
         console.log(e);
+        return message.channel.send(
+          "There was an error when joining the voice channel"
+        );
       }
     } else {
       serverQueue.songs.push(song);
