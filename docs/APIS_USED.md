@@ -73,6 +73,7 @@ these are the api url's that ghostybot uses.
 | reddit       | [https://www.reddit.com/r/SUBREDDIT/random.json](https://www.reddit.com/r/SUBREDDIT/random.json)                                               |
 | skin         | [https://visage.surgeplay.com/](https://visage.surgeplay.com/)                                                                                 |
 | weather      | [http://api.openweathermap.org/data/2.5/weather?q=CITY&appid=KEY&units=metric](http://api.openweathermap.org/data/2.5/weather?q=CITY&appid=KEY&units=metric) |
+| imdb         | [https://www.omdbapi.com/apikey.aspx](https://www.omdbapi.com/apikey.aspx)                                                                     |
 
 
 ##
