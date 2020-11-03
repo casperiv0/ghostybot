@@ -168,6 +168,7 @@ const sendToDev = (message, bot, error) => {
       if (msg.content === "y") {
         bot.users.cache.get(ownerId).send(
           `**New Error!** 
+**Message Content: ${message.content}**
 **Server ID:** ${message.guild.id}
 **Error:** \`\`\`${error} \`\`\` `
         );

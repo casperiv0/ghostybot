@@ -11,7 +11,6 @@ module.exports = {
       return message.channel.send("There are no songs currently playing");
     }
 
-    serverQueue.songs = [];
     serverQueue.playing = false;
     serverQueue?.connection?.dispatcher?.end();
 

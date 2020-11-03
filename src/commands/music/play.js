@@ -36,40 +36,36 @@ module.exports = {
     let songInfo = null;
 
     // check if URL
-    // eslint-disable-next-line no-useless-escape
     try {
       if (
         new RegExp(
           /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi
         ).test(args.join(" "))
       ) {
-        songInfo = await ytld.getInfo(args.join(" "));
-        song = {
-          title: songInfo.videoDetails.title,
-          url: songInfo.videoDetails.video_url,
-        };
+        songInfo = await ytld.getInfo(args[0]);
       } else {
-        const results = await youtube.searchVideos(args.join(" "), 1);
-        songInfo = await ytld.getInfo(results[0].url);
-        song = {
-          title: songInfo.videoDetails.title,
-          url: songInfo.videoDetails.video_url,
-          duration: songInfo.videoDetails.lengthSeconds,
-          uploadedBy: songInfo.videoDetails.author.name,
-          uploadedAt: songInfo.videoDetails.uploadDate,
-          views: songInfo.videoDetails.viewCount
-            .toString()
-            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
-          likes: songInfo.videoDetails.likes
-            ?.toString()
-            ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
-          dislikes: songInfo.videoDetails.dislikes
-            ?.toString()
-            ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
-          videoId: songInfo.videoDetails.videoId,
-          requestedBy: message.author,
-        };
+        const results = await youtube.searchVideos(args[0], 1);
+        const url = `https://youtu.be/${results[0].id}`;
+        songInfo = await ytld.getInfo(url);
       }
+      song = {
+        title: songInfo.videoDetails.title,
+        url: songInfo.videoDetails.video_url,
+        duration: songInfo.videoDetails.lengthSeconds,
+        uploadedBy: songInfo.videoDetails.author.name,
+        uploadedAt: songInfo.videoDetails.uploadDate,
+        views: songInfo.videoDetails.viewCount
+          .toString()
+          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        likes: songInfo.videoDetails.likes
+          ?.toString()
+          ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        dislikes: songInfo.videoDetails.dislikes
+          ?.toString()
+          ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"),
+        videoId: songInfo.videoDetails.videoId,
+        requestedBy: message.author,
+      };
     } catch (e) {
       console.log(e);
       return message.channel.send(
