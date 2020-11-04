@@ -45,6 +45,11 @@ module.exports = {
         songInfo = await ytld.getInfo(args[0]);
       } else {
         const results = await youtube.searchVideos(args[0], 1);
+
+        if (!results[0]) {
+          return message.channel.send("There were no songs found");
+        }
+
         const url = `https://youtu.be/${results[0].id}`;
         songInfo = await ytld.getInfo(url);
       }
@@ -95,7 +100,6 @@ module.exports = {
         queueContruct.nowPlaying = queueContruct.songs[0];
         play(message.guild, queueContruct.songs[0], queue);
       } catch (e) {
-        console.log(e);
         return message.channel.send(
           "There was an error when joining the voice channel"
         );
