@@ -1,4 +1,6 @@
-FROM node:latest
+RUN npm i npm@7.0.8
+RUN mv node_modules/npm /usr/local/lib/node_modules/npm
+RUN rm -rf /usr/local/lib/node_modules/npm
 
 # Create dir
 RUN mkdir -p /usr/src/bot
