@@ -127,7 +127,6 @@ module.exports = {
         // botPermissions
         if (cmd.botPermissions) {
           const neededPermissions = [];
-          console.log(cmd.botPermissions);
           cmd.botPermissions.forEach((perm) => {
             if (!message.channel.permissionsFor(message.guild.me).has(perm)) {
               neededPermissions.push(perm);

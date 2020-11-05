@@ -5,7 +5,7 @@ module.exports = {
   async execute(bot, guild) {
     await removeGuild(guild.id);
 
-    guild.members.forEach(async (member) => {
+    guild.members.cache.forEach(async (member) => {
       await removeUser(member.id, guild.id);
     });
   },
