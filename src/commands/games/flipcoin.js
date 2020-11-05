@@ -1,21 +1,18 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-    name: "flipcoin",
-    description: "Flip a coin",
-    category: "games",
-    execute(bot, message) {
-        const replies = ["**You landed on Heads**", "**You landed on Tails**"];
+  name: "flipcoin",
+  description: "Flip a coin",
+  category: "games",
+  execute(bot, message) {
+    const replies = ["**You landed on Heads**", "**You landed on Tails**"];
 
-        const reply = replies[Math.floor(Math.random() * replies.length)];
+    const reply = replies[Math.floor(Math.random() * replies.length)];
 
-        const embed = new MessageEmbed()
-            .setTitle("8Ball")
-            .setTitle(`${reply}`)
-            .setColor("BLUE")
-            .setFooter(message.author.username)
-            .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle("Flipcoin")
+      .setDescription(`${reply}`);
 
-        message.channel.send(embed);
-    }
+    message.channel.send(embed);
+  },
 };

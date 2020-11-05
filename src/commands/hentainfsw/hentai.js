@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "hentai",
@@ -10,12 +10,9 @@ module.exports = {
 
     const data = await bot.neko.nsfw.randomHentaiGif();
 
-    const embed = new MessageEmbed()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setDescription(`[Click here if the image failed to load.](${data.url})`)
-      .setImage(`${data.url}`)
-      .setTimestamp();
+      .setImage(`${data.url}`);
 
     message.channel.send({ embed });
   },

@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "compliment",
@@ -10,7 +10,7 @@ module.exports = {
       "https://complimentr.com/api"
     ).then((res) => res.json());
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle("New Compliment")
       .setDescription(compliment)
       .setColor("BLUE")

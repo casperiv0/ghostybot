@@ -43,7 +43,7 @@
     "hastebin-gen": "^2.0.5",
     "image-gen-discord": "^1.0.2",
     "imdb-api": "^4.3.0",
-    "kitsu.js": "^2.0.0",
+    "kitsu": "^9.1.16",
     "mathjs": "^7.5.1",
     "mojang-api": "0.0.2",
     "moment": "^2.29.1",

@@ -9,6 +9,8 @@ module.exports = {
 
     if (!text) return message.channel.send("Please provide text");
 
-    message.channel.send(`\`\`\` ${cowsay.say({ text, T: "U", e: "oO" })} \`\`\``);
+    message.channel.send(
+      `\`\`\` ${cowsay.say({ text, T: "U", e: "oO" })} \`\`\``
+    );
   },
 };

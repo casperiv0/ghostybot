@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -11,15 +11,13 @@ module.exports = {
     const roll = Math.floor(Math.random() * 6) + 1;
     const price = 200;
 
-    const embed = new MessageEmbed()
-      .setTitle("🎲 You landed on: " + roll)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message).setTitle(`🎲 You landed on: ${roll}`);
 
     if (roll === 6) {
       embed.setDescription(`🎉 Congrats! You won a price of **${price}coins**`);
-      updateUserById(message.author.id, message.guild.id, { money: user.money + price });
+      updateUserById(message.author.id, message.guild.id, {
+        money: user.money + price,
+      });
     } else {
       embed.setDescription(
         `You need to land a **6** to get a price of **${price}coins**`

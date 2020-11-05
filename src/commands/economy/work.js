@@ -1,8 +1,8 @@
 require("moment-duration-format");
 const { getUserById, updateUserById } = require("../../utils/functions");
 const jobs = require("../../data/jobs.json");
-const { MessageEmbed } = require("discord.js");
 const moment = require("moment");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "work",
@@ -25,7 +25,7 @@ module.exports = {
     } else {
       const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle("Work!")
         .setDescription(
           `${member.username} worked as a **${name}** and earned **${amount}**! 💰`

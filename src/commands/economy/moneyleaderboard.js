@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const User = require("../../models/User.model");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "moneyleaderboard",
@@ -15,11 +15,9 @@ module.exports = {
       .sort((a, b) => b.total - a.total)
       .splice(0, 10);
 
-    const embed = new MessageEmbed()
-      .setTitle(`${message.guild.name}'s Money Leaderboard`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message).setTitle(
+      `${message.guild.name}'s Money Leaderboard`
+    );
 
     for (let i = 0; i < data.length; i++) {
       const userId = data[i]._doc.user_id;

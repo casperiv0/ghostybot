@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "hug",
@@ -12,13 +12,10 @@ module.exports = {
     const user = message.mentions.users.first() || message.author;
     const hugged = message.author.id === user.id ? "themselfs" : user.username;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${message.author.username} Hugged ${hugged}`)
-      .setFooter(message.author.username)
-      .setColor("BLUE")
       .setDescription(`[Click here if the image failed to load.](${data.url})`)
-      .setImage(`${data.url}`)
-      .setTimestamp();
+      .setImage(`${data.url}`);
 
     message.channel.send(embed);
   },

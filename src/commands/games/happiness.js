@@ -1,19 +1,16 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-    name: "happiness",
-    description: "Get a happiness returned",
-    category: "games",
-    execute(bot, message) {
-        const happiness = Math.floor(Math.random() * 100) + 1;
+  name: "happiness",
+  description: "Get a happiness returned",
+  category: "games",
+  execute(bot, message) {
+    const happiness = Math.floor(Math.random() * 100) + 1;
 
-        const embed = new MessageEmbed()
-            .setTitle("8Ball")
-            .setTitle(`${happiness}`)
-            .setColor("BLUE")
-            .setFooter(message.author.username)
-            .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle("Happiness")
+      .setDescription(`${happiness}%`);
 
-        message.channel.send(embed);
-    }
+    message.channel.send(embed);
+  },
 };

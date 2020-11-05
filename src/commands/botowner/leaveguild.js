@@ -1,12 +1,9 @@
-
-
 module.exports = {
   name: "leaveguild",
   description: "Leaves a guid by the provided Id",
   category: "botowner",
   ownerOnly: true,
   async execute(bot, message, args) {
-
     const guildId = args[0];
 
     if (!guildId) {
@@ -27,4 +24,4 @@ module.exports = {
       return message.channel.send("An error occurred leaving that guild");
     }
   },
-}
+};

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getGuildById, getUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -13,21 +13,18 @@ module.exports = {
     const { user } = await getUserById(userId, guildId);
     const guild = await getGuildById(guildId);
 
-    const { money, bank, inventory } = user;
+    const { money, bank, inventory, xp, level } = user;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${user.username}'s profile`)
-      // .addField("**XP**", xp, true)
-      // .addField("**Level**", level, true)
+      .addField("**XP**", xp, true)
+      .addField("**Level**", level, true)
       .addField("**Money**", money, true)
       .addField("**Bank**", bank, true)
       .addField("**Inventory Items**", inventory.length, true)
       .setDescription(
         `Use \`${guild.prefix}inventory <user>\` to view their inventory items.`
-      )
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+      );
 
     message.channel.send({ embed });
   },

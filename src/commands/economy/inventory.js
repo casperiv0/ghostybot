@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -18,12 +18,9 @@ module.exports = {
 
     const mapped = inventory?.map((item) => item).join(",\n ");
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${member.username}'s Inventory`)
-      .setDescription(`${mapped}`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .setDescription(`${mapped}`);
 
     message.channel.send({ embed });
   },

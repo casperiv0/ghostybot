@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "foodporn",
@@ -18,12 +18,12 @@ module.exports = {
     const upvotes = children.data.ups;
     const comments = children.data.num_comments;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setColor("BLUE")
       .setTitle(`${title}`)
       .setURL(url)
       .setImage(image)
-      .setFooter(`👍: ${upvotes} 💬 ${comments}`);
+      .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
 
     message.channel.send({ embed });
   },

@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const math = require("mathjs");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "calc",
@@ -10,13 +10,10 @@ module.exports = {
     try {
       const calculation = math.evaluate(args.join(" "));
 
-      const embed = new MessageEmbed()
-        .setTitle("8Ball")
+      const embed = BaseEmbed(message)
+        .setTitle("Calculator")
         .addField("Input", `\`\`\`js\n${args.join(" ")}\`\`\``)
-        .addField("Output:", `\`\`\`js\n${calculation}\`\`\``)
-        .setColor("BLUE")
-        .setFooter(message.author.username)
-        .setTimestamp();
+        .addField("Output:", `\`\`\`js\n${calculation}\`\`\``);
 
       message.channel.send(embed);
     } catch (e) {

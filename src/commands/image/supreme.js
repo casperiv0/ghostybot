@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "supreme",
@@ -13,12 +13,9 @@ module.exports = {
       text
     )}`;
 
-    const embed = new MessageEmbed()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setDescription(`[Click here if the image failed to load.](${image})`)
-      .setImage(image)
-      .setTimestamp();
+      .setImage(image);
 
     message.channel.send(embed);
   },

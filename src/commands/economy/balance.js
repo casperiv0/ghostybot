@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -10,9 +10,8 @@ module.exports = {
     const member = message.mentions.users.first() || message.author;
     const { user } = await getUserById(member.id, message.guild.id);
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${member.username}'s Balance`)
-      .setColor("BLUE")
       .addField("Pocket:", user.money)
       .addField("Bank", user.bank);
 

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "feed",
@@ -10,13 +10,10 @@ module.exports = {
     const user = message.mentions.users.first() || message.author;
     const feeding = message.author.id === user.id ? "themselfs" : user.username;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${message.author.username} feeded ${feeding}`)
-      .setFooter(message.author.username)
-      .setColor("BLUE")
       .setDescription(`[Click here if the image failed to load.](${data.url})`)
-      .setImage(`${data.url}`)
-      .setTimestamp();
+      .setImage(`${data.url}`);
 
     message.channel.send(embed);
   },

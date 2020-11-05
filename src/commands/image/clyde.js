@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "clyde",
@@ -13,11 +13,9 @@ module.exports = {
       `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`
     ).then((res) => res.json());
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle("Clyde")
       .setImage(data.message)
-      .setFooter(message.author.username)
-      .setColor("BLUE")
       .setDescription(
         `[Click here if the image failed to load.](${data.message})`
       );

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "imgfy",
@@ -16,9 +16,8 @@ module.exports = {
       text
     )}&_loc=generate&imageoutput=true`;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setDescription(`[Click here if the image failed to load.](${image})`)
-      .setColor("BLUE")
       .setImage(image);
 
     message.channel.send(embed);

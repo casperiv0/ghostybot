@@ -11,7 +11,7 @@ module.exports = {
     if (!search) return message.channel.send("Please specify the anime movie");
 
     bot.kitsu
-      .searchAnime(search)
+      .fetch(search)
       .then(async (result) => {
         if (result.length === 0)
           return message.channel.send("This is not a valid anime movie");
@@ -48,8 +48,7 @@ module.exports = {
           .setThumbnail(anime.posterImage.original, 100, 200);
         return message.channel.send(embed);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         return message.channel.send(`Couldn't find result for ${search}`);
       });
   },

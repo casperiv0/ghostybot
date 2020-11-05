@@ -1,7 +1,7 @@
 /* eslint-disable no-case-declarations */
-const { MessageEmbed } = require("discord.js");
 const { updateGuildById, getGuildById } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "store",
@@ -39,12 +39,9 @@ module.exports = {
         ?.map((item) => `**Name:** ${item.name}, **Price:** ${item.price}`)
         ?.join(",\n ");
 
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(`${message.guild.name}'s Store`)
-        .setDescription(`${items}`)
-        .setColor("BLUE")
-        .setFooter(message.author.username)
-        .setTimestamp();
+        .setDescription(`${items}`);
 
       message.channel.send({ embed });
     }
