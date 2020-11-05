@@ -1,17 +1,11 @@
-const { errorEmbed } = require("../../utils/functions");
-
 module.exports = {
   name: "removeroleall",
   aliases: ["rrall","rroleall","takeroleall"],
   description: "remove a role from all user of the current server",
   category: "admin",
+  botPermissions: ["MANAGE_ROLES"],
+  memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-      return message.channel.send(errorEmbed("manage roles (Manage Roles)", message));
-
-    if (!message.member.hasPermission("MANAGE_ROLES" || "ADMINISTRATOR"))
-      return message.channel.send("You don't have permissions for that!");
-
     const role =
       message.guild.roles.cache.find(
         (role) => role.name === args.join(" ").slice(1)

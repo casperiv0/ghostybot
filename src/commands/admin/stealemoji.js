@@ -1,25 +1,15 @@
 const Discord = require("discord.js");
 const { parse } = require("twemoji-parser");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "stealemoji",
   category: "admin",
   usage: "stealemoji <emoji> <custom name>",
   description: "Steal an emoji from a different server",
+  botPermissions: ["MANAGE_EMOJIS"],
+  memberPermissions: ["MANAGE_EMOJIS"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("MANAGE_EMOJIS")) {
-      return message.channel.send(
-        "You Don't Have Permission To Use This Command! (Manage Emojis)"
-      );
-    }
-
-    if (!message.guild.me.hasPermission("MANAGE_EMOJIS")) {
-      return message.channel.send(
-        "I don't have permissions to create emojis for this server (Manage Emojis)"
-      );
-    }
-
     const emoji = args[0];
     if (!emoji) return message.channel.send("Please Give Me A Emoji!");
 
@@ -35,7 +25,7 @@ module.exports = {
         `${Link}`,
         `${name || `${customemoji.name}`}`
       );
-      const Added = new MessageEmbed()
+      const Added = BaseEmbed(message)
         .setTitle("Emoji Added")
         .setColor("BLUE")
         .setDescription(

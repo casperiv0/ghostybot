@@ -15,6 +15,7 @@ const tnai = new TnaiClient();
 
 const Kitsu = require("kitsu");
 const kitsu = new Kitsu();
+
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
@@ -38,9 +39,8 @@ const giveawayManager = new GiveawaysManager(bot, {
 
 bot.giveawayManager = giveawayManager;
 
+require("moment-duration-format");
 require("./modules/command")(bot);
-
-// events
 require("./modules/events")(bot);
 
 bot.login(token);

@@ -14,12 +14,8 @@ module.exports = {
     "audit-channel",
     "welcome-role",
   ],
+  memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("ADMINISTRATOR"))
-      return message.reply(
-        "Sorry, You don't have the correct permissions for this command. (Administrator)"
-      );
-
     const guildId = message.guild.id;
     const option = args[0];
     const item =

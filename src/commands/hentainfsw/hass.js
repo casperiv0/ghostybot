@@ -5,9 +5,8 @@ module.exports = {
   name: "hass",
   description: "None",
   category: "hentainsfw",
+  nsfwOnly: true,
   async execute(bot, message) {
-    if (!message.channel.nsfw)
-      return message.channel.send("This channel is not a NSFW channel!");
     const data = await fetch(
       "https://nekobot.xyz/api/image?type=hass"
     ).then((res) => res.json());

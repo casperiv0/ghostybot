@@ -1,24 +1,13 @@
-const { addSticky, errorEmbed } = require("../../utils/functions");
+const { addSticky } = require("../../utils/functions");
 
 module.exports = {
   name: "sticky",
   description: "Sticky a message to the bottom of the screen",
   category: "admin",
+  botPermissions: ["MANAGE_MESSAGES"],
+  memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES"))
-      return message.channel.send(
-        errorEmbed("manage messages! (Manage Messages)", message)
-      );
-
     message.delete();
-
-    const member = message.member;
-
-    if (!member.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply(
-        "You don't have the correct permission! (Manage messages)"
-      );
-    }
 
     const stickyMsg = args.join(" ");
 

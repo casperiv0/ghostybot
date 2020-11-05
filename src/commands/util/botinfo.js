@@ -1,4 +1,3 @@
-require("moment-duration-format");
 const { version } = require("discord.js");
 const moment = require("moment");
 const BaseEmbed = require("../../modules/BaseEmbed");

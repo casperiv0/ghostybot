@@ -1,16 +1,11 @@
-const { errorEmbed } = require("../../utils/functions");
-
 module.exports = {
   name: "mute",
   description: "Mute a user",
   category: "admin",
   usage: "mute <@user>",
+  botPermissions: ["MANAGE_ROLES"],
+  memberPermissions: ["MANAGE_ROLES", "MANAGE_MEMBERS"],
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-      return message.channel.send(
-        errorEmbed("manage roles! (Manage Roles)", message)
-      );
-
     const muteUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
@@ -23,12 +18,13 @@ module.exports = {
       return message.channel.send("User can't be muted");
     }
 
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("You don't have permissions for that!");
-    }
-
-    if (message.guild.me.roles.highest.comparePositionTo(muteUser.roles.highest) < 0)
-      return message.channel.send(`My role must be higher than **${muteUser.tag}** highest role!`);
+    if (
+      message.guild.me.roles.highest.comparePositionTo(muteUser.roles.highest) <
+      0
+    )
+      return message.channel.send(
+        `My role must be higher than **${muteUser.tag}** highest role!`
+      );
 
     let muteReason = args.join(" ").slice(23);
 

@@ -13,6 +13,7 @@ module.exports = {
     "mod-log",
   ],
   category: "admin",
+  memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);

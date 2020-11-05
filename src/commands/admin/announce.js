@@ -6,17 +6,12 @@ module.exports = {
   description: "Announce something in a channel",
   usage: "announce <channel> <text>",
   category: "admin",
+  memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
     message.delete();
     if (!args[0]) {
       return message.channel.send(
         "Please provide text or a valid channel!\n You can also set a default channel using `set announce-channel <channel mention>`"
-      );
-    }
-
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-      return message.channel.send(
-        "You don't have the correct permissions for that!"
       );
     }
 

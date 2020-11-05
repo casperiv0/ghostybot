@@ -6,6 +6,7 @@ module.exports = {
   description: "Delete the custom commannd",
   category: "admin",
   aliases: ["removecmd"],
+  memberPermissions: ["ADMINISTRATOR"],
   async execute(_bot, message, args) {
     const cmdName = args[0];
     const guild = await getGuildById(message.guild.id);

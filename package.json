@@ -8,7 +8,8 @@
   },
   "scripts": {
     "format": "eslint src/*.js src/commands/**/*.js src/utils/*.js --fix || true",
-    "start": "nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",

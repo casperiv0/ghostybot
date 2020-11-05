@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -11,14 +11,11 @@ module.exports = {
     const { user } = await getUserById(member.id, message.guild.id);
     const level = Math.floor(0.1 * Math.sqrt(user.xp));
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${member.username}'s Level`)
-      .setColor("BLUE")
       .setDescription(
         `${member.username} is level **${level}** with **${user.xp}xp**`
-      )
-      .setTimestamp()
-      .setFooter(message.author.username);
+      );
 
     message.channel.send({ embed });
   },

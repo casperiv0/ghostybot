@@ -1,7 +1,6 @@
 const moment = require("moment");
-require("moment-duration-format");
 const createBar = require("string-progressbar");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "nowplaying",
@@ -27,7 +26,7 @@ module.exports = {
       1000;
     const left = song.duration - seek;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(song.title)
       .setURL(song.url)
       .setAuthor(`🎵 Now ${serverQueue.playing ? "Playing" : "Paused"}`)

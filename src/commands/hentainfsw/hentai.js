@@ -4,10 +4,8 @@ module.exports = {
   name: "hentai",
   category: "hentainsfw",
   description: "None",
+  nsfwOnly: true,
   async execute(bot, message) {
-    if (!message.channel.nsfw)
-      return message.channel.send("This channel is not a NSFW channel!");
-
     const data = await bot.neko.nsfw.randomHentaiGif();
 
     const embed = BaseEmbed(message)

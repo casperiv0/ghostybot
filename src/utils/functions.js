@@ -2,7 +2,8 @@ const User = require("../models/User.model");
 const Guild = require("../models/Guild.model");
 const Warning = require("../models/Warning.model");
 const Sticky = require("../models/Sticky.model");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../modules/BaseEmbed");
+const moment = require("moment");
 
 /**
  *
@@ -130,11 +131,19 @@ async function removeGuild(guildId) {
  * @param {string} userId
  * @param {string} reason
  */
-async function addWarning(userId, reason) {
+async function addWarning(userId, guildId, reason) {
   try {
-    const warning = new Warning({ user_id: userId, reason });
+    const warning = new Warning({ guild_id: guildId, user_id: userId, reason });
 
     await warning.save();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function removeUserWarnings(userId, guildId) {
+  try {
+    await Warning.deleteMany({ user_id: userId, guild_id: guildId });
   } catch (e) {
     console.error(e);
   }
@@ -174,20 +183,26 @@ async function removeSticky(channelId) {
 }
 
 /**
- * @param {string} error
+ * @param {Array} permissions
  * @param {Object} message
  */
-const errorEmbed = (error, message) => {
-  return new MessageEmbed()
+const errorEmbed = (permissions, message) => {
+  return BaseEmbed(message)
     .setTitle("Woah!")
-    .setDescription(`❌ I don't have the correct permissions to ${error}`)
-    .setColor("ORANGE")
-    .setFooter(message.author.username)
-    .setTimestamp();
+    .setDescription(
+      `❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`
+    )
+    .setColor("ORANGE");
 };
+
+const formatDate = (date) => moment(date).format("MM/DD/YYYY");
+
+const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 module.exports = {
   errorEmbed,
+  formatDate,
+  toCapitalize,
   getUserById,
   addGuild,
   addUser,
@@ -197,6 +212,7 @@ module.exports = {
   updateGuildById,
   removeGuild,
   addWarning,
+  removeUserWarnings,
   addSticky,
   getSticky,
   removeSticky,

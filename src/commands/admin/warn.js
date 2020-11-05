@@ -4,11 +4,8 @@ module.exports = {
   name: "warn",
   description: "Warns a user",
   category: "admin",
+  memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("MANAGE_GUILD")) {
-      return message.channel.send("You don't have permissions to do that!");
-    }
-
     const reason = args.slice(1).join(" ");
     const member =
       message.guild.member(message.mentions.users.first()) ||
@@ -22,13 +19,13 @@ module.exports = {
       return message.channel.send("User can't be warned");
     }
 
-    await addWarning(member.user.id, reason);
+    await addWarning(member.user.id, message.guild.id, reason);
 
     const { warnings } = await getUserById(member.user.id, message.guild.id);
 
     return message.channel.send(
       `${member.user.tag} was warned with reason: ${reason} (Total warnings: ${
-        warnings ? warnings.length + 1 : "0"
+        warnings ? warnings.length : "0"
       })`
     );
   },

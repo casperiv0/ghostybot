@@ -1,26 +1,21 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "boobs",
   description: "None",
   category: "nsfw",
+  nsfwOnly: true,
   async execute(bot, message) {
-    if (!message.channel.nsfw)
-      return message.channel.send("This channel is not a NSFW channel!");
-
     const data = await fetch(
       "http://api.oboobs.ru/boobs/0/1/random"
     ).then((res) => res.json());
 
-    const embed = new MessageEmbed()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setDescription(
         `[Click here if the image failed to load.](http://media.oboobs.ru/${data[0].preview})`
       )
-      .setImage(`http://media.oboobs.ru/${data[0].preview}`)
-      .setTimestamp();
+      .setImage(`http://media.oboobs.ru/${data[0].preview}`);
 
     message.channel.send(embed);
   },

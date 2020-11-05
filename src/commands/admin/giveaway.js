@@ -8,6 +8,7 @@ module.exports = {
   options: ["start", "end"],
   usage:
     "giveaway <option> <time> <winner count> <price> \n **Example start:** !giveaway start 2d 10 Discord nitro \n **Example end:** !giveaway end <messageId> ",
+  memberPermissions: ["MANAGE_GUILD"],
   execute(bot, message, args) {
     const option = args[0];
     const time = args[1];

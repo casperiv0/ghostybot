@@ -1,4 +1,3 @@
-require("moment-duration-format");
 const { getUserById, updateUserById } = require("../../utils/functions");
 const jobs = require("../../data/jobs.json");
 const moment = require("moment");

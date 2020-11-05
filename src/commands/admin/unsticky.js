@@ -1,25 +1,14 @@
-const { removeSticky, errorEmbed } = require("../../utils/functions");
+const { removeSticky } = require("../../utils/functions");
 
 module.exports = {
   name: "unsticky",
   description: "Sticky a message to the bottom of the screen",
   aliases: ["removesticky"],
   category: "admin",
+  botPermissions: ["MANAGE_MESSAGES"],
+  memberPermissions: ["MANAGE_MESSAGES"],
   execute(bot, message) {
-    if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-      return message.channel.send(
-        errorEmbed("manage messages! (Manage Messages)", message)
-      );
-    }
     message.delete();
-
-    const member = message.member;
-
-    if (!member.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply(
-        "You don't have the correct permission! (Manage messages)"
-      );
-    }
 
     removeSticky(message.channel.id);
 

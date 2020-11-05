@@ -5,13 +5,9 @@ module.exports = {
   usage: "addcmd <cmd_name> <cmd_response>",
   description: "add guild custom commands",
   category: "admin",
+  botPermissions: ["SEND_MESSAGES"],
+  memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-      return message.channel.send(
-        ":x: You need `MANAGE_MESSAGES` perms to use this command"
-      );
-    }
-
     const cmdName = args[0];
     const cmdResponse = args.slice(1).join(" ");
 

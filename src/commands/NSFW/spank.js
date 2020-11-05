@@ -1,20 +1,16 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "spank",
   category: "nsfw",
   usage: "None",
+  nsfwOnly: true,
   async execute(bot, message) {
-    if (!message.channel.nsfw) {
-      return message.channel.send("This channel is not a NSFW channel!");
-    }
-
     const data = await bot.neko.nsfw.spank();
 
-    const blowjob = new MessageEmbed()
+    const blowjob = BaseEmbed(message)
       .setTitle("Spank")
       .setImage(data.url)
-      .setColor("BLUE")
       .setURL(data.url);
     message.channel.send(blowjob);
   },

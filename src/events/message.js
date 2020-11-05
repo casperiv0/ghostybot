@@ -3,6 +3,7 @@ const {
   getSticky,
   getUserById,
   updateUserById,
+  errorEmbed,
 } = require("../utils/functions");
 const queue = new Map();
 const { MessageEmbed } = require("discord.js");
@@ -121,6 +122,43 @@ module.exports = {
 
         if (cmd.ownerOnly && message.author.id !== ownerId) {
           return message.reply("This command can only be used by the owner!");
+        }
+
+        // botPermissions
+        if (cmd.botPermissions) {
+          const neededPermissions = [];
+          console.log(cmd.botPermissions);
+          cmd.botPermissions.forEach((perm) => {
+            if (!message.channel.permissionsFor(message.guild.me).has(perm)) {
+              neededPermissions.push(perm);
+            }
+          });
+
+          if (neededPermissions[0]) {
+            return message.channel.send(errorEmbed(neededPermissions, message));
+          }
+        }
+
+        // memberPermissions
+        if (cmd.memberPermissions) {
+          const neededPermissions = [];
+          cmd.memberPermissions.forEach((perm) => {
+            if (!message.channel.permissionsFor(message.member).has(perm)) {
+              neededPermissions.push(perm);
+            }
+          });
+
+          if (neededPermissions.length > 0) {
+            return message.channel.send(
+              `You need: ${neededPermissions
+                .map((p) => `\`${p.toUpperCase()}\``)
+                .join(", ")} permissions`
+            );
+          }
+        }
+
+        if (cmd.nsfwOnly && cmd.nsfwOnly === true && !message.channel.nsfw) {
+          return message.channel.send("This channel is not a NSFW channel!");
         }
 
         if (timestamps.has(userId)) {

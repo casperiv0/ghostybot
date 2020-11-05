@@ -1,4 +1,4 @@
-const { getWarningUsers, setWarningUsers } = require("../../utils/functions");
+const { getUserById, removeUserWarnings } = require("../../utils/functions");
 
 module.exports = {
   name: "removeuserwarns",
@@ -13,20 +13,17 @@ module.exports = {
     const member =
       message.guild.member(message.mentions.users.first()) ||
       message.guild.members.cache.get(args[1]);
+    const { warnings } = await getUserById(member.id, guildId);
 
     if (!member) {
       return message.channel.send("Please provide a valid user");
     }
 
-    const warnings = await getWarningUsers(guildId);
-
-    if (warnings === null) {
-      return message.channel.send("There are not warnings");
+    if (warnings === null || !warnings[0]) {
+      return message.channel.send("There are no warnings");
     }
 
-    const filtered = warnings.filter((warn) => warn.user.id !== member.user.id);
-
-    await setWarningUsers(guildId, filtered);
+    await removeUserWarnings(member.id, guildId);
 
     return message.channel.send("Successfully removed all warnings");
   },

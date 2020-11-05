@@ -5,13 +5,8 @@ module.exports = {
   description: "Add/remove blacklisted words",
   category: "admin",
   options: ["get", "add", "remove"],
+  memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
-      return message.reply(
-        "Sorry, You don't have the correct permissions for this command. (Administrator)"
-      );
-    }
-
     const option = args[0];
     const item = args[1];
     const guildId = message.guild.id;

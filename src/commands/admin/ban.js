@@ -1,16 +1,10 @@
-const { errorEmbed } = require("../../utils/functions");
-
 module.exports = {
   name: "ban",
   description: "ban",
   category: "admin",
+  botPermissions: ["BAN_MEMBERS"],
+  memberPermissions: ["BAN_MEMBERS"],
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
-      return message.channel.send(
-        errorEmbed("ban users! (Ban Members)", message)
-      );
-    }
-
     const banUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
@@ -18,9 +12,6 @@ module.exports = {
 
     if (!banUser) return message.channel.send("User wasn't found");
     if (!banReason) banReason = "Not Specified";
-
-    if (!message.member.hasPermission("BAN_MEMBERS" || "ADMINISTRATOR"))
-      return message.channel.send("You don't have permissions for that!");
 
     if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS")) {
       return message.channel.send("That person can't be banned!");

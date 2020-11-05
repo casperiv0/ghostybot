@@ -1,22 +1,14 @@
-const { errorEmbed } = require("../../utils/functions");
-
 module.exports = {
   name: "deafen",
   description: "Deafen a user",
   category: "admin",
+  botPermissions: ["DEAFEN_MEMBERS"],
+  memberPermissions: ["DEAFEN_MEMBERS"],
   async execute(bot, message, args) {
-    if (!message.guild.me.hasPermission("DEAFEN_MEMBERS"))
-      return message.channel.send(
-        errorEmbed("Deafen users! (Deafen Members)", message)
-      );
-
     const deafenUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
     const deafenReason = args.join(" ").slice(23);
-
-    if (!message.member.hasPermission("DEAFEN_MEMBERS" || "ADMINISTRATOR"))
-      return message.channel.send("You don't have permissions for that!");
 
     if (deafenUser.voice.serverDeaf) {
       return message.channel.send(

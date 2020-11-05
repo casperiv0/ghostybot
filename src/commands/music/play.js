@@ -1,7 +1,7 @@
 const ytld = require("ytdl-core");
 const { youtubeApiKey } = require("../../../config.json");
 const YtApi = require("simple-youtube-api");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const youtube = new YtApi(youtubeApiKey);
 
 module.exports = {
@@ -94,11 +94,12 @@ module.exports = {
       queueContruct.songs.push(song);
 
       try {
+        // TODO: check if bot is already in the voice chat
         const connection = await voiceChannel.join();
         queueContruct.connection = connection;
 
         queueContruct.nowPlaying = queueContruct.songs[0];
-        play(message.guild, queueContruct.songs[0], queue);
+        play(message.guild, queueContruct.songs[0], queue, message);
       } catch (e) {
         return message.channel.send(
           "There was an error when joining the voice channel"
@@ -106,7 +107,7 @@ module.exports = {
       }
     } else {
       serverQueue.songs.push(song);
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(song.title)
         .setURL(song.url)
         .setAuthor(
@@ -115,16 +116,14 @@ module.exports = {
           } songs in queue`
         )
         .setImage(song.thumbnail)
-        .setColor("BLUE")
-        .setDescription(`Duration: ${song.duration}s`)
-        .setFooter(`Requested by ${song.requestedBy.username}`);
+        .setDescription(`Duration: ${song.duration}s`);
 
       serverQueue.textChannel.send({ embed });
     }
   },
 };
 
-function play(guild, song, queue) {
+function play(guild, song, queue, message) {
   const serverQueue = queue.get(guild.id);
   if (!song) {
     serverQueue.voiceChannel.leave();
@@ -137,23 +136,23 @@ function play(guild, song, queue) {
     .play(ytld(song.url), { bitrate: 96 })
     .on("finish", () => {
       serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0], queue);
+      play(guild, serverQueue.songs[0], queue, message);
     })
     .on("error", (e) => console.log(e));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.connection.voice.setSelfDeaf(true);
 
-  const embed = new MessageEmbed()
+  const embed = BaseEmbed(message)
     .setTitle(song.title)
     .setURL(song.url)
     .setAuthor("🎵 Now playing:")
     .setImage(`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`)
-    .setColor("BLUE")
     .setDescription(`Requested by ${song.requestedBy}`)
     .setFooter(
-      `Duration : ${song.duration} Seconds | Looping : ${
-        serverQueue.loop ? "Enabled" : "Disabled"
-      } \nVolume : ${serverQueue.volume * 10}%`
+      `Duration : ${song.duration} Seconds | Volume : ${
+        serverQueue.volume * 10
+      }%`,
+      message.author.user.displayAvatarURL({ dynamic: true })
     );
 
   serverQueue.textChannel.send({ embed });
