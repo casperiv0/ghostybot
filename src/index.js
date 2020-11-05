@@ -1,4 +1,5 @@
 require("./utils/checkValid")();
+require("./utils/database");
 const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });

@@ -1,15 +1,4 @@
-const {
-  getStickyData,
-  getServerPrefix,
-  sendToDev,
-  generateXp,
-  getUserXp,
-  setUserXp,
-  addUserXp,
-  getBlacklistUsers,
-  getBlacklistWords,
-} = require("../utils/functions");
-const db = require("quick.db");
+const { getGuildById, getSticky } = require("../utils/functions");
 const queue = new Map();
 const { MessageEmbed } = require("discord.js");
 const { ownerId } = require("../../config.json");
@@ -18,45 +7,49 @@ module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    const stickyData = await getStickyData(message.guild.id);
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
-    const blacklistedUsers = await getBlacklistUsers();
-    const blacklistedWords = await getBlacklistWords(guildId);
+    const guild = await getGuildById(guildId);
+    const blacklistedWords = guild.blacklistedwords;
+    // const blacklistedUsers = await getBlacklistUsers();
+    // const blacklistedWords = await getBlacklistWords(guildId);
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
+    const serverPrefix = guild.prefix;
     const prefix = new RegExp(
       `^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`
     );
 
     // Check if sticky
-    const isSticky = message.channel.id === stickyData?.channelId;
+    const sticky = await getSticky(message.channel.id);
+    const isSticky = message.channel.id === sticky?.channel_id;
 
     if (isSticky) {
-      if (message.author.bot || message.content === stickyData.msg) return;
+      if (message.author.bot || message.content === sticky.message) return;
 
-      const fMessage = message.channel.messages.cache.get(stickyData.id);
+      const fMessage = message.channel.messages.cache.get(sticky.message_id);
       if (fMessage) {
         fMessage.delete();
       }
 
-      const stickyMessage = await message.channel.send(stickyData.msg);
-      stickyData.id = stickyMessage.id;
+      const stickyMessage = await message.channel.send(sticky?.message);
+      sticky.message_id = stickyMessage.id;
+      await sticky.save();
     }
 
     // xp - levels
-    if (!message.author.bot) {
-      const userXp = await getUserXp(guildId, userId);
+    // if (!message.author.bot) {
+    //   const userXp = await getUserXp(guildId, userId);
 
-      if (userXp === null || !userXp) {
-        setUserXp(guildId, userId, generateXp(10, 15));
-      } else {
-        addUserXp(guildId, userId, generateXp(10, 15));
-      }
-    }
+    //   if (userXp === null || !userXp) {
+    //     setUserXp(guildId, userId, generateXp(10, 15));
+    //   } else {
+    //     addUserXp(guildId, userId, generateXp(10, 15));
+    //   }
+    // }
 
+    // check if message has a badword in it
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
       blacklistedWords !== null &&
         blacklistedWords.forEach((word) => {
@@ -86,7 +79,7 @@ module.exports = {
     const [, matchedPrefix] = message.content.match(prefix);
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    let customCmds = db.get(`cmds_${message.guild.id}`);
+    const customCmds = guild?.custom_commands;
 
     if (message.mentions.has(bot.user.id) && !command) {
       const embed = new MessageEmbed()
@@ -99,20 +92,21 @@ module.exports = {
       message.channel.send(embed);
     }
 
-    if (blacklistedUsers !== null) {
-      const isBlacklisted = blacklistedUsers.filter(
-        (u) => u.user.id === message.author.id
-      )[0];
+    // if (blacklistedUsers !== null) {
+    //   const isBlacklisted = blacklistedUsers.filter(
+    //     (u) => u.user.id === message.author.id
+    //   )[0];
 
-      if (isBlacklisted) {
-        return message.reply("You've been blacklisted from using this bot.");
-      }
-    }
+    //   if (isBlacklisted) {
+    //     return message.reply("You've been blacklisted from using this bot.");
+    //   }
+    // }
 
     if (customCmds) {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
+
     // music queue
     const serverQueue = queue.get(message.guild.id);
 
@@ -150,8 +144,8 @@ module.exports = {
         return;
       }
     } catch (e) {
-      sendToDev(message, bot, e);
-      console.log(e);
+      // sendToDev(message, bot, e);
+      console.log({ message: message.content, e });
     }
   },
 };

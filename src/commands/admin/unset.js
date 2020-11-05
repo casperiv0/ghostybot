@@ -1,9 +1,4 @@
-const {
-  unsetWelcomeChannel,
-  unsetLeaveChannel,
-  unsetWelcomeRole,
-  unsetModLog,
-} = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "unset",
@@ -22,15 +17,24 @@ module.exports = {
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
     const option = args[0].toLowerCase();
+    const guildId = message.guild.id;
 
-    if (!option) return message.channel.send("Please provide a valid option!");
+    if (!option) {
+      return message.channel.send("Please provide a valid option!");
+    }
 
     switch (option) {
       case "welcome-channel":
-        unsetWelcomeChannel(message.guild.id);
+        updateItem("welcome_channel", guildId);
         break;
       case "leave-channel":
-        unsetLeaveChannel(message.guild.id);
+        updateItem("leave_channel", guildId);
+        break;
+      case "welcome-role":
+        updateItem("welcome_role", guildId);
+        break;
+      case "suggest-channel":
+        updateItem("suggest_channel", guildId);
         break;
       case "audit-channel":
         if (!webhook)
@@ -42,12 +46,6 @@ module.exports = {
           message.channel.send("Succesfully reset logging!");
         }
         break;
-      case "welcome-role":
-        unsetWelcomeRole(message.guild.id);
-        break;
-      case "mod-log":
-        unsetModLog(message.guild.id);
-        break;
       default:
         return message.channel.send(`\`${option}\` is not a valid option!`);
     }
@@ -55,3 +53,9 @@ module.exports = {
     return message.channel.send(`Successfully disabled \`${option}\` `);
   },
 };
+
+async function updateItem(type, guildId) {
+  await updateGuildById(guildId, {
+    [type]: null,
+  });
+}

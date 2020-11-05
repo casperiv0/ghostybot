@@ -1,17 +1,14 @@
-const db = require("quick.db");
 const { MessageEmbed } = require("discord.js");
+const User = require("../../models/User.model");
 
 module.exports = {
   name: "moneyleaderboard",
   description: "Returns a leaderboard with the top 10 users money",
   category: "economy",
   aliases: ["mlb"],
-  execute(bot, message) {
-    const data = db
-      .fetchAll()
-      .filter((da) => da.ID.startsWith("money_"))
-      .sort((a, b) => b.data - a.data)
-      .slice(0, 10);
+  async execute(bot, message) {
+    const guildId = message.guild.id;
+    const data = (await User.find({ guild_id: guildId })).splice(0, 10);
 
     const embed = new MessageEmbed()
       .setTitle(`${message.guild.name}'s Money Leaderboard`)
@@ -20,11 +17,14 @@ module.exports = {
       .setTimestamp();
 
     for (let i = 0; i < data.length; i++) {
-      const guildId = message.guild.id;
-      const userId = data[i].ID.replace(`money_${guildId}_`, ""); // get user id
-      const user = bot.users.cache.get(userId); // Get user
+      const userId = data[i].user_id;
+      const user = bot.users.cache.get(userId);
       if (user) {
-        embed.addField(user.username, `${data[i].data} Coins`, true);
+        embed.addField(
+          user.username,
+          `${data[i].money + data[i].bank} Total balance`,
+          true
+        );
       }
     }
 
