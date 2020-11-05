@@ -28,7 +28,7 @@ module.exports = {
     if (channel) {
       text = args.splice(1).join(" ");
     } else if (announceChannel !== null) {
-      channel = announceChannel;
+      channel = message.mentions.channels.first();
       text = args.join(" ");
     } else {
       return message.channel.send("Please provide text or a valid channel");
@@ -40,6 +40,8 @@ module.exports = {
       .setFooter(message.author.username)
       .setColor("BLUE");
 
-    bot.channels.cache.get(announceChannel).send(embed);
+    bot.channels.cache
+      .get(announceChannel ? announceChannel : channel.id)
+      .send(embed);
   },
 };

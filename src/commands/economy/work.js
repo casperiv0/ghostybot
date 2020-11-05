@@ -34,9 +34,6 @@ module.exports = {
 
       message.channel.send(embed);
 
-      console.log(amount);
-
-      console.log(user.money);
       await updateUserById(member.id, message.guild.id, {
         money: user.money + amount,
         work: Date.now(),
