@@ -1,6 +1,7 @@
 require("moment-duration-format");
-const { version, MessageEmbed } = require("discord.js");
+const { version } = require("discord.js");
 const moment = require("moment");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "botinfo",
@@ -14,9 +15,7 @@ module.exports = {
     const nodev = process.version;
     const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY");
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
-      .setFooter(message.author.username)
+    const embed = BaseEmbed(message)
       .setTitle("Bot Information")
       .addField("Bot Id:", bot.user.id)
       .addField("Bot username:", bot.user.username)
@@ -49,7 +48,7 @@ module.exports = {
       )
       .addField("Support server", "https://discord.gg/XxHrtkA")
       .setImage(
-        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png"
+        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/main/.github/Ghostybot-banner.png"
       );
 
     message.channel.send(embed);

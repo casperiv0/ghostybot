@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "avatar",
@@ -9,16 +9,13 @@ module.exports = {
       message.mentions.users.first() ||
       message.guild.members.cache.get(args[0])?.user ||
       message.author;
-      
+
     const avatar = user.displayAvatarURL({ dynamic: true, size: 1024 });
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${user.username}'s Avatar`)
-      .setFooter(message.author.username)
       .setDescription(`Click __[Here](${avatar})__ to download`)
-      .setImage(`${avatar}`)
-      .setColor("BLUE")
-      .setTimestamp();
+      .setImage(`${avatar}`);
 
     message.channel.send(embed);
   },

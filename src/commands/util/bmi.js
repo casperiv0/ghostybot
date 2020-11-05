@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "bmi",
@@ -17,9 +17,8 @@ module.exports = {
 
     const bmi = (weight / ((height * height) / 10000)).toFixed(2);
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${message.author.username}'s BMI`)
-      .setColor("BLUE")
       .addField("Weight", `${weight}kg`)
       .addField("Height", `${height}cm`)
       .addField("BMI", bmi);

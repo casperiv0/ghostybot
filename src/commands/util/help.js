@@ -1,6 +1,6 @@
-const { MessageEmbed } = require("discord.js");
 const { getGuildById } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 const categories = [
   "admin",
@@ -38,9 +38,8 @@ module.exports = {
         return message.channel.send("That category does not exist");
       }
 
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(`Commands: ${cmdArgs}`)
-        .setColor("BLUE")
         .setDescription(`\`\`\`${cmds}\`\`\``);
 
       return message.channel.send({ embed });
@@ -55,8 +54,7 @@ module.exports = {
         : "None";
       const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : "None";
 
-      const embed = new MessageEmbed()
-        .setColor("BLUE")
+      const embed = BaseEmbed(message)
         .setTitle(`Command: ${cmd.name}`)
         .addField("Aliases", aliases, true)
         .addField("Cooldown", `${cooldown}`, true)
@@ -123,10 +121,7 @@ module.exports = {
       .map(({ name }) => name)
       .join(", ");
 
-    const embed = new MessageEmbed()
-      .setTimestamp()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .addField("Admin Commands", `\`\`\`${adminCmds}\`\`\``)
       .addField("Animal Commands", `\`\`\`${animalCmds}\`\`\``);
     if (ownerId === message.author.id) {
