@@ -1,9 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const {
-  getServerPrefix,
-  getAnnounceChannel,
-  getSuggestChannel,
-} = require("../../utils/functions");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "config",
@@ -11,17 +7,31 @@ module.exports = {
   category: "admin",
   aliases: ["conf", "cfg"],
   async execute(bot, message) {
-    const { guild } = message;
-    const { name, id: guildId } = guild;
-    const prefix = (await getServerPrefix(guildId)) || "!";
-    const announceCh = (await getAnnounceChannel(guildId)) || "None";
-    const suggestCh = (await getSuggestChannel(guildId)) || "None";
+    const { name, id: guildId } = message.guild;
+    const guild = await getGuildById(guildId);
+
+    const prefix = guild.prefix;
+    const announceCh = guild?.announcement_channel;
+    const suggestCh = guild?.suggest_channel;
+    const welcomeCh = guild?.welcome_channel;
+    const leaveCh = guild?.leave_channel;
 
     const embed = new MessageEmbed()
       .setTitle(`${name}'s config`)
-      .addField("**Prefix**", prefix, true)
-      .addField("**Announce Channel**", announceCh.id ? `<#${announceCh.id}>` : announceCh, true)
-      .addField("Suggestion Channel", suggestCh ? `<#${suggestCh.id}>` : suggestCh, true)
+      .addField("**Prefix**", prefix)
+      .addField(
+        "**Announce Channel**",
+        announceCh !== null ? `<#${announceCh}>` : "None"
+      )
+      .addField(
+        "Suggestion Channel",
+        suggestCh !== null ? `<#${suggestCh}>` : "None"
+      )
+      .addField(
+        "Welcome Channel",
+        welcomeCh !== null ? `<#${welcomeCh}>` : "None"
+      )
+      .addField("Leaves Channel", leaveCh !== null ? `<#${leaveCh}>` : "None")
       .setColor("BLUE")
       .setFooter(message.author.username)
       .setTimestamp();

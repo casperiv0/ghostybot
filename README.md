@@ -1,5 +1,5 @@
 <a href="https://ghostybot.tk" align="center">
-     <img src=".github/Ghostybot-banner.png" alt="banner" />               
+     <img src=".github/Ghostybot-banner.png" alt="banner" />
 </a>
 
 ![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?color=gr)
@@ -37,6 +37,8 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 - Use util commands to get your avatar, botinfo, channelinfo and more
 - Play music
 - Get animal pictures/gifs
+- XP system
+- Economy system
 - And more!
 
 ## Commands
@@ -83,19 +85,18 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 |                |           |            |                |              |            |          | weather      |                  |             |            |
 |                |           |            |                |              |            |          | worldclock   |                  |             |            |
 
-
 ## Docs
 
 [View docs](/docs/README.md)
 
 ## Support ghostybot
 
-**All stars/forks are appreciated! ⚡**
+### All stars/forks are appreciated! ⚡
 
 **Feel free to open a pull request with a new feature.**
 
-<p>Made with ❤️ and JavaScript!</p>
+Made with ❤️ and JavaScript!
 
 ## License
- 
+
 [Apache © Dev-CasperTheGhost](./LICENSE)

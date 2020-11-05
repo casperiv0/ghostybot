@@ -1,4 +1,4 @@
-const { setUserXp } = require("../../utils/functions");
+const { updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "resetxp",
@@ -25,11 +25,12 @@ module.exports = {
         if (msg.content.toLowerCase() === "y") {
           const users = await message.guild.members.fetch();
 
-          users.forEach((user) => {
-            setUserXp(message.guild.id, user.id, 0);
+          users.forEach(async (user) => {
+            await updateUserById(user.id, message.guild.id, {
+              xp: 0,
+            });
           });
 
-          // send message
           message.channel.send("Successfully reset everyone's xp");
         } else {
           message.channel.send("resetxp was canceled");

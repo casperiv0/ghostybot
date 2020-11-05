@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getUserInventory } = require("../../utils/functions");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "inventory",
@@ -8,17 +8,19 @@ module.exports = {
   usage: "inventory <user>",
   aliases: ["inv"],
   async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    const usersInventory = await getUserInventory(message.guild.id, user.id);
+    const member = message.mentions.users.first() || message.author;
+    const { user } = await getUserById(member.id, message.guild.id);
+    const inventory = user?.inventory;
 
-    if (usersInventory === null || !usersInventory[0])
+    if (!inventory || !inventory?.[0]) {
       return message.channel.send("User's inventory is empty");
+    }
 
-    const inventory = usersInventory.map((item) => item).join(",\n ");
+    const mapped = inventory?.map((item) => item).join(",\n ");
 
     const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s Inventory`)
-      .setDescription(`${inventory}`)
+      .setTitle(`${member.username}'s Inventory`)
+      .setDescription(`${mapped}`)
       .setColor("BLUE")
       .setFooter(message.author.username)
       .setTimestamp();

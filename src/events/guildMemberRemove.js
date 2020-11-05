@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getLeaveChannel } = require("../utils/functions");
+const { getGuildById } = require("../utils/functions");
 
 module.exports = {
   name: "guildMemberRemove",
@@ -7,12 +7,11 @@ module.exports = {
     if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }
-    const leaveChannel = await getLeaveChannel(member.guild.id);
+    const guild = await getGuildById(member.guild.id);
+    const leaveChannel = guild.leave_channel;
 
-    if (leaveChannel !== null || leaveChannel) {
-      if (
-        !member.guild.channels.cache.some((ch) => ch.name === leaveChannel.name)
-      )
+    if (leaveChannel) {
+      if (!member.guild.channels.cache.some((ch) => ch.id === leaveChannel))
         return;
 
       const user = bot.users.cache.get(member.id);
@@ -23,15 +22,15 @@ module.exports = {
         .setThumbnail(avatar)
         .setDescription(
           `
-        **Tag:** ${user.tag}
-        **Id:** ${user.id}
+**Tag:** ${user.tag}
+**Id:** ${user.id}
         `
         )
         .setColor("RED")
         .setTimestamp()
         .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
 
-      bot.channels.cache.get(leaveChannel.id).send(embed);
+      bot.channels.cache.get(leaveChannel).send(embed);
     }
   },
 };

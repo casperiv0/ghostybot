@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getWelcomeChannel, getWelcomeRole } = require("../utils/functions");
+const { getGuildById } = require("../utils/functions");
 
 module.exports = {
   name: "guildMemberAdd",
@@ -7,20 +7,13 @@ module.exports = {
     if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }
-    const welcomeChannel = await getWelcomeChannel(member.guild.id);
-    const welcomeRole = await getWelcomeRole(member.guild.id);
 
-    // not enabled
-    if (welcomeRole !== null || welcomeRole) {
-      member.roles.add(welcomeRole.id);
-    }
+    const guild = await getGuildById(member.guild.id);
+    const welcomeChannel = guild?.welcome_channel;
+    const welcomeRole = guild?.welcome_role;
 
-    if (welcomeChannel !== null || welcomeChannel) {
-      if (
-        !member.guild.channels.cache.some(
-          (ch) => ch.name === welcomeChannel.name
-        )
-      )
+    if (welcomeChannel) {
+      if (!member.guild.channels.cache.some((ch) => ch.id === welcomeChannel))
         return;
 
       const user = bot.users.cache.get(member.id);
@@ -32,16 +25,20 @@ module.exports = {
         .setThumbnail(avatar)
         .setDescription(
           `
-        **Username:** ${user.username}
-        **Tag:** ${user.tag}
-        **Id:** ${user.id}
+**Username:** ${user.username}
+**Tag:** ${user.tag}
+**Id:** ${user.id}
         `
         )
         .setColor("BLUE")
         .setTimestamp()
         .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
 
-      bot.channels.cache.get(welcomeChannel.id).send(embed);
+      bot.channels.cache.get(welcomeChannel).send(embed);
+    }
+
+    if (welcomeRole) {
+      member.roles.add(welcomeRole);
     }
   },
 };

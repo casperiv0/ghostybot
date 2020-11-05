@@ -16,8 +16,8 @@ function checkValid() {
     throw Error("[ERROR][BOT]: Bot token is required");
   }
 
-  if (config.prefix === "") {
-    throw Error("[ERROR][BOT]: Prefix is required");
+  if (config.mongodbUri === "") {
+    throw Error("[ERROR][BOT]: mongoUri is required");
   }
 
   if (config.youtubeApiKey === "") {

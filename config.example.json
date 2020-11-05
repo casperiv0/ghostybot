@@ -6,5 +6,6 @@
     "imdbKey": "",
     "reportsChannelId": "",
     "openWeatherMapKey": "",
-    "feedBackChannelId": ""
+    "feedBackChannelId": "",
+    "mongodbUri": ""
 }

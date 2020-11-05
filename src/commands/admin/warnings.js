@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getWarningUsers, getServerPrefix } = require("../../utils/functions");
+const { getUserById, getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "warnings",
@@ -16,17 +16,17 @@ module.exports = {
       return message.channel.send("Please provide a valid user");
     }
 
-    const prefix = await getServerPrefix(guildId);
-    const users = (await getWarningUsers(guildId)) || [];
-    const warnings = users.filter((w) => w.user.id === member.user.id);
+    const guild = await getGuildById(guildId);
+    const { warnings } = await getUserById(member.user.id, message.guild.id);
+    const prefix = guild.prefix;
 
-    let embed = new MessageEmbed()
+    const embed = new MessageEmbed()
       .setColor("BLUE")
       .setTimestamp()
       .setFooter(message.author.username);
 
     if (warningNr) {
-      const warning = warnings.filter((w, idx) => idx === warningNr - 1)[0];
+      const warning = warnings?.filter((w, idx) => idx === warningNr - 1)[0];
 
       if (!warning) {
         return message.channel.send(
@@ -43,7 +43,7 @@ module.exports = {
 
     embed
       .setTitle(`${member.user.tag}'s warnings`)
-      .addField("**Total warnings**", warnings.length)
+      .addField("**Total warnings**", warnings?.length || 0)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
       .setDescription(
         `Use \`${prefix}warnings <user> <warning number>\` to view more info about a specific warning `

@@ -1,13 +1,5 @@
 /* eslint-disable no-case-declarations */
-const {
-  setSuggestChannel,
-  setAnnounceChannel,
-  setWelcomeChannel,
-  setLeaveChannel,
-  setAuditChannel,
-  setWelcomeRole,
-  setModLog,
-} = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "set",
@@ -21,7 +13,6 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
-    "mod-log",
   ],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("ADMINISTRATOR"))
@@ -43,41 +34,46 @@ module.exports = {
 
     switch (option.toLowerCase()) {
       case "suggest-channel":
-        setSuggestChannel(guildId, item);
+        updateItem("suggest_channel", item, guildId);
         message.channel.send(`Suggest channel is now: ${item}`);
         break;
       case "announce-channel":
-        setAnnounceChannel(guildId, item);
+        updateItem("announcement_channel", item, guildId);
         message.channel.send(`Announcement channel is now: ${item}`);
         break;
       case "welcome-channel":
-        setWelcomeChannel(guildId, item);
+        updateItem("welcome_channel", item, guildId);
         message.channel.send(
           `Enabled welcome messages. Welcome channel is now: ${item}`
         );
         break;
       case "leave-channel":
-        setLeaveChannel(guildId, item);
+        updateItem("leave_channel", item, guildId);
         message.channel.send(
           `Enabled user leave messages. User Leave channel is now: ${item}`
         );
         break;
       case "audit-channel":
-        setAuditChannel(item, bot);
+        item.createWebhook(bot.user.username, {
+          avatar: bot.user.displayAvatarURL({ format: "png" }),
+          channel: item,
+        });
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );
         break;
       case "welcome-role":
-        setWelcomeRole(guildId, item);
+        updateItem("welcome_role", item, guildId);
         message.channel.send(`Enabled welcome roles. Welcome role: ${item}`);
-        break;
-      case "mod-log":
-        setModLog(guildId, item);
-        message.channel.send(`Enabled mod logs. Mod log: ${item}`);
         break;
       default:
         return message.channel.send(`\`${option}\` is not a option!`);
     }
   },
 };
+
+async function updateItem(type, item, guildId) {
+  await updateGuildById(guildId, {
+    [type]: item,
+  });
+}

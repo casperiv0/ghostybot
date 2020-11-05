@@ -1,8 +1,4 @@
-const {
-  removeUserBank,
-  getUserBank,
-  addUserMoney,
-} = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "withdraw",
@@ -11,32 +7,37 @@ module.exports = {
   usage: "withdraw <all | amount>",
   aliases: ["with"],
   async execute(bot, message, args) {
-    const user = message.author;
+    const member = message.author;
+    const { user } = await getUserById(member.id, message.guild.id);
+    const bank = user.bank;
     let amount = args[0];
 
     if (!amount) return message.reply("Please provide an amount to withdraw");
 
-    const bank = await getUserBank(message.guild.id, user.id);
-
-    if (bank !== 0 && amount === "all") {
-      addUserMoney(message.guild.id, user.id, bank);
-      removeUserBank(message.guild.id, user.id, bank);
+    if (amount === "all") {
+      updateUserById(member.id, message.guild.id, {
+        money: user.money + bank,
+        bank: user.bank - bank,
+      });
       return message.channel.send("Successfully Withdrew all your money!");
     }
 
     amount = Number(args[0]);
 
-    if (typeof amount !== "number" || isNaN(amount))
+    if (typeof amount !== "number" || isNaN(amount)) {
       return message.reply("Please provide a valid amount to withdraw");
+    }
 
-    if (bank < amount)
+    if (bank < amount) {
       return message.channel.send(
         "You don't have that much money in your bank!"
       );
+    }
 
-    addUserMoney(message.guild.id, user.id, amount);
-    removeUserBank(message.guild.id, user.id, amount);
-
+    await updateUserById(member.id, message.guild.id, {
+      money: user.money + Number(amount),
+      bank: user.bank - amount,
+    });
     message.channel.send(`Successfully Withdrew **${amount} coins**`);
   },
 };

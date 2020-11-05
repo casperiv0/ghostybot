@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getServerPrefix } = require("../../utils/functions");
+const { getGuildById } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
 
 const categories = [
@@ -24,7 +24,8 @@ module.exports = {
   usage: "h <category name | command name>",
   aliases: ["h"],
   async execute(bot, message, args) {
-    const prefix = (await getServerPrefix(message.guild.id)) || "!";
+    const guild = await getGuildById(message.guild.id);
+    const prefix = guild.prefix;
     const cmdArgs = args[0];
 
     if (categories.includes(cmdArgs)) {

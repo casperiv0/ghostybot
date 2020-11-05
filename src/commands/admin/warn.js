@@ -1,8 +1,4 @@
-const {
-  getWarningUsers,
-  setWarningUsers,
-  addWarningUser,
-} = require("../../utils/functions");
+const { getUserById, addWarning } = require("../../utils/functions");
 
 module.exports = {
   name: "warn",
@@ -13,7 +9,6 @@ module.exports = {
       return message.channel.send("You don't have permissions to do that!");
     }
 
-    const guildId = message.guild.id;
     const reason = args.slice(1).join(" ");
     const member =
       message.guild.member(message.mentions.users.first()) ||
@@ -27,24 +22,13 @@ module.exports = {
       return message.channel.send("User can't be warned");
     }
 
-    const data = {
-      user: member.user,
-      reason: reason,
-    };
-    let existingWarnings = await getWarningUsers(guildId);
+    await addWarning(member.user.id, reason);
 
-    if (existingWarnings === null) {
-      setWarningUsers(guildId, [data]);
-    }
-
-    const warnings = await getWarningUsers(guildId);
-    const userWarnings = warnings.filter((w) => w.user.id === member.user.id);
-
-    addWarningUser(guildId, data);
+    const { warnings } = await getUserById(member.user.id, message.guild.id);
 
     return message.channel.send(
       `${member.user.tag} was warned with reason: ${reason} (Total warnings: ${
-        userWarnings ? userWarnings.length + 1 : "0"
+        warnings ? warnings.length + 1 : "0"
       })`
     );
   },

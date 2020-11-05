@@ -1,36 +1,41 @@
-const { setUserXp, addUserXp, getUserXp } = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "givexp",
   description: "Give someone Xp",
   category: "levels",
-  usage: "givexp <user> <amount>",
+  usage: "givexp <amount> <user>",
   async execute(bot, message, args) {
-    let user = message.mentions.users.first();
-    let xp = args.join(" ").slice(22);
-
-    if (!user) {
-      user = bot.users.cache.find((u) => u.id === args[0]);
-      xp = args.join(" ").slice(18);
-    }
-
-    if (!user?.id) {
-      return message.channel.send("User was not found");
-    }
-
-    const usersXp = await getUserXp(message.guild.id, user.id);
-
-    if (!message.member.hasPermission("MANAGE_MEMBERS"))
+    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
       return message.channel.send(
         "You don't have the correct permissions for that! (Manage Members)"
       );
-
-    if (usersXp === null) {
-      setUserXp(message.guild.id, user.id, +xp);
-    } else {
-      addUserXp(message.guild.id, user.id, +xp);
     }
 
-    message.channel.send(`Successfully gave ${user} **${xp}**Xp`);
+    const amount = args[0];
+    const member =
+      message.mentions.users.first() ||
+      bot.users.cache.find((u) => u.id === args[1]);
+
+    if (!member) {
+      return message.channel.send("Please provide a valid user");
+    }
+
+    if (!amount) {
+      return message.channel.send("Please provide an amount");
+    }
+
+    if (isNaN(Number(amount))) {
+      return message.channel.send(
+        "Please provide a valid number (givexp <amount> <user>)"
+      );
+    }
+    const { user } = await getUserById(member.id, message.guild.id);
+
+    await updateUserById(member.id, message.guild.id, {
+      xp: user.xp + Number(amount),
+    });
+
+    message.channel.send(`Successfully gave **${member.tag}** **${amount}**Xp`);
   },
 };

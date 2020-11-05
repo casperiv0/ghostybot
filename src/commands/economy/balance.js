@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getUserMoney, getUserBank } = require("../../utils/functions");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "balance",
@@ -7,18 +7,14 @@ module.exports = {
   category: "economy",
   aliases: ["bal"],
   async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    let money = await getUserMoney(message.guild.id, user.id);
-    let bank = await getUserBank(message.guild.id, user.id);
-
-    if (money === null) money = 0;
-    if (bank === null) bank = 0;
+    const member = message.mentions.users.first() || message.author;
+    const { user } = await getUserById(member.id, message.guild.id);
 
     const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s Balance`)
+      .setTitle(`${member.username}'s Balance`)
       .setColor("BLUE")
-      .addField("Pocket:", money)
-      .addField("Bank", bank);
+      .addField("Pocket:", user.money)
+      .addField("Bank", user.bank);
 
     message.channel.send(embed);
   },

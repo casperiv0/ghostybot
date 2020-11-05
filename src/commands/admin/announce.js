@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getAnnounceChannel } = require("../../utils/functions");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "announce",
@@ -14,12 +14,14 @@ module.exports = {
       );
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.channel.send(
         "You don't have the correct permissions for that!"
       );
+    }
 
-    const announceChannel = await getAnnounceChannel(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
+    const announceChannel = guild.announcement_channel;
     let channel = message.mentions.channels.first();
     let text;
 
@@ -38,6 +40,6 @@ module.exports = {
       .setFooter(message.author.username)
       .setColor("BLUE");
 
-    bot.channels.cache.get(channel.id).send(embed);
+    bot.channels.cache.get(announceChannel).send(embed);
   },
 };

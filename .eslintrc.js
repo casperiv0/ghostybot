@@ -19,7 +19,6 @@ module.exports = {
     "no-multi-spaces": ["error"],
     eqeqeq: ["warn", "always"],
     "no-unused-vars": ["error"],
-    "no-console": ["warn"],
     "no-duplicate-case": ["error"],
     "no-extra-semi": ["error"],
     "no-unreachable": ["error"],

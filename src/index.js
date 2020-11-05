@@ -1,4 +1,5 @@
 require("./utils/checkValid")();
+require("./utils/database");
 const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
 const bot = new Client({ disableMentions: "everyone" });
@@ -45,13 +46,13 @@ bot.login(token);
 
 // Unhandled errors
 process.on("unhandledRejection", (error) =>
-  console.error(chalk.redBright(`Uncaught Error ${error}`))
+  console.error(chalk.redBright("Uncaught Error "), error)
 );
 
 process.on("uncaughtExceptionMonitor", (error) => {
-  console.error(chalk.redBright(`Uncaught Exception ${error}`));
+  console.error(chalk.redBright("Uncaught Exception "), error);
 });
 
 process.on("warning", (warning) => {
-  console.warn(chalk.yellow(`Warning ${warning}`));
+  console.warn(chalk.yellow("Warning "), warning);
 });

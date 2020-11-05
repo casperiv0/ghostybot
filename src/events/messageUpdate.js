@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { getGuildById } = require("../utils/functions");
 module.exports = {
   name: "messageUpdate",
   async execute(bot, oldMsg, newMsg) {
@@ -8,6 +9,8 @@ module.exports = {
     }
     const w = await oldMsg.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
+    const guild = await getGuildById(newMsg.guild.id);
+    const blacklistedWords = guild.blacklistedwords;
 
     // Couldn't find webhook/webhook doesn't exist
     if (!webhook) {
@@ -18,6 +21,23 @@ module.exports = {
 
     if (!oldMsg && !newMsg) {
       return;
+    }
+
+    if (blacklistedWords !== null && blacklistedWords[0]) {
+      blacklistedWords.forEach((word) => {
+        if (newMsg.content.toLowerCase().includes(word.toLowerCase())) {
+          newMsg.delete();
+          return newMsg
+            .reply(
+              "You used a bad word the admin has set, therefore your message was deleted!"
+            )
+            .then((msg) => {
+              setTimeout(() => {
+                msg.delete();
+              }, 5000);
+            });
+        }
+      });
     }
 
     const embed = new MessageEmbed()
