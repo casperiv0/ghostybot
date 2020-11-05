@@ -1,7 +1,7 @@
 const { removeGuild, removeUser } = require("../utils/functions");
 
 module.exports = {
-  name: "guildCreate",
+  name: "guildDelete",
   async execute(bot, guild) {
     await removeGuild(guild.id);
 
