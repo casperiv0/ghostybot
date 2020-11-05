@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getSuggestChannel } = require("../../utils/functions");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "suggest",
@@ -7,9 +7,10 @@ module.exports = {
   category: "util",
   async execute(bot, message, args) {
     const suggestion = args.join(" ");
-    const channel = await getSuggestChannel(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
+    const suggestChannel = guild?.suggest_channel;
 
-    if (channel === null)
+    if (!suggestChannel)
       message.channel.send(
         "Your server doesn't have a default suggestion channel! \n Use `set suggest-channel <channel mention>` to set the default channel."
       );
@@ -24,7 +25,7 @@ module.exports = {
       .setColor("BLUE")
       .setTimestamp();
 
-    const sendMessage = await bot.channels.cache.get(channel.id).send(embed);
+    const sendMessage = await bot.channels.cache.get(suggestChannel).send(embed);
 
     sendMessage.react("👍");
     sendMessage.react("👎");
