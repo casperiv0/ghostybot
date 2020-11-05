@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "eval",
@@ -7,14 +7,14 @@ module.exports = {
   ownerOnly: true,
   aliases: ["e"],
   async execute(bot, message, args) {
-    const toEval = args.join(" ")
+    const toEval = args.join(" ");
    try {
     let evaled = await eval(toEval);
     let eevaled = typeof evaled;
     evaled = require("util").inspect(evaled, { depth: 0, maxArrayLength: null });
     const type = eevaled[0].toUpperCase() + eevaled.slice(1)
 
-    const embed = new Discord.MessageEmbed()
+    const embed = BaseEmbed()
   .setTitle("Eval Command")
   .setDescription(`\`Type:\` ${type}
 \`Input:\` \`\`\`js\n${toEval} \`\`\`
@@ -23,7 +23,7 @@ module.exports = {
   message.channel.send(embed)
   } catch(error) {
     
-  const errorEmbed = new Discord.MessageEmbed()
+  const errorEmbed = BaseEmbed()
   .setTitle("Eval Command")
   .setDescription(`\`\`\`${error}\`\`\``)
     
