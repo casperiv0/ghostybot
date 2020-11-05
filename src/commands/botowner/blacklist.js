@@ -1,12 +1,7 @@
-/* eslint-disable no-constant-condition */
 /* eslint-disable no-case-declarations */
-const {
-  addBlacklistUser,
-  getBlacklistUsers,
-  setBlacklistUsers,
-} = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
 const { MessageEmbed } = require("discord.js");
+const User = require("../../models/User.model");
 
 module.exports = {
   name: "blacklist",
@@ -16,83 +11,74 @@ module.exports = {
   options: ["add", "remove", "view"],
   ownerOnly: true,
   async execute(bot, message, args) {
-    const levels = ["1", "2"];
     const type = args[0];
-    const level = args[1];
-    const user =
-      bot.users.cache.find((user) => user.id === args[2]) ||
-      message.mentions.users.first();
+    const member =
+      message.mentions.users.first() ||
+      bot.users.cache.find((user) => user.id === args[1]);
 
     if (!type) {
       return message.channel.send("Please provide a type");
     }
 
-    if (!level) {
-      return message.channel.send("Please provide a level (1 or 2)");
-    }
-
-    if (!user) {
+    if (!member) {
       return message.channel.send("Please provide a valid user");
     }
 
-    if (user.id === ownerId) {
+    if (member.id === ownerId) {
       return message.channel.send("Cannot blacklist the owner");
     }
 
-    const users = await getBlacklistUsers();
+    const users = await User.find({ blacklisted: true });
 
     switch (type) {
       case "view":
-        const usr =
-          users !== null && users.filter((u) => u.user.id === user.id)[0];
+        const usr = users.find((u) => u.user_id === member.id);
 
         if (!usr) {
           return message.channel.send("User is not blacklisted");
         }
 
         const embed = new MessageEmbed()
-          .setTitle(`Blacklist status: ${usr.user.username}`)
+          .setTitle(`Blacklist status: ${member.username}`)
           .setColor("BLUE")
           .setTimestamp()
-          .addField("Blacklist level", usr.level ? usr.level : "0");
+          .addField("Blacklist level", "2");
 
         return message.channel.send({ embed });
       case "add":
-        if (!levels.includes(level)) {
-          return message.channel.send("Level can only be **1** or **2**");
-        }
-        if (users === null) {
-          return setBlacklistUsers([user]);
-        }
-        const existing =
-          users !== null && users.filter((u) => u.user.id === user.id)[0];
+        const existing = users.filter((u) => u.user_id === member.id)[0];
         if (existing) {
-          return message.channel.send(`${user.tag} is already blacklisted`);
+          return message.channel.send(`${member.tag} is already blacklisted`);
         }
 
-        addBlacklistUser({ user, level });
+        const foundUsers = await User.find({ user_id: member.id });
+
+        foundUsers.forEach(async (user) => {
+          await User.findByIdAndUpdate(user._id, { blacklisted: true });
+        });
         break;
-      case "remove":
+      case "remove": {
         if (users === null) {
-          return message.channel.send(`${user.tag} is not blacklisted`);
+          return message.channel.send(`${member.tag} is not blacklisted`);
         }
-        const exists = getBlacklistUsers()?.filter(
-          (u) => u.user.id === user?.id
-        )[0];
+        const exists = users.find((u) => u.user_id === member.id);
         if (!exists) {
-          return message.channel.send(`${user.tag} is not blacklisted`);
+          return message.channel.send(`${member.tag} is not blacklisted`);
         }
-        const blacklisted = getBlacklistUsers().filter(
-          (u) => u.user.id !== user?.id
-        );
-        setBlacklistUsers(blacklisted);
+
+        const foundUsers = await User.find({ user_id: member.id });
+
+        foundUsers.forEach(async (user) => {
+          await User.findByIdAndUpdate(user._id, { blacklisted: false });
+        });
         break;
+      }
       default: {
         return message.channel.send(`**${type}** is not an option`);
       }
     }
     return message.channel.send(
-      `${user.tag} was ${type === "add" ? "blacklisted" : "unblacklisted"}`
+      `${member.tag} was ${type === "add" ? "blacklisted" : "unblacklisted"}`
     );
   },
 };

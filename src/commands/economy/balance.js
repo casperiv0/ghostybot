@@ -13,8 +13,8 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(`${member.username}'s Balance`)
       .setColor("BLUE")
-      .addField("Pocket:", user?.money || 0)
-      .addField("Bank", user?.bank || 0);
+      .addField("Pocket:", user.money)
+      .addField("Bank", user.bank);
 
     message.channel.send(embed);
   },

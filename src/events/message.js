@@ -1,4 +1,9 @@
-const { getGuildById, getSticky } = require("../utils/functions");
+const {
+  getGuildById,
+  getSticky,
+  getUserById,
+  updateUserById,
+} = require("../utils/functions");
 const queue = new Map();
 const { MessageEmbed } = require("discord.js");
 const { ownerId } = require("../../config.json");
@@ -12,8 +17,6 @@ module.exports = {
     const cooldowns = bot.cooldowns;
     const guild = await getGuildById(guildId);
     const blacklistedWords = guild.blacklistedwords;
-    // const blacklistedUsers = await getBlacklistUsers();
-    // const blacklistedWords = await getBlacklistWords(guildId);
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = guild.prefix;
@@ -39,15 +42,12 @@ module.exports = {
     }
 
     // xp - levels
-    // if (!message.author.bot) {
-    //   const userXp = await getUserXp(guildId, userId);
+    if (!message.author.bot) {
+      const { user } = await getUserById(userId, guildId);
 
-    //   if (userXp === null || !userXp) {
-    //     setUserXp(guildId, userId, generateXp(10, 15));
-    //   } else {
-    //     addUserXp(guildId, userId, generateXp(10, 15));
-    //   }
-    // }
+      const xp = Math.ceil(Math.random() * (5 * 10));
+      await updateUserById(userId, guildId, { xp: user.xp + xp });
+    }
 
     // check if message has a badword in it
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {

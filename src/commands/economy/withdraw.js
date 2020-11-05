@@ -14,7 +14,7 @@ module.exports = {
 
     if (!amount) return message.reply("Please provide an amount to withdraw");
 
-    if (bank !== 0 && amount === "all") {
+    if (amount === "all") {
       updateUserById(member.id, message.guild.id, {
         money: user.money + bank,
         bank: user.bank - bank,

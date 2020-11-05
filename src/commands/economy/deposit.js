@@ -16,7 +16,7 @@ module.exports = {
       return message.reply("Please provide an amount to deposit");
     }
 
-    if (money !== 0 && amount === "all") {
+    if (amount === "all") {
       await updateUserById(member.id, message.guild.id, {
         bank: user.bank + money,
         money: user.money - money,

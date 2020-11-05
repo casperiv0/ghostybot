@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getUserXp } = require("../../utils/functions");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "xp",
@@ -7,13 +7,12 @@ module.exports = {
   category: "levels",
   usage: "xp <user>",
   async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    let usersXp = await getUserXp(message.guild.id, user.id);
-    if (usersXp === null) usersXp = 0;
+    const member = message.mentions.users.first() || message.author;
+    const { user } = await getUserById(member.id, message.guild.id);
 
     const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s XP`)
-      .setDescription(`Total XP: ${usersXp}`)
+      .setTitle(`${member.username}'s XP`)
+      .setDescription(`Total XP: ${user.xp}`)
       .setColor("BLUE")
       .setFooter(message.author.username)
       .setTimestamp();

@@ -45,6 +45,12 @@ async function updateUserById(userId, guildId, data) {
       throw Error("'data' must be an object");
     }
 
+    const user = await getUserById(userId, guildId);
+
+    if (!user) {
+      await addUser(guildId);
+    }
+
     await User.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
   } catch (e) {
     console.error(e);

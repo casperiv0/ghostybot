@@ -8,6 +8,8 @@ const userSchema = new Schema({
   bank: { type: Number, default: 0 },
   daily: { type: Number, default: null },
   work: { type: Number, default: null },
+  xp: { type: Number, default: 0 },
+  blacklisted: { type: Boolean, default: false },
 });
 
 module.exports = model("User", userSchema);
