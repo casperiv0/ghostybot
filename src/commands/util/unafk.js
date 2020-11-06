@@ -7,7 +7,7 @@ module.exports = {
   description: "",
   async execute(bot, message) {
     if (!bot.afk.has(message.author.id)) {
-      return message.channel.send("You are not already afk.");
+      return message.channel.send("You are not afk.");
     }
 
     let options = {
