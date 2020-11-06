@@ -6,6 +6,10 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message) {
+    if (!bot.afk.has(message.author.id)) {
+      return message.channel.send("You are not already afk.");
+    }
+
     let options = {
       justafk: false,
     };
@@ -17,12 +21,5 @@ module.exports = {
       .setColor("BLUE");
 
     message.channel.send(embed);
-    if (message.member.nickname) {
-      if (message.member.nickname.includes("[AFK]")) {
-        message.member.setNickname("");
-      }
-    } else {
-      message.member.setNickname(`${message.author.username}`);
-    }
   },
 };

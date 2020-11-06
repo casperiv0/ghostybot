@@ -6,6 +6,10 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
+    if (bot.afk.has(message.author.id)) {
+      return message.channel.send("You are already afk!");
+    }
+
     const reason = args.join(" ");
 
     const options = {
@@ -15,7 +19,9 @@ module.exports = {
 
     bot.afk.set(message.author.id, options);
 
-    const embed = BaseEmbed(message).setDescription(`You are now afk!\nReason: ${options.reason}`);
+    const embed = BaseEmbed(message).setDescription(
+      `You are now afk!\nReason: ${options.reason}`
+    );
 
     message.channel.send(embed);
   },
