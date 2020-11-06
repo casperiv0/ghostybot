@@ -1,5 +1,9 @@
 const { MessageEmbed } = require("discord.js");
-const { getGuildById, removeUser } = require("../utils/functions");
+const {
+  getGuildById,
+  removeUser,
+  removeUserWarnings,
+} = require("../utils/functions");
 
 module.exports = {
   name: "guildMemberRemove",
@@ -33,6 +37,7 @@ module.exports = {
       bot.channels.cache.get(leaveChannel).send(embed);
 
       await removeUser(member.user.id, member.guild.id);
+      await removeUserWarnings(member.user.id, member.guild.id);
     }
   },
 };

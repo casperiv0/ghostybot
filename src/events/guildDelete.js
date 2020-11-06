@@ -1,4 +1,8 @@
-const { removeGuild, removeUser } = require("../utils/functions");
+const {
+  removeGuild,
+  removeUser,
+  removeUserWarnings,
+} = require("../utils/functions");
 
 module.exports = {
   name: "guildDelete",
@@ -7,6 +11,7 @@ module.exports = {
 
     guild.members.cache.forEach(async (member) => {
       await removeUser(member.id, guild.id);
+      await removeUserWarnings(member.id, guild.id);
     });
   },
 };

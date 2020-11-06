@@ -3,6 +3,7 @@ const { model, Schema } = require("mongoose");
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
+  level_up_messages: { type: Boolean, default: false },
   store: { type: Array, default: null },
   blacklistedwords: { type: Array, default: null },
   announcement_channel: { type: String, default: null },

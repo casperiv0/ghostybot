@@ -13,6 +13,7 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
+    "level-messages",
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
@@ -21,12 +22,15 @@ module.exports = {
     const item =
       message.mentions.channels.first() || message.mentions.roles.first();
 
-    if (!option)
+    if (!option) {
       return message.channel.send(
         "Please provide an valid option (`suggest-channel`, `announce-channel`, `welcome-channel`, `leave-channel`, `audit-channel`, `welcome-role` or `mod-log`)"
       );
-    if (!item)
+    }
+
+    if (option !== "level-messages" && !item) {
       return message.channel.send("Please provide a valid channel or role!");
+    }
 
     switch (option.toLowerCase()) {
       case "suggest-channel":
@@ -61,6 +65,10 @@ module.exports = {
       case "welcome-role":
         updateItem("welcome_role", item, guildId);
         message.channel.send(`Enabled welcome roles. Welcome role: ${item}`);
+        break;
+      case "level-messages":
+        updateItem("level_up_messages", true, guildId);
+        message.channel.send("Successfully Enabled level up messages!");
         break;
       default:
         return message.channel.send(`\`${option}\` is not a option!`);

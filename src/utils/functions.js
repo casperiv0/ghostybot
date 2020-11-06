@@ -207,10 +207,13 @@ const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
 const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
+const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
+
 module.exports = {
   errorEmbed,
   formatDate,
   toCapitalize,
+  calculateUserXp,
   getUserById,
   addGuild,
   addUser,

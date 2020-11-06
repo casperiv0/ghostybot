@@ -4,10 +4,11 @@ const {
   getUserById,
   updateUserById,
   errorEmbed,
+  calculateUserXp,
 } = require("../utils/functions");
 const queue = new Map();
-const { MessageEmbed } = require("discord.js");
 const { ownerId } = require("../../config.json");
+const BaseEmbed = require("../modules/BaseEmbed");
 
 module.exports = {
   name: "message",
@@ -45,8 +46,26 @@ module.exports = {
     // xp - levels
     if (!message.author.bot) {
       const { user } = await getUserById(userId, guildId);
-
       const xp = Math.ceil(Math.random() * (5 * 10));
+      const level = calculateUserXp(user.xp);
+      const newLevel = calculateUserXp(user.xp + xp);
+
+      if (newLevel > level) {
+        if (guild.level_up_messages === true) {
+          const embed = BaseEmbed(message)
+            .setTitle("Level up!")
+            .addField("New level", newLevel)
+            .addField("Total xp", user.xp + xp);
+
+          const msg = await message.channel.send(embed);
+          const MSG_TIMEOUT_10_SECS = 10000;
+
+          setTimeout(() => {
+            msg.delete();
+          }, MSG_TIMEOUT_10_SECS);
+        }
+      }
+
       await updateUserById(userId, guildId, { xp: user.xp + xp });
     }
 
@@ -83,12 +102,11 @@ module.exports = {
     const customCmds = guild?.custom_commands;
 
     if (message.mentions.has(bot.user.id) && !command) {
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle("Quick Info")
         .addField("Prefix", serverPrefix)
         .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-        .setColor("BLUE");
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809");
 
       message.channel.send(embed);
     }

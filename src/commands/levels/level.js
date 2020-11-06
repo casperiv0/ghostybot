@@ -1,5 +1,5 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const { getUserById } = require("../../utils/functions");
+const { getUserById, calculateUserXp } = require("../../utils/functions");
 
 module.exports = {
   name: "level",
@@ -9,7 +9,7 @@ module.exports = {
   async execute(_bot, message) {
     const member = message.mentions.users.first() || message.author;
     const { user } = await getUserById(member.id, message.guild.id);
-    const level = Math.floor(0.1 * Math.sqrt(user.xp));
+    const level = calculateUserXp(user.xp);
 
     const embed = BaseEmbed(message)
       .setTitle(`${member.username}'s Level`)
