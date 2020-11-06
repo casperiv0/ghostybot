@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "afk",
@@ -6,29 +6,17 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
-    let reason = args.join(" ");
+    const reason = args.join(" ");
 
-    let options = {
+    const options = {
       reason: `${reason || "AFK"}`,
-      id: message.author.id,
-      justafk: true,
+      user_id: message.author.id,
     };
 
     bot.afk.set(message.author.id, options);
 
-    const embed = new MessageEmbed()
-      .setTimestamp()
-      .setDescription(`You are now afk!\nReason: ${reason || "AFK"}`)
-      .setColor("BLUE");
+    const embed = BaseEmbed(message).setDescription(`You are now afk!\nReason: ${options.reason}`);
 
     message.channel.send(embed);
-
-    if (message.member.nickname) {
-      if (!message.member.nickname.includes("[AFK] ")) {
-        message.member.setNickname(`[AFK] ${message.member.nickname}`);
-      }
-    } else {
-      message.member.setNickname(`[AFK] ${message.author.username}`);
-    }
   },
 };
