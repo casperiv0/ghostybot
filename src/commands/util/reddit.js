@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "subreddit",
@@ -24,13 +24,10 @@ module.exports = {
       const url = `https://reddit.com${permaLink}`;
       const image = children.data.url;
 
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(children.data.subreddit)
         .setURL(url)
-        .setImage(image)
-        .setColor("BLUE")
-        .setFooter(message.author.username)
-        .setTimestamp();
+        .setImage(image);
 
       message.channel.send(embed);
     } catch {

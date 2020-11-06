@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const { imdbKey } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "imdb",
@@ -20,9 +20,8 @@ module.exports = {
       const movie = await bot.imdb.get({ name: search });
       const released = new Date(movie.released).toLocaleDateString();
 
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(movie.title)
-        .setColor("BLUE")
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)
         .addField("Ratings", movie.rating, true)

@@ -5,7 +5,7 @@ module.exports = {
   description: "Sticky a message to the bottom of the screen",
   aliases: ["removesticky"],
   category: "admin",
-  botPermissions: ["MANAGE_MESSAGES"],
+  botPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
   memberPermissions: ["MANAGE_MESSAGES"],
   execute(bot, message) {
     message.delete();

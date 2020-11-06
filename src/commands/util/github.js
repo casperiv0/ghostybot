@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "github",
@@ -28,7 +28,7 @@ module.exports = {
     const location = user.location ? user.location : "N/A";
     const bio = user.bio ? user.bio : "N/A";
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setAuthor(user.name)
       .setTitle(`${user.login}'s Profile`)
       .addField("**Twitter**", twitter, true)
@@ -38,9 +38,7 @@ module.exports = {
       .addField("**Location**", location, true)
       .addField("Profile URL", user.html_url)
       .setDescription(`Bio: ${bio}`)
-      .setColor("BLUE")
-      .setThumbnail(user.avatar_url)
-      .setFooter(message.author.username);
+      .setThumbnail(user.avatar_url);
 
     message.channel.send(embed);
   },

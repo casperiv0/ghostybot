@@ -1,5 +1,5 @@
 const { feedBackChannelId } = require("../../../config.json");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "feedback",
@@ -15,12 +15,9 @@ module.exports = {
 
     if (!feedBackChannelId || feedBackChannelId === "") return;
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setTitle(`${message.author.username} New Feedback`)
-      .setDescription(feedback)
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .setDescription(feedback);
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
 

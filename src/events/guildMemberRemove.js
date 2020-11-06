@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getGuildById } = require("../utils/functions");
+const { getGuildById, removeUser } = require("../utils/functions");
 
 module.exports = {
   name: "guildMemberRemove",
@@ -31,6 +31,8 @@ module.exports = {
         .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
 
       bot.channels.cache.get(leaveChannel).send(embed);
+
+      await removeUser(member.user.id, member.guild.id);
     }
   },
 };

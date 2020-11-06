@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "npm",
@@ -18,9 +18,8 @@ module.exports = {
 
     const foundPackages = data.objects.map(({ package: pkg }) => pkg);
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle("NPM Search")
-      .setColor("BLUE")
       .setDescription(`Top 5 found results for **${query}**`);
 
     foundPackages.forEach((pkg) => {

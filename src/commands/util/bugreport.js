@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { reportsChannelId } = require("../../../config.json");
 
 module.exports = {
@@ -16,12 +16,9 @@ module.exports = {
 
     if (!bug) return message.channel.send("Please provide a bug");
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setTitle(`${message.author.username} has reported a bug`)
-      .setDescription(bug)
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .setDescription(bug);
 
     bot.channels.cache.get(reportsChannelId).send(embed);
 

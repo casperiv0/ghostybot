@@ -1,6 +1,6 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 const { openWeatherMapKey } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "weather",
@@ -11,11 +11,13 @@ module.exports = {
 
     if (!query) return message.channel.send("Please provide a city/country");
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${openWeatherMapKey}&units=metric`;
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+      query
+    )}&appid=${openWeatherMapKey}&units=metric`;
     const data = await fetch(url).then((res) => res.json());
-    
+
     if (data.cod === 401)
-        return message.channel.send("API key is invalid or incorrect!");
+      return message.channel.send("API key is invalid or incorrect!");
 
     if (data.cod === "404")
       return message.channel.send(`City: **${query}** was not found!`);
@@ -28,7 +30,7 @@ module.exports = {
     const windDeg = data.wind.deg;
     const country = data.sys.country;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${data.name}'s Weather`)
       .addField("**Main**", main, true)
       .addField("**Current**", desc, true)

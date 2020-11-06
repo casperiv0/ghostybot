@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const PlayStore = require("google-play-scraper");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "playstore",
@@ -24,17 +24,14 @@ module.exports = {
         return message.channel.send("No Application Found!");
       }
 
-      const Embed = new MessageEmbed()
-        .setColor("BLUE")
+      const Embed = BaseEmbed(message)
         .setThumbnail(App.icon)
         .setURL(App.url)
         .setTitle(`${App.title}`)
         .setDescription(App.summary)
         .addField("Price", App.priceText, true)
         .addField("Developer", App.developer, true)
-        .addField("Score", App.scoreText, true)
-        .setFooter(`Requested by ${message.author.username}`)
-        .setTimestamp();
+        .addField("Score", App.scoreText, true);
 
       return message.channel.send(Embed);
     });

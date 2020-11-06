@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const wd = require("word-definition");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "define",
@@ -16,12 +16,10 @@ module.exports = {
       if (data.err) {
         message.channel.send(`No definition found for ${word}`);
       } else {
-        const embed = new MessageEmbed()
+        const embed = BaseEmbed(message)
           .setTitle(`Definition for ${word}`)
           .addField("Category", data.category)
-          .addField("definition", data.definition)
-          .setTimestamp()
-          .setFooter(message.author.username);
+          .addField("definition", data.definition);
 
         message.channel.send(embed);
       }

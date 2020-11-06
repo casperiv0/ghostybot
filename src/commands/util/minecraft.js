@@ -1,10 +1,11 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "minecraft",
   description: "Get info about a minecraft server",
   category: "util",
+  aliases: ["mc"],
   async execute(bot, message, args) {
     const server = args[0];
 
@@ -21,18 +22,15 @@ module.exports = {
     const description = data.motd;
     const version = data.server.name;
     const protocol = data.server.protocol;
-    
-    const embed = new MessageEmbed()
-      .setTitle(server)
+
+    const embed = BaseEmbed(message)
+      .setTitle(`${server}`)
       .addField("**Status**", status, true)
       .addField("**Players**", players, true)
       .addField("**Max Players**", maxPlayers, true)
       .addField("**Version**", version, true)
       .addField("**Protocol**", protocol, true)
-      .addField("**Description**", description)
-      .setColor("BLUE")
-      .setTimestamp()
-      .setFooter(message.author.username);
+      .addField("**Description**", description ? description : "None");
 
     message.channel.send(embed);
   },

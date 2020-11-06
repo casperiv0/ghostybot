@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "pokemon",
@@ -17,10 +17,8 @@ module.exports = {
         )}`
       ).then((res) => res.json());
 
-      const embed = new MessageEmbed()
-        .setFooter(message.author.username)
+      const embed = BaseEmbed(message)
         .setTitle(data.name)
-        .setColor("BLUE")
         .setDescription(data.description)
         .addField("ID", data.id, true)
         .addField("Type", data.type, true)
@@ -46,8 +44,7 @@ module.exports = {
           **Speed:** ${data.stats.speed} 
           **Total:** ${data.stats.total}`
         )
-        .setThumbnail(`${data.sprites.animated}`)
-        .setTimestamp();
+        .setThumbnail(`${data.sprites.animated}`);
 
       message.channel.send({ embed });
     } catch (e) {

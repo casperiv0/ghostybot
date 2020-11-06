@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
     name: "morse",
@@ -98,11 +98,9 @@ module.exports = {
         };
         args = args.replace(/./g, x => `${morseCode[x]}\u2001`).trim();
 
-        const embed = new MessageEmbed()
-            .setColor("BLUE")
+        const embed = BaseEmbed(message)
             .setTitle("Morse code")
-            .setDescription(args)
-            .setFooter(message.author.username);
+            .setDescription(args);
 
         message.channel.send(embed);
     }

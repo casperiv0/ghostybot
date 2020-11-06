@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 const request = require("request");
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "image",
@@ -21,7 +21,7 @@ module.exports = {
       },
     };
 
-    request(options, function (error, response, responseBody) {
+    request(options, function (error, _response, responseBody) {
       if (error) {
         return;
       }
@@ -40,9 +40,7 @@ module.exports = {
 
       const randomIndex = Math.floor(Math.random() * urls.length);
       const image = urls[randomIndex];
-      const embed = new MessageEmbed()
-        .setColor("BLUE")
-        .setImage(image);
+      const embed = BaseEmbed(message).setImage(image);
       message.channel.send(embed);
     });
   },

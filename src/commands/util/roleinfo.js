@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { formatDate } = require("../../utils/functions");
 
 module.exports = {
@@ -18,14 +18,12 @@ module.exports = {
     const id = role.id;
     const color = role.color;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`**${name}**`)
       .setColor(color)
       .addField("**Created At**", createdAt, true)
       .addField("**Mentionable**", mentionable, true)
-      .addField("**Id**", id, true)
-      .setTimestamp()
-      .setFooter(message.author.username);
+      .addField("**Id**", id, true);
 
     message.channel.send(embed);
   },

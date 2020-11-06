@@ -1,5 +1,5 @@
 const wiki = require("wikijs").default();
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "wiki",
   aliases: ["wikipediasearch", "wikipedia"],
@@ -21,16 +21,13 @@ module.exports = {
     const title = result.raw.title;
     const url = result.raw.fullurl;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`${title} (read more)`)
       .setURL(url)
       .setDescription(
-        `${description.slice(0, 2045)}${
-          description.length > 2048 ? "..." : ""
-        }`
-      )
-      .setColor("BLUE")
-      .setFooter(message.author.username);
+        `${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`
+      );
+      
     message.channel.send("", embed);
   },
 };

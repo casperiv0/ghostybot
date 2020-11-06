@@ -1,5 +1,6 @@
-const { Util, MessageEmbed } = require("discord.js");
+const { Util } = require("discord.js");
 const { parse } = require("twemoji-parser");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "enlarge",
@@ -7,10 +8,13 @@ module.exports = {
   category: "util",
   async execute(bot, message, args) {
     const emoji = args[0];
-    if (!emoji) return message.channel.send("No emoji provided!");
+    if (!emoji) {
+      return message.channel.send("No emoji provided!");
+    }
 
     const custom = Util.parseEmoji(emoji);
-    const embed = new MessageEmbed()
+
+    const embed = BaseEmbed(message)
       .setTitle(`Enlarged version of ${emoji}`)
       .setColor("BLUE");
 

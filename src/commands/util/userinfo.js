@@ -1,6 +1,6 @@
-const { MessageEmbed } = require("discord.js");
 const { formatDate } = require("../../utils/functions");
 const badges = require("../../data/badges.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "userinfo",
@@ -35,11 +35,13 @@ module.exports = {
     if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
     if (member.presence.clientStatus.web) {
       embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
-    } if (member.presence.clientStatus.mobile) {
+    }
+    if (member.presence.clientStatus.mobile) {
       embedStatus.push(
         `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
       );
-    } if (member.presence.clientStatus.desktop) {
+    }
+    if (member.presence.clientStatus.desktop) {
       embedStatus.push(
         `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
       );
@@ -57,7 +59,7 @@ module.exports = {
 
     const { username, id, tag } = member.user;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .addField("**Id**", id, true)
       .addField("**Username**", username, true)
       .addField("**Bot**", isBot, true)
@@ -69,10 +71,7 @@ module.exports = {
       .addField("**Status**", embedStatus, true)
       .addField(`**Roles (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
-      .setColor("BLUE")
-      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setTimestamp()
-      .setFooter(message.author.username);
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
 
     message.channel.send(embed);
   },

@@ -1,6 +1,6 @@
-const { MessageEmbed } = require("discord.js");
 const { formatDate, toCapitalize } = require("../../utils/functions");
 const regions = require("../../data/regions.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "serverinfo",
@@ -48,10 +48,9 @@ module.exports = {
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(name)
       .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
-      .setColor("BLUE")
       .addField("**Server Owner**", owner, true)
       .addField("**Roles Count**", roles, true)
       .addField("**Channel Count**", channels, true)
@@ -67,6 +66,7 @@ module.exports = {
       .addField("**Verified**", isVerified, true)
       .addField("**Partnered**", isPartnered, true)
       .setImage(inviteBanner);
+
     message.channel.send(embed);
   },
 };

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "servericon",
@@ -9,13 +9,10 @@ module.exports = {
     if (icon === null) {
       message.channel.send("The server has no icon");
     } else {
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle(`${message.guild.name}'s icon`)
-        .setTimestamp()
-        .setImage(icon)
-        .setFooter(message.author.username)
-        .setColor("BLUE");
-
+        .setImage(icon);
+        
       message.channel.send(embed);
     }
   },
