@@ -14,7 +14,7 @@ module.exports = {
     evaled = require("util").inspect(evaled, { depth: 0, maxArrayLength: null });
     const type = eevaled[0].toUpperCase() + eevaled.slice(1)
 
-    const embed = BaseEmbed()
+    const embed = BaseEmbed(message)
   .setTitle("Eval Command")
   .setDescription(`\`Type:\` ${type}
 \`Input:\` \`\`\`js\n${toEval} \`\`\`
@@ -23,7 +23,7 @@ module.exports = {
   message.channel.send(embed)
   } catch(error) {
     
-  const errorEmbed = BaseEmbed()
+  const errorEmbed = BaseEmbed(message)
   .setTitle("Eval Command")
   .setDescription(`\`\`\`${error}\`\`\``)
     
