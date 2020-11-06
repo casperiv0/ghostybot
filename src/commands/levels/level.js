@@ -5,7 +5,7 @@ module.exports = {
   name: "level",
   description: "Get your current level",
   category: "levels",
-  aliases: ["lvl"],
+  aliases: ["lvl", "rank"],
   async execute(_bot, message) {
     const member = message.mentions.users.first() || message.author;
     const { user } = await getUserById(member.id, message.guild.id);

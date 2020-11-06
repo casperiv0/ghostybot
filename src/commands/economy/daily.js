@@ -6,7 +6,7 @@ module.exports = {
   category: "economy",
   async execute(bot, message) {
     const { user } = await getUserById(message.author.id, message.guild.id);
-    const timeout = 86400000;
+    const timeout = 86400000; /* 24h timeout */
     const amount = 500;
     const currentMoney = user.money;
     const daily = user.daily;

@@ -7,6 +7,7 @@ const userSchema = new Schema({
   money: { type: Number, default: 0 },
   bank: { type: Number, default: 0 },
   daily: { type: Number, default: null },
+  weekly: { type: Number, default: null },
   work: { type: Number, default: null },
   xp: { type: Number, default: 0 },
   blacklisted: { type: Boolean, default: false },
