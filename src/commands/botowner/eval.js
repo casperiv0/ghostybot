@@ -1,4 +1,3 @@
-const util = require("util");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
@@ -9,19 +8,26 @@ module.exports = {
   aliases: ["e"],
   async execute(bot, message, args) {
     const toEval = args.join(" ");
-    if (!toEval) return message.channel.send("Please provide text");
+   try {
+    let evaled = await eval(toEval);
+    let eevaled = typeof evaled;
+    evaled = require("util").inspect(evaled, { depth: 0, maxArrayLength: null });
+    const type = eevaled[0].toUpperCase() + eevaled.slice(1)
 
-    try {
-      const evaluated = util.inspect(eval(toEval, { depth: 0 }));
-
-      const embed = BaseEmbed(message)
-        .setTitle("Eval Command")
-        .addField("**Input:**", `\`\`\`${toEval}\`\`\``)
-        .addField("**Output:**", ` \`\`\`${evaluated}\`\`\``);
-
-      message.channel.send(embed);
-    } catch (e) {
-      return message.channel.send(`Something went wrong!  \`\`\`${e}\`\`\`  `);
+    const embed = BaseEmbed(message)
+  .setTitle("Eval Command")
+  .setDescription(`\`Type:\` ${type}
+\`Input:\` \`\`\`js\n${toEval} \`\`\`
+\`Output:\` \`\`\`js\n${evaled}\`\`\``)
+  
+  message.channel.send(embed)
+  } catch(error) {
+    
+  const errorEmbed = BaseEmbed(message)
+  .setTitle("Eval Command")
+  .setDescription(`\`\`\`${error}\`\`\``)
+    
+  message.channel.send(errorEmbed)
     }
   },
 };
