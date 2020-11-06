@@ -14,6 +14,7 @@ const TnaiClient = require("tnai");
 const tnai = new TnaiClient();
 
 const Kitsu = require("kitsu");
+const { findMember } = require("./utils/functions");
 const kitsu = new Kitsu();
 
 // Commands
@@ -25,6 +26,7 @@ bot.neko = neko;
 bot.tnai = tnai;
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.kitsu = kitsu;
+bot.findMember = findMember;
 
 const giveawayManager = new GiveawaysManager(bot, {
   storage: "src/data/giveaways.json",

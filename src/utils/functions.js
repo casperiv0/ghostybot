@@ -195,6 +195,14 @@ const errorEmbed = (permissions, message) => {
     .setColor("ORANGE");
 };
 
+function findMember(message, args) {
+  return message.guild.member(
+    message.mentions.users.first() ||
+      message.guild.members.cache.get(args[0]) ||
+      message.guild.members.cache.find((m) => m.user.tag === args[0])
+  );
+}
+
 const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
 const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -216,4 +224,5 @@ module.exports = {
   addSticky,
   getSticky,
   removeSticky,
+  findMember,
 };
