@@ -13,7 +13,7 @@ module.exports = {
 
     const embed = BaseEmbed(message).setTitle(`${message.guild.name}'s Roles`)
       .setDescription(`Roles:
-${roles.length > 2048 ? roles.slice(0, 2048) + ".." : roles}`);
+${roles.length > 2048 ? roles.slice(0, 2000) + "..." : roles}`);
 
     message.channel.send(embed);
   },

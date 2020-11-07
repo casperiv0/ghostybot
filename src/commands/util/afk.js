@@ -7,21 +7,27 @@ module.exports = {
   description: "",
   async execute(bot, message, args) {
     if (bot.afk.has(message.author.id)) {
-      return message.channel.send("You are already afk!");
+      bot.afk.delete(message.author.id);
+
+      const embed = BaseEmbed(message)
+        .setTitle("Success")
+        .setDescription("You are not afk anymore");
+
+      return message.channel.send(embed);
     }
 
     const reason = args.join(" ");
 
     const options = {
-      reason: `${reason || "AFK"}`,
+      reason: `${reason || "Not specified"}`,
       user_id: message.author.id,
     };
 
     bot.afk.set(message.author.id, options);
 
-    const embed = BaseEmbed(message).setDescription(
-      `You are now afk!\nReason: ${options.reason}`
-    );
+    const embed = BaseEmbed(message)
+      .setTitle("Success")
+      .setDescription(`You are now afk!\n**Reason:** ${options.reason}`);
 
     message.channel.send(embed);
   },
