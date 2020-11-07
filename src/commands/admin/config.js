@@ -4,7 +4,7 @@ const { getGuildById } = require("../../utils/functions");
 module.exports = {
   name: "config",
   description: "Returns the config",
-  category: "admin",
+  category: "exempt",
   aliases: ["conf", "cfg"],
   async execute(bot, message) {
     const { name, id: guildId } = message.guild;

@@ -13,6 +13,7 @@ const guildSchema = new Schema({
   welcome_role: { type: String, default: null },
   custom_commands: { type: Array, default: null },
   disabled_commands: { type: Array, default: [] },
+  disabled_categories: { type: Array, default: [] },
   sticky_data: { type: Object, default: null },
 });
 

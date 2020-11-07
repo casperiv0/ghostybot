@@ -4,7 +4,7 @@ const { ownerId } = require("../../../config.json");
 module.exports = {
   name: "prefix",
   description: "Set a prefix for your server",
-  category: "admin",
+  category: "exempt",
   async execute(bot, message, args) {
     const prefix = args[0];
     const guild = await getGuildById(message.guild.id);

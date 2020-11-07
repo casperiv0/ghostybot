@@ -1,20 +1,7 @@
 const { getGuildById } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
-
-const categories = [
-  "admin",
-  "animal",
-  "botowner",
-  "economy",
-  "games",
-  "hentainsfw",
-  "image",
-  "levels",
-  "music",
-  "nsfw",
-  "util",
-];
+const categories = require("../../data/categories.json");
 
 module.exports = {
   name: "help",
@@ -120,6 +107,10 @@ module.exports = {
       .filter(({ category }) => category === "hentainsfw")
       .map(({ name }) => name)
       .join(", ");
+    const exemptCmds = commands
+      .filter(({ category }) => category === "exempt")
+      .map(({ name }) => name)
+      .join(", ");
 
     const embed = BaseEmbed(message)
       .addField("Admin Commands", `\`\`\`${adminCmds}\`\`\``)
@@ -149,6 +140,10 @@ module.exports = {
       .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
       .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
       .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
+      .addField(
+        "Exempt Commands (commands that cannot be disabled) ",
+        `\`\`\`${exemptCmds}\`\`\``
+      )
       .addField("Server prefix: ", prefix)
       .setDescription(
         `use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`

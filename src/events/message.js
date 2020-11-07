@@ -21,6 +21,7 @@ module.exports = {
     const blacklistedWords = guild.blacklistedwords;
     const mentions = message.mentions.members;
     const disabledCommands = guild.disabled_commands;
+    const disabledCategories = guild.disabled_categories;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = guild.prefix;
@@ -154,6 +155,14 @@ module.exports = {
         const now = Date.now();
         const timestamps = cooldowns.get(cmd.name);
         const cooldownAmount = cmd.cooldown * 1000;
+
+        if (disabledCategories.length > 0) {
+          if (disabledCategories.includes(cmd.category)) {
+            return message.channel.send(
+              `That command is disabled because this guild disabled the ${cmd.category} category`
+            );
+          }
+        }
 
         if (disabledCommands.length > 0) {
           if (disabledCommands.includes(cmd.name)) {
