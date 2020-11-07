@@ -4,7 +4,6 @@ module.exports = {
   name: "unset",
   description: "Unset/disable an option",
   usage: "unset <option>",
-  aliases: ["disable"],
   options: [
     "welcome-channel",
     "leave-channel",

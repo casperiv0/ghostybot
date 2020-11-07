@@ -10,7 +10,7 @@ module.exports = {
       res.json()
     );
 
-    const embed = BaseEmbed()
+    const embed = BaseEmbed(message)
       .setDescription(`[Click here if the image failed to load.](${data.url})`)
       .setImage(`${data.url}`);
 

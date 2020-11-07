@@ -21,7 +21,7 @@ module.exports = {
     const level = calculateUserXp(xp);
 
     const embed = BaseEmbed(message)
-      .setTitle(`${user.username}'s profile`)
+      .setTitle(`${member.username}'s profile`)
       .addField("**XP**", xp, true)
       .addField("**Level**", level, true)
       .addField("**Money**", money, true)

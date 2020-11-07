@@ -20,10 +20,13 @@ module.exports = {
     const guild = await getGuildById(guildId);
     const blacklistedWords = guild.blacklistedwords;
     const mentions = message.mentions.members;
+    const disabledCommands = guild.disabled_commands;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = guild.prefix;
-    const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
+    const prefix = new RegExp(
+      `^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`
+    );
 
     // Check if sticky
     const sticky = await getSticky(message.channel.id);
@@ -75,7 +78,9 @@ module.exports = {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
             return message
-              .reply("You used a bad word the admin has set, therefore your message was deleted!")
+              .reply(
+                "You used a bad word the admin has set, therefore your message was deleted!"
+              )
               .then((msg) => {
                 setTimeout(() => {
                   msg.delete();
@@ -92,14 +97,21 @@ module.exports = {
         if (user) {
           const embed = BaseEmbed(message)
             .setTitle("AFK!")
-            .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.reason}`);
+            .setDescription(
+              `${member.user.tag} is AFK!\n **Reason:** ${user.reason}`
+            );
           message.channel.send(embed);
         }
       });
     }
 
     // Commands
-    if (!prefix.test(message.content) || message.author.bot || userId === bot.user.id) return;
+    if (
+      !prefix.test(message.content) ||
+      message.author.bot ||
+      userId === bot.user.id
+    )
+      return;
 
     const [, matchedPrefix] = message.content.match(prefix);
     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
@@ -135,12 +147,21 @@ module.exports = {
     const serverQueue = queue.get(message.guild.id);
 
     try {
-      const cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
+      const cmd =
+        bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
 
       if (bot.commands.has(cmd?.name)) {
         const now = Date.now();
         const timestamps = cooldowns.get(cmd.name);
         const cooldownAmount = cmd.cooldown * 1000;
+
+        if (disabledCommands.length > 0) {
+          if (disabledCommands.includes(cmd.name)) {
+            return message.channel.send(
+              "That command was disabled for this guild"
+            );
+          }
+        }
 
         if (cmd.ownerOnly && message.author.id !== ownerId) {
           return message.reply("This command can only be used by the owner!");
@@ -173,7 +194,7 @@ module.exports = {
             return message.channel.send(
               `You need: ${neededPermissions
                 .map((p) => `\`${p.toUpperCase()}\``)
-                .join(", ")} permissions`,
+                .join(", ")} permissions`
             );
           }
         }
@@ -188,9 +209,9 @@ module.exports = {
           if (now < expTime) {
             const timeleft = (expTime - now) / 1000;
             return message.reply(
-              `Please wait **${timeleft.toFixed(1)}** more seconds before using the **${
-                cmd.name
-              }** command`,
+              `Please wait **${timeleft.toFixed(
+                1
+              )}** more seconds before using the **${cmd.name}** command`
             );
           }
         }
