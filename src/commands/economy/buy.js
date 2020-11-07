@@ -15,7 +15,7 @@ module.exports = {
     const guild = await getGuildById(guildId);
     const { user } = await getUserById(message.author.id, message.guild.id);
     const inventory = user?.inventory;
-    const prefix = guild?.prefix || "!";
+    const prefix = guild.prefix;
     let query = args[0];
 
     if (!guild?.store) {

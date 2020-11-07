@@ -14,7 +14,7 @@ module.exports = {
     const guildId = message.guild.id;
     const guild = await getGuildById(guildId);
     const option = args[0];
-    const prefix = guild?.prefix || "!";
+    const prefix = guild.prefix;
     let item = args.slice(1)[0]; // Take first argument after option (item)
     const price = args.slice(1)[1]; // take second argument after option (price)
 

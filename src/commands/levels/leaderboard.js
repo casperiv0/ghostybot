@@ -1,5 +1,6 @@
 const User = require("../../models/User.model");
 const BaseEmbed = require("../../modules/BaseEmbed");
+const places = require("../../data/places.json");
 
 module.exports = {
   name: "leaderboard",
@@ -17,9 +18,15 @@ module.exports = {
 
     for (let i = 0; i < data.length; i++) {
       const userId = data[i].user_id;
-      const user = bot.users.cache.get(userId); // Get user
+      const user = bot.users.cache.get(userId);
+      const isInPlace = [0, 1, 2].includes(i);
+
       if (user) {
-        embed.addField(user.username, `${data[i].xp}xp`, true);
+        embed.addField(
+          user.username,
+          `${isInPlace ? places[i] : ""} ${data[i].xp}xp`,
+          true
+        );
       }
     }
 
