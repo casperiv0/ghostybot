@@ -8,11 +8,8 @@ module.exports = {
   usage: "!userinfo <user>",
   category: "util",
   aliases: ["whois", "user"],
-  async execute(_bot, message, args) {
-    const member =
-      message.guild.members.cache.get(args.join(" ")) ||
-      message.mentions.members.first() ||
-      message.member;
+  async execute(bot, message, args) {
+    const member = bot.findMember(message, args, true);
 
     if (!member) {
       return message.channel.send("User wasn't found!");
@@ -28,25 +25,29 @@ module.exports = {
       .join(" ");
 
     let statuses = {
-      online: "🟢",
-      idle: "🟠",
-      dnd: "🔴",
+      online: "<:online2:464520569975603200>",
+      idle: "<:away2:464520569862357002>",
+      dnd: "<:dnd2:464520569560498197>",
     };
 
     const embedStatus = [];
-    if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
-    if (member.presence.clientStatus.web) {
-      embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
-    }
-    if (member.presence.clientStatus.mobile) {
-      embedStatus.push(
-        `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
-      );
-    }
-    if (member.presence.clientStatus.desktop) {
-      embedStatus.push(
-        `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
-      );
+    if (!member.presence?.clientStatus) {
+      embedStatus.push("⚫ Offline");
+    } else {
+      if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
+      if (member.presence.clientStatus.web) {
+        embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
+      }
+      if (member.presence.clientStatus.mobile) {
+        embedStatus.push(
+          `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
+        );
+      }
+      if (member.presence.clientStatus.desktop) {
+        embedStatus.push(
+          `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
+        );
+      }
     }
 
     const roles =
