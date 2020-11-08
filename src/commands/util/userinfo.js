@@ -36,16 +36,16 @@ module.exports = {
     } else {
       if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
       if (member.presence.clientStatus.web) {
-        embedStatus.push(`\n${statuses[member.presence.clientStatus.web]} Web`);
+        embedStatus.push(`${statuses[member.presence.clientStatus.web]} Web`);
       }
       if (member.presence.clientStatus.mobile) {
         embedStatus.push(
-          `\n${statuses[member.presence.clientStatus.mobile]} Mobile`
+          `${statuses[member.presence.clientStatus.mobile]} Mobile`
         );
       }
       if (member.presence.clientStatus.desktop) {
         embedStatus.push(
-          `\n${statuses[member.presence.clientStatus.desktop]} Desktop`
+          `${statuses[member.presence.clientStatus.desktop]} Desktop`
         );
       }
     }
