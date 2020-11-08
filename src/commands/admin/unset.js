@@ -10,6 +10,7 @@ module.exports = {
     "audit-channel",
     "welcome-role",
     "mod-log",
+    "level-messages",
   ],
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],
@@ -35,6 +36,9 @@ module.exports = {
         break;
       case "suggest-channel":
         updateItem("suggest_channel", guildId);
+        break;
+      case "level-messages":
+        updateItem("level_up_messages", guildId);
         break;
       case "audit-channel":
         if (!webhook)

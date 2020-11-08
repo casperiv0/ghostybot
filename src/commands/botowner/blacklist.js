@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 const { ownerId } = require("../../../config.json");
 const { MessageEmbed } = require("discord.js");
 const User = require("../../models/User.model");
@@ -31,7 +30,7 @@ module.exports = {
     const users = await User.find({ blacklisted: true });
 
     switch (type) {
-      case "view":
+      case "view": {
         const usr = users.find((u) => u.user_id === member.id);
 
         if (!usr) {
@@ -45,7 +44,8 @@ module.exports = {
           .addField("Blacklist level", "2");
 
         return message.channel.send({ embed });
-      case "add":
+      }
+      case "add": {
         const existing = users.filter((u) => u.user_id === member.id)[0];
         if (existing) {
           return message.channel.send(`${member.tag} is already blacklisted`);
@@ -57,6 +57,7 @@ module.exports = {
           await User.findByIdAndUpdate(user._id, { blacklisted: true });
         });
         break;
+      }
       case "remove": {
         if (users === null) {
           return message.channel.send(`${member.tag} is not blacklisted`);

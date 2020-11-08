@@ -6,12 +6,12 @@ module.exports = {
   description: "balance",
   category: "economy",
   aliases: ["bal"],
-  async execute(bot, message) {
-    const member = message.mentions.users.first() || message.author;
+  async execute(bot, message, args) {
+    const member = bot.findMember(message, args, true);
     const { user } = await getUserById(member.id, message.guild.id);
 
     const embed = BaseEmbed(message)
-      .setTitle(`${member.username}'s Balance`)
+      .setTitle(`${member.user.username}'s Balance`)
       .addField("Pocket:", user.money)
       .addField("Bank", user.bank);
 

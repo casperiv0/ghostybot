@@ -10,8 +10,8 @@ module.exports = {
   description: "See the full profile of a user",
   category: "economy",
   cooldown: 2,
-  async execute(bot, message) {
-    const member = message.mentions.users.first() || message.author;
+  async execute(bot, message, args) {
+    const member = bot.findMember(message, args, true);
     const userId = member.id;
     const guildId = message.guild.id;
     const { user } = await getUserById(userId, guildId);

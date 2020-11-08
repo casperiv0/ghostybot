@@ -7,8 +7,8 @@ module.exports = {
   category: "economy",
   usage: "inventory <user>",
   aliases: ["inv"],
-  async execute(bot, message) {
-    const member = message.mentions.users.first() || message.author;
+  async execute(bot, message, args) {
+    const member = bot.findMember(message, args, true);
     const { user } = await getUserById(member.id, message.guild.id);
     const inventory = user?.inventory;
 

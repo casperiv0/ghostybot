@@ -14,7 +14,9 @@ module.exports = {
       message.mentions.members.first() ||
       message.member;
 
-    if (!member) return message.channel.send("User wasn't found!");
+    if (!member) {
+      return message.channel.send("User wasn't found!");
+    }
 
     const joinedAt = formatDate(member.joinedAt);
     const createdAt = formatDate(member.user.createdAt);

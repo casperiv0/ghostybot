@@ -195,11 +195,12 @@ const errorEmbed = (permissions, message) => {
     .setColor("ORANGE");
 };
 
-function findMember(message, args) {
+function findMember(message, args, allowAuthor) {
   return message.guild.member(
     message.mentions.users.first() ||
       message.guild.members.cache.get(args[0]) ||
-      message.guild.members.cache.find((m) => m.user.tag === args[0])
+      message.guild.members.cache.find((m) => m.user.tag === args[0]) ||
+      (allowAuthor === true ? message.member : null)
   );
 }
 
