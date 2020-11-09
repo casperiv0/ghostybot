@@ -19,7 +19,7 @@ module.exports = {
 
     if (newMsg.author.id === bot.user.id) return;
 
-    if (!oldMsg && !newMsg) {
+    if (!oldMsg.content || !newMsg.content) {
       return;
     }
 
