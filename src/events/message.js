@@ -7,7 +7,7 @@ const {
   calculateUserXp,
 } = require("../utils/functions");
 const queue = new Map();
-const { ownerId } = require("../../config.json");
+const { owners } = require("../../config.json");
 const BaseEmbed = require("../modules/BaseEmbed");
 
 module.exports = {
@@ -115,7 +115,10 @@ module.exports = {
       return;
 
     const [, matchedPrefix] = message.content.match(prefix);
-    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    const args = message.content
+      .slice(matchedPrefix.length)
+      .trim()
+      .split(/ +/g);
     const command = args.shift().toLowerCase();
     const customCmds = guild?.custom_commands;
 
@@ -172,8 +175,8 @@ module.exports = {
           }
         }
 
-        if (cmd.ownerOnly && message.author.id !== ownerId) {
-          return message.reply("This command can only be used by the owner!");
+        if (cmd.ownerOnly && !owners.includes(message.author.id)) {
+          return message.reply("This command can only be used by the owners!");
         }
 
         // botPermissions

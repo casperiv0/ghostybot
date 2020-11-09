@@ -1,7 +1,6 @@
-
 {
     "token": "",
-    "ownerId": "",
+    "owners": [],
     "youtubeApiKey": "",
     "imdbKey": "",
     "reportsChannelId": "",
