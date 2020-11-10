@@ -140,6 +140,7 @@ module.exports = {
     REQUESTED_BY: "Requested by",
     NO_PERMS: "I don't have the correct permissions for that voice channel!",
     NOT_SAME_VC: "You must be in the same voice chat as the bot",
+    ALREADY_IN_VC: "I'm already in that voice chat",
   },
   ECONOMY: {
     MONEY: "Money",
