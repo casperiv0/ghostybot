@@ -12,8 +12,8 @@ module.exports = {
     );
 
     const embed = BaseEmbed(message)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.file})`)
-      .setImage(`${data.file}`);
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
+      .setImage(`${data.link}`);
 
     message.channel.send(embed);
   },
