@@ -6,14 +6,15 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     if (!args[0]) {
-      return message.channel.send("You must enter something to search!");
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }
 
     const search = await wiki.search(args.join(" "));
 
     if (!search.results[0]) {
-      return message.channel.send("No results found");
+      return message.channel.send(lang.UTIL.NO_W_FOUND);
     }
 
     const result = await wiki.page(search.results[0]);
@@ -27,7 +28,7 @@ module.exports = {
       .setDescription(
         `${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`
       );
-      
+
     message.channel.send("", embed);
   },
 };

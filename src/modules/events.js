@@ -1,6 +1,6 @@
 const { readdirSync } = require("fs");
 
-module.exports = (bot) => {
+module.exports = function loadEvents(bot) {
   const eventFiles = readdirSync("./src/events/").filter((file) =>
     file.endsWith(".js")
   );

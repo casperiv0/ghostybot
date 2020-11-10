@@ -4,7 +4,12 @@ module.exports = {
   name: "block",
   description: "Write text with blocks",
   category: "games",
-  execute(_bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    if (!args.length) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
+
     const blocks = args
       .join(" ")
       .toLowerCase()
@@ -20,9 +25,7 @@ module.exports = {
       .replace(/9/g, ":nine:")
       .replace(/0/g, ":zero:");
 
-    const embed = BaseEmbed(message)
-      .setTitle("Block Text")
-      .setDescription(blocks);
+    const embed = BaseEmbed(message).setDescription(blocks);
 
     message.channel.send(embed);
   },

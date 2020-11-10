@@ -7,6 +7,7 @@ module.exports = {
   usage: "withdraw <all | amount>",
   aliases: ["with"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
     const { user } = await getUserById(member.id, message.guild.id);
     const bank = user.bank;
@@ -19,13 +20,13 @@ module.exports = {
         money: user.money + bank,
         bank: user.bank - bank,
       });
-      return message.channel.send("Successfully Withdrew all your money!");
+      return message.channel.send(lang.ECONOMY.WITHDRAW_ALL);
     }
 
     amount = Number(args[0]);
 
     if (typeof amount !== "number" || isNaN(amount)) {
-      return message.reply("Please provide a valid amount to withdraw");
+      return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
     if (bank < amount) {
@@ -38,6 +39,8 @@ module.exports = {
       money: user.money + Number(amount),
       bank: user.bank - amount,
     });
-    message.channel.send(`Successfully Withdrew **${amount} coins**`);
+    message.channel.send(
+      lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", amount)
+    );
   },
 };

@@ -9,6 +9,7 @@ module.exports = {
   category: "util",
   aliases: ["whois", "user"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args, true);
 
     if (!member) {
@@ -24,32 +25,6 @@ module.exports = {
       .map((flag) => badges[flag])
       .join(" ");
 
-    let statuses = {
-      online: "<:online2:464520569975603200>",
-      idle: "<:away2:464520569862357002>",
-      dnd: "<:dnd2:464520569560498197>",
-    };
-
-    const embedStatus = [];
-    if (!member.presence?.clientStatus) {
-      embedStatus.push("⚫ Offline");
-    } else {
-      if (member.presence.status === "offline") embedStatus.push("⚫ Offline");
-      if (member.presence.clientStatus.web) {
-        embedStatus.push(`${statuses[member.presence.clientStatus.web]} Web`);
-      }
-      if (member.presence.clientStatus.mobile) {
-        embedStatus.push(
-          `${statuses[member.presence.clientStatus.mobile]} Mobile`
-        );
-      }
-      if (member.presence.clientStatus.desktop) {
-        embedStatus.push(
-          `${statuses[member.presence.clientStatus.desktop]} Desktop`
-        );
-      }
-    }
-
     const roles =
       member.roles.cache
         .filter((r) => r.id !== message.guild.id)
@@ -63,16 +38,19 @@ module.exports = {
     const { username, id, tag } = member.user;
 
     const embed = BaseEmbed(message)
-      .addField("**Id**", id, true)
-      .addField("**Username**", username, true)
-      .addField("**Bot**", isBot, true)
-      .addField("**Tag**", tag, true)
-      .addField("**Badges**", userFlags.length > 0 ? userFlags : "None", true)
-      .addField("**Created At**", createdAt, true)
-      .addField("**Joined At**", joinedAt, true)
-      .addField("**Server Nickname**", nickname, true)
-      .addField("**Status**", embedStatus, true)
-      .addField(`**Roles (${roleCount})**`, roles)
+      .addField(`**${lang.MEMBER.ID}**`, id, true)
+      .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
+      .addField(`**${lang.MEMBER.BOT}**`, isBot, true)
+      .addField(`**${lang.MEMBER.TAG}**`, tag, true)
+      .addField(
+        `**${lang.MEMBER.BADGES}**`,
+        userFlags.length > 0 ? userFlags : "None",
+        true
+      )
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
+      .addField(`**${lang.MEMBER.JOINED_AT}**`, joinedAt, true)
+      .addField(`**${lang.MEMBER.NICKNAME}**`, nickname, true)
+      .addField(`**${lang.MEMBER.ROLES} (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
 

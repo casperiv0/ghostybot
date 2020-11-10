@@ -19,7 +19,6 @@ module.exports = {
     const comments = children.data.num_comments;
 
     const embed = BaseEmbed(message)
-      .setColor("BLUE")
       .setTitle(`${title}`)
       .setURL(url)
       .setImage(image)

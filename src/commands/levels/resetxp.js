@@ -5,14 +5,12 @@ module.exports = {
   description: "reset all users xp for current server",
   category: "levels",
   usage: "resetxp all",
+  memberPermissions: ["MANAGE_MEMBERS"],
   async execute(bot, message) {
-    if (!message.member.hasPermission("MANAGE_GUILD")) {
-      return message.channel.send("You need Manage Guild permission");
-    }
-
+    const lang = await bot.getGuildLang(message.guild.id);
     const filter = (m) => message.author.id === m.author.id;
 
-    message.channel.send("Reset All XP? y/n");
+    message.channel.send(lang.LEVELS.RESET_CONF);
 
     message.channel
       .awaitMessages(filter, {
@@ -31,9 +29,9 @@ module.exports = {
             });
           });
 
-          message.channel.send("Successfully reset everyone's xp");
+          message.channel.send(lang.LEVELS.RESET_SUCCESS);
         } else {
-          message.channel.send("resetxp was canceled");
+          message.channel.send(lang.LEVELS.RESET_CANCEL);
         }
       })
       .catch((e) => {

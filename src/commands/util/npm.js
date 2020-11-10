@@ -6,10 +6,11 @@ module.exports = {
   description: "Search packages on npm by their name",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");
 
     if (!query) {
-      return message.channel.send("Please provide a query");
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }
 
     const data = await fetch(
@@ -19,16 +20,16 @@ module.exports = {
     const foundPackages = data.objects.map(({ package: pkg }) => pkg);
 
     const embed = BaseEmbed(message)
-      .setTitle("NPM Search")
-      .setDescription(`Top 5 found results for **${query}**`);
+      .setTitle(lang.UTIL.NPM_SEARCH)
+      .setDescription(lang.UTIL.NPM_TOP_5.replace("{query}", query));
 
     foundPackages.forEach((pkg) => {
       embed.addField(
         pkg.name,
         `
-        **Version:** ${pkg.version}
-        **Author:** ${pkg?.publisher.username}
-        [**View on npm**](${pkg.links.npm})
+        **${lang.UTIL.VERSION}:** ${pkg.version}
+        **${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
+        [**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
         `
       );
     });

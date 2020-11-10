@@ -11,25 +11,22 @@ module.exports = {
   category: "music",
   usage: "play <youtube link | song name>",
   async execute(bot, message, args, serverQueue, queue) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const voiceChannel = message.member.voice.channel;
     const search = args[0];
 
     if (!search) {
-      return message.channel.send("Please provide a search query");
+      return message.channel.send(lang.MUSIC.PROVIDE_SEARCH);
     }
 
     if (!voiceChannel) {
-      return message.channel.send(
-        "You need to be in a voice channel to play music"
-      );
+      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
     const perms = voiceChannel.permissionsFor(message.client.user);
 
     if (!perms.has("CONNECT") || !perms.has("SPEAK")) {
-      return message.channel.send(
-        "I don't have the correct permissions for that voice channel!"
-      );
+      return message.channel.send(lang.MUSIC.NO_PERMS);
     }
 
     let song = null;
@@ -46,7 +43,7 @@ module.exports = {
       } else {
         const results = await youtube.searchVideos(args[0], 1);
 
-        if (!results[0]) {
+        if (!results[0]?.id) {
           return message.channel.send("There were no songs found");
         }
 
@@ -73,9 +70,8 @@ module.exports = {
       };
     } catch (e) {
       console.log(e);
-      return message.channel.send(
-        "There was an error getting the song details"
-      );
+      console.log("PLAY ARGS:", args);
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
 
     if (!serverQueue || serverQueue.songs.length <= 0) {
@@ -99,11 +95,9 @@ module.exports = {
         queueContruct.connection = connection;
 
         queueContruct.nowPlaying = queueContruct.songs[0];
-        play(message.guild, queueContruct.songs[0], queue, message);
+        play(message.guild, queueContruct.songs[0], queue, message, lang);
       } catch (e) {
-        return message.channel.send(
-          "There was an error when joining the voice channel"
-        );
+        console.log(e);
       }
     } else {
       serverQueue.songs.push(song);
@@ -111,19 +105,20 @@ module.exports = {
         .setTitle(song.title)
         .setURL(song.url)
         .setAuthor(
-          `Song has been added to the queue | ${
+          lang.MUSIC.ADDED_TO_QUEUE.replace(
+            "{songs}",
             serverQueue.songs.length - 1
-          } songs in queue`
+          )
         )
         .setImage(song.thumbnail)
-        .setDescription(`Duration: ${song.duration}s`);
+        .setDescription(`${lang.MUSIC.DURATION}: ${song.duration}s`);
 
       serverQueue.textChannel.send({ embed });
     }
   },
 };
 
-function play(guild, song, queue, message) {
+function play(guild, song, queue, message, lang) {
   const serverQueue = queue.get(guild.id);
   if (!song) {
     serverQueue.voiceChannel.leave();
@@ -136,7 +131,7 @@ function play(guild, song, queue, message) {
     .play(ytld(song.url), { bitrate: 96 })
     .on("finish", () => {
       serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0], queue, message);
+      play(guild, serverQueue.songs[0], queue, message, lang);
     })
     .on("error", (e) => console.log(e));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
@@ -145,14 +140,13 @@ function play(guild, song, queue, message) {
   const embed = BaseEmbed(message)
     .setTitle(song.title)
     .setURL(song.url)
-    .setAuthor("🎵 Now playing:")
+    .setAuthor(`🎵 ${lang.MUSIC.NOW_PLAYING}`)
     .setImage(`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`)
-    .setDescription(`Requested by ${song.requestedBy}`)
+    .setDescription(`${lang.MUSIC.REQUESTED_BY} ${song.requestedBy}`)
     .setFooter(
-      `Duration : ${song.duration} Seconds | Volume : ${
-        serverQueue.volume * 10
-      }%`,
-      message.author.user.displayAvatarURL({ dynamic: true })
+      `${lang.MUSIC.DURATION}: ${song.duration} ${lang.MUSIC.SECONDS} | ${
+        lang.MUSIC.VOLUME
+      }: ${serverQueue.volume * 10}%`
     );
 
   serverQueue.textChannel.send({ embed });

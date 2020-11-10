@@ -6,6 +6,7 @@ module.exports = {
   description: "text to image converter xD",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) {
@@ -17,7 +18,7 @@ module.exports = {
     )}&_loc=generate&imageoutput=true`;
 
     const embed = BaseEmbed(message)
-      .setDescription(`[Click here if the image failed to load.](${image})`)
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
       .setImage(image);
 
     message.channel.send(embed);

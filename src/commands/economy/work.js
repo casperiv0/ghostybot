@@ -8,6 +8,7 @@ module.exports = {
   description: "work",
   category: "economy",
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
     const timeout = 3600000;
 
@@ -19,7 +20,7 @@ module.exports = {
         "H [hrs], m [mins], s [secs]"
       );
       message.channel.send(
-        `You have already worked recently, ${timeUntilWork} remaining`
+        lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork)
       );
     } else {
       const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
@@ -27,7 +28,10 @@ module.exports = {
       const embed = BaseEmbed(message)
         .setTitle("Work!")
         .setDescription(
-          `${member.username} worked as a **${name}** and earned **${amount}**! 💰`
+          `${lang.ECONOMY.WORKED
+            .replace("{member}", member.username)
+            .replace("{job_name}", name)
+            .replace("{amount}", amount)} 💰`
         )
         .setColor("BLUE");
 

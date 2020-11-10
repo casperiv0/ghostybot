@@ -6,9 +6,12 @@ module.exports = {
   description: "Returns a pokemon information",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");
 
-    if (!query) return message.channel.send("Please provide a pokemon name!");
+    if (!query) {
+      return message.channel.send(lang.POKEMON.PROVIDE_NAME);
+    }
 
     try {
       const data = await fetch(
@@ -22,34 +25,34 @@ module.exports = {
         .setDescription(data.description)
         .addField("ID", data.id, true)
         .addField("Type", data.type, true)
-        .addField("Species", data.species, true)
-        .addField("Abilities", data.abilities, true)
-        .addField("Height", data.height, true)
-        .addField("Weight", data.weight, true)
-        .addField("Experience", data.base_experience, true)
-        .addField("Gender", data.gender, true)
-        .addField("Egg Groups", data.egg_groups, true)
+        .addField(lang.POKEMON.SPECIES, data.species, true)
+        .addField(lang.POKEMON.ABILITIES, data.abilities, true)
+        .addField(lang.POKEMON.HEIGHT, data.height, true)
+        .addField(lang.POKEMON.WEIGHT, data.weight, true)
+        .addField(lang.POKEMON.EXPERIENCE, data.base_experience, true)
+        .addField(lang.POKEMON.GENDER, data.gender, true)
+        .addField(lang.POKEMON.EGG_GROUPS, data.egg_groups, true)
         .addField(
-          "**Family:**",
-          `**Evolution Stage:** ${data.family.evolutionStage} 
-          **Evolution Line:** ${data.family.evolutionLine}`
+          `**${lang.POKEMON.FAMILY}:**`,
+          `**${lang.POKEMON.EVO_STAGE}:** ${data.family.evolutionStage} 
+          **${lang.POKEMON.EVO_LINE}:** ${data.family.evolutionLine}`
         )
         .addField(
-          "**Stats:**",
-          `**HP:** ${data.stats.hp} 
-          **Attack:** ${data.stats.attack} 
-          **Defense:** ${data.stats.defense} 
-          **SP ATK:** ${data.stats.sp_atk} 
-          **SP DEF:** ${data.stats.sp_def} 
-          **Speed:** ${data.stats.speed} 
-          **Total:** ${data.stats.total}`
+          `**${lang.POKEMON.STATS}:**`,
+          `**${lang.POKEMON.HP}:** ${data.stats.hp} 
+          **${lang.POKEMON.ATTACK}:** ${data.stats.attack} 
+          **${lang.POKEMON.DEFENSE}:** ${data.stats.defense} 
+          **${lang.POKEMON.SP_ATK}:** ${data.stats.sp_atk} 
+          **${lang.POKEMON.SP_DEF}:** ${data.stats.sp_def} 
+          **${lang.POKEMON.SPEED}:** ${data.stats.speed} 
+          **${lang.POKEMON.TOTAL}:** ${data.stats.total}`
         )
         .setThumbnail(`${data.sprites.animated}`);
 
       message.channel.send({ embed });
     } catch (e) {
       return message.channel.send(
-        `No pokemon was found with ${query}. Please use correct spelling and try again later.`
+        lang.POKEMON.NOT_FOUND.replace("{query}", query)
       );
     }
   },

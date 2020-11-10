@@ -6,6 +6,7 @@ module.exports = {
   description: "Let clyde say something",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
     if (!text) return message.reply("Please provide text");
 
@@ -14,11 +15,9 @@ module.exports = {
     ).then((res) => res.json());
 
     const embed = BaseEmbed(message)
-      .setTitle("Clyde")
+      .setTitle(lang.IMAGE.CLYDE)
       .setImage(data.message)
-      .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
-      );
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`);
 
     message.channel.send(embed);
   },

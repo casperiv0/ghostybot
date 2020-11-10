@@ -7,13 +7,14 @@ module.exports = {
   description: "Shows info about the current playing song",
   category: "music",
   aliases: ["np", "currentsong"],
-  execute(bot, message, args, serverQueue) {
+  async execute(bot, message, args, serverQueue) {
+    const lang = await bot.getGuildLang(message.guild.id);
     if (!message.member.voice.channel) {
-      return message.channel.send("You need to be in a voice channel!");
+      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
     if (!serverQueue) {
-      return message.channel.send("There are no song currently playing");
+      return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
     const song = serverQueue.nowPlaying;
@@ -29,17 +30,22 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(song.title)
       .setURL(song.url)
-      .setAuthor(`🎵 Now ${serverQueue.playing ? "Playing" : "Paused"}`)
+      .setAuthor(
+        `🎵 Now ${
+          serverQueue.playing
+            ? lang.MUSIC.PLAYING
+            : lang.MUSIC.PAUSED
+        }`
+      )
       .setImage(`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`)
-      .setColor("BLUE")
       .setDescription(
         `
-      **Duration:** ${time}
-      **Uploaded by:** ${song.uploadedBy}
-      **Uploaded at:** ${song.uploadedAt}
-      **Views :** ${song.views}
-      **Likes:** ${song.likes || "N/A"}
-      **Dislikes:** ${song.dislikes || "N/A"}`
+      **${lang.MUSIC.DURATION}:** ${time}
+      **${lang.MUSIC.UPLOADED_BY}:** ${song.uploadedBy}
+      **${lang.MUSIC.UPLOADED_AT}:** ${song.uploadedAt}
+      **${lang.MUSIC.VIEWS}:** ${song.views}
+      **${lang.MUSIC.LIKES}:** ${song.likes || "N/A"}
+      **${lang.MUSIC.DISLIKES}:** ${song.dislikes || "N/A"}`
       )
       .addField(
         new Date(seek * 1000).toISOString().substr(11, 8) +
@@ -47,8 +53,8 @@ module.exports = {
           new Date(left * 1000).toISOString().substr(11, 8),
         createBar(song.duration === 0 ? seek : song.duration, seek, 20)[0],
         false
-      )
-      .setFooter(`Requested by ${song.requestedBy.tag}`);
+      );
+
     message.channel.send(embed);
   },
 };

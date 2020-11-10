@@ -10,7 +10,8 @@ module.exports = {
   options: ["no-options", "add", "remove"],
   aliases: ["shop"],
   usage: "store <option | no-args>",
-  async execute(_bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const guild = await getGuildById(guildId);
     const option = args[0];
@@ -20,13 +21,11 @@ module.exports = {
 
     if (option) {
       if (ownerId === message.author.id) {
-        updateStore(message, item, price, option, guild, guildId);
+        updateStore(message, item, price, option, guild, guildId, lang);
       } else if (message.member.hasPermission("MANAGE_GUILD")) {
-        updateStore(message, item, price, option, guild, guildId);
+        updateStore(message, item, price, option, guild, guildId, lang);
       } else {
-        return message.channel.send(
-          `You don't have the correct permissions to **${option}** an item! (Manage Server)`
-        );
+        return message.channel.send(lang.ECONOMY.MANAGE_STORE_PERMS);
       }
     } else {
       if (!guild?.store) {
@@ -36,11 +35,14 @@ module.exports = {
       }
 
       const items = guild.store
-        ?.map((item) => `**Name:** ${item.name}, **Price:** ${item.price}`)
+        ?.map(
+          (item) =>
+            `**${lang.GLOBAL.NAME}:** ${item.name}, **${lang.ECONOMY.PRICE}:** ${item.price}`
+        )
         ?.join(",\n ");
 
       const embed = BaseEmbed(message)
-        .setTitle(`${message.guild.name}'s Store`)
+        .setTitle(`${message.guild.name} ${lang.ECONOMY.STORE}`)
         .setDescription(`${items}`);
 
       message.channel.send({ embed });
@@ -48,9 +50,9 @@ module.exports = {
   },
 };
 
-async function updateStore(message, item, price, option, guild, guildId) {
+async function updateStore(message, item, price, option, guild, guildId, lang) {
   if (!item) {
-    return message.channel.send("Please provide a valid item to add/remove!");
+    return message.channel.send(lang.ECONOMY.PROVIDE_VALID_ITEM);
   }
 
   item = item.toLowerCase();
@@ -60,14 +62,18 @@ async function updateStore(message, item, price, option, guild, guildId) {
       const exists = guild.store.filter((i) => i.name === item)[0];
 
       if (exists) {
-        return message.channel.send(`**${item}** already exist in the store!`);
+        return message.channel.send(
+          lang.ECONOMY.ALREADY_EXISTS.replace("{item}", item)
+        );
       }
 
       if (!price) {
-        return message.channel.send("Please provide a price for the item!");
+        return message.channel.send(lang.ECONOMY.PROVIDE_PRICE);
       }
 
-      if (isNaN(price)) return message.channel.send("Price must be a number!");
+      if (isNaN(price)) {
+        return message.channel.send(lang.ECONOMY.MUST_BE_NUMBER);
+      }
 
       if (!guild?.store) {
         await updateGuildById(guildId, {
@@ -79,7 +85,9 @@ async function updateStore(message, item, price, option, guild, guildId) {
         });
       }
 
-      message.channel.send(`**${item}** was added to the store!`);
+      message.channel.send(
+        lang.ECONOMY.ADDED_TO_STORE.replace("{item}", item)
+      );
       break;
     }
 
@@ -87,7 +95,9 @@ async function updateStore(message, item, price, option, guild, guildId) {
       const existing = guild?.store?.filter((i) => i.name === item)[0];
 
       if (!existing) {
-        return message.channel.send(`**${item}** doesn't exist in the store!`);
+        return message.channel.send(
+          lang.ECONOMY.NOT_IN_STORE.replace("{item}", item)
+        );
       }
 
       const updatedItems = guild?.store.filter(
@@ -96,11 +106,15 @@ async function updateStore(message, item, price, option, guild, guildId) {
 
       updateGuildById(guildId, { store: updatedItems });
 
-      message.channel.send(`${item} was removed from the store!`);
+      message.channel.send(
+        lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", item)
+      );
       break;
     }
 
     default:
-      message.channel.send(`${option} Is not a valid option`);
+      message.channel.send(
+        lang.GLOBAL.NOT_AN_OPTION.replace("{option}", option)
+      );
   }
 }

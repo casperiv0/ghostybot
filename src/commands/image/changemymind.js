@@ -6,6 +6,7 @@ module.exports = {
   description: "Change my mind",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) return message.channel.send("Please provide text");
@@ -19,7 +20,7 @@ module.exports = {
     sendMsg.delete();
     const embed = BaseEmbed(message)
       .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`
       )
       .setImage(data.message);
 

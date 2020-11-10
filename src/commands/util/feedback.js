@@ -5,22 +5,20 @@ module.exports = {
   name: "feedback",
   description: "Give feedback about the bot",
   category: "util",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const feedback = args.join(" ");
 
-    if (!feedback)
-      return message.channel.send(
-        "If u wanna be nice please give some feedback."
-      );
+    if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
 
     if (!feedBackChannelId || feedBackChannelId === "") return;
 
     const embed = BaseEmbed(message)
-      .setTitle(`${message.author.username} New Feedback`)
+      .setTitle(lang.UTIL.NEW_FEEDBACK)
       .setDescription(feedback);
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
 
-    message.channel.send("Successfully send feedback!");
+    message.channel.send(lang.UTIL.FEEDBACK_SEND);
   },
 };

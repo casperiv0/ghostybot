@@ -7,16 +7,17 @@ module.exports = {
   description: "get your emoji enlarged",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const emoji = args[0];
     if (!emoji) {
-      return message.channel.send("No emoji provided!");
+      return message.channel.send(lang.UTIL.PROVIDE_EMOJI);
     }
 
     const custom = Util.parseEmoji(emoji);
 
-    const embed = BaseEmbed(message)
-      .setTitle(`Enlarged version of ${emoji}`)
-      .setColor("BLUE");
+    const embed = BaseEmbed(message).setTitle(
+      lang.UTIL.ENLARGED_EMOJI.replace("{emoji}", emoji)
+    );
 
     if (custom.id) {
       embed.setImage(
@@ -27,7 +28,9 @@ module.exports = {
       return message.channel.send(embed);
     } else {
       let parsed = parse(emoji, { assetType: "png" });
-      if (!parsed[0]) return message.channel.send("Invalid emoji!");
+      if (!parsed[0]) {
+        return message.channel.send(lang.UTIL.INVALID_EMOJI);
+      }
 
       embed.setImage(parsed[0].url);
       return message.channel.send(embed);

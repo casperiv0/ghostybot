@@ -7,17 +7,23 @@ module.exports = {
   category: "util",
   aliases: ["gh"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const username = args[0];
 
-    if (!username) return message.channel.send("Please provide a username!");
+    if (!username) {
+      return message.channel.send(lang.UTIL.GH_PROVIDE_USERNAME);
+    }
 
-    const msg = await message.channel.send("Searching..");
+    const msg = await message.channel.send(`${lang.UTIL.SEARCHING}..`);
     const url = `https://api.github.com/users/${username}`;
     const result = await fetch(url).then((res) => res.json());
     const user = result;
 
-    if (user?.message === "Not Found")
-      return message.channel.send("User not found").then(() => msg.delete());
+    if (user?.message === "Not Found") {
+      return message.channel
+        .send(bot.location.UTIL.GH_NOT_FOUND)
+        .then(() => msg.delete());
+    }
 
     msg.delete();
 
@@ -30,14 +36,14 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setAuthor(user.name)
-      .setTitle(`${user.login}'s Profile`)
+      .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
       .addField("**Twitter**", twitter, true)
-      .addField("**Following**", user.following, true)
-      .addField("**Followers**", user.followers, true)
-      .addField("**Website**", website, true)
-      .addField("**Location**", location, true)
-      .addField("Profile URL", user.html_url)
-      .setDescription(`Bio: ${bio}`)
+      .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following, true)
+      .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers, true)
+      .addField(`**${lang.UTIL.GH_WEBSITE}**`, website, true)
+      .addField(`**${lang.UTIL.GH_LOCATION}**`, location, true)
+      .addField(`${lang.GLOBAL.URL}`, user.html_url)
+      .setDescription(`${lang.UTIL.GH_BIO}: ${bio}`)
       .setThumbnail(user.avatar_url);
 
     message.channel.send(embed);

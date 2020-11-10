@@ -7,9 +7,7 @@ module.exports = {
   async execute(bot, message) {
     const data = await bot.neko.sfw.wallpaper();
 
-    const embed = BaseEmbed(message)
-      .setTitle("OOO a wallpaper nice")
-      .setImage(data.url);
+    const embed = BaseEmbed(message).setImage(data.url);
 
     message.channel.send(embed);
   },

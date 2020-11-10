@@ -4,7 +4,8 @@ module.exports = {
   name: "supreme",
   description: "Display custom text as the Supreme logo",
   category: "image",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) return message.channel.send("Please provide text!");
@@ -14,7 +15,7 @@ module.exports = {
     )}`;
 
     const embed = BaseEmbed(message)
-      .setDescription(`[Click here if the image failed to load.](${image})`)
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
       .setImage(image);
 
     message.channel.send(embed);

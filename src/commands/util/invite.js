@@ -7,7 +7,6 @@ module.exports = {
   async execute(_bot, message) {
     const invite = await message.channel.createInvite();
 
-    return message.channel.send(`Successfully created the invite! 
-Code: https://discord.gg/${invite.code}`);
+    return message.channel.send(`https://discord.gg/${invite.code}`);
   },
 };

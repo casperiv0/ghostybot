@@ -4,29 +4,36 @@ module.exports = {
   name: "bet",
   description: "Bet on somebody",
   category: "games",
-  execute(bot, message) {
-    const member = message.mentions.members.first();
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args);
 
-    if (!member) return message.reply("Please provide a user");
+    if (!member) {
+      return message.reply(lang.MEMBER.PROVIDE_MEMBER);
+    }
 
     const n = Math.random();
 
-    if (n < 0.5) {
-      const embed = BaseEmbed(message)
-        .setTitle(`${message.author.username} bets on ${member.user.username}`)
-        .setDescription(
-          `${message.author.username} bet on ${member.user.username}!\n ${message.author.username} didn't win the bet`
-        );
+    const embed = BaseEmbed(message)
+      .setTitle(
+        lang.GAMES.BETS_ON.replace(
+          "{member_1}",
+          message.author.username
+        ).replace("{member_2}", member.user.username)
+      )
+      .setDescription(
+        n > 0.5
+          ? lang.GAMES.WON_BET
+          .replace("{member_1}", message.author.username)
+          .replace("{member_2}", member.user.username)
+          .replace("{member_1}", message.author.username)
+          : 
+          lang.GAMES.LOST_BET
+          .replace("{member_1}", message.author.username)
+          .replace("{member_2}", member.user.username)
+          .replace("{member_1}", message.author.username)
+          );
 
-      message.channel.send(embed);
-    } else {
-      const embed = BaseEmbed(message)
-        .setTitle(`${message.author.username} bets on ${member.user.username}`)
-        .setDescription(
-          `${message.author.username} bet on ${member.user.username} and ${message.author.username} won the bet`
-        );
-
-      message.channel.send(embed);
-    }
+    return message.channel.send(embed);
   },
 };

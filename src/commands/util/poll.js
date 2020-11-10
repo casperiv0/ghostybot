@@ -5,16 +5,18 @@ module.exports = {
   description: "Create a poll",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const question = args.join(" ");
 
-    if (!question) return message.reply("Please provide a poll");
+    if (!question) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
     const embed = BaseEmbed(message)
       .setTitle(question)
-      .setDescription(`Poll created by ${message.author.tag}`)
-      .setFooter(message.author.username)
-      .setColor("BLUE")
-      .setTimestamp();
+      .setDescription(
+        lang.UTIL.POLL_CREATED_BY.replace("{member}", message.author.tag)
+      );
 
     const sendMessage = await message.channel.send(embed);
 

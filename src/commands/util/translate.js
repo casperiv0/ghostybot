@@ -7,11 +7,12 @@ module.exports = {
   usage: "!translate <language> <sentence>",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const result = await translate(args.slice(1).join(" "), { to: args[0] });
 
     const embed = BaseEmbed(message)
       .setDescription(result.text)
-      .setTitle("Google Translate");
+      .setTitle(lang.UTIL.G_TRANSLATE);
 
     message.channel.send(embed);
   },

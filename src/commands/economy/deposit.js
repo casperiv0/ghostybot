@@ -7,13 +7,14 @@ module.exports = {
   usage: "!deposit <all | amount>",
   aliases: ["dep"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
     const { user } = await getUserById(member.id, message.guild.id);
     const money = user.money;
     let amount = args[0];
 
     if (!amount) {
-      return message.reply("Please provide an amount to deposit");
+      return message.reply(lang.LEVELS.PROVIDE_VALID_AMOUNT);
     }
 
     if (amount === "all") {
@@ -21,17 +22,17 @@ module.exports = {
         bank: user.bank + money,
         money: user.money - money,
       });
-      return message.channel.send("Successfully deposited all your money!");
+      return message.channel.send(lang.ECONOMY.DEPOSITED_ALL);
     }
 
     amount = Number(args[0]);
 
     if (typeof amount !== "number" || isNaN(amount)) {
-      return message.reply("Please provide a valid amount to deposit");
+      return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
     if (money < amount) {
-      return message.channel.send("You don't have that much money!");
+      return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
     }
 
     await updateUserById(member.id, message.guild.id, {
@@ -39,6 +40,8 @@ module.exports = {
       money: user.money - amount,
     });
 
-    message.channel.send(`Successfully deposited **${amount} coins**`);
+    message.channel.send(
+      lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", amount)
+    );
   },
 };

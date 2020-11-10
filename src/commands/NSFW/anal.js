@@ -7,13 +7,14 @@ module.exports = {
   category: "nsfw",
   nsfwOnly: true,
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await fetch(
       "https://nekobot.xyz/api/image?type=anal"
     ).then((res) => res.json());
 
     const embed = BaseEmbed(message)
       .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`
       )
       .setImage(`${data.message}`);
 

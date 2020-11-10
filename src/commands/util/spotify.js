@@ -7,7 +7,8 @@ module.exports = {
   aliases: ["spot"],
   description: "Shows status of users",
   usage: "",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     let user =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]) ||

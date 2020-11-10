@@ -204,6 +204,16 @@ function findMember(message, args, allowAuthor) {
   );
 }
 
+async function getGuildLang(guildId) {
+  try {
+    const guild = await getGuildById(guildId);
+
+    return require(`../locales/${guild?.locale || "english"}`);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
 const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -229,4 +239,5 @@ module.exports = {
   getSticky,
   removeSticky,
   findMember,
+  getGuildLang,
 };

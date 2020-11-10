@@ -6,6 +6,7 @@ module.exports = {
   description: "Returns an image with your tweet",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
     const { username } = message.author;
 
@@ -18,14 +19,12 @@ module.exports = {
     )
       .then((res) => res.json())
       .catch(() => {
-        message.channel.send("Something went wrong!");
+        message.channel.send(lang.GLOBAL.ERROR);
       });
 
     sendMsg.delete();
     const embed = BaseEmbed(message)
-      .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
-      )
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
       .setImage(data.message);
 
     message.channel.send({ embed });

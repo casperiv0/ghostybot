@@ -8,10 +8,7 @@ module.exports = {
   async execute(bot, message) {
     const data = await bot.neko.nsfw.blowJob();
 
-    const blowjob = BaseEmbed(message)
-      .setTitle("Blowjob")
-      .setImage(data.url)
-      .setURL(data.url);
+    const blowjob = BaseEmbed(message).setImage(data.url).setURL(data.url);
     message.channel.send(blowjob);
   },
 };

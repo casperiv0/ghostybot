@@ -4,16 +4,20 @@ module.exports = {
   name: "rps",
   description: "Rock Paper Scissors",
   category: "games",
-  execute(bot, message) {
-    const replies = ["Rock", "Paper", "Scissors"];
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
+
+    const replies = [
+      lang.GAMES.ROCK,
+      lang.GAMES.PAPER,
+      lang.GAMES.SCISSORS,
+    ];
 
     const reply = replies[Math.floor(Math.random() * replies.length)];
 
     const embed = BaseEmbed(message)
-      .setTitle("Rock Paper Scissors")
-      .setColor("BLUE")
-      .setDescription(`**${reply}**`)
-      .setFooter(message.author.username);
+      .setTitle(lang.GAMES.RPS)
+      .setDescription(`**${reply}**`);
 
     message.channel.send(embed);
   },

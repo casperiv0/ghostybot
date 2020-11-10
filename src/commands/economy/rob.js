@@ -6,30 +6,35 @@ module.exports = {
   description: "Rob up to 1000coins from somebody",
   category: "economy",
   async execute(bot, message, args) {
-    const member = message.mentions.users.first();
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args);
     const amount = args.slice(1)[0];
 
     if (!member) {
-      return message.channel.send("Please provide a user mention");
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (member.id === message.author.id) {
-      return message.channel.send("You can't rob yourself!");
+    if (member.user.id === message.author.id) {
+      return message.channel.send(lang.ECONOMY.CANNOT_ROB_SELF);
     }
 
     if (!amount) {
-      return message.channel.send("Please provide an amount to rob!");
+      return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
-    if (amount < 0 || isNaN(amount)) {
-      return message.channel.send("Amount must be above 0 or a valid number!");
+    if (isNaN(amount)) {
+      return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
     if (amount > 1000) {
-      return message.channel.send("Amount must be under 1000 and above 0");
+      return message.channel.send(lang.ECONOMY.BETWEEN_1_1000);
     }
 
-    const userId = member.id;
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.BETWEEN_1_1000);
+    }
+
+    const userId = member.user.id;
     const { user } = await getUserById(userId, message.guild.id);
     const { user: robber } = await getUserById(
       message.author.id,
@@ -37,9 +42,7 @@ module.exports = {
     );
 
     if (user.money <= 0) {
-      return message.channel.send(
-        "User doesn't have any money, therefore you can't rob this user."
-      );
+      return message.channel.send(lang.ECONOMY.MEMBER_NO_MONEY);
     }
 
     await updateUserById(userId, message.guild.id, {
@@ -50,7 +53,10 @@ module.exports = {
     });
 
     return message.channel.send(
-      `Successfully robbed **${amount}coins** from **${member.tag}**`
+      lang.ECONOMY.ROB_SUCCESS.replace("{amount}", amount).replace(
+        "{member}",
+        member.user.tag
+      )
     );
   },
 };

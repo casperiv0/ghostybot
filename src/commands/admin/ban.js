@@ -5,16 +5,17 @@ module.exports = {
   botPermissions: ["BAN_MEMBERS"],
   memberPermissions: ["BAN_MEMBERS"],
   async execute(bot, message, args) {
-    const banUser = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
+    const lang = await bot.getGuildLang(message.guild.id);
+    const banUser = bot.findMember(message, args);
     let banReason = args.join(" ").slice(23);
 
-    if (!banUser) return message.channel.send("User wasn't found");
+    if (!banUser) {
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
+    }
     if (!banReason) banReason = "Not Specified";
 
     if (!banUser.bannable || banUser.hasPermission("BAN_MEMBERS")) {
-      return message.channel.send("That person can't be banned!");
+      return message.channel.send(lang.MEMBER.CANNOT_BE_BANNED);
     }
 
     if (
@@ -22,17 +23,23 @@ module.exports = {
       0
     ) {
       return message.channel.send(
-        `My role must be higher than **${banUser.tag}** highest role!`
+        lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", banUser.tag)
       );
     }
 
     banUser.ban({ days: 7, reason: banReason });
 
     banUser.user.send(
-      `You've been **banned** from **${message.guild.name}**, Reason: **${banReason}**`
+      lang.MEMBER.DM_BAN_MESSAGE.replace(
+        "{guild_name}",
+        message.guild.name
+      ).replace("{ban_reason}", banReason)
     );
     message.channel.send(
-      `${banUser} was successfully banned from the server. Reason: **${banReason}**. I have also send a DM letting the person know.`
+      lang.MEMBER.GUILD_BAN_MESSAGE.replace(
+        "{member}",
+        banUser.user.username
+      ).replace("{ban_reason}", banReason)
     );
   },
 };

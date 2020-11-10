@@ -5,13 +5,14 @@ module.exports = {
   name: "koala",
   description: "Shows a random picture of koala",
   category: "animal",
-  async execute(_bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await fetch(
       "https://some-random-api.ml/img/koala"
     ).then((res) => res.json());
 
     const embed = BaseEmbed(message)
-      .setDescription(`[Click here if the image failed to load.](${data.link})`)
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
       .setImage(`${data.link}`);
 
     message.channel.send(embed);

@@ -1,5 +1,11 @@
 /* eslint-disable no-case-declarations */
 const { updateGuildById } = require("../../utils/functions");
+const fs = require("fs");
+
+const languages = fs
+  .readdirSync("./src/locales/")
+  .filter((f) => f.endsWith(".js"))
+  .map((la) => la.slice(0, -3));
 
 module.exports = {
   name: "set",
@@ -14,6 +20,7 @@ module.exports = {
     "audit-channel",
     "welcome-role",
     "level-messages",
+    "language",
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
@@ -21,6 +28,7 @@ module.exports = {
     const option = args[0];
     const item =
       message.mentions.channels.first() || message.mentions.roles.first();
+    const language = args[1];
 
     if (!option) {
       return message.channel.send(
@@ -28,7 +36,10 @@ module.exports = {
       );
     }
 
-    if (option !== "level-messages" && !item) {
+    if (
+      !["level-messages", "language"].includes(option.toLowerCase()) &&
+      !item
+    ) {
       return message.channel.send("Please provide a valid channel or role!");
     }
 
@@ -70,6 +81,21 @@ module.exports = {
         updateItem("level_up_messages", true, guildId);
         message.channel.send("Successfully Enabled level up messages!");
         break;
+      case "language": {
+        if (!language) {
+          return message.channel.send("Please provide a language");
+        }
+        if (!languages.includes(language)) {
+          return message.channel.send(
+            `Language is not available. Available languages: ${languages.map(
+              (l) => l
+            )}`
+          );
+        }
+        updateItem("locale", language, guildId);
+        message.channel.send(`Successfully updated language to ${language}!`);
+        break;
+      }
       default:
         return message.channel.send(`\`${option}\` is not a option!`);
     }

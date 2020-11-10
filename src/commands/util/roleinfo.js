@@ -5,15 +5,24 @@ module.exports = {
   name: "roleinfo",
   description: "Shows info about a role",
   category: "util",
-  execute(bot, message, args) {
+  aliases: ["role"],
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const roles = message.guild.roles.cache;
+
     const role =
       message.mentions.roles.first() ||
-      message.guild.roles.cache.find((role) => role.name === args[0]);
+      roles.find((role) => role.name === args[0]) ||
+      roles.find((r) => r.id === args[0]);
 
-    if (!role) return message.channel.send("Couldn't find that role");
+    if (!role) {
+      return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
+    }
 
     const createdAt = formatDate(role.createdAt);
-    const mentionable = role.mentionable ? "Yes" : "No";
+    const mentionable = role.mentionable
+      ? lang.GLOBAL.YES
+      : lang.GLOBAL.NO;
     const name = role.name;
     const id = role.id;
     const color = role.color;
@@ -21,9 +30,9 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(`**${name}**`)
       .setColor(color)
-      .addField("**Created At**", createdAt, true)
-      .addField("**Mentionable**", mentionable, true)
-      .addField("**Id**", id, true);
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
+      .addField(`**${lang.UTIL.MENTIONABLE}**`, mentionable, true)
+      .addField(`**${lang.MEMBER.ID}**`, id, true);
 
     message.channel.send(embed);
   },

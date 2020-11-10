@@ -5,17 +5,16 @@ module.exports = {
   description: "Give money to a user",
   category: "economy",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args);
     const amount = Number(args[1]);
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
     if (!amount || isNaN(amount)) {
-      return message.channel.send(
-        "Please provide a valid amount (must be a number)"
-      );
+      return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
     const { user: receiver } = await getUserById(member.id, message.guild.id);
@@ -25,11 +24,11 @@ module.exports = {
     );
 
     if (amount > sender.money) {
-      return message.channel.send("You don't have that much money!");
+      return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
     }
 
     if (receiver.user_id === sender.user_id) {
-      return message.channel.send("You can't pay yourself!");
+      return message.channel.send(lang.ECONOMY.CANNOT_PAY_SELF);
     }
 
     await updateUserById(member.id, message.guild.id, {
@@ -40,7 +39,10 @@ module.exports = {
     });
 
     return message.channel.send(
-      `Successfully gave **${member.user.tag}** **${amount}coins**`
+      lang.ECONOMY.PAY_SUCCESS.replace(
+        "{member}",
+        member.user.tag
+      ).replace("{amount}", amount)
     );
   },
 };

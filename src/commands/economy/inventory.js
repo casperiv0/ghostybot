@@ -8,18 +8,19 @@ module.exports = {
   usage: "inventory <user>",
   aliases: ["inv"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args, true);
     const { user } = await getUserById(member.id, message.guild.id);
     const inventory = user?.inventory;
 
     if (!inventory || !inventory?.[0]) {
-      return message.channel.send("User's inventory is empty");
+      return message.channel.send(lang.ECONOMY.INV_EMPTY);
     }
 
     const mapped = inventory?.map((item) => item).join(",\n ");
 
     const embed = BaseEmbed(message)
-      .setTitle(`${member.username}'s Inventory`)
+      .setTitle(`${member.user.username} ${lang.ECONOMY.INVENTORY}`)
       .setDescription(`${mapped}`);
 
     message.channel.send({ embed });

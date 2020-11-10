@@ -2,18 +2,21 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "roles",
-  description: "Get a random color",
+  description: "Shows all roles from the guild",
   category: "util",
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const roles =
       message.guild.roles.cache
         .filter((r) => r.id !== message.guild.id)
         .map((r) => r)
-        .join(",\n") || "None";
+        .join(",\n") || lang.GLOBAL.NONE;
 
-    const embed = BaseEmbed(message).setTitle(`${message.guild.name}'s Roles`)
-      .setDescription(`Roles:
-${roles.length > 2048 ? roles.slice(0, 2000) + "..." : roles}`);
+    const embed = BaseEmbed(message)
+      .setTitle(`${message.guild.name} ${lang.UTIL.ROLES}`)
+      .setDescription(
+        `${roles.length > 2048 ? roles.slice(0, 2030) + "..." : roles}`
+      );
 
     message.channel.send(embed);
   },

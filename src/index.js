@@ -14,8 +14,11 @@ const TnaiClient = require("tnai");
 const tnai = new TnaiClient();
 
 const Kitsu = require("kitsu");
-const { findMember } = require("./utils/functions");
 const kitsu = new Kitsu();
+const { findMember, getGuildLang } = require("./utils/functions");
+
+// Locale - Language
+bot.getGuildLang = getGuildLang;
 
 // Commands
 bot.commands = new Collection();

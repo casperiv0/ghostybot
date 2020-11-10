@@ -7,13 +7,14 @@ module.exports = {
   category: "nsfw",
   nsfwOnly: true,
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await fetch(
       "http://api.obutts.ru/butts/0/1/random"
     ).then((res) => res.json());
 
     const embed = BaseEmbed(message)
       .setDescription(
-        `[Click here if the image failed to load.](http://media.obutts.ru/${data[0].preview})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(http://media.obutts.ru/${data[0].preview})`
       )
       .setImage(`http://media.obutts.ru/${data[0].preview}`);
 

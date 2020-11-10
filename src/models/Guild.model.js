@@ -15,6 +15,7 @@ const guildSchema = new Schema({
   disabled_commands: { type: Array, default: [] },
   disabled_categories: { type: Array, default: [] },
   sticky_data: { type: Object, default: null },
+  locale: { type: String, default: "english" },
 });
 
 module.exports = model("Guild", guildSchema);

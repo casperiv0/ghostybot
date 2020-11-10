@@ -6,8 +6,6 @@
 ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot)
 ![stars](https://img.shields.io/github/stars/dev-caspertheghost/ghostybot?color=gr)
 
-# Ghostybot
-
 A Custom Discord bot with a lot of commands for Discord communities. (+180 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
 
 [![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
@@ -28,8 +26,8 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
   - [Contributing](docs/CONTRIBUTING.md)
   - [Bot Events](/docs/BOT_EVENTS)
   - [API's used](/docs/APIS_USED.md)
- - [License](#license)
- - [Legal](#legal)
+- [License](#license)
+- [Legal](#legal)
 
 ## Features
 

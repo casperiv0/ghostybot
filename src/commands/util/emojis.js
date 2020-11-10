@@ -4,7 +4,8 @@ module.exports = {
   name: "emojis",
   description: "Get a random color",
   category: "util",
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const nonAnimated = [];
     const animated = [];
 
@@ -15,12 +16,12 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .addField(
-        "Animated:",
-        animated.length === 0 ? "None" : animated.join(" ")
+        `${lang.UTIL.ANIMATED}:`,
+        animated.length === 0 ? lang.GLOBAL.NONE : animated.join(" ")
       )
       .addField(
-        "Non Animated:",
-        nonAnimated.length === 0 ? "None" : nonAnimated.join(" ")
+        `${lang.UTIL.NON_ANIMATED}:`,
+        nonAnimated.length === 0 ? lang.GLOBAL.NONE : nonAnimated.join(" ")
       );
 
     message.channel.send(embed);

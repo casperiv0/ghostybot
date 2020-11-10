@@ -5,30 +5,22 @@ module.exports = {
   description: "Give someone Xp",
   category: "levels",
   usage: "givexp <amount> <user>",
+  memberPermissions: ["MANAGE_MEMBERS"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
-      return message.channel.send(
-        "You don't have the correct permissions for that! (Manage Members)"
-      );
-    }
-
+    const lang = await bot.getGuildLang(message.guild.id);
     const amount = args[0];
-    const member =
-      message.mentions.users.first() ||
-      bot.users.cache.find((u) => u.id === args[1]);
+    const member = bot.findMember(message, args);
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
     if (!amount) {
-      return message.channel.send("Please provide an amount");
+      return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
     if (isNaN(Number(amount))) {
-      return message.channel.send(
-        "Please provide a valid number (givexp <amount> <user>)"
-      );
+      return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
     }
     const { user } = await getUserById(member.id, message.guild.id);
 
@@ -36,6 +28,11 @@ module.exports = {
       xp: user.xp + Number(amount),
     });
 
-    message.channel.send(`Successfully gave **${member.tag}** **${amount}**Xp`);
+    message.channel.send(
+      lang.LEVELS.GIVE_XP_SUCCESS.replace(
+        "{member}",
+        member.user.tag
+      ).replace("{amount}", amount)
+    );
   },
 };

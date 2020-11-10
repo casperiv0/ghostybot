@@ -6,15 +6,14 @@ module.exports = {
   description: "Get the information about series and movie",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");
 
     if (!args.length) {
-      return message.channel.send("Please give the name of movie or series");
+      return message.channel.send(lang.UTIL.PROVIDE_M_S);
     }
 
-    if (imdbKey === "") {
-      return message.channel.send("imdbKey is required for this command.");
-    }
+    if (imdbKey === "") return;
 
     try {
       const movie = await bot.imdb.get({ name: search });
@@ -24,17 +23,19 @@ module.exports = {
         .setTitle(movie.title)
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)
-        .addField("Ratings", movie.rating, true)
-        .addField("Country", movie.country, true)
-        .addField("Genres", movie.genres, true)
-        .addField("Awards", movie.awards, true)
-        .addField("Languages", movie.languages, true)
-        .addField("Released", released, true)
-        .addField("Type", movie.type, true);
+        .addField(`${lang.UTIL.DB_RATINGS}`, movie.rating, true)
+        .addField(`${lang.UTIL.DB_COUNTRY}`, movie.country, true)
+        .addField(`${lang.UTIL.DB_GENRES}`, movie.genres, true)
+        .addField(`${lang.UTIL.DB_AWARDS}`, movie.awards, true)
+        .addField(`${lang.UTIL.DB_LANGS}`, movie.languages, true)
+        .addField(`${lang.UTIL.DB_RELEASED}`, released, true)
+        .addField(`${lang.BOT_OWNER.EVAL_TYPE}`, movie.type, true);
 
       message.channel.send({ embed });
     } catch (e) {
-      return message.channel.send(`No movie was found with ${search}`);
+      return message.channel.send(
+        lang.UTIL.DB_NOT_FOUND.replace("{search}", search)
+      );
     }
   },
 };

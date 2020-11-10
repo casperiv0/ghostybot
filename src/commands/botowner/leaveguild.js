@@ -4,6 +4,7 @@ module.exports = {
   category: "botowner",
   ownerOnly: true,
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = args[0];
 
     if (!guildId) {
@@ -13,15 +14,17 @@ module.exports = {
     const guild = bot.guilds.cache.find((g) => g.id === guildId);
 
     if (!guild) {
-      return message.channel.send("That guild wasn't found");
+      return message.channel.send(lang.GUILD.NOT_FOUND);
     }
 
     try {
       await guild.leave();
-      message.channel.send(`Successfully left guild: **${guild.name}**`);
+      message.channel.send(
+        lang.GUILD.LEFT.replace("{guild_name}", guild.name)
+      );
     } catch (e) {
       console.error(e);
-      return message.channel.send("An error occurred leaving that guild");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
   },
 };

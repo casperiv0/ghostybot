@@ -6,12 +6,13 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     if (bot.afk.has(message.author.id)) {
       bot.afk.delete(message.author.id);
 
       const embed = BaseEmbed(message)
-        .setTitle("Success")
-        .setDescription("You are not afk anymore");
+        .setTitle(lang.GLOBAL.SUCCESS)
+        .setDescription(lang.UTIL.NOT_AFK);
 
       return message.channel.send(embed);
     }
@@ -19,7 +20,7 @@ module.exports = {
     const reason = args.join(" ");
 
     const options = {
-      reason: `${reason || "Not specified"}`,
+      reason: `${reason || lang.GLOBAL.NOT_SPECIFIED}`,
       user_id: message.author.id,
     };
 
@@ -27,7 +28,9 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setTitle("Success")
-      .setDescription(`You are now afk!\n**Reason:** ${options.reason}`);
+      .setDescription(
+        `${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${options.reason}`
+      );
 
     message.channel.send(embed);
   },

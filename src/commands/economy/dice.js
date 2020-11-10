@@ -7,20 +7,25 @@ module.exports = {
   category: "economy",
   cooldown: 5,
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const { user } = await getUserById(message.author.id, message.guild.id);
     const roll = Math.floor(Math.random() * 6) + 1;
     const price = 200;
 
-    const embed = BaseEmbed(message).setTitle(`🎲 You landed on: ${roll}`);
+    const embed = BaseEmbed(message).setTitle(
+      `🎲 ${lang.ECONOMY.DICE_LANDED.replace("{roll}", roll)}`
+    );
 
     if (roll === 6) {
-      embed.setDescription(`🎉 Congrats! You won a price of **${price}coins**`);
+      embed.setDescription(
+        `🎉 ${lang.ECONOMY.DICE_WON.replace("{price}", price)}`
+      );
       updateUserById(message.author.id, message.guild.id, {
         money: user.money + price,
       });
     } else {
       embed.setDescription(
-        `You need to land a **6** to get a price of **${price}coins**`
+        `❌ ${lang.ECONOMY.DICE_LOST.replace("{price}", price)}`
       );
     }
 

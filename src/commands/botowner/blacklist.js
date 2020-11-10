@@ -1,6 +1,6 @@
 const { ownerId } = require("../../../config.json");
-const { MessageEmbed } = require("discord.js");
 const User = require("../../models/User.model");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "blacklist",
@@ -10,21 +10,22 @@ module.exports = {
   options: ["add", "remove", "view"],
   ownerOnly: true,
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const type = args[0];
     const member =
       message.mentions.users.first() ||
       bot.users.cache.find((user) => user.id === args[1]);
 
     if (!type) {
-      return message.channel.send("Please provide a type");
+      return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
     }
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
     if (member.id === ownerId) {
-      return message.channel.send("Cannot blacklist the owner");
+      return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
     }
 
     const users = await User.find({ blacklisted: true });
@@ -34,21 +35,21 @@ module.exports = {
         const usr = users.find((u) => u.user_id === member.id);
 
         if (!usr) {
-          return message.channel.send("User is not blacklisted");
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
 
-        const embed = new MessageEmbed()
-          .setTitle(`Blacklist status: ${member.username}`)
-          .setColor("BLUE")
-          .setTimestamp()
-          .addField("Blacklist level", "2");
+        const embed = BaseEmbed(message)
+          .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member.username}`)
+          .addField(`${lang.LEVELS.LEVEL}`, "2");
 
         return message.channel.send({ embed });
       }
       case "add": {
         const existing = users.filter((u) => u.user_id === member.id)[0];
         if (existing) {
-          return message.channel.send(`${member.tag} is already blacklisted`);
+          return message.channel.send(
+            lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member.tag)
+          );
         }
 
         const foundUsers = await User.find({ user_id: member.id });
@@ -60,11 +61,11 @@ module.exports = {
       }
       case "remove": {
         if (users === null) {
-          return message.channel.send(`${member.tag} is not blacklisted`);
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
         const exists = users.find((u) => u.user_id === member.id);
         if (!exists) {
-          return message.channel.send(`${member.tag} is not blacklisted`);
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
 
         const foundUsers = await User.find({ user_id: member.id });
@@ -75,11 +76,21 @@ module.exports = {
         break;
       }
       default: {
-        return message.channel.send(`**${type}** is not an option`);
+        return message.channel.send(
+          lang.BOT_OWNER.NOT_OPTION.replace("{type}", type)
+        );
       }
     }
     return message.channel.send(
-      `${member.tag} was ${type === "add" ? "blacklisted" : "unblacklisted"}`
+      lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace(
+        "{member}",
+        member.tag
+      ).replace(
+        "{type}",
+        type === "add"
+          ? lang.BOT_OWNER.BLACKLISTED
+          : lang.BOT_OWNER.UNBLACKLISTED
+      )
     );
   },
 };

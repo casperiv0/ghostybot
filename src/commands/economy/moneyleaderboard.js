@@ -8,6 +8,7 @@ module.exports = {
   category: "economy",
   aliases: ["mlb"],
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const data = (await User.find({ guild_id: guildId }))
       .map((v) => {
@@ -17,18 +18,20 @@ module.exports = {
       .splice(0, 10);
 
     const embed = BaseEmbed(message)
-      .setTitle(`${message.guild.name}'s Money Leaderboard`)
-      .setFooter("Bank & Money both counted");
+      .setTitle(`${message.guild.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
+      .setFooter(lang.ECONOMY.BOTH_COUNTED);
 
     for (let i = 0; i < data.length; i++) {
       const userId = data[i]._doc.user_id;
-      const user = bot.users.cache.get(userId);
+      const member = message.guild.members.cache.get(userId);
       const isInPlace = [0, 1, 2].includes(i);
 
-      if (user) {
+      if (member) {
         embed.addField(
-          user.username,
-          `${isInPlace ? places[i] : ""} ${data[i].total} Total balance`,
+          member.user.username,
+          `${isInPlace ? places[i] : ""} ${data[i].total} ${
+            lang.ECONOMY.TOTAL_BALANCE
+          }`,
           true
         );
       }

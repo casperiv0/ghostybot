@@ -5,14 +5,15 @@ module.exports = {
   name: "fox",
   description: "Shows a picture of a fox",
   category: "animal",
-  async execute(_bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await fetch("https://randomfox.ca/floof/").then((res) =>
       res.json()
     );
 
     const embed = BaseEmbed(message)
       .setDescription(
-        `[Click here if the image failed to load.](${data.image})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.image})`
       )
       .setImage(`${data.image}`);
 

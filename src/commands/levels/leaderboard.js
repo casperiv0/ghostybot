@@ -7,23 +7,24 @@ module.exports = {
   description: "Shows top 10 users with the highest amount of XP",
   category: "levels",
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const data = (await User.find({ guild_id: guildId }))
       .sort((a, b) => b.xp - a.xp)
       .splice(0, 10);
 
     const embed = BaseEmbed(message).setTitle(
-      `${message.guild.name}'s Leaderboard`
+      `${message.guild.name} ${lang.LEVELS.LEADERBOARD}`
     );
 
     for (let i = 0; i < data.length; i++) {
       const userId = data[i].user_id;
-      const user = bot.users.cache.get(userId);
+      const member = message.guild.members.cache.get(userId);
       const isInPlace = [0, 1, 2].includes(i);
 
-      if (user) {
+      if (member) {
         embed.addField(
-          user.username,
+          member.user.username,
           `${isInPlace ? places[i] : ""} ${data[i].xp}xp`,
           true
         );

@@ -5,18 +5,20 @@ module.exports = {
   name: "8ball",
   description: "8Ball",
   category: "games",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const question = args.join(" ");
 
-    if (!question)
-      return message.channel.send("Please provide a valid question");
+    if (!question) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];
 
     const embed = BaseEmbed(message)
       .setTitle("8Ball")
-      .addField("Question:", question)
-      .addField("Answer:", answer);
+      .addField(`${lang.GAMES.QUESTION}:`, question)
+      .addField(`${lang.GAMES.ANSWER}:`, answer);
 
     message.channel.send(embed);
   },

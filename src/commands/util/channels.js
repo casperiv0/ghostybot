@@ -4,7 +4,8 @@ module.exports = {
   name: "channels",
   description: "Shows all channels in the server",
   category: "util",
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const channels = message.guild.channels.cache;
     const voiceChannels = channels
       .filter((channel) => channel.type === "voice")
@@ -18,8 +19,8 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setColor("BLUE")
       .setTitle(`${message.guild.name}'s channels`)
-      .addField("**Voice Channels:**", voiceChannels)
-      .addField("**Text Channels:**", textChannels)
+      .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
+      .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels)
       .setFooter(message.author.username)
       .setTimestamp();
 
