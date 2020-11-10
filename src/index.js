@@ -13,8 +13,6 @@ const neko = new NekoClient();
 const TnaiClient = require("tnai");
 const tnai = new TnaiClient();
 
-const Kitsu = require("kitsu");
-const kitsu = new Kitsu();
 const { findMember, getGuildLang } = require("./utils/functions");
 
 // Locale - Language
@@ -28,7 +26,6 @@ bot.afk = new Map();
 bot.neko = neko;
 bot.tnai = tnai;
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
-bot.kitsu = kitsu;
 bot.findMember = findMember;
 
 const giveawayManager = new GiveawaysManager(bot, {

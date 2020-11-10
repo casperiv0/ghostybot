@@ -22,7 +22,9 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(lang.UTIL.NEW_SUGGESTION)
       .setDescription(suggestion)
-      .setAuthor(lang.UTIL.CREATED_BY);
+      .setAuthor(
+        lang.UTIL.CREATED_BY.replace("{member}", message.author.username)
+      );
 
     const sendMessage = await bot.channels.cache
       .get(suggestChannel)

@@ -276,7 +276,7 @@ module.exports = {
     PS_NOT_FOUND: "Application was not found",
     DEVELOPER: "Developer",
     SCORE: "Score",
-    CREATED_BY: "Poll created by {member}",
+    CREATED_BY: "Created by {member}",
     MENTIONABLE: "Mentionable",
     ROLE_NOT_FOUND: "Role was not found",
     ROLES: "Roles",
