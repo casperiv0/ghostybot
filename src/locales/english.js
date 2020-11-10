@@ -313,6 +313,7 @@ module.exports = {
     START_DATE: "Start Date",
     END_DATE: "End Date",
     POPULARITY_RANK: "Popularity Rank",
+    DOC_NOT_FOUND: "That was not found on the docs"
   },
   BOT: {
     GUILDS: "Guilds",
