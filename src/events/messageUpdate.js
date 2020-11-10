@@ -42,11 +42,20 @@ module.exports = {
       });
     }
 
+    const pOldMsg =
+      oldMsg.content.length > 1024
+        ? `${oldMsg.content.slice(0, 1010)}...`
+        : oldMsg;
+    const PNewMsg =
+      newMsg.content.length > 1024
+        ? `${newMsg.content.slice(0, 1010)}...`
+        : newMsg;
+
     const embed = new MessageEmbed()
       .setTitle(`Message updated in **${newMsg.channel.name}**`)
       .setDescription(`Message send by **${newMsg.author.tag}** was edited`)
-      .addField("**Old Message**", `${oldMsg}`)
-      .addField("**New Message**", `${newMsg}`)
+      .addField("**Old Message**", `${pOldMsg}`)
+      .addField("**New Message**", `${PNewMsg}`)
       .setColor("ORANGE")
       .setTimestamp();
 

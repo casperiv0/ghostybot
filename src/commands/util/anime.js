@@ -28,8 +28,6 @@ module.exports = {
       return message.channel.send(lang.UTIL.ANIME_NOT_FOUND);
     }
 
-    console.log(anime);
-
     const title = anime.attributes.titles;
     const description = anime.attributes.synopsis;
     const thumbnail = anime.attributes.posterImage.original;

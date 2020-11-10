@@ -1,16 +1,16 @@
 require("./utils/checkValid")();
 require("./utils/database");
-const chalk = require("chalk");
 const { Collection, Client } = require("discord.js");
-const bot = new Client({ disableMentions: "everyone" });
 const { token, imdbKey } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
+const NekoClient = require("nekos.life");
+const TnaiClient = require("tnai");
+const chalk = require("chalk");
+const bot = new Client({ disableMentions: "everyone" });
 const imdb = require("imdb-api");
 
-const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 
-const TnaiClient = require("tnai");
 const tnai = new TnaiClient();
 
 const { findMember, getGuildLang } = require("./utils/functions");
