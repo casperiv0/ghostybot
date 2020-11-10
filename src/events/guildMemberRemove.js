@@ -18,21 +18,20 @@ module.exports = {
       if (!member.guild.channels.cache.some((ch) => ch.id === leaveChannel))
         return;
 
-      const user = bot.users.cache.get(member.id);
-      const avatar = user.displayAvatarURL({ dynamic: true });
+      const avatar = member.displayAvatarURL({ dynamic: true });
 
       const embed = new MessageEmbed()
         .setTitle("👋 User left")
         .setThumbnail(avatar)
         .setDescription(
           `
-**Tag:** ${user.tag}
-**Id:** ${user.id}
+**Tag:** ${member.tag}
+**Id:** ${member.id}
         `
         )
         .setColor("RED")
         .setTimestamp()
-        .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
+        .setFooter(member.username, member.displayAvatarURL({ dynamic: true }));
 
       bot.channels.cache.get(leaveChannel).send(embed);
 

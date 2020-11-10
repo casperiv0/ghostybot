@@ -16,23 +16,25 @@ module.exports = {
       if (!member.guild.channels.cache.some((ch) => ch.id === welcomeChannel))
         return;
 
-      const user = bot.users.cache.get(member.id);
       const guild = member.guild;
-      const avatar = user.displayAvatarURL({ dynamic: true });
+      const avatar = member.user.displayAvatarURL({ dynamic: true });
 
       const embed = new MessageEmbed()
         .setTitle(`Welcome to **${guild.name}**`)
         .setThumbnail(avatar)
         .setDescription(
           `
-**Username:** ${user.username}
-**Tag:** ${user.tag}
-**Id:** ${user.id}
+**Username:** ${member.user.username}
+**Tag:** ${member.user.tag}
+**Id:** ${member.user.id}
         `
         )
         .setColor("BLUE")
         .setTimestamp()
-        .setFooter(user.username, user.displayAvatarURL({ dynamic: true }));
+        .setFooter(
+          member.user.username,
+          member.user.displayAvatarURL({ dynamic: true })
+        );
 
       bot.channels.cache.get(welcomeChannel).send(embed);
     }
