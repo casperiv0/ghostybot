@@ -3,7 +3,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "whale",
-  description: "Shows a picture of a whale",
+  description: "Shows an image of a whale",
   category: "animal",
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
