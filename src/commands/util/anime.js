@@ -28,18 +28,28 @@ module.exports = {
       return message.channel.send(lang.UTIL.ANIME_NOT_FOUND);
     }
 
-    const title = anime.attributes.slug;
+    console.log(anime);
+
+    const title = anime.attributes.titles;
     const description = anime.attributes.synopsis;
     const thumbnail = anime.attributes.posterImage.original;
     const ratings = anime.attributes.averageRating;
     const episodes = anime.attributes.episodeCount;
     const image = anime.attributes.coverImage.large;
+    const startDate = anime.attributes.startDate;
+    const endDate = anime.attributes.endDate;
+    const type = anime.attributes.subtype;
+    const popularityRank = anime.attributes.popularityRank;
 
     const embed = BaseEmbed(message)
-      .setTitle(title)
+      .setTitle(`${title.en} (${title.en_jp})`)
       .setDescription(description)
-      .addField(lang.UTIL.DB_RATINGS, ratings)
-      .addField(lang.UTIL.TOTAL_EPISODES, episodes)
+      .addField(lang.UTIL.DB_RATINGS, ratings, true)
+      .addField(lang.UTIL.TOTAL_EPISODES, episodes, true)
+      .addField(lang.UTIL.START_DATE, startDate, true)
+      .addField(lang.UTIL.END_DATE, endDate, true)
+      .addField(lang.UTIL.POPULARITY_RANK, popularityRank, true)
+      .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
       .setThumbnail(thumbnail)
       .setImage(image);
 

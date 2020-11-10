@@ -41,7 +41,7 @@ module.exports = {
       ) {
         songInfo = await ytld.getInfo(args[0]);
       } else {
-        const results = await youtube.searchVideos(args[0], 1);
+        const results = await youtube.searchVideos(args.join(" "), 1);
 
         if (!results[0]?.id) {
           return message.channel.send("There were no songs found");
@@ -83,6 +83,7 @@ module.exports = {
         volume: 3,
         playing: true,
         nowPlaying: null,
+        id: message.channel.id,
       };
 
       queue.set(message.guild.id, queueContruct);

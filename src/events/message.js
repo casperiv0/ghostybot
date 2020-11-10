@@ -14,9 +14,7 @@ module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) {
-      return;
-    }
+    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;

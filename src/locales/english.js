@@ -139,6 +139,7 @@ module.exports = {
     NOW_PLAYING: "Now Playing:",
     REQUESTED_BY: "Requested by",
     NO_PERMS: "I don't have the correct permissions for that voice channel!",
+    NOT_SAME_VC: "You must be in the same voice chat as the bot",
   },
   ECONOMY: {
     MONEY: "Money",
@@ -306,7 +307,10 @@ module.exports = {
     COUNTRY: "Country",
     NO_W_FOUND: "No results were found",
     TOTAL_EPISODES: "Total Episodes",
-    ANIME_NOT_FOUND: "That Anime was not found"
+    ANIME_NOT_FOUND: "That Anime was not found",
+    START_DATE: "Start Date",
+    END_DATE: "End Date",
+    POPULARITY_RANK: "Popularity Rank",
   },
   BOT: {
     GUILDS: "Guilds",

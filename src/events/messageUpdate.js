@@ -23,6 +23,8 @@ module.exports = {
       return;
     }
 
+    if (oldMsg.content === newMsg.content) return;
+
     if (blacklistedWords !== null && blacklistedWords[0]) {
       blacklistedWords.forEach((word) => {
         if (newMsg.content.toLowerCase().includes(word.toLowerCase())) {
