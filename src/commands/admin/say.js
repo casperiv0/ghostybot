@@ -4,8 +4,8 @@ module.exports = {
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],
   execute(bot, message, args) {
-    message.delete();
     const msg = args.join(" ");
+    message.delete();
 
     message.channel.send(msg);
   },
