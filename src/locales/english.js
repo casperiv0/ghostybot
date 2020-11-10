@@ -216,6 +216,7 @@ module.exports = {
     QUESTION: "Question",
   },
   UTIL: {
+    AVATAR: "Avatar",
     NOT_AFK: "You are not afk anymore",
     AFK: "You are now afk",
     CLICK_TO_DOWNLOAD: "[Click Here to download]",
