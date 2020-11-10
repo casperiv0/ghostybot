@@ -1,5 +1,6 @@
 # GhostyBot Docs - Index
 
+- [Add translation](TRANSLATE.md)
 - [Installation](INSTALLATION.md)
   - [Requirements](INSTALLATION.md#requirements)
   - [Usage](INSTALLATION.md#usage)

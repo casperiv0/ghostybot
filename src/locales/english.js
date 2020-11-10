@@ -40,6 +40,7 @@ module.exports = {
     PARTNERED: "Partnered",
   },
   MEMBER: {
+    TAG: "Tag",
     BOT: "Bot",
     ROLES: "Roles",
     BADGES: "Badges",
