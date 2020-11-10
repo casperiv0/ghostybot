@@ -13,3 +13,7 @@ Make sure you have ADMINISTRATOR permissions for testing.
 1. Invite your test GhostyBot to a test server
 2. Run `set language <your language>`
 3. Run a few commands from different categories to test it
+
+##
+
+[Return to index](README.md)

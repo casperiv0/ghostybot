@@ -12,8 +12,8 @@
 
 # Links
 
-[![Add ghostybot](../.github/add-ghostybot.svg)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
-[![Ghostybot Support server](../.github/join-support-server.svg)](https://discord.gg/XxHrtkA)
+[![Add ghostybot](../.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
+[![Ghostybot Support server](../.github/join-support-server.png)](https://discord.gg/XxHrtkA)
 
 ##
 

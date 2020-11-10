@@ -20,6 +20,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 - [Features](#features)
 - [Commands](#commands)
 - [Docs](docs/README.md):
+  - [Add translation](docs/TRANSLATE.md)
   - [Installation](docs/INSTALLATION.md)
     - [Requirements](docs/INSTALLATION.md#requirements)
     - [Usage](docs/INSTALLATION.md#usage)
