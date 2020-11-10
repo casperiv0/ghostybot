@@ -305,6 +305,8 @@ module.exports = {
     WIND_DEGREES: "Wind degrees",
     COUNTRY: "Country",
     NO_W_FOUND: "No results were found",
+    TOTAL_EPISODES: "Total Episodes",
+    ANIME_NOT_FOUND: "That Anime was not found"
   },
   BOT: {
     GUILDS: "Guilds",
