@@ -88,8 +88,8 @@ module.exports = {
         if (!languages.includes(language)) {
           return message.channel.send(
             `Language is not available. Available languages: ${languages.map(
-              (l) => l
-            )}`
+              (l) => `\`${l}\``
+            ).join(", ")}`
           );
         }
         updateItem("locale", language, guildId);

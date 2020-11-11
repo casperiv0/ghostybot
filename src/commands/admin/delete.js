@@ -19,7 +19,7 @@ module.exports = {
       );
     }
 
-    message.channel.bulkDelete(Number(amount) + 1).then(() => {
+    message.channel.bulkDelete(Number(amount)).then(() => {
       message.channel
         .send(`Deleted ${args[0]} messages.`)
         .then((msg) => msg.delete({ timeout: 2000 }, true));

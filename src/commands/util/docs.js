@@ -22,8 +22,6 @@ module.exports = {
       return message.channel.send(lang.UTIL.DOC_NOT_FOUND);
     }
 
-    console.log(data);
-
     const embed = {
       ...data,
       author: {},
