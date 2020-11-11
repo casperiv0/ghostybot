@@ -83,7 +83,7 @@ module.exports = {
   },
   ANIMAL: {
     CAT_FACT: "Cat Fact",
-    DOG_FACT: "Dot Fact",
+    DOG_FACT: "Dog Fact",
     SNAIL_FACT: "Snail Fact",
     COW: "Cow",
   },

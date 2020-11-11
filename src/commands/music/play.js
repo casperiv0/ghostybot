@@ -52,7 +52,7 @@ module.exports = {
           return message.channel.send("There were no songs found");
         }
 
-        const url = `https://youtu.be/${results[0].id}`;
+        const url = `https://youtu.be/${encodeURIComponent(results[0].id)}`;
         songInfo = await ytld.getInfo(url);
       }
       song = {
@@ -80,7 +80,7 @@ module.exports = {
     }
 
     if (!serverQueue || serverQueue.songs.length <= 0) {
-      const queueContruct = {
+      const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: voiceChannel,
         connection: null,
@@ -91,17 +91,17 @@ module.exports = {
         id: message.channel.id,
       };
 
-      queue.set(message.guild.id, queueContruct);
+      queue.set(message.guild.id, queueConstruct);
 
-      queueContruct.songs.push(song);
+      queueConstruct.songs.push(song);
 
       try {
         // TODO: check if bot is already in the voice chat
         const connection = await voiceChannel.join();
-        queueContruct.connection = connection;
+        queueConstruct.connection = connection;
 
-        queueContruct.nowPlaying = queueContruct.songs[0];
-        play(message.guild, queueContruct.songs[0], queue, message, lang);
+        queueConstruct.nowPlaying = queueConstruct.songs[0];
+        play(message.guild, queueConstruct.songs[0], queue, message, lang);
       } catch (e) {
         console.log(e);
       }
