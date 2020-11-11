@@ -96,6 +96,7 @@ module.exports = {
     UPDATED_NICKNAME: "تم تغير اللقب الي  **{nickname}**",
     PROVIDE_TYPE: "من فضلك قم بادخال شئ ما",
     CANNOT_BL_OWNER: "لا يمكن اعطاء اونر البوت قائمة سوداء",
+    CANNOT_BL_BOT: "The bot cannot be blacklisted",
     NOT_BLD: "هذا المستخدم ليس بالقائمة السوداء",
     ALREADY_BLD: "{member} بالفعل بالقائمة السوداء",
     NOT_OPTION: "**{type}** ليس خيارا صحيحاً",

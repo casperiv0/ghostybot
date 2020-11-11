@@ -97,6 +97,7 @@ module.exports = {
     UPDATED_NICKNAME: "Se ha actualizado el apodo a **{nickname}**",
     PROVIDE_TYPE: "Por favor proporciona un tipo",
     CANNOT_BL_OWNER: "No puedes poner en lista negra al dueño",
+    CANNOT_BL_BOT: "The bot cannot be blacklisted",
     NOT_BLD: "Usuario no esta en lista negra",
     ALREADY_BLD: "{member} ya esta en lista negra",
     NOT_OPTION: "**{type}** no es una opcion",

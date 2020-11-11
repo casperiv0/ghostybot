@@ -6,6 +6,7 @@ module.exports = {
   category: "admin",
   options: ["get", "add", "remove"],
   memberPermissions: ["ADMINISTRATOR"],
+  aliases: ["wordsfilter", "filterwords"],
   async execute(bot, message, args) {
     const option = args[0];
     const item = args[1];

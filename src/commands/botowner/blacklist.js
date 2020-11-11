@@ -1,5 +1,5 @@
-const { ownerId } = require("../../../config.json");
-const User = require("../../models/User.model");
+const { owners } = require("../../../config.json");
+const Blacklisted = require("../../models/Blacklisted.model");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
@@ -24,11 +24,15 @@ module.exports = {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (member.id === ownerId) {
+    if (member.id === bot.user.id) {
+      return message.channel.send(lang.BOT_OWNER.CANNOT_BL_BOT);
+    }
+
+    if (owners.includes(member.id)) {
       return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
     }
 
-    const users = await User.find({ blacklisted: true });
+    const users = await Blacklisted.find();
 
     switch (type) {
       case "view": {
@@ -52,11 +56,9 @@ module.exports = {
           );
         }
 
-        const foundUsers = await User.find({ user_id: member.id });
+        const blUser = new Blacklisted({ user_id: member.id });
 
-        foundUsers.forEach(async (user) => {
-          await User.findByIdAndUpdate(user._id, { blacklisted: true });
-        });
+        await blUser.save();
         break;
       }
       case "remove": {
@@ -68,11 +70,7 @@ module.exports = {
           return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
 
-        const foundUsers = await User.find({ user_id: member.id });
-
-        foundUsers.forEach(async (user) => {
-          await User.findByIdAndUpdate(user._id, { blacklisted: false });
-        });
+        await Blacklisted.findOneAndDelete({ user_id: member.id });
         break;
       }
       default: {

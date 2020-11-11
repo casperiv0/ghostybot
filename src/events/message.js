@@ -9,17 +9,20 @@ const {
 const queue = new Map();
 const { owners } = require("../../config.json");
 const BaseEmbed = require("../modules/BaseEmbed");
+const Blacklist = require("../models/Blacklisted.model");
 
 module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
+    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES"))
+      return;
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
     const guild = await getGuildById(guildId);
     const blacklistedWords = guild.blacklistedwords;
+    const blacklistedUsers = await Blacklist.find();
     const mentions = message.mentions.members;
     const disabledCommands = guild.disabled_commands;
     const disabledCategories = guild.disabled_categories;
@@ -133,15 +136,15 @@ module.exports = {
       message.channel.send(embed);
     }
 
-    // if (blacklistedUsers !== null) {
-    //   const isBlacklisted = blacklistedUsers.filter(
-    //     (u) => u.user.id === message.author.id
-    //   )[0];
+    if (blacklistedUsers) {
+      const isBlacklisted = blacklistedUsers.find(
+        (u) => u.user_id === message.author.id
+      );
 
-    //   if (isBlacklisted) {
-    //     return message.reply("You've been blacklisted from using this bot.");
-    //   }
-    // }
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
+    }
 
     if (customCmds) {
       const customCmd = customCmds.find((x) => x.name === command);
