@@ -1,4 +1,5 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "afk",
@@ -6,9 +7,15 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    if (bot.afk.has(message.author.id)) {
-      bot.afk.delete(message.author.id);
+    const guildId = message.guild.id;
+    const userId = message.author.id;
+    const lang = await bot.getGuildLang(guildId);
+    const { user } = await getUserById(userId, guildId);
+
+    if (user.afk.is_afk) {
+      await updateUserById(userId, guildId, {
+        afk: { is_afk: false, reason: null },
+      });
 
       const embed = BaseEmbed(message)
         .setTitle(lang.GLOBAL.SUCCESS)
@@ -17,20 +24,15 @@ module.exports = {
       return message.channel.send(embed);
     }
 
-    const reason = args.join(" ");
+    const reason = args.join(" ") || lang.GLOBAL.NOT_SPECIFIED;
 
-    const options = {
-      reason: `${reason || lang.GLOBAL.NOT_SPECIFIED}`,
-      user_id: message.author.id,
-    };
-
-    bot.afk.set(message.author.id, options);
+    await updateUserById(userId, guildId, {
+      afk: { is_afk: true, reason: reason },
+    });
 
     const embed = BaseEmbed(message)
-      .setTitle("Success")
-      .setDescription(
-        `${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${options.reason}`
-      );
+      .setTitle(lang.GLOBAL.SUCCESS)
+      .setDescription(`${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${reason}`);
 
     message.channel.send(embed);
   },

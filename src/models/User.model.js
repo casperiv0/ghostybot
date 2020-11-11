@@ -11,6 +11,13 @@ const userSchema = new Schema({
   work: { type: Number, default: null },
   xp: { type: Number, default: 0 },
   blacklisted: { type: Boolean, default: false },
+  afk: {
+    type: Object,
+    default: {
+      is_afk: false,
+      reason: null,
+    },
+  },
 });
 
 module.exports = model("User", userSchema);
