@@ -1,5 +1,5 @@
 const { getGuildById } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
+const { owners } = require("../../../config.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
 const categories = require("../../data/categories.json");
 
@@ -118,10 +118,9 @@ module.exports = {
     const embed = BaseEmbed(message)
       .addField(lang.HELP.ADMIN, `\`\`\`${adminCmds}\`\`\``)
       .addField(lang.HELP.ANIMAL, `\`\`\`${animalCmds}\`\`\``);
-    if (ownerId === message.author.id) {
+    if (owners.includes(message.author.id)) {
       embed.addField(lang.HELP.BO_CMDS, `\`\`\`${botOwnerCmds}\`\`\``);
-    }
-    if (ownerId !== message.author.id) {
+    } else {
       embed.addField(lang.HELP.BO_CMDS, lang.HELP.OWNER_ONLY);
     }
     if (nsfw) {
