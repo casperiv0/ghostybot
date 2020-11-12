@@ -21,21 +21,21 @@ module.exports = {
       .setTitle(`${message.guild.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
       .setFooter(lang.ECONOMY.BOTH_COUNTED);
 
-    for (let i = 0; i < data.length; i++) {
-      const userId = data[i]._doc.user_id;
+    data.forEach((item, idx) => {
+      const userId = item._doc.user_id;
       const member = message.guild.members.cache.get(userId);
-      const isInPlace = [0, 1, 2].includes(i);
+      const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
         embed.addField(
           member.user.username,
-          `${isInPlace ? places[i] : ""} ${data[i].total} ${
+          `${isInPlace ? places[idx] : ""} ${data[idx].total} ${
             lang.ECONOMY.TOTAL_BALANCE
           }`,
           true
         );
       }
-    }
+    });
 
     message.channel.send({ embed });
   },

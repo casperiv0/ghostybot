@@ -6,6 +6,7 @@ module.exports = {
   name: "leaderboard",
   description: "Shows top 10 users with the highest amount of XP",
   category: "levels",
+  aliases: ["lb"],
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
@@ -17,19 +18,19 @@ module.exports = {
       `${message.guild.name} ${lang.LEVELS.LEADERBOARD}`
     );
 
-    for (let i = 0; i < data.length; i++) {
-      const userId = data[i].user_id;
+    data.forEach((item, idx) => {
+      const userId = item.user_id;
       const member = message.guild.members.cache.get(userId);
-      const isInPlace = [0, 1, 2].includes(i);
+      const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
         embed.addField(
           member.user.username,
-          `${isInPlace ? places[i] : ""} ${data[i].xp}xp`,
+          `${isInPlace ? places[idx] : ""} ${data[idx].xp}xp`,
           true
         );
       }
-    }
+    });
 
     message.channel.send({ embed });
   },
