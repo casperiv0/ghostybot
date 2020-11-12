@@ -6,5 +6,6 @@
     "reportsChannelId": "",
     "openWeatherMapKey": "",
     "feedBackChannelId": "",
-    "mongodbUri": ""
+    "mongodbUri": "",
+    "giphyApiKey": ""
 }

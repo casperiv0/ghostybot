@@ -80,6 +80,9 @@ module.exports = {
     KISSED: "Besadi",
     POKED: "Empujado",
     SLAPPED: "Abofeteado",
+    NO_GIPHY_KEY:
+      "No giphy api was found in the config (contact the bot owner)",
+    NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
     CAT_FACT: "Hecho de gato",
@@ -175,7 +178,8 @@ module.exports = {
     BOTH_COUNTED: "Dinero de banco y bolsillo contados",
     DICE_LANDED: "Ha caido un: {roll}",
     DICE_WON: "Felicidades! has ganado un premio de **{price} Monedas**",
-    DICE_LOST: "Necesitas que caiga un **6** para obtener un premio de **{price} Monedas**",
+    DICE_LOST:
+      "Necesitas que caiga un **6** para obtener un premio de **{price} Monedas**",
     RECENTLY_WORKED: "Ya has trabajado recientemente, {time} restante",
     WORKED: "{member} trabajó de **{job_name}** y obtuvo **{amount}**!",
     CANNOT_PAY_SELF: "No te puedes pagar a ti mismo",
@@ -184,7 +188,8 @@ module.exports = {
     BETWEEN_1_1000: "La cantidad debe estar entre 1 y 1000",
     MEMBER_NO_MONEY:
       "El usuario no tiene ese dinero, por lo tanto no lo puedes robar.",
-    ROB_SUCCESS: "Has robado una cantidad de **{amount} Monedas** a **{member}**",
+    ROB_SUCCESS:
+      "Has robado una cantidad de **{amount} Monedas** a **{member}**",
     STORE: "Tienda",
     MANAGE_STORE_PERMS:
       "No tienes los permisos correctos para manejar la tienda! (Administrar servidor)",
@@ -252,7 +257,8 @@ module.exports = {
     GH_BIO: "Biografia",
     GH_PROVIDE_USERNAME: "Proporciona un usuario!",
     SEARCHING: "Buscando",
-    PROVIDE_EXT: "Por favor proporciona una extencion, e.j.: `ts`, `js`, `html`, ...",
+    PROVIDE_EXT:
+      "Por favor proporciona una extencion, e.j.: `ts`, `js`, `html`, ...",
     PROVIDE_CODE: "Por favor proporciona codigo",
     NO_IMG_FOUND: "Imagen no encontrada",
     PROVIDE_M_S: "Por favor proporciona el nombre de la pelicula o serie",
@@ -314,7 +320,7 @@ module.exports = {
     START_DATE: "Fecha de inico",
     END_DATE: "Fecha de finalización",
     POPULARITY_RANK: "Rango de popularidad",
-    DOC_NOT_FOUND: "No fue encontrado en los documentos"
+    DOC_NOT_FOUND: "No fue encontrado en los documentos",
   },
   BOT: {
     GUILDS: "Gremios",
@@ -332,7 +338,8 @@ module.exports = {
     REPO: "Repositorio",
   },
   CONFIG: {
-    OPTION_CMD_WORK: "{option} necesita ser proporcionada, para que el comando funcione.",
+    OPTION_CMD_WORK:
+      "{option} necesita ser proporcionada, para que el comando funcione.",
   },
   HELP: {
     CAT_NOT_EXIST: "Esa categoria no fue encontrada",

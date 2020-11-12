@@ -60,6 +60,14 @@ function checkValid() {
     );
   }
 
+  if (config.giphyApiKey === "") {
+    console.warn(
+      chalk.yellow(
+        "[WARNING][BOT]: giphyApiKey is required for the giphy command"
+      )
+    );
+  }
+
   fs.stat("src/data/giveaways.json", (e) => {
     if (e === "ENOENT") {
       throw Error("[ERROR]: File: src/data/giveaway.json is required.");

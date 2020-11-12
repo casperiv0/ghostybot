@@ -80,6 +80,9 @@ module.exports = {
     KISSED: "kissed",
     POKED: "poked",
     SLAPPED: "slapped",
+    NO_GIPHY_KEY:
+      "No giphy api was found in the config (contact the bot owner)",
+    NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
     CAT_FACT: "Cat Fact",
@@ -314,7 +317,7 @@ module.exports = {
     START_DATE: "Start Date",
     END_DATE: "End Date",
     POPULARITY_RANK: "Popularity Rank",
-    DOC_NOT_FOUND: "That was not found on the docs"
+    DOC_NOT_FOUND: "That was not found on the docs",
   },
   BOT: {
     GUILDS: "Guilds",

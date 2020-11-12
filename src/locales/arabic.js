@@ -79,6 +79,9 @@ module.exports = {
     KISSED: "قام بتقبيل ",
     POKED: "قام بوخز",
     SLAPPED: "قام بصفع",
+    NO_GIPHY_KEY:
+      "No giphy api was found in the config (contact the bot owner)",
+    NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
     CAT_FACT: "حقيقة القطة",

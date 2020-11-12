@@ -63,6 +63,7 @@ these are the api url's that ghostybot uses.
 | smug         | [https://nekos.life/api/v2/img/smug](https://nekos.life/api/v2/img/smug)                                                                       |
 | supreme      | [https://api.alexflipnote.dev/supreme?text=hello%20world](https://api.alexflipnote.dev/supreme?text=hello%20world)                             |
 | tweet        | [https://nekobot.xyz/api/imagegen?type=tweet&text=Hello%20World&username=You](https://nekobot.xyz/api/imagegen?type=tweet&text=Hello%20World&username=You) |
+| giphy | [https://developers.giphy.com/dashboard/](https://developers.giphy.com/dashboard/) | 
 |              |                                                                                                                                                |
 |     Util     |                                                                                                                                                |
 |              |                                                                                                                                                |
