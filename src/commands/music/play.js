@@ -24,11 +24,6 @@ module.exports = {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
-    const vcMembers = voiceChannel.members;
-    if (vcMembers.has(bot.user.id)) {
-      return message.channel.send(lang.MUSIC.ALREADY_IN_VC);
-    }
-
     const perms = voiceChannel.permissionsFor(message.client.user);
 
     if (!perms.has("CONNECT") || !perms.has("SPEAK")) {
