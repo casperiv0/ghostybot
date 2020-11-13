@@ -81,7 +81,7 @@ module.exports = {
     POKED: "Empujado",
     SLAPPED: "Abofeteado",
     NO_GIPHY_KEY:
-      "No giphy api was found in the config (contact the bot owner)",
+      "La api de giphy no fue encontrada en la configuración (Contacta con el dueño del bot)",
     NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
@@ -100,7 +100,7 @@ module.exports = {
     UPDATED_NICKNAME: "Se ha actualizado el apodo a **{nickname}**",
     PROVIDE_TYPE: "Por favor proporciona un tipo",
     CANNOT_BL_OWNER: "No puedes poner en lista negra al dueño",
-    CANNOT_BL_BOT: "The bot cannot be blacklisted",
+    CANNOT_BL_BOT: "El bot no puede ser añadido a la lista negra",
     NOT_BLD: "Usuario no esta en lista negra",
     ALREADY_BLD: "{member} ya esta en lista negra",
     NOT_OPTION: "**{type}** no es una opcion",
