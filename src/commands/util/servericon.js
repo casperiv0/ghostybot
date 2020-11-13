@@ -1,20 +1,16 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "servericon",
   description: "Shows the server icon",
   category: "util",
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const icon = message.guild.iconURL({ dynamic: true, size: 2048 });
     if (icon === null) {
-      message.channel.send("The server has no icon");
+      message.channel.send(lang.UTIL.NO_GUILD_ICON);
     } else {
-      const embed = new MessageEmbed()
-        .setTitle(`${message.guild.name}'s icon`)
-        .setTimestamp()
-        .setImage(icon)
-        .setFooter(message.author.username)
-        .setColor("BLUE");
+      const embed = BaseEmbed(message).setImage(icon);
 
       message.channel.send(embed);
     }

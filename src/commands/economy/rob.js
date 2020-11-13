@@ -1,50 +1,62 @@
-const { getUserMoney, removeUserMoney } = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "rob",
-  cooldown: 120,
+  cooldown: 0,
   description: "Rob up to 1000coins from somebody",
   category: "economy",
-  execute(bot, message, args) {
-    const user = message.mentions.users.first();
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args);
     const amount = args.slice(1)[0];
 
-    if (!user) {
-      return message.channel.send("Please provide a user mention");
+    if (!member) {
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (user.id === message.author.id) {
-      return message.channel.send("You can't rob yourself!");
+    if (member.user.id === message.author.id) {
+      return message.channel.send(lang.ECONOMY.CANNOT_ROB_SELF);
     }
 
     if (!amount) {
-      return message.channel.send("Please provide an amount to rob!");
+      return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
-    if (amount < 0 || isNaN(amount)) {
-      return message.channel.send("Amount must be above 0 or a valid number!");
+    if (isNaN(amount)) {
+      return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
     if (amount > 1000) {
-      return message.channel.send("Amount must be under 1000 and above 0");
+      return message.channel.send(lang.ECONOMY.BETWEEN_1_1000);
     }
 
-    const userId = user.id;
-    const guildId = message.guild.id;
-    let usersMoney = getUserMoney(guildId, userId);
-
-    if (usersMoney === null) usersMoney = 0;
-
-    if (usersMoney < 0) {
-      return message.channel.send(
-        "User doesn't have any money, therefor you can't rob this user."
-      );
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.BETWEEN_1_1000);
     }
 
-    removeUserMoney(guildId, userId, amount);
+    const userId = member.user.id;
+    const { user } = await getUserById(userId, message.guild.id);
+    const { user: robber } = await getUserById(
+      message.author.id,
+      message.guild.id
+    );
+
+    if (user.money <= 0) {
+      return message.channel.send(lang.ECONOMY.MEMBER_NO_MONEY);
+    }
+
+    await updateUserById(userId, message.guild.id, {
+      money: user.money - amount,
+    });
+    await updateUserById(message.author.id, message.guild.id, {
+      money: robber.money + Number(amount),
+    });
 
     return message.channel.send(
-      `Successfully robbed **${amount}coins** from **${user.tag}**`
+      lang.ECONOMY.ROB_SUCCESS.replace("{amount}", amount).replace(
+        "{member}",
+        member.user.tag
+      )
     );
   },
 };

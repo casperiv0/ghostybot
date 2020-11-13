@@ -1,9 +1,11 @@
 {
     "token": "",
-    "ownerId": "",
+    "owners": [],
     "youtubeApiKey": "",
     "imdbKey": "",
     "reportsChannelId": "",
     "openWeatherMapKey": "",
-    "feedBackChannelId": ""
+    "feedBackChannelId": "",
+    "mongodbUri": "",
+    "giphyApiKey": ""
 }

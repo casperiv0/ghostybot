@@ -1,28 +1,32 @@
 require("./utils/checkValid")();
-const chalk = require("chalk");
+require("./utils/database");
 const { Collection, Client } = require("discord.js");
-const bot = new Client({ disableMentions: "everyone" });
 const { token, imdbKey } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
+const NekoClient = require("nekos.life");
+const TnaiClient = require("tnai");
+const chalk = require("chalk");
+const bot = new Client({ disableMentions: "everyone" });
 const imdb = require("imdb-api");
 
-const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 
-const TnaiClient = require("tnai");
 const tnai = new TnaiClient();
 
-const Kitsu = require("kitsu.js");
-const kitsu = new Kitsu();
+const { findMember, getGuildLang } = require("./utils/functions");
+
+// Locale - Language
+bot.getGuildLang = getGuildLang;
+
 // Commands
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
+bot.afk = new Map();
 bot.neko = neko;
 bot.tnai = tnai;
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
-bot.kitsu = kitsu;
-require("./utils/command")(bot);
+bot.findMember = findMember;
 
 const giveawayManager = new GiveawaysManager(bot, {
   storage: "src/data/giveaways.json",
@@ -37,20 +41,21 @@ const giveawayManager = new GiveawaysManager(bot, {
 
 bot.giveawayManager = giveawayManager;
 
-// events
-require("./utils/events")(bot);
+require("moment-duration-format");
+require("./modules/command")(bot);
+require("./modules/events")(bot);
 
 bot.login(token);
 
 // Unhandled errors
 process.on("unhandledRejection", (error) =>
-  console.error(chalk.redBright(`Uncaught Error ${error}`))
+  console.error(chalk.redBright("Uncaught Error "), error)
 );
 
 process.on("uncaughtExceptionMonitor", (error) => {
-  console.error(chalk.redBright(`Uncaught Exception ${error}`));
+  console.error(chalk.redBright("Uncaught Exception "), error);
 });
 
 process.on("warning", (warning) => {
-  console.warn(chalk.yellow(`Warning ${warning}`));
+  console.warn(chalk.yellow("Warning "), warning);
 });

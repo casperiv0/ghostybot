@@ -5,10 +5,15 @@ module.exports = {
   description: "Let a cow say something",
   category: "animal",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
-    if (!text) return message.channel.send("Please provide text");
+    if (!text) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
-    message.channel.send(`\`\`\` ${cowsay.say({ text, T: "U", e: "oO" })} \`\`\``);
+    message.channel.send(
+      `\`\`\` ${cowsay.say({ text, T: "U", e: "oO" })} \`\`\``
+    );
   },
 };

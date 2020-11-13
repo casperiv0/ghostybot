@@ -1,11 +1,12 @@
 const { MessageEmbed } = require("discord.js");
-const { getAnnounceChannel } = require("../../utils/functions");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "announce",
   description: "Announce something in a channel",
   usage: "announce <channel> <text>",
   category: "admin",
+  memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
     message.delete();
     if (!args[0]) {
@@ -14,19 +15,15 @@ module.exports = {
       );
     }
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message.channel.send(
-        "You don't have the correct permissions for that!"
-      );
-
-    const announceChannel = await getAnnounceChannel(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
+    const announceChannel = guild.announcement_channel;
     let channel = message.mentions.channels.first();
     let text;
 
     if (channel) {
       text = args.splice(1).join(" ");
     } else if (announceChannel !== null) {
-      channel = announceChannel;
+      channel = message.mentions.channels.first();
       text = args.join(" ");
     } else {
       return message.channel.send("Please provide text or a valid channel");
@@ -38,6 +35,8 @@ module.exports = {
       .setFooter(message.author.username)
       .setColor("BLUE");
 
-    bot.channels.cache.get(channel.id).send(embed);
+    bot.channels.cache
+      .get(announceChannel ? announceChannel : channel.id)
+      .send(embed);
   },
 };

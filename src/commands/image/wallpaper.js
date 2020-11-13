@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "wallpaper",
@@ -7,9 +7,7 @@ module.exports = {
   async execute(bot, message) {
     const data = await bot.neko.sfw.wallpaper();
 
-    const embed = new MessageEmbed()
-      .setTitle("OOO a wallpaper nice")
-      .setImage(data.url);
+    const embed = BaseEmbed(message).setImage(data.url);
 
     message.channel.send(embed);
   },

@@ -1,30 +1,36 @@
-const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
+const User = require("../../models/User.model");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const places = require("../../data/places.json");
 
 module.exports = {
   name: "leaderboard",
   description: "Shows top 10 users with the highest amount of XP",
   category: "levels",
+  aliases: ["lb"],
   async execute(bot, message) {
-    const data = db
-      .fetchAll()
-      .filter((da) => da.ID.startsWith("xp_"))
-      .sort((a, b) => b.data - a.data);
+    const lang = await bot.getGuildLang(message.guild.id);
+    const guildId = message.guild.id;
+    const data = (await User.find({ guild_id: guildId }))
+      .sort((a, b) => b.xp - a.xp)
+      .splice(0, 10);
 
-    const embed = new MessageEmbed()
-      .setTitle(`${message.guild.name}'s Leaderboard`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message).setTitle(
+      `${message.guild.name} ${lang.LEVELS.LEADERBOARD}`
+    );
 
-    for (let i = 0; i < data.length; i++) {
-      const guildId = message.guild.id;
-      const userId = data[i].ID.replace(`xp_${guildId}_`, ""); // get user id
-      const user = bot.users.cache.get(userId); // Get user
-      if (user) {
-        embed.addField(user.username, `${data[i].data}xp`, true);
+    data.forEach((item, idx) => {
+      const userId = item.user_id;
+      const member = message.guild.members.cache.get(userId);
+      const isInPlace = [0, 1, 2].includes(idx);
+
+      if (member) {
+        embed.addField(
+          member.user.username,
+          `${isInPlace ? places[idx] : ""} ${data[idx].xp}xp`,
+          true
+        );
       }
-    }
+    });
 
     message.channel.send({ embed });
   },

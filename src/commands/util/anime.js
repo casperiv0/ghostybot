@@ -1,56 +1,56 @@
-const discord = require("discord.js");
+const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "anime",
-  aliases: ["searchanime", "animesearch"],
+  description: "description",
   category: "util",
-  description: "",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");
 
-    if (!search) return message.channel.send("Please specify the anime movie");
+    if (!search) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
-    bot.kitsu
-      .searchAnime(search)
-      .then(async (result) => {
-        if (result.length === 0)
-          return message.channel.send("This is not a valid anime movie");
+    const msg = await message.channel.send(`${lang.UTIL.SEARCHING}..`);
 
-        let anime = result[0];
-        const embed = new discord.MessageEmbed()
-          .setColor("BLUE")
-          .setAuthor(
-            `${anime.titles.english ? anime.titles.english : search} | ${
-              anime.showType
-            }`,
-            anime.posterImage.original
-          )
-          .setDescription(anime.synopsis.replace(/<[^>]*>/g, "").split("\n")[0])
-          .addField(
-            "Information",
-            `**Japanese Name:** ${anime.titles.romaji}\n**Age Rating:** ${
-              anime.ageRating
-            }\n**Is it NSFW:** ${anime.nsfw ? "Yes" : "No"}`,
-            true
-          )
-          .addField(
-            "Stats",
-            `**Avg Rating:** ${anime.averageRating}\n**Rank by rating:** ${anime.ratingRank}\n**Rank by popularity:** ${anime.popularityRank}`,
-            true
-          )
-          .addField(
-            "Status",
-            `**Episode Count:** ${
-              anime.episodeCount ? anime.episodeCount : "N/A"
-            }\n`,
-            true
-          )
-          .setThumbnail(anime.posterImage.original, 100, 200);
-        return message.channel.send(embed);
-      })
-      .catch((err) => {
-        console.log(err);
-        return message.channel.send(`Couldn't find result for ${search}`);
-      });
+    const res = await fetch(
+      `https://kitsu.io/api/edge/anime?filter[text]=${search}`
+    );
+    const data = await res.json();
+
+    msg.delete();
+
+    const anime = data.data[0];
+
+    if (!anime) {
+      return message.channel.send(lang.UTIL.ANIME_NOT_FOUND);
+    }
+
+    const title = anime.attributes.titles;
+    const description = anime.attributes.synopsis;
+    const thumbnail = anime.attributes.posterImage.original;
+    const ratings = anime.attributes.averageRating;
+    const episodes = anime.attributes.episodeCount;
+    const image = anime.attributes.coverImage.large;
+    const startDate = anime.attributes.startDate;
+    const endDate = anime.attributes.endDate;
+    const type = anime.attributes.subtype;
+    const popularityRank = anime.attributes.popularityRank;
+
+    const embed = BaseEmbed(message)
+      .setTitle(`${title.en} (${title.en_jp})`)
+      .setDescription(description)
+      .addField(lang.UTIL.DB_RATINGS, ratings, true)
+      .addField(lang.UTIL.TOTAL_EPISODES, episodes, true)
+      .addField(lang.UTIL.START_DATE, startDate, true)
+      .addField(lang.UTIL.END_DATE, endDate, true)
+      .addField(lang.UTIL.POPULARITY_RANK, popularityRank, true)
+      .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
+      .setThumbnail(thumbnail)
+      .setImage(image);
+
+    return message.channel.send(embed);
   },
 };

@@ -1,30 +1,46 @@
-const { MessageEmbed } = require("discord.js");
-const {
-  getServerPrefix,
-  getAnnounceChannel,
-  getSuggestChannel,
-} = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "config",
   description: "Returns the config",
-  category: "admin",
+  category: "exempt",
   aliases: ["conf", "cfg"],
   async execute(bot, message) {
-    const { guild } = message;
-    const { name, id: guildId } = guild;
-    const prefix = (await getServerPrefix(guildId)) || "!";
-    const announceCh = (await getAnnounceChannel(guildId)) || "None";
-    const suggestCh = (await getSuggestChannel(guildId)) || "None";
+    const lang = await bot.getGuildLang(message.guild.id);
+    const { name, id: guildId } = message.guild;
+    const guild = await getGuildById(guildId);
 
-    const embed = new MessageEmbed()
+    const prefix = guild.prefix;
+    const announceCh = guild?.announcement_channel;
+    const suggestCh = guild?.suggest_channel;
+    const welcomeCh = guild?.welcome_channel;
+    const leaveCh = guild?.leave_channel;
+    const levelMsgs = guild?.level_up_messages;
+
+    const embed = BaseEmbed(message)
       .setTitle(`${name}'s config`)
-      .addField("**Prefix**", prefix, true)
-      .addField("**Announce Channel**", announceCh.id ? `<#${announceCh.id}>` : announceCh, true)
-      .addField("Suggestion Channel", suggestCh ? `<#${suggestCh.id}>` : suggestCh, true)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .addField(lang.GUILD.PREFIX, prefix)
+      .addField(
+        lang.GUILD.ANNOUNCE_CHANNEL,
+        announceCh !== null ? `<#${announceCh}>` : lang.GLOBAL.NONE
+      )
+      .addField(
+        lang.GUILD.SUGGEST_CHANNEL,
+        suggestCh !== null ? `<#${suggestCh}>` : lang.GLOBAL.NONE
+      )
+      .addField(
+        lang.GUILD.WELCOME_CHANNEL,
+        welcomeCh !== null ? `<#${welcomeCh}>` : lang.GLOBAL.NONE
+      )
+      .addField(
+        lang.GUILD.LEAVE_CHANNEL,
+        leaveCh !== null ? `<#${leaveCh}>` : lang.GLOBAL.NONE
+      )
+      .addField(
+        lang.GUILD.LEVEL_UP_MESSAGES,
+        levelMsgs !== null ? "true" : "false"
+      );
 
     message.channel.send({ embed });
   },

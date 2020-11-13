@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
 const PlayStore = require("google-play-scraper");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "playstore",
@@ -8,33 +8,33 @@ module.exports = {
   usage: "playstore <Application Name>",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");
 
-    if (!search) return message.channel.send("Please provide search query");
+    if (!search) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
     PlayStore.search({
       term: args.join(" "),
       num: 1,
     }).then((Data) => {
-      let App;
+      let app;
 
       try {
-        App = JSON.parse(JSON.stringify(Data[0]));
+        app = JSON.parse(JSON.stringify(Data[0]));
       } catch (error) {
-        return message.channel.send("No Application Found!");
+        return message.channel.send(lang.UTIL.PS_NOT_FOUND);
       }
 
-      const Embed = new MessageEmbed()
-        .setColor("BLUE")
-        .setThumbnail(App.icon)
-        .setURL(App.url)
-        .setTitle(`${App.title}`)
-        .setDescription(App.summary)
-        .addField("Price", App.priceText, true)
-        .addField("Developer", App.developer, true)
-        .addField("Score", App.scoreText, true)
-        .setFooter(`Requested by ${message.author.username}`)
-        .setTimestamp();
+      const Embed = BaseEmbed(message)
+        .setThumbnail(app.icon)
+        .setURL(app.url)
+        .setTitle(`${app.title}`)
+        .setDescription(app.summary)
+        .addField(lang.ECONOMY.PRICE, app.priceText, true)
+        .addField(lang.UTIL.DEVELOPER, app.developer, true)
+        .addField(lang.UTIL.SCORE, app.scoreText, true);
 
       return message.channel.send(Embed);
     });

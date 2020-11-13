@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
-const { getUserInventory } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "inventory",
@@ -7,21 +7,21 @@ module.exports = {
   category: "economy",
   usage: "inventory <user>",
   aliases: ["inv"],
-  async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    const usersInventory = await getUserInventory(message.guild.id, user.id);
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args, true);
+    const { user } = await getUserById(member.id, message.guild.id);
+    const inventory = user?.inventory;
 
-    if (usersInventory === null || !usersInventory[0])
-      return message.channel.send("User's inventory is empty");
+    if (!inventory || !inventory?.[0]) {
+      return message.channel.send(lang.ECONOMY.INV_EMPTY);
+    }
 
-    const inventory = usersInventory.map((item) => item).join(",\n ");
+    const mapped = inventory?.map((item) => item).join(",\n ");
 
-    const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s Inventory`)
-      .setDescription(`${inventory}`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle(`${member.user.username} ${lang.ECONOMY.INVENTORY}`)
+      .setDescription(`${mapped}`);
 
     message.channel.send({ embed });
   },

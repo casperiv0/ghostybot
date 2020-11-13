@@ -1,32 +1,41 @@
-const db = require("quick.db");
-const { MessageEmbed } = require("discord.js");
+const User = require("../../models/User.model");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const places = require("../../data/places.json");
 
 module.exports = {
   name: "moneyleaderboard",
   description: "Returns a leaderboard with the top 10 users money",
   category: "economy",
   aliases: ["mlb"],
-  execute(bot, message) {
-    const data = db
-      .fetchAll()
-      .filter((da) => da.ID.startsWith("money_"))
-      .sort((a, b) => b.data - a.data)
-      .slice(0, 10);
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const guildId = message.guild.id;
+    const data = (await User.find({ guild_id: guildId }))
+      .map((v) => {
+        return { total: v.money + v.bank, ...v };
+      })
+      .sort((a, b) => b.total - a.total)
+      .splice(0, 10);
 
-    const embed = new MessageEmbed()
-      .setTitle(`${message.guild.name}'s Money Leaderboard`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle(`${message.guild.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
+      .setFooter(lang.ECONOMY.BOTH_COUNTED);
 
-    for (let i = 0; i < data.length; i++) {
-      const guildId = message.guild.id;
-      const userId = data[i].ID.replace(`money_${guildId}_`, ""); // get user id
-      const user = bot.users.cache.get(userId); // Get user
-      if (user) {
-        embed.addField(user.username, `${data[i].data} Coins`, true);
+    data.forEach((item, idx) => {
+      const userId = item._doc.user_id;
+      const member = message.guild.members.cache.get(userId);
+      const isInPlace = [0, 1, 2].includes(idx);
+
+      if (member) {
+        embed.addField(
+          member.user.username,
+          `${isInPlace ? places[idx] : ""} ${data[idx].total} ${
+            lang.ECONOMY.TOTAL_BALANCE
+          }`,
+          true
+        );
       }
-    }
+    });
 
     message.channel.send({ embed });
   },

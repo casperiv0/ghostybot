@@ -1,5 +1,6 @@
-const { MessageEmbed } = require("discord.js");
 const { formatDate } = require("../../utils/functions");
+const badges = require("../../data/badges.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "userinfo",
@@ -7,41 +8,22 @@ module.exports = {
   usage: "!userinfo <user>",
   category: "util",
   aliases: ["whois", "user"],
-  async execute(_bot, message, args) {
-    const member =
-      message.guild.members.cache.get(args.join(" ")) ||
-      message.mentions.members.first() ||
-      message.member;
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args, true);
 
-    if (!member) return message.channel.send("User wasn't found!");
+    if (!member) {
+      return message.channel.send("User wasn't found!");
+    }
 
     const joinedAt = formatDate(member.joinedAt);
     const createdAt = formatDate(member.user.createdAt);
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
-    const badges = (await member.user.fetchFlags())
+    const userFlags = (await member.user.fetchFlags())
       .toArray()
-      .map((badges) => badges);
-    const status = member.user.presence.status;
-    let embedStatus;
-
-    switch (status) {
-      case "online":
-        embedStatus = "🟢 Online";
-        break;
-      case "idle":
-        embedStatus = "🟠 Idle";
-        break;
-      case "dnd":
-        embedStatus = "🔴 Do not disturb";
-        break;
-      case "offline":
-        embedStatus = "⚫ Offline";
-        break;
-      default:
-        embedStatus = status;
-        break;
-    }
+      .map((flag) => badges[flag])
+      .join(" ");
 
     const roles =
       member.roles.cache
@@ -55,22 +37,22 @@ module.exports = {
 
     const { username, id, tag } = member.user;
 
-    const embed = new MessageEmbed()
-      .addField("**Id**", id, true)
-      .addField("**Username**", username, true)
-      .addField("**Bot**", isBot, true)
-      .addField("**Tag**", tag, true)
-      .addField("**Badges**", badges.length > 0 ? badges : "None", true)
-      .addField("**Created At**", createdAt, true)
-      .addField("**Joined At**", joinedAt, true)
-      .addField("**Server Nickname**", nickname, true)
-      .addField("**Status**", embedStatus, true)
-      .addField(`**Roles (${roleCount})**`, roles)
+    const embed = BaseEmbed(message)
+      .addField(`**${lang.MEMBER.ID}**`, id, true)
+      .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
+      .addField(`**${lang.MEMBER.BOT}**`, isBot, true)
+      .addField(`**${lang.MEMBER.TAG}**`, tag, true)
+      .addField(
+        `**${lang.MEMBER.BADGES}**`,
+        userFlags.length > 0 ? userFlags : "None",
+        true
+      )
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
+      .addField(`**${lang.MEMBER.JOINED_AT}**`, joinedAt, true)
+      .addField(`**${lang.MEMBER.NICKNAME}**`, nickname, true)
+      .addField(`**${lang.MEMBER.ROLES} (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)
-      .setColor("BLUE")
-      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setTimestamp()
-      .setFooter(message.author.username);
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
 
     message.channel.send(embed);
   },

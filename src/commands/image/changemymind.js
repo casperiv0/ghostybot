@@ -1,11 +1,12 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "changemymind",
   description: "Change my mind",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) return message.channel.send("Please provide text");
@@ -17,14 +18,11 @@ module.exports = {
     ).then((res) => res.json());
 
     sendMsg.delete();
-    const embed = new MessageEmbed()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
       .setDescription(
-        `[Click here if the image failed to load.](${data.message})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`
       )
-      .setImage(data.message)
-      .setTimestamp();
+      .setImage(data.message);
 
     message.channel.send({ embed });
   },

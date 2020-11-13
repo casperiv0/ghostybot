@@ -1,8 +1,4 @@
-const {
-  getUserMoney,
-  addUserBank,
-  removeUserMoney,
-} = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "deposit",
@@ -11,30 +7,41 @@ module.exports = {
   usage: "!deposit <all | amount>",
   aliases: ["dep"],
   async execute(bot, message, args) {
-    const user = message.author;
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = message.author;
+    const { user } = await getUserById(member.id, message.guild.id);
+    const money = user.money;
     let amount = args[0];
 
-    if (!amount) return message.reply("Please provide an amount to deposit");
+    if (!amount) {
+      return message.reply(lang.LEVELS.PROVIDE_VALID_AMOUNT);
+    }
 
-    const money = await getUserMoney(message.guild.id, user.id);
-
-    if (money !== 0 && amount === "all") {
-      addUserBank(message.guild.id, user.id, money);
-      removeUserMoney(message.guild.id, user.id, money);
-      return message.channel.send("Successfully deposited all your money!");
+    if (amount === "all") {
+      await updateUserById(member.id, message.guild.id, {
+        bank: user.bank + money,
+        money: user.money - money,
+      });
+      return message.channel.send(lang.ECONOMY.DEPOSITED_ALL);
     }
 
     amount = Number(args[0]);
 
-    if (typeof amount !== "number" || isNaN(amount))
-      return message.reply("Please provide a valid amount to deposit");
+    if (typeof amount !== "number" || isNaN(amount)) {
+      return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
+    }
 
-    if (money < amount)
-      return message.channel.send("You don't have that much money!");
+    if (money < amount) {
+      return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
+    }
 
-    addUserBank(message.guild.id, user.id, amount);
-    removeUserMoney(message.guild.id, user.id, amount);
+    await updateUserById(member.id, message.guild.id, {
+      bank: user.bank + Number(amount),
+      money: user.money - amount,
+    });
 
-    message.channel.send(`Successfully deposited **${amount} coins**`);
+    message.channel.send(
+      lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", amount)
+    );
   },
 };

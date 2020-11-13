@@ -1,20 +1,24 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-    name: "rps",
-    description: "Rock Paper Scissors",
-    category: "games",
-    execute(bot, message) {
-        const replies = ["Rock", "Paper", "Scissors"];
+  name: "rps",
+  description: "Rock Paper Scissors",
+  category: "games",
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
 
-        const reply = replies[Math.floor(Math.random() * replies.length)];
+    const replies = [
+      lang.GAMES.ROCK,
+      lang.GAMES.PAPER,
+      lang.GAMES.SCISSORS,
+    ];
 
-        const embed = new MessageEmbed()
-            .setTitle("Rock Paper Scissors")
-            .setColor("BLUE")
-            .setDescription(`**${reply}**`)
-            .setFooter(message.author.username);
+    const reply = replies[Math.floor(Math.random() * replies.length)];
 
-        message.channel.send(embed);
-    },
+    const embed = BaseEmbed(message)
+      .setTitle(lang.GAMES.RPS)
+      .setDescription(`**${reply}**`);
+
+    message.channel.send(embed);
+  },
 };

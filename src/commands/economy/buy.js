@@ -1,10 +1,7 @@
 const {
-  getStoreItems,
-  getUserInventory,
-  getUserMoney,
-  setUserInventory,
-  removeUserMoney,
-  getServerPrefix,
+  getGuildById,
+  getUserById,
+  updateUserById,
 } = require("../../utils/functions");
 
 module.exports = {
@@ -14,39 +11,60 @@ module.exports = {
   usage: "buy <item name>",
   cooldown: 10,
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
-    const storeItems = await getStoreItems(guildId);
-    const usersInventory = await getUserInventory(guildId, message.author.id);
-    const prefix = await getServerPrefix(guildId);
-    const usersMoney = await getUserMoney(guildId, message.author.id);
+    const guild = await getGuildById(guildId);
+    const { user } = await getUserById(message.author.id, message.guild.id);
+    const inventory = user?.inventory;
+    const prefix = guild.prefix;
     let query = args[0];
 
-    if (storeItems === null || !storeItems[0])
-      return message.channel.send(
-        `The store for this server is empty! Ask a moderator to add items to the store using \`${prefix}store add <item>\` `
-      );
+    if (!guild?.store) {
+      return message.channel.send(lang.ECONOMY.STORE_EMPTY);
+    }
 
-    if (!query) return message.channel.send("Please provide an item to buy!");
+    if (!query) {
+      return message.channel.send(lang.ECONOMY.PROVIDE_ITEM_TO_BUY);
+    }
 
     query = query.toLowerCase();
-    const item = storeItems.filter((storeItem) => storeItem.name === query)[0];
+
+    const item = guild?.store?.filter(
+      (storeItem) => storeItem.name === query
+    )[0];
 
     if (!item)
       return message.channel.send(
-        `**${query}** wasn't found in the store, please use \`${prefix}store\` to see all items in the store`
+        lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", query).replace(
+          "{prefix}",
+          prefix
+        )
       );
 
-    if (usersInventory !== null && usersInventory.includes(item.name))
-      return message.channel.send("You already own this item!");
+    if (inventory && inventory?.includes(item.name)) {
+      return message.channel.send(lang.ECONOMY.ALREADY_OWN_ITEM);
+    }
 
-    if (!usersMoney !== null && usersMoney < item.price)
-      return message.channel.send(
-        "You don't have enough money to buy this item!"
-      );
+    if (!user?.money !== null && user?.money < item.price)
+      return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
 
-    setUserInventory(guildId, message.author.id, item.name);
-    removeUserMoney(guildId, message.author.id, item.price);
+    if (!inventory) {
+      updateUserById(message.author.id, guildId, {
+        inventory: [item.name],
+        money: user.money - item.price,
+      });
+    } else {
+      updateUserById(message.author.id, guildId, {
+        inventory: [...inventory, item.name],
+        money: user.money - item.price,
+      });
+    }
 
-    message.channel.send(`Successfully bought **${item.name}** paid **${item.price}**`);
+    message.channel.send(
+      lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace(
+        "{price}",
+        item.price
+      )
+    );
   },
 };

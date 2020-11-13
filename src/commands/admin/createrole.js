@@ -1,20 +1,13 @@
-const { MessageEmbed } = require("discord.js");
-const { errorEmbed } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "createrole",
   description: "This command creates a role with the name of what you say",
   category: "admin",
+  botPermissions: ["MANAGE_ROLES"],
+  memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("You need `MANAGE_ROLES` permission.");
-    }
     const roleName = args[0];
-
-    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-      return errorEmbed("manage roles (Manage Roles)", message);
-    }
-
     if (!roleName) {
       message.channel.send("Please specify a role name!");
     }
@@ -26,11 +19,10 @@ module.exports = {
       },
     });
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(`Created Role: ${roleName}`)
-      .setDescription(`Successfully created the \`${roleName}\` role`)
-      .setColor("BLUE")
-      .setTimestamp();
-    message.channel.send(embed);
+      .setDescription(`Successfully created the \`${roleName}\` role`);
+
+      message.channel.send(embed);
   },
 };

@@ -1,26 +1,28 @@
-const {
-  addUserMoney,
-  setUserDaily,
-  getUserDaily,
-} = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "daily",
   description: "daily",
   category: "economy",
   async execute(bot, message) {
-    const user = message.author;
-    const timeout = 86400000;
+    const lang = await bot.getGuildLang(message.guild.id);
+    const { user } = await getUserById(message.author.id, message.guild.id);
+    const timeout = 86400000; /* 24h timeout */
     const amount = 500;
-
-    const daily = await getUserDaily(message.guild.id, user.id);
+    const currentMoney = user.money;
+    const daily = user.daily;
 
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
-      message.channel.send("You have already collected your daily!");
+      message.channel.send(lang.ECONOMY.DAILY_ERROR);
     } else {
-      message.channel.send(`You collected your daily of **${amount}** coins`);
-      addUserMoney(message.guild.id, user.id, amount);
-      setUserDaily(message.guild.id, user.id, Date.now());
+      updateUserById(message.author.id, message.guild.id, {
+        daily: Date.now(),
+        money: currentMoney + amount,
+      });
+
+      message.channel.send(
+        lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", amount)
+      );
     }
   },
 };

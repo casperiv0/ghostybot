@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "imgfy",
@@ -6,6 +6,7 @@ module.exports = {
   description: "text to image converter xD",
   category: "image",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) {
@@ -16,9 +17,8 @@ module.exports = {
       text
     )}&_loc=generate&imageoutput=true`;
 
-    const embed = new MessageEmbed()
-      .setDescription(`[Click here if the image failed to load.](${image})`)
-      .setColor("BLUE")
+    const embed = BaseEmbed(message)
+      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
       .setImage(image);
 
     message.channel.send(embed);

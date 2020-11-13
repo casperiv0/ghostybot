@@ -1,25 +1,18 @@
-const {
-  getBlacklistWords,
-  setBlacklistWords,
-  addBlacklistWord,
-} = require("../../utils/functions");
+const { getGuildById, updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "blacklistedwords",
   description: "Add/remove blacklisted words",
   category: "admin",
   options: ["get", "add", "remove"],
+  memberPermissions: ["ADMINISTRATOR"],
+  aliases: ["wordsfilter", "filterwords"],
   async execute(bot, message, args) {
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
-      return message.reply(
-        "Sorry, You don't have the correct permissions for this command. (Administrator)"
-      );
-    }
-
     const option = args[0];
     const item = args[1];
     const guildId = message.guild.id;
-    const blacklistWords = await getBlacklistWords(guildId);
+    const guild = await getGuildById(guildId);
+    const blacklistWords = guild.blacklistedwords;
 
     if (!option) {
       return message.channel.send("Please provide an option '`add`, `remove`'");
@@ -33,9 +26,13 @@ module.exports = {
           );
         }
         if (blacklistWords === null || !blacklistWords) {
-          setBlacklistWords(guildId, [item]);
+          updateGuildById(guildId, {
+            blacklistedwords: [...guild.blacklistedwords, item],
+          });
         } else {
-          addBlacklistWord(guildId, item);
+          updateGuildById(guildId, {
+            blacklistedwords: [item],
+          });
         }
 
         return message.channel.send(
@@ -54,7 +51,7 @@ module.exports = {
             (w) => w.toLowerCase() !== item.toLowerCase()
           );
 
-          setBlacklistWords(guildId, words);
+          updateGuildById(guildId, { blacklistedwords: words });
 
           return message.channel.send(
             `Successfully removed **${item}** from blacklisted words`

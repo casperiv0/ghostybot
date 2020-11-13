@@ -16,8 +16,8 @@ function checkValid() {
     throw Error("[ERROR][BOT]: Bot token is required");
   }
 
-  if (config.prefix === "") {
-    throw Error("[ERROR][BOT]: Prefix is required");
+  if (config.mongodbUri === "") {
+    throw Error("[ERROR][BOT]: mongoUri is required");
   }
 
   if (config.youtubeApiKey === "") {
@@ -56,6 +56,14 @@ function checkValid() {
     console.warn(
       chalk.yellow(
         "[WARNING][BOT]: openWeatherMapKey is required for the weather command"
+      )
+    );
+  }
+
+  if (config.giphyApiKey === "") {
+    console.warn(
+      chalk.yellow(
+        "[WARNING][BOT]: giphyApiKey is required for the giphy command"
       )
     );
   }

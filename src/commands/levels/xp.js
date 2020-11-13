@@ -1,22 +1,19 @@
-const { MessageEmbed } = require("discord.js");
-const { getUserXp } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "xp",
   description: "Get Xp from mentioned user or yourself",
   category: "levels",
   usage: "xp <user>",
-  async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    let usersXp = await getUserXp(message.guild.id, user.id);
-    if (usersXp === null) usersXp = 0;
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args, true);
+    const { user } = await getUserById(member.id, message.guild.id);
 
-    const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s XP`)
-      .setDescription(`Total XP: ${usersXp}`)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle(`${member.user.username} ${lang.LEVELS.XP}`)
+      .setDescription(`${lang.LEVELS.XP}: ${user.xp}`);
 
     message.channel.send({ embed });
   },

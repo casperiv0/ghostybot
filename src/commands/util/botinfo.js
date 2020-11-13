@@ -1,55 +1,57 @@
-require("moment-duration-format");
-const { version, MessageEmbed } = require("discord.js");
+const { version } = require("discord.js");
 const moment = require("moment");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "botinfo",
   description: "Shows info about the bot",
   category: "util",
   aliases: ["bot"],
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const uptime = moment
       .duration(bot.uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");
     const nodev = process.version;
     const createdAt = moment(bot.user.createdAt).format("MM/DD/YYYY");
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTitle("Bot Information")
-      .addField("Bot Id:", bot.user.id)
-      .addField("Bot username:", bot.user.username)
+    const embed = BaseEmbed(message)
+      .setTitle(`${lang.BOT.INFO_2}`)
+      .addField(`${lang.MEMBER.ID}:`, bot.user.id)
+      .addField(`${lang.MEMBER.USERNAME}:`, bot.user.username)
       .addField(
-        "__**Bot info:**__",
+        `__**${lang.BOT.INFO}:**__`,
         `
-**Status:** ${bot.user.presence.status}
-**Users:** ${bot.users.cache.size}
-**Servers:** ${bot.guilds.cache.size}
-**Channels:** ${bot.channels.cache.size}
-**Created on:** ${createdAt}
-**Command Count:** ${bot.commands.size}
-**Voice connections:** ${bot.voice.connections.size}
+**${lang.MEMBER.STATUS}:** ${bot.user.presence.status}
+**${lang.BOT.USERS}:** +35000
+**${lang.BOT.GUILDS}:** ${bot.guilds.cache.size}
+**${lang.BOT.CHANNELS}:** ${bot.channels.cache.size}
+**${lang.MEMBER.CREATED_ON}:** ${createdAt}
+**${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}
+**${lang.BOT.VC_CONNS}:** ${bot.voice.connections.size}
             `
       )
       .addField(
-        "__**System Info**__",
-        `**RAM Usage:**  ${(
+        `__**${lang.BOT.SYSTEM_INFO}**__`,
+        `**${lang.BOT.RAM_USAGE}:**  ${(
           process.memoryUsage().heapUsed /
           1024 /
           1024
         ).toFixed(2)}MB
-**Bot Uptime:** ${uptime}
-**Node Version:** ${nodev}
-**Discord.js version:** ${version}`
+**${lang.BOT.UPTIME}:** ${uptime}
+**${lang.BOT.NODE_V}:** ${nodev}
+**${lang.BOT.DJS_V}:** ${version}`
       )
       .addField(
-        "Repository:",
+        `${lang.BOT.REPO}`,
         "https://github.com/dev-caspertheghost/ghostybot"
       )
-      .addField("Support server", "https://discord.gg/XxHrtkA")
+      .addField(
+        `${lang.UTIL.SUPPORT_SERVER}`,
+        "https://discord.gg/XxHrtkA"
+      )
       .setImage(
-        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/master/.github/Ghostybot-banner.png"
+        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/main/.github/Ghostybot-banner.png"
       );
 
     message.channel.send(embed);

@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js");
-const util = require("util");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "eval",
@@ -8,24 +7,29 @@ module.exports = {
   ownerOnly: true,
   aliases: ["e"],
   async execute(bot, message, args) {
-
+    const lang = await bot.getGuildLang(message.guild.id);
     const toEval = args.join(" ");
-    if (!toEval) return message.channel.send("Please provide text");
-
     try {
-      const evaluated = util.inspect(eval(toEval, { depth: 0 }));
+      let evaled = await eval(toEval);
+      const eevaled = typeof evaled;
+      evaled = require("util").inspect(evaled, {
+        depth: 0,
+        maxArrayLength: null,
+      });
+      const type = eevaled[0].toUpperCase() + eevaled.slice(1);
 
-      const embed = new MessageEmbed()
-        .setTitle("Eval Command")
-        .addField("**Input:**", `\`\`\`${toEval}\`\`\``)
-        .addField("**Output:**", ` \`\`\`${evaluated}\`\`\``)
-        .setColor("BLUE")
-        .setTimestamp()
-        .setFooter(message.author.username);
+      const embed = BaseEmbed(message).setTitle(lang.BOT_OWNER.EVAL)
+        .setDescription(`\`${lang.BOT_OWNER.EVAL_TYPE}:\` ${type}
+\`${lang.BOT_OWNER.EVAL_INPUT}:\` \`\`\`js\n${toEval} \`\`\`
+\`${lang.BOT_OWNER.EVAL_OUTPUT}:\` \`\`\`js\n${evaled}\`\`\``);
 
       message.channel.send(embed);
-    } catch (e) {
-      return message.channel.send(`Something went wrong!  \`\`\`${e}\`\`\`  `);
+    } catch (error) {
+      const errorEmbed = BaseEmbed(message)
+        .setTitle(lang.GLOBAL.EVAL_ERROR)
+        .setDescription(`\`\`\`${error}\`\`\``);
+
+      message.channel.send(errorEmbed);
     }
   },
 };

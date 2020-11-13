@@ -1,24 +1,20 @@
-const { MessageEmbed } = require("discord.js");
-const { getUserMoney, getUserBank } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "balance",
   description: "balance",
   category: "economy",
   aliases: ["bal"],
-  async execute(bot, message) {
-    const user = message.mentions.users.first() || message.author;
-    let money = await getUserMoney(message.guild.id, user.id);
-    let bank = await getUserBank(message.guild.id, user.id);
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = bot.findMember(message, args, true);
+    const { user } = await getUserById(member.id, message.guild.id);
 
-    if (money === null) money = 0;
-    if (bank === null) bank = 0;
-
-    const embed = new MessageEmbed()
-      .setTitle(`${user.username}'s Balance`)
-      .setColor("BLUE")
-      .addField("Pocket:", money)
-      .addField("Bank", bank);
+    const embed = BaseEmbed(message)
+      .setTitle(`${member.user.username} ${lang.ECONOMY.BALANCE}`)
+      .addField(`${lang.ECONOMY.MONEY}:`, user.money)
+      .addField(`${lang.ECONOMY.BANK}:`, user.bank);
 
     message.channel.send(embed);
   },

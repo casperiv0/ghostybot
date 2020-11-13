@@ -1,72 +1,113 @@
 const {
-  getStickyData,
-  getServerPrefix,
-  sendToDev,
-  generateXp,
-  getUserXp,
-  setUserXp,
-  addUserXp,
-  getBlacklistUsers,
-  getBlacklistWords,
+  getGuildById,
+  getSticky,
+  getUserById,
+  updateUserById,
+  errorEmbed,
+  calculateUserXp,
 } = require("../utils/functions");
-const db = require("quick.db");
 const queue = new Map();
-const { MessageEmbed } = require("discord.js");
-const { ownerId } = require("../../config.json");
+const { owners } = require("../../config.json");
+const BaseEmbed = require("../modules/BaseEmbed");
+const Blacklist = require("../models/Blacklisted.model");
 
 module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    const stickyData = await getStickyData(message.guild.id);
+    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES"))
+      return;
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
-    const blacklistedUsers = await getBlacklistUsers();
-    const blacklistedWords = await getBlacklistWords(guildId);
+    const guild = await getGuildById(guildId);
+    const blacklistedWords = guild.blacklistedwords;
+    const blacklistedUsers = await Blacklist.find();
+    const mentions = message.mentions.members;
+    const disabledCommands = guild.disabled_commands;
+    const disabledCategories = guild.disabled_categories;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const serverPrefix = (await getServerPrefix(message.guild.id)) || "!"; //* Change using !prefix <new prefix>
+    const serverPrefix = guild.prefix;
     const prefix = new RegExp(
       `^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`
     );
 
     // Check if sticky
-    const isSticky = message.channel.id === stickyData?.channelId;
+    const sticky = await getSticky(message.channel.id);
+    const isSticky = message.channel.id === sticky?.channel_id;
 
     if (isSticky) {
-      if (message.author.bot || message.content === stickyData.msg) return;
+      if (message.author.bot || message.content === sticky.message) return;
 
-      const fMessage = message.channel.messages.cache.get(stickyData.id);
+      const fMessage = message.channel.messages.cache.get(sticky.message_id);
       if (fMessage) {
         fMessage.delete();
       }
 
-      const stickyMessage = await message.channel.send(stickyData.msg);
-      stickyData.id = stickyMessage.id;
+      const stickyMessage = await message.channel.send(sticky?.message);
+      sticky.message_id = stickyMessage.id;
+      await sticky.save();
     }
 
     // xp - levels
     if (!message.author.bot) {
-      const userXp = await getUserXp(guildId, userId);
+      const { user } = await getUserById(userId, guildId);
+      const xp = Math.ceil(Math.random() * (5 * 10));
+      const level = calculateUserXp(user.xp);
+      const newLevel = calculateUserXp(user.xp + xp);
 
-      if (userXp === null || !userXp) {
-        setUserXp(guildId, userId, generateXp(10, 15));
-      } else {
-        addUserXp(guildId, userId, generateXp(10, 15));
+      if (newLevel > level) {
+        if (guild.level_up_messages === true) {
+          const embed = BaseEmbed(message)
+            .setTitle("Level up!")
+            .addField("New level", newLevel)
+            .addField("Total xp", user.xp + xp);
+
+          const msg = await message.channel.send(embed);
+          const MSG_TIMEOUT_10_SECS = 10000;
+
+          setTimeout(() => {
+            msg.delete();
+          }, MSG_TIMEOUT_10_SECS);
+        }
       }
+
+      await updateUserById(userId, guildId, { xp: user.xp + xp });
     }
 
+    // check if message has a badword in it
     if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
       blacklistedWords !== null &&
         blacklistedWords.forEach((word) => {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
-            return message.reply(
-              "You used a bad word the admin has set, therefore your message was deleted!"
-            );
+            return message
+              .reply(
+                "You used a bad word the admin has set, therefore your message was deleted!"
+              )
+              .then((msg) => {
+                setTimeout(() => {
+                  msg.delete();
+                }, 5000);
+              });
           }
         });
+    }
+
+    if (mentions && !prefix.test(message.content)) {
+      mentions.forEach((member) => {
+        const user = bot.afk.get(member.id);
+
+        if (user) {
+          const embed = BaseEmbed(message)
+            .setTitle("AFK!")
+            .setDescription(
+              `${member.user.tag} is AFK!\n **Reason:** ${user.reason}`
+            );
+          message.channel.send(embed);
+        }
+      });
     }
 
     // Commands
@@ -78,25 +119,27 @@ module.exports = {
       return;
 
     const [, matchedPrefix] = message.content.match(prefix);
-    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    const args = message.content
+      .slice(matchedPrefix.length)
+      .trim()
+      .split(/ +/g);
     const command = args.shift().toLowerCase();
-    let customCmds = db.get(`cmds_${message.guild.id}`);
+    const customCmds = guild?.custom_commands;
 
     if (message.mentions.has(bot.user.id) && !command) {
-      const embed = new MessageEmbed()
+      const embed = BaseEmbed(message)
         .setTitle("Quick Info")
         .addField("Prefix", serverPrefix)
         .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-        .setColor("BLUE");
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809");
 
       message.channel.send(embed);
     }
 
-    if (blacklistedUsers !== null) {
-      const isBlacklisted = blacklistedUsers.filter(
-        (u) => u.user.id === message.author.id
-      )[0];
+    if (blacklistedUsers) {
+      const isBlacklisted = blacklistedUsers.find(
+        (u) => u.user_id === message.author.id
+      );
 
       if (isBlacklisted) {
         return message.reply("You've been blacklisted from using this bot.");
@@ -107,6 +150,7 @@ module.exports = {
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
+
     // music queue
     const serverQueue = queue.get(message.guild.id);
 
@@ -119,8 +163,60 @@ module.exports = {
         const timestamps = cooldowns.get(cmd.name);
         const cooldownAmount = cmd.cooldown * 1000;
 
-        if (cmd.ownerOnly && message.author.id !== ownerId) {
-          return message.reply("This command can only be used by the owner!");
+        if (disabledCategories.length > 0) {
+          if (disabledCategories.includes(cmd.category)) {
+            return message.channel.send(
+              `That command is disabled because this guild disabled the ${cmd.category} category`
+            );
+          }
+        }
+
+        if (disabledCommands.length > 0) {
+          if (disabledCommands.includes(cmd.name)) {
+            return message.channel.send(
+              "That command was disabled for this guild"
+            );
+          }
+        }
+
+        if (cmd.ownerOnly && !owners.includes(message.author.id)) {
+          return message.reply("This command can only be used by the owners!");
+        }
+
+        // botPermissions
+        if (cmd.botPermissions) {
+          const neededPermissions = [];
+          cmd.botPermissions.forEach((perm) => {
+            if (!message.channel.permissionsFor(message.guild.me).has(perm)) {
+              neededPermissions.push(perm);
+            }
+          });
+
+          if (neededPermissions[0]) {
+            return message.channel.send(errorEmbed(neededPermissions, message));
+          }
+        }
+
+        // memberPermissions
+        if (cmd.memberPermissions) {
+          const neededPermissions = [];
+          cmd.memberPermissions.forEach((perm) => {
+            if (!message.channel.permissionsFor(message.member).has(perm)) {
+              neededPermissions.push(perm);
+            }
+          });
+
+          if (neededPermissions.length > 0) {
+            return message.channel.send(
+              `You need: ${neededPermissions
+                .map((p) => `\`${p.toUpperCase()}\``)
+                .join(", ")} permissions`
+            );
+          }
+        }
+
+        if (cmd.nsfwOnly && cmd.nsfwOnly === true && !message.channel.nsfw) {
+          return message.channel.send("This channel is not a NSFW channel!");
         }
 
         if (timestamps.has(userId)) {
@@ -144,8 +240,8 @@ module.exports = {
         return;
       }
     } catch (e) {
-      sendToDev(message, bot, e);
-      console.log(e);
+      // sendToDev(message, bot, e);
+      console.log({ message: message.content, e });
     }
   },
 };

@@ -1,20 +1,22 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-    name: "owl",
-    description: "Shows a picture of a owl",
-    category: "animal",
-    async execute(bot, message) {
-        const data = await fetch("http://pics.floofybot.moe/owl").then(res => res.json());
+  name: "owl",
+  description: "Shows a picture of a owl",
+  category: "animal",
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const data = await fetch("http://pics.floofybot.moe/owl").then((res) =>
+      res.json()
+    );
 
-        const embed = new MessageEmbed()
-            .setFooter(message.author.username)
-            .setColor("BLUE")
-            .setDescription(`[Click here if the image failed to load.](${data.image})`)
-            .setImage(`${data.image}`)
-            .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setDescription(
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.image})`
+      )
+      .setImage(`${data.image}`);
 
-        message.channel.send(embed);
-    }
+    message.channel.send(embed);
+  },
 };

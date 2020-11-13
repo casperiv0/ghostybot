@@ -1,12 +1,14 @@
+const moment = require("moment");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "spotify",
-  category: "fun",
+  category: "util",
   aliases: ["spot"],
   description: "Shows status of users",
-  usage: " ",
-  execute(bot, message, args) {
+  usage: "",
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     let user =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]) ||
@@ -34,6 +36,14 @@ module.exports = {
         const trackAuthor = activity.state?.replace(/;/g, ",");
         const trackAlbum = activity.assets.largeText;
 
+        const duration = moment
+          .duration(
+            new Date(activity.timestamps.end) / 1000 -
+              new Date(activity.timestamps.start) / 1000,
+            "seconds"
+          )
+          .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
+
         const embed = new MessageEmbed()
           .setAuthor(
             "Spotify Track Info",
@@ -45,6 +55,7 @@ module.exports = {
           .addField("Album", trackAlbum, true)
           .addField("Author", trackAuthor, false)
           .addField("Listen to Track", `${trackURL}`, false)
+          .addField("Duration", duration, false)
           .setFooter(
             user.displayName,
             user.user.displayAvatarURL({ dynamic: true }),

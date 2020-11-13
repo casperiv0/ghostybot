@@ -1,12 +1,6 @@
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-case-declarations */
-const {
-  addBlacklistUser,
-  getBlacklistUsers,
-  setBlacklistUsers,
-} = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
-const { MessageEmbed } = require("discord.js");
+const { owners } = require("../../../config.json");
+const Blacklisted = require("../../models/Blacklisted.model");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "blacklist",
@@ -16,83 +10,85 @@ module.exports = {
   options: ["add", "remove", "view"],
   ownerOnly: true,
   async execute(bot, message, args) {
-    const levels = ["1", "2"];
+    const lang = await bot.getGuildLang(message.guild.id);
     const type = args[0];
-    const level = args[1];
-    const user =
-      bot.users.cache.find((user) => user.id === args[2]) ||
-      message.mentions.users.first();
+    const member =
+      message.mentions.users.first() ||
+      bot.users.cache.find((user) => user.id === args[1]);
 
     if (!type) {
-      return message.channel.send("Please provide a type");
+      return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
     }
 
-    if (!level) {
-      return message.channel.send("Please provide a level (1 or 2)");
+    if (!member) {
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (!user) {
-      return message.channel.send("Please provide a valid user");
+    if (member.id === bot.user.id) {
+      return message.channel.send(lang.BOT_OWNER.CANNOT_BL_BOT);
     }
 
-    if (user.id === ownerId) {
-      return message.channel.send("Cannot blacklist the owner");
+    if (owners.includes(member.id)) {
+      return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
     }
 
-    const users = await getBlacklistUsers();
+    const users = await Blacklisted.find();
 
     switch (type) {
-      case "view":
-        const usr =
-          users !== null && users.filter((u) => u.user.id === user.id)[0];
+      case "view": {
+        const usr = users.find((u) => u.user_id === member.id);
 
         if (!usr) {
-          return message.channel.send("User is not blacklisted");
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
 
-        const embed = new MessageEmbed()
-          .setTitle(`Blacklist status: ${usr.user.username}`)
-          .setColor("BLUE")
-          .setTimestamp()
-          .addField("Blacklist level", usr.level ? usr.level : "0");
+        const embed = BaseEmbed(message)
+          .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member.username}`)
+          .addField(`${lang.LEVELS.LEVEL}`, "2");
 
         return message.channel.send({ embed });
-      case "add":
-        if (!levels.includes(level)) {
-          return message.channel.send("Level can only be **1** or **2**");
-        }
-        if (users === null) {
-          return setBlacklistUsers([user]);
-        }
-        const existing =
-          users !== null && users.filter((u) => u.user.id === user.id)[0];
+      }
+      case "add": {
+        const existing = users.filter((u) => u.user_id === member.id)[0];
         if (existing) {
-          return message.channel.send(`${user.tag} is already blacklisted`);
+          return message.channel.send(
+            lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member.tag)
+          );
         }
 
-        addBlacklistUser({ user, level });
+        const blUser = new Blacklisted({ user_id: member.id });
+
+        await blUser.save();
         break;
-      case "remove":
+      }
+      case "remove": {
         if (users === null) {
-          return message.channel.send(`${user.tag} is not blacklisted`);
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
-        const exists = getBlacklistUsers()?.filter(
-          (u) => u.user.id === user?.id
-        )[0];
+        const exists = users.find((u) => u.user_id === member.id);
         if (!exists) {
-          return message.channel.send(`${user.tag} is not blacklisted`);
+          return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
-        const blacklisted = getBlacklistUsers().filter(
-          (u) => u.user.id !== user?.id
-        );
-        setBlacklistUsers(blacklisted);
+
+        await Blacklisted.findOneAndDelete({ user_id: member.id });
         break;
+      }
       default: {
-        return message.channel.send(`**${type}** is not an option`);
+        return message.channel.send(
+          lang.BOT_OWNER.NOT_OPTION.replace("{type}", type)
+        );
       }
     }
     return message.channel.send(
-      `${user.tag} was ${type === "add" ? "blacklisted" : "unblacklisted"}`
+      lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace(
+        "{member}",
+        member.tag
+      ).replace(
+        "{type}",
+        type === "add"
+          ? lang.BOT_OWNER.BLACKLISTED
+          : lang.BOT_OWNER.UNBLACKLISTED
+      )
     );
   },
 };

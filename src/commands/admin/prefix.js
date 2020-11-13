@@ -1,17 +1,17 @@
-const { setServerPrefix, getServerPrefix } = require("../../utils/functions");
+const { getGuildById, updateGuildById } = require("../../utils/functions");
 const { ownerId } = require("../../../config.json");
 
 module.exports = {
   name: "prefix",
   description: "Set a prefix for your server",
-  category: "admin",
+  category: "exempt",
   async execute(bot, message, args) {
     const prefix = args[0];
-    const currentPrefix = await getServerPrefix(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
 
     if (!prefix)
       return message.channel.send(
-        `Current server prefix: \`${currentPrefix}\` \n Use \`${currentPrefix}prefix <prefix>\` to set a new prefix`
+        `Current server prefix: \`${guild.prefix}\` \n Use \`${guild.prefix}prefix <prefix>\` to set a new prefix`
       );
 
     if (message.author.id === ownerId) {
@@ -26,8 +26,8 @@ module.exports = {
   },
 };
 
-function setPrefix(message, prefix) {
-  setServerPrefix(message.guild.id, prefix);
+async function setPrefix(message, prefix) {
+  await updateGuildById(message.guild.id, { prefix });
 
   message.channel.send(`Successfully updated prefix to \`${prefix}\``);
 }

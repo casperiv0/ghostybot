@@ -1,30 +1,34 @@
-const { MessageEmbed } = require("discord.js");
-const { getSuggestChannel } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "suggest",
   description: "Create a suggestion",
   category: "util",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const suggestion = args.join(" ");
-    const channel = await getSuggestChannel(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
+    const suggestChannel = guild?.suggest_channel;
 
-    if (channel === null)
-      message.channel.send(
-        "Your server doesn't have a default suggestion channel! \n Use `set suggest-channel <channel mention>` to set the default channel."
+    if (!suggestChannel) {
+      return message.channel.send(lang.UTIL.NO_SUGG_CHANNEL);
+    }
+
+    if (!suggestion) {
+      return message.reply(lang.GLOBAL.PROVIDE_ARGS);
+    }
+
+    const embed = BaseEmbed(message)
+      .setTitle(lang.UTIL.NEW_SUGGESTION)
+      .setDescription(suggestion)
+      .setAuthor(
+        lang.UTIL.CREATED_BY.replace("{member}", message.author.username)
       );
 
-    if (!suggestion) return message.reply("Please provide a suggestion");
-
-    const embed = new MessageEmbed()
-      .setTitle("New Suggestion")
-      .setDescription(suggestion)
-      .setAuthor(`Created by ${message.author.tag}`)
-      .setFooter(message.author.username)
-      .setColor("BLUE")
-      .setTimestamp();
-
-    const sendMessage = await bot.channels.cache.get(channel.id).send(embed);
+    const sendMessage = await bot.channels.cache
+      .get(suggestChannel)
+      .send(embed);
 
     sendMessage.react("👍");
     sendMessage.react("👎");

@@ -1,36 +1,38 @@
-const { setUserXp, addUserXp, getUserXp } = require("../../utils/functions");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "givexp",
   description: "Give someone Xp",
   category: "levels",
-  usage: "givexp <user> <amount>",
+  usage: "givexp <amount> <user>",
+  memberPermissions: ["MANAGE_MEMBERS"],
   async execute(bot, message, args) {
-    let user = message.mentions.users.first();
-    let xp = args.join(" ").slice(22);
+    const lang = await bot.getGuildLang(message.guild.id);
+    const amount = args[0];
+    const member = bot.findMember(message, args);
 
-    if (!user) {
-      user = bot.users.cache.find((u) => u.id === args[0]);
-      xp = args.join(" ").slice(18);
+    if (!member) {
+      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (!user?.id) {
-      return message.channel.send("User was not found");
+    if (!amount) {
+      return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
-    const usersXp = await getUserXp(message.guild.id, user.id);
-
-    if (!message.member.hasPermission("MANAGE_MEMBERS"))
-      return message.channel.send(
-        "You don't have the correct permissions for that! (Manage Members)"
-      );
-
-    if (usersXp === null) {
-      setUserXp(message.guild.id, user.id, +xp);
-    } else {
-      addUserXp(message.guild.id, user.id, +xp);
+    if (isNaN(Number(amount))) {
+      return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
     }
+    const { user } = await getUserById(member.id, message.guild.id);
 
-    message.channel.send(`Successfully gave ${user} **${xp}**Xp`);
+    await updateUserById(member.id, message.guild.id, {
+      xp: user.xp + Number(amount),
+    });
+
+    message.channel.send(
+      lang.LEVELS.GIVE_XP_SUCCESS.replace(
+        "{member}",
+        member.user.tag
+      ).replace("{amount}", amount)
+    );
   },
 };

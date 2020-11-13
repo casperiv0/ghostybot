@@ -1,20 +1,7 @@
-const { MessageEmbed } = require("discord.js");
-const { getServerPrefix } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
-
-const categories = [
-  "admin",
-  "animal",
-  "botowner",
-  "economy",
-  "games",
-  "hentainsfw",
-  "image",
-  "levels",
-  "music",
-  "nsfw",
-  "util",
-];
+const { getGuildById } = require("../../utils/functions");
+const { owners } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const categories = require("../../data/categories.json");
 
 module.exports = {
   name: "help",
@@ -24,7 +11,9 @@ module.exports = {
   usage: "h <category name | command name>",
   aliases: ["h"],
   async execute(bot, message, args) {
-    const prefix = (await getServerPrefix(message.guild.id)) || "!";
+    const lang = await bot.getGuildLang(message.guild.id);
+    const guild = await getGuildById(message.guild.id);
+    const prefix = guild.prefix;
     const cmdArgs = args[0];
 
     if (categories.includes(cmdArgs)) {
@@ -34,42 +23,42 @@ module.exports = {
         .join(", ");
 
       if (cmds.length < 0) {
-        return message.channel.send("That category does not exist");
+        return message.channel.send(lang.HELP.CAT_NOT_EXIST);
       }
 
-      const embed = new MessageEmbed()
-        .setTitle(`Commands: ${cmdArgs}`)
-        .setColor("BLUE")
+      const embed = BaseEmbed(message)
+        .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`)
         .setDescription(`\`\`\`${cmds}\`\`\``);
 
       return message.channel.send({ embed });
     } else if (cmdArgs) {
       const cmd =
         bot.commands.get(cmdArgs) || bot.commands.get(bot.aliases.get(cmdArgs));
-      if (!cmd) return message.channel.send("Command or alias not found");
+      if (!cmd) return message.channel.send(lang.HELP.CMD_NOT_FOUND);
 
-      const aliases = cmd.aliases ? cmd.aliases.map((alias) => alias) : "None";
+      const aliases = cmd.aliases
+        ? cmd.aliases.map((alias) => alias)
+        : lang.GLOBAL.NONE;
       const options = cmd.options
         ? cmd.options.map((option) => option)
-        : "None";
-      const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : "None";
+        : lang.GLOBAL.NONE;
+      const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : lang.GLOBAL.NONE;
 
-      const embed = new MessageEmbed()
-        .setColor("BLUE")
-        .setTitle(`Command: ${cmd.name}`)
-        .addField("Aliases", aliases, true)
-        .addField("Cooldown", `${cooldown}`, true)
+      const embed = BaseEmbed(message)
+        .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
+        .addField(lang.HELP.ALIASES, aliases, true)
+        .addField(lang.HELP.COOLDOWN, `${cooldown}`, true)
         .addField(
           "Usage",
-          cmd.usage ? `${prefix}${cmd.usage}` : "Not specified",
+          cmd.usage ? `${prefix}${cmd.usage}` : lang.GLOBAL.NOT_SPECIFIED,
           true
         )
-        .addField("Category", cmd.category, true)
+        .addField(lang.UTIL.CATEGORY, cmd.category, true)
         .addField(
-          "Description",
-          cmd.description ? cmd.description : "Not specified"
+          lang.UTIL.DESCRIPTION,
+          cmd.description ? cmd.description : lang.GLOBAL.NOT_SPECIFIED
         )
-        .addField("Options", options);
+        .addField(lang.HELP.OPTIONS, options);
 
       return message.channel.send(embed);
     }
@@ -121,42 +110,35 @@ module.exports = {
       .filter(({ category }) => category === "hentainsfw")
       .map(({ name }) => name)
       .join(", ");
+    const exemptCmds = commands
+      .filter(({ category }) => category === "exempt")
+      .map(({ name }) => name)
+      .join(", ");
 
-    const embed = new MessageEmbed()
-      .setTimestamp()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
-      .addField("Admin Commands", `\`\`\`${adminCmds}\`\`\``)
-      .addField("Animal Commands", `\`\`\`${animalCmds}\`\`\``);
-    if (ownerId === message.author.id) {
-      embed.addField("BotOwner Commands", `\`\`\`${botOwnerCmds}\`\`\``);
-    }
-    if (ownerId !== message.author.id) {
-      embed.addField(
-        "BotOwner Commands",
-        "only the owner is allowed to see this!"
-      );
+    const embed = BaseEmbed(message)
+      .addField(lang.HELP.ADMIN, `\`\`\`${adminCmds}\`\`\``)
+      .addField(lang.HELP.ANIMAL, `\`\`\`${animalCmds}\`\`\``);
+    if (owners.includes(message.author.id)) {
+      embed.addField(lang.HELP.BO_CMDS, `\`\`\`${botOwnerCmds}\`\`\``);
+    } else {
+      embed.addField(lang.HELP.BO_CMDS, lang.HELP.OWNER_ONLY);
     }
     if (nsfw) {
-      embed.addField("NSFW Commands", `\`\`\`${nsfwCmds}\`\`\``);
-      embed.addField("Hentai Commands", `\`\`\`${hentaiCmds}\`\`\``);
+      embed.addField(lang.HELP.NSFW, `\`\`\`${nsfwCmds}\`\`\``);
+      embed.addField(lang.HELP.HENTAI, `\`\`\`${hentaiCmds}\`\`\``);
     } else {
-      embed.addField(
-        "NSFW Commands",
-        "To view nfsw commands check in an nfsw channel!"
-      );
+      embed.addField(lang.HELP.NSFW, lang.HELP.NSFW_ONLY);
     }
     embed
-      .addField("Game Commands", `\`\`\`${gameCmds}\`\`\``)
-      .addField("Image Commands", `\`\`\`${imageCmds}\`\`\``)
-      .addField("Music Commands", `\`\`\`${musicCmds}\`\`\``)
-      .addField("Util Commands", `\`\`\`${utilsCmds}\`\`\``)
-      .addField("Economy Commands", `\`\`\`${economyCmds}\`\`\``)
-      .addField("Levels Commands", `\`\`\`${levelCmds}\`\`\``)
-      .addField("Server prefix: ", prefix)
-      .setDescription(
-        `use \`${prefix}help <command name | alias>\` to view more info about a command\n More info can be found using the \`botinfo\` command`
-      )
+      .addField(lang.HELP.GAME, `\`\`\`${gameCmds}\`\`\``)
+      .addField(lang.HELP.IMAGE, `\`\`\`${imageCmds}\`\`\``)
+      .addField(lang.HELP.MUSIC, `\`\`\`${musicCmds}\`\`\``)
+      .addField(lang.HELP.UTIL, `\`\`\`${utilsCmds}\`\`\``)
+      .addField(lang.HELP.ECONOMY, `\`\`\`${economyCmds}\`\`\``)
+      .addField(lang.HELP.LEVEL, `\`\`\`${levelCmds}\`\`\``)
+      .addField(lang.HELP.EXEMPT, `\`\`\`${exemptCmds}\`\`\``)
+      .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
+      .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
       .setTitle("Help");
 
     message.channel.send(embed);

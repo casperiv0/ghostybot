@@ -1,13 +1,14 @@
-const { MessageEmbed } = require("discord.js");
 const { formatDate, toCapitalize } = require("../../utils/functions");
 const regions = require("../../data/regions.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "serverinfo",
   description: "Get info about the server",
   category: "util",
   aliases: ["guild", "server"],
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const { guild } = message;
     const {
       name,
@@ -26,11 +27,11 @@ module.exports = {
     const boostLevel = premiumTier;
     const owner = (guild.owner && guild.owner.user.tag) || "error";
     const isVerified = verified
-      ? "Yes, this server is verified"
-      : "Nope, this server isn't verified";
+      ? lang.GUILD.IS_VERIFIED
+      : lang.GUILD.NOT_VERIFIED;
     const isPartnered = partnered
-      ? "Yes, this server is partnered"
-      : "Nope, this server isn't partnered";
+      ? lang.GUILD.IS_PARTNERED
+      : lang.GUILD.NOT_PARTNERED;
     const inviteBanner = guild.bannerURL({
       size: 2048,
       format: "png",
@@ -48,25 +49,25 @@ module.exports = {
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
 
-    const embed = new MessageEmbed()
+    const embed = BaseEmbed(message)
       .setTitle(name)
       .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
-      .setColor("BLUE")
-      .addField("**Server Owner**", owner, true)
-      .addField("**Roles Count**", roles, true)
-      .addField("**Channel Count**", channels, true)
-      .addField("**Emoji Count**", emojis, true)
-      .addField("**Member Count**", memberCount, true)
-      .addField("**Created At**", createdAt, true)
-      .addField("**Joined At**", joined, true)
-      .addField("**Region**", region, true)
-      .addField("**Verification level**", verLevel, true)
-      .addField("**MFA level**", mfaLevel, true)
-      .addField("**Boosts**", boosts, true)
-      .addField("**Boost Level**", boostLevel, true)
-      .addField("**Verified**", isVerified, true)
-      .addField("**Partnered**", isPartnered, true)
+      .addField(`**${lang.GUILD.OWNER}**`, owner, true)
+      .addField(`**${lang.GUILD.ROLES_C}**`, roles, true)
+      .addField(`**${lang.GUILD.CHANNEL_C}**`, channels, true)
+      .addField(`**${lang.GUILD.EMOJI_C}**`, emojis, true)
+      .addField(`**${lang.GUILD.MEMBER_C}**`, memberCount, true)
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
+      .addField(`**${lang.MEMBER.JOINED_AT}**`, joined, true)
+      .addField(`**${lang.GUILD.REGION}**`, region, true)
+      .addField(`**${lang.GUILD.VERIFICATION}**`, verLevel, true)
+      .addField(`**${lang.GUILD.MFA}**`, mfaLevel, true)
+      .addField(`**${lang.GUILD.BOOSTS}**`, boosts, true)
+      .addField(`**${lang.GUILD.BOOST_LVL}**`, boostLevel, true)
+      .addField(`**${lang.GUILD.VERIFIED}**`, isVerified, true)
+      .addField(`**${lang.GUILD.PARTNERED}**`, isPartnered, true)
       .setImage(inviteBanner);
+
     message.channel.send(embed);
   },
 };

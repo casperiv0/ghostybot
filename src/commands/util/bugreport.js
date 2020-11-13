@@ -1,30 +1,35 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { reportsChannelId } = require("../../../config.json");
 
 module.exports = {
   name: "bugreport",
   description: "Report a bug to your staff",
   category: "util",
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const bug = args.join(" ");
 
     if (!reportsChannelId) {
       return message.channel.send(
-        "reportsChannelId needs to be provided, for this command to work."
+        lang.CONFIG.OPTION_CMD_WORK.replace(
+          "{option}",
+          "reportsChannelId"
+        )
       );
     }
 
-    if (!bug) return message.channel.send("Please provide a bug");
+    if (!bug) {
+      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+    }
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
-      .setTitle(`${message.author.username} has reported a bug`)
-      .setDescription(bug)
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message)
+      .setTitle(
+        lang.UTIL.BUG_REPORT.replace("{member}", message.author.username)
+      )
+      .setDescription(bug);
 
     bot.channels.cache.get(reportsChannelId).send(embed);
 
-    return message.channel.send("Bug report was send!");
+    return message.channel.send(lang.UTIL.BUG_REPORTED);
   },
 };

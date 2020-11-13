@@ -1,21 +1,18 @@
-const { MessageEmbed } = require("discord.js");
 const randomColor = require("randomcolor");
-
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-    name: "randomcolor",
-    description: "Get a random color",
-    category: "util",
-    aliases: ["color"],
-    execute(bot, message) {
-        const color = randomColor();
+  name: "randomcolor",
+  description: "Get a random color",
+  category: "util",
+  aliases: ["color"],
+  execute(bot, message) {
+    const color = randomColor();
 
-        const embed = new MessageEmbed()
-            .setTimestamp()
-            .setFooter(message.author.username)
-            .setColor(color)
-            .setTitle(color);
+    const embed = BaseEmbed(message)
+      .setColor(color)
+      .setTitle(color);
 
-        message.channel.send(embed);
-    }
+    message.channel.send(embed);
+  },
 };

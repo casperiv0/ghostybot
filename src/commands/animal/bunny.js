@@ -1,23 +1,21 @@
-const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "bunny",
   description: "Shows a picture of a bunny",
   category: "animal",
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await fetch(
       "https://api.bunnies.io/v2/loop/random/?media=gif,png"
     ).then((res) => res.json());
 
-    const embed = new MessageEmbed()
-      .setFooter(message.author.username)
-      .setColor("BLUE")
+    const embed = BaseEmbed()
       .setDescription(
-        `[Click here if the image failed to load.](${data.media.gif})`
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.media.gif})`
       )
-      .setImage(`${data.media.gif}`)
-      .setTimestamp();
+      .setImage(`${data.media.gif}`);
 
     message.channel.send(embed);
   },

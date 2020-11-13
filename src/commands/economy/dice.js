@@ -1,27 +1,31 @@
-const { MessageEmbed } = require("discord.js");
-const { addUserMoney } = require("../../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getUserById, updateUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "dice",
   description: "Roll a dice",
   category: "economy",
   cooldown: 5,
-  execute(bot, message) {
+  async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
+    const { user } = await getUserById(message.author.id, message.guild.id);
     const roll = Math.floor(Math.random() * 6) + 1;
     const price = 200;
 
-    const embed = new MessageEmbed()
-      .setTitle("🎲 You landed on: " + roll)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+    const embed = BaseEmbed(message).setTitle(
+      `🎲 ${lang.ECONOMY.DICE_LANDED.replace("{roll}", roll)}`
+    );
 
     if (roll === 6) {
-      embed.setDescription(`🎉 Congrats! You won a price of **${price}coins**`);
-      addUserMoney(message.guild.id, message.author.id, price);
+      embed.setDescription(
+        `🎉 ${lang.ECONOMY.DICE_WON.replace("{price}", price)}`
+      );
+      updateUserById(message.author.id, message.guild.id, {
+        money: user.money + price,
+      });
     } else {
       embed.setDescription(
-        `You need to land a **6** to get a price of **${price}coins**`
+        `❌ ${lang.ECONOMY.DICE_LOST.replace("{price}", price)}`
       );
     }
 
