@@ -1,3 +1,4 @@
+const Logger = require("../../modules/Logger");
 const { updateUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
         }
       })
       .catch((e) => {
-        console.log(e);
+        Logger.error("resetxp", e);
         message.channel.send("An error occurred");
       });
   },

@@ -3,7 +3,8 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "wallpaper",
   description: "good wallpapers xD",
-  category: "image",
+  category: "nsfw",
+  nsfwOnly: true,
   async execute(bot, message) {
     const data = await bot.neko.sfw.wallpaper();
 

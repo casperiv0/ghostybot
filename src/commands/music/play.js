@@ -2,6 +2,7 @@ const ytld = require("ytdl-core");
 const { youtubeApiKey } = require("../../../config.json");
 const YtApi = require("simple-youtube-api");
 const BaseEmbed = require("../../modules/BaseEmbed");
+const Logger = require("../../modules/Logger");
 const youtube = new YtApi(youtubeApiKey);
 
 module.exports = {
@@ -74,8 +75,8 @@ module.exports = {
         requestedBy: message.author,
       };
     } catch (e) {
-      console.log(e);
-      console.log("PLAY ARGS:", args);
+      Logger.error("PLAY", e);
+      Logger.log("PLAY ARGS:", args);
       return message.channel.send(lang.GLOBAL.ERROR);
     }
 
@@ -103,7 +104,7 @@ module.exports = {
         queueConstruct.nowPlaying = queueConstruct.songs[0];
         play(message.guild, queueConstruct.songs[0], queue, message, lang);
       } catch (e) {
-        console.log(e);
+        Logger.error("JOIN_VC_PLAY", e);
       }
     } else {
       serverQueue.songs.push(song);
@@ -139,7 +140,7 @@ function play(guild, song, queue, message, lang) {
       serverQueue.songs.shift();
       play(guild, serverQueue.songs[0], queue, message, lang);
     })
-    .on("error", (e) => console.log(e));
+    .on("error", (e) => Logger.error("PLAY_SONG", e));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.connection.voice.setSelfDeaf(true);
 

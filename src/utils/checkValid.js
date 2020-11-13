@@ -1,8 +1,7 @@
 const config = require("../../config.json");
-const chalk = require("chalk");
 const fs = require("fs");
+const Logger = require("../modules/Logger");
 
-// Runs checks to see if config is valid
 function checkValid() {
   const v = parseFloat(process.versions.node);
 
@@ -24,48 +23,34 @@ function checkValid() {
     throw Error("[ERROR][BOT]: Youtube API token is required");
   }
 
-  if (config.ownerId === "") {
-    console.warn(
-      chalk.yellow("[WARNING][BOT]: ownerId is required for bot-owner commands")
-    );
+  if (!config.owners[0]) {
+    Logger.warn("bot", "ownerId is required for bot-owner commands");
   }
 
   if (config.reportsChannelId === "") {
-    console.warn(
-      chalk.yellow(
-        "[WARNING][BOT]: reportsChannelId is required for the bugreport command"
-      )
+    Logger.warn(
+      "bot",
+      "reportsChannelId is required for the bugreport command"
     );
   }
 
   if (config.imdbKey === "") {
-    console.warn(
-      chalk.yellow("[WARNING][BOT]:   imdbKey is required for the imdb command")
-    );
+    Logger.warn("bot", "imdbKey is required for the imdb command");
   }
 
   if (config.feedBackChannelId === "") {
-    console.warn(
-      chalk.yellow(
-        "[WARNING][BOT]: feedBackChannelId is required for the feedback command"
-      )
+    Logger.warn(
+      "bot",
+      "feedBackChannelId is required for the feedback command"
     );
   }
 
   if (config.openWeatherMapKey === "") {
-    console.warn(
-      chalk.yellow(
-        "[WARNING][BOT]: openWeatherMapKey is required for the weather command"
-      )
-    );
+    Logger.warn("bot", "openWeatherMapKey is required for the weather command");
   }
 
   if (config.giphyApiKey === "") {
-    console.warn(
-      chalk.yellow(
-        "[WARNING][BOT]: giphyApiKey is required for the giphy command"
-      )
-    );
+    Logger.warn("bot", "giphyApiKey is required for the giphy command");
   }
 
   fs.stat("src/data/giveaways.json", (e) => {

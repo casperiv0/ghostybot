@@ -1,3 +1,5 @@
+const Logger = require("../modules/Logger");
+
 module.exports = {
   name: "ready",
   execute(bot) {
@@ -10,8 +12,9 @@ module.exports = {
       `${userCount} users`,
     ];
 
-    console.log(
-      `[BOT]: Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`
+    Logger.log(
+      "bot",
+      `Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`
     );
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];

@@ -1,5 +1,6 @@
 const MojangAPI = require("mojang-api");
 const BaseEmbed = require("../../modules/BaseEmbed");
+const Logger = require("../../modules/Logger");
 
 module.exports = {
   name: "skin",
@@ -30,7 +31,7 @@ module.exports = {
 
     MojangAPI.nameToUuid(search, (err, res) => {
       if (err) {
-        console.log(err);
+        Logger.error("SKIN", err);
       } else {
         const uuid = res[0]?.id;
         if (!uuid) {

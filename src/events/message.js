@@ -10,6 +10,7 @@ const queue = new Map();
 const { owners } = require("../../config.json");
 const BaseEmbed = require("../modules/BaseEmbed");
 const Blacklist = require("../models/Blacklisted.model");
+const Logger = require("../modules/Logger");
 
 module.exports = {
   name: "message",

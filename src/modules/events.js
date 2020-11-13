@@ -1,4 +1,5 @@
 const { readdirSync } = require("fs");
+const Logger = require("./Logger");
 
 module.exports = function loadEvents(bot) {
   const eventFiles = readdirSync("./src/events/").filter((file) =>
@@ -21,6 +22,6 @@ module.exports = function loadEvents(bot) {
     delete require.cache[require.resolve(`../events/${file}`)];
 
     // debug
-    // console.log(`[INFO][EVENT]: Loaded ${event.name}`);
+    // Logger.log("events", `Loaded ${event.name}`);
   });
 };
