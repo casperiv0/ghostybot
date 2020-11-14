@@ -8,9 +8,9 @@ const TnaiClient = require("tnai");
 const chalk = require("chalk");
 const bot = new Client({ disableMentions: "everyone" });
 const imdb = require("imdb-api");
-
+const { Player } = require("discord-player");
 const neko = new NekoClient();
-
+const player = new Player(bot);
 const tnai = new TnaiClient();
 
 const { findMember, getGuildLang } = require("./utils/functions");
@@ -22,6 +22,7 @@ bot.getGuildLang = getGuildLang;
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
+bot.player = player;
 bot.afk = new Map();
 bot.neko = neko;
 bot.tnai = tnai;

@@ -138,12 +138,15 @@ module.exports = {
     SECONDS: "ثانية",
     VOLUME: "الصوت",
     PROVIDE_SEARCH: "الرجاء تقديم استعلام بحث",
-    ADDED_TO_QUEUE:
-      "تمت اضافة اغنية ال القائمة القائمة | {songs} الاغاني بالقائمة",
+    ADDED_TO_QUEUE: "{song} has been added to the queue",
+    ADDED_PL_TO_QUEUE: "Playlist add to queue ({length} songs)",
+    PROVIDER_NOT_SUPP: "That provider is not supported",
     NOW_PLAYING: "جاري التشغيل:",
     REQUESTED_BY: "بواسطة",
     NO_PERMS: "لا امتلك صلاحيات لهذه القناة الصوتية",
     NOT_SAME_VC: "يجب ان تكون بقناتي الصوتية ",
+    MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
+    NO_RESULTS: "No songs were found",
   },
   ECONOMY: {
     MONEY: "المال",

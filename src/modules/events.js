@@ -8,20 +8,30 @@ module.exports = function loadEvents(bot) {
 
   eventFiles.forEach((file) => {
     const event = require(`../events/${file}`);
+    const isPlayer = file.startsWith("player.");
 
-    if (!event.execute)
+    if (!event.execute) {
       throw new TypeError(
         `[ERROR]: execute function is required for events! (${file})`
       );
+    }
 
-    if (!event.name)
+    if (!event.name) {
       throw new TypeError(`[ERROR]: name is required for events! (${file})`);
+    }
 
-    bot.on(event.name, event.execute.bind(null, bot));
+    if (isPlayer) {
+      bot.player.on(event.name, event.execute.bind(null, bot));
+    } else {
+      bot.on(event.name, event.execute.bind(null, bot));
+    }
 
     delete require.cache[require.resolve(`../events/${file}`)];
 
     // debug
-    // Logger.log("events", `Loaded ${event.name}`);
+    Logger.log(
+      "events",
+      `Loaded ${isPlayer ? "Player:" : "Bot:"} ${event.name}`
+    );
   });
 };
