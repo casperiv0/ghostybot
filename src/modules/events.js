@@ -1,4 +1,5 @@
 const { readdirSync } = require("fs");
+// eslint-disable-next-line no-unused-vars
 const Logger = require("./Logger");
 
 module.exports = function loadEvents(bot) {
@@ -29,9 +30,9 @@ module.exports = function loadEvents(bot) {
     delete require.cache[require.resolve(`../events/${file}`)];
 
     // debug
-    Logger.log(
-      "events",
-      `Loaded ${isPlayer ? "Player:" : "Bot:"} ${event.name}`
-    );
+    // Logger.log(
+    //   "events",
+    //   `Loaded ${isPlayer ? "Player:" : "Bot:"} ${event.name}`
+    // );
   });
 };

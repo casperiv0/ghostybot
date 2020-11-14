@@ -1,4 +1,3 @@
-const moment = require("moment");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
@@ -20,10 +19,6 @@ module.exports = {
 
     const song = bot.player.nowPlaying(message);
 
-    const time = moment
-      .duration(song.durationMS, "milliseconds")
-      .format("d [Days] h [Hours] m [Minutes] s [Seconds]");
-
     const embed = BaseEmbed(message)
       .setTitle(song.title)
       .setURL(song.url)
@@ -31,7 +26,7 @@ module.exports = {
       .setImage(song.thumbnail)
       .setDescription(
         `
-      **${lang.MUSIC.DURATION}:** ${time}
+      **${lang.MUSIC.DURATION}:** ${song.duration}
       **${lang.MUSIC.VIEWS}:** ${song?.views ? song.views : "N/A"}
 `
       );

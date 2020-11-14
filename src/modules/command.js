@@ -2,6 +2,7 @@ const fs = require("fs");
 const { sep } = require("path");
 const chalk = require("chalk");
 const { Collection } = require("discord.js");
+// eslint-disable-next-line no-unused-vars
 const Logger = require("./Logger");
 
 module.exports = function loadCommands(bot) {
