@@ -1,19 +1,16 @@
 require("./utils/checkValid")();
 require("./utils/database");
-const { Collection, Client } = require("discord.js");
-const { token, imdbKey } = require("../config.json");
-const { GiveawaysManager } = require("discord-giveaways");
 const NekoClient = require("nekos.life");
 const TnaiClient = require("tnai");
 const chalk = require("chalk");
-const bot = new Client({ disableMentions: "everyone" });
 const imdb = require("imdb-api");
+const { Collection, Client } = require("discord.js");
+const { token, imdbKey } = require("../config.json");
+const { GiveawaysManager } = require("discord-giveaways");
 const { Player } = require("discord-player");
-const neko = new NekoClient();
-const player = new Player(bot);
-const tnai = new TnaiClient();
-
 const { findMember, getGuildLang } = require("./utils/functions");
+
+const bot = new Client({ disableMentions: "everyone" });
 
 // Locale - Language
 bot.getGuildLang = getGuildLang;
@@ -22,10 +19,10 @@ bot.getGuildLang = getGuildLang;
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
-bot.player = player;
+bot.player = new Player(bot);
 bot.afk = new Map();
-bot.neko = neko;
-bot.tnai = tnai;
+bot.neko = new NekoClient();
+bot.tnai = new TnaiClient();
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.findMember = findMember;
 

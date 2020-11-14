@@ -19,6 +19,11 @@ module.exports = {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
+    const perms = voiceChannel.permissionsFor(bot.user);
+    if (!perms.has("CONNECT") || !perms.has("SPEAK")) {
+      return message.channel.send(lang.MUSIC.NO_PERMS);
+    }
+
     try {
       await bot.player.play(message, search);
     } catch (e) {

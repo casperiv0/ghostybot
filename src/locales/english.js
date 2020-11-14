@@ -203,6 +203,8 @@ module.exports = {
     ADDED_TO_STORE: "{item} was added to the store!",
     NOT_IN_STORE: "**{item}** doesn't exist in the store!",
     REMOVED_FROM_STORE: "{item} was removed from the store!",
+    WON_SLOTS: "You won and got {amount} coins",
+    LOST_SLOTS: "You lost!",
   },
   GAMES: {
     BETS_ON: "{member_1} bets on {member_2}",

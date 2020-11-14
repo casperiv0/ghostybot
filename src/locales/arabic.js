@@ -199,6 +199,8 @@ module.exports = {
     ADDED_TO_STORE: "الي المتجر {item} تم اضافة",
     NOT_IN_STORE: "**{item}** غير موجود بالمتجر",
     REMOVED_FROM_STORE: "من المتجر {item} تمت ازالة ",
+    WON_SLOTS: "You won and got {amount} coins",
+    LOST_SLOTS: "You lost!",
   },
   GAMES: {
     BETS_ON: "{member_1} يراهن علي {member_2}",

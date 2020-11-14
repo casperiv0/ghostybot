@@ -15,6 +15,7 @@ module.exports = {
     const guild = await getGuildById(message.guild.id);
     const prefix = guild.prefix;
     const cmdArgs = args[0];
+    const nsfw = message.channel.nsfw;
 
     if (categories.includes(cmdArgs)) {
       const cmds = bot.commands
@@ -26,10 +27,26 @@ module.exports = {
         return message.channel.send(lang.HELP.CAT_NOT_EXIST);
       }
 
-      const embed = BaseEmbed(message)
-        .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`)
-        .setDescription(`\`\`\`${cmds}\`\`\``);
+      const embed = BaseEmbed(message).setTitle(
+        `${lang.HELP.COMMANDS}: ${cmdArgs}`
+      );
 
+      if (cmdArgs === "botowner") {
+        if (owners.includes(message.author.id)) {
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
+        } else {
+          embed.setDescription(lang.HELP.OWNER_ONLY);
+        }
+      }
+
+      if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
+        if (nsfw) {
+          embed.setDescription(`\`\`\`${nsfwCmds}\`\`\``);
+          embed.setDescription(`\`\`\`${hentaiCmds}\`\`\``);
+        } else {
+          embed.setDescription(lang.HELP.NSFW_ONLY);
+        }
+      }
       return message.channel.send({ embed });
     } else if (cmdArgs) {
       const cmd =
@@ -63,7 +80,6 @@ module.exports = {
       return message.channel.send(embed);
     }
 
-    let nsfw = message.channel.nsfw;
     const commands = bot.commands;
 
     const utilsCmds = commands
