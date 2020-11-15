@@ -9,15 +9,15 @@ module.exports = {
     const member = message.mentions.users.first() || message.author;
     const { user } = await getUserById(member.id, message.guild.id);
     const level = calculateUserXp(user.xp);
-    const avatar = message.author.displayAvatarURL();
+    const avatar = encodeURIComponent(message.author.displayAvatarURL());
     const isBoosting =
       message.member.premiumSinceTimestamp >= 1
         ? "&isBoosting=true"
         : "&isBoosting=false";
 
-    const url = `https://vacefron.nl/api/rankcard?username=${
-      encodeURIComponent(message.author.username)
-    }&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${
+    const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
+      message.author.username
+    )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${
       user.xp
     }&nextlevelxp=${user.xp + 1200}&previouslevelxp=${
       user.xp
