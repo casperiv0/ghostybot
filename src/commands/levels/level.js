@@ -5,18 +5,18 @@ module.exports = {
   description: "Get your current level",
   category: "levels",
   aliases: ["lvl", "rank"],
-  async execute(bot, message) {
-    const member = message.mentions.users.first() || message.author;
+  async execute(bot, message, args) {
+    const member = bot.findMember(message, args, true);
     const { user } = await getUserById(member.id, message.guild.id);
     const level = calculateUserXp(user.xp);
-    const avatar = encodeURIComponent(message.author.displayAvatarURL());
+    const avatar = encodeURIComponent(member.user.displayAvatarURL());
     const isBoosting =
-      message.member.premiumSinceTimestamp >= 1
+      member.premiumSinceTimestamp >= 1
         ? "&isBoosting=true"
         : "&isBoosting=false";
 
     const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
-      message.author.username
+      member.user.username
     )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${
       user.xp
     }&nextlevelxp=${user.xp + 1200}&previouslevelxp=${
