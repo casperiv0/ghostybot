@@ -4,11 +4,11 @@ module.exports = {
   name: "givexp",
   description: "Give someone Xp",
   category: "levels",
-  usage: "givexp <amount> <user>",
+  usage: "givexp <user> <amount>",
   memberPermissions: ["MANAGE_MEMBERS"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const amount = args[0];
+    const amount = args[1];
     const member = bot.findMember(message, args);
 
     if (!member) {

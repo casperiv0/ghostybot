@@ -60,6 +60,13 @@ module.exports = {
         ? cmd.options.map((option) => option)
         : lang.GLOBAL.NONE;
       const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : lang.GLOBAL.NONE;
+      const memberPerms = !cmd.memberPermissions
+        ? lang.GLOBAL.NONE
+        : [...cmd.memberPermissions].map((p) => p);
+
+      const botPerms = !cmd.botPermissions
+        ? ["SEND_MESSAGES"].map((p) => p)
+        : [...cmd.botPermissions, "SEND_MESSAGES"].map((p) => p);
 
       const embed = BaseEmbed(message)
         .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
@@ -73,9 +80,12 @@ module.exports = {
         .addField(lang.UTIL.CATEGORY, cmd.category, true)
         .addField(
           lang.UTIL.DESCRIPTION,
-          cmd.description ? cmd.description : lang.GLOBAL.NOT_SPECIFIED
+          cmd.description ? cmd.description : lang.GLOBAL.NOT_SPECIFIED,
+          true
         )
-        .addField(lang.HELP.OPTIONS, options);
+        .addField(lang.HELP.OPTIONS, options, true)
+        .addField("Bot Permissions", botPerms, true)
+        .addField("Member Permissions", memberPerms, true);
 
       return message.channel.send(embed);
     }

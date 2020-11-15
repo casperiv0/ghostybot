@@ -44,11 +44,13 @@ module.exports = {
       )
       .addField(
         `${lang.BOT.REPO}`,
-        "https://github.com/dev-caspertheghost/ghostybot"
+        "[Click Here](https://github.com/dev-caspertheghost/ghostybot)",
+        true
       )
       .addField(
         `${lang.UTIL.SUPPORT_SERVER}`,
-        "https://discord.gg/XxHrtkA"
+        "[Click Here](https://discord.gg/XxHrtkA)",
+        true
       )
       .setImage(
         "https://github.com/Dev-CasperTheGhost/ghostybot/raw/main/.github/Ghostybot-banner.png"
