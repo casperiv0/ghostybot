@@ -1,4 +1,3 @@
-const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById, calculateUserXp } = require("../../utils/functions");
 
 module.exports = {
@@ -7,19 +6,23 @@ module.exports = {
   category: "levels",
   aliases: ["lvl", "rank"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
     const member = message.mentions.users.first() || message.author;
     const { user } = await getUserById(member.id, message.guild.id);
     const level = calculateUserXp(user.xp);
+    const avatar = message.author.displayAvatarURL();
+    const isBoosting =
+      message.member.premiumSinceTimestamp >= 1
+        ? "&isBoosting=true"
+        : "&isBoosting=false";
 
-    const embed = BaseEmbed(message)
-      .setTitle(`${member.username} ${lang.LEVELS.LEVEL}`)
-      .setDescription(
-        lang.LEVELS.MEMBER_IS_LEVEL.replace("{member}", member.username)
-          .replace("{level}", level)
-          .replace("{user_xp}", user.xp)
-      );
+    const url = `https://vacefron.nl/api/rankcard?username=${
+      encodeURIComponent(message.author.username)
+    }&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${
+      user.xp
+    }&nextlevelxp=${user.xp + 1200}&previouslevelxp=${
+      user.xp
+    }&custombg=2F3136&xpcolor=fff${isBoosting}`;
 
-    message.channel.send({ embed });
+    message.channel.send(url);
   },
 };
