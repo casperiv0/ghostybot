@@ -62,7 +62,8 @@ module.exports = {
       "{member} förbjöds framgångsrikt från servern. Anledning: **{ban_reason}**. Jag har också skickat en DM som meddelar personen.",
   },
   ROLES: {
-    MY_ROLE_NOT_HIGH_ENOUGH: "Min roll är inte tillräckligt hög än **{role}** roll!",
+    MY_ROLE_NOT_HIGH_ENOUGH:
+      "Min roll är inte tillräckligt hög än **{role}** roll!",
     MY_ROLE_MUST_BE_HIGHER:
       "Min roll måste vara högre än **{member}** högsta roll!",
     YOUR_ROLE_MUST_BE_HIGHER: "Din roll måste vara högre än **{role}** roll!",
@@ -141,6 +142,8 @@ module.exports = {
     NO_PERMS: "Jag har inte rätt behörighet för den röstkanalen!",
     NOT_SAME_VC: "Du måste vara i samma röstchatt som botten",
     ALREADY_IN_VC: "Jag är redan i den röstchatten",
+    MUST_BE_SAME_VC: "Du måste vara i samma röstchatt med botten",
+    NO_RESULTS: "Inga låtar hittades",
   },
   ECONOMY: {
     MONEY: "Pengar",
@@ -152,7 +155,7 @@ module.exports = {
     WEEKLY_SUCCESS: "Du har samlat in din veckovis **{amount}** mynt",
     STORE_EMPTY:
       "Butiken för denna server är tom! Be en moderator lägga till artiklar i butiken med `{prefix}store add <Artikel>`",
-      PROVIDE_ITEM_TO_BUY: "Vänligen ange en artikel att köpa",
+    PROVIDE_ITEM_TO_BUY: "Vänligen ange en artikel att köpa",
     NOT_ENOUGH_MONEY: "Du har inte så mycket pengar",
     BUY_SUCCESS: "Framgångsrikt köpt **{item}** betalas **{price}**",
     NOT_FOUND_STORE:
@@ -195,6 +198,8 @@ module.exports = {
     ADDED_TO_STORE: "{item} lades till i affären!",
     NOT_IN_STORE: "**{item}** finns inte i butiken!",
     REMOVED_FROM_STORE: "{item} togs bort från affären!",
+    WON_SLOTS: "Du vann och fick {amount} mynt",
+    LOST_SLOTS: "Du förlorade!",
   },
   GAMES: {
     BETS_ON: "{member_1} satsar på {member_2}",
@@ -295,7 +300,7 @@ module.exports = {
     G_TRANSLATE: "Google översätt",
     NEW_SUGGESTION: "Nytt förslag",
     NO_SUGG_CHANNEL:
-      "Din server har ingen standardförslagskanal! \ N Använd `set suggest-channel <channel mention>` för att ställa in standardkanalen.",
+      "Din server har ingen standardförslagskanal!  N Använd `set suggest-channel <channel mention>` för att ställa in standardkanalen.",
     UPTIME: "{member} har varit på för {time}",
     WEATHER: "Väder",
     PROVIDE_COUNTRY: "Vänligen ange en stad / ett land",
@@ -313,7 +318,7 @@ module.exports = {
     START_DATE: "Start datum",
     END_DATE: "Slutdatum",
     POPULARITY_RANK: "Popularitetsrankning",
-    DOC_NOT_FOUND: "Det hittades inte i dokumenten"
+    DOC_NOT_FOUND: "Det hittades inte i dokumenten",
   },
   BOT: {
     GUILDS: "Guilds",
@@ -331,7 +336,8 @@ module.exports = {
     REPO: "Repository",
   },
   CONFIG: {
-    OPTION_CMD_WORK: "{option} måste tillhandahållas för att detta kommando ska fungera.",
+    OPTION_CMD_WORK:
+      "{option} måste tillhandahållas för att detta kommando ska fungera.",
   },
   HELP: {
     CAT_NOT_EXIST: "Den kategorin finns inte",
