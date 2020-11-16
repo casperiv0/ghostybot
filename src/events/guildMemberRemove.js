@@ -8,9 +8,6 @@ const {
 module.exports = {
   name: "guildMemberRemove",
   async execute(bot, member) {
-    if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
     const guild = await getGuildById(member.guild.id);
     const leaveChannel = guild.leave_channel;
 

@@ -10,11 +10,12 @@ module.exports = {
   async execute(bot, message, args) {
     const option = args[0];
     const guild = await getGuildById(message.guild.id);
-    const command = bot.commands.get(option.toLowerCase());
 
     if (!option) {
       return message.channel.send("Please provide a command or category name");
     }
+
+    const command = bot.commands.get(option.toLowerCase());
 
     if (!command) {
       // enable category
