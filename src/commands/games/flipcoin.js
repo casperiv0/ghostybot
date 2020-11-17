@@ -8,7 +8,7 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
 
     const replies = [
-      `**${lang.GAMES.LANDED_HEAD}**`,
+      `**${lang.GAMES.LANDED_HEADS}**`,
       `**${lang.GAMES.LANDED_TAILS}**`,
     ];
 

@@ -1,4 +1,3 @@
-const User = require("../../models/User.model");
 const { getUserById, calculateUserXp } = require("../../utils/functions");
 
 module.exports = {
@@ -8,20 +7,8 @@ module.exports = {
   aliases: ["lvl", "rank"],
   async execute(bot, message, args) {
     const member = bot.findMember(message, args, true);
-    const { user } = await getUserById(member.id, message.guild.id);
-    const data = (await User.find({ guild_id: message.guild.id })).sort(
-      (a, b) => b.xp - a.xp
-    );
+    const { user } = await getUserById(member.user.id, message.guild.id);
 
-    const rank = data
-      .map((u, i) => {
-        if (u.user_id === member.user.id) {
-          return i;
-        }
-      })
-      .filter((x) => x);
-
-    console.log(rank);
     const level = calculateUserXp(user.xp);
     const avatar = encodeURIComponent(member.user.displayAvatarURL());
     const isBoosting =
@@ -31,7 +18,7 @@ module.exports = {
 
     const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
       member.user.username
-    )}&avatar=${avatar}&level=${level}&rank=${+rank + 1}&currentxp=${
+    )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${
       user.xp
     }&nextlevelxp=${user.xp + 1200}&previouslevelxp=${
       user.xp
