@@ -244,8 +244,12 @@ module.exports = {
         return;
       }
     } catch (e) {
-      // sendToDev(message, bot, e);
       console.log({ message: message.content, e });
+      const embed = BaseEmbed(message)
+        .setTitle("Woah! Something went wrong")
+        .setDescription(e);
+
+      message.channel.send(embed);
     }
   },
 };

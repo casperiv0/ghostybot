@@ -10,7 +10,20 @@ const { GiveawaysManager } = require("discord-giveaways");
 const { Player } = require("discord-player");
 const { findMember, getGuildLang } = require("./utils/functions");
 
-const bot = new Client({ disableMentions: "everyone" });
+const bot = new Client({
+  disableMentions: "everyone",
+  partials: ["REACTION", "USER", "MESSAGE"],
+  ws: {
+    intents: [
+      "GUILDS",
+      "GUILD_MEMBERS",
+      "GUILD_MESSAGES",
+      "GUILD_BANS",
+      "GUILD_WEBHOOKS",
+      "GUILD_EMOJIS",
+    ],
+  },
+});
 
 // Locale - Language
 bot.getGuildLang = getGuildLang;
