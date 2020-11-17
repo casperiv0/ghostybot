@@ -32,8 +32,7 @@ module.exports = {
             .replace("{member}", member.username)
             .replace("{job_name}", name)
             .replace("{amount}", amount)} 💰`
-        )
-        .setColor("BLUE");
+        );
 
       message.channel.send(embed);
 
