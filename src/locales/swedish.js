@@ -200,6 +200,7 @@ module.exports = {
     REMOVED_FROM_STORE: "{item} togs bort från affären!",
     WON_SLOTS: "Du vann och fick {amount} mynt",
     LOST_SLOTS: "Du förlorade!",
+    MAX_BET: "max bet amount is 500",
   },
   GAMES: {
     BETS_ON: "{member_1} satsar på {member_2}",
