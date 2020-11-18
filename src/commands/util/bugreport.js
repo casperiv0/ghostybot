@@ -25,7 +25,7 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setTitle(
-        lang.UTIL.BUG_REPORT.replace("{member}", message.author.username)
+        lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag)
       )
       .setDescription(bug);
 

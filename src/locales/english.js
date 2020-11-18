@@ -15,7 +15,7 @@ module.exports = {
   },
   GUILD: {
     NOT_FOUND: "Guild was not found",
-    LEFT: "Successfully left guild **${guild_name}**",
+    LEFT: "Successfully left guild **{guild_name}**",
     LEVEL_UP_MESSAGES: "Level up messages",
     ANNOUNCE_CHANNEL: "Announce Channel",
     SUGGEST_CHANNEL: "Suggest Channel",
