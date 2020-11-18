@@ -5,6 +5,7 @@ module.exports = {
   name: "suggest",
   description: "Create a suggestion",
   category: "util",
+  cooldown: 300,
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const suggestion = args.join(" ");
