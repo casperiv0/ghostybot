@@ -6,10 +6,12 @@ module.exports = {
   botPermissions: ["MOVE_MEMBERS"],
   memberPermissions: ["MOVE_MEMBERS"],
   async execute(bot, message, args) {
-    const kickUser = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
+    const kickUser = bot.findMember(message, args);
     const kickReason = args.join(" ").slice(23);
+
+    if (!kickUser) {
+      return message.channel.send("Please provide a member!");
+    }
 
     if (kickUser.hasPermission("MOVE_MEMBERS" || "ADMINISTRATOR")) {
       return message.channel.send("User can't be disconnected.");
