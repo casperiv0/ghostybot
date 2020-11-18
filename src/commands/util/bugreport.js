@@ -5,6 +5,7 @@ module.exports = {
   name: "bugreport",
   description: "Report a bug to your staff",
   category: "util",
+  cooldown: 300,
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const bug = args.join(" ");
