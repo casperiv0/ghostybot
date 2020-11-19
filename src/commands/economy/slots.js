@@ -56,9 +56,10 @@ module.exports = {
         money: user.money + amount,
       });
     } else {
+      const removalCount = amount ? amount : 0;
       embed.setTitle(lang.ECONOMY.LOST_SLOTS);
       await updateUserById(message.author.id, message.guild.id, {
-        money: user.money - amount ? amount : 0,
+        money: user.money - removalCount,
       });
     }
 
