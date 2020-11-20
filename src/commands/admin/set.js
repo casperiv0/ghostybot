@@ -66,6 +66,15 @@ module.exports = {
         );
         break;
       case "audit-channel":
+        if (
+          !message.guild.me.hasPermission("MANAGE_WEBHOOKS") ||
+          !message.guild.me.hasPermission("VIEW_AUDIT_LOG")
+        ) {
+          return message.channel.send(
+            "I need `MANAGE_WEBHOOKS`, permissions for audit-logs"
+          );
+        }
+
         item.createWebhook(bot.user.username, {
           avatar: bot.user.displayAvatarURL({ format: "png" }),
           channel: item,
