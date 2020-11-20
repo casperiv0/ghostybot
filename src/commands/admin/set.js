@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById } = require("../../utils/functions");
+const { updateGuildById, getGuildById } = require("../../utils/functions");
 const fs = require("fs");
 
 const languages = fs
@@ -25,6 +25,7 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
     const guildId = message.guild.id;
+    const { prefix } = await getGuildById(guildId);
     const option = args[0];
     const item =
       message.mentions.channels.first() || message.mentions.roles.first();
@@ -32,7 +33,7 @@ module.exports = {
 
     if (!option) {
       return message.channel.send(
-        "Please provide an valid option (`suggest-channel`, `announce-channel`, `welcome-channel`, `leave-channel`, `audit-channel`, `welcome-role` or `mod-log`)"
+        `Please provide an valid option (${prefix}h set)`
       );
     }
 
@@ -87,9 +88,9 @@ module.exports = {
         }
         if (!languages.includes(language)) {
           return message.channel.send(
-            `Language is not available. Available languages: ${languages.map(
-              (l) => `\`${l}\``
-            ).join(", ")}`
+            `Language is not available. Available languages: ${languages
+              .map((l) => `\`${l}\``)
+              .join(", ")}`
           );
         }
         updateItem("locale", language, guildId);

@@ -9,7 +9,6 @@ module.exports = {
     "leave-channel",
     "audit-channel",
     "welcome-role",
-    "mod-log",
     "level-messages",
   ],
   category: "admin",
@@ -17,12 +16,14 @@ module.exports = {
   async execute(bot, message, args) {
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
-    const option = args[0].toLowerCase();
+    let option = args[0];
     const guildId = message.guild.id;
 
     if (!option) {
       return message.channel.send("Please provide a valid option!");
     }
+
+    option = option.toLowerCase();
 
     switch (option) {
       case "welcome-channel":

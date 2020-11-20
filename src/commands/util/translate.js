@@ -8,12 +8,16 @@ module.exports = {
   category: "util",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const result = await translate(args.slice(1).join(" "), { to: args[0] });
+    try {
+      const result = await translate(args.slice(1).join(" "), { to: args[0] });
 
-    const embed = BaseEmbed(message)
-      .setDescription(result.text)
-      .setTitle(lang.UTIL.G_TRANSLATE);
+      const embed = BaseEmbed(message)
+        .setDescription(result.text)
+        .setTitle(lang.UTIL.G_TRANSLATE);
 
-    message.channel.send(embed);
+      message.channel.send(embed);
+    } catch {
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   },
 };
