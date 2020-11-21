@@ -9,6 +9,12 @@ module.exports = {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
+    const playing = bot.player.isPlaying(message);
+
+    if (!playing) {
+      return message.channel.send(lang.MUSIC.NO_QUEUE);
+    }
+
     bot.player.clearQueue(message);
     message.channel.send(lang.MUSIC.QUEUE_CLEARED);
   },
