@@ -41,8 +41,8 @@ module.exports = {
 
       if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
         if (nsfw) {
-          embed.setDescription(`\`\`\`${nsfwCmds}\`\`\``);
-          embed.setDescription(`\`\`\`${hentaiCmds}\`\`\``);
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
         } else {
           embed.setDescription(lang.HELP.NSFW_ONLY);
         }
