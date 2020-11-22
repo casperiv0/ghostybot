@@ -16,9 +16,15 @@ class Logger {
     );
   }
 
+  /**
+   * @param {string} type
+   * @param {string} warning
+   */
   warn(type, warning) {
     return console.warn(
-      chalk.yellow(`[WARNING][${type.toUpperCase()}][${this.now()}]: ${warning}`)
+      chalk.yellow(
+        `[WARNING][${type.toUpperCase()}][${this.now()}]: ${warning}`
+      )
     );
   }
 
@@ -27,7 +33,9 @@ class Logger {
    * @param {string} message
    */
   log(type, message) {
-    return console.log(`[INFO][${type.toUpperCase()}][${this.now()}]: ${message}`);
+    return console.log(
+      `[INFO][${type.toUpperCase()}][${this.now()}]: ${message}`
+    );
   }
 }
 

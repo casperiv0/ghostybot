@@ -12,6 +12,7 @@ const { findMember, getGuildLang } = require("./utils/functions");
 
 const bot = new Client({
   disableMentions: "everyone",
+  partials: ["GUILD_MEMBER", "MESSAGE", "USER"],
 });
 
 // Locale - Language
