@@ -1,5 +1,10 @@
-const { MessageEmbed } = require("discord.js");
+// eslint-disable-next-line no-unused-vars
+const { MessageEmbed, Message } = require("discord.js");
 
+/**
+ * Returns a custom embed
+ * @param {Message} message
+ */
 function BaseEmbed(message) {
   if (!message) {
     throw Error("'message' must be passed down as param! (BaseEmbed)");

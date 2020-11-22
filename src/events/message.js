@@ -28,6 +28,10 @@ module.exports = {
     const disabledCommands = guild?.disabled_commands;
     const disabledCategories = guild?.disabled_categories;
 
+    if (message.guild && !message.member) {
+      await message.guild.members.fetch(message.author.id);
+    }
+
     const ignoredChannels = guild?.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
 

@@ -4,11 +4,27 @@ const Warning = require("../models/Warning.model");
 const Sticky = require("../models/Sticky.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 const moment = require("moment");
+// eslint-disable-next-line no-unused-vars
+const { Message } = require("discord.js");
 
 /**
  *
  * @param {string} userId
  * @param {string} guildId
+ * @returns {{
+ * user: {
+ * money: number;
+ *  bank: number;
+ *  work: number;
+ *  xp: number;
+ *  daily: number;
+ *  weekly: number;
+ *  user_id: string;
+ *  guild_id: string;
+ *  inventory: string[];
+ * },
+ * warnings: Array<{reason: string, guild_id: string;user_id: string;}>
+ * }}
  */
 async function getUserById(userId, guildId) {
   try {
@@ -28,6 +44,11 @@ async function getUserById(userId, guildId) {
   }
 }
 
+/**
+ * Add a user to the database
+ * @param {string} userId
+ * @param {string} guildId
+ */
 async function addUser(userId, guildId) {
   try {
     const user = new User({ user_id: userId, guild_id: guildId });
@@ -40,6 +61,12 @@ async function addUser(userId, guildId) {
   }
 }
 
+/**
+ * Updates user information
+ * @param {string} userId Id of the user
+ * @param {string} guildId Id of the guild
+ * @param {object} data updated data object
+ */
 async function updateUserById(userId, guildId, data) {
   try {
     if (typeof data !== "object") {
@@ -58,6 +85,11 @@ async function updateUserById(userId, guildId, data) {
   }
 }
 
+/**
+ *
+ * @param {string} userId
+ * @param {string} guildId
+ */
 async function removeUser(userId, guildId) {
   try {
     await User.findOneAndDelete({ user_id: userId, guild_id: guildId });
@@ -106,6 +138,9 @@ async function updateGuildById(guildId, settings) {
   }
 }
 
+/**
+ * @param {string} guildId
+ */
 async function addGuild(guildId) {
   try {
     const guild = new Guild({ guild_id: guildId });
@@ -118,6 +153,9 @@ async function addGuild(guildId) {
   }
 }
 
+/**
+ * @param {string} guildId
+ */
 async function removeGuild(guildId) {
   try {
     await Guild.findOneAndDelete({ guild_id: guildId });
@@ -129,6 +167,7 @@ async function removeGuild(guildId) {
 /* WARNINGS */
 /**
  * @param {string} userId
+ * @param {string} guildId
  * @param {string} reason
  */
 async function addWarning(userId, guildId, reason) {
@@ -141,6 +180,10 @@ async function addWarning(userId, guildId, reason) {
   }
 }
 
+/**
+ * @param {string} userId
+ * @param {string} guildId
+ */
 async function removeUserWarnings(userId, guildId) {
   try {
     await Warning.deleteMany({ user_id: userId, guild_id: guildId });
@@ -150,6 +193,11 @@ async function removeUserWarnings(userId, guildId) {
 }
 
 /* STICKY DATA */
+/**
+ * @param {string} messageId
+ * @param {string} channelId
+ * @param {string} message
+ */
 async function addSticky(messageId, channelId, message) {
   try {
     const sticky = new Sticky({
@@ -164,6 +212,9 @@ async function addSticky(messageId, channelId, message) {
   }
 }
 
+/**
+ * @param {string} channelId
+ */
 async function getSticky(channelId) {
   try {
     const sticky = await Sticky.findOne({ channel_id: channelId });
@@ -174,6 +225,9 @@ async function getSticky(channelId) {
   }
 }
 
+/**
+ * @param {string} channelId
+ */
 async function removeSticky(channelId) {
   try {
     await Sticky.findOneAndDelete({ channel_id: channelId });
@@ -195,6 +249,11 @@ const errorEmbed = (permissions, message) => {
     .setColor("ORANGE");
 };
 
+/**
+ * @param {Message} message
+ * @param {string[]} args
+ * @param {Boolean} allowAuthor
+ */
 function findMember(message, args, allowAuthor) {
   return message.guild.member(
     message.mentions.users.first() ||
@@ -205,6 +264,10 @@ function findMember(message, args, allowAuthor) {
   );
 }
 
+/**
+ * @param {string} guildId
+ * @returns {Object} The found language
+ */
 async function getGuildLang(guildId) {
   try {
     const guild = await getGuildById(guildId);
@@ -215,10 +278,22 @@ async function getGuildLang(guildId) {
   }
 }
 
+/**
+ * @param {number | string} date
+ * @returns {string}
+ */
 const formatDate = (date) => moment(date).format("MM/DD/YYYY");
 
+/**
+ * @param {string} str
+ * @returns {string}
+ */
 const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
+/**
+ * @param {number} xp
+ * @returns {number} calculated level
+ */
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 module.exports = {

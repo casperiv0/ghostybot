@@ -23,7 +23,7 @@ module.exports = {
 
     data.forEach((item, idx) => {
       const userId = item._doc.user_id;
-      const member = message.guild.members.cache.get(userId);
+      const member = message.guild.members.fetch(userId);
       const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
