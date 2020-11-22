@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "channelCreate",
   async execute(bot, channel) {
+    if (!channel.guild) return;
     if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }

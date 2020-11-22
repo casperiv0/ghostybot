@@ -27,7 +27,10 @@ module.exports = {
       );
     }
 
-    banUser.ban({ days: 7, reason: banReason });
+    banUser.ban({
+      days: 7,
+      reason: `**Banned by:** ${message.author.tag}\n**Reason:** ${banReason}`,
+    });
 
     banUser.user.send(
       lang.MEMBER.DM_BAN_MESSAGE.replace(

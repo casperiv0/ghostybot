@@ -10,7 +10,6 @@ module.exports = function loadEvents(bot) {
   eventFiles.forEach((file) => {
     const event = require(`../events/${file}`);
     const isPlayer = file.startsWith("player.");
-    const isCustom = file.startsWith("custom.");
 
     if (!event.execute) {
       throw new TypeError(
@@ -22,9 +21,7 @@ module.exports = function loadEvents(bot) {
       throw new TypeError(`[ERROR]: name is required for events! (${file})`);
     }
 
-    if (isCustom) {
-      bot.on(event.name, event.execute);
-    } else if (isPlayer) {
+    if (isPlayer) {
       bot.player.on(event.name, event.execute.bind(null, bot));
     } else {
       bot.on(event.name, event.execute.bind(null, bot));

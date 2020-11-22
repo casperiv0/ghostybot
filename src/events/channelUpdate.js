@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "channelUpdate",
   async execute(bot, oldChannel, newChannel) {
+    if (!oldChannel.guild) return;
     if (!oldChannel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }

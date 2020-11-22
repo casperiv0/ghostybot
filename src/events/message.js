@@ -15,7 +15,6 @@ module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    if (!message.guild) return;
     if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES"))
       return;
 
@@ -28,10 +27,6 @@ module.exports = {
     const mentions = message.mentions.members;
     const disabledCommands = guild?.disabled_commands;
     const disabledCategories = guild?.disabled_categories;
-
-    if (!message.member) {
-      await message.guild.members.fetch(userId);
-    }
 
     const ignoredChannels = guild?.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
