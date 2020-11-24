@@ -10,11 +10,8 @@ module.exports = {
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
     // Couldn't find webhook/webhook doesn't exist
-    if (!webhook) {
-      return;
-    }
-
-    if (message.author.id === bot.user.id) return;
+    if (!webhook) return;
+    if (message.author?.id === bot.user.id) return;
 
     const embed = new MessageEmbed()
       .setTitle("Message deleted")
