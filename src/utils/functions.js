@@ -4,8 +4,10 @@ const Warning = require("../models/Warning.model");
 const Sticky = require("../models/Sticky.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 const moment = require("moment");
+const Logger = require("../modules/Logger");
 // eslint-disable-next-line no-unused-vars
-const { Message } = require("discord.js");
+const { Message, Client } = require("discord.js");
+const { errorLogsChannelId } = require("../../config.json");
 
 /**
  *
@@ -279,6 +281,42 @@ async function getGuildLang(guildId) {
 }
 
 /**
+ * @param {Client} bot
+ * @param {Message} message
+ * @param {"warning" | "error"} type
+ * @param {?string} msgContent
+ */
+function sendErrorLog(bot, error, type, msgContent) {
+  if (!errorLogsChannelId) {
+    Logger.error("UNHANDLED ERROR", error);
+  }
+
+  const message = {
+    author: bot.user,
+  };
+
+  const name = error.name || "N/A";
+  const code = error.code || "N/A";
+  const httpStatus = error.httpStatus || "N/A";
+  const stack = error.stack || "N/A";
+  const content = msgContent || "N/A";
+
+  console.log(error);
+
+  const embed = BaseEmbed(message)
+    .setTitle("An error occurred")
+    .addField("Name", name, true)
+    .addField("Code", code, true)
+    .addField("httpStatus", httpStatus, true)
+    .addField("Timestamp", Logger.fullDate(), true)
+    .addField("Command executed", content)
+    .setDescription(`\`\`\`${stack}\`\`\` `)
+    .setColor(type === "error" ? "RED" : "ORANGE");
+
+  bot.channels.cache.get(errorLogsChannelId)?.send(embed);
+}
+
+/**
  * @param {number | string} date
  * @returns {string}
  */
@@ -298,6 +336,7 @@ const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 module.exports = {
   errorEmbed,
+  sendErrorLog,
   formatDate,
   toCapitalize,
   calculateUserXp,

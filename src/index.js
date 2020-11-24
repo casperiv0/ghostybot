@@ -2,13 +2,12 @@ require("./utils/checkValid")();
 require("./utils/database");
 const NekoClient = require("nekos.life");
 const TnaiClient = require("tnai");
-const chalk = require("chalk");
 const imdb = require("imdb-api");
 const { Collection, Client } = require("discord.js");
 const { token, imdbKey } = require("../config.json");
 const { GiveawaysManager } = require("discord-giveaways");
 const { Player } = require("discord-player");
-const { findMember, getGuildLang } = require("./utils/functions");
+const { findMember, getGuildLang, sendErrorLog } = require("./utils/functions");
 
 const bot = new Client({
   disableMentions: "everyone",
@@ -49,14 +48,10 @@ require("./modules/events")(bot);
 bot.login(token);
 
 // Unhandled errors
-process.on("unhandledRejection", (error) =>
-  console.error(chalk.redBright("Uncaught Error "), error)
+process.on("unhandledRejection", (error) => sendErrorLog(bot, error, "error"));
+
+process.on("uncaughtExceptionMonitor", (error) =>
+  sendErrorLog(bot, error, "error")
 );
 
-process.on("uncaughtExceptionMonitor", (error) => {
-  console.error(chalk.redBright("Uncaught Exception "), error);
-});
-
-process.on("warning", (warning) => {
-  console.warn(chalk.yellow("Warning "), warning);
-});
+process.on("warning", (warning) => sendErrorLog(bot, warning, "warning"));

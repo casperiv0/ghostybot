@@ -3,7 +3,11 @@ const chalk = require("chalk");
 
 class Logger {
   now() {
-    return moment().format("hh:mm:ss");
+    return moment().format("hh:mm:ss a");
+  }
+
+  fullDate() {
+    return moment().format("MMMM Do YYYY, h:mm:ss a");
   }
 
   /**

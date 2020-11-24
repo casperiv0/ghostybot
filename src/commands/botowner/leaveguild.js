@@ -1,3 +1,5 @@
+const { sendErrorLog } = require("../../utils/functions");
+
 module.exports = {
   name: "leaveguild",
   description: "Leaves a guid by the provided Id",
@@ -19,11 +21,9 @@ module.exports = {
 
     try {
       await guild.leave();
-      message.channel.send(
-        lang.GUILD.LEFT.replace("{guild_name}", guild.name)
-      );
+      message.channel.send(lang.GUILD.LEFT.replace("{guild_name}", guild.name));
     } catch (e) {
-      console.error(e);
+      sendErrorLog(bot, e, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   },

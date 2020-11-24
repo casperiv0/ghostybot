@@ -5,6 +5,7 @@ const {
   updateUserById,
   errorEmbed,
   calculateUserXp,
+  sendErrorLog,
 } = require("../utils/functions");
 const queue = new Map();
 const { owners } = require("../../config.json");
@@ -244,7 +245,7 @@ module.exports = {
         return;
       }
     } catch (e) {
-      console.error({ message: message.content, e });
+      sendErrorLog(bot, e, "error", message.content);
       const embed = BaseEmbed(message)
         .setTitle("Woah! Something went wrong")
         .setDescription(e);
