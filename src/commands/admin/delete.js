@@ -6,7 +6,7 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   botPermissions: ["MANAGE_MESSAGES"],
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
     const amount = args[0];
 
     if (!amount) {
@@ -19,10 +19,16 @@ module.exports = {
       );
     }
 
-    message.channel.bulkDelete(Number(amount)).then(() => {
-      message.channel
-        .send(`Deleted ${args[0]} messages.`)
-        .then((msg) => msg.delete({ timeout: 2000 }, true));
-    });
+    try {
+      await message.channel.bulkDelete(Number(amount)).then(() => {
+        message.channel
+          .send(`Deleted ${args[0]} messages.`)
+          .then((msg) => msg.delete({ timeout: 2000 }, true));
+      });
+    } catch {
+      return message.channel.send(
+        "An error occurred when deleting the messages, make sure they are not older than 14days"
+      );
+    }
   },
 };
