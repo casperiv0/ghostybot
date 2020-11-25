@@ -301,15 +301,13 @@ function sendErrorLog(bot, error, type, msgContent) {
   const stack = error.stack || "N/A";
   const content = msgContent || "N/A";
 
-  console.log(error);
-
   const embed = BaseEmbed(message)
     .setTitle("An error occurred")
     .addField("Name", name, true)
     .addField("Code", code, true)
     .addField("httpStatus", httpStatus, true)
     .addField("Timestamp", Logger.fullDate(), true)
-    .addField("Command executed", content)
+    .addField("Command executed", content, true)
     .setDescription(`\`\`\`${stack}\`\`\` `)
     .setColor(type === "error" ? "RED" : "ORANGE");
 

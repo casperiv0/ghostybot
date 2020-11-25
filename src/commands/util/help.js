@@ -37,15 +37,15 @@ module.exports = {
         } else {
           embed.setDescription(lang.HELP.OWNER_ONLY);
         }
-      }
-
-      if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
+      } else if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
         if (nsfw) {
           embed.setDescription(`\`\`\`${cmds}\`\`\``);
           embed.setDescription(`\`\`\`${cmds}\`\`\``);
         } else {
           embed.setDescription(lang.HELP.NSFW_ONLY);
         }
+      } else {
+        embed.setDescription(`\`\`\`${cmds}\`\`\``);
       }
       return message.channel.send({ embed });
     } else if (cmdArgs) {
