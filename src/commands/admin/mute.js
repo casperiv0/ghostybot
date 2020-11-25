@@ -10,7 +10,7 @@ module.exports = {
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
 
-    if (muteUser.roles.cache.find((r) => r.name === "muted")) {
+    if (muteUser?.roles.cache.find((r) => r.name === "muted")) {
       return message.channel.send("User is already muted!");
     }
 
@@ -40,16 +40,6 @@ module.exports = {
 
     if (!muteUser) return message.channel.send("User wasn't found");
     if (!muteReason) muteReason = "Not Specified";
-
-    // overwrite permissions for every channel in the guild
-    message.guild.channels.cache.forEach(async (channel) => {
-      await channel.overwritePermissions([
-        {
-          id: muteRole.id,
-          deny: ["SEND_MESSAGES", "ADD_REACTIONS"],
-        },
-      ]);
-    });
 
     // Add role & send msg
     muteUser.roles.add(muteRole);
