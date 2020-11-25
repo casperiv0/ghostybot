@@ -3,13 +3,12 @@ const BaseEmbed = require("../modules/BaseEmbed");
 module.exports = {
   name: "guildBanAdd",
   async execute(bot, guild, user) {
-    if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
+    if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+
     const w = await guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
-
     if (!webhook) return;
+
     const audit = await (await guild.fetchAuditLogs()).entries.first();
 
     const message = {

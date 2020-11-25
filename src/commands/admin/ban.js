@@ -32,12 +32,16 @@ module.exports = {
       reason: `**Banned by:** ${message.author.tag}\n**Reason:** ${banReason}`,
     });
 
-    banUser.user.send(
-      lang.MEMBER.DM_BAN_MESSAGE.replace(
-        "{guild_name}",
-        message.guild.name
-      ).replace("{ban_reason}", banReason)
-    );
+    try {
+      banUser.user.send(
+        lang.MEMBER.DM_BAN_MESSAGE.replace(
+          "{guild_name}",
+          message.guild.name
+        ).replace("{ban_reason}", banReason)
+      );
+      // eslint-disable-next-line no-empty
+    } catch {}
+
     message.channel.send(
       lang.MEMBER.GUILD_BAN_MESSAGE.replace(
         "{member}",

@@ -28,6 +28,11 @@ bot.tnai = new TnaiClient();
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.findMember = findMember;
 
+global.Promise = require("bluebird");
+Promise.config({
+  longStackTraces: true,
+});
+
 const giveawayManager = new GiveawaysManager(bot, {
   storage: "src/data/giveaways.json",
   updateCountdownEvery: 10000,

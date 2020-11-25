@@ -17,11 +17,10 @@ module.exports = {
       return;
     }
 
-    if (newMsg.author.id === bot.user.id) return;
-
     if (!oldMsg.content || !newMsg.content) {
       return;
     }
+    if (newMsg.author?.id === bot.user.id) return;
 
     if (oldMsg.content === newMsg.content) return;
 
