@@ -365,6 +365,7 @@ module.exports = {
     CMD_DESC: "استخدم `{prefix}help <اسم الامر>",
     OWNER_ONLY: "لا يمكن عرض الاوامر هذه للمستخدمين",
     NSFW_ONLY: "لا يمكن عرض الاوامر غير بقناة NSFW",
+    DISABLED: "Disabled commands (this guild only)",
   },
   POKEMON: {
     SPECIES: "النوع",

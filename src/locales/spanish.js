@@ -374,6 +374,7 @@ module.exports = {
       "usa `{prefix}help <nombre del comando | alias>` para ver mas informacion del comando\n Mas informacion puede ser encontrada usando el comando `botinfo`",
     OWNER_ONLY: "Solo el dueño puede ver esto!",
     NSFW_ONLY: "Para ver los comando NSFW debes estar en un canal NSFW!",
+    DISABLED: "Disabled commands (this guild only)",
   },
   POKEMON: {
     SPECIES: "Especie",

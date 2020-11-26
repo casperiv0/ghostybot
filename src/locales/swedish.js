@@ -366,6 +366,7 @@ module.exports = {
       "använda sig av `{prefix}help <command namn | alias>` för att se mer info om en command\n Mer information finns på `botinfo` command",
     OWNER_ONLY: "bara ägaren får se detta!",
     NSFW_ONLY: "För att visa nfsw-kommandon, kolla in en nfsw-kanal!",
+    DISABLED: "Disabled commands (this guild only)",
   },
   POKEMON: {
     SPECIES: "Arter",

@@ -140,6 +140,9 @@ module.exports = {
       .filter(({ category }) => category === "exempt")
       .map(({ name }) => name)
       .join(", ");
+    const disabledCmds = !guild.disabled_commands[0]
+      ? lang.GLOBAL.NONE
+      : `\`\`\`${guild.disabled_commands.join(", ")}\`\`\``;
 
     const embed = BaseEmbed(message)
       .addField(lang.HELP.ADMIN, `\`\`\`${adminCmds}\`\`\``)
@@ -163,6 +166,7 @@ module.exports = {
       .addField(lang.HELP.ECONOMY, `\`\`\`${economyCmds}\`\`\``)
       .addField(lang.HELP.LEVEL, `\`\`\`${levelCmds}\`\`\``)
       .addField(lang.HELP.EXEMPT, `\`\`\`${exemptCmds}\`\`\``)
+      .addField(lang.HELP.DISABLED, disabledCmds)
       .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
       .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
       .setTitle("Help");
