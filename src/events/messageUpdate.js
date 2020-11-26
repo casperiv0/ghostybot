@@ -50,9 +50,13 @@ module.exports = {
         ? `${newMsg.content.slice(0, 1010)}...`
         : newMsg;
 
+    const messageLink = `https://discord.com/channels/${newMsg.guild.id}/${newMsg.channel.id}/${newMsg.id}`;
+
     const embed = new MessageEmbed()
       .setTitle(`Message updated in **${newMsg.channel.name}**`)
-      .setDescription(`Message send by **${newMsg.author.tag}** was edited`)
+      .setDescription(
+        `Message send by **${newMsg.author.tag}** was edited [jump to message](${messageLink})`
+      )
       .addField("**Old Message**", `${pOldMsg}`)
       .addField("**New Message**", `${PNewMsg}`)
       .setColor("ORANGE")
