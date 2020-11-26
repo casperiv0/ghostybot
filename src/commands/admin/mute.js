@@ -10,6 +10,10 @@ module.exports = {
       message.mentions.users.first() || message.guild.members.cache.get(args[0])
     );
 
+    if (!muteUser) {
+      return message.channel.send("Please provide valid a member");
+    }
+
     if (muteUser?.roles.cache.find((r) => r.name === "muted")) {
       return message.channel.send("User is already muted!");
     }
