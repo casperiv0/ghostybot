@@ -16,7 +16,10 @@ module.exports = {
       return message.channel.send("Please provide a command or category name");
     }
 
-    const command = bot.commands.get(option.toLowerCase());
+    const command =
+      bot.commands.get(option.toLowerCase()) ||
+      bot.commands.get(bot.aliases.get(option));
+
     const guild = await getGuildById(message.guild.id);
 
     if (!command) {
