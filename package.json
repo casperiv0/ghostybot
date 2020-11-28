@@ -70,13 +70,11 @@
     "one-liner-joke": "^1.2.0",
     "opusscript": "0.0.7",
     "randomcolor": "^0.6.2",
-    "simple-youtube-api": "^5.2.1",
     "tnai": "^1.0.5",
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "wikijs": "^6.0.1",
-    "word-definition": "^2.1.6",
-    "ytdl-core": "^4.0.6"
+    "word-definition": "^2.1.6"
   },
   "devDependencies": {
     "husky": "^4.3.0",

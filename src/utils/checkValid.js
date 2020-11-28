@@ -19,10 +19,6 @@ function checkValid() {
     throw Error("[ERROR][BOT]: mongoUri is required");
   }
 
-  if (!config.youtubeApiKey || config.youtubeApiKey === "") {
-    throw Error("[ERROR][BOT]: Youtube API token is required");
-  }
-
   if (!config.owners[0]) {
     Logger.warn("bot", "ownerId is required for bot-owner commands");
   }
