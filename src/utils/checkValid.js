@@ -1,5 +1,4 @@
 const config = require("../../config.json");
-const fs = require("fs");
 const Logger = require("../modules/Logger");
 
 function checkValid() {
@@ -55,12 +54,6 @@ function checkValid() {
   if (!config.giphyApiKey || config.giphyApiKey === "") {
     Logger.warn("bot", "giphyApiKey is required for the giphy command");
   }
-
-  fs.stat("src/data/giveaways.json", (e) => {
-    if (e === "ENOENT") {
-      throw Error("[ERROR]: File: src/data/giveaway.json is required.");
-    }
-  });
 }
 
 module.exports = checkValid;
