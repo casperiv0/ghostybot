@@ -5,7 +5,7 @@ const TnaiClient = require("tnai");
 const imdb = require("imdb-api");
 const { Collection, Client } = require("discord.js");
 const { token, imdbKey } = require("../config.json");
-const { GiveawaysManager } = require("discord-giveaways");
+const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
 const { findMember, getGuildLang, sendErrorLog } = require("./utils/functions");
 
@@ -33,14 +33,19 @@ Promise.config({
   longStackTraces: true,
 });
 
-const giveawayManager = new GiveawaysManager(bot, {
-  storage: "src/data/giveaways.json",
+const giveawayManager = new MongoGiveawayManager(bot, {
+  storage: false,
   updateCountdownEvery: 10000,
+  DJSlib: "v12",
   default: {
-    embedColor: "BLUE",
+    embedColor: "#7289DA",
     botsCanWin: false,
     reaction: "🎉",
-    embedColorEnd: "BLUE",
+    embedColorEnd: "#7289DA",
+    messages: {
+      hostedBy: "Hosted by {user}",
+      giveaway: "**🎉🎉 New Giveaway 🎉🎉**",
+    },
   },
 });
 

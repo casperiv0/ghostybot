@@ -375,6 +375,7 @@ module.exports = {
     OWNER_ONLY: "Solo el dueño puede ver esto!",
     NSFW_ONLY: "Para ver los comando NSFW debes estar en un canal NSFW!",
     DISABLED: "Disabled commands (this guild only)",
+    GIVEAWAY: "Giveaway commands",
   },
   POKEMON: {
     SPECIES: "Especie",

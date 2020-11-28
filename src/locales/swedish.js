@@ -367,6 +367,7 @@ module.exports = {
     OWNER_ONLY: "bara ägaren får se detta!",
     NSFW_ONLY: "För att visa nfsw-kommandon, kolla in en nfsw-kanal!",
     DISABLED: "Disabled commands (this guild only)",
+    GIVEAWAY: "Giveaway commands",
   },
   POKEMON: {
     SPECIES: "Arter",
