@@ -53,7 +53,7 @@ module.exports = {
         true
       )
       .setImage(
-        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/main/.github/Ghostybot-banner.png"
+        "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
       );
 
     message.channel.send(embed);
