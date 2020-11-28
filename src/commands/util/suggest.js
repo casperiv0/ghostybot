@@ -33,5 +33,7 @@ module.exports = {
 
     sendMessage.react("👍");
     sendMessage.react("👎");
+
+    return message.channel.send("Send suggestion 👍");
   },
 };
