@@ -41,6 +41,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
+    "alexflipnote.js": "^2.2.1",
     "chalk": "^4.1.0",
     "cows": "^2.1.0",
     "cowsay": "^1.4.0",

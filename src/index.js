@@ -3,8 +3,9 @@ require("./utils/database");
 const NekoClient = require("nekos.life");
 const TnaiClient = require("tnai");
 const imdb = require("imdb-api");
+const AlexClient = require("alexflipnote.js");
 const { Collection, Client } = require("discord.js");
-const { token, imdbKey } = require("../config.json");
+const { token, imdbKey, alexflipnoteKey } = require("../config.json");
 const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
 const { findMember, getGuildLang, sendErrorLog } = require("./utils/functions");
@@ -27,6 +28,9 @@ bot.neko = new NekoClient();
 bot.tnai = new TnaiClient();
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.findMember = findMember;
+if (alexflipnoteKey) {
+  bot.alexClient = new AlexClient(alexflipnoteKey);
+}
 
 global.Promise = require("bluebird");
 Promise.config({
