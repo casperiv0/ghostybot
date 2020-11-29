@@ -208,6 +208,7 @@ module.exports = {
     WON_SLOTS: "Has ganado y obtuviste {amount} monedas",
     LOST_SLOTS: "Has perdido!",
     MAX_BET: "Apuesta maxima es 500",
+    ADDED_MONEY: "Successfully added {amount} to user balance",
   },
   GAMES: {
     BETS_ON: "{member_1} Apostó a {member_2}",
