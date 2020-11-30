@@ -19,7 +19,7 @@ module.exports = {
     message.channel.send("Are you sure? y/n");
 
     collector.on("collect", async (m) => {
-      if (m.content === "y") {
+      if (m.content?.toLowerCase() === "y") {
         const channel2 = await channel.clone();
 
         channel2.setPosition(position);
