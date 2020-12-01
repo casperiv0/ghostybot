@@ -7,7 +7,9 @@ const moment = require("moment");
 const Logger = require("../modules/Logger");
 // eslint-disable-next-line no-unused-vars
 const { Message, Client } = require("discord.js");
-const { errorLogsChannelId } = require("../../config.json");
+const { errorLogsChannelId, dashboard } = require("../../config.json");
+const jwt = require("jsonwebtoken");
+const fetch = require("node-fetch");
 
 /**
  *
@@ -332,6 +334,27 @@ const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
  */
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
+/* DASHBOARD FUNCTIONS */
+async function handleApiRequest(path, token, method) {
+  try {
+    const bearer = jwt.verify(token, dashboard.jwtSecret);
+
+    if (!bearer) {
+      return { error: "Token is invalid" };
+    }
+
+    const res = await fetch(`${dashboard.discordApiUrl}${path}`, {
+      method,
+      headers: {
+        Authorization: `Bearer ${bearer}`,
+      },
+    });
+    return await res.json();
+  } catch (e) {
+    return { error: "Token is invalid" };
+  }
+}
+
 module.exports = {
   errorEmbed,
   sendErrorLog,
@@ -353,4 +376,5 @@ module.exports = {
   removeSticky,
   findMember,
   getGuildLang,
+  handleApiRequest,
 };

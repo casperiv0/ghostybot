@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
@@ -19,4 +19,4 @@ const guildSchema = new Schema({
   ignored_channels: { type: Array, default: [] },
 });
 
-module.exports = model("Guild", guildSchema);
+module.exports = models.Guild || model("Guild", guildSchema);

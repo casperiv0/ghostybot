@@ -1,14 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
 import { setCookie } from "nookies";
 import { dashboard } from "../../../../config.json";
 
-/**
- *
- * @param {NextApiRequest} req
- * @param {NextApiResponse} res
- */
 export default async function handler(req, res) {
   const { query } = req;
   const {
@@ -50,7 +44,7 @@ export default async function handler(req, res) {
     path: "/",
   });
 
-  res.redirect(`/dashboard`);
+  res.redirect("/dashboard");
 }
 
 /* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
