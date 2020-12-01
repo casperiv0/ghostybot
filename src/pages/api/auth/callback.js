@@ -43,6 +43,7 @@ export default async function handler(req, res) {
   setCookie({ res }, "token", token, {
     expires: new Date(Date.now() + expiresInMilliseconds),
     httpOnly: true,
+    path: "/",
   });
 
   res.redirect("/dashboard");

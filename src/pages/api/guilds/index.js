@@ -1,4 +1,4 @@
-import { handleApiRequest } from "../../utils/functions";
+import { handleApiRequest } from "../../../utils/functions";
 
 export default async function handler(req, res) {
   const { method, headers } = req;
@@ -6,7 +6,11 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET": {
       const token = req.cookies.token || headers.auth;
-      const guilds = await handleApiRequest("/users/@me/guilds", token, "GET");
+      const guilds = await handleApiRequest(
+        "/users/@me/guilds",
+        { data: token, type: "Bearer" },
+        "GET"
+      );
 
       if (guilds.error || guilds.message) {
         return res.json({

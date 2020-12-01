@@ -335,9 +335,18 @@ const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 /* DASHBOARD FUNCTIONS */
+/**
+ *
+ * @param {string} path
+ * @param {{data: string; type: "Bot" | "Bearer"}} token
+ * @param {*} method
+ */
 async function handleApiRequest(path, token, method) {
   try {
-    const bearer = jwt.verify(token, dashboard.jwtSecret);
+    const bearer =
+      token.type === "Bearer"
+        ? jwt.verify(token.data, dashboard.jwtSecret)
+        : token.data;
 
     if (!bearer) {
       return { error: "Token is invalid" };
@@ -346,8 +355,9 @@ async function handleApiRequest(path, token, method) {
     const res = await fetch(`${dashboard.discordApiUrl}${path}`, {
       method,
       headers: {
-        Authorization: `Bearer ${bearer}`,
+        Authorization: `${token.type} ${bearer}`,
       },
+      scope: "guilds",
     });
     return await res.json();
   } catch (e) {
