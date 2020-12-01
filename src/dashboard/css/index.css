@@ -1,0 +1,38 @@
+:root {
+  --primary: #36393f;
+  --secondary: #36393f;
+  --blue: #7289da;
+  --red: #e44444;
+  --content-width: 95%;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Assistant", sans-serif;
+}
+
+body {
+  background: var(--primary);
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: var(--content-width);
+}
+
+.page-title {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
