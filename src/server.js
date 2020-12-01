@@ -15,7 +15,6 @@ module.exports = (bot) => {
       const parsedUrl = parse(req.url, true);
 
       req.bot = bot;
-      req.test = "test";
 
       handle(req, res, parsedUrl);
     }).listen(port, (err) => {

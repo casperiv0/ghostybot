@@ -37,15 +37,12 @@ export default async function handler(req, res) {
     )
   ).json();
 
-  console.log(data.expires_in);
   const token = jwt.sign(data.access_token, jwtSecret);
 
-  console.log(data);
   const expiresInMilliseconds = data.expires_in * 1000;
   setCookie({ res }, "token", token, {
     expires: new Date(Date.now() + expiresInMilliseconds),
     httpOnly: true,
-    path: "/",
   });
 
   res.redirect("/dashboard");

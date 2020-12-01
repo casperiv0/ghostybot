@@ -1,5 +1,5 @@
 :root {
-  --primary: #36393f;
+  --primary: #2f3136;
   --secondary: #36393f;
   --blue: #7289da;
   --red: #e44444;
@@ -21,6 +21,7 @@ body {
 }
 
 .container {
+  margin-top: 1.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -35,4 +36,10 @@ body {
   font-size: 1.5rem;
   color: #fff;
   margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 }

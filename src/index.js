@@ -69,4 +69,8 @@ process.on("uncaughtExceptionMonitor", (error) =>
   sendErrorLog(bot, error, "error")
 );
 
-process.on("warning", (warning) => sendErrorLog(bot, warning, "warning"));
+process.on("warning", (warning) => {
+  if (warning.stack.startsWith("(node:13988) [DEP0148]")) return;
+
+  sendErrorLog(bot, warning, "warning");
+});

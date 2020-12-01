@@ -1,18 +1,18 @@
 import { handleApiRequest } from "../../utils/functions";
 
 export default async function handler(req, res) {
-  const { method } = req;
+  const { method, headers } = req;
 
   switch (method) {
     case "GET": {
-      const guilds = await handleApiRequest(
-        "/users/@me/guilds",
-        req.cookies.token,
-        "GET"
-      );
+      const token = req.cookies.token || headers.auth;
+      const guilds = await handleApiRequest("/users/@me/guilds", token, "GET");
 
-      if (guilds.error) {
-        return res.json({ error: guilds.error, status: "error" });
+      if (guilds.error || guilds.message) {
+        return res.json({
+          error: guilds.error || guilds.message,
+          status: "error",
+        });
       }
 
       const isAdminGuilds = guilds.filter((guild) => {
