@@ -5,19 +5,28 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET": {
-      console.log(req.cookies);
-      const data = await handleApiRequest(
+      const guilds = await handleApiRequest(
         "/users/@me/guilds",
         req.cookies.token,
         "GET"
       );
 
-      // TODO: filter out guilds where user isn't a ADMINISTRATOR
-      if (data.error) {
-        return res.json({ error: data.error, status: "error" });
+      if (guilds.error) {
+        return res.json({ error: guilds.error, status: "error" });
       }
 
-      return res.json(data);
+      const isAdminGuilds = guilds.filter((guild) => {
+        return (
+          guild.permissions === "8" /* ADMINISTRATOR */ ||
+          guild.permissions === "2147483647" /* ALL */
+        );
+      });
+      const filteredGuilds = isAdminGuilds.map((guild) => {
+        const g = req.bot.guilds.cache.get(guild.id);
+        return { ...guild, ...g, inGuild: g ? true : false };
+      });
+
+      return res.json({ guilds: filteredGuilds });
     }
     default: {
       return res.json({ error: "Method not allowed", status: "error" });
