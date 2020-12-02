@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
-import { dashboard } from "../../../config.json";
+import { dashboard } from "../../../../config.json";
 
 const Guild = ({ guild }) => {
   const router = useRouter();
@@ -13,7 +13,21 @@ const Guild = ({ guild }) => {
 
   return (
     <>
-      <h4 className="page-title">Current guild: {guild.name}</h4>
+      <div className="page-title">
+        <h4>Current guild: {guild.name}</h4>
+        <a className="btn btn-primary" href="/dashboard">
+          Return
+        </a>
+      </div>
+
+      <div className="grid">
+        <a className="btn btn-primary" href={`/dashboard/${guild.id}/commands`}>
+          Custom commands
+        </a>
+        <a className="btn btn-primary" href={`/dashboard/${guild.id}/settings`}>
+          Guild Settings
+        </a>
+      </div>
     </>
   );
 };
@@ -31,6 +45,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
+      isAuth: data.invalid_token ? false : true,
       guild: data?.guild,
     },
   };

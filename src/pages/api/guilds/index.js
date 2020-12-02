@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         return res.json({
           error: guilds.error || guilds.message,
           status: "error",
+          invalid_token: guilds.error === "invalid_token",
         });
       }
 

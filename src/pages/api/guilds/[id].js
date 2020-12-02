@@ -1,4 +1,8 @@
-import { handleApiRequest } from "../../../utils/functions";
+import {
+  getGuildById,
+  updateGuildById,
+  handleApiRequest,
+} from "../../../utils/functions";
 import { token } from "../../../../config.json";
 
 export default async function handler(req, res) {
@@ -7,8 +11,16 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET": {
       const guild = await handleApiRequest(
-        `/guilds/${query.id}/preview`,
+        `/guilds/${query.id}`,
         { type: "Bot", data: token },
+        "GET"
+      );
+      const gChannels = await handleApiRequest(
+        `/guilds/${query.id}/channels`,
+        {
+          type: "Bot",
+          data: token,
+        },
         "GET"
       );
 
@@ -17,10 +29,26 @@ export default async function handler(req, res) {
           error: guild.error || guild.message,
           status: "error",
           guild: {},
+          invalid_token: guild.error === "invalid_token",
         });
       }
 
-      return res.json({ guild: guild, status: "success" });
+      const g = await getGuildById(guild.id);
+      guild.channels = gChannels.filter(
+        (c) => c.type !== 4
+      ); /* remove category 'channels' */
+      guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
+
+      return res.json({ guild: { ...guild, ...g._doc }, status: "success" });
+    }
+    case "POST": {
+      const body = req.body;
+
+      await updateGuildById(query.id, JSON.parse(body));
+      return res.json({
+        status: "success",
+        message: "Successfully updated guild settings",
+      });
     }
     default: {
       return res.json({ error: "Method not allowed", status: "error" });

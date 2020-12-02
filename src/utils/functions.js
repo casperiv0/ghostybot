@@ -349,7 +349,7 @@ async function handleApiRequest(path, token, method) {
         : token.data;
 
     if (!bearer) {
-      return { error: "Token is invalid" };
+      return { error: "invalid_token" };
     }
 
     const res = await fetch(`${dashboard.discordApiUrl}${path}`, {
@@ -361,7 +361,7 @@ async function handleApiRequest(path, token, method) {
     });
     return await res.json();
   } catch (e) {
-    return { error: "Token is invalid" };
+    return { error: "invalid_token" };
   }
 }
 

@@ -32,14 +32,67 @@ body {
 }
 
 .page-title {
-  font-weight: 400;
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-label {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.form-input {
+  padding: 5px 8px;
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--secondary);
+  border: 0.2rem solid transparent;
+  border-radius: 0.5rem;
+}
+
+.alert-message {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: var(--blue);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --content-width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --content-width: 65%;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --content-width: 1200px;
+  }
 }
