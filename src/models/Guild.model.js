@@ -17,6 +17,8 @@ const guildSchema = new Schema({
   sticky_data: { type: Object, default: null },
   locale: { type: String, default: "english" },
   ignored_channels: { type: Array, default: [] },
+  welcome_message: { type: String, default: null },
+  leave_message: { type: String, default: null },
 });
 
 module.exports = models.Guild || model("Guild", guildSchema);

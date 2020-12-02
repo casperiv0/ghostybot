@@ -50,7 +50,7 @@ export default async function handler(req, res) {
 }
 
 /* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
-function encode(obj) {
+export function encode(obj) {
   let string = "";
 
   for (const [key, value] of Object.entries(obj)) {

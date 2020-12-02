@@ -68,6 +68,7 @@ body {
   background: var(--secondary);
   border: 0.2rem solid transparent;
   border-radius: 0.5rem;
+  resize: vertical;
 }
 
 .alert-message {

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
+import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 
 const Guild = ({ guild }) => {
@@ -13,6 +14,9 @@ const Guild = ({ guild }) => {
 
   return (
     <>
+      <Head>
+        <title>Viewing {guild?.name} / GhostyBot Dashboard</title>
+      </Head>
       <div className="page-title">
         <h4>Current guild: {guild.name}</h4>
         <a className="btn btn-primary" href="/dashboard">

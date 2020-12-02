@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { parseCookies } from "nookies";
-import { dashboard } from "../../../../config.json";
+import Head from "next/head";
 import fetch from "node-fetch";
+import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
+import { getLanguages } from "../../../utils/functions";
 
-const Settings = ({ guild }) => {
+const Settings = ({ guild, languages }) => {
   const [message, setMessage] = useState(null);
   const [welcomeChannel, setWelcomeChannel] = useState(
     guild.welcome_channel || ""
@@ -19,6 +21,10 @@ const Settings = ({ guild }) => {
   const [leaveChannel, setLeaveChannel] = useState(guild.leave_channel || "");
   const [levelUpMessages, setLevelUpMessages] = useState(
     guild.level_up_messages || "false"
+  );
+  const [language, setLanguage] = useState(guild.locale || "");
+  const [welcomeMessage, setWelcomeMessage] = useState(
+    guild.welcome_message || ""
   );
 
   const fields = [
@@ -73,9 +79,18 @@ const Settings = ({ guild }) => {
       ],
       label: "Level up messages",
     },
+    {
+      type: "select",
+      id: "language",
+      value: language,
+      onChange: (e) => setLanguage(e.target.value),
+      data: languages,
+      label: "Bot language",
+    },
   ];
 
   async function onSubmit(e) {
+    setMessage(null);
     e.preventDefault();
 
     try {
@@ -90,6 +105,8 @@ const Settings = ({ guild }) => {
             suggest_channel: suggestChannel,
             announcement_channel: announceChannel,
             level_up_messages: levelUpMessages,
+            locale: language,
+            welcome_message: welcomeMessage,
           }),
         }
       );
@@ -105,6 +122,9 @@ const Settings = ({ guild }) => {
 
   return (
     <>
+      <Head>
+        <title>{guild?.name} - Settings / GhostyBot Dashboard</title>
+      </Head>
       <div className="page-title">
         <h4>{guild?.name} - Settings</h4>
         <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
@@ -150,6 +170,17 @@ const Settings = ({ guild }) => {
           })}
         </div>
 
+        <div className="grid">
+          <div className="form-group">
+            <label className="form-label">Welcome message</label>
+            <textarea
+              className="form-input"
+              onChange={(e) => setWelcomeMessage(e.target.value)}
+              value={welcomeMessage}
+            ></textarea>
+          </div>
+        </div>
+
         <button type="submit" className="btn btn-primary">
           Save settings
         </button>
@@ -160,6 +191,9 @@ const Settings = ({ guild }) => {
 
 export async function getServerSideProps(ctx) {
   const cookies = parseCookies(ctx);
+  const langs = getLanguages().map((lang) => {
+    return { id: lang, name: lang };
+  });
 
   const data = await (
     await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
@@ -173,6 +207,7 @@ export async function getServerSideProps(ctx) {
     props: {
       isAuth: data.invalid_token ? false : true,
       guild: data?.guild,
+      languages: langs,
     },
   };
 }

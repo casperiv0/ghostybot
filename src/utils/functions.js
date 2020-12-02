@@ -10,6 +10,7 @@ const { Message, Client } = require("discord.js");
 const { errorLogsChannelId, dashboard } = require("../../config.json");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
+const fs = require("fs");
 
 /**
  *
@@ -334,6 +335,13 @@ const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
  */
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
+function getLanguages() {
+  return fs
+    .readdirSync("./src/locales/")
+    .filter((f) => f.endsWith(".js"))
+    .map((la) => la.slice(0, -3));
+}
+
 /* DASHBOARD FUNCTIONS */
 /**
  *
@@ -386,5 +394,6 @@ module.exports = {
   removeSticky,
   findMember,
   getGuildLang,
+  getLanguages,
   handleApiRequest,
 };
