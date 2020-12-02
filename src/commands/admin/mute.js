@@ -4,7 +4,7 @@ module.exports = {
   category: "admin",
   usage: "mute <@user>",
   botPermissions: ["MANAGE_ROLES"],
-  memberPermissions: ["MANAGE_ROLES", "MANAGE_MEMBERS"],
+  memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
     const muteUser = message.guild.member(
       message.mentions.users.first() || message.guild.members.cache.get(args[0])

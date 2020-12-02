@@ -5,7 +5,7 @@ module.exports = {
   description: "Give someone Xp",
   category: "levels",
   usage: "givexp <user> <amount>",
-  memberPermissions: ["MANAGE_MEMBERS"],
+  memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const amount = args[1];
