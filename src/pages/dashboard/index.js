@@ -13,8 +13,6 @@ const Dashboard = ({ isAuth, guilds }) => {
     }
   }, [isAuth]);
 
-  console.log(isAuth);
-
   return (
     <>
       <div className="page-title">

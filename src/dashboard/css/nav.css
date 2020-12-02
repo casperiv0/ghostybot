@@ -1,0 +1,21 @@
+.nav {
+  height: 3.5rem;
+  background: var(--secondary);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-content {
+  height: 100%;
+  width: var(--content-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-icon-link {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+}

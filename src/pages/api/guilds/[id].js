@@ -34,9 +34,12 @@ export default async function handler(req, res) {
       }
 
       const g = await getGuildById(guild.id);
-      guild.channels = gChannels.filter(
-        (c) => c.type !== 4
-      ); /* remove category 'channels' */
+      guild.channels = gChannels.filter((c) => {
+        if (c.type === 4) return false;
+        if (c.type === 2) return false;
+
+        return true;
+      }); /* remove category 'channels' */
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
       return res.json({ guild: { ...guild, ...g._doc }, status: "success" });
