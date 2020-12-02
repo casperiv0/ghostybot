@@ -13,7 +13,7 @@ A Custom Discord bot with a lot of commands for Discord communities. (+180 comma
 
 ### Disclaimer (if self-hosted)
 
-You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community.
+You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community. When self-hosting no support will be provided.
 
 ## Table of contents
 
