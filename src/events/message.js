@@ -73,7 +73,7 @@ module.exports = {
           const MSG_TIMEOUT_10_SECS = 10000;
 
           setTimeout(() => {
-            msg.delete();
+            msg?.delete();
           }, MSG_TIMEOUT_10_SECS);
         }
       }
