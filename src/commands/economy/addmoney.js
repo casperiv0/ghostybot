@@ -4,7 +4,7 @@ module.exports = {
   name: "addmoney",
   description: "Add money to a user",
   category: "economy",
-  memberPermissions: ["MANAGE_MEMBERS"],
+  memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
     const member = bot.findMember(message, args);
     const lang = await bot.getGuildLang(message.guild.id);
