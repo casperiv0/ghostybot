@@ -7,10 +7,9 @@ module.exports = {
       return;
     }
     if (!message.guild) return;
-    const w = await message.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
-    // Couldn't find webhook/webhook doesn't exist
-    if (!webhook) return;
+    const webhook = await bot.getWebhook(message.guild);
+    if (webhook === null) return;
+
     if (message.author?.id === bot.user.id) return;
 
     const embed = new MessageEmbed()

@@ -2,6 +2,7 @@ import {
   getGuildById,
   updateGuildById,
   handleApiRequest,
+  createWebhook,
 } from "../../../../utils/functions";
 import { token } from "../../../../../config.json";
 
@@ -48,6 +49,11 @@ export default async function handler(req, res) {
     }
     case "POST": {
       const body = JSON.parse(req.body);
+      const g = await getGuildById(query.id);
+
+      if (body.audit_channel) {
+        await createWebhook(req.bot, body.audit_channel, g.audit_channel);
+      }
 
       await updateGuildById(query.id, body);
 

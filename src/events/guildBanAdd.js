@@ -5,9 +5,8 @@ module.exports = {
   async execute(bot, guild, user) {
     if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
 
-    const w = await guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
-    if (!webhook) return;
+    const webhook = await bot.getWebhook(guild);
+    if (webhook === null) return;
 
     const audit = await (await guild.fetchAuditLogs()).entries.first();
 

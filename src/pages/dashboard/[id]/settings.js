@@ -27,6 +27,7 @@ const Settings = ({ guild, languages }) => {
     guild.welcome_message || ""
   );
   const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
+  const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
 
   const fields = [
     {
@@ -52,6 +53,14 @@ const Settings = ({ guild, languages }) => {
       onChange: (e) => setLeaveChannel(e.target.value),
       data: guild.channels,
       label: "Leave channel",
+    },
+    {
+      type: "select",
+      id: "audit_channel",
+      value: auditChannel,
+      onChange: (e) => setAuditChannel(e.target.value),
+      data: guild.channels,
+      label: "Audit logs channel",
     },
     {
       type: "select",
@@ -108,6 +117,7 @@ const Settings = ({ guild, languages }) => {
             level_up_messages: levelUpMessages,
             locale: language,
             welcome_message: welcomeMessage,
+            audit_channel: auditChannel,
           }),
         }
       );
@@ -149,9 +159,9 @@ const Settings = ({ guild, languages }) => {
                     value={field.value}
                     onChange={field.onChange}
                   >
-                    {field.data.map((option) => {
+                    {field.data.map((option, idx) => {
                       return (
-                        <option key={option.id} value={option.id}>
+                        <option key={idx} value={option.id}>
                           {option.name}
                         </option>
                       );
@@ -170,6 +180,8 @@ const Settings = ({ guild, languages }) => {
             );
           })}
         </div>
+
+        {/* TODO: add ability for audit-logs */}
 
         <div className="grid col-2">
           <div className="form-group">

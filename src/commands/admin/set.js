@@ -1,11 +1,11 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById, getGuildById } = require("../../utils/functions");
-const fs = require("fs");
-
-const languages = fs
-  .readdirSync("./src/locales/")
-  .filter((f) => f.endsWith(".js"))
-  .map((la) => la.slice(0, -3));
+const {
+  updateGuildById,
+  getGuildById,
+  getLanguages,
+  createWebhook,
+} = require("../../utils/functions");
+const languages = getLanguages();
 
 module.exports = {
   name: "set",
@@ -75,10 +75,8 @@ module.exports = {
           );
         }
 
-        item.createWebhook(bot.user.username, {
-          avatar: bot.user.displayAvatarURL({ format: "png" }),
-          channel: item,
-        });
+        await createWebhook(bot, item.id);
+
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );

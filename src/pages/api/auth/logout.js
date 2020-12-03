@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { setCookie } from "nookies";
-import { encode } from "./callback";
+import { encode } from "../../../utils/functions";
 import { dashboard } from "../../../../config.json";
 
 export default async function (req, res) {

@@ -16,6 +16,7 @@ const guildSchema = new Schema({
   welcome_channel: { type: String, default: null },
   leave_channel: { type: String, default: null },
   welcome_role: { type: String, default: null },
+  audit_channel: { type: String, default: null },
   custom_commands: { type: Array, default: [] },
   disabled_commands: { type: Array, default: [] },
   disabled_categories: { type: Array, default: [] },

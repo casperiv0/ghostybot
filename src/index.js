@@ -8,7 +8,12 @@ const { Collection, Client } = require("discord.js");
 const { token, imdbKey, alexflipnoteKey } = require("../config.json");
 const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
-const { findMember, getGuildLang, sendErrorLog } = require("./utils/functions");
+const {
+  findMember,
+  getGuildLang,
+  sendErrorLog,
+  getWebhook,
+} = require("./utils/functions");
 
 const bot = new Client({
   disableMentions: "everyone",
@@ -28,6 +33,7 @@ bot.neko = new NekoClient();
 bot.tnai = new TnaiClient();
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
 bot.findMember = findMember;
+bot.getWebhook = getWebhook;
 if (alexflipnoteKey) {
   bot.alexClient = new AlexClient(alexflipnoteKey);
 }

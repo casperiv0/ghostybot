@@ -342,7 +342,29 @@ function getLanguages() {
     .map((la) => la.slice(0, -3));
 }
 
-// TODO: make function to parse welcome & leave message
+async function createWebhook(bot, channelId, oldChannelId) {
+  const channel = bot.channels.cache.get(channelId);
+  if (!channel) return;
+
+  if (oldChannelId) {
+    const w = await channel.fetchWebhooks();
+    w.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
+  }
+
+  await channel.createWebhook(`audit-logs-${channelId}`, {
+    avatar: bot.user.displayAvatarURL({ format: "webp" }),
+  });
+}
+
+async function getWebhook(guild) {
+  const w = await guild.fetchWebhooks();
+  const g = await getGuildById(guild.id);
+  const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
+  if (!webhook) return null;
+
+  return webhook;
+}
+
 function parseMessage(message, user) {
   const newMessage = message.split(" ").map((word) => {
     const { username, tag, id, discriminator } = user;
@@ -392,6 +414,18 @@ async function handleApiRequest(path, token, method) {
   }
 }
 
+/* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
+function encode(obj) {
+  let string = "";
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (!value) continue;
+    string += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+  }
+
+  return string.substring(1);
+}
+
 module.exports = {
   errorEmbed,
   sendErrorLog,
@@ -416,4 +450,7 @@ module.exports = {
   getLanguages,
   handleApiRequest,
   parseMessage,
+  createWebhook,
+  encode,
+  getWebhook,
 };

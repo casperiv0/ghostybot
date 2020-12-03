@@ -2,6 +2,7 @@ import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
 import { setCookie } from "nookies";
 import { dashboard } from "../../../../config.json";
+import { encode } from "../../../utils/functions";
 
 export default async function handler(req, res) {
   const { query } = req;
@@ -47,16 +48,4 @@ export default async function handler(req, res) {
   });
 
   res.redirect("/dashboard");
-}
-
-/* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
-export function encode(obj) {
-  let string = "";
-
-  for (const [key, value] of Object.entries(obj)) {
-    if (!value) continue;
-    string += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-  }
-
-  return string.substring(1);
 }
