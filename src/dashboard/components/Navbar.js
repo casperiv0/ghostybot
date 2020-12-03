@@ -3,6 +3,7 @@ import { parseCookies } from "nookies";
 import { dashboard } from "../../../config.json";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 import Loader from "./Loader";
 
 const Navbar = () => {
@@ -37,26 +38,30 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <div className="nav-content">
-        <a className="nav-icon-link" href="/dashboard">
-          GhostyBot Dashboard
-        </a>
+        <Link href="/dashboard">
+          <a className="nav-icon-link">GhostyBot Dashboard</a>
+        </Link>
         <div className="dropdown-container">
           <button className="nav-link-dropdown">
             <Image
               width="40"
               height="40"
-              src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`}
+              src={
+                user?.avatar === null
+                  ? "https://cdn.discordapp.com/embed/avatars/0.png"
+                  : `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.webp`
+              }
             />
           </button>
 
           <div className="dropdown">
             <div className="dropdown-content">
-              <a href="/dashboard" className="dropdown-link">
-                My servers
-              </a>
-              <a href="/api/auth/logout" className="dropdown-link logout">
-                Logout
-              </a>
+              <Link href="/dashboard">
+                <a className="dropdown-link">My servers</a>
+              </Link>
+              <Link href="/api/auth/logout">
+                <a className="dropdown-link logout">Logout</a>
+              </Link>
             </div>
           </div>
         </div>

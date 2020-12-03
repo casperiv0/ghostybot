@@ -20,8 +20,12 @@ body {
   color: #fff;
 }
 
+textarea {
+  min-height: 150px;
+}
+
 .container {
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -48,6 +52,10 @@ body {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+}
+
+.col-2 {
+  grid-template-columns: 100%;
 }
 
 .form-group {
@@ -115,6 +123,9 @@ body {
 @media (min-width: 768px) {
   :root {
     --content-width: 90%;
+  }
+  .col-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

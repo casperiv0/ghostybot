@@ -45,9 +45,10 @@ export default async function handler(req, res) {
       return res.json({ guild: { ...guild, ...g._doc }, status: "success" });
     }
     case "POST": {
-      const body = req.body;
+      const body = JSON.parse(req.body);
 
-      await updateGuildById(query.id, JSON.parse(body));
+      await updateGuildById(query.id, body);
+
       return res.json({
         status: "success",
         message: "Successfully updated guild settings",

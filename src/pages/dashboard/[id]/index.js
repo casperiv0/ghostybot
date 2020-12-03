@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
+import Link from "next/link";
 import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 
@@ -25,12 +26,12 @@ const Guild = ({ guild }) => {
       </div>
 
       <div className="grid">
-        <a className="btn btn-primary" href={`/dashboard/${guild.id}/commands`}>
-          Custom commands
-        </a>
-        <a className="btn btn-primary" href={`/dashboard/${guild.id}/settings`}>
-          Guild Settings
-        </a>
+        <Link href={`/dashboard/${guild.id}/commands`}>
+          <a className="btn btn-primary">Custom commands</a>
+        </Link>
+        <Link href={`/dashboard/${guild.id}/settings`}>
+          <a className="btn btn-primary">Guild Settings</a>
+        </Link>
       </div>
     </>
   );

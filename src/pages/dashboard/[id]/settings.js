@@ -26,6 +26,7 @@ const Settings = ({ guild, languages }) => {
   const [welcomeMessage, setWelcomeMessage] = useState(
     guild.welcome_message || ""
   );
+  const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
 
   const fields = [
     {
@@ -170,13 +171,21 @@ const Settings = ({ guild, languages }) => {
           })}
         </div>
 
-        <div className="grid">
+        <div className="grid col-2">
           <div className="form-group">
             <label className="form-label">Welcome message</label>
             <textarea
               className="form-input"
               onChange={(e) => setWelcomeMessage(e.target.value)}
               value={welcomeMessage}
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Leave message</label>
+            <textarea
+              className="form-input"
+              onChange={(e) => setLeaveMessage(e.target.value)}
+              value={leaveMessage}
             ></textarea>
           </div>
         </div>

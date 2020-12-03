@@ -16,6 +16,7 @@
   width: 65px;
   height: 65px;
   border-radius: 0.5rem;
+  background-color: var(--primary);
 }
 
 .guild-card p {

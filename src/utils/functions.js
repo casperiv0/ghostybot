@@ -342,6 +342,24 @@ function getLanguages() {
     .map((la) => la.slice(0, -3));
 }
 
+// TODO: make function to parse welcome & leave message
+function parseMessage(message, user) {
+  const newMessage = message.split(" ").map((word) => {
+    const { username, tag, id, discriminator } = user;
+    let w = word;
+
+    w = w
+      .replace("{user.tag}", tag)
+      .replace("{user.username}", username)
+      .replace("{user.discriminator}", discriminator)
+      .replace("{user.id}", id);
+
+    return w;
+  });
+
+  return newMessage;
+}
+
 /* DASHBOARD FUNCTIONS */
 /**
  *
@@ -396,4 +414,5 @@ module.exports = {
   getGuildLang,
   getLanguages,
   handleApiRequest,
+  parseMessage,
 };

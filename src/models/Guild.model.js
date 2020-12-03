@@ -1,5 +1,10 @@
 const { model, Schema, models } = require("mongoose");
 
+const DEFAULT_WELCOME_MESSAGE = `**Username:** {user.username}
+**Tag:** {user.tag}
+**Id:** {user.id}
+`;
+
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
@@ -17,7 +22,7 @@ const guildSchema = new Schema({
   sticky_data: { type: Object, default: null },
   locale: { type: String, default: "english" },
   ignored_channels: { type: Array, default: [] },
-  welcome_message: { type: String, default: null },
+  welcome_message: { type: String, default: DEFAULT_WELCOME_MESSAGE },
   leave_message: { type: String, default: null },
 });
 
