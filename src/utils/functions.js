@@ -349,6 +349,7 @@ function parseMessage(message, user) {
     let w = word;
 
     w = w
+      .replace("{user}", user)
       .replace("{user.tag}", tag)
       .replace("{user.username}", username)
       .replace("{user.discriminator}", discriminator)

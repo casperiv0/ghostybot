@@ -173,7 +173,7 @@ const Settings = ({ guild, languages }) => {
 
         <div className="grid col-2">
           <div className="form-group">
-            <label className="form-label">Welcome message</label>
+            <label className="form-label">Welcome description</label>
             <textarea
               className="form-input"
               onChange={(e) => setWelcomeMessage(e.target.value)}
@@ -181,7 +181,7 @@ const Settings = ({ guild, languages }) => {
             ></textarea>
           </div>
           <div className="form-group">
-            <label className="form-label">Leave message</label>
+            <label className="form-label">Leave description</label>
             <textarea
               className="form-input"
               onChange={(e) => setLeaveMessage(e.target.value)}

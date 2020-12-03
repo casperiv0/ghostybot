@@ -3,6 +3,7 @@ const {
   getGuildById,
   removeUser,
   removeUserWarnings,
+  parseMessage,
 } = require("../utils/functions");
 
 module.exports = {
@@ -20,12 +21,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle("👋 User left")
         .setThumbnail(avatar)
-        .setDescription(
-          `
-**Tag:** ${member.user.tag}
-**Id:** ${member.user.id}
-        `
-        )
+        .setDescription(parseMessage(guild.leave_message, member.user))
         .setColor("RED")
         .setTimestamp()
         .setFooter(member.user.username, avatar);

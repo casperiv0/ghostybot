@@ -10,8 +10,20 @@
   cursor: pointer;
 }
 
+.btn-sm {
+  padding: 0.4rem 0.5rem !important;
+}
+
+.btn-red {
+  background: var(--red);
+  transition: filter 200ms;
+}
+
 @media (hover: hover) {
   .btn-primary:hover {
     background: var(--blue);
+  }
+  .btn-red:hover {
+    filter: brightness(120%);
   }
 }

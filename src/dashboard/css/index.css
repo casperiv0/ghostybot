@@ -111,6 +111,33 @@ textarea {
   justify-content: center;
 }
 
+/* tables */
+table {
+  border: 1px solid var(--secondary);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background: var(--secondary);
+}
+
+th,
+td {
+  border: 0.1rem solid var(--secondary);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.cmd-response {
+  width: 60%;
+}
+
+.table-actions {
+  text-align: center;
+  width: 10%;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

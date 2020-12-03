@@ -2,8 +2,8 @@ import {
   getGuildById,
   updateGuildById,
   handleApiRequest,
-} from "../../../utils/functions";
-import { token } from "../../../../config.json";
+} from "../../../../utils/functions";
+import { token } from "../../../../../config.json";
 
 export default async function handler(req, res) {
   const { method, query } = req;
@@ -39,7 +39,9 @@ export default async function handler(req, res) {
         if (c.type === 2) return false;
 
         return true;
-      }); /* remove category 'channels' */
+      }); /* remove category 'channels' & voice channels */
+      guild.channels.unshift({ id: null, name: "Disabled" });
+      guild.roles.unshift({ id: undefined, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
       return res.json({ guild: { ...guild, ...g._doc }, status: "success" });
