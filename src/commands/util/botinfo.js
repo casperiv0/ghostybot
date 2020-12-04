@@ -53,7 +53,7 @@ module.exports = {
         true
       )
       .addField(
-        `${lang.UTIL.DASHBOARD}`,
+        `${lang.BOT.DASHBOARD}`,
         "[Click Here](https://ghostybot.tk)",
         true
       )
