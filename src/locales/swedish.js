@@ -336,6 +336,7 @@ module.exports = {
     DJS_V: "Discord.js version",
     NODE_V: "NodeJS version",
     REPO: "Repository",
+    DASHBOARD: "Dashboard",
   },
   CONFIG: {
     OPTION_CMD_WORK:
