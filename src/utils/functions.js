@@ -7,7 +7,10 @@ const moment = require("moment");
 const Logger = require("../modules/Logger");
 // eslint-disable-next-line no-unused-vars
 const { Message, Client } = require("discord.js");
-const { errorLogsChannelId } = require("../../config.json");
+const { errorLogsChannelId, dashboard } = require("../../config.json");
+const jwt = require("jsonwebtoken");
+const fetch = require("node-fetch");
+const fs = require("fs");
 
 /**
  *
@@ -332,6 +335,97 @@ const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
  */
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
+function getLanguages() {
+  return fs
+    .readdirSync("./src/locales/")
+    .filter((f) => f.endsWith(".js"))
+    .map((la) => la.slice(0, -3));
+}
+
+async function createWebhook(bot, channelId, oldChannelId) {
+  const channel = bot.channels.cache.get(channelId);
+  if (!channel) return;
+
+  if (oldChannelId) {
+    const w = await channel.fetchWebhooks();
+    w.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
+  }
+
+  await channel.createWebhook(`audit-logs-${channelId}`, {
+    avatar: bot.user.displayAvatarURL({ format: "webp" }),
+  });
+}
+
+async function getWebhook(guild) {
+  const w = await guild.fetchWebhooks();
+  const g = await getGuildById(guild.id);
+  const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
+  if (!webhook) return null;
+
+  return webhook;
+}
+
+function parseMessage(message, user) {
+  const newMessage = message.split(" ").map((word) => {
+    const { username, tag, id, discriminator } = user;
+    let w = word;
+
+    w = w
+      .replace("{user}", user)
+      .replace("{user.tag}", tag)
+      .replace("{user.username}", username)
+      .replace("{user.discriminator}", discriminator)
+      .replace("{user.id}", id);
+
+    return w;
+  });
+
+  return newMessage;
+}
+
+/* DASHBOARD FUNCTIONS */
+/**
+ *
+ * @param {string} path
+ * @param {{data: string; type: "Bot" | "Bearer"}} token
+ * @param {*} method
+ */
+async function handleApiRequest(path, token, method) {
+  try {
+    const bearer =
+      token.type === "Bearer"
+        ? jwt.verify(token.data, dashboard.jwtSecret)
+        : token.data;
+
+    if (!bearer) {
+      return { error: "invalid_token" };
+    }
+
+    const res = await fetch(`${dashboard.discordApiUrl}${path}`, {
+      method,
+      headers: {
+        Authorization: `${token.type} ${bearer}`,
+      },
+      scope: "guilds",
+    });
+    return await res.json();
+  } catch (e) {
+    return { error: "invalid_token" };
+  }
+}
+
+/* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
+function encode(obj) {
+  let string = "";
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (!value) continue;
+    string += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+  }
+
+  return string.substring(1);
+}
+
 module.exports = {
   errorEmbed,
   sendErrorLog,
@@ -353,4 +447,10 @@ module.exports = {
   removeSticky,
   findMember,
   getGuildLang,
+  getLanguages,
+  handleApiRequest,
+  parseMessage,
+  createWebhook,
+  encode,
+  getWebhook,
 };

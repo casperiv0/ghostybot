@@ -1,0 +1,29 @@
+.btn {
+  padding: 0.5rem 0.8rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background: var(--secondary);
+  transition: 200ms;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.5rem !important;
+}
+
+.btn-red {
+  background: var(--red);
+  transition: filter 200ms;
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: var(--blue);
+  }
+  .btn-red:hover {
+    filter: brightness(120%);
+  }
+}

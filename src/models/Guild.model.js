@@ -1,4 +1,9 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
+
+const DEFAULT_MESSAGE = `**Username:** {user.username}
+**Tag:** {user.tag}
+**Id:** {user.id}
+`;
 
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
@@ -11,12 +16,15 @@ const guildSchema = new Schema({
   welcome_channel: { type: String, default: null },
   leave_channel: { type: String, default: null },
   welcome_role: { type: String, default: null },
+  audit_channel: { type: String, default: null },
   custom_commands: { type: Array, default: [] },
   disabled_commands: { type: Array, default: [] },
   disabled_categories: { type: Array, default: [] },
   sticky_data: { type: Object, default: null },
   locale: { type: String, default: "english" },
   ignored_channels: { type: Array, default: [] },
+  welcome_message: { type: String, default: DEFAULT_MESSAGE },
+  leave_message: { type: String, default: DEFAULT_MESSAGE },
 });
 
-module.exports = model("Guild", guildSchema);
+module.exports = models.Guild || model("Guild", guildSchema);

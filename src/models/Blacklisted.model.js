@@ -1,7 +1,7 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const blacklistSchema = new Schema({
   user_id: { type: String, required: true },
 });
 
-module.exports = model("Blacklisted", blacklistSchema);
+module.exports = models.Blacklisted || model("Blacklisted", blacklistSchema);

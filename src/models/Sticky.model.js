@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const stickySchema = new Schema({
   channel_id: { type: String, required: true },
@@ -6,4 +6,4 @@ const stickySchema = new Schema({
   message: { type: String, required: true },
 });
 
-module.exports = model("Sticky", stickySchema);
+module.exports = models.Sticky || model("Sticky", stickySchema);

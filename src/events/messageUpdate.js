@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { getGuildById } = require("../utils/functions");
+
 module.exports = {
   name: "messageUpdate",
   async execute(bot, oldMsg, newMsg) {
@@ -7,15 +8,11 @@ module.exports = {
     if (!newMsg.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }
-    const w = await oldMsg.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
+    const webhook = await bot.getWebhook(newMsg.guild);
+    if (webhook === null) return;
     const guild = await getGuildById(newMsg.guild.id);
-    const blacklistedWords = guild.blacklistedwords;
 
-    // Couldn't find webhook/webhook doesn't exist
-    if (!webhook) {
-      return;
-    }
+    const blacklistedWords = guild.blacklistedwords;
 
     if (!oldMsg.content || !newMsg.content) {
       return;

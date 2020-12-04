@@ -7,10 +7,8 @@ module.exports = {
     if (!newMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
-    // not enabled
-    const w = await newMember.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
-    if (!webhook) return;
+    const webhook = await bot.getWebhook(newMember.guild);
+    if (webhook === null) return;
 
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)

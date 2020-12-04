@@ -8,8 +8,6 @@ module.exports = {
     const embed = BaseEmbed(message).setTitle(
       `${lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", playlist)}`
     );
-    //   .setAuthor(`${lang.MUSIC.REQUESTED_BY} ${track.requestedBy.username}`)
-    //   .setImage(track.thumbnail);
 
     return message.channel.send(embed);
   },

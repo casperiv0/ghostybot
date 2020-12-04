@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const warningSchema = new Schema({
   user_id: { type: String, required: true },
@@ -6,4 +6,4 @@ const warningSchema = new Schema({
   reason: { type: String, default: null },
 });
 
-module.exports = model("Warning", warningSchema);
+module.exports = models.Warning || model("Warning", warningSchema);
