@@ -15,6 +15,10 @@ module.exports = {
     let amount = args[0];
     let hasWon = false;
 
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_BET);
+    }
+
     if (amount > 500) {
       return message.channel.send(lang.ECONOMY.MAX_BET);
     }

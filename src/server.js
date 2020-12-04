@@ -7,7 +7,7 @@ const {
 
 module.exports = (bot) => {
   const dev = process.env.NODE_ENV !== "production";
-  const app = next({ dev });
+  const app = next({ dev: dev });
   const handle = app.getRequestHandler();
 
   app.prepare().then(() => {
