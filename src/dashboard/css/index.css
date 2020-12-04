@@ -86,6 +86,22 @@ textarea {
   background: var(--blue);
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.alert-message svg {
+  margin-right: 0.5rem;
+}
+
+.alert-success {
+  background: #D4EDDA;
+  color: var(--secondary);
+}
+
+.alert-warning {
+  background: #fff3cd;
+  color: var(--secondary);
 }
 
 .loader {

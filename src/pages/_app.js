@@ -2,6 +2,7 @@ import "../dashboard/css/index.css";
 import "../dashboard/css/cards.css";
 import "../dashboard/css/buttons.css";
 import "../dashboard/css/nav.css";
+import "../dashboard/css/modal.css";
 import Head from "next/head";
 import Navbar from "../dashboard/components/Navbar";
 

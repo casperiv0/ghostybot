@@ -1,9 +1,21 @@
 import { parseCookies } from "nookies";
-import { dashboard } from "../../../../config.json";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import fetch from "node-fetch";
+import { dashboard } from "../../../../config.json";
 import Logger from "../../../modules/Logger";
+import { openModal } from "../../../dashboard/components/modal";
+import CreateCommandModal from "../../../dashboard/components/modal/create-command";
+import AlertMessage from "../../../dashboard/components/AlertMessage";
 
-const Settings = ({ guild }) => {
+const CustomCommands = ({ guild }) => {
+  const [message, setMessage] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    setMessage(router.query?.message);
+  }, [router]);
+
   async function deleteCommand(name) {
     try {
       const data = await (
@@ -17,19 +29,39 @@ const Settings = ({ guild }) => {
         )
       ).json();
 
-      console.log(data);
+      if (data.status === "success") {
+        router.push(`/dashboard/${guild.id}/commands?message=${data.message}`);
+      }
+
+      setMessage(data?.error);
     } catch (e) {
       Logger.error("delete_command", e);
     }
   }
 
+  function addCmd() {
+    openModal("createCommandModal");
+  }
+
   return (
     <>
+      {message ? <AlertMessage type="success" message={message} /> : null}
+      <CreateCommandModal guild={guild} />
       <div className="page-title">
         <h4>{guild?.name} - Custom commands</h4>
-        <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
-          Return
-        </a>
+
+        <div>
+          <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
+            Return
+          </a>
+          <button
+            style={{ marginLeft: "0.5rem" }}
+            className="btn btn-primary"
+            onClick={addCmd}
+          >
+            Add command
+          </button>
+        </div>
       </div>
 
       {guild.custom_commands.length > 0 ? (
@@ -86,4 +118,4 @@ export async function getServerSideProps(ctx) {
   };
 }
 
-export default Settings;
+export default CustomCommands;

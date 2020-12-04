@@ -14,7 +14,16 @@ export default async function handler(req, res) {
         });
       }
 
-      return res.json({ qd: "qd" });
+      const guild = await getGuildById(query.id);
+
+      await updateGuildById(query.id, {
+        custom_commands: [
+          ...guild.custom_commands,
+          { name: body.name, response: body.response },
+        ],
+      });
+
+      return res.json({ status: "success" });
     }
     case "DELETE": {
       const guild = await getGuildById(query.id);
