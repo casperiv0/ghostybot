@@ -18,6 +18,9 @@ const Dashboard = ({ isAuth, guilds }) => {
 
   return (
     <>
+      {
+        <AlertMessage message="This dashboard is still in beta! It could be that some thing will not work, if you found an issue please report this at: https://discord.gg/XxHrtkA" />
+      }
       {message ? <AlertMessage message={message} /> : null}
       <div className="page-title">
         <h4>Please select a server</h4>

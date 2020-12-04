@@ -142,7 +142,7 @@ const Settings = ({ guild, languages }) => {
           Return
         </a>
       </div>
-      {message ? <AlertMessage message={message} /> : null}
+      {message ? <AlertMessage type="success" message={message} /> : null}
 
       <form onSubmit={onSubmit}>
         <div className="grid">
@@ -181,8 +181,6 @@ const Settings = ({ guild, languages }) => {
           })}
         </div>
 
-        {/* TODO: add ability for audit-logs */}
-
         <div className="grid col-2">
           <div className="form-group">
             <label className="form-label">Welcome description</label>
@@ -202,7 +200,11 @@ const Settings = ({ guild, languages }) => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button
+          style={{ float: "right" }}
+          type="submit"
+          className="btn btn-primary"
+        >
           Save settings
         </button>
       </form>

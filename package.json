@@ -9,7 +9,8 @@
   "scripts": {
     "format": "eslint --ext .js --fix",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "next build"
   },
   "husky": {
     "hooks": {

@@ -91,7 +91,9 @@ textarea {
 }
 
 .alert-message svg {
-  margin-right: 0.5rem;
+  margin-right: 0.8rem;
+  width: 2rem;
+  height: 1.5rem;
 }
 
 .alert-success {
