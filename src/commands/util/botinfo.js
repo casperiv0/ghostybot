@@ -52,6 +52,11 @@ module.exports = {
         "[Click Here](https://discord.gg/XxHrtkA)",
         true
       )
+      .addField(
+        `${lang.UTIL.DASHBOARD}`,
+        "[Click Here](https://ghostybot.tk)",
+        true
+      )
       .setImage(
         "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
       );
