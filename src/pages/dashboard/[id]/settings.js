@@ -28,6 +28,7 @@ const Settings = ({ guild, languages }) => {
   );
   const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
   const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
+  const [prefix, setPrefix] = useState(guild.prefix || "");
 
   const fields = [
     {
@@ -97,6 +98,13 @@ const Settings = ({ guild, languages }) => {
       data: languages,
       label: "Bot language",
     },
+    {
+      type: "input",
+      id: "prefix",
+      value: prefix,
+      onChange: (e) => setPrefix(e.target.value),
+      label: "Bot Prefix",
+    }
   ];
 
   async function onSubmit(e) {
@@ -118,6 +126,7 @@ const Settings = ({ guild, languages }) => {
             locale: language,
             welcome_message: welcomeMessage,
             audit_channel: auditChannel,
+            prefix: prefix,
           }),
         }
       );

@@ -8,7 +8,7 @@ import Head from "next/head";
 import Navbar from "../dashboard/components/Navbar";
 import { useRouter } from "next/router";
 
-function MyApp({ Component, pageProps }) {
+function GhostyBot({ Component, pageProps }) {
   const router = useRouter();
 
   return (
@@ -51,4 +51,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default GhostyBot;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
-import { dashboard } from "../../../config.json";
+import { dashboard, owners } from "../../../config.json";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,6 +59,14 @@ const Navbar = () => {
               <Link href="/dashboard">
                 <a className="dropdown-link">My servers</a>
               </Link>
+              <Link href="/add.html">
+                <a className="dropdown-link">Invite GhostyBot</a>
+              </Link>
+              {owners.includes(user?.id) ? (
+                <Link href="/bot-settings">
+                  <a className="dropdown-link">Bot Settings</a>
+                </Link>
+              ) : null}
               <Link href="/api/auth/logout">
                 <a className="dropdown-link logout">Logout</a>
               </Link>

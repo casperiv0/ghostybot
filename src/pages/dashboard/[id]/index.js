@@ -32,6 +32,9 @@ const Guild = ({ guild }) => {
         <Link href={`/dashboard/${guild.id}/manage-commands`}>
           <a className="btn btn-primary">Enable/disable commands</a>
         </Link>
+        <Link href={`/dashboard/${guild.id}/manage-categories`}>
+          <a className="btn btn-primary">Enable/disable categories</a>
+        </Link>
         <Link href={`/dashboard/${guild.id}/settings`}>
           <a className="btn btn-primary">Guild Settings</a>
         </Link>
