@@ -2,6 +2,7 @@ import { getGuildById, updateGuildById } from "../../../../utils/functions";
 
 export default async function handler(req, res) {
   const { method, query } = req;
+  const guild = await getGuildById(query.id);
 
   switch (method) {
     case "POST": {
@@ -14,8 +15,6 @@ export default async function handler(req, res) {
         });
       }
 
-      const guild = await getGuildById(query.id);
-
       await updateGuildById(query.id, {
         custom_commands: [
           ...guild.custom_commands,
@@ -25,9 +24,31 @@ export default async function handler(req, res) {
 
       return res.json({ status: "success" });
     }
-    case "DELETE": {
-      const guild = await getGuildById(query.id);
+    case "PUT": {
+      const body = JSON.parse(req.body);
+      const { type, name } = body;
 
+      if (!type || !name) {
+        return res.status(400).json({ status: "error" });
+      }
+
+      if (type === "enable") {
+        await updateGuildById(query.id, {
+          disabled_commands: guild.disabled_commands.filter(
+            (c) => c !== name.toLowerCase()
+          ),
+        });
+      } else if (type === "disable") {
+        await updateGuildById(query.id, {
+          disabled_commands: [...guild.disabled_commands, name],
+        });
+      } else {
+        return res.status(400).json({ status: "error", error: "invalid type" });
+      }
+
+      return res.json({ status: "success" });
+    }
+    case "DELETE": {
       const filtered = guild.custom_commands?.filter(
         (cmd) => cmd.name.toLowerCase() !== query.name.toLowerCase()
       );

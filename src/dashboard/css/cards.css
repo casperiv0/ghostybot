@@ -23,6 +23,16 @@
   margin-left: 0.5rem;
 }
 
+.cmd-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cmd-card p {
+  font-size: 1.1rem;
+}
+
 .disabled {
   position: relative;
   cursor: not-allowed;

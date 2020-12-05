@@ -19,8 +19,13 @@
   transition: filter 200ms;
 }
 
+.btn-secondary {
+  background: var(--primary);
+}
+
 @media (hover: hover) {
-  .btn-primary:hover {
+  .btn-primary:hover,
+  .btn-secondary:hover {
     background: var(--blue);
   }
   .btn-red:hover {

@@ -204,6 +204,7 @@ module.exports = {
     MAX_BET: "max bet amount is 500",
     ADDED_MONEY: "Successfully added {amount} to user balance",
     MIN_BET: "Minimum bet of 1 is required",
+    MIN_AMOUNT: "Amount must be above 0",
   },
   GAMES: {
     BETS_ON: "{member_1} يراهن علي {member_2}",

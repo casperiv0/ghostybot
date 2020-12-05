@@ -31,6 +31,10 @@ module.exports = {
       return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+    }
+
     if (money < amount) {
       return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
     }

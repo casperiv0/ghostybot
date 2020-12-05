@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       guild.roles.unshift({ id: undefined, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
-      return res.json({ guild: { ...guild, ...g._doc }, status: "success" });
+      return res.json({ guild: { ...guild, ...g._doc }, botCommands: req.bot.commands, status: "success" });
     }
     case "POST": {
       const body = JSON.parse(req.body);
