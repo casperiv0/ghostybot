@@ -31,6 +31,7 @@ module.exports = {
 
     const main = data.weather[0].main;
     const desc = data.weather[0].description;
+    const icon = data.weather[0].icon;
     const feelsLike = data.main.feels_like;
     const temp = data.main.temp;
     const windSpeed = data.wind.speed;
@@ -46,9 +47,7 @@ module.exports = {
       .addField(`**${lang.UTIL.WIND_SPEED}**`, `${windSpeed}Km/h`, true)
       .addField(`**${lang.UTIL.WIND_DEGREES}**`, windDeg, true)
       .addField(`**${lang.UTIL.COUNTRY}**`, country)
-      .setColor("BLUE")
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
 
     message.channel.send({ embed });
   },

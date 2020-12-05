@@ -10,7 +10,7 @@ module.exports = {
       ` ${serverCount} servers.`,
       `!help || ${channelCount} channels`,
       `${userCount} users`,
-      "!help | https://ghostybot.tk"
+      "!help | https://ghostybot.tk",
     ];
 
     Logger.log(

@@ -365,7 +365,7 @@ async function getWebhook(guild) {
   return webhook;
 }
 
-function parseMessage(message, user) {
+function parseMessage(message, user, msg) {
   const newMessage = message.split(" ").map((word) => {
     const { username, tag, id, discriminator } = user;
     let w = word;
@@ -376,6 +376,15 @@ function parseMessage(message, user) {
       .replace("{user.username}", username)
       .replace("{user.discriminator}", discriminator)
       .replace("{user.id}", id);
+
+    if (msg) {
+      w.replace("{guild.id}", msg.guild.id)
+        .replace("{guild.name}", msg.guild.name)
+        .replace("{message.author}", msg.author)
+        .replace("{message.author.id}", msg.author.id)
+        .replace("{message.author.tag}", msg.author.tag)
+        .replace("{message.author.username}", msg.author.username);
+    }
 
     return w;
   });
