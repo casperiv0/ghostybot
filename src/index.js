@@ -17,6 +17,7 @@ const {
 
 const bot = new Client({
   disableMentions: "everyone",
+  fetchAllMembers: true,
   partials: ["GUILD_MEMBER", "MESSAGE", "USER"],
 });
 

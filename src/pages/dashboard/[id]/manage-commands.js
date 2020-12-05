@@ -15,11 +15,23 @@ const ManageCommands = ({ botCommands, guild }) => {
   }, [router]);
 
   function handleSearch(value) {
-    const filtered = botCommands.filter((cmd) =>
-      cmd.name.toLowerCase().includes(value.toLowerCase())
-    );
+    let filter;
 
-    setFiltered(filtered);
+    if (value === "@enabled") {
+      filter = botCommands.filter((cmd) => {
+        return !guild.disabled_commands.find((c) => c === cmd.name);
+      });
+    } else if (value === "@disabled") {
+      filter = botCommands.filter((cmd) => {
+        return !!guild.disabled_commands.find((c) => c === cmd.name);
+      });
+    } else {
+      filter = botCommands.filter((cmd) =>
+        cmd.name.toLowerCase().includes(value.toLowerCase())
+      );
+    }
+
+    setFiltered(filter);
   }
 
   async function updateCommand(type, cmdName) {
@@ -59,7 +71,7 @@ const ManageCommands = ({ botCommands, guild }) => {
         <input
           className="form-input"
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="Search for commands"
+          placeholder="Search query | @enabled | @disabled"
         />
       </div>
 

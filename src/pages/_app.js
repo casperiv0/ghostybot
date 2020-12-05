@@ -6,11 +6,14 @@ import "../dashboard/css/modal.css";
 import "../dashboard/css/landing.css";
 import Head from "next/head";
 import Navbar from "../dashboard/components/Navbar";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
   return (
     <>
-      <Navbar />
+      {router.pathname === "/" ? null : <Navbar />}
       <div className="container">
         <Head>
           <title>GhostyBot</title>
@@ -32,7 +35,11 @@ function MyApp({ Component, pageProps }) {
             href="/favicons/favicon-16x16.png"
           />
           <link rel="manifest" href="/manifest.json" />
-          <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+          <link
+            rel="mask-icon"
+            href="/favicons/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </Head>

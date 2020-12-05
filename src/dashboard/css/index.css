@@ -70,13 +70,18 @@ textarea {
 }
 
 .form-input {
-  padding: 5px 8px;
+  padding: 0.5rem 8px;
   font-size: 1.1rem;
   color: #fff;
   background: var(--secondary);
-  border: 0.2rem solid transparent;
+  border: 0.1rem solid transparent;
   border-radius: 0.5rem;
   resize: vertical;
+  transition: border 200ms;
+}
+
+.form-input:focus {
+  border-color: var(--blue);
 }
 
 .alert-message {
@@ -97,7 +102,7 @@ textarea {
 }
 
 .alert-success {
-  background: #D4EDDA;
+  background: #d4edda;
   color: var(--secondary);
 }
 
