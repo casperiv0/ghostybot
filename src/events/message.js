@@ -136,7 +136,8 @@ module.exports = {
         .setTitle("Quick Info")
         .addField("Prefix", serverPrefix)
         .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809");
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
+        .addField("Dashboard", "https://ghostybot.tk");
 
       message.channel.send(embed);
     }
