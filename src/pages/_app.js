@@ -4,8 +4,10 @@ import "../dashboard/css/buttons.css";
 import "../dashboard/css/nav.css";
 import "../dashboard/css/modal.css";
 import "../dashboard/css/landing.css";
+import "../dashboard/css/footer.css";
 import Head from "next/head";
 import Navbar from "../dashboard/components/Navbar";
+import Footer from "../dashboard/components/Footer";
 import { useRouter } from "next/router";
 
 function GhostyBot({ Component, pageProps }) {
@@ -47,6 +49,7 @@ function GhostyBot({ Component, pageProps }) {
           <Component {...pageProps} />
         </div>
       </div>
+      {router.pathname === "/" ? null : <Footer />}
     </>
   );
 }

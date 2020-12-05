@@ -1,0 +1,12 @@
+.footer {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+}
+
+.footer a {
+  color: var(--blue);
+  margin: 0 5px;
+}

@@ -104,7 +104,7 @@ const Settings = ({ guild, languages }) => {
       value: prefix,
       onChange: (e) => setPrefix(e.target.value),
       label: "Bot Prefix",
-    }
+    },
   ];
 
   async function onSubmit(e) {
@@ -198,6 +198,18 @@ const Settings = ({ guild, languages }) => {
               onChange={(e) => setWelcomeMessage(e.target.value)}
               value={welcomeMessage}
             ></textarea>
+            <p style={{ marginTop: "0.5rem" }}>
+              <strong>{"{user}"}:</strong> The user mention: @CasperTheGhost
+              <br />
+              <strong>{"{user.username}"}</strong>: The user&apos;s username: CasperTheGhost
+              <br />
+              <strong>{"{user.tag}"}</strong>: The user&apos;s tag:
+              CasperTheGhost#0000 <br />
+              <strong>{"{user.id}"}</strong>: The user&apos;s id: 00000000000{" "}
+              <br />
+              <strong>{"{user.discriminator}"}</strong>: The user&apos;s
+              discriminator: #0000 <br />
+            </p>
           </div>
           <div className="form-group">
             <label className="form-label">Leave description</label>

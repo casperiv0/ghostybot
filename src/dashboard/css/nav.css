@@ -58,7 +58,7 @@
   padding: 0.5rem;
   opacity: 0;
   border-radius: 0.5rem;
-  background: var(--secondary);
+  background: #18191C;
   box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.2);
   top: 2.5rem;
   right: 0rem;
@@ -83,6 +83,7 @@
 
 .logout {
   color: var(--red);
+  font-weight: 600;
 }
 
 @media (hover: hover) {

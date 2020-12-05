@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         return true;
       }); /* remove category 'channels' & voice channels */
       guild.channels.unshift({ id: null, name: "Disabled" });
-      guild.roles.unshift({ id: undefined, name: "Disabled" });
+      guild.roles.unshift({ id: null, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
       return res.json({
@@ -54,8 +54,6 @@ export default async function handler(req, res) {
     case "POST": {
       const body = JSON.parse(req.body);
       const g = await getGuildById(query.id);
-
-      console.log(body);
 
       if (body.audit_channel) {
         await createWebhook(req.bot, body.audit_channel, g.audit_channel);

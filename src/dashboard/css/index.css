@@ -25,6 +25,7 @@ textarea {
 }
 
 .container {
+  min-height: calc(100vh - 11rem);
   margin: 1.5rem 0;
   width: 100%;
   display: flex;
