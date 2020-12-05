@@ -23,6 +23,10 @@ module.exports = {
       message.guild.id
     );
 
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+    }
+
     if (amount > sender.money) {
       return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
     }
@@ -39,10 +43,10 @@ module.exports = {
     });
 
     return message.channel.send(
-      lang.ECONOMY.PAY_SUCCESS.replace(
-        "{member}",
-        member.user.tag
-      ).replace("{amount}", amount)
+      lang.ECONOMY.PAY_SUCCESS.replace("{member}", member.user.tag).replace(
+        "{amount}",
+        amount
+      )
     );
   },
 };
