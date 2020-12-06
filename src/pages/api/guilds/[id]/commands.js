@@ -15,10 +15,25 @@ export default async function handler(req, res) {
         });
       }
 
+      const commandName = body.name.toLowerCase();
+
+      if (guild.custom_commands?.find((x) => x.name === commandName))
+        return res.json({
+          error: "This command name already exists for this guild",
+          status: "error",
+        });
+
+      if (req.bot.commands.has(commandName)) {
+        return res.json({
+          error: "This command name is already in use by the bot!",
+          status: "error",
+        });
+      }
+
       await updateGuildById(query.id, {
         custom_commands: [
           ...guild.custom_commands,
-          { name: body.name, response: body.response },
+          { name: commandName, response: body.response },
         ],
       });
 
@@ -61,7 +76,9 @@ export default async function handler(req, res) {
       });
     }
     default: {
-      return res.json({ error: "Method not allowed", status: "error" });
+      return res
+        .status(405)
+        .json({ error: "Method not allowed", status: "error" });
     }
   }
 }
