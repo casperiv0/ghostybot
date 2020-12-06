@@ -8,6 +8,11 @@ module.exports = {
   execute(bot, message, args) {
     const type = args[0];
     const msg = args.slice(1).join(" ");
+
+    if (!msg) {
+      return message.channel.send("Please provide a message");
+    }
+
     message.delete();
 
     if (type === "embed") {
