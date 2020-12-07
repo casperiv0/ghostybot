@@ -8,7 +8,7 @@ module.exports = {
   execute(bot, message) {
     message.channel.send(
       joke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] })
-        .body + "qsdklhqlksdsh"
+        .body 
     );
   },
 };
