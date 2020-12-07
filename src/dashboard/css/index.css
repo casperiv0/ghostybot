@@ -24,6 +24,12 @@ textarea {
   min-height: 150px;
 }
 
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
+
 .container {
   min-height: calc(100vh - 11rem);
   margin: 1.5rem 0;

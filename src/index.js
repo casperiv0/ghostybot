@@ -16,6 +16,7 @@ const {
   encode,
   getLanguages,
   formatDate,
+  getGuildById,
 } = require("./utils/functions");
 
 const bot = new Client({
@@ -31,6 +32,7 @@ const options = [
   getGuildLang,
   getLanguages,
   formatDate,
+  getGuildById,
 ];
 
 options.forEach((f) => {

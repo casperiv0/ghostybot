@@ -72,7 +72,11 @@ const ManageCategories = ({ guild }) => {
       </div>
 
       <div className="form-group">
+        <label className="sr-only" htmlFor="search">
+          Search for categories
+        </label>
         <input
+          id="search"
           className="form-input"
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="Search query | @enabled | @disabled"

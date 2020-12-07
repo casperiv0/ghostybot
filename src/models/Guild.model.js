@@ -25,6 +25,7 @@ const guildSchema = new Schema({
   ignored_channels: { type: Array, default: [] },
   welcome_message: { type: String, default: DEFAULT_MESSAGE },
   leave_message: { type: String, default: DEFAULT_MESSAGE },
+  timezone: { type: String, default: "America/New_York" },
 });
 
 module.exports = models.Guild || model("Guild", guildSchema);

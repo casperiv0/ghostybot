@@ -16,6 +16,8 @@
 
 .btn-red {
   background: var(--red);
+  color: #111111;
+  font-weight: 600;
   transition: filter 200ms;
 }
 

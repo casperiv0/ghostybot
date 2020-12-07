@@ -28,6 +28,7 @@ function GhostyBot({ Component, pageProps }) {
             sizes="144x144"
             href="/favicons/apple-touch-icon.png"
           />
+          <meta property="og:image" content="/favicons/apple-touch-icon.png" />
           <link
             rel="icon"
             type="image/png"
@@ -47,7 +48,8 @@ function GhostyBot({ Component, pageProps }) {
             color="#5bbad5"
           />
           <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#7289da" />
+          <meta property="og:color" content="#7289da" />
         </Head>
         <div className="content">
           <Component {...pageProps} />

@@ -46,6 +46,7 @@ const Dashboard = ({ isAuth, guilds }) => {
                   <div className="guild-card-img"></div>
                 ) : (
                   <Image
+                    alt={guild.name}
                     className="guild-card-img"
                     src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
                     width="65"

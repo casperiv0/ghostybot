@@ -169,6 +169,13 @@ async function removeGuild(guildId) {
   }
 }
 
+/**
+ * @param {string} guildId
+ */
+async function getGuildTz(guildId) {
+  return await (await getGuildById(guildId)).timezone;
+}
+
 /* WARNINGS */
 /**
  * @param {string} userId
@@ -319,9 +326,19 @@ function sendErrorLog(bot, error, type, msgContent) {
 
 /**
  * @param {number | string} date
- * @returns {string}
+ * @param {string} guildId
+ * @returns {{date: string, tz: string}}
  */
-const formatDate = (date) => moment(date).format("MM/DD/YYYY");
+async function formatDate(date, guildId) {
+  const tz = await getGuildTz(guildId);
+  const m = moment(date);
+
+  console.log(tz);
+  return {
+    date: m.tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
+    tz: tz,
+  };
+}
 
 /**
  * @param {string} str
@@ -476,4 +493,5 @@ module.exports = {
   encode,
   getWebhook,
   escapeMarkdown,
+  getGuildTz,
 };

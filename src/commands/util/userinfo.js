@@ -16,8 +16,14 @@ module.exports = {
       return message.channel.send("User wasn't found!");
     }
 
-    const joinedAt = formatDate(member.joinedAt);
-    const createdAt = formatDate(member.user.createdAt);
+    const { date: joinedAt, tz } = await formatDate(
+      member.joinedAt,
+      message.guild.id
+    );
+    const { date: createdAt } = await formatDate(
+      member.user.createdAt,
+      message.guild.id
+    );
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
     const userFlags = (await member.user.fetchFlags())
@@ -47,8 +53,8 @@ module.exports = {
         userFlags.length > 0 ? userFlags : "None",
         true
       )
-      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
-      .addField(`**${lang.MEMBER.JOINED_AT}**`, joinedAt, true)
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, `${createdAt} (${tz})`, true)
+      .addField(`**${lang.MEMBER.JOINED_AT}**`, `${joinedAt} (${tz})`, true)
       .addField(`**${lang.MEMBER.NICKNAME}**`, nickname, true)
       .addField(`**${lang.MEMBER.ROLES} (${roleCount})**`, roles)
       .setTitle(`${username}'s info`)

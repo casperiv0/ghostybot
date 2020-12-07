@@ -19,10 +19,8 @@ module.exports = {
       return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
     }
 
-    const createdAt = formatDate(role.createdAt);
-    const mentionable = role.mentionable
-      ? lang.GLOBAL.YES
-      : lang.GLOBAL.NO;
+    const { date, tz } = await formatDate(role.createdAt, message.guild.id);
+    const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
     const name = role.name;
     const id = role.id;
     const color = role.color;
@@ -30,7 +28,7 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(`**${name}**`)
       .setColor(color)
-      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, `${date} (${tz})`, true)
       .addField(`**${lang.UTIL.MENTIONABLE}**`, mentionable, true)
       .addField(`**${lang.MEMBER.ID}**`, id, true);
 

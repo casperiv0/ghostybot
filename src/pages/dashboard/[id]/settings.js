@@ -5,6 +5,7 @@ import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { getLanguages } from "../../../utils/functions";
+import timezones from "../../../data/timezones.json";
 
 const Settings = ({ guild, languages }) => {
   const [message, setMessage] = useState(null);
@@ -29,6 +30,7 @@ const Settings = ({ guild, languages }) => {
   const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
   const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
   const [prefix, setPrefix] = useState(guild.prefix || "");
+  const [tz, setTz] = useState(guild.timezone || "");
 
   const fields = [
     {
@@ -99,6 +101,14 @@ const Settings = ({ guild, languages }) => {
       label: "Bot language",
     },
     {
+      type: "select",
+      id: "timezone",
+      value: tz,
+      onChange: (e) => setTz(e.target.value),
+      data: timezones,
+      label: "Timezones",
+    },
+    {
       type: "input",
       id: "prefix",
       value: prefix,
@@ -127,6 +137,7 @@ const Settings = ({ guild, languages }) => {
             welcome_message: welcomeMessage,
             audit_channel: auditChannel,
             prefix: prefix,
+            timezone: tz,
           }),
         }
       );
@@ -192,8 +203,11 @@ const Settings = ({ guild, languages }) => {
 
         <div className="grid col-2">
           <div className="form-group">
-            <label className="form-label">Welcome description</label>
+            <label htmlFor="welcome-message" className="form-label">
+              Welcome description
+            </label>
             <textarea
+              id="welcome-message"
               className="form-input"
               onChange={(e) => setWelcomeMessage(e.target.value)}
               value={welcomeMessage}
@@ -201,7 +215,8 @@ const Settings = ({ guild, languages }) => {
             <p style={{ marginTop: "0.5rem" }}>
               <strong>{"{user}"}:</strong> The user mention: @CasperTheGhost
               <br />
-              <strong>{"{user.username}"}</strong>: The user&apos;s username: CasperTheGhost
+              <strong>{"{user.username}"}</strong>: The user&apos;s username:
+              CasperTheGhost
               <br />
               <strong>{"{user.tag}"}</strong>: The user&apos;s tag:
               CasperTheGhost#0000 <br />
@@ -212,8 +227,11 @@ const Settings = ({ guild, languages }) => {
             </p>
           </div>
           <div className="form-group">
-            <label className="form-label">Leave description</label>
+            <label htmlFor="leave-message" className="form-label">
+              Leave description
+            </label>
             <textarea
+              id="leave-message"
               className="form-input"
               onChange={(e) => setLeaveMessage(e.target.value)}
               value={leaveMessage}
