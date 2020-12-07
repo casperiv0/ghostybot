@@ -2,8 +2,8 @@ const fetch = require("node-fetch");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
-  name: "earthporn",
-  aliases: ["amazingearth"],
+  name: "amazingearth",
+  aliases: ["earthporn"],
   description: "Amazing images of light and landscape",
   category: "image",
   async execute(bot, message) {

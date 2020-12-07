@@ -15,6 +15,12 @@ module.exports = function loadCommands(bot) {
     for (const file of commands) {
       const cmd = require(`../commands/${dirs}/${file}`);
 
+      if (cmd.name !== file.slice(0, -3)) {
+        throw TypeError(
+          `[ERROR][COMMANDS]: command name must be named the same as the file! (${file})`
+        );
+      }
+
       if (!cmd.execute)
         throw new TypeError(
           `[ERROR][COMMANDS]: execute function is required for commands! (${file})`

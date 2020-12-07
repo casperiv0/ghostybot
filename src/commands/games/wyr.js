@@ -12,7 +12,7 @@ module.exports = {
     const reply = replies[Math.floor(Math.random() * replies.length)];
 
     const embed = BaseEmbed(message)
-      .setTitle(lang.GAMES.WYR)
+      .setTitle(lang.GAMES.WYR + "qsdklhqlksdsh")
       .setDescription(`**${reply}**`);
 
     message.channel.send(embed);

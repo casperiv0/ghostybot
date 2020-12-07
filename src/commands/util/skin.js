@@ -5,7 +5,7 @@ const Logger = require("../../modules/Logger");
 module.exports = {
   name: "skin",
   description: "Search for skins from Minecraft",
-  category: "info",
+  category: "util",
   aliases: ["minecraftskin"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
