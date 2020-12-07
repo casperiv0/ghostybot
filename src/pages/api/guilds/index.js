@@ -1,4 +1,5 @@
 import { handleApiRequest } from "../../../utils/functions";
+import hiddenItems from "../../../data/hidden-items.json";
 
 export default async function handler(req, res) {
   const { method, headers } = req;
@@ -29,6 +30,12 @@ export default async function handler(req, res) {
       const filteredGuilds = isAdminGuilds.map((guild) => {
         const g = req.bot.guilds.cache.get(guild.id);
         return { ...guild, ...g, inGuild: g ? true : false };
+      });
+
+      filteredGuilds.forEach((guild) => {
+        hiddenItems.forEach((item) => {
+          return (guild[item] = undefined);
+        });
       });
 
       return res.json({ guilds: filteredGuilds });

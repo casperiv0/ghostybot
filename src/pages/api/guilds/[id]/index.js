@@ -5,6 +5,7 @@ import {
   createWebhook,
 } from "../../../../utils/functions";
 import { token } from "../../../../../config.json";
+import hiddenItems from "../../../../data/hidden-items.json";
 
 export default async function handler(req, res) {
   const { method, query } = req;
@@ -29,21 +30,27 @@ export default async function handler(req, res) {
         return res.json({
           error: guild.error || guild.message,
           status: "error",
-          guild: {},
           invalid_token: guild.error === "invalid_token",
         });
       }
 
       const g = await getGuildById(guild.id);
       guild.channels = gChannels.filter((c) => {
-        if (c.type === 4) return false;
-        if (c.type === 2) return false;
+        /* remove category 'channels' & voice channels */
+        if (c.type === 4) return false; /* Category */
+        if (c.type === 2) return false; /* Voice chat */
+        if (c.type === 3) return false; /* group DM */
+        if (c.type === 6) return false; /* store page */
 
         return true;
-      }); /* remove category 'channels' & voice channels */
+      });
       guild.channels.unshift({ id: null, name: "Disabled" });
       guild.roles.unshift({ id: null, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
+
+      hiddenItems.forEach((item) => {
+        guild[item] = undefined;
+      });
 
       return res.json({
         guild: { ...guild, ...g._doc },

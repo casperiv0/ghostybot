@@ -19,7 +19,9 @@ export default async function handler(req, res) {
         });
       }
 
-      return res.json({ user: data });
+      return res.json({
+        user: { username: data.username, id: data.id, avatar: data.avatar },
+      });
     }
     default: {
       return res.json({ error: "Method not allowed", status: "error" });
