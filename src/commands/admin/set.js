@@ -2,10 +2,8 @@
 const {
   updateGuildById,
   getGuildById,
-  getLanguages,
   createWebhook,
 } = require("../../utils/functions");
-const languages = getLanguages();
 
 module.exports = {
   name: "set",
@@ -24,6 +22,7 @@ module.exports = {
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
+    const languages = bot.getLanguages();
     const guildId = message.guild.id;
     const { prefix } = await getGuildById(guildId);
     const option = args[0];

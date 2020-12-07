@@ -13,6 +13,9 @@ const {
   getGuildLang,
   sendErrorLog,
   getWebhook,
+  encode,
+  getLanguages,
+  formatDate,
 } = require("./utils/functions");
 
 const bot = new Client({
@@ -21,8 +24,18 @@ const bot = new Client({
   partials: ["GUILD_MEMBER", "MESSAGE", "USER"],
 });
 
-// Locale - Language
-bot.getGuildLang = getGuildLang;
+const options = [
+  findMember,
+  getWebhook,
+  encode,
+  getGuildLang,
+  getLanguages,
+  formatDate,
+];
+
+options.forEach((f) => {
+  bot[f.name] = f;
+});
 
 // Commands
 bot.commands = new Collection();
@@ -33,8 +46,6 @@ bot.afk = new Map();
 bot.neko = new NekoClient();
 bot.tnai = new TnaiClient();
 bot.imdb = new imdb.Client({ apiKey: imdbKey });
-bot.findMember = findMember;
-bot.getWebhook = getWebhook;
 if (alexflipnoteKey) {
   bot.alexClient = new AlexClient(alexflipnoteKey);
 }

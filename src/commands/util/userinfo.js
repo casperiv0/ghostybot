@@ -7,7 +7,7 @@ module.exports = {
   description: "Get user info",
   usage: "!userinfo <user>",
   category: "util",
-  aliases: ["whois", "user"],
+  aliases: ["whois", "user", "u"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args, true);

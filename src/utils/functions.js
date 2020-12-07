@@ -6,7 +6,7 @@ const BaseEmbed = require("../modules/BaseEmbed");
 const moment = require("moment");
 const Logger = require("../modules/Logger");
 // eslint-disable-next-line no-unused-vars
-const { Message, Client } = require("discord.js");
+const { Message, Client, Util } = require("discord.js");
 const { errorLogsChannelId, dashboard } = require("../../config.json");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
@@ -372,24 +372,37 @@ function parseMessage(message, user, msg) {
 
     w = w
       .replace("{user}", user)
-      .replace("{user.tag}", tag)
-      .replace("{user.username}", username)
+      .replace("{user.tag}", escapeMarkdown(tag))
+      .replace("{user.username}", escapeMarkdown(username))
       .replace("{user.discriminator}", discriminator)
       .replace("{user.id}", id);
 
     if (msg) {
       w.replace("{guild.id}", msg.guild.id)
-        .replace("{guild.name}", msg.guild.name)
+        .replace("{guild.name}", escapeMarkdown(msg.guild.name))
         .replace("{message.author}", msg.author)
         .replace("{message.author.id}", msg.author.id)
-        .replace("{message.author.tag}", msg.author.tag)
-        .replace("{message.author.username}", msg.author.username);
+        .replace("{message.author.tag}", escapeMarkdown(msg.author.tag))
+        .replace(
+          "{message.author.username}",
+          escapeMarkdown(escapeMarkdown(msg.author.username))
+        );
     }
 
     return w;
   });
 
   return newMessage;
+}
+
+function escapeMarkdown(m) {
+  return Util.escapeMarkdown(m, {
+    codeBlock: true,
+    spoiler: true,
+    inlineCode: true,
+    inlineCodeContent: true,
+    codeBlockContent: true,
+  });
 }
 
 /* DASHBOARD FUNCTIONS */
@@ -462,4 +475,5 @@ module.exports = {
   createWebhook,
   encode,
   getWebhook,
+  escapeMarkdown,
 };
