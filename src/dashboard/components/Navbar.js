@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { parseCookies } from "nookies";
 import { dashboard, owners } from "../../../config.json";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ const Navbar = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  useEffect(async () => {
+  const fetchAuth = useCallback(async () => {
     const cookies = parseCookies();
     const data = await (
       await fetch(`${dashboard.dashboardUrl}/api/auth`, {
@@ -29,7 +29,11 @@ const Navbar = () => {
     }
 
     setUser(data.user);
-  }, []);
+  }, [router]);
+
+  useEffect(() => {
+    fetchAuth();
+  }, [fetchAuth]);
 
   if (loading) {
     return <Loader full />;
@@ -43,9 +47,13 @@ const Navbar = () => {
         </Link>
         <div className="dropdown-container">
           <button className="nav-link-dropdown">
+            <label htmlFor="image" className="sr-only">
+              Dropdown Menu
+            </label>
             <Image
               width="40"
               height="40"
+              alt="dropdown"
               src={
                 user?.avatar === null
                   ? "https://cdn.discordapp.com/embed/avatars/0.png"

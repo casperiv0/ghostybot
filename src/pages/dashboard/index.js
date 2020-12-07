@@ -4,6 +4,7 @@ import { dashboard } from "../../../config.json";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AlertMessage from "../../dashboard/components/AlertMessage";
+import Link from "next/link";
 
 const Dashboard = ({ isAuth, guilds }) => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const Dashboard = ({ isAuth, guilds }) => {
     if (!isAuth) {
       return router.push("/api/auth/login");
     }
-  }, [isAuth]);
+  }, [isAuth, router]);
 
   return (
     <>
@@ -29,26 +30,31 @@ const Dashboard = ({ isAuth, guilds }) => {
       <div className="grid">
         {guilds.map((guild) => {
           return (
-            <a
-              href={guild.inGuild ? `/dashboard/${guild.id}` : null}
+            <Link
               key={guild.id}
-              className={`card guild-card ${!guild.inGuild ? "disabled" : ""}`}
-              aria-label={
-                !guild.inGuild ? "The bot must be in this guild!" : null
-              }
+              href={guild.inGuild ? `/dashboard/${guild.id}` : "/dashboard"}
             >
-              {guild.icon === null ? (
-                <div className="guild-card-img"></div>
-              ) : (
-                <Image
-                  className="guild-card-img"
-                  src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
-                  width="65"
-                  height="65"
-                />
-              )}
-              <p>{guild.name}</p>
-            </a>
+              <a
+                className={`card guild-card ${
+                  !guild.inGuild ? "disabled" : ""
+                }`}
+                aria-label={
+                  !guild.inGuild ? "The bot must be in this guild!" : null
+                }
+              >
+                {guild.icon === null ? (
+                  <div className="guild-card-img"></div>
+                ) : (
+                  <Image
+                    className="guild-card-img"
+                    src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
+                    width="65"
+                    height="65"
+                  />
+                )}
+                <p>{guild.name}</p>
+              </a>
+            </Link>
           );
         })}
       </div>

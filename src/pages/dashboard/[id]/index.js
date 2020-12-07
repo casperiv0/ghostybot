@@ -11,7 +11,7 @@ const Guild = ({ guild }) => {
     if (!guild.id) {
       return router.push("/dashboard?message=Guild was not found");
     }
-  }, [guild]);
+  }, [guild, router]);
 
   return (
     <>

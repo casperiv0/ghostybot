@@ -19,6 +19,10 @@ function GhostyBot({ Component, pageProps }) {
       <div className="container">
         <Head>
           <title>GhostyBot</title>
+          <meta
+            name="description"
+            content="🤖 GhostyBot is a Custom Discord bot with a lot of commands for Discord communities. (+180 commands) Economy, util, fun, music, admin, xp system and more "
+          />
           <link
             rel="apple-touch-icon"
             sizes="144x144"

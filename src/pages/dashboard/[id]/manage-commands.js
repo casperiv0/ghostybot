@@ -1,6 +1,6 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
@@ -9,6 +9,21 @@ const ManageCommands = ({ botCommands, guild }) => {
   const router = useRouter();
   const [message, setMessage] = useState(null);
   const [filtered, setFiltered] = useState(botCommands);
+  const [length, setLength] = useState(20);
+  const observer = useRef();
+  const lastRef = useCallback(
+    (node) => {
+      if (length > botCommands.length) return;
+      if (observer.current) observer.current?.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setLength((p) => p + 20);
+        }
+      });
+      if (node) observer.current?.observe(node);
+    },
+    [length, botCommands]
+  );
 
   useEffect(() => {
     setMessage(router.query?.message);
@@ -68,7 +83,11 @@ const ManageCommands = ({ botCommands, guild }) => {
       </div>
 
       <div className="form-group">
+        <label className="sr-only" htmlFor="search">
+          Search for commands
+        </label>
         <input
+          id="search"
           className="form-input"
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="Search query | @enabled | @disabled"
@@ -77,13 +96,14 @@ const ManageCommands = ({ botCommands, guild }) => {
 
       <div className="grid">
         {filtered
+          .slice(0, length)
           .filter(({ name }) => !["help", "enable", "disable"].includes(name))
           .map((cmd, idx) => {
             const isDisabled = guild.disabled_commands?.find(
               (c) => c === cmd.name
             );
             return (
-              <div id={idx} key={cmd.name} className="card cmd-card">
+              <div ref={lastRef} id={idx} key={cmd.name} className="card cmd-card">
                 <p>{cmd.name}</p>
 
                 <div>
