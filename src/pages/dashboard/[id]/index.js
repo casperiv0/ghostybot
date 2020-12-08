@@ -41,6 +41,9 @@ const Guild = ({ guild }) => {
         <Link href={`/dashboard/${guild.id}/blacklisted-words`}>
           <a className="btn btn-primary">Manage blacklisted words</a>
         </Link>
+        <Link href={`/dashboard/${guild.id}/store`}>
+          <a className="btn btn-primary">Manage Store</a>
+        </Link>
       </div>
     </>
   );

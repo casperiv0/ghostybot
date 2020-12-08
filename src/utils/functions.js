@@ -5,8 +5,7 @@ const Sticky = require("../models/Sticky.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 const moment = require("moment");
 const Logger = require("../modules/Logger");
-// eslint-disable-next-line no-unused-vars
-const { Message, Client, Util } = require("discord.js");
+const { Util } = require("discord.js");
 const { errorLogsChannelId, dashboard } = require("../../config.json");
 const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
@@ -169,13 +168,6 @@ async function removeGuild(guildId) {
   }
 }
 
-/**
- * @param {string} guildId
- */
-async function getGuildTz(guildId) {
-  return await (await getGuildById(guildId)).timezone;
-}
-
 /* WARNINGS */
 /**
  * @param {string} userId
@@ -291,8 +283,7 @@ async function getGuildLang(guildId) {
 }
 
 /**
- * @param {Client} bot
- * @param {Message} message
+ * @param {import("discord.js").Client} bot
  * @param {"warning" | "error"} type
  * @param {?string} msgContent
  */
@@ -330,10 +321,9 @@ function sendErrorLog(bot, error, type, msgContent) {
  * @returns {{date: string, tz: string}}
  */
 async function formatDate(date, guildId) {
-  const tz = await getGuildTz(guildId);
+  const tz = await (await getGuildById(guildId)).timezone;
   const m = moment(date);
 
-  console.log(tz);
   return {
     date: m.tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
     tz: tz,
@@ -359,6 +349,11 @@ function getLanguages() {
     .map((la) => la.slice(0, -3));
 }
 
+/**
+ * @param {import("discord.js").Client} bot
+ * @param {string} channelId
+ * @param {string} oldChannelId
+ */
 async function createWebhook(bot, channelId, oldChannelId) {
   const channel = bot.channels.cache.get(channelId);
   if (!channel) return;
@@ -373,6 +368,9 @@ async function createWebhook(bot, channelId, oldChannelId) {
   });
 }
 
+/**
+ * @param {string} guild
+ */
 async function getWebhook(guild) {
   const w = await guild.fetchWebhooks();
   const g = await getGuildById(guild.id);
@@ -382,6 +380,11 @@ async function getWebhook(guild) {
   return webhook;
 }
 
+/**
+ * @param {import("discord.js").Message} message
+ * @param {import("discord.js").User} user
+ * @param {string} msg
+ */
 function parseMessage(message, user, msg) {
   const newMessage = message.split(" ").map((word) => {
     const { username, tag, id, discriminator } = user;
@@ -493,5 +496,4 @@ module.exports = {
   encode,
   getWebhook,
   escapeMarkdown,
-  getGuildTz,
 };

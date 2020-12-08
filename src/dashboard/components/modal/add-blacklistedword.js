@@ -45,8 +45,9 @@ const AddBlacklistedWord = ({ guild }) => {
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Enter word</label>
+          <label htmlFor="word">Enter word</label>
           <input
+            id="word"
             value={word}
             onChange={(e) => setWord(e.target.value)}
             className="form-input"

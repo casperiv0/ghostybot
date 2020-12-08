@@ -106,8 +106,9 @@ select:focus {
 
 .alert-message svg {
   margin-right: 0.8rem;
-  width: 2rem;
+  width: 1.5rem;
   height: 1.5rem;
+  min-width: 1.5rem;
 }
 
 .alert-success {

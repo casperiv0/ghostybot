@@ -25,7 +25,7 @@ const bot = new Client({
   partials: ["GUILD_MEMBER", "MESSAGE", "USER"],
 });
 
-const options = [
+[
   findMember,
   getWebhook,
   encode,
@@ -33,10 +33,8 @@ const options = [
   getLanguages,
   formatDate,
   getGuildById,
-];
-
-options.forEach((f) => {
-  bot[f.name] = f;
+].forEach((func) => {
+  bot[func.name] = func;
 });
 
 // Commands

@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import { XIcon } from "../icons";
 
 const Modal = ({ title, id, children }) => {
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal(id);
+      }
+    });
+  }, [id]);
+
   return (
     <div id={`${id}-container`} className="modal-container">
       <div id={id} className="modal">

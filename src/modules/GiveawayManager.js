@@ -1,7 +1,7 @@
 const { GiveawaysManager } = require("discord-giveaways");
 const GiveawayModel = require("../models/Giveaway.model");
 
-const MongoGiveawayManager = class extends GiveawaysManager {
+class MongoGiveawayManager extends GiveawaysManager {
   async getAllGiveaways() {
     return await GiveawayModel.find();
   }
@@ -25,6 +25,6 @@ const MongoGiveawayManager = class extends GiveawaysManager {
 
     return true;
   }
-};
+}
 
 module.exports = MongoGiveawayManager;
