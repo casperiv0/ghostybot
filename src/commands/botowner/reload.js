@@ -2,6 +2,7 @@ module.exports = {
   name: "reload",
   description: "Reloads a command",
   category: "botowner",
+  ownerOnly: true,
   execute(bot, message, args) {
     if (!args[0]) {
       return message.channel.send("Please provide a command");

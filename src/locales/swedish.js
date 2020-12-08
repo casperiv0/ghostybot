@@ -397,4 +397,16 @@ module.exports = {
     NOT_FOUND:
       "Ingen pokemon hittades med {query}. Använd rätt stavning och försök igen senare.",
   },
+  REACTIONS: {
+    NO_CHANNEL_ID: "Please provide a channelId",
+    NO_EMOJI: "Please provide a valid emoji (Custom emojis soon™)",
+    NO_ROLE: "Please provide a valid role",
+    CHANNEL_NOT_FOUND: "The channel with id `{channelId}` was not found",
+    MSG_NOT_FOUND: "The message with id `{messageId}` was not found",
+    TITLE: "Reaction Role",
+    DESC: "Reactions:",
+    SUCCESS: "Successfully send message with reactions",
+    NOT_FOUND: "Reaction was not found by that messageId",
+    DELETE_SUCCESS: "Successfully deleted reaction",
+  },
 };
