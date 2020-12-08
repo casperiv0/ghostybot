@@ -182,6 +182,25 @@ td {
   width: 10%;
 }
 
+.float-right {
+  float: right;
+  padding-bottom: 1rem;
+}
+
+.danger-zone-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.mt-5 {
+  margin-top: 0.5rem;
+}
+
+.ml-5 {
+  margin-left: 0.5rem;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

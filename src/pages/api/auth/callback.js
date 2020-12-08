@@ -45,6 +45,7 @@ export default async function handler(req, res) {
     expires: new Date(Date.now() + expiresInMilliseconds),
     httpOnly: true,
     path: "/",
+    secure: true,
   });
 
   res.redirect("/dashboard");

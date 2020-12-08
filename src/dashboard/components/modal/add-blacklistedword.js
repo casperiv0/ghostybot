@@ -53,7 +53,7 @@ const AddBlacklistedWord = ({ guild }) => {
             className="form-input"
           />
         </div>
-        <div style={{ float: "right", paddingBottom: "1rem" }}>
+        <div className="float-right">
           <button className="btn btn-primary" type="submit">
             Add word
           </button>

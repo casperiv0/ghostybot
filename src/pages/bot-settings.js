@@ -26,7 +26,7 @@ const BotSettings = () => {
       </div>
 
       <div>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: "500", marginBottom: "1rem" }}>Danger zone</h1>
+        <h1 className="danger-zone-title">Danger zone</h1>
         <div className="grid">
           <button disabled className="btn btn-red">Restart bot</button>
           <button disabled className="btn btn-red">Reload all commands</button>

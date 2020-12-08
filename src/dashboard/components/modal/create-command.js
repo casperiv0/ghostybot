@@ -65,7 +65,7 @@ const CreateCommandModal = ({ guild }) => {
             className="form-input"
           ></textarea>
         </div>
-        <div style={{ float: "right", paddingBottom: "1rem" }}>
+        <div className="float-right">
           <button className="btn btn-primary" type="submit">
             Add command
           </button>

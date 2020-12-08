@@ -60,8 +60,7 @@ const Store = ({ guild }) => {
             Return
           </a>
           <button
-            style={{ marginLeft: "0.5rem" }}
-            className="btn btn-primary"
+            className="btn btn-primary ml-5"
             onClick={addStoreItem}
           >
             Add store item

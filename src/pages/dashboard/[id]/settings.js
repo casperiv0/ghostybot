@@ -212,7 +212,7 @@ const Settings = ({ guild, languages }) => {
               onChange={(e) => setWelcomeMessage(e.target.value)}
               value={welcomeMessage}
             ></textarea>
-            <p style={{ marginTop: "0.5rem" }}>
+            <p className="mt-5">
               <strong>{"{user}"}:</strong> The user mention: @CasperTheGhost
               <br />
               <strong>{"{user.username}"}</strong>: The user&apos;s username:
@@ -240,9 +240,8 @@ const Settings = ({ guild, languages }) => {
         </div>
 
         <button
-          style={{ float: "right" }}
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary float-right"
         >
           Save settings
         </button>

@@ -16,6 +16,11 @@ module.exports = (bot) => {
 
       req.bot = bot;
 
+      res.setHeader(
+        "Content-Security-Policy",
+        "script-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+      );
+
       handle(req, res, parsedUrl);
     }).listen(port, (err) => {
       if (err) throw err;
