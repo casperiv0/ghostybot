@@ -60,6 +60,7 @@ module.exports = {
       "You have been **banned** from **{guild_name}**, Reason: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} was successfully banned from the server. Reason: **{ban_reason}**. I have also send a DM letting the person know.",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "My role is not high enough than **{role}** role!",

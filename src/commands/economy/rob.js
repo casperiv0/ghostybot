@@ -14,6 +14,10 @@ module.exports = {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
+    }
+
     if (member.user.id === message.author.id) {
       return message.channel.send(lang.ECONOMY.CANNOT_ROB_SELF);
     }

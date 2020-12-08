@@ -13,6 +13,10 @@ module.exports = {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
+    }
+
     if (!amount || isNaN(amount)) {
       return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }

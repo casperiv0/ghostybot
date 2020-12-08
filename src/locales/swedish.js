@@ -60,6 +60,7 @@ module.exports = {
       "Du har blivit **förbjudna** från **{guild_name}**, Anledning: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} förbjöds framgångsrikt från servern. Anledning: **{ban_reason}**. Jag har också skickat en DM som meddelar personen.",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH:

@@ -16,6 +16,12 @@ module.exports = {
       return message.channel.send("Please provide a valid user");
     }
 
+    if (member.user.bot) {
+      return message.channel.send(
+        "Bot data does not save, therefore I cannot fetch its data"
+      );
+    }
+
     const guild = await getGuildById(guildId);
     const { warnings } = await getUserById(member.user.id, message.guild.id);
     const prefix = guild.prefix;

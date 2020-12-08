@@ -15,6 +15,10 @@ module.exports = {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
+    }
+
     if (!amount) {
       return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
@@ -29,10 +33,10 @@ module.exports = {
     });
 
     message.channel.send(
-      lang.LEVELS.GIVE_XP_SUCCESS.replace(
-        "{member}",
-        member.user.tag
-      ).replace("{amount}", amount)
+      lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace(
+        "{amount}",
+        amount
+      )
     );
   },
 };

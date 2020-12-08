@@ -15,6 +15,12 @@ module.exports = {
       return message.channel.send("Please provide a valid user");
     }
 
+    if (member.user.bot) {
+      return message.channel.send(
+        "Bot data does not save, therefore I cannot fetch its data"
+      );
+    }
+
     if (member.hasPermission("MANAGE_MESSAGES")) {
       return message.channel.send("User can't be warned");
     }

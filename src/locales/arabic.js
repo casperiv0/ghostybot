@@ -60,6 +60,7 @@ module.exports = {
       "لقد تم تبنيدك  **banned**من **{guild_name}**, السبب: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} لقد تم تبنيده بنجاح . السبب: **{ban_reason}**. لقد قمت بارسال رسالة اليه .",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "رتبتي ليست اعلي من رول  **{role}** ",
