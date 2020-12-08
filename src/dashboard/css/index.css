@@ -1,6 +1,7 @@
 :root {
   --primary: #2f3136;
   --secondary: #36393f;
+  --dark: #18191c;
   --blue: #7289da;
   --red: #e44444;
   --content-width: 95%;
@@ -44,13 +45,14 @@ select:focus {
 
 .page-title {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   color: #fff;
   margin-bottom: 1.5rem;
 }
 
 .page-title h4 {
+  margin-bottom: 0.7rem;
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -81,7 +83,7 @@ select:focus {
   font-size: 1.1rem;
   color: #fff;
   background: var(--secondary);
-  border: 0.1rem solid transparent;
+  border: 1px solid var(--dark);
   border-radius: 0.5rem;
   resize: vertical;
   transition: border 200ms;
@@ -185,6 +187,18 @@ td {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 650px) {
+  .page-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .page-title h4 {
+    margin-bottom: 0;
   }
 }
 

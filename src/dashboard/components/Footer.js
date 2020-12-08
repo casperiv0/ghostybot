@@ -1,9 +1,11 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      Created & Designed by{" "}
-      <a href="https://caspertheghost.me/">CasperTheGhost</a> | Not affiliated
-      with Discord
+      <p>
+        Created & Designed by{" "}
+        <a href="https://caspertheghost.me/">CasperTheGhost</a> | Not affiliated
+        with Discord
+      </p>
     </footer>
   );
 };

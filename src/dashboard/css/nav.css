@@ -58,7 +58,7 @@
   padding: 0.5rem;
   opacity: 0;
   border-radius: 0.5rem;
-  background: #18191C;
+  background: var(--dark);
   box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.2);
   top: 2.5rem;
   right: 0rem;
@@ -89,5 +89,11 @@
 @media (hover: hover) {
   .dropdown-link:hover {
     background: var(--blue);
+  }
+}
+
+@media (max-width: 250px) {
+  .nav-icon-extra {
+    display: none;
   }
 }
