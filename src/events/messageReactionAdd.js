@@ -3,6 +3,7 @@ const ReactionsModel = require("../models/Reactions.model");
 module.exports = {
   name: "messageReactionAdd",
   async execute(bot, react, user) {
+    if (user.bot) return;
     if (!react.message.guild.me.hasPermission("MANAGE_MESSAGES")) return;
     if (!react.message.guild) return;
     const member = react.message.guild.members.cache.get(user.id);
