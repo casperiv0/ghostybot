@@ -240,6 +240,10 @@ module.exports = {
 
         timestamps.set(userId, now);
         setTimeout(() => timestamps.delete(userId), cooldownAmount);
+        
+        if (guild?.auto_delete_cmd === true) {
+          message.delete();
+        }
 
         cmd.execute(bot, message, args, serverQueue, queue);
       } else {

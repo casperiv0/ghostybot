@@ -26,6 +26,7 @@ const guildSchema = new Schema({
   welcome_message: { type: String, default: DEFAULT_MESSAGE },
   leave_message: { type: String, default: DEFAULT_MESSAGE },
   timezone: { type: String, default: "America/New_York" },
+  auto_delete_cmd: { type: Boolean, default: false },
 });
 
 module.exports = models.Guild || model("Guild", guildSchema);

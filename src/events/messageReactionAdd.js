@@ -22,6 +22,8 @@ module.exports = {
 
     if (!member.roles.cache.has(reaction.role_id)) {
       member.roles.add(reaction.role_id);
+    } else {
+      member.roles.remove(reaction.role_id);
     }
 
     let channel = guild.channels.cache.get(dbReaction.channel_id);

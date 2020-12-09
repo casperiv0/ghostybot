@@ -31,6 +31,7 @@ const Settings = ({ guild, languages }) => {
   const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
   const [prefix, setPrefix] = useState(guild.prefix || "");
   const [tz, setTz] = useState(guild.timezone || "");
+  const [autoDelCmd, setAutoDelCmd] = useState(guild.auto_delete_cmd || "");
 
   const fields = [
     {
@@ -115,6 +116,17 @@ const Settings = ({ guild, languages }) => {
       onChange: (e) => setPrefix(e.target.value),
       label: "Bot Prefix",
     },
+    {
+      type: "select",
+      id: "auto_delete_cmd",
+      value: autoDelCmd,
+      onChange: (e) => setAutoDelCmd(e.target.value),
+      data: [
+        { id: "false", name: "Off" },
+        { id: "true", name: "On" },
+      ],
+      label: "Auto delete commands",
+    },
   ];
 
   async function onSubmit(e) {
@@ -138,6 +150,7 @@ const Settings = ({ guild, languages }) => {
             audit_channel: auditChannel,
             prefix: prefix,
             timezone: tz,
+            auto_delete_cmd: autoDelCmd,
           }),
         }
       );
@@ -239,10 +252,7 @@ const Settings = ({ guild, languages }) => {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary float-right"
-        >
+        <button type="submit" className="btn btn-primary float-right">
           Save settings
         </button>
       </form>
