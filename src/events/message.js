@@ -153,6 +153,10 @@ module.exports = {
     }
 
     if (customCmds) {
+      if (guild?.auto_delete_cmd === true) {
+        message.delete();
+      }
+      
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
@@ -240,7 +244,7 @@ module.exports = {
 
         timestamps.set(userId, now);
         setTimeout(() => timestamps.delete(userId), cooldownAmount);
-        
+
         if (guild?.auto_delete_cmd === true) {
           message.delete();
         }
