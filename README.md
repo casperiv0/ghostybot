@@ -34,6 +34,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 - Easy to use
 - A dashboard where you can easily manage the bot's settings
+- Reaction Roles
 - Enable/disable welcome messages
 - Play games
 - Use util commands to get your avatar, botinfo, channelinfo and more
