@@ -18,6 +18,7 @@ module.exports = {
     const reaction = dbReaction.reactions.find(
       (r) => r.emoji === react.emoji.toString()
     );
+    if (!reaction) return;
 
     if (!member.roles.cache.has(reaction.role_id)) {
       member.roles.add(reaction.role_id);
