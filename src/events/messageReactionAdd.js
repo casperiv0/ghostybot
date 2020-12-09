@@ -10,23 +10,23 @@ module.exports = {
     const member = guild.members.cache.get(user.id);
     if (!member) return;
 
-    const reaction = await ReactionsModel.findOne({
+    const dbReaction = await ReactionsModel.findOne({
       guild_id: guild.id,
       message_id: react.message.id,
-      reaction: react.emoji.toString(),
     });
-
-    if (!reaction) return;
+    if (!dbReaction) return;
+    const reaction = dbReaction.reactions.find(
+      (r) => r.emoji === react.emoji.toString()
+    );
 
     if (!member.roles.cache.has(reaction.role_id)) {
       member.roles.add(reaction.role_id);
     }
 
-    let channel = guild.channels.cache.get(reaction.channel_id);
-    if (!channel) channel = await guild.channels.fetch(reaction.channel_id);
+    let channel = guild.channels.cache.get(dbReaction.channel_id);
     if (!channel) return;
 
-    const msg = await channel.messages.fetch(reaction.message_id);
+    const msg = await channel.messages.fetch(dbReaction.message_id);
     msg.reactions.resolve(react.emoji.toString()).users.remove(user.id);
   },
 };

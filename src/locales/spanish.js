@@ -416,5 +416,7 @@ module.exports = {
     SUCCESS: "Successfully send message with reactions",
     NOT_FOUND: "Reaction was not found by that messageId",
     DELETE_SUCCESS: "Successfully deleted reaction",
+    FOUND_NO_MSG:
+      "Reaction was found but the message was not, reaction was deleted from the database",
   },
 };

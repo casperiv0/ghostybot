@@ -2073,7 +2073,7 @@
 
 **Category:** util
 
-**Description:** Shows all commands Or shows more info about a command22
+**Description:** Shows all commands Or shows more info about a command
 
 **Usage:** `h <category name | command name>`
 

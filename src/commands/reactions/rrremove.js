@@ -24,7 +24,8 @@ module.exports = {
     }
 
     const channel = message.guild.channels.cache.get(reaction.channel_id);
-    const msg = await channel.messages.cache.get(messageId);
+    const msg = channel.messages.cache.get(messageId);
+    if (!msg) return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
 
     msg.delete();
     await ReactionsModel.findOneAndDelete({ message_id: messageId });
