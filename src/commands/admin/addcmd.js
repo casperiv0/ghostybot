@@ -5,7 +5,6 @@ module.exports = {
   usage: "addcmd <cmd_name> <cmd_response>",
   description: "add guild custom commands",
   category: "admin",
-  botPermissions: ["SEND_MESSAGES"],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
     const cmdName = args[0];
