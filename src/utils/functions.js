@@ -288,8 +288,9 @@ async function getGuildLang(guildId) {
  * @param {?string} msgContent
  */
 function sendErrorLog(bot, error, type, msgContent) {
-  if (!errorLogsChannelId) {
-    Logger.error("UNHANDLED ERROR", error);
+  const channel = bot.channels.cache.get(errorLogsChannelId);
+  if (!channel || !errorLogsChannelId) {
+    return Logger.error("UNHANDLED ERROR", error);
   }
 
   const message = {
@@ -312,7 +313,7 @@ function sendErrorLog(bot, error, type, msgContent) {
     .setDescription(`\`\`\`${stack}\`\`\` `)
     .setColor(type === "error" ? "RED" : "ORANGE");
 
-  bot.channels.cache.get(errorLogsChannelId)?.send(embed);
+  channel.send(embed);
 }
 
 /**

@@ -19,7 +19,10 @@ module.exports = (bot) => {
       handle(req, res, parsedUrl);
     }).listen(port, (err) => {
       if (err) throw err;
-      console.log(`Ready on http://localhost:${port}`);
+      bot.logger.log(
+        "dashboard",
+        `Dashboard was started at: http://localhost:${port}`
+      );
     });
   });
 };

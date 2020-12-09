@@ -42,6 +42,18 @@ module.exports = {
         reason: "Mute a user",
       }));
 
+    message.guild.channels.cache.forEach((channel) => {
+      channel
+        .updateOverwrite(muteUser.id, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false,
+          CONNECT: false,
+        })
+        .catch((e) => {
+          bot.logger.error("mute_user", e);
+        });
+    });
+
     if (!muteUser) return message.channel.send("User wasn't found");
     if (!muteReason) muteReason = "Not Specified";
 

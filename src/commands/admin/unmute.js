@@ -18,6 +18,10 @@ module.exports = {
     if (!mutedUser.roles.cache.some((r) => r.name === "muted"))
       return message.channel.send("User is not muted!");
 
+    message.guild.channels.cache.forEach((channel) => {
+      channel.permissionOverwrites.get(mutedUser.id)?.delete();
+    });
+
     // Add role & send msg
     mutedUser.roles.remove(mutedRole);
     message.channel.send(`Successfully unmuted ${mutedUser}`);

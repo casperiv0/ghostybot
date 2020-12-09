@@ -34,7 +34,7 @@ module.exports = {
       setCmd(bot, command);
       message.channel.send(`Successfully reload command: \`${command.name}\``);
     } catch (e) {
-      console.log(e);
+      bot.logger.error("reload_commands", e);
       return message.channel.send("An error occurred");
     }
   },

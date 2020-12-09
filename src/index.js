@@ -18,6 +18,7 @@ const {
   formatDate,
   getGuildById,
 } = require("./utils/functions");
+const Logger = require("./modules/Logger");
 
 const bot = new Client({
   disableMentions: "everyone",
@@ -38,6 +39,7 @@ const bot = new Client({
 });
 
 // Commands
+bot.logger = Logger;
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
