@@ -28,8 +28,11 @@ module.exports = {
     }
 
     try {
+      delete require.cache[
+        require.resolve(`../${command.category}/${command.name}.js`)
+      ];
       setCmd(bot, command);
-      message.channel.send("Successfully reload command");
+      message.channel.send(`Successfully reload command: \`${command.name}\``);
     } catch (e) {
       console.log(e);
       return message.channel.send("An error occurred");
