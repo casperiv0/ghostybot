@@ -12,8 +12,12 @@ module.exports = {
     }
 
     const playing = bot.player.isPlaying(message);
-
+    const queue = await bot.player.getQueue(message);
     if (!playing) {
+      return message.channel.send(lang.MUSIC.NO_QUEUE);
+    }
+
+    if (!queue) {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 

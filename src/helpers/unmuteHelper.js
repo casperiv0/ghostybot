@@ -17,8 +17,7 @@ module.exports = async (bot) => {
         if (!guild) return;
 
         const member =
-          guild.members.cache.get(user.user_id) ||
-          (await guild.members.fetch(user.user_id));
+          guild.members.cache.get(user.user_id) || (await guild.members.fetch(user.user_id));
 
         if (!member) {
           await updateUserById(user.user_id, user.guild_id, {
@@ -28,8 +27,7 @@ module.exports = async (bot) => {
             },
           });
         } else {
-          const guildUser =
-            member.user || (await bot.users.fetch(user.user_id));
+          const guildUser = member.user || (await bot.users.fetch(user.user_id));
           if (!user) return;
 
           guild.channels.cache.forEach((channel) => {
@@ -37,10 +35,7 @@ module.exports = async (bot) => {
           });
 
           const embed = BaseEmbed({ author: guildUser })
-            .setAuthor(
-              guildUser.tag,
-              guildUser.displayAvatarURL({ dynamic: true })
-            )
+            .setAuthor(guildUser.tag, guildUser.displayAvatarURL({ dynamic: true }))
             .setTitle("Unmute")
             .setDescription(
               `**${guildUser.tag}** was successfully **unmuted** from their temp mute`

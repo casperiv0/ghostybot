@@ -4,8 +4,9 @@ module.exports = {
   name: "rrremove",
   description: "Add a reaction role",
   category: "reactions",
-  usage: "rradd <channel_id> <message_id> <emoji>",
+  usage: "rrremove <message_id>",
   aliases: ["rrdel", "rrr", "rrdelete"],
+  requiredArgs: ["message_id"],
   async execute(bot, message, args) {
     const [messageId] = args;
     const lang = await bot.getGuildLang(message.guild.id);
@@ -24,9 +25,7 @@ module.exports = {
     }
 
     const channel = message.guild.channels.cache.get(reaction.channel_id);
-    const msg =
-      channel.messages.cache.get(messageId) ||
-      (await channel.messages.fetch(messageId));
+    const msg = channel.messages.cache.get(messageId) || (await channel.messages.fetch(messageId));
     if (!msg) return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
 
     msg.delete();

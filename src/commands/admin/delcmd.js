@@ -7,15 +7,14 @@ module.exports = {
   category: "admin",
   aliases: ["removecmd"],
   memberPermissions: ["ADMINISTRATOR"],
+  requiredArgs: ["command name"],
   async execute(_bot, message, args) {
     const cmdName = args[0];
     const guild = await getGuildById(message.guild.id);
     const commands = guild?.custom_commands;
 
     if (!cmdName) {
-      return message.channel.send(
-        ":x: Please provide a command name, `delcmd <cmd_name>`"
-      );
+      return message.channel.send(":x: Please provide a command name, `delcmd <cmd_name>`");
     }
 
     if (commands) {
@@ -25,18 +24,14 @@ module.exports = {
         return message.channel.send(":x: That command was not found.");
       }
 
-      const filtered = commands.filter(
-        (cmd) => cmd.name !== cmdName.toLowerCase()
-      );
+      const filtered = commands.filter((cmd) => cmd.name !== cmdName.toLowerCase());
 
       await updateGuildById(message.guild.id, {
         custom_commands: filtered,
       });
       return message.channel.send(`Deleted the **${cmdName}** Command!`);
     } else {
-      return message.channel.send(
-        ":x: Sorry but i am unable to find that command!"
-      );
+      return message.channel.send(":x: Sorry but i am unable to find that command!");
     }
   },
 };

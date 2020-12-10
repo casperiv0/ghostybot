@@ -8,7 +8,6 @@ module.exports = {
   description: "Shows status of users",
   usage: "",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
     let user =
       message.mentions.members.first() ||
       message.guild.members.cache.get(args[0]) ||
@@ -58,8 +57,7 @@ module.exports = {
           .addField("Duration", duration, false)
           .setFooter(
             user.displayName,
-            user.user.displayAvatarURL({ dynamic: true }),
-            "Developed by Team Sarte"
+            user.user.displayAvatarURL({ dynamic: true })
           )
           .setTimestamp();
         message.channel.send(embed);

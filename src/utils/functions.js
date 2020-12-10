@@ -247,9 +247,7 @@ async function removeSticky(channelId) {
 const errorEmbed = (permissions, message) => {
   return BaseEmbed(message)
     .setTitle("Woah!")
-    .setDescription(
-      `❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`
-    )
+    .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
     .setColor("ORANGE");
 };
 
@@ -358,6 +356,7 @@ function getLanguages() {
 async function createWebhook(bot, channelId, oldChannelId) {
   const channel = bot.channels.cache.get(channelId);
   if (!channel) return;
+  if (!channel.permissionsFor(bot.user.id).has("MANAGE_WEBHOOKS")) return;
 
   if (oldChannelId) {
     const w = await channel.fetchWebhooks();
@@ -370,9 +369,10 @@ async function createWebhook(bot, channelId, oldChannelId) {
 }
 
 /**
- * @param {string} guild
+ * @param {import("discord.js").Guild} guild
  */
 async function getWebhook(guild) {
+  if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
   const w = await guild.fetchWebhooks();
   const g = await getGuildById(guild.id);
   const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
@@ -404,10 +404,7 @@ function parseMessage(message, user, msg) {
         .replace("{message.author}", msg.author)
         .replace("{message.author.id}", msg.author.id)
         .replace("{message.author.tag}", escapeMarkdown(msg.author.tag))
-        .replace(
-          "{message.author.username}",
-          escapeMarkdown(escapeMarkdown(msg.author.username))
-        );
+        .replace("{message.author.username}", escapeMarkdown(escapeMarkdown(msg.author.username)));
     }
 
     return w;
@@ -466,9 +463,7 @@ function updateMuteChannelPerms(guild, memberId, perms) {
 async function handleApiRequest(path, token, method) {
   try {
     const bearer =
-      token.type === "Bearer"
-        ? jwt.verify(token.data, dashboard.jwtSecret)
-        : token.data;
+      token.type === "Bearer" ? jwt.verify(token.data, dashboard.jwtSecret) : token.data;
 
     if (!bearer) {
       return { error: "invalid_token" };

@@ -7,6 +7,7 @@ module.exports = {
   description: "Disables a command",
   category: "exempt",
   memberPermissions: ["ADMINISTRATOR"],
+  requiredArgs: ["command name | category name"],
   async execute(bot, message, args) {
     const option = args[0];
     const saveCommands = ["help", "enable", "disable"];
@@ -17,8 +18,7 @@ module.exports = {
     }
 
     const command =
-      bot.commands.get(option.toLowerCase()) ||
-      bot.commands.get(bot.aliases.get(option));
+      bot.commands.get(option.toLowerCase()) || bot.commands.get(bot.aliases.get(option));
 
     const guild = await getGuildById(message.guild.id);
 

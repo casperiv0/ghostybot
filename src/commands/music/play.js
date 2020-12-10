@@ -6,6 +6,7 @@ module.exports = {
   aliases: ["p"],
   category: "music",
   usage: "play <youtube link | song name>",
+  requiredArgs: ["song"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const voiceChannel = message.member.voice.channel;

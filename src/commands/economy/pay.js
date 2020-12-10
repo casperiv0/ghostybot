@@ -4,6 +4,7 @@ module.exports = {
   name: "pay",
   description: "Give money to a user",
   category: "economy",
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args);

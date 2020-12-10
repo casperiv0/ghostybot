@@ -8,14 +8,13 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["wordsfilter", "filterwords"],
   async execute(bot, message, args) {
-    const option = args[0];
-    const item = args[1];
+    const [option, item] = args;
     const guildId = message.guild.id;
     const guild = await getGuildById(guildId);
     const blacklistWords = guild.blacklistedwords;
 
     if (!option) {
-      return message.channel.send("Please provide an option '`add`, `remove`'");
+      return message.channel.send("Please provide an option '`add`, `remove`, `get`'");
     }
 
     switch (option) {

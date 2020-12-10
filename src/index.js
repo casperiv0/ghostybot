@@ -17,6 +17,8 @@ const {
   getLanguages,
   formatDate,
   getGuildById,
+  updateUserById,
+  getUserById,
 } = require("./utils/functions");
 const Logger = require("./modules/Logger");
 
@@ -34,6 +36,8 @@ const bot = new Client({
   getLanguages,
   formatDate,
   getGuildById,
+  updateUserById,
+  getUserById,
 ].forEach((func) => {
   bot[func.name] = func;
 });

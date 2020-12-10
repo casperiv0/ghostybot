@@ -35,8 +35,6 @@ module.exports = {
       .setFooter(message.author.username)
       .setColor("BLUE");
 
-    bot.channels.cache
-      .get(announceChannel ? announceChannel : channel.id)
-      .send(embed);
+    bot.channels.cache.get(announceChannel ? announceChannel : channel.id).send(embed);
   },
 };

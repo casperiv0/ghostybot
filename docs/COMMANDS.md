@@ -1221,7 +1221,7 @@
 
 **Description:** Rock Paper Scissors
 
-**Usage:** `N/A`
+**Usage:** `rps <rock | paper | scissors>`
 
 **Member Permissions:** None
 
@@ -1859,7 +1859,7 @@
 
 **Description:** Add a reaction role
 
-**Usage:** `rradd <channel_id> <role_id || role mention> <emoji>`
+**Usage:** `rradd <channel_id>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -1871,7 +1871,7 @@
 
 **Description:** Add a reaction role
 
-**Usage:** `rradd <channel_id> <message_id> <emoji>`
+**Usage:** `rrremove <message_id>`
 
 **Member Permissions:** None
 

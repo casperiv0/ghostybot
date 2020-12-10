@@ -6,6 +6,7 @@ module.exports = {
   description: "add guild custom commands",
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],
+  requiredArgs: ["command name", "command response"],
   async execute(bot, message, args) {
     const cmdName = args[0];
     const cmdResponse = args.slice(1).join(" ");
@@ -31,9 +32,7 @@ module.exports = {
       );
 
     if (bot.commands.has(cmdName)) {
-      return message.channel.send(
-        ":x: This command name is already in use by the bot!"
-      );
+      return message.channel.send(":x: This command name is already in use by the bot!");
     }
 
     const data = {
@@ -49,8 +48,6 @@ module.exports = {
       });
     }
 
-    message.channel.send(
-      "Added **" + cmdName.toLowerCase() + "** as a custom command in guild."
-    );
+    message.channel.send("Added **" + cmdName.toLowerCase() + "** as a custom command in guild.");
   },
 };

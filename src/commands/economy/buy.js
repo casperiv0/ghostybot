@@ -10,6 +10,7 @@ module.exports = {
   category: "economy",
   usage: "buy <item name>",
   cooldown: 10,
+  requiredArgs: ["item name",],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;

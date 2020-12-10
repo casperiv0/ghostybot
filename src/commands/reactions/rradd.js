@@ -5,9 +5,10 @@ module.exports = {
   name: "rradd",
   description: "Add a reaction role",
   category: "reactions",
-  usage: "rradd <channel_id> <role_id || role mention> <emoji>",
+  usage: "rradd <channel_id>",
   memberPermissions: ["ADMINISTRATOR"],
   botPermissions: ["MANAGE_ROLES", "ADD_REACTIONS", "MANAGE_MESSAGES"],
+  requiredArgs: ["channel_id"],
   async execute(bot, message, args) {
     let emojis = null;
     let roles = null;
@@ -18,6 +19,13 @@ module.exports = {
 
     if (!channelId) {
       return message.channel.send(lang.REACTIONS.NO_CHANNEL_ID);
+    }
+
+    const channel = guild.channels.cache.get(channelId);
+    if (!channel) {
+      return message.channel.send(
+        lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId)
+      );
     }
 
     message.channel.send(
@@ -44,18 +52,9 @@ module.exports = {
     const emojiMsg = emojiMsgs.first();
     emojis = parseEmojis(emojiMsg);
 
-    const channel = guild.channels.cache.get(channelId);
-    if (!channel) {
-      return message.channel.send(
-        lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId)
-      );
-    }
-
     const embed = BaseEmbed(message)
       .setTitle(lang.REACTIONS.TITLE)
-      .setDescription(
-        `${lang.REACTIONS.DESC}\n ${createDescription(roles, emojis)}`
-      );
+      .setDescription(`${lang.REACTIONS.DESC}\n ${createDescription(roles, emojis)}`);
 
     const msg = await channel.send(embed);
 
@@ -101,8 +100,7 @@ function parseRoles(msg, guild) {
   let roles = [];
 
   filtered.forEach(async (roleId) => {
-    const role =
-      guild.roles.cache.get(roleId) || (await guild.roles.fetch(roleId));
+    const role = guild.roles.cache.get(roleId) || (await guild.roles.fetch(roleId));
 
     roles = [...roles, role];
     return role;

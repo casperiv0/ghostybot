@@ -5,6 +5,7 @@ module.exports = {
   cooldown: 0,
   description: "Rob up to 1000coins from somebody",
   category: "economy",
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args);
@@ -40,10 +41,7 @@ module.exports = {
 
     const userId = member.user.id;
     const { user } = await getUserById(userId, message.guild.id);
-    const { user: robber } = await getUserById(
-      message.author.id,
-      message.guild.id
-    );
+    const { user: robber } = await getUserById(message.author.id, message.guild.id);
 
     if (user.money <= 0) {
       return message.channel.send(lang.ECONOMY.MEMBER_NO_MONEY);
@@ -57,10 +55,7 @@ module.exports = {
     });
 
     return message.channel.send(
-      lang.ECONOMY.ROB_SUCCESS.replace("{amount}", amount).replace(
-        "{member}",
-        member.user.tag
-      )
+      lang.ECONOMY.ROB_SUCCESS.replace("{amount}", amount).replace("{member}", member.user.tag)
     );
   },
 };

@@ -6,6 +6,7 @@ module.exports = {
   category: "levels",
   usage: "givexp <user> <amount>",
   memberPermissions: ["MANAGE_GUILD"],
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const amount = args[1];
@@ -33,10 +34,7 @@ module.exports = {
     });
 
     message.channel.send(
-      lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace(
-        "{amount}",
-        amount
-      )
+      lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace("{amount}", amount)
     );
   },
 };

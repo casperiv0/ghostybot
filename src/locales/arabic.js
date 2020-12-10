@@ -226,6 +226,8 @@ module.exports = {
     WYR: "هل تفضل ؟",
     ANSWER: "الاجابة",
     QUESTION: "السؤال",
+    YOU_WON: "You won 50coins!",
+    BOT_WON: "The bot has won!",
   },
   UTIL: {
     AVATAR: "االافاتار",

@@ -5,6 +5,7 @@ module.exports = {
   description: "Add money to a user",
   category: "economy",
   memberPermissions: ["MANAGE_GUILD"],
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const member = bot.findMember(message, args);
     const lang = await bot.getGuildLang(message.guild.id);
@@ -27,8 +28,6 @@ module.exports = {
       bank: user.bank + Number(amount),
     });
 
-    return message.channel.send(
-      lang.ECONOMY.ADDED_MONEY.replace("{amount}", amount)
-    );
+    return message.channel.send(lang.ECONOMY.ADDED_MONEY.replace("{amount}", amount));
   },
 };
