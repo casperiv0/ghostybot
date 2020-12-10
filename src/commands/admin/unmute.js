@@ -8,10 +8,7 @@ module.exports = {
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
-    const mutedMember = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
-
+    const mutedMember = bot.findMember(message, args);
     if (!mutedMember) {
       return message.channel.send("Please provide a user mention!");
     }
@@ -39,6 +36,11 @@ module.exports = {
 
     // Add role & send msg
     mutedMember.roles.remove(mutedRole);
-    message.channel.send(`Successfully unmuted ${mutedMember}`);
+    message.channel.send(`Successfully unmuted **${mutedMember.user.tag}**`);
+
+    await bot.emit("guildMuteRemove", message.guild, {
+      member: mutedMember,
+      executor: message.author,
+    });
   },
 };

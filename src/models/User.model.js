@@ -24,6 +24,7 @@ const userSchema = new Schema({
       muted: false,
       time: String,
       ends_at: Number,
+      reason: String,
     },
   },
 });

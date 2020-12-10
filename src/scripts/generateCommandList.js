@@ -5,6 +5,8 @@ module.exports = (bot) => {
   const cmds = mapCommands(bot.commands);
 
   writeToFile(cmds, bot.commands.size);
+
+  bot.logger.log("command_list", "Successfully generated command list");
 };
 
 function mapCommands(cmds) {
