@@ -6,6 +6,7 @@ module.exports = {
   category: "economy",
   usage: "withdraw <all | amount>",
   aliases: ["with"],
+  requiredArgs: ["amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
@@ -29,18 +30,18 @@ module.exports = {
       return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+    }
+
     if (bank < amount) {
-      return message.channel.send(
-        "You don't have that much money in your bank!"
-      );
+      return message.channel.send("You don't have that much money in your bank!");
     }
 
     await updateUserById(member.id, message.guild.id, {
       money: user.money + Number(amount),
       bank: user.bank - amount,
     });
-    message.channel.send(
-      lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", amount)
-    );
+    message.channel.send(lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", amount));
   },
 };

@@ -3,15 +3,12 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "channelUpdate",
   async execute(bot, oldChannel, newChannel) {
+    if (!oldChannel.guild) return;
     if (!oldChannel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
       return;
     }
-    const w = await oldChannel.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
-    // Couldn't find webhook/webhook doesn't exist
-    if (!webhook) {
-      return;
-    }
+    const webhook = await bot.getWebhook(newChannel.guild);
+    if (webhook === null) return;
 
     let msg = "";
     const type = oldChannel.type;

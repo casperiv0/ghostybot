@@ -3,14 +3,12 @@ const {
   getGuildById,
   removeUser,
   removeUserWarnings,
+  parseMessage,
 } = require("../utils/functions");
 
 module.exports = {
   name: "guildMemberRemove",
   async execute(bot, member) {
-    if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
     const guild = await getGuildById(member.guild.id);
     const leaveChannel = guild.leave_channel;
 
@@ -23,12 +21,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle("👋 User left")
         .setThumbnail(avatar)
-        .setDescription(
-          `
-**Tag:** ${member.user.tag}
-**Id:** ${member.user.id}
-        `
-        )
+        .setDescription(parseMessage(guild.leave_message, member.user))
         .setColor("RED")
         .setTimestamp()
         .setFooter(member.user.username, avatar);

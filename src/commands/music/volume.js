@@ -3,14 +3,23 @@ module.exports = {
   description: "Set the volume between 1 to 100",
   category: "music",
   aliases: ["vol"],
-  async execute(bot, message, args, serverQueue) {
+  async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
+    const queue = await bot.player.getQueue(message);
     if (!message.member.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
-    if (!serverQueue) {
+    if (!bot.player.isPlaying(message)) {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
+    }
+
+    if (!queue) {
+      return message.channel.send(lang.MUSIC.NO_QUEUE);
+    }
+
+    if (Number(args[0]) < 0) {
+      return message.channel.send(lang.MUSIC.BETWEEN_0_100);
     }
 
     if (Number(args[0]) > 100) {
@@ -21,11 +30,7 @@ module.exports = {
       return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
     }
 
-    const volume = args[0] / 100;
-    serverQueue.volume = volume;
-    await serverQueue.connection.dispatcher.setVolume(volume);
-    await message.channel.send(
-      lang.MUSIC.VOL_SUCCESS.replace("{vol}", args[0])
-    );
+    bot.player.setVolume(message, args[0]);
+    await message.channel.send(lang.MUSIC.VOL_SUCCESS.replace("{vol}", args[0]));
   },
 };

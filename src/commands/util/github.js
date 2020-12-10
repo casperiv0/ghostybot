@@ -21,7 +21,7 @@ module.exports = {
 
     if (user?.message === "Not Found") {
       return message.channel
-        .send(bot.location.UTIL.GH_NOT_FOUND)
+        .send(lang.UTIL.GH_NOT_FOUND)
         .then(() => msg.delete());
     }
 

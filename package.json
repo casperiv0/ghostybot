@@ -9,7 +9,8 @@
   "scripts": {
     "format": "eslint --ext .js --fix",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "next build"
   },
   "husky": {
     "hooks": {
@@ -41,45 +42,53 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
+    "alexflipnote.js": "^2.3.1",
     "chalk": "^4.1.0",
     "cows": "^2.1.0",
     "cowsay": "^1.4.0",
     "discord-giveaways": "^4.2.1",
-    "discord.js": "^12.4.1",
+    "discord-player": "^3.0.3",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "erlpack": "github:discord/erlpack",
-    "eslint": "^7.13.0",
+    "eslint-plugin-react": "^7.21.5",
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
     "fluent-ffmpeg": "^2.1.2",
     "google-play-scraper": "^8.0.2",
     "hastebin-gen": "^2.0.5",
     "image-gen-discord": "^1.0.2",
-    "imdb-api": "^4.4.0",
-    "mathjs": "^8.0.0",
+    "imdb-api": "^4.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "mathjs": "^8.1.0",
     "mojang-api": "0.0.2",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "moment-timezone": "^0.5.31",
-    "mongoose": "^5.10.13",
+    "moment-timezone": "^0.5.32",
+    "mongoose": "^5.11.4",
     "ms": "^2.1.2",
     "nekos.life": "^2.0.7",
+    "next": "^10.0.3",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.6",
+    "nookies": "^2.5.0",
     "one-liner-joke": "^1.2.0",
     "opusscript": "0.0.7",
+    "qs": "^6.9.4",
     "randomcolor": "^0.6.2",
-    "simple-youtube-api": "^5.2.1",
-    "string-progressbar": "^1.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "tnai": "^1.0.5",
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "wikijs": "^6.0.1",
-    "word-definition": "^2.1.6",
-    "ytdl-core": "^4.0.3"
+    "word-definition": "^2.1.6"
   },
   "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.1"
+    "eslint": "^7.15.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.4",
+    "lint-staged": "^10.5.3"
   }
 }

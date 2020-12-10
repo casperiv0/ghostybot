@@ -1,11 +1,9 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById } = require("../../utils/functions");
-const fs = require("fs");
-
-const languages = fs
-  .readdirSync("./src/locales/")
-  .filter((f) => f.endsWith(".js"))
-  .map((la) => la.slice(0, -3));
+const {
+  updateGuildById,
+  getGuildById,
+  createWebhook,
+} = require("../../utils/functions");
 
 module.exports = {
   name: "set",
@@ -24,7 +22,9 @@ module.exports = {
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
+    const languages = bot.getLanguages();
     const guildId = message.guild.id;
+    const { prefix } = await getGuildById(guildId);
     const option = args[0];
     const item =
       message.mentions.channels.first() || message.mentions.roles.first();
@@ -32,7 +32,7 @@ module.exports = {
 
     if (!option) {
       return message.channel.send(
-        "Please provide an valid option (`suggest-channel`, `announce-channel`, `welcome-channel`, `leave-channel`, `audit-channel`, `welcome-role` or `mod-log`)"
+        `Please provide an valid option (${prefix}h set)`
       );
     }
 
@@ -65,10 +65,17 @@ module.exports = {
         );
         break;
       case "audit-channel":
-        item.createWebhook(bot.user.username, {
-          avatar: bot.user.displayAvatarURL({ format: "png" }),
-          channel: item,
-        });
+        if (
+          !message.guild.me.hasPermission("MANAGE_WEBHOOKS") ||
+          !message.guild.me.hasPermission("VIEW_AUDIT_LOG")
+        ) {
+          return message.channel.send(
+            "I need `MANAGE_WEBHOOKS`, permissions for audit-logs"
+          );
+        }
+
+        await createWebhook(bot, item.id);
+
         message.channel.send(
           `Enabled audit logs. Audit logs channel is now: ${item}`
         );
@@ -87,9 +94,9 @@ module.exports = {
         }
         if (!languages.includes(language)) {
           return message.channel.send(
-            `Language is not available. Available languages: ${languages.map(
-              (l) => `\`${l}\``
-            ).join(", ")}`
+            `Language is not available. Available languages: ${languages
+              .map((l) => `\`${l}\``)
+              .join(", ")}`
           );
         }
         updateItem("locale", language, guildId);

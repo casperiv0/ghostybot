@@ -60,6 +60,7 @@ module.exports = {
       "لقد تم تبنيدك  **banned**من **{guild_name}**, السبب: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} لقد تم تبنيده بنجاح . السبب: **{ban_reason}**. لقد قمت بارسال رسالة اليه .",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "رتبتي ليست اعلي من رول  **{role}** ",
@@ -138,12 +139,15 @@ module.exports = {
     SECONDS: "ثانية",
     VOLUME: "الصوت",
     PROVIDE_SEARCH: "الرجاء تقديم استعلام بحث",
-    ADDED_TO_QUEUE:
-      "تمت اضافة اغنية ال القائمة القائمة | {songs} الاغاني بالقائمة",
+    ADDED_TO_QUEUE: "{song} has been added to the queue",
+    ADDED_PL_TO_QUEUE: "Playlist add to queue ({length} songs)",
+    PROVIDER_NOT_SUPP: "That provider is not supported",
     NOW_PLAYING: "جاري التشغيل:",
     REQUESTED_BY: "بواسطة",
     NO_PERMS: "لا امتلك صلاحيات لهذه القناة الصوتية",
     NOT_SAME_VC: "يجب ان تكون بقناتي الصوتية ",
+    MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
+    NO_RESULTS: "No songs were found",
   },
   ECONOMY: {
     MONEY: "المال",
@@ -196,6 +200,12 @@ module.exports = {
     ADDED_TO_STORE: "الي المتجر {item} تم اضافة",
     NOT_IN_STORE: "**{item}** غير موجود بالمتجر",
     REMOVED_FROM_STORE: "من المتجر {item} تمت ازالة ",
+    WON_SLOTS: "You won and got {amount} coins",
+    LOST_SLOTS: "You lost!",
+    MAX_BET: "max bet amount is 500",
+    ADDED_MONEY: "Successfully added {amount} to user balance",
+    MIN_BET: "Minimum bet of 1 is required",
+    MIN_AMOUNT: "Amount must be above 0",
   },
   GAMES: {
     BETS_ON: "{member_1} يراهن علي {member_2}",
@@ -216,6 +226,8 @@ module.exports = {
     WYR: "هل تفضل ؟",
     ANSWER: "الاجابة",
     QUESTION: "السؤال",
+    YOU_WON: "You won 50coins!",
+    BOT_WON: "The bot has won!",
   },
   UTIL: {
     AVATAR: "االافاتار",
@@ -330,6 +342,7 @@ module.exports = {
     DJS_V: "Discord.js نسخة",
     NODE_V: "NodeJS نسخة",
     REPO: "المستودع",
+    DASHBOARD: "Dashboard",
   },
   CONFIG: {
     OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",
@@ -359,6 +372,8 @@ module.exports = {
     CMD_DESC: "استخدم `{prefix}help <اسم الامر>",
     OWNER_ONLY: "لا يمكن عرض الاوامر هذه للمستخدمين",
     NSFW_ONLY: "لا يمكن عرض الاوامر غير بقناة NSFW",
+    DISABLED: "Disabled commands (this guild only)",
+    GIVEAWAY: "Giveaway commands",
   },
   POKEMON: {
     SPECIES: "النوع",
@@ -382,5 +397,19 @@ module.exports = {
     PROVIDE_NAME: "من فضلك ادخل اسم بوكيمون",
     NOT_FOUND:
       "لم يتم العثور علي {query}. من فضلك تحقق من التهجئة الصحيحة وحاول مرة اخري",
+  },
+  REACTIONS: {
+    NO_CHANNEL_ID: "Please provide a channelId",
+    NO_EMOJI: "Please provide a valid emoji (Custom emojis soon™)",
+    NO_ROLE: "Please provide a valid role",
+    CHANNEL_NOT_FOUND: "The channel with id `{channelId}` was not found",
+    MSG_NOT_FOUND: "The message with id `{messageId}` was not found",
+    TITLE: "Reaction Role",
+    DESC: "Reactions:",
+    SUCCESS: "Successfully send message with reactions",
+    NOT_FOUND: "Reaction was not found by that messageId",
+    DELETE_SUCCESS: "Successfully deleted reaction",
+    FOUND_NO_MSG:
+      "Reaction was found but the message was not, reaction was deleted from the database",
   },
 };

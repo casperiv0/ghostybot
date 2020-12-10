@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema, models } = require("mongoose");
 
 const userSchema = new Schema({
   user_id: { type: String, required: true },
@@ -18,6 +18,15 @@ const userSchema = new Schema({
       reason: null,
     },
   },
+  mute: {
+    type: Object,
+    default: {
+      muted: false,
+      time: String,
+      ends_at: Number,
+      reason: String,
+    },
+  },
 });
 
-module.exports = model("User", userSchema);
+module.exports = models.User || model("User", userSchema);

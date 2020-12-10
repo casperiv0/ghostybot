@@ -1,10 +1,11 @@
 const MojangAPI = require("mojang-api");
 const BaseEmbed = require("../../modules/BaseEmbed");
+const Logger = require("../../modules/Logger");
 
 module.exports = {
   name: "skin",
   description: "Search for skins from Minecraft",
-  category: "info",
+  category: "util",
   aliases: ["minecraftskin"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
@@ -30,7 +31,7 @@ module.exports = {
 
     MojangAPI.nameToUuid(search, (err, res) => {
       if (err) {
-        console.log(err);
+        Logger.error("SKIN", err);
       } else {
         const uuid = res[0]?.id;
         if (!uuid) {

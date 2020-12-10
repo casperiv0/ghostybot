@@ -11,11 +11,24 @@ module.exports = {
     const position = channel.position;
     const topic = channel.topic;
 
-    const channel2 = await channel.clone();
+    const filter = (m) => m.author.id === message.author.id;
+    const collector = message.channel.createMessageCollector(filter, {
+      time: 15000,
+    });
 
-    channel2.setPosition(position);
-    channel2.setTopic(topic);
-    channel.delete();
-    channel2.send("Channel has been nuked!");
+    message.channel.send("Are you sure? y/n");
+
+    collector.on("collect", async (m) => {
+      if (m.content?.toLowerCase() === "y") {
+        const channel2 = await channel.clone();
+
+        channel2.setPosition(position);
+        channel2.setTopic(topic);
+        channel.delete();
+        channel2.send("Channel has been nuked!");
+      } else {
+        return message.channel.send("nuke command was canceled");
+      }
+    });
   },
 };

@@ -4,16 +4,13 @@ module.exports = {
   category: "admin",
   botPermissions: ["DEAFEN_MEMBERS"],
   memberPermissions: ["DEAFEN_MEMBERS"],
+  requiredArgs: ["member", "reason"],
   async execute(bot, message, args) {
-    const deafenUser = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
-    const deafenReason = args.join(" ").slice(23);
+    const deafenUser = bot.findMember(message, args);
+    const deafenReason = args.slice(1).join(" ");
 
     if (deafenUser.voice.serverDeaf) {
-      return message.channel.send(
-        "User is not in a voice channel or isn't deafened"
-      );
+      return message.channel.send("User is not in a voice channel or isn't deafened");
     }
 
     deafenUser.voice.setDeaf(true, "deafenReason");

@@ -15,7 +15,7 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(question)
       .setDescription(
-        lang.UTIL.POLL_CREATED_BY.replace("{member}", message.author.tag)
+        lang.UTIL.CREATED_BY.replace("{member}", message.author.tag)
       );
 
     const sendMessage = await message.channel.send(embed);

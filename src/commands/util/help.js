@@ -15,6 +15,7 @@ module.exports = {
     const guild = await getGuildById(message.guild.id);
     const prefix = guild.prefix;
     const cmdArgs = args[0];
+    const nsfw = message.channel.nsfw;
 
     if (categories.includes(cmdArgs)) {
       const cmds = bot.commands
@@ -26,10 +27,26 @@ module.exports = {
         return message.channel.send(lang.HELP.CAT_NOT_EXIST);
       }
 
-      const embed = BaseEmbed(message)
-        .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`)
-        .setDescription(`\`\`\`${cmds}\`\`\``);
+      const embed = BaseEmbed(message).setTitle(
+        `${lang.HELP.COMMANDS}: ${cmdArgs}`
+      );
 
+      if (cmdArgs === "botowner") {
+        if (owners.includes(message.author.id)) {
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
+        } else {
+          embed.setDescription(lang.HELP.OWNER_ONLY);
+        }
+      } else if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
+        if (nsfw) {
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
+          embed.setDescription(`\`\`\`${cmds}\`\`\``);
+        } else {
+          embed.setDescription(lang.HELP.NSFW_ONLY);
+        }
+      } else {
+        embed.setDescription(`\`\`\`${cmds}\`\`\``);
+      }
       return message.channel.send({ embed });
     } else if (cmdArgs) {
       const cmd =
@@ -43,6 +60,13 @@ module.exports = {
         ? cmd.options.map((option) => option)
         : lang.GLOBAL.NONE;
       const cooldown = cmd.cooldown ? `${cmd.cooldown}s` : lang.GLOBAL.NONE;
+      const memberPerms = !cmd.memberPermissions
+        ? lang.GLOBAL.NONE
+        : [...cmd.memberPermissions].map((p) => p);
+
+      const botPerms = !cmd.botPermissions
+        ? ["SEND_MESSAGES"].map((p) => p)
+        : [...cmd.botPermissions, "SEND_MESSAGES"].map((p) => p);
 
       const embed = BaseEmbed(message)
         .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
@@ -56,14 +80,16 @@ module.exports = {
         .addField(lang.UTIL.CATEGORY, cmd.category, true)
         .addField(
           lang.UTIL.DESCRIPTION,
-          cmd.description ? cmd.description : lang.GLOBAL.NOT_SPECIFIED
+          cmd.description ? cmd.description : lang.GLOBAL.NOT_SPECIFIED,
+          true
         )
-        .addField(lang.HELP.OPTIONS, options);
+        .addField(lang.HELP.OPTIONS, options, true)
+        .addField("Bot Permissions", botPerms, true)
+        .addField("Member Permissions", memberPerms, true);
 
       return message.channel.send(embed);
     }
 
-    let nsfw = message.channel.nsfw;
     const commands = bot.commands;
 
     const utilsCmds = commands
@@ -114,6 +140,14 @@ module.exports = {
       .filter(({ category }) => category === "exempt")
       .map(({ name }) => name)
       .join(", ");
+    const giveawayCmds = commands
+      .filter(({ category }) => category === "giveaway")
+      .map(({ name }) => name)
+      .join(", ");
+
+    const disabledCmds = !guild.disabled_commands[0]
+      ? lang.GLOBAL.NONE
+      : `\`\`\`${guild.disabled_commands.join(", ")}\`\`\``;
 
     const embed = BaseEmbed(message)
       .addField(lang.HELP.ADMIN, `\`\`\`${adminCmds}\`\`\``)
@@ -137,6 +171,8 @@ module.exports = {
       .addField(lang.HELP.ECONOMY, `\`\`\`${economyCmds}\`\`\``)
       .addField(lang.HELP.LEVEL, `\`\`\`${levelCmds}\`\`\``)
       .addField(lang.HELP.EXEMPT, `\`\`\`${exemptCmds}\`\`\``)
+      .addField(lang.HELP.GIVEAWAY, `\`\`\`${giveawayCmds}\`\`\``)
+      .addField(lang.HELP.DISABLED, disabledCmds)
       .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
       .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
       .setTitle("Help");

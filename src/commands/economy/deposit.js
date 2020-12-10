@@ -6,6 +6,7 @@ module.exports = {
   category: "economy",
   usage: "!deposit <all | amount>",
   aliases: ["dep"],
+  requiredArgs: ["amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
@@ -31,6 +32,10 @@ module.exports = {
       return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+    }
+
     if (money < amount) {
       return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
     }
@@ -40,8 +45,6 @@ module.exports = {
       money: user.money - amount,
     });
 
-    message.channel.send(
-      lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", amount)
-    );
+    message.channel.send(lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", amount));
   },
 };

@@ -2,20 +2,13 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "guildMemberUpdate",
-  async execute(bot, newMember, oldMember) {
-    if (!oldMember.guild) return;
-    if (!oldMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
+  async execute(bot, oldMember, newMember) {
+    if (!newMember.guild) return;
+    if (!newMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
-    // not enabled
-    const w = await newMember.guild.fetchWebhooks();
-    const webhook = w.find((w) => w.name === bot.user.username);
-    // Couldn't find webhook/webhook doesn't exist
-    if (!webhook) {
-      return;
-    }
+    const webhook = await bot.getWebhook(newMember.guild);
+    if (webhook === null) return;
 
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)
@@ -33,11 +26,11 @@ module.exports = {
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
 
       // send message
-      webhook.send(embed);
+      return webhook.send(embed);
     }
 
     // Role add
-    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+    if (oldMember.roles.cache.size < newMember.roles.cache.size) {
       // Get role log
       const role = newMember.roles.cache
         .difference(oldMember.roles.cache)
@@ -47,11 +40,11 @@ module.exports = {
         .setDescription(`${newMember} was **given** the ${role} role.`);
 
       // send message
-      webhook.send(embed);
+      return webhook.send(embed);
     }
 
     // Role remove
-    if (oldMember.roles.cache.size < newMember.roles.cache.size) {
+    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
       // Get role log
       const role = oldMember.roles.cache
         .difference(newMember.roles.cache)
@@ -61,7 +54,7 @@ module.exports = {
         .setDescription(`${newMember} was **removed** from ${role} role.`);
 
       // send message
-      webhook.send(embed);
+      return webhook.send(embed);
     }
   },
 };

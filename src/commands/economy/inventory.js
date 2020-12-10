@@ -10,6 +10,11 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args, true);
+
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
+    }
+
     const { user } = await getUserById(member.id, message.guild.id);
     const inventory = user?.inventory;
 

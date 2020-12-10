@@ -9,8 +9,8 @@ How to install Ghostybot on your machine
 ## Requirements
 
 - [Discord bot token](https://discord.com/developers/applications)
+- [Discord OAuth clientId & clientSecret](https://discord.com/developers/applications)
 - [Node v14+](https://nodejs.org/)
-- [Youtube Api key](https://developers.google.com/youtube/v3/getting-started)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [Mongo URI](https://www.mongodb.com/)
 

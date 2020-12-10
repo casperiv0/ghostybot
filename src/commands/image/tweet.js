@@ -10,12 +10,16 @@ module.exports = {
     const text = args.join(" ");
     const { username } = message.author;
 
-    if (!text) return message.channel.send("Please provide text");
+    if (!text) {
+      return message.channel.send("Please provide text");
+    }
 
     const sendMsg = await message.channel.send("⚙ Processing Image..");
 
     const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=tweet&text=${text}&username=${username}`
+      `https://nekobot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(
+        text
+      )}&username=${username}`
     )
       .then((res) => res.json())
       .catch(() => {

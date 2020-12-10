@@ -5,22 +5,23 @@ module.exports = {
   description: "Show top 20 songs in the queue",
   aliases: ["q"],
   category: "music",
-  async execute(bot, message, args, serverQueue) {
+  async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     if (!message.member.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
-    if (!serverQueue) {
+    const queue = bot.player.getQueue(message);
+
+    if (!queue) {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
     const embed = BaseEmbed(message)
       .setTitle(`${message.guild.name} ${lang.MUSIC.QUEUE}`)
-      .setColor("BLUE")
       .setDescription(
-        serverQueue.songs.splice(0, 1024).map((song) => {
-          return `- ${song.title}`;
+        queue.tracks.splice(0, 1024).map((song, idx) => {
+          return `${++idx}: ${song.title}`;
         })
       );
 

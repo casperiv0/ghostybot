@@ -3,18 +3,19 @@ module.exports = {
   description: "Clear the music playlist",
   aliases: ["cq"],
   category: "music",
-  async execute(bot, message, args, serverQueue) {
+  async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     if (!message.member.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
-    if (!serverQueue) {
+    const playing = bot.player.isPlaying(message);
+
+    if (!playing) {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher?.destroy();
+    bot.player.clearQueue(message);
     message.channel.send(lang.MUSIC.QUEUE_CLEARED);
   },
 };

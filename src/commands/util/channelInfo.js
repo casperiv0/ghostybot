@@ -18,7 +18,7 @@ module.exports = {
 
     const topic = channel.topic ? channel.topic : "N/A";
     const channelId = channel.id;
-    const createdAt = formatDate(channel.createdAt);
+    const { date, tz } = await formatDate(channel.createdAt, message.guild.id);
     const type =
       channel.type === "text"
         ? lang.UTIL.TEXT_CHANNEL
@@ -29,7 +29,7 @@ module.exports = {
       .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
       .addField(lang.UTIL.CHANNEL_TOPIC, topic, true)
       .addField(lang.MEMBER.ID, channelId, true)
-      .addField(lang.MEMBER.CREATED_ON, createdAt, true);
+      .addField(lang.MEMBER.CREATED_ON, `${date} (${tz})`, true);
 
     message.channel.send(embed);
   },

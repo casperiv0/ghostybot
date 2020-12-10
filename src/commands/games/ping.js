@@ -5,6 +5,10 @@ module.exports = {
   async execute(bot, message) {
     const firstMsg = await message.channel.send("🏓 Pong!");
 
-    firstMsg.edit(`🏓 Pong \nPing: ${Math.round(bot.ws.ping)}ms `);
+    firstMsg.edit(
+      `🏓 Pong \n Bot ping: ${Math.round(bot.ws.ping)}ms\nMessage Ping: ${
+        firstMsg.createdTimestamp - message.createdTimestamp
+      } `
+    );
   },
 };

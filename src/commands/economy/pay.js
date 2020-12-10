@@ -4,6 +4,7 @@ module.exports = {
   name: "pay",
   description: "Give money to a user",
   category: "economy",
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args);
@@ -11,6 +12,10 @@ module.exports = {
 
     if (!member) {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
+    }
+
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
     if (!amount || isNaN(amount)) {
@@ -22,6 +27,10 @@ module.exports = {
       message.author.id,
       message.guild.id
     );
+
+    if (amount < 0) {
+      return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+    }
 
     if (amount > sender.money) {
       return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
@@ -39,10 +48,10 @@ module.exports = {
     });
 
     return message.channel.send(
-      lang.ECONOMY.PAY_SUCCESS.replace(
-        "{member}",
-        member.user.tag
-      ).replace("{amount}", amount)
+      lang.ECONOMY.PAY_SUCCESS.replace("{member}", member.user.tag).replace(
+        "{amount}",
+        amount
+      )
     );
   },
 };

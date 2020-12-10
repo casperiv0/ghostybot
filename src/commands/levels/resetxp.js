@@ -1,3 +1,4 @@
+const Logger = require("../../modules/Logger");
 const { updateUserById } = require("../../utils/functions");
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
   description: "reset all users xp for current server",
   category: "levels",
   usage: "resetxp all",
-  memberPermissions: ["MANAGE_MEMBERS"],
+  memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const filter = (m) => message.author.id === m.author.id;
@@ -35,7 +36,7 @@ module.exports = {
         }
       })
       .catch((e) => {
-        console.log(e);
+        Logger.error("resetxp", e);
         message.channel.send("An error occurred");
       });
   },

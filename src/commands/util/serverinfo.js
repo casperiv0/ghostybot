@@ -21,8 +21,14 @@ module.exports = {
     const roles = guild.roles.cache.size;
     const channels = guild.channels.cache.size;
     const emojis = guild.emojis.cache.size;
-    const createdAt = formatDate(guild.createdAt);
-    const joined = formatDate(message.member.joinedAt);
+    const { date: createdAt } = await formatDate(
+      guild.createdAt,
+      message.guild.id
+    );
+    const { date: joined, tz } = await formatDate(
+      message.member.joinedAt,
+      message.guild.id
+    );
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
     const owner = (guild.owner && guild.owner.user.tag) || "error";
@@ -57,8 +63,8 @@ module.exports = {
       .addField(`**${lang.GUILD.CHANNEL_C}**`, channels, true)
       .addField(`**${lang.GUILD.EMOJI_C}**`, emojis, true)
       .addField(`**${lang.GUILD.MEMBER_C}**`, memberCount, true)
-      .addField(`**${lang.MEMBER.CREATED_ON}**`, createdAt, true)
-      .addField(`**${lang.MEMBER.JOINED_AT}**`, joined, true)
+      .addField(`**${lang.MEMBER.CREATED_ON}**`, `${createdAt} (${tz})`, true)
+      .addField(`**${lang.MEMBER.JOINED_AT}**`, `${joined} (${tz})`, true)
       .addField(`**${lang.GUILD.REGION}**`, region, true)
       .addField(`**${lang.GUILD.VERIFICATION}**`, verLevel, true)
       .addField(`**${lang.GUILD.MFA}**`, mfaLevel, true)

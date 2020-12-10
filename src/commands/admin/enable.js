@@ -7,14 +7,17 @@ module.exports = {
   description: "Enables a command",
   category: "exempt",
   memberPermissions: ["ADMINISTRATOR"],
+  requiredArgs: ["command name | category name"],
   async execute(bot, message, args) {
     const option = args[0];
     const guild = await getGuildById(message.guild.id);
-    const command = bot.commands.get(option.toLowerCase());
 
     if (!option) {
       return message.channel.send("Please provide a command or category name");
     }
+
+    const command =
+      bot.commands.get(option.toLowerCase()) || bot.commands.get(bot.aliases.get(option));
 
     if (!command) {
       // enable category
@@ -28,9 +31,7 @@ module.exports = {
       }
 
       await updateGuildById(message.guild.id, {
-        disabled_categories: guild.disabled_categories.filter(
-          (c) => c !== category
-        ),
+        disabled_categories: guild.disabled_categories.filter((c) => c !== category),
       });
 
       const embed = BaseEmbed(message)
@@ -49,9 +50,7 @@ module.exports = {
       }
 
       await updateGuildById(message.guild.id, {
-        disabled_commands: guild.disabled_commands.filter(
-          (c) => c !== command.name
-        ),
+        disabled_commands: guild.disabled_commands.filter((c) => c !== command.name),
       });
 
       const embed = BaseEmbed(message)

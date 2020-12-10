@@ -5,6 +5,7 @@ const {
   updateUserById,
   errorEmbed,
   calculateUserXp,
+  sendErrorLog,
 } = require("../utils/functions");
 const queue = new Map();
 const { owners } = require("../../config.json");
@@ -15,23 +16,24 @@ module.exports = {
   name: "message",
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
-    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES"))
-      return;
+    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
+
     const guildId = message.guild.id;
     const userId = message.author.id;
     const cooldowns = bot.cooldowns;
     const guild = await getGuildById(guildId);
-    const blacklistedWords = guild.blacklistedwords;
+    const blacklistedWords = guild?.blacklistedwords;
     const blacklistedUsers = await Blacklist.find();
     const mentions = message.mentions.members;
-    const disabledCommands = guild.disabled_commands;
-    const disabledCategories = guild.disabled_categories;
+    const disabledCommands = guild?.disabled_commands;
+    const disabledCategories = guild?.disabled_categories;
+
+    const ignoredChannels = guild?.ignored_channels;
+    if (ignoredChannels.includes(message.channel.id)) return;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = guild.prefix;
-    const prefix = new RegExp(
-      `^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`
-    );
+    const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
 
     // Check if sticky
     const sticky = await getSticky(message.channel.id);
@@ -68,7 +70,7 @@ module.exports = {
           const MSG_TIMEOUT_10_SECS = 10000;
 
           setTimeout(() => {
-            msg.delete();
+            msg?.delete();
           }, MSG_TIMEOUT_10_SECS);
         }
       }
@@ -83,9 +85,7 @@ module.exports = {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
             return message
-              .reply(
-                "You used a bad word the admin has set, therefore your message was deleted!"
-              )
+              .reply("You used a bad word the admin has set, therefore your message was deleted!")
               .then((msg) => {
                 setTimeout(() => {
                   msg.delete();
@@ -102,27 +102,17 @@ module.exports = {
         if (user) {
           const embed = BaseEmbed(message)
             .setTitle("AFK!")
-            .setDescription(
-              `${member.user.tag} is AFK!\n **Reason:** ${user.reason}`
-            );
+            .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.reason}`);
           message.channel.send(embed);
         }
       });
     }
 
     // Commands
-    if (
-      !prefix.test(message.content) ||
-      message.author.bot ||
-      userId === bot.user.id
-    )
-      return;
+    if (!prefix.test(message.content) || message.author.bot || userId === bot.user.id) return;
 
     const [, matchedPrefix] = message.content.match(prefix);
-    const args = message.content
-      .slice(matchedPrefix.length)
-      .trim()
-      .split(/ +/g);
+    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const customCmds = guild?.custom_commands;
 
@@ -131,15 +121,14 @@ module.exports = {
         .setTitle("Quick Info")
         .addField("Prefix", serverPrefix)
         .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809");
+        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
+        .addField("Dashboard", "https://ghostybot.tk");
 
       message.channel.send(embed);
     }
 
     if (blacklistedUsers) {
-      const isBlacklisted = blacklistedUsers.find(
-        (u) => u.user_id === message.author.id
-      );
+      const isBlacklisted = blacklistedUsers.find((u) => u.user_id === message.author.id);
 
       if (isBlacklisted) {
         return message.reply("You've been blacklisted from using this bot.");
@@ -147,6 +136,10 @@ module.exports = {
     }
 
     if (customCmds) {
+      if (guild?.auto_delete_cmd === true) {
+        message.delete();
+      }
+
       const customCmd = customCmds.find((x) => x.name === command);
       if (customCmd) message.channel.send(customCmd.response);
     }
@@ -155,32 +148,44 @@ module.exports = {
     const serverQueue = queue.get(message.guild.id);
 
     try {
-      const cmd =
-        bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
+      const cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
 
       if (bot.commands.has(cmd?.name)) {
         const now = Date.now();
         const timestamps = cooldowns.get(cmd.name);
         const cooldownAmount = cmd.cooldown * 1000;
 
-        if (disabledCategories.length > 0) {
-          if (disabledCategories.includes(cmd.category)) {
+        if (disabledCategories !== null && disabledCategories.length > 0) {
+          if (disabledCategories?.includes(cmd.category)) {
             return message.channel.send(
               `That command is disabled because this guild disabled the ${cmd.category} category`
             );
           }
         }
 
-        if (disabledCommands.length > 0) {
-          if (disabledCommands.includes(cmd.name)) {
-            return message.channel.send(
-              "That command was disabled for this guild"
-            );
+        if (disabledCommands !== null && disabledCommands.length > 0) {
+          if (disabledCommands?.includes(cmd.name)) {
+            return message.channel.send("That command was disabled for this guild");
           }
         }
 
         if (cmd.ownerOnly && !owners.includes(message.author.id)) {
           return message.reply("This command can only be used by the owners!");
+        }
+
+        if (cmd.requiredArgs && args.length < cmd.requiredArgs.length) {
+          const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");
+          const cmdExample = `${matchedPrefix}${cmd.name} ${cmd.requiredArgs
+            .map((a) => `<${a}>`)
+            .join(" ")}`;
+            
+          const embed = BaseEmbed(message)
+            .setTitle("Incorrect command usage")
+            .setColor("RED")
+            .setDescription(`:x: You must provide more args: ${cmdArgs}`)
+            .addField("Example:", cmdExample);
+
+          return message.channel.send(embed);
         }
 
         // botPermissions
@@ -225,9 +230,9 @@ module.exports = {
           if (now < expTime) {
             const timeleft = (expTime - now) / 1000;
             return message.reply(
-              `Please wait **${timeleft.toFixed(
-                1
-              )}** more seconds before using the **${cmd.name}** command`
+              `Please wait **${timeleft.toFixed(1)}** more seconds before using the **${
+                cmd.name
+              }** command`
             );
           }
         }
@@ -235,13 +240,19 @@ module.exports = {
         timestamps.set(userId, now);
         setTimeout(() => timestamps.delete(userId), cooldownAmount);
 
+        if (guild?.auto_delete_cmd === true) {
+          message.delete();
+        }
+
         cmd.execute(bot, message, args, serverQueue, queue);
       } else {
         return;
       }
     } catch (e) {
-      // sendToDev(message, bot, e);
-      console.log({ message: message.content, e });
+      sendErrorLog(bot, e, "error", message.content);
+      const embed = BaseEmbed(message).setTitle("Woah! Something went wrong").setDescription(e);
+
+      message.channel.send(embed);
     }
   },
 };

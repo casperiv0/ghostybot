@@ -13,17 +13,24 @@ module.exports = {
     const member =
       message.guild.member(message.mentions.users.first()) ||
       message.guild.members.cache.get(args[1]);
-    const { warnings } = await getUserById(member.id, guildId);
 
     if (!member) {
       return message.channel.send("Please provide a valid user");
     }
 
+    if (member.user.bot) {
+      return message.channel.send(
+        "Bot data does not save, therefore I cannot fetch its data"
+      );
+    }
+
+    const { warnings } = await getUserById(member.user.id, guildId);
+
     if (warnings === null || !warnings[0]) {
       return message.channel.send("There are no warnings");
     }
 
-    await removeUserWarnings(member.id, guildId);
+    await removeUserWarnings(member.user.id, guildId);
 
     return message.channel.send("Successfully removed all warnings");
   },

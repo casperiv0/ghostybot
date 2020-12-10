@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getUserById, getGuildById } = require("../../utils/functions");
 
 module.exports = {
@@ -16,14 +16,17 @@ module.exports = {
       return message.channel.send("Please provide a valid user");
     }
 
+    if (member.user.bot) {
+      return message.channel.send(
+        "Bot data does not save, therefore I cannot fetch its data"
+      );
+    }
+
     const guild = await getGuildById(guildId);
     const { warnings } = await getUserById(member.user.id, message.guild.id);
     const prefix = guild.prefix;
 
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
-      .setTimestamp()
-      .setFooter(message.author.username);
+    const embed = BaseEmbed(message);
 
     if (warningNr) {
       const warning = warnings?.filter((w, idx) => idx === warningNr - 1)[0];
@@ -34,9 +37,13 @@ module.exports = {
         );
       }
 
+      const warnedOn = warning?.date
+        ? new Date(warning?.date)?.toLocaleString()
+        : "N/A";
       embed
         .setTitle(`Warning: ${warningNr}`)
-        .addField("**Reason**", warning?.reason || "No reason");
+        .addField("**Reason**", warning?.reason || "No reason")
+        .addField("**Warned on:**", warnedOn);
 
       return message.channel.send({ embed });
     }

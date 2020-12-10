@@ -5,6 +5,7 @@ module.exports = {
   name: "bugreport",
   description: "Report a bug to your staff",
   category: "util",
+  cooldown: 300,
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const bug = args.join(" ");
@@ -24,7 +25,7 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setTitle(
-        lang.UTIL.BUG_REPORT.replace("{member}", message.author.username)
+        lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag)
       )
       .setDescription(bug);
 

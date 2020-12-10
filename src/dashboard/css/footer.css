@@ -1,0 +1,17 @@
+.footer {
+  padding: 0.5rem 1rem;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary);
+}
+
+.footer a {
+  color: #f2f2f2;
+  margin: 0 5px;
+}
+
+.footer p {
+  text-align: center;
+}

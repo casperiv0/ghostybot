@@ -44,14 +44,21 @@ module.exports = {
       )
       .addField(
         `${lang.BOT.REPO}`,
-        "https://github.com/dev-caspertheghost/ghostybot"
+        "[Click Here](https://github.com/dev-caspertheghost/ghostybot)",
+        true
       )
       .addField(
         `${lang.UTIL.SUPPORT_SERVER}`,
-        "https://discord.gg/XxHrtkA"
+        "[Click Here](https://discord.gg/XxHrtkA)",
+        true
+      )
+      .addField(
+        `${lang.BOT.DASHBOARD}`,
+        "[Click Here](https://ghostybot.tk)",
+        true
       )
       .setImage(
-        "https://github.com/Dev-CasperTheGhost/ghostybot/raw/main/.github/Ghostybot-banner.png"
+        "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
       );
 
     message.channel.send(embed);

@@ -15,7 +15,7 @@ module.exports = {
   },
   GUILD: {
     NOT_FOUND: "Guild was not found",
-    LEFT: "Successfully left guild **${guild_name}**",
+    LEFT: "Successfully left guild **{guild_name}**",
     LEVEL_UP_MESSAGES: "Level up messages",
     ANNOUNCE_CHANNEL: "Announce Channel",
     SUGGEST_CHANNEL: "Suggest Channel",
@@ -60,6 +60,7 @@ module.exports = {
       "You have been **banned** from **{guild_name}**, Reason: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} was successfully banned from the server. Reason: **{ban_reason}**. I have also send a DM letting the person know.",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "My role is not high enough than **{role}** role!",
@@ -139,12 +140,16 @@ module.exports = {
     SECONDS: "Seconds",
     VOLUME: "Volume",
     PROVIDE_SEARCH: "Please provide a search query",
-    ADDED_TO_QUEUE: "Song has been added to the queue | {songs} songs in queue",
+    ADDED_TO_QUEUE: "{song} has been added to the queue",
+    ADDED_PL_TO_QUEUE: "Playlist add to queue ({length} songs)",
+    PROVIDER_NOT_SUPP: "That provider is not supported",
     NOW_PLAYING: "Now Playing:",
     REQUESTED_BY: "Requested by",
     NO_PERMS: "I don't have the correct permissions for that voice channel!",
     NOT_SAME_VC: "You must be in the same voice chat as the bot",
     ALREADY_IN_VC: "I'm already in that voice chat",
+    MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
+    NO_RESULTS: "No songs were found",
   },
   ECONOMY: {
     MONEY: "Money",
@@ -199,6 +204,13 @@ module.exports = {
     ADDED_TO_STORE: "{item} was added to the store!",
     NOT_IN_STORE: "**{item}** doesn't exist in the store!",
     REMOVED_FROM_STORE: "{item} was removed from the store!",
+    WON_SLOTS: "You won and got {amount} coins",
+    LOST_SLOTS: "You lost!",
+    MAX_BET: "max bet amount is 500",
+    ADDED_MONEY: "Successfully added {amount} to user balance",
+    REMOVED_MONEY: "Successfully removed {amount} from user balance",
+    MIN_BET: "Minimum bet of 1 is required",
+    MIN_AMOUNT: "Amount must be above 0",
   },
   GAMES: {
     BETS_ON: "{member_1} bets on {member_2}",
@@ -219,6 +231,8 @@ module.exports = {
     WYR: "Would you rather?",
     ANSWER: "Answer",
     QUESTION: "Question",
+    YOU_WON: "You won 50coins!",
+    BOT_WON: "The bot has won!",
   },
   UTIL: {
     AVATAR: "Avatar",
@@ -333,6 +347,7 @@ module.exports = {
     DJS_V: "Discord.js version",
     NODE_V: "NodeJS version",
     REPO: "Repository",
+    DASHBOARD: "Dashboard",
   },
   CONFIG: {
     OPTION_CMD_WORK: "{option} needs to be provided, for this command to work.",
@@ -363,6 +378,8 @@ module.exports = {
       "use `{prefix}help <command name | alias>` to view more info about a command\n More info can be found using the `botinfo` command",
     OWNER_ONLY: "only the owner is allowed to see this!",
     NSFW_ONLY: "To view nfsw commands check in an nfsw channel!",
+    DISABLED: "Disabled commands (this guild only)",
+    GIVEAWAY: "Giveaway commands",
   },
   POKEMON: {
     SPECIES: "Species",
@@ -386,5 +403,19 @@ module.exports = {
     PROVIDE_NAME: "Please provide a pokemon name!",
     NOT_FOUND:
       "No pokemon was found with {query}. Please use correct spelling and try again later.",
+  },
+  REACTIONS: {
+    NO_CHANNEL_ID: "Please provide a channelId",
+    NO_EMOJI: "Please provide a valid emoji (Custom emojis soon™)",
+    NO_ROLE: "Please provide a valid role",
+    CHANNEL_NOT_FOUND: "The channel with id `{channelId}` was not found",
+    MSG_NOT_FOUND: "The message with id `{messageId}` was not found",
+    TITLE: "Reaction Role",
+    DESC: "Reactions:",
+    SUCCESS: "Successfully send message with reactions",
+    NOT_FOUND: "Reaction was not found by that messageId",
+    DELETE_SUCCESS: "Successfully deleted reaction",
+    FOUND_NO_MSG:
+      "Reaction was found but the message was not, reaction was deleted from the database",
   },
 };

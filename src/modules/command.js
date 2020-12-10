@@ -2,6 +2,8 @@ const fs = require("fs");
 const { sep } = require("path");
 const chalk = require("chalk");
 const { Collection } = require("discord.js");
+// eslint-disable-next-line no-unused-vars
+const Logger = require("./Logger");
 
 module.exports = function loadCommands(bot) {
   const dir = "./src/commands";
@@ -12,6 +14,12 @@ module.exports = function loadCommands(bot) {
 
     for (const file of commands) {
       const cmd = require(`../commands/${dirs}/${file}`);
+
+      if (cmd.name !== file.slice(0, -3)) {
+        throw TypeError(
+          `[ERROR][COMMANDS]: command name must be named the same as the file! (${file})`
+        );
+      }
 
       if (!cmd.execute)
         throw new TypeError(
@@ -49,7 +57,7 @@ module.exports = function loadCommands(bot) {
         cooldowns.set(cmd.name, new Collection());
       }
       // debug
-      //   console.log(`[INFO][COMMANDS]: Loaded ${cmd.name}`);
+      // Logger.log("commands", `Loaded ${cmd.name}`);
     }
   });
 };

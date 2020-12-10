@@ -4,15 +4,20 @@ module.exports = {
   name: "givexp",
   description: "Give someone Xp",
   category: "levels",
-  usage: "givexp <amount> <user>",
-  memberPermissions: ["MANAGE_MEMBERS"],
+  usage: "givexp <user> <amount>",
+  memberPermissions: ["MANAGE_GUILD"],
+  requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const amount = args[0];
+    const amount = args[1];
     const member = bot.findMember(message, args);
 
     if (!member) {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
+    }
+
+    if (member.user.bot) {
+      return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
     if (!amount) {
@@ -29,10 +34,7 @@ module.exports = {
     });
 
     message.channel.send(
-      lang.LEVELS.GIVE_XP_SUCCESS.replace(
-        "{member}",
-        member.user.tag
-      ).replace("{amount}", amount)
+      lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace("{amount}", amount)
     );
   },
 };

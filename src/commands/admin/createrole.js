@@ -6,6 +6,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
+  requiredArgs: ["role name"],
   async execute(bot, message, args) {
     const roleName = args[0];
     if (!roleName) {
@@ -23,6 +24,6 @@ module.exports = {
       .setTitle(`Created Role: ${roleName}`)
       .setDescription(`Successfully created the \`${roleName}\` role`);
 
-      message.channel.send(embed);
+    message.channel.send(embed);
   },
 };

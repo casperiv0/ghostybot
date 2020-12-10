@@ -1,0 +1,63 @@
+.card {
+  background: var(--secondary);
+  padding: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: 250ms;
+}
+
+.guild-card {
+  display: flex;
+  align-items: center;
+}
+
+.guild-card-img {
+  width: 65px;
+  height: 65px;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+}
+
+.guild-card p {
+  margin-left: 0.5rem;
+}
+
+.cmd-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cmd-card p {
+  font-size: 1.1rem;
+}
+
+.disabled {
+  position: relative;
+  cursor: not-allowed;
+}
+
+.disabled::after {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  content: attr(aria-label);
+  position: absolute;
+  opacity: 0;
+  bottom: 110%;
+  left: 0;
+  background: var(--secondary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: 250ms;
+  pointer-events: none;
+}
+
+.disabled:hover::after {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .guild-card:hover {
+    background: var(--blue);
+  }
+}

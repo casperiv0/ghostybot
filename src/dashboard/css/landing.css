@@ -1,0 +1,97 @@
+.nav-bar {
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+  background-color: var(--secondary);
+}
+
+.nav-content {
+  display: flex;
+  width: var(--content-width);
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-icon {
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.nav-link {
+  color: #bbbbbb;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+.main {
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.main h1 {
+  font-size: 3rem;
+}
+
+.main p {
+  text-align: center;
+  color: #bbbbbb;
+  font-size: 1.3rem;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 400px;
+}
+
+.main-btn {
+  margin: 0 0.5rem;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.main-btn:nth-child(1) {
+  background-color: var(--blue);
+}
+
+.main-btn:nth-child(2) {
+  background-color: black;
+}
+
+@media (hover: hover) {
+  .nav-link:hover {
+    color: white;
+  }
+
+  .main-btn:nth-child(2):hover {
+    box-shadow: 0 2px 16px 0 #000000;
+  }
+
+  .main-btn:nth-child(1):hover {
+    box-shadow: 0 4px 16px 0 var(--blue);
+  }
+
+  .main-btn:hover {
+    transform: translateY(-5px);
+  }
+}
