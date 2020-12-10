@@ -60,6 +60,7 @@ module.exports = {
       "Has sido **baneado** de **{guild_name}**, Razón: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} Ha sido baneado de este servidor. Razón: **{ban_reason}**. Tambien le he enviado un DM al usuario para hacerle saber.",
+    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Mi rol no es mas alto que el rol **{role}**!",
@@ -139,12 +140,16 @@ module.exports = {
     SECONDS: "Segundos",
     VOLUME: "Volumen",
     PROVIDE_SEARCH: "Proporcione una consulta de búsqueda",
-    ADDED_TO_QUEUE: "Cancion añadida a la cola | {songs} En cola",
+    ADDED_TO_QUEUE: "{song} ha sido añadida a la cola",
+    ADDED_PL_TO_QUEUE: "Playlist añadida a la cola ({length} canciones)",
+    PROVIDER_NOT_SUPP: "Ese proveedor no esta soportado",
     NOW_PLAYING: "Sonando ahora:",
     REQUESTED_BY: "Pedida por:",
     NO_PERMS: "No tengo los permisos correctos para ese canal de voz!",
     NOT_SAME_VC: "Debes estar en el mismo canal de voz que el bot",
     ALREADY_IN_VC: "Ya estoy en ese canal de voz",
+    MUST_BE_SAME_VC: "Debes estar en el mismo canal de voz que el bot",
+    NO_RESULTS: "Ninguna cancion fue encontrada",
   },
   ECONOMY: {
     MONEY: "Dinero",
@@ -161,7 +166,7 @@ module.exports = {
     BUY_SUCCESS: "Has comprado **{item}** pagado **{price}**",
     NOT_FOUND_STORE:
       "**{query}** No fue encontrado en la tienda, Por favor usa `{prefix}store` Para ver todos los items en la tienda",
-    ALREADY_OWN_ITEM: "You already own this item",
+    ALREADY_OWN_ITEM: "Ya tienes ese item",
     PROVIDE_VALID_AMOUNT: "Por favor proporciona una cantidad numerica valida",
     DEPOSITED_ALL: "Has depositado todo el dinero!",
     DEPOSITED_AMOUNT: "Has depositado **{amount} Monedas**",
@@ -201,6 +206,12 @@ module.exports = {
     ADDED_TO_STORE: "{item} fue añadido en el a la tienda!",
     NOT_IN_STORE: "**{item}** no existe en la tienda!",
     REMOVED_FROM_STORE: "{item} fue removido de la tienda!",
+    WON_SLOTS: "Has ganado y obtuviste {amount} monedas",
+    LOST_SLOTS: "Has perdido!",
+    MAX_BET: "Apuesta maxima es 500",
+    ADDED_MONEY: "Successfully added {amount} to user balance",
+    MIN_BET: "Minimum bet of 1 is required",
+    MIN_AMOUNT: "Amount must be above 0",
   },
   GAMES: {
     BETS_ON: "{member_1} Apostó a {member_2}",
@@ -221,6 +232,8 @@ module.exports = {
     WYR: "¿Que prefieres?",
     ANSWER: "Respuesta",
     QUESTION: "Pregunta",
+    YOU_WON: "Has ganado 50 monedas!",
+    BOT_WON: "El bot ha ganado!",
   },
   UTIL: {
     AVATAR: "Avatar",
@@ -336,6 +349,7 @@ module.exports = {
     DJS_V: "Version de Discord.js",
     NODE_V: "Version de NodeJS",
     REPO: "Repositorio",
+    DASHBOARD: "Dashboard",
   },
   CONFIG: {
     OPTION_CMD_WORK:
@@ -367,6 +381,8 @@ module.exports = {
       "usa `{prefix}help <nombre del comando | alias>` para ver mas informacion del comando\n Mas informacion puede ser encontrada usando el comando `botinfo`",
     OWNER_ONLY: "Solo el dueño puede ver esto!",
     NSFW_ONLY: "Para ver los comando NSFW debes estar en un canal NSFW!",
+    DISABLED: "Disabled commands (this guild only)",
+    GIVEAWAY: "Giveaway commands",
   },
   POKEMON: {
     SPECIES: "Especie",
@@ -390,5 +406,19 @@ module.exports = {
     PROVIDE_NAME: "Por favor proporciona el nombre de pokemon!",
     NOT_FOUND:
       "Ningun pokemon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
+  },
+  REACTIONS: {
+    NO_CHANNEL_ID: "Por favor proporciona el ID del canal",
+    NO_EMOJI: "Por favor proporciona un emoji valido (Emojis perzonalizados pronto™)",
+    NO_ROLE: "Por favor proporciona un rol valido",
+    CHANNEL_NOT_FOUND: "El canal con el ID `{channelId}` no fue encontrado",
+    MSG_NOT_FOUND: "El mensaje con el ID `{messageId}` no fue encontrado",
+    TITLE: "Rol por reaccion",
+    DESC: "Reacciones:",
+    SUCCESS: "Se ha enviado el mensaje con las reacciones",
+    NOT_FOUND: "Reacción no encontrada con el ID del mensaje",
+    DELETE_SUCCESS: "Se ha eliminado la reacción",
+    FOUND_NO_MSG:
+      "La reaccion fue encontrada pero el mensaje no, la reaccion ha sido eliminada de la base de datos",
   },
 };
