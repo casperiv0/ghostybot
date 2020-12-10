@@ -15,6 +15,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `command name`, `command response`
+
 ## addrole
 
 **Category:** admin
@@ -26,6 +28,8 @@
 **Member Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `member`, `role`
 
 ## addroleall
 
@@ -39,6 +43,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
+**Required Arguments:** N/A
+
 ## announce
 
 **Category:** admin
@@ -50,6 +56,8 @@
 **Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## ban
 
@@ -63,6 +71,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
+**Required Arguments:** N/A
+
 ## blacklistedwords
 
 **Category:** admin
@@ -74,6 +84,8 @@
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## config
 
@@ -87,6 +99,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## createrole
 
 **Category:** admin
@@ -98,6 +112,8 @@
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `role name`
 
 ## ctopic
 
@@ -111,6 +127,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
+**Required Arguments:** N/A
+
 ## deafen
 
 **Category:** admin
@@ -122,6 +140,8 @@
 **Member Permissions:** DEAFEN_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
+
+**Required Arguments:** `member`, `reason`
 
 ## delcmd
 
@@ -135,6 +155,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `command name`
+
 ## delete
 
 **Category:** admin
@@ -146,6 +168,8 @@
 **Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
+
+**Required Arguments:** N/A
 
 ## disable
 
@@ -159,6 +183,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `command name | category name`
+
 ## enable
 
 **Category:** exempt
@@ -170,6 +196,8 @@
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `command name | category name`
 
 ## ignoredchannels
 
@@ -183,6 +211,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## kick
 
 **Category:** admin
@@ -194,6 +224,8 @@
 **Member Permissions:** KICK_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, KICK_MEMBERS
+
+**Required Arguments:** N/A
 
 ## lockchannel
 
@@ -207,6 +239,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
+**Required Arguments:** N/A
+
 ## mute
 
 **Category:** admin
@@ -218,6 +252,8 @@
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** N/A
 
 ## nuke
 
@@ -231,6 +267,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
+**Required Arguments:** N/A
+
 ## prefix
 
 **Category:** exempt
@@ -242,6 +280,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## removerole
 
@@ -255,6 +295,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
+**Required Arguments:** N/A
+
 ## removeroleall
 
 **Category:** admin
@@ -266,6 +308,8 @@
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** N/A
 
 ## removeuserwarns
 
@@ -279,6 +323,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## say
 
 **Category:** admin
@@ -290,6 +336,8 @@
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## set
 
@@ -303,6 +351,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## stealemoji
 
 **Category:** admin
@@ -314,6 +364,8 @@
 **Member Permissions:** MANAGE_EMOJIS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
+
+**Required Arguments:** N/A
 
 ## sticky
 
@@ -327,6 +379,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
 
+**Required Arguments:** N/A
+
 ## tempmute
 
 **Category:** admin
@@ -338,6 +392,8 @@
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** N/A
 
 ## unban
 
@@ -351,6 +407,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
+**Required Arguments:** N/A
+
 ## undeafen
 
 **Category:** admin
@@ -362,6 +420,8 @@
 **Member Permissions:** DEAFEN_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
+
+**Required Arguments:** N/A
 
 ## unlockchannel
 
@@ -375,6 +435,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
+**Required Arguments:** N/A
+
 ## unmute
 
 **Category:** admin
@@ -386,6 +448,8 @@
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** N/A
 
 ## unset
 
@@ -399,6 +463,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## unsticky
 
 **Category:** admin
@@ -410,6 +476,8 @@
 **Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES, ADMINISTRATOR
+
+**Required Arguments:** N/A
 
 ## voicekick
 
@@ -423,6 +491,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MOVE_MEMBERS
 
+**Required Arguments:** N/A
+
 ## voicemute
 
 **Category:** admin
@@ -434,6 +504,8 @@
 **Member Permissions:** MUTE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
+
+**Required Arguments:** N/A
 
 ## voiceunmute
 
@@ -447,6 +519,8 @@
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
+**Required Arguments:** N/A
+
 ## warn
 
 **Category:** admin
@@ -458,6 +532,8 @@
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## warnings
 
@@ -471,6 +547,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## alpaca
 
 **Category:** animal
@@ -482,6 +560,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## bear
 
@@ -495,6 +575,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## bird
 
 **Category:** animal
@@ -506,6 +588,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## bunny
 
@@ -519,6 +603,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## camel
 
 **Category:** animal
@@ -530,6 +616,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## cat
 
@@ -543,6 +631,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## catfact
 
 **Category:** animal
@@ -554,6 +644,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## cow
 
@@ -567,6 +659,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## cowsay
 
 **Category:** animal
@@ -578,6 +672,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## dog
 
@@ -591,6 +687,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## dogfact
 
 **Category:** animal
@@ -602,6 +700,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## duck
 
@@ -615,6 +715,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## fox
 
 **Category:** animal
@@ -626,6 +728,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## koala
 
@@ -639,6 +743,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## lizard
 
 **Category:** animal
@@ -650,6 +756,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## llama
 
@@ -663,6 +771,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## owl
 
 **Category:** animal
@@ -674,6 +784,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## panda
 
@@ -687,6 +799,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## racoon
 
 **Category:** animal
@@ -698,6 +812,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## shibe
 
@@ -711,6 +827,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## snailfact
 
 **Category:** animal
@@ -722,6 +840,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## whale
 
@@ -735,6 +855,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## blacklist
 
 **Category:** botowner
@@ -746,6 +868,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## eval
 
@@ -759,6 +883,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## leaveguild
 
 **Category:** botowner
@@ -770,6 +896,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## nickname
 
@@ -783,6 +911,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## reload
 
 **Category:** botowner
@@ -794,6 +924,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## shutdown
 
@@ -807,6 +939,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## addmoney
 
 **Category:** economy
@@ -818,6 +952,8 @@
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
 
 ## balance
 
@@ -831,6 +967,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## buy
 
 **Category:** economy
@@ -842,6 +980,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `item name`
 
 ## daily
 
@@ -855,6 +995,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## deposit
 
 **Category:** economy
@@ -866,6 +1008,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `amount`
 
 ## dice
 
@@ -879,6 +1023,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## inventory
 
 **Category:** economy
@@ -890,6 +1036,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## moneyleaderboard
 
@@ -903,6 +1051,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## pay
 
 **Category:** economy
@@ -914,6 +1064,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
 
 ## profile
 
@@ -927,6 +1079,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## removemoney
 
 **Category:** economy
@@ -938,6 +1092,8 @@
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
 
 ## rob
 
@@ -951,6 +1107,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `member`, `amount`
+
 ## slots
 
 **Category:** economy
@@ -962,6 +1120,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## store
 
@@ -975,6 +1135,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## weekly
 
 **Category:** economy
@@ -986,6 +1148,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## withdraw
 
@@ -999,6 +1163,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `amount`
+
 ## work
 
 **Category:** economy
@@ -1010,6 +1176,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## 8ball
 
@@ -1023,6 +1191,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## advice
 
 **Category:** games
@@ -1034,6 +1204,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## ascii
 
@@ -1047,6 +1219,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## bet
 
 **Category:** games
@@ -1058,6 +1232,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## block
 
@@ -1071,6 +1247,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## calc
 
 **Category:** games
@@ -1082,6 +1260,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## compliment
 
@@ -1095,6 +1275,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## dadjoke
 
 **Category:** games
@@ -1106,6 +1288,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## flipcoin
 
@@ -1119,6 +1303,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## foodporn
 
 **Category:** games
@@ -1130,6 +1316,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## happiness
 
@@ -1143,6 +1331,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## iq
 
 **Category:** games
@@ -1154,6 +1344,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## lmgtfy
 
@@ -1167,6 +1359,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## meme
 
 **Category:** games
@@ -1178,6 +1372,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## ping
 
@@ -1191,6 +1387,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## randomjoke
 
 **Category:** games
@@ -1202,6 +1400,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## randomnumber
 
@@ -1215,6 +1415,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## rps
 
 **Category:** games
@@ -1227,6 +1429,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `input`
+
 ## wyr
 
 **Category:** games
@@ -1238,6 +1442,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## givend
 
@@ -1252,6 +1458,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## givreroll
 
 **Category:** giveaway
@@ -1263,6 +1471,8 @@
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## givstart
 
@@ -1277,6 +1487,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## hanal
 
 **Category:** hentainsfw
@@ -1288,6 +1500,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## hass
 
@@ -1301,6 +1515,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## hboobs
 
 **Category:** hentainsfw
@@ -1312,6 +1528,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## hentai
 
@@ -1325,6 +1543,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## neko
 
 **Category:** hentainsfw
@@ -1336,6 +1556,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## amazeme
 
@@ -1349,6 +1571,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## amazingearth
 
 **Category:** image
@@ -1360,6 +1584,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## baka
 
@@ -1373,6 +1599,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## changemymind
 
 **Category:** image
@@ -1384,6 +1612,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## clyde
 
@@ -1397,6 +1627,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## cuddle
 
 **Category:** image
@@ -1408,6 +1640,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## feed
 
@@ -1421,6 +1655,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## giphy
 
 **Category:** image
@@ -1432,6 +1668,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## hug
 
@@ -1445,6 +1683,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## imgfy
 
 **Category:** image
@@ -1456,6 +1696,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## kiss
 
@@ -1469,6 +1711,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## owo
 
 **Category:** image
@@ -1480,6 +1724,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## pat
 
@@ -1493,6 +1739,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## poke
 
 **Category:** image
@@ -1504,6 +1752,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## slap
 
@@ -1517,6 +1767,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## smug
 
 **Category:** image
@@ -1528,6 +1780,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## supreme
 
@@ -1541,6 +1795,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## tweet
 
 **Category:** image
@@ -1552,6 +1808,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## givexp
 
@@ -1565,6 +1823,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `member`, `amount`
+
 ## leaderboard
 
 **Category:** levels
@@ -1576,6 +1836,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## level
 
@@ -1589,6 +1851,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## resetxp
 
 **Category:** levels
@@ -1600,6 +1864,8 @@
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## xp
 
@@ -1613,6 +1879,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## clearqueue
 
 **Category:** music
@@ -1624,6 +1892,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## nowplaying
 
@@ -1637,6 +1907,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## pause
 
 **Category:** music
@@ -1648,6 +1920,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## play
 
@@ -1661,6 +1935,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `song`
+
 ## queue
 
 **Category:** music
@@ -1672,6 +1948,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## resume
 
@@ -1685,6 +1963,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## shuffle
 
 **Category:** music
@@ -1696,6 +1976,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## skip
 
@@ -1709,6 +1991,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## stop
 
 **Category:** music
@@ -1720,6 +2004,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## volume
 
@@ -1733,6 +2019,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## 4k
 
 **Category:** nsfw
@@ -1744,6 +2032,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## anal
 
@@ -1757,6 +2047,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## blowjob
 
 **Category:** nsfw
@@ -1768,6 +2060,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## boobs
 
@@ -1781,6 +2075,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## butt
 
 **Category:** nsfw
@@ -1792,6 +2088,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## gif
 
@@ -1805,6 +2103,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## gonewild
 
 **Category:** nsfw
@@ -1816,6 +2116,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## pussy
 
@@ -1829,6 +2131,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## spank
 
 **Category:** nsfw
@@ -1840,6 +2144,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## wallpaper
 
@@ -1853,6 +2159,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## rradd
 
 **Category:** reactions
@@ -1864,6 +2172,8 @@
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADD_REACTIONS, MANAGE_MESSAGES
+
+**Required Arguments:** `channel_id`
 
 ## rrremove
 
@@ -1877,6 +2187,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** `message_id`
+
 ## afk
 
 **Category:** util
@@ -1888,6 +2200,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## anime
 
@@ -1901,6 +2215,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## avatar
 
 **Category:** util
@@ -1912,6 +2228,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## bmi
 
@@ -1925,6 +2243,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## botinfo
 
 **Category:** util
@@ -1936,6 +2256,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## botinvite
 
@@ -1949,6 +2271,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## bugreport
 
 **Category:** util
@@ -1960,6 +2284,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## channelinfo
 
@@ -1973,6 +2299,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## channels
 
 **Category:** util
@@ -1984,6 +2312,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## define
 
@@ -1997,6 +2327,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## dependencies
 
 **Category:** util
@@ -2008,6 +2340,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## docs
 
@@ -2021,6 +2355,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## emojis
 
 **Category:** util
@@ -2032,6 +2368,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## enlarge
 
@@ -2045,6 +2383,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## feedback
 
 **Category:** util
@@ -2056,6 +2396,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## github
 
@@ -2069,6 +2411,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## hastebin
 
 **Category:** util
@@ -2080,6 +2424,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## help
 
@@ -2093,6 +2439,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## image
 
 **Category:** util
@@ -2104,6 +2452,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## imdb
 
@@ -2117,6 +2467,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## invite
 
 **Category:** util
@@ -2128,6 +2480,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES, CREATE_INSTANT_INVITE
+
+**Required Arguments:** N/A
 
 ## membercount
 
@@ -2141,6 +2495,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## minecraft
 
 **Category:** util
@@ -2152,6 +2508,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## morse
 
@@ -2165,6 +2523,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## npm
 
 **Category:** util
@@ -2176,6 +2536,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## playstore
 
@@ -2189,6 +2551,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## pokemon
 
 **Category:** util
@@ -2200,6 +2564,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## poll
 
@@ -2213,6 +2579,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## randomcolor
 
 **Category:** util
@@ -2224,6 +2592,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## roleinfo
 
@@ -2237,6 +2607,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## roles
 
 **Category:** util
@@ -2248,6 +2620,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## servericon
 
@@ -2261,6 +2635,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## serverinfo
 
 **Category:** util
@@ -2272,6 +2648,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## skin
 
@@ -2285,6 +2663,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## spotify
 
 **Category:** util
@@ -2296,6 +2676,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## suggest
 
@@ -2309,6 +2691,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## translate
 
 **Category:** util
@@ -2320,6 +2704,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## uptime
 
@@ -2333,6 +2719,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## userinfo
 
 **Category:** util
@@ -2344,6 +2732,8 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## weather
 
@@ -2357,6 +2747,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## wiki
 
 **Category:** util
@@ -2369,6 +2761,8 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
+**Required Arguments:** N/A
+
 ## worldclock
 
 **Category:** util
@@ -2380,5 +2774,7 @@
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
   

@@ -27,15 +27,17 @@ function commandItem(command) {
 **Usage:** ${`\`${command.usage || "N/A"}\``}
 
 **Member Permissions:** ${
-    !command.memberPermissions
-      ? "None"
-      : command.memberPermissions.map((p) => p).join(", ")
+    !command.memberPermissions ? "None" : command.memberPermissions.map((p) => p).join(", ")
   }
 
 **Bot Permissions:** ${
     !command.botPermissions
       ? "SEND_MESSAGES"
       : ["SEND_MESSAGES", ...command.botPermissions].map((p) => p).join(", ")
+  }
+
+**Required Arguments:** ${
+    command?.requiredArgs ? command?.requiredArgs.map((a) => `\`${a}\``).join(", ") : "N/A"
   }\n`;
 }
 
