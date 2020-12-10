@@ -150,7 +150,7 @@ const Settings = ({ guild, languages }) => {
             audit_channel: auditChannel,
             prefix: prefix,
             timezone: tz,
-            auto_delete_cmd: autoDelCmd,
+            auto_delete_cmd: autoDelCmd === "true",
           }),
         }
       );

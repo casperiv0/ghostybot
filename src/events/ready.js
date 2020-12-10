@@ -13,6 +13,8 @@ module.exports = {
       "!help | https://ghostybot.tk",
     ];
 
+    require("../helpers/unmuteHelper")(bot);
+
     Logger.log(
       "bot",
       `Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`

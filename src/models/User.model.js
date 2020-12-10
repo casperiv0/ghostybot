@@ -18,6 +18,14 @@ const userSchema = new Schema({
       reason: null,
     },
   },
+  mute: {
+    type: Object,
+    default: {
+      muted: false,
+      time: String,
+      ends_at: Number,
+    },
+  },
 });
 
 module.exports = models.User || model("User", userSchema);

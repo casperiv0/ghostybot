@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 197 commands
+  GhostyBot has a total of 198 commands
   
   ## addcmd
 
@@ -326,6 +326,18 @@
 **Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
+
+## tempmute
+
+**Category:** admin
+
+**Description:** Temporary mute someone
+
+**Usage:** `tempmute <user> <time> <reason>`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
 ## unban
 

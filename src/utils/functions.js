@@ -426,6 +426,36 @@ function escapeMarkdown(m) {
   });
 }
 
+/**
+ * @param {import("discord.js").Guild} guild
+ */
+async function findOrCreateMutedRole(guild) {
+  return (
+    guild.roles.cache.find((r) => r.name === "muted") ||
+    (await guild.roles.create({
+      data: {
+        name: "muted",
+        color: "GRAY",
+      },
+      reason: "Mute a user",
+    }))
+  );
+}
+
+/**
+ *
+ * @param {import("discord.js").Guild} guild
+ * @param {string} memberId
+ * @param {import("discord.js").PermissionObject} perms
+ */
+function updateMuteChannelPerms(guild, memberId, perms) {
+  guild.channels.cache.forEach((channel) => {
+    channel.updateOverwrite(memberId, perms).catch((e) => {
+      Logger.error("mute_user", e);
+    });
+  });
+}
+
 /* DASHBOARD FUNCTIONS */
 /**
  *
@@ -497,4 +527,6 @@ module.exports = {
   encode,
   getWebhook,
   escapeMarkdown,
+  findOrCreateMutedRole,
+  updateMuteChannelPerms,
 };
