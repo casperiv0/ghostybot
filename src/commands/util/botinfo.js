@@ -23,7 +23,7 @@ module.exports = {
         `__**${lang.BOT.INFO}:**__`,
         `
 **${lang.MEMBER.STATUS}:** ${bot.user.presence.status}
-**${lang.BOT.USERS}:** +35000
+**${lang.BOT.USERS}:** ${bot.users.cache.size}
 **${lang.BOT.GUILDS}:** ${bot.guilds.cache.size}
 **${lang.BOT.CHANNELS}:** ${bot.channels.cache.size}
 **${lang.MEMBER.CREATED_ON}:** ${createdAt}

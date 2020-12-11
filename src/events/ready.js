@@ -5,7 +5,7 @@ module.exports = {
   execute(bot) {
     const serverCount = bot.guilds.cache.size;
     const channelCount = bot.channels.cache.size;
-    const userCount = "+35000";
+    const userCount = bot.users.cache.size;
     const statuses = [
       ` ${serverCount} servers.`,
       `!help || ${channelCount} channels`,
