@@ -5,6 +5,7 @@ module.exports = {
   name: "pokemon",
   description: "Returns a pokemon information",
   category: "util",
+  requiredArgs: ["query"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");

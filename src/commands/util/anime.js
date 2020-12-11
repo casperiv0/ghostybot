@@ -5,6 +5,7 @@ module.exports = {
   name: "anime",
   description: "description",
   category: "util",
+  requiredArgs: ["name"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");
@@ -15,9 +16,7 @@ module.exports = {
 
     const msg = await message.channel.send(`${lang.UTIL.SEARCHING}..`);
 
-    const res = await fetch(
-      `https://kitsu.io/api/edge/anime?filter[text]=${search}`
-    );
+    const res = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${search}`);
     const data = await res.json();
 
     msg.delete();

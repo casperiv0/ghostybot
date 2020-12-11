@@ -6,10 +6,11 @@ module.exports = {
   description: "Get a link of hastebin for your text",
   category: "util",
   usage: "hastbin <extension (js, ts, ...)> <code>",
+  requiredArgs: ["extension", "code"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const extension = args[0];
-    const code = args.slice(1).join(" ");
+    const [extension, ...rest] = args;
+    const code = rest.join(" ");
 
     if (!extension) {
       return message.channel.send(lang.UTIL.PROVIDE_EXT);

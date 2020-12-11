@@ -15,6 +15,6 @@ module.exports = {
       .addField("Reason", reason)
       .setColor("ORANGE");
 
-    webhook.send(embed);
+    return webhook.send(embed);
   },
 };

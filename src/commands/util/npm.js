@@ -5,6 +5,7 @@ module.exports = {
   name: "npm",
   description: "Search packages on npm by their name",
   category: "util",
+  requiredArgs: ["query"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");

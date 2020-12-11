@@ -5,6 +5,7 @@ module.exports = {
   name: "define",
   description: "Define a word",
   category: "util",
+  requiredArgs: ["word"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const word = args[0];
@@ -15,9 +16,7 @@ module.exports = {
 
     wd.getDef(word.toLowerCase(), "en", null, (data) => {
       if (data.err) {
-        message.channel.send(
-          lang.UTIL.NO_DEF_FOUND.replace("{word}", word)
-        );
+        message.channel.send(lang.UTIL.NO_DEF_FOUND.replace("{word}", word));
       } else {
         const embed = BaseEmbed(message)
           .setTitle(lang.UTIL.DEF_FOR_WORD.replace("{word}", word))

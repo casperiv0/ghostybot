@@ -5,6 +5,7 @@ module.exports = {
   name: "feedback",
   description: "Give feedback about the bot",
   category: "util",
+  requiredArgs: ["message"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const feedback = args.join(" ");
@@ -13,9 +14,7 @@ module.exports = {
 
     if (!feedBackChannelId || feedBackChannelId === "") return;
 
-    const embed = BaseEmbed(message)
-      .setTitle(lang.UTIL.NEW_FEEDBACK)
-      .setDescription(feedback);
+    const embed = BaseEmbed(message).setTitle(lang.UTIL.NEW_FEEDBACK).setDescription(feedback);
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
 

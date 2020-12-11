@@ -2,6 +2,7 @@ module.exports = {
     name: "morse",
     description: "Convert a string to morse code",
     category: "util",
+    requiredArgs: ["query"],
     execute(bot, message, args) {
 
         args = args.join(" ").toLowerCase();

@@ -5,10 +5,10 @@ module.exports = {
   description: "Calculate your BMI",
   usage: "bmi <weight in kilograms> <height in centimeters>",
   category: "util",
+  requiredArgs: ["weight", "height"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const weight = args[0];
-    const height = args[1];
+    const [weight, height] = args;
 
     if (!weight) {
       return message.channel.send(lang.UTIL.BMI_KG);

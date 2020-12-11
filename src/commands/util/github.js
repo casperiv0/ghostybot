@@ -6,6 +6,7 @@ module.exports = {
   description: "Search someone on github",
   category: "util",
   aliases: ["gh"],
+  requiredArgs: ["username"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const username = args[0];

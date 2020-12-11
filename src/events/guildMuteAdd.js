@@ -19,6 +19,6 @@ module.exports = {
       embed.addField("Muted for", time);
     }
 
-    webhook.send(embed);
+    return webhook.send(embed);
   },
 };

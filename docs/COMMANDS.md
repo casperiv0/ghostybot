@@ -2215,7 +2215,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `name`
 
 ## avatar
 
@@ -2243,7 +2243,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `weight`, `height`
 
 ## botinfo
 
@@ -2285,7 +2285,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `report`
 
 ## channelinfo
 
@@ -2327,7 +2327,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `word`
 
 ## dependencies
 
@@ -2355,7 +2355,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## emojis
 
@@ -2383,7 +2383,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `emoji`
 
 ## feedback
 
@@ -2397,7 +2397,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `message`
 
 ## github
 
@@ -2411,7 +2411,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `username`
 
 ## hastebin
 
@@ -2425,7 +2425,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `extension`, `code`
 
 ## help
 
@@ -2467,7 +2467,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## invite
 
@@ -2509,7 +2509,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `server-ip`
 
 ## morse
 
@@ -2523,7 +2523,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## npm
 
@@ -2537,7 +2537,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## playstore
 
@@ -2551,7 +2551,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `app`
 
 ## pokemon
 
@@ -2565,7 +2565,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## poll
 
@@ -2579,7 +2579,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `question`
 
 ## randomcolor
 
@@ -2607,7 +2607,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `role`
 
 ## roles
 
@@ -2663,7 +2663,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `username`
 
 ## spotify
 
@@ -2691,7 +2691,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `suggestion`
 
 ## translate
 
@@ -2705,7 +2705,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `language`, `sentence`
 
 ## uptime
 
@@ -2747,13 +2747,13 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `country/city`
 
 ## wiki
 
 **Category:** util
 
-**Description:** N/A
+**Description:** Search something up on Wikipedia
 
 **Usage:** `N/A`
 
@@ -2761,7 +2761,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 ## worldclock
 

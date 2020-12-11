@@ -16,14 +16,8 @@ module.exports = {
       return message.channel.send("User wasn't found!");
     }
 
-    const { date: joinedAt, tz } = await formatDate(
-      member.joinedAt,
-      message.guild.id
-    );
-    const { date: createdAt } = await formatDate(
-      member.user.createdAt,
-      message.guild.id
-    );
+    const { date: joinedAt, tz } = await formatDate(member.joinedAt, message.guild.id);
+    const { date: createdAt } = await formatDate(member.user.createdAt, message.guild.id);
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
     const userFlags = (await member.user.fetchFlags())
@@ -37,9 +31,7 @@ module.exports = {
         .sort((a, b) => b.rawPosition - a.rawPosition)
         .map((r) => r)
         .join(", ") || "None";
-    const roleCount = member.roles.cache.filter(
-      (r) => r.id !== message.guild.id
-    ).size;
+    const roleCount = member.roles.cache.filter((r) => r.id !== message.guild.id).size;
 
     const { username, id, tag } = member.user;
 
@@ -48,11 +40,7 @@ module.exports = {
       .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
       .addField(`**${lang.MEMBER.BOT}**`, isBot, true)
       .addField(`**${lang.MEMBER.TAG}**`, tag, true)
-      .addField(
-        `**${lang.MEMBER.BADGES}**`,
-        userFlags.length > 0 ? userFlags : "None",
-        true
-      )
+      .addField(`**${lang.MEMBER.BADGES}**`, userFlags.length > 0 ? userFlags : "None", true)
       .addField(`**${lang.MEMBER.CREATED_ON}**`, `${createdAt} (${tz})`, true)
       .addField(`**${lang.MEMBER.JOINED_AT}**`, `${joinedAt} (${tz})`, true)
       .addField(`**${lang.MEMBER.NICKNAME}**`, nickname, true)

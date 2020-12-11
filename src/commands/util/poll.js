@@ -4,6 +4,7 @@ module.exports = {
   name: "poll",
   description: "Create a poll",
   category: "util",
+  requiredArgs: ["question"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const question = args.join(" ");

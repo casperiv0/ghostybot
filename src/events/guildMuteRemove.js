@@ -14,6 +14,6 @@ module.exports = {
       .addField("Executed by", executor.tag, true)
       .setColor("ORANGE");
 
-    webhook.send(embed);
+    return webhook.send(embed);
   },
 };

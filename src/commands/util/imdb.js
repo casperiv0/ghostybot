@@ -5,6 +5,7 @@ module.exports = {
   name: "imdb",
   description: "Get the information about series and movie",
   category: "util",
+  requiredArgs: ["query"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");

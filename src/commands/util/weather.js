@@ -6,6 +6,7 @@ module.exports = {
   name: "weather",
   description: "See the weather in a country/city",
   category: "util",
+  requiredArgs: ["country/city"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");

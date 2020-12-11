@@ -4,7 +4,8 @@ module.exports = {
   name: "wiki",
   aliases: ["wikipediasearch", "wikipedia"],
   category: "util",
-  description: "",
+  description: "Search something up on Wikipedia",
+  requiredArgs: ["query"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     if (!args[0]) {
@@ -25,9 +26,7 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(`${title} (read more)`)
       .setURL(url)
-      .setDescription(
-        `${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`
-      );
+      .setDescription(`${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`);
 
     message.channel.send("", embed);
   },

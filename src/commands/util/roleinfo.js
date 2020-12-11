@@ -6,6 +6,7 @@ module.exports = {
   description: "Shows info about a role",
   category: "util",
   aliases: ["role"],
+  requiredArgs: ["role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const roles = message.guild.roles.cache;

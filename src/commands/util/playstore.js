@@ -7,6 +7,7 @@ module.exports = {
   description: "Show Playstore Application Information Of Your Given Name!",
   usage: "playstore <Application Name>",
   category: "util",
+  requiredArgs: ["app"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");

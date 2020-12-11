@@ -6,6 +6,7 @@ module.exports = {
   description: "Translate a sentence",
   usage: "!translate <language> <sentence>",
   category: "util",
+  requiredArgs: ["language", "sentence"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     try {

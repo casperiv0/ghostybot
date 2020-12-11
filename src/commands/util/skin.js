@@ -7,6 +7,7 @@ module.exports = {
   description: "Search for skins from Minecraft",
   category: "util",
   aliases: ["minecraftskin"],
+  requiredArgs: ["username"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const search = args.join(" ");

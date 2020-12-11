@@ -6,6 +6,7 @@ module.exports = {
   name: "enlarge",
   description: "get your emoji enlarged",
   category: "util",
+  requiredArgs: ["emoji"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const emoji = args[0];

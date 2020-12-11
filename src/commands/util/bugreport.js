@@ -6,16 +6,14 @@ module.exports = {
   description: "Report a bug to your staff",
   category: "util",
   cooldown: 300,
+  requiredArgs: ["report"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const bug = args.join(" ");
 
     if (!reportsChannelId) {
       return message.channel.send(
-        lang.CONFIG.OPTION_CMD_WORK.replace(
-          "{option}",
-          "reportsChannelId"
-        )
+        lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId")
       );
     }
 
@@ -24,9 +22,7 @@ module.exports = {
     }
 
     const embed = BaseEmbed(message)
-      .setTitle(
-        lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag)
-      )
+      .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
       .setDescription(bug);
 
     bot.channels.cache.get(reportsChannelId).send(embed);

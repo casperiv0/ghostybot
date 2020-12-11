@@ -4,6 +4,7 @@ module.exports = {
   name: "docs",
   description: "Returns the request query from discord.js docs",
   category: "util",
+  requiredArgs: ["query"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join(" ");

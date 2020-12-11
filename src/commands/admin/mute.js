@@ -1,7 +1,4 @@
-const {
-  updateMuteChannelPerms,
-  findOrCreateMutedRole,
-} = require("../../utils/functions");
+const { updateMuteChannelPerms, findOrCreateMutedRole } = require("../../utils/functions");
 
 module.exports = {
   name: "mute",
@@ -25,11 +22,7 @@ module.exports = {
       return message.channel.send("User can't be muted");
     }
 
-    if (
-      message.guild.me.roles.highest.comparePositionTo(
-        muteMember.roles.highest
-      ) < 0
-    )
+    if (message.guild.me.roles.highest.comparePositionTo(muteMember.roles.highest) < 0)
       return message.channel.send(
         `My role must be higher than **${muteMember.user.tag}** highest role!`
       );

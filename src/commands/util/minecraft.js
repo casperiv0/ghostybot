@@ -6,6 +6,7 @@ module.exports = {
   description: "Get info about a minecraft server",
   category: "util",
   aliases: ["mc"],
+  requiredArgs: ["server-ip"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const server = args[0];
