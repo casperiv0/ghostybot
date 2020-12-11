@@ -13,5 +13,7 @@
     "botowner",
     "giveaway",
     "reactions",
-    "reminder"
+    "reminder",
+    "disabled",
+    "custom"
 ]

@@ -63,10 +63,8 @@ module.exports = {
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
-    MY_ROLE_NOT_HIGH_ENOUGH:
-      "Min roll är inte tillräckligt hög än **{role}** roll!",
-    MY_ROLE_MUST_BE_HIGHER:
-      "Min roll måste vara högre än **{member}** högsta roll!",
+    MY_ROLE_NOT_HIGH_ENOUGH: "Min roll är inte tillräckligt hög än **{role}** roll!",
+    MY_ROLE_MUST_BE_HIGHER: "Min roll måste vara högre än **{member}** högsta roll!",
     YOUR_ROLE_MUST_BE_HIGHER: "Din roll måste vara högre än **{role}** roll!",
     PROVIDE_ROLE: "Vänligen ange en roll",
     ALREADY_HAS_ROLE: "Den medlemmen har redan den rollen",
@@ -171,8 +169,7 @@ module.exports = {
     INV_EMPTY: "Användarens inventering är tom",
     INVENTORY: "Lager",
     INV_ITEMS: "Lagerartiklar",
-    VIEW_INVENTORY:
-      "Använda `{prefix}inventory <user>` för att se deras lagervaror.",
+    VIEW_INVENTORY: "Använda `{prefix}inventory <user>` för att se deras lagervaror.",
     MONEY_LEADERBOARD: "Topplista för pengar",
     TOTAL_BALANCE: "Total balans",
     BOTH_COUNTED: "Bank och pengar räknades båda",
@@ -185,12 +182,10 @@ module.exports = {
     PAY_SUCCESS: "Framgångsrikt gav **{member}** **{amount}mynt**",
     CANNOT_ROB_SELF: "Du kan inte råna dig själv!",
     BETWEEN_1_1000: "Beloppet måste vara mellan 1 och 1000",
-    MEMBER_NO_MONEY:
-      "Användaren har inga pengar, därför kan du inte råna den här användaren.",
+    MEMBER_NO_MONEY: "Användaren har inga pengar, därför kan du inte råna den här användaren.",
     ROB_SUCCESS: "Rånat framgångsrikt **{amount}mynt** från **{member}**",
     STORE: "butiken",
-    MANAGE_STORE_PERMS:
-      "Du har inte rätt behörighet att hantera butiken! (Hantera server)",
+    MANAGE_STORE_PERMS: "Du har inte rätt behörighet att hantera butiken! (Hantera server)",
     PROVIDE_VALID_ITEM: "Vänligen ange ett giltigt objekt till add/remove!",
     PRICE: "Price",
     ALREADY_EXISTS: "**{item}** finns redan i butiken!",
@@ -344,8 +339,7 @@ module.exports = {
     DASHBOARD: "Dashboard",
   },
   CONFIG: {
-    OPTION_CMD_WORK:
-      "{option} måste tillhandahållas för att detta kommando ska fungera.",
+    OPTION_CMD_WORK: "{option} måste tillhandahållas för att detta kommando ska fungera.",
   },
   HELP: {
     CAT_NOT_EXIST: "Den kategorin finns inte",
@@ -356,27 +350,31 @@ module.exports = {
     USAGE: "Användande",
     COMMAND: "Command",
     OPTIONS: "Options",
-    ADMIN: "Administration commands",
-    ANIMAL: "Djur Commands",
-    BO_CMDS: "Botägare Commands",
-    NSFW: "NSFW Commands",
-    HENTAI: "Hentai Commands",
-    GAME: "Spel Commands",
-    IMAGE: "Bild Commands",
-    MUSIC: "musik Commands",
-    UTIL: "Util Commands",
-    ECONOMY: "Ekonomi Commands",
-    LEVEL: "Nivåer Commands",
-    EXEMPT: "Undantagna kommandon (kommandon som inte kan inaktiveras)",
     GUILD_PREFIX: "Server prefix",
     CMD_DESC:
       "använda sig av `{prefix}help <command namn | alias>` för att se mer info om en command\n Mer information finns på `botinfo` command",
     OWNER_ONLY: "bara ägaren får se detta!",
     NSFW_ONLY: "För att visa nfsw-kommandon, kolla in en nfsw-kanal!",
-    DISABLED: "Disabled commands (this guild only)",
-    GIVEAWAY: "Giveaway commands",
-    REMINDER: "Reminder commands",
-    REACTIONS: "Reaction role commands"
+    CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
+    CATEGORIES: {
+      admin: "Administration commands",
+      animal: "Djur Commands",
+      botowner: "Botägare Commands",
+      nsfw: "NSFW Commands",
+      hentainsfw: "Hentai Commands",
+      games: "Spel Commands",
+      image: "Bild Commands",
+      music: "musik Commands",
+      util: "Util Commands",
+      economy: "Ekonomi Commands",
+      levels: "Nivåer Commands",
+      exempt: "Undantagna kommandon (kommandon som inte kan inaktiveras)",
+      disabled: "Disabled commands (this guild only)",
+      giveaway: "Giveaway commands",
+      reminder: "Reminder commands",
+      reactions: "Reaction role commands",
+      custom: "Custom commands",
+    },
   },
   POKEMON: {
     SPECIES: "Arter",
@@ -398,8 +396,7 @@ module.exports = {
     SPEED: "Fart",
     TOTAL: "Total",
     PROVIDE_NAME: "Ange ett pokemonnamn!",
-    NOT_FOUND:
-      "Ingen pokemon hittades med {query}. Använd rätt stavning och försök igen senare.",
+    NOT_FOUND: "Ingen pokemon hittades med {query}. Använd rätt stavning och försök igen senare.",
   },
   REACTIONS: {
     NO_CHANNEL_ID: "Please provide a channelId",
@@ -419,6 +416,6 @@ module.exports = {
     SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
-    NO_REMINDER_SET: "You don't have a reminder set"
-  }
+    NO_REMINDER_SET: "You don't have a reminder set",
+  },
 };

@@ -56,8 +56,7 @@ module.exports = {
     PROVIDE_MEMBER: "من فضلك منشن شخص",
     NOT_FOUND: "هذا الشخص غير موجود",
     CANNOT_BE_BANNED: "لا يمكنك تبنيد هذا الشخص",
-    DM_BAN_MESSAGE:
-      "لقد تم تبنيدك  **banned**من **{guild_name}**, السبب: **{ban_reason}**",
+    DM_BAN_MESSAGE: "لقد تم تبنيدك  **banned**من **{guild_name}**, السبب: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} لقد تم تبنيده بنجاح . السبب: **{ban_reason}**. لقد قمت بارسال رسالة اليه .",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
@@ -80,8 +79,7 @@ module.exports = {
     KISSED: "قام بتقبيل ",
     POKED: "قام بوخز",
     SLAPPED: "قام بصفع",
-    NO_GIPHY_KEY:
-      "No giphy api was found in the config (contact the bot owner)",
+    NO_GIPHY_KEY: "No giphy api was found in the config (contact the bot owner)",
     NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
@@ -182,8 +180,7 @@ module.exports = {
     DICE_WON: "تهانينا لقد فزت ب **{price}كوينز**",
     DICE_LOST: "تحتاج الي الرقم **6* لتفوز ب **{price}كوينز**",
     RECENTLY_WORKED: "لقد حصلت علي عملك اليومي مسبقا, {time} الوقت المتبقي",
-    WORKED:
-      "{member} عمله لليوم هو  **{job_name}** ولقد حصل علي  **{amount}**!",
+    WORKED: "{member} عمله لليوم هو  **{job_name}** ولقد حصل علي  **{amount}**!",
     CANNOT_PAY_SELF: "لا يمكنك الدفع لنفسك",
     PAY_SUCCESS: "تم اعطاء  **{member}** **{amount}كوينز **",
     CANNOT_ROB_SELF: "لا يمكنك سرقة نفسك",
@@ -307,8 +304,7 @@ module.exports = {
     DOWNLOAD_SKIN: "[تحميل الاسكين]",
     G_TRANSLATE: "ترجمة جوجل",
     NEW_SUGGESTION: "اقتراح جديد",
-    NO_SUGG_CHANNEL:
-      "لا يمتلك سرفرك قناة للاقتراحات من فضلك قم بتعيين القناة اولا",
+    NO_SUGG_CHANNEL: "لا يمتلك سرفرك قناة للاقتراحات من فضلك قم بتعيين القناة اولا",
     UPTIME: "{member} يعمل منذ  {time}",
     WEATHER: "الطقس",
     PROVIDE_COUNTRY: "من فضلك ادخل اسم المدينة",
@@ -356,26 +352,30 @@ module.exports = {
     USAGE: "الاستخدام",
     COMMAND: "الامر",
     OPTIONS: "الخيارات",
-    ADMIN: "اوامر الادمنز",
-    ANIMAL: "اوامر الحيوانات",
-    BO_CMDS: "اوامر اونر البوت",
-    NSFW: "NSFW اوامر",
-    HENTAI: "Hentai اوامر",
-    GAME: "اوامر الالعاب",
-    IMAGE: "اوامر الصورة",
-    MUSIC: "اومر الميوزك",
-    UTIL: "الاوامر العامة",
-    ECONOMY: "الاوامر الاقتصادية",
-    LEVEL: "اوامر الفلات",
-    EXEMPT: "أوامر الاستثناء (الأوامر التي لا يمكن تعطيلها)",
     GUILD_PREFIX: "بريفكس السرفر",
     CMD_DESC: "استخدم `{prefix}help <اسم الامر>",
     OWNER_ONLY: "لا يمكن عرض الاوامر هذه للمستخدمين",
     NSFW_ONLY: "لا يمكن عرض الاوامر غير بقناة NSFW",
-    DISABLED: "Disabled commands (this guild only)",
-    GIVEAWAY: "Giveaway commands",
-    REMINDER: "Reminder commands",
-    REACTIONS: "Reaction role commands"
+    CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
+    CATEGORIES: {
+      admin: "اوامر الادمنز",
+      animal: "اوامر الحيوانات",
+      botowner: "اوامر اونر البوت",
+      nsfw: "NSFW اوامر",
+      hentainsfw: "Hentai اوامر",
+      games: "اوامر الالعاب",
+      image: "اوامر الصورة",
+      music: "اومر الميوزك",
+      util: "الاوامر العامة",
+      economy: "الاوامر الاقتصادية",
+      levels: "اوامر الفلات",
+      exempt: "أوامر الاستثناء (الأوامر التي لا يمكن تعطيلها)",
+      disabled: "Disabled commands (this guild only)",
+      giveaway: "Giveaway commands",
+      reminder: "Reminder commands",
+      reactions: "Reaction role commands",
+      custom: "Custom commands"
+    },
   },
   POKEMON: {
     SPECIES: "النوع",
@@ -397,8 +397,7 @@ module.exports = {
     SPEED: "السرعة",
     TOTAL: "الاجمالي",
     PROVIDE_NAME: "من فضلك ادخل اسم بوكيمون",
-    NOT_FOUND:
-      "لم يتم العثور علي {query}. من فضلك تحقق من التهجئة الصحيحة وحاول مرة اخري",
+    NOT_FOUND: "لم يتم العثور علي {query}. من فضلك تحقق من التهجئة الصحيحة وحاول مرة اخري",
   },
   REACTIONS: {
     NO_CHANNEL_ID: "Please provide a channelId",
@@ -418,6 +417,6 @@ module.exports = {
     SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
-    NO_REMINDER_SET: "You don't have a reminder set"
-  }
+    NO_REMINDER_SET: "You don't have a reminder set",
+  },
 };

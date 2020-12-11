@@ -56,16 +56,14 @@ module.exports = {
     PROVIDE_MEMBER: "Please provide a member",
     NOT_FOUND: "Member was not found",
     CANNOT_BE_BANNED: "That member cannot be banned",
-    DM_BAN_MESSAGE:
-      "You have been **banned** from **{guild_name}**, Reason: **{ban_reason}**",
+    DM_BAN_MESSAGE: "You have been **banned** from **{guild_name}**, Reason: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} was successfully banned from the server. Reason: **{ban_reason}**. I have also send a DM letting the person know.",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "My role is not high enough than **{role}** role!",
-    MY_ROLE_MUST_BE_HIGHER:
-      "My role must be higher than **{member}** highest role!",
+    MY_ROLE_MUST_BE_HIGHER: "My role must be higher than **{member}** highest role!",
     YOUR_ROLE_MUST_BE_HIGHER: "Your role must be higher than **{role}** role!",
     PROVIDE_ROLE: "Please provide a role",
     ALREADY_HAS_ROLE: "That member already has that role",
@@ -81,8 +79,7 @@ module.exports = {
     KISSED: "kissed",
     POKED: "poked",
     SLAPPED: "slapped",
-    NO_GIPHY_KEY:
-      "No giphy api was found in the config (contact the bot owner)",
+    NO_GIPHY_KEY: "No giphy api was found in the config (contact the bot owner)",
     NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
@@ -176,8 +173,7 @@ module.exports = {
     INV_EMPTY: "User's inventory is empty",
     INVENTORY: "Inventory",
     INV_ITEMS: "Inventory Items",
-    VIEW_INVENTORY:
-      "Use `{prefix}inventory <user>` to view their inventory items.",
+    VIEW_INVENTORY: "Use `{prefix}inventory <user>` to view their inventory items.",
     MONEY_LEADERBOARD: "Money leaderboard",
     TOTAL_BALANCE: "Total Balance",
     BOTH_COUNTED: "Bank & Money both counted",
@@ -190,8 +186,7 @@ module.exports = {
     PAY_SUCCESS: "Successfully gave **{member}** **{amount}coins**",
     CANNOT_ROB_SELF: "You can't rob yourself!",
     BETWEEN_1_1000: "Amount must be between 1 and 1000",
-    MEMBER_NO_MONEY:
-      "User doesn't have any money, therefore you can't rob this user.",
+    MEMBER_NO_MONEY: "User doesn't have any money, therefore you can't rob this user.",
     ROB_SUCCESS: "Successfully robbed **{amount}coins** from **{member}**",
     STORE: "Store",
     MANAGE_STORE_PERMS:
@@ -361,27 +356,32 @@ module.exports = {
     USAGE: "Usage",
     COMMAND: "Command",
     OPTIONS: "Options",
-    ADMIN: "Admin commands",
-    ANIMAL: "Animal Commands",
-    BO_CMDS: "BotOwner Commands",
-    NSFW: "NSFW Commands",
-    HENTAI: "Hentai Commands",
-    GAME: "Game Commands",
-    IMAGE: "Image Commands",
-    MUSIC: "Music Commands",
-    UTIL: "Util Commands",
-    ECONOMY: "Economy Commands",
-    LEVEL: "Levels Commands",
-    EXEMPT: "Exempt Commands (commands that cannot be disabled)",
+    EXEMPT: "",
     GUILD_PREFIX: "Server prefix",
     CMD_DESC:
       "use `{prefix}help <command name | alias>` to view more info about a command\n More info can be found using the `botinfo` command",
     OWNER_ONLY: "only the owner is allowed to see this!",
     NSFW_ONLY: "To view nfsw commands check in an nfsw channel!",
-    DISABLED: "Disabled commands (this guild only)",
-    GIVEAWAY: "Giveaway commands",
-    REMINDER: "Reminder commands",
-    REACTIONS: "Reaction role commands"
+    CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
+    CATEGORIES: {
+      admin: "Admin commands",
+      animal: "Animal Commands",
+      botowner: "BotOwner Commands",
+      nsfw: "NSFW Commands",
+      hentainsfw: "Hentai Commands",
+      games: "Game Commands",
+      image: "Image Commands",
+      music: "Music Commands",
+      util: "Util Commands",
+      economy: "Economy Commands",
+      levels: "Levels Commands",
+      exempt: "Exempt Commands (commands that cannot be disabled)",
+      disabled: "Disabled commands (this guild only)",
+      giveaway: "Giveaway commands",
+      reminder: "Reminder commands",
+      reactions: "Reaction role commands",
+      custom: "Custom commands",
+    },
   },
   POKEMON: {
     SPECIES: "Species",
@@ -424,6 +424,6 @@ module.exports = {
     SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
-    NO_REMINDER_SET: "You don't have a reminder set"
-  }
+    NO_REMINDER_SET: "You don't have a reminder set",
+  },
 };

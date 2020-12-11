@@ -56,8 +56,7 @@ module.exports = {
     PROVIDE_MEMBER: "Por favor proporciona un miembro",
     NOT_FOUND: "Miembro no encontrado",
     CANNOT_BE_BANNED: "Ese miembro no puede ser baneado",
-    DM_BAN_MESSAGE:
-      "Has sido **baneado** de **{guild_name}**, Razón: **{ban_reason}**",
+    DM_BAN_MESSAGE: "Has sido **baneado** de **{guild_name}**, Razón: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} Ha sido baneado de este servidor. Razón: **{ban_reason}**. Tambien le he enviado un DM al usuario para hacerle saber.",
     BOT_DATA: "Datos del bot no guardados, por lo tanto no puedo buscar esa informacion",
@@ -176,25 +175,21 @@ module.exports = {
     INV_EMPTY: "El inventario del usuario esta vacio",
     INVENTORY: "Inventario",
     INV_ITEMS: "Inventario de items",
-    VIEW_INVENTORY:
-      "Usa `{prefix}inventory <usuario>` Para su inventario de items.",
+    VIEW_INVENTORY: "Usa `{prefix}inventory <usuario>` Para su inventario de items.",
     MONEY_LEADERBOARD: "Tabla de clasificación de dinero",
     TOTAL_BALANCE: "Balance total",
     BOTH_COUNTED: "Dinero de banco y bolsillo contados",
     DICE_LANDED: "Ha caido un: {roll}",
     DICE_WON: "Felicidades! has ganado un premio de **{price} Monedas**",
-    DICE_LOST:
-      "Necesitas que caiga un **6** para obtener un premio de **{price} Monedas**",
+    DICE_LOST: "Necesitas que caiga un **6** para obtener un premio de **{price} Monedas**",
     RECENTLY_WORKED: "Ya has trabajado recientemente, {time} restante",
     WORKED: "{member} trabajó de **{job_name}** y obtuvo **{amount}**!",
     CANNOT_PAY_SELF: "No te puedes pagar a ti mismo",
     PAY_SUCCESS: "Has dado a **{member}** **{amount} Monedas**",
     CANNOT_ROB_SELF: "No te puedes robar a ti mismo!",
     BETWEEN_1_1000: "La cantidad debe estar entre 1 y 1000",
-    MEMBER_NO_MONEY:
-      "El usuario no tiene ese dinero, por lo tanto no lo puedes robar.",
-    ROB_SUCCESS:
-      "Has robado una cantidad de **{amount} Monedas** a **{member}**",
+    MEMBER_NO_MONEY: "El usuario no tiene ese dinero, por lo tanto no lo puedes robar.",
+    ROB_SUCCESS: "Has robado una cantidad de **{amount} Monedas** a **{member}**",
     STORE: "Tienda",
     MANAGE_STORE_PERMS:
       "No tienes los permisos correctos para manejar la tienda! (Administrar servidor)",
@@ -270,8 +265,7 @@ module.exports = {
     GH_BIO: "Biografia",
     GH_PROVIDE_USERNAME: "Proporciona un usuario!",
     SEARCHING: "Buscando",
-    PROVIDE_EXT:
-      "Por favor proporciona una extencion, e.j.: `ts`, `js`, `html`, ...",
+    PROVIDE_EXT: "Por favor proporciona una extencion, e.j.: `ts`, `js`, `html`, ...",
     PROVIDE_CODE: "Por favor proporciona codigo",
     NO_IMG_FOUND: "Imagen no encontrada",
     PROVIDE_M_S: "Por favor proporciona el nombre de la pelicula o serie",
@@ -352,8 +346,7 @@ module.exports = {
     DASHBOARD: "Dashboard",
   },
   CONFIG: {
-    OPTION_CMD_WORK:
-      "{option} necesita ser proporcionada, para que el comando funcione.",
+    OPTION_CMD_WORK: "{option} necesita ser proporcionada, para que el comando funcione.",
   },
   HELP: {
     CAT_NOT_EXIST: "Esa categoria no fue encontrada",
@@ -364,27 +357,31 @@ module.exports = {
     USAGE: "Uso",
     COMMAND: "Comando",
     OPTIONS: "Opciones",
-    ADMIN: "Comandos de admins",
-    ANIMAL: "Comandos de animales",
-    BO_CMDS: "Comandos del dueño del bot",
-    NSFW: "Comandos NSFW",
-    HENTAI: "Comandos Hentai",
-    GAME: "Comandos de juegos",
-    IMAGE: "Comandos de imagenes",
-    MUSIC: "Comandos de musica",
-    UTIL: "Comandos de utilidad",
-    ECONOMY: "Comandos de economia",
-    LEVEL: "Comandos de niveles",
-    EXEMPT: "Comandos exentos (comandos que no pueden ser deshabilitados)",
     GUILD_PREFIX: "Prefijo del servidor",
     CMD_DESC:
       "usa `{prefix}help <nombre del comando | alias>` para ver mas informacion del comando\n Mas informacion puede ser encontrada usando el comando `botinfo`",
     OWNER_ONLY: "Solo el dueño puede ver esto!",
     NSFW_ONLY: "Para ver los comando NSFW debes estar en un canal NSFW!",
-    DISABLED: "Disabled commands (this guild only)",
-    GIVEAWAY: "Giveaway commands",
-    REMINDER: "Reminder commands",
-    REACTIONS: "Reaction role commands"
+    CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
+    CATEGORIES: {
+      admin: "Comandos de admins",
+      animal: "Comandos de animales",
+      botowner: "Comandos del dueño del bot",
+      nsfw: "Comandos NSFW",
+      hentainsfw: "Comandos Hentai",
+      games: "Comandos de juegos",
+      image: "Comandos de imagenes",
+      music: "Comandos de musica",
+      util: "Comandos de utilidad",
+      economy: "Comandos de economia",
+      levels: "Comandos de niveles",
+      exempt: "Comandos exentos (comandos que no pueden ser deshabilitados)",
+      disabled: "Disabled commands (this guild only)",
+      giveaway: "Giveaway commands",
+      reminder: "Reminder commands",
+      reactions: "Reaction role commands",
+      custom: "Custom commands"
+    },
   },
   POKEMON: {
     SPECIES: "Especie",
@@ -427,6 +424,6 @@ module.exports = {
     SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
-    NO_REMINDER_SET: "You don't have a reminder set"
-  }
+    NO_REMINDER_SET: "You don't have a reminder set",
+  },
 };
