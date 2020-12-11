@@ -374,6 +374,8 @@ module.exports = {
     NSFW_ONLY: "لا يمكن عرض الاوامر غير بقناة NSFW",
     DISABLED: "Disabled commands (this guild only)",
     GIVEAWAY: "Giveaway commands",
+    REMINDER: "Reminder commands",
+    REACTIONS: "Reaction role commands"
   },
   POKEMON: {
     SPECIES: "النوع",
@@ -412,4 +414,10 @@ module.exports = {
     FOUND_NO_MSG:
       "Reaction was found but the message was not, reaction was deleted from the database",
   },
+  REMINDER: {
+    SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
+    REMOVE_SUCCESS: "Successfully removed your reminder",
+    ALREADY_ON: "You already have a reminder set",
+    NO_REMINDER_SET: "You don't have a reminder set"
+  }
 };

@@ -14,6 +14,7 @@ module.exports = {
     ];
 
     require("../helpers/unmuteHelper")(bot);
+    require("../helpers/reminderHelper")(bot);
 
     Logger.log(
       "bot",

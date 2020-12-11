@@ -27,6 +27,16 @@ const userSchema = new Schema({
       reason: String,
     },
   },
+  reminder: {
+    type: Object,
+    default: {
+      channel_id: null,
+      ends_at: null,
+      msg: null,
+      on: false,
+      time: null,
+    },
+  },
 });
 
 module.exports = models.User || model("User", userSchema);

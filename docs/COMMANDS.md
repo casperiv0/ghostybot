@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 198 commands
+  GhostyBot has a total of 200 commands
   
   ## addcmd
 
@@ -2188,6 +2188,34 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `message_id`
+
+## removereminder
+
+**Category:** reminder
+
+**Description:** Remove your current reminder
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+## setreminder
+
+**Category:** reminder
+
+**Description:** Set a reminder, the bot will ping you when the timer runs out
+
+**Usage:** `setreminder <time> <message>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `time`, `message`
 
 ## afk
 

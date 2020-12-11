@@ -92,6 +92,7 @@ module.exports = {
 
     const commands = bot.commands;
 
+    // TODO: clean this up
     const utilsCmds = commands
       .filter(({ category }) => category === "util")
       .map(({ name }) => name)
@@ -144,6 +145,14 @@ module.exports = {
       .filter(({ category }) => category === "giveaway")
       .map(({ name }) => name)
       .join(", ");
+    const reactionsCmds = commands
+      .filter(({ category }) => category === "reactions")
+      .map(({ name }) => name)
+      .join(", ");
+    const reminderCmds = commands
+      .filter(({ category }) => category === "reminder")
+      .map(({ name }) => name)
+      .join(", ");
 
     const disabledCmds = !guild.disabled_commands[0]
       ? lang.GLOBAL.NONE
@@ -172,6 +181,8 @@ module.exports = {
       .addField(lang.HELP.LEVEL, `\`\`\`${levelCmds}\`\`\``)
       .addField(lang.HELP.EXEMPT, `\`\`\`${exemptCmds}\`\`\``)
       .addField(lang.HELP.GIVEAWAY, `\`\`\`${giveawayCmds}\`\`\``)
+      .addField(lang.HELP.REACTIONS, `\`\`\`${reactionsCmds}\`\`\``)
+      .addField(lang.HELP.REMINDER, `\`\`\`${reminderCmds}\`\`\``)
       .addField(lang.HELP.DISABLED, disabledCmds)
       .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
       .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))

@@ -11,5 +11,7 @@
     "util",
     "exempt",
     "botowner",
-    "giveaway"
+    "giveaway",
+    "reactions",
+    "reminder"
 ]
