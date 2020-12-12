@@ -40,6 +40,10 @@ module.exports = {
     const roleMsg = roleMsgs.first();
     roles = parseRoles(roleMsg, guild);
 
+    if (!roles[0]) {
+      return message.channel.send("You must provide a valid role id!");
+    }
+
     message.channel.send(
       "Please send your emojis below. The order will match with the order of the roles. Separate with a space"
     );
@@ -51,6 +55,10 @@ module.exports = {
     });
     const emojiMsg = emojiMsgs.first();
     emojis = parseEmojis(emojiMsg);
+
+    if (!emojis[0]) {
+      return message.channel.send("You must provide a valid emojis (no custom emojis)!");
+    }
 
     const embed = BaseEmbed(message)
       .setTitle(lang.REACTIONS.TITLE)

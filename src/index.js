@@ -5,7 +5,7 @@ const TnaiClient = require("tnai");
 const imdb = require("imdb-api");
 const AlexClient = require("alexflipnote.js");
 const { Collection, Client } = require("discord.js");
-const { token, imdbKey, alexflipnoteKey } = require("../config.json");
+const { token, imdbKey, alexflipnoteKey, dashboard } = require("../config.json");
 const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
 const {
@@ -82,7 +82,10 @@ bot.giveawayManager = giveawayManager;
 require("moment-duration-format");
 require("./modules/command")(bot);
 require("./modules/events")(bot);
-require("./server")(bot);
+if (dashboard?.enabled) {
+  require("./server")(bot);
+}
+
 if (bot.commands.size >= 198) {
   require("./scripts/generateCommandList")(bot);
 }
@@ -92,9 +95,7 @@ bot.login(token);
 // Unhandled errors
 process.on("unhandledRejection", (error) => sendErrorLog(bot, error, "error"));
 
-process.on("uncaughtExceptionMonitor", (error) =>
-  sendErrorLog(bot, error, "error")
-);
+process.on("uncaughtExceptionMonitor", (error) => sendErrorLog(bot, error, "error"));
 
 process.on("warning", (warning) => {
   if (warning.stack.startsWith("(node:13988) [DEP0148]")) return;

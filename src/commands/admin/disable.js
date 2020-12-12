@@ -11,7 +11,7 @@ module.exports = {
   async execute(bot, message, args) {
     const option = args[0];
     const saveCommands = ["help", "enable", "disable"];
-    const saveCategories = ["botowner", "exempt"];
+    const saveCategories = ["botowner", "exempt", "disabled", "custom"];
 
     if (!option) {
       return message.channel.send("Please provide a command or category name");

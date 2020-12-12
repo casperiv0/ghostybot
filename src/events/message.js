@@ -178,7 +178,7 @@ module.exports = {
           const cmdExample = `${matchedPrefix}${cmd.name} ${cmd.requiredArgs
             .map((a) => `<${a}>`)
             .join(" ")}`;
-            
+
           const embed = BaseEmbed(message)
             .setTitle("Incorrect command usage")
             .setColor("RED")

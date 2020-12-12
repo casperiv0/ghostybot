@@ -11,6 +11,7 @@
     "errorLogsChannelId": "",
     "alexflipnoteKey": "",
     "dashboard": {
+        "enabled": true,
         "discordApiUrl": "https://discordapp.com/api/v8/",
         "jwtSecret": "",
         "clientId": "",

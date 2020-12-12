@@ -85,7 +85,7 @@ const ManageCategories = ({ guild }) => {
 
       <div className="grid">
         {filtered
-          .filter((category) => !["botowner", "exempt"].includes(category))
+          .filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
           .map((category, idx) => {
             const isDisabled = guild.disabled_categories?.find(
               (c) => c === category
