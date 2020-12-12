@@ -7,7 +7,7 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(role.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const embed = new MessageEmbed()
       .setTitle("New role Created")

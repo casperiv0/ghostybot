@@ -6,7 +6,7 @@ module.exports = {
     if (!role.guild) return;
     if (!role.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
     const webhook = await bot.getWebhook(role.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const embed = new MessageEmbed()
       .setTitle("Role deleted")

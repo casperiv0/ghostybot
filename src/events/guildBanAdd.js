@@ -6,7 +6,7 @@ module.exports = {
     if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
 
     const webhook = await bot.getWebhook(guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const audit = await (await guild.fetchAuditLogs()).entries.first();
 

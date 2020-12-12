@@ -5,7 +5,7 @@ module.exports = {
   description: "Mute a user",
   category: "admin",
   usage: "mute <@user>",
-  botPermissions: ["MANAGE_ROLES"],
+  botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
     const muteMember = bot.findMember(message, args);

@@ -4,7 +4,7 @@ module.exports = {
   name: "guildMuteAdd",
   async execute(bot, guild, mute) {
     const webhook = await bot.getWebhook(guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const { member, executor, tempMute, time, reason } = mute;
 

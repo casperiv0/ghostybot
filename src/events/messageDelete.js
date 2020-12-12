@@ -8,7 +8,7 @@ module.exports = {
     }
     if (!message.guild) return;
     const webhook = await bot.getWebhook(message.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     if (message.author?.id === bot.user.id) return;
 

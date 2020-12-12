@@ -9,7 +9,7 @@ module.exports = {
   name: "tempmute",
   description: "Temporary mute someone",
   category: "admin",
-  botPermissions: ["MANAGE_ROLES"],
+  botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
   usage: "tempmute <user> <time> <reason>",
   async execute(bot, message, args) {

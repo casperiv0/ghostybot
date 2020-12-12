@@ -9,7 +9,7 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(newMsg.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
     const guild = await getGuildById(newMsg.guild.id);
 
     const blacklistedWords = guild.blacklistedwords;

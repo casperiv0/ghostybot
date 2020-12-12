@@ -8,7 +8,7 @@ module.exports = {
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
     const webhook = await bot.getWebhook(newMember.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)

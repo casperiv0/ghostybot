@@ -4,7 +4,7 @@ module.exports = {
   name: "guildKickAdd",
   async execute(bot, guild, kick) {
     const webhook = await bot.getWebhook(guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     const { member, executor, reason } = kick;
 

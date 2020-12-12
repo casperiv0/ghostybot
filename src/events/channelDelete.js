@@ -8,7 +8,7 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(channel.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     let msg = "";
     if (channel.type === "category") {

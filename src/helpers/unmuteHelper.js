@@ -15,6 +15,7 @@ module.exports = async (bot) => {
       .forEach(async (user) => {
         const guild = bot.guilds.cache.get(user.guild_id);
         if (!guild) return;
+        if (!guild.me.hasPermission(["MANAGE_WEBHOOKS", "MANAGE_CHANNELS"])) return;
 
         const member =
           guild.members.cache.get(user.user_id) || (await guild.members.fetch(user.user_id));

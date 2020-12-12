@@ -9,7 +9,7 @@ module.exports = {
     }
 
     const webhook = await bot.getWebhook(channel.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     let msg = "";
 

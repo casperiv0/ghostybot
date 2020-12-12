@@ -251,7 +251,7 @@
 
 **Member Permissions:** MANAGE_ROLES
 
-**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
 
@@ -391,7 +391,7 @@
 
 **Member Permissions:** MANAGE_ROLES
 
-**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
 
@@ -445,7 +445,7 @@
 
 **Usage:** `unmute <@user>`
 
-**Member Permissions:** MANAGE_ROLES
+**Member Permissions:** MANAGE_ROLES, MANAGE_CHANNELS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 

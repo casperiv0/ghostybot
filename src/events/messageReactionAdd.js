@@ -5,7 +5,7 @@ module.exports = {
   async execute(bot, react, user) {
     if (user.bot) return;
     const { guild } = react.message;
-    if (!guild.me.hasPermission("MANAGE_MESSAGES")) return;
+    if (!guild.me.hasPermission(["MANAGE_MESSAGES", "MANAGE_ROLES"])) return;
     if (!guild) return;
     const member = guild.members.cache.get(user.id);
     if (!member) return;

@@ -7,7 +7,7 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(newEm.guild);
-    if (webhook === null) return;
+   if (!webhook) return;
 
     let msg = "";
 
