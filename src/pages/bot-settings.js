@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 import AlertMessage from "../dashboard/components/AlertMessage";
 
 const BotSettings = () => {
@@ -6,6 +7,9 @@ const BotSettings = () => {
 
   return (
     <>
+      <Head>
+        <title>Bot Settings - GhostyBot</title>
+      </Head>
       <AlertMessage message="Any actions done on this page will not take effect yet, this page is still a WIP" />
       <div className="page-title">
         <h4>Bot Settings</h4>
@@ -28,9 +32,15 @@ const BotSettings = () => {
       <div>
         <h1 className="danger-zone-title">Danger zone</h1>
         <div className="grid">
-          <button disabled className="btn btn-red">Restart bot</button>
-          <button disabled className="btn btn-red">Reload all commands</button>
-          <button disabled className="btn btn-red">Shutdown</button>
+          <button disabled className="btn btn-red">
+            Restart bot
+          </button>
+          <button disabled className="btn btn-red">
+            Reload all commands
+          </button>
+          <button disabled className="btn btn-red">
+            Shutdown
+          </button>
         </div>
       </div>
     </>

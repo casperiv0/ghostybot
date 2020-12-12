@@ -4,7 +4,7 @@ const Landing = () => {
   return (
     <>
       <nav className="nav-bar">
-        <div className="nav-content">
+        <div className="nav-content-landing">
           <a href="#" className="nav-icon">
             Ghostybot
           </a>
@@ -13,12 +13,12 @@ const Landing = () => {
               Dashboard
             </a>
             <a
-              href="https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8"
+              href="/add"
               className="nav-link invite-btn"
             >
               Invite
             </a>
-            <a className="nav-link" href="https://discord.gg/XxHrtkA">
+            <a className="nav-link" href="/support">
               Support server
             </a>
           </div>
@@ -36,7 +36,7 @@ const Landing = () => {
             target="_blank"
             rel="noreferrer opener"
             className="main-btn"
-            href="https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8"
+            href="/add"
           >
             Add To discord
           </a>

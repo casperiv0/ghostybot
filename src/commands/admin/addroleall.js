@@ -5,6 +5,7 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_ROLES", "ADMINISTRATOR"],
   botPermissions: ["MANAGE_ROLES"],
+  requiredArgs: ["role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const role =

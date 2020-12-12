@@ -1,6 +1,7 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import Logger from "../../../modules/Logger";
@@ -20,9 +21,9 @@ const CustomCommands = ({ guild }) => {
     try {
       const data = await (
         await fetch(
-          `${dashboard.dashboardUrl}/api/guilds/${
-            guild.id
-          }/commands?name=${encodeURIComponent(name)}`,
+          `${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands?name=${encodeURIComponent(
+            name
+          )}`,
           {
             method: "DELETE",
           }
@@ -45,6 +46,9 @@ const CustomCommands = ({ guild }) => {
 
   return (
     <>
+      <Head>
+        <title>Manage custom commands - GhostyBot</title>
+      </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <CreateCommandModal guild={guild} />
       <div className="page-title">
@@ -54,10 +58,7 @@ const CustomCommands = ({ guild }) => {
           <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
             Return
           </a>
-          <button
-            className="btn btn-primary  ml-5"
-            onClick={addCmd}
-          >
+          <button className="btn btn-primary  ml-5" onClick={addCmd}>
             Add command
           </button>
         </div>
@@ -79,10 +80,7 @@ const CustomCommands = ({ guild }) => {
                   <td>{cmd.name}</td>
                   <td className="cmd-response">{cmd.response}</td>
                   <td className="table-actions">
-                    <button
-                      onClick={() => deleteCommand(cmd.name)}
-                      className="btn btn-sm btn-red"
-                    >
+                    <button onClick={() => deleteCommand(cmd.name)} className="btn btn-sm btn-red">
                       Delete
                     </button>
                   </td>

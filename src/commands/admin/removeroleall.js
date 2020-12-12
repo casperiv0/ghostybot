@@ -5,6 +5,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
+  requiredArgs: ["role"],
   async execute(bot, message, args) {
     const role =
       message.guild.roles.cache.find(

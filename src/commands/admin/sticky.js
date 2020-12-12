@@ -6,6 +6,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_MESSAGES"],
   memberPermissions: ["MANAGE_MESSAGES"],
+  requiredArgs: ["message"],
   async execute(bot, message, args) {
     const stickyMsg = args.join(" ");
 
@@ -14,9 +15,7 @@ module.exports = {
     }
 
     if (stickyMsg.length > 1800) {
-      return message.channel.send(
-        "Your sticky message can not be longer than 1800 characters!"
-      );
+      return message.channel.send("Your sticky message can not be longer than 1800 characters!");
     }
 
     const msg = `__***:warning: Sticky Message, Read Before Typing! :warning:***__ \n\n ${stickyMsg}`;

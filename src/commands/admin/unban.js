@@ -4,6 +4,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["BAN_MEMBERS"],
   memberPermissions: ["BAN_MEMBERS"],
+  requiredArgs: ["member_id"],
   async execute(bot, message, args) {
     const userId = args[0];
 

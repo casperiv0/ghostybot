@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { openModal } from "../../../dashboard/components/modal";
@@ -29,9 +30,7 @@ const BlacklistedWords = ({ guild }) => {
       ).json();
 
       if (data.status === "success") {
-        router.push(
-          `/dashboard/${guild.id}/blacklisted-words?message=${data.message}`
-        );
+        router.push(`/dashboard/${guild.id}/blacklisted-words?message=${data.message}`);
       }
 
       setMessage(data?.error);
@@ -46,6 +45,9 @@ const BlacklistedWords = ({ guild }) => {
 
   return (
     <>
+      <Head>
+        <title>Manage blacklisted words - GhostyBot</title>
+      </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <AddBlacklistedWord guild={guild} />
       <div className="page-title">
@@ -55,10 +57,7 @@ const BlacklistedWords = ({ guild }) => {
           <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
             Return
           </a>
-          <button
-            className="btn btn-primary ml-5"
-            onClick={addWord}
-          >
+          <button className="btn btn-primary ml-5" onClick={addWord}>
             Add word
           </button>
         </div>
@@ -78,10 +77,7 @@ const BlacklistedWords = ({ guild }) => {
                 <tr key={idx}>
                   <td className="cmd-response">{word}</td>
                   <td className="table-actions">
-                    <button
-                      onClick={() => deleteWord(word)}
-                      className="btn btn-sm btn-red"
-                    >
+                    <button onClick={() => deleteWord(word)} className="btn btn-sm btn-red">
                       Delete
                     </button>
                   </td>

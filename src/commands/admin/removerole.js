@@ -5,37 +5,24 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
+  requiredArgs: ["member", "role"],
   async execute(bot, message, args) {
-    const needsRole =
-      message.guild.member(message.mentions.users.first()) ||
-      message.guild.members.get(args[0]);
+    const needsRole = bot.findMember(message, args);
     const role =
-      message.guild.roles.cache.find(
-        (role) => role.name === args.join(" ").slice(23)
-      ) ||
+      message.guild.roles.cache.find((role) => role.name === args.join(" ").slice(23)) ||
       message.mentions.roles.first() ||
       message.guild.roles.cache.get(args.join(" ").slice(23));
 
     if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-      return message.channel.send(
-        `My role must be higher than **${role.name}** role!`
-      );
+      return message.channel.send(`My role must be higher than **${role.name}** role!`);
     }
 
     if (message.member.roles.highest.comparePositionTo(role) < 0) {
-      return message.channel.send(
-        `Your role is not high enough than **${role.name}** role!`
-      );
+      return message.channel.send(`Your role is not high enough than **${role.name}** role!`);
     }
 
-    if (
-      message.guild.me.roles.highest.comparePositionTo(
-        needsRole.roles.highest
-      ) < 0
-    ) {
-      return message.channel.send(
-        `My role must be higher than **${needsRole.tag}** highest role!`
-      );
+    if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+      return message.channel.send(`My role must be higher than **${needsRole.tag}** highest role!`);
     }
 
     if (!needsRole) {
@@ -48,8 +35,6 @@ module.exports = {
 
     needsRole.roles.remove(role.id);
 
-    message.channel.send(
-      `Successfully removed **${role.name}** from ${needsRole}`
-    );
+    message.channel.send(`Successfully removed **${role.name}** from ${needsRole}`);
   },
 };

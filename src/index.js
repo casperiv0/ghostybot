@@ -86,7 +86,7 @@ if (dashboard?.enabled) {
   require("./server")(bot);
 }
 
-if (bot.commands.size >= 198) {
+if (bot.commands.size >= 200) {
   require("./scripts/generateCommandList")(bot);
 }
 

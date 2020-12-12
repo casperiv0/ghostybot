@@ -5,10 +5,10 @@ module.exports = {
   async execute(bot, oldMember, newMember) {
     if (!newMember.guild) return;
     if (!newMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
-    const avatar = newMember.user.displayAvatarURL({ dynamic: true });
 
+    const avatar = newMember.user.displayAvatarURL({ dynamic: true });
     const webhook = await bot.getWebhook(newMember.guild);
-   if (!webhook) return;
+    if (!webhook) return;
 
     const embed = new MessageEmbed()
       .setAuthor(`${newMember.user.tag}`, avatar)
@@ -25,16 +25,12 @@ module.exports = {
         .setDescription(`${newMember}'s **nickname** was changed.`)
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
 
-      // send message
       return webhook.send(embed);
     }
 
     // Role add
     if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-      // Get role log
-      const role = newMember.roles.cache
-        .difference(oldMember.roles.cache)
-        .first();
+      const role = newMember.roles.cache.difference(oldMember.roles.cache).first();
       embed
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${newMember} was **given** the ${role} role.`);
@@ -45,10 +41,7 @@ module.exports = {
 
     // Role remove
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-      // Get role log
-      const role = oldMember.roles.cache
-        .difference(newMember.roles.cache)
-        .first();
+      const role = oldMember.roles.cache.difference(newMember.roles.cache).first();
       embed
         .setTitle("Member Update: `Role Remove`")
         .setDescription(`${newMember} was **removed** from ${role} role.`);

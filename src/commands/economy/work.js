@@ -17,7 +17,7 @@ module.exports = {
 
     if (work !== null && timeout - (Date.now() - work) > 0) {
       const timeUntilWork = moment(timeout - (Date.now() - work)).format(
-        "H [hrs], m [mins], s [secs]"
+        "h [hrs], m [mins], s [secs]"
       );
       message.channel.send(
         lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork)

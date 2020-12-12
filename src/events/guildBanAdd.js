@@ -3,7 +3,7 @@ const BaseEmbed = require("../modules/BaseEmbed");
 module.exports = {
   name: "guildBanAdd",
   async execute(bot, guild, user) {
-    if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!guild.me.hasPermission(["MANAGE_WEBHOOKS", "VIEW_AUDIT_LOG"])) return;
 
     const webhook = await bot.getWebhook(guild);
    if (!webhook) return;

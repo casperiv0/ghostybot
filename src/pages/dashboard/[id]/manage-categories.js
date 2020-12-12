@@ -1,6 +1,7 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
@@ -27,9 +28,7 @@ const ManageCategories = ({ guild }) => {
         return !!guild.disabled_categories.find((c) => c === cat);
       });
     } else {
-      filter = categories.filter((cate) =>
-        cate.toLowerCase().includes(value.toLowerCase())
-      );
+      filter = categories.filter((cate) => cate.toLowerCase().includes(value.toLowerCase()));
     }
 
     setFiltered(filter);
@@ -37,16 +36,13 @@ const ManageCategories = ({ guild }) => {
 
   async function updateCategory(type, category) {
     const data = await (
-      await fetch(
-        `${dashboard.dashboardUrl}/api/guilds/${guild.id}/categories`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            name: category,
-            type: type,
-          }),
-        }
-      )
+      await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/categories`, {
+        method: "PUT",
+        body: JSON.stringify({
+          name: category,
+          type: type,
+        }),
+      })
     ).json();
 
     if (data.status === "success") {
@@ -60,6 +56,9 @@ const ManageCategories = ({ guild }) => {
 
   return (
     <>
+      <Head>
+        <title>Manage categories - GhostyBot</title>
+      </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
         <h4>{guild?.name} - Enable/disable categories</h4>
@@ -87,21 +86,14 @@ const ManageCategories = ({ guild }) => {
         {filtered
           .filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
           .map((category, idx) => {
-            const isDisabled = guild.disabled_categories?.find(
-              (c) => c === category
-            );
+            const isDisabled = guild.disabled_categories?.find((c) => c === category);
             return (
               <div id={idx} key={category} className="card cmd-card">
                 <p>{category}</p>
 
                 <div>
                   <button
-                    onClick={() =>
-                      updateCategory(
-                        isDisabled ? "enable" : "disable",
-                        category
-                      )
-                    }
+                    onClick={() => updateCategory(isDisabled ? "enable" : "disable", category)}
                     className="btn btn-secondary"
                   >
                     {isDisabled ? "Enable" : "Disable"}

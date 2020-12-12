@@ -4,6 +4,7 @@ module.exports = {
   name: "removeuserwarns",
   description: "Remove all warns from a user",
   category: "admin",
+  requiredArgs: ["member"],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("MANAGE_GUILD")) {
       return message.channel.send("You don't have permissions to do that!");

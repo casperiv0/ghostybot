@@ -4,12 +4,10 @@ module.exports = {
   name: "channelCreate",
   async execute(bot, channel) {
     if (!channel.guild) return;
-    if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
+    if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
 
     const webhook = await bot.getWebhook(channel.guild);
-   if (!webhook) return;
+    if (!webhook) return;
 
     let msg = "";
 

@@ -43,7 +43,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** N/A
+**Required Arguments:** `role`
 
 ## announce
 
@@ -169,7 +169,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `amount`
 
 ## disable
 
@@ -295,7 +295,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** N/A
+**Required Arguments:** `member`, `role`
 
 ## removeroleall
 
@@ -309,7 +309,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** N/A
+**Required Arguments:** `role`
 
 ## removeuserwarns
 
@@ -323,7 +323,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `member`
 
 ## say
 
@@ -379,7 +379,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `message`
 
 ## tempmute
 
@@ -407,7 +407,7 @@
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
-**Required Arguments:** N/A
+**Required Arguments:** `member_id`
 
 ## undeafen
 

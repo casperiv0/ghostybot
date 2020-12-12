@@ -6,6 +6,7 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   botPermissions: ["MANAGE_MESSAGES"],
+  requiredArgs: ["amount"],
   async execute(bot, message, args) {
     const amount = args[0];
 

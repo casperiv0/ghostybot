@@ -13,8 +13,7 @@ module.exports = {
     const leaveChannel = guild.leave_channel;
 
     if (leaveChannel) {
-      if (!member.guild.channels.cache.some((ch) => ch.id === leaveChannel))
-        return;
+      if (!member.guild.channels.cache.find((ch) => ch.id === leaveChannel)) return;
 
       const avatar = member.user.displayAvatarURL({ dynamic: true });
 

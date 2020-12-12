@@ -19,9 +19,7 @@ const Dashboard = ({ isAuth, guilds }) => {
 
   return (
     <>
-      {
-        <AlertMessage message="This dashboard is still in beta! It could be that some thing will not work, if you found an issue please report this at: https://discord.gg/XxHrtkA" />
-      }
+      <AlertMessage message="This dashboard is still in beta! It could be that some thing will not work, if you found an issue please report this at: https://discord.gg/XxHrtkA" />
       {message ? <AlertMessage message={message} /> : null}
       <div className="page-title">
         <h4>Please select a server</h4>
@@ -30,17 +28,10 @@ const Dashboard = ({ isAuth, guilds }) => {
       <div className="grid">
         {guilds.map((guild) => {
           return (
-            <Link
-              key={guild.id}
-              href={guild.inGuild ? `/dashboard/${guild.id}` : "/dashboard"}
-            >
+            <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "/dashboard"}>
               <a
-                className={`card guild-card ${
-                  !guild.inGuild ? "disabled" : ""
-                }`}
-                aria-label={
-                  !guild.inGuild ? "The bot must be in this guild!" : null
-                }
+                className={`card guild-card ${!guild.inGuild ? "disabled" : ""}`}
+                aria-label={!guild.inGuild ? "The bot must be in this guild!" : null}
               >
                 {guild.icon === null ? (
                   <div className="guild-card-img"></div>

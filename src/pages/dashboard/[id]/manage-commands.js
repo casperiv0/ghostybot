@@ -1,5 +1,6 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { useState, useEffect, useRef, useCallback } from "react";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
@@ -41,9 +42,7 @@ const ManageCommands = ({ botCommands, guild }) => {
         return !!guild.disabled_commands.find((c) => c === cmd.name);
       });
     } else {
-      filter = botCommands.filter((cmd) =>
-        cmd.name.toLowerCase().includes(value.toLowerCase())
-      );
+      filter = botCommands.filter((cmd) => cmd.name.toLowerCase().includes(value.toLowerCase()));
     }
 
     setFiltered(filter);
@@ -71,6 +70,9 @@ const ManageCommands = ({ botCommands, guild }) => {
 
   return (
     <>
+      <Head>
+        <title>Manage commands - GhostyBot</title>
+      </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
         <h4>{guild?.name} - Enable/disable commands</h4>
@@ -99,18 +101,14 @@ const ManageCommands = ({ botCommands, guild }) => {
           .slice(0, length)
           .filter(({ name }) => !["help", "enable", "disable"].includes(name))
           .map((cmd, idx) => {
-            const isDisabled = guild.disabled_commands?.find(
-              (c) => c === cmd.name
-            );
+            const isDisabled = guild.disabled_commands?.find((c) => c === cmd.name);
             return (
               <div ref={lastRef} id={idx} key={cmd.name} className="card cmd-card">
                 <p>{cmd.name}</p>
 
                 <div>
                   <button
-                    onClick={() =>
-                      updateCommand(isDisabled ? "enable" : "disable", cmd.name)
-                    }
+                    onClick={() => updateCommand(isDisabled ? "enable" : "disable", cmd.name)}
                     className="btn btn-secondary"
                   >
                     {isDisabled ? "Enable" : "Disable"}

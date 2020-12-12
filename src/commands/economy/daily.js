@@ -1,4 +1,5 @@
 const { getUserById, updateUserById } = require("../../utils/functions");
+const moment = require("moment");
 
 module.exports = {
   name: "daily",
@@ -13,16 +14,15 @@ module.exports = {
     const daily = user.daily;
 
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
-      message.channel.send(lang.ECONOMY.DAILY_ERROR);
+      const time = moment(timeout - (Date.now() - daily)).format("h [hrs], m [mins], s [secs]");
+      message.channel.send(`${lang.ECONOMY.DAILY_ERROR} ${time} remaining`);
     } else {
       updateUserById(message.author.id, message.guild.id, {
         daily: Date.now(),
         money: currentMoney + amount,
       });
 
-      message.channel.send(
-        lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", amount)
-      );
+      message.channel.send(lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", amount));
     }
   },
 };

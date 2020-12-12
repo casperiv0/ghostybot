@@ -16,6 +16,12 @@ export default async function handler(req, res) {
       }
 
       const commandName = body.name.toLowerCase();
+      if (body.response.length > 1800) {
+        return res.json({
+          status: "error",
+          error: "Command response cannot be longer than 1800 characters",
+        });
+      }
 
       if (guild.custom_commands?.find((x) => x.name === commandName))
         return res.json({
@@ -31,10 +37,7 @@ export default async function handler(req, res) {
       }
 
       await updateGuildById(query.id, {
-        custom_commands: [
-          ...guild.custom_commands,
-          { name: commandName, response: body.response },
-        ],
+        custom_commands: [...guild.custom_commands, { name: commandName, response: body.response }],
       });
 
       return res.json({ status: "success" });
@@ -49,9 +52,7 @@ export default async function handler(req, res) {
 
       if (type === "enable") {
         await updateGuildById(query.id, {
-          disabled_commands: guild.disabled_commands.filter(
-            (c) => c !== name.toLowerCase()
-          ),
+          disabled_commands: guild.disabled_commands.filter((c) => c !== name.toLowerCase()),
         });
       } else if (type === "disable") {
         await updateGuildById(query.id, {
@@ -76,9 +77,7 @@ export default async function handler(req, res) {
       });
     }
     default: {
-      return res
-        .status(405)
-        .json({ error: "Method not allowed", status: "error" });
+      return res.status(405).json({ error: "Method not allowed", status: "error" });
     }
   }
 }

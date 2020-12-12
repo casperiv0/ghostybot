@@ -67,7 +67,7 @@ const Navbar = () => {
               <Link href="/dashboard">
                 <a className="dropdown-link">My servers</a>
               </Link>
-              <Link href="/add.html">
+              <Link href="/add">
                 <a className="dropdown-link">Invite GhostyBot</a>
               </Link>
               {owners.includes(user?.id) ? (
@@ -75,7 +75,7 @@ const Navbar = () => {
                   <a className="dropdown-link">Bot Settings</a>
                 </Link>
               ) : null}
-              <Link href="/api/auth/logout">
+              <Link href="/logout">
                 <a className="dropdown-link logout">Logout</a>
               </Link>
             </div>

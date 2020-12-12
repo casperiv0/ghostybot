@@ -14,6 +14,11 @@ const Blacklist = require("../models/Blacklisted.model");
 
 module.exports = {
   name: "message",
+  /**
+   * 
+   * @param {import("discord.js").Client} bot 
+   * @param {import("discord.js").Message} message 
+   */
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
     if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
