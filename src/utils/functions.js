@@ -387,28 +387,34 @@ async function getWebhook(guild) {
  * @param {string} msg
  */
 function parseMessage(message, user, msg) {
-  const newMessage = message.split(" ").map((word) => {
-    const { username, tag, id, discriminator } = user;
-    let w = word;
+  const newMessage = message
+    .split(" ")
+    .map((word) => {
+      const { username, tag, id, discriminator } = user;
+      let w = word;
 
-    w = w
-      .replace("{user}", user)
-      .replace("{user.tag}", escapeMarkdown(tag))
-      .replace("{user.username}", escapeMarkdown(username))
-      .replace("{user.discriminator}", discriminator)
-      .replace("{user.id}", id);
+      w = w
+        .replace("{user}", user)
+        .replace("{user.tag}", escapeMarkdown(tag))
+        .replace("{user.username}", escapeMarkdown(username))
+        .replace("{user.discriminator}", discriminator)
+        .replace("{user.id}", id);
 
-    if (msg) {
-      w.replace("{guild.id}", msg.guild.id)
-        .replace("{guild.name}", escapeMarkdown(msg.guild.name))
-        .replace("{message.author}", msg.author)
-        .replace("{message.author.id}", msg.author.id)
-        .replace("{message.author.tag}", escapeMarkdown(msg.author.tag))
-        .replace("{message.author.username}", escapeMarkdown(escapeMarkdown(msg.author.username)));
-    }
+      if (msg) {
+        w.replace("{guild.id}", msg.guild.id)
+          .replace("{guild.name}", escapeMarkdown(msg.guild.name))
+          .replace("{message.author}", msg.author)
+          .replace("{message.author.id}", msg.author.id)
+          .replace("{message.author.tag}", escapeMarkdown(msg.author.tag))
+          .replace(
+            "{message.author.username}",
+            escapeMarkdown(escapeMarkdown(msg.author.username))
+          );
+      }
 
-    return w;
-  });
+      return w;
+    })
+    .join(" ");
 
   return newMessage;
 }

@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 201 commands
+  GhostyBot has a total of 202 commands
   
   ## addcmd
 
@@ -346,6 +346,20 @@
 **Description:** Set a default channel
 
 **Usage:** `set <option> <channel>`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+## setwelcomemsg
+
+**Category:** admin
+
+**Description:** Sets the welcome msg
+
+**Usage:** `N/A`
 
 **Member Permissions:** ADMINISTRATOR
 

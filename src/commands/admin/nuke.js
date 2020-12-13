@@ -7,7 +7,12 @@ module.exports = {
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
   async execute(bot, message) {
-    let channel = bot.channels.cache.get(message.channel.id);
+    let channel = message.channel;
+
+    if (!channel) {
+      return message.channel.send("An error occurred");
+    }
+
     const position = channel.position;
     const topic = channel.topic;
 
