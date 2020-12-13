@@ -9,16 +9,17 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join("");
 
-    let data = await (await fetch("https://disease.sh/v3/covid-19/countries/" + encodeURIComponent(query))).json();
-    if(!query) data = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
+    let country = await (await fetch("https://disease.sh/v3/covid-19/countries/" + encodeURIComponent(query))).json();
+    if(!query) country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
-    if (data.message) {
+    if (country.message) {
       return message.channel.send(lang.COVID.NOT_FOUND);
     }
     const { tz, date } = await bot.formatDate(country.updated, message.guild.id);
+    const Title = country.country ? `Covid: ${country.country}` : "Covid"
 
     const embed = BaseEmbed(message)
-      .setTitle(`Covid: ${country.country}`)
+      .setTitle(Title)
       .addField(
         lang.COVID.TOTAL,
         `
@@ -39,7 +40,7 @@ module.exports = {
       )
       .addField(lang.COVID.CRITICAL, formatNumber(country.critical), true)
       .addField(lang.COVID.TESTS, formatNumber(country.tests), true)
-      .setThumbnail(country.countryInfo.flag)
+      .setThumbnail(country.countryInfo?.flag || "")
       .setFooter(
         `${lang.COVID.LAST_UPDATED}: ${date} (${tz})`,
         message.author.displayAvatarURL({ dynamic: true })
