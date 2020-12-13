@@ -5,27 +5,21 @@ module.exports = {
   name: "covid",
   description: "Get covid 19 information",
   category: "util",
-  requiredArgs: ["country/country code"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const query = args.join("").toLowerCase();
+    const query = args.join("");
 
-    const data = await (await fetch("https://disease.sh/v3/covid-19/countries/")).json();
-    const country = data.find((co) => {
-      if (co.country.toLowerCase() === query) return true;
-      if (co.countryInfo.iso2?.toLowerCase() === query) return true;
-      if (co.countryInfo.iso3?.toLowerCase() === query) return true;
+    let country = await (await fetch("https://disease.sh/v3/covid-19/countries/" + encodeURIComponent(query))).json();
+    if(!query) country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
-      return false;
-    });
-
-    if (!country) {
+    if (country.message) {
       return message.channel.send(lang.COVID.NOT_FOUND);
     }
     const { tz, date } = await bot.formatDate(country.updated, message.guild.id);
+    const Title = country.country ? `Covid: ${country.country}` : "Covid"
 
     const embed = BaseEmbed(message)
-      .setTitle(`Covid: ${country.country}`)
+      .setTitle(Title)
       .addField(
         lang.COVID.TOTAL,
         `
@@ -46,7 +40,7 @@ module.exports = {
       )
       .addField(lang.COVID.CRITICAL, formatNumber(country.critical), true)
       .addField(lang.COVID.TESTS, formatNumber(country.tests), true)
-      .setThumbnail(country.countryInfo.flag)
+      .setThumbnail(country.countryInfo?.flag || "")
       .setFooter(
         `${lang.COVID.LAST_UPDATED}: ${date} (${tz})`,
         message.author.displayAvatarURL({ dynamic: true })
