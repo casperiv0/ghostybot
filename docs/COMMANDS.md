@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 200 commands
+  GhostyBot has a total of 201 commands
   
   ## addcmd
 
@@ -2342,6 +2342,20 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+## covid
+
+**Category:** util
+
+**Description:** Get covid 19 information
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `country/country code`
 
 ## define
 

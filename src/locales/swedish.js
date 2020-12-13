@@ -418,4 +418,16 @@ module.exports = {
     ALREADY_ON: "You already have a reminder set",
     NO_REMINDER_SET: "You don't have a reminder set",
   },
+  COVID: {
+    CASES: "Cases",
+    RECOVERED: "Recovered",
+    DEATHS: "Deaths",
+    TOTAL: "Total",
+    TODAY: "Today",
+    CRITICAL: "Critical",
+    TESTS: "Tests",
+    LAST_UPDATED: "Last updated",
+    NOT_FOUND: "Country was not found",
+    TOTAL_POP: "Population"
+  },
 };
