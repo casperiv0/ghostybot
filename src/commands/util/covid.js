@@ -5,21 +5,14 @@ module.exports = {
   name: "covid",
   description: "Get covid 19 information",
   category: "util",
-  requiredArgs: ["country/country code"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const query = args.join("").toLowerCase();
+    const query = args.join("");
 
-    const data = await (await fetch("https://disease.sh/v3/covid-19/countries/")).json();
-    const country = data.find((co) => {
-      if (co.country.toLowerCase() === query) return true;
-      if (co.countryInfo.iso2?.toLowerCase() === query) return true;
-      if (co.countryInfo.iso3?.toLowerCase() === query) return true;
+    let data = await (await fetch("https://disease.sh/v3/covid-19/countries/" + query)).json();
+    if(!query) data = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
-      return false;
-    });
-
-    if (!country) {
+    if (data.message) {
       return message.channel.send(lang.COVID.NOT_FOUND);
     }
     const { tz, date } = await bot.formatDate(country.updated, message.guild.id);
