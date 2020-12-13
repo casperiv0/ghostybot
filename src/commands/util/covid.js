@@ -9,7 +9,7 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
     const query = args.join("");
 
-    let data = await (await fetch("https://disease.sh/v3/covid-19/countries/" + query)).json();
+    let data = await (await fetch("https://disease.sh/v3/covid-19/countries/" + encodeURIComponent(query))).json();
     if(!query) data = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
     if (data.message) {
