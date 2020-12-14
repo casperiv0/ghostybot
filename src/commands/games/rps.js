@@ -7,6 +7,7 @@ module.exports = {
   category: "games",
   usage: "rps <rock | paper | scissors>",
   requiredArgs: ["rock | paper | scissors"],
+  cooldown: 5,
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const input = args.join("").toLowerCase();
@@ -15,7 +16,7 @@ module.exports = {
     const inp = replies.find((r) => r.toLowerCase() === input);
 
     if (!inp) {
-      return message.channel.send("Invalid input");
+      return message.channel.send(`${lang.GAMES.INVALID_INPUT} <rock | paper | scissors>`);
     }
 
     const reply = replies[Math.floor(Math.random() * replies.length)];
@@ -37,9 +38,9 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setTitle(lang.GAMES.RPS)
-      .setDescription(`**Winner:** ${winner}`)
-      .addField("Your choice", toCapitalize(input))
-      .addField("Opponents choice", reply);
+      .setDescription(`**${lang.GAMES.WINNER}:** ${winner}`)
+      .addField(lang.GAMES.YOUR_CHOICE, toCapitalize(input))
+      .addField(lang.GAMES.OPPONENTS_CHOICE, reply);
 
     message.channel.send(embed);
   },

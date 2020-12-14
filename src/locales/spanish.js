@@ -230,6 +230,10 @@ module.exports = {
     YOU_WON: "Has ganado 50 monedas!",
     BOT_WON: "El bot ha ganado!",
     BOTH_WON: "It's a tie",
+    OPPONENTS_CHOICE: "Opponents choice",
+    YOUR_CHOICE: "Your choice",
+    WINNER: "Winner",
+    INVALID_INPUT: "Input must be 1 of the following:",
   },
   UTIL: {
     AVATAR: "Avatar",
