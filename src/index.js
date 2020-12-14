@@ -5,7 +5,7 @@ const TnaiClient = require("tnai");
 const imdb = require("imdb-api");
 const AlexClient = require("alexflipnote.js");
 const { Collection, Client } = require("discord.js");
-const { token, imdbKey, alexflipnoteKey, dashboard } = require("../config.json");
+const { token, imdbKey, alexflipnoteKey, dashboard, dev } = require("../config.json");
 const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
 const {
@@ -87,7 +87,7 @@ if (dashboard?.enabled) {
   require("./server")(bot);
 }
 
-if (bot.commands.size >= 202) {
+if (dev === true) {
   require("./scripts/generateCommandList")(bot);
 }
 
