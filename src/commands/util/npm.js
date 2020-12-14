@@ -18,7 +18,27 @@ module.exports = {
       `http://registry.npmjs.com/-/v1/search?text=${query}&size=5`
     ).then((res) => res.json());
 
-    const foundPackages = data.objects.map(({ package: pkg }) => pkg);
+    const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
+      return { ...pkg, searchScore };
+    });
+
+    // Most accurate package
+    const foundPackage = foundPackages.find((d) => d.searchScore > 10000);
+
+    // if it was found, show more info about the package, otherwise return a list of the top 5
+    if (foundPackage) {
+      const { tz, date } = await bot.formatDate(foundPackage.date, message.guild.id);
+      const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
+
+      const embed = BaseEmbed(message)
+        .setTitle(foundPackage.name)
+        .setDescription(foundPackage.description)
+        .addField(lang.UTIL.VERSION, foundPackage.version, true)
+        .addField(lang.UTIL.LAST_MODIFIED, `${date} (${tz})`, true)
+        .addField(lang.UTIL.MAINTAINERS, maintainers);
+
+      return message.channel.send(embed);
+    }
 
     const embed = BaseEmbed(message)
       .setTitle(lang.UTIL.NPM_SEARCH)

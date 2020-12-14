@@ -15,9 +15,9 @@ const Blacklist = require("../models/Blacklisted.model");
 module.exports = {
   name: "message",
   /**
-   * 
-   * @param {import("discord.js").Client} bot 
-   * @param {import("discord.js").Message} message 
+   *
+   * @param {import("discord.js").Client} bot
+   * @param {import("discord.js").Message} message
    */
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
@@ -101,13 +101,13 @@ module.exports = {
     }
 
     if (mentions && !prefix.test(message.content)) {
-      mentions.forEach((member) => {
-        const user = bot.afk.get(member.id);
+      mentions.forEach(async (member) => {
+        const { user } = await getUserById(member.user.id, guildId);
 
-        if (user) {
+        if (user.afk.is_afk === true) {
           const embed = BaseEmbed(message)
             .setTitle("AFK!")
-            .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.reason}`);
+            .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.afk.reason}`);
           message.channel.send(embed);
         }
       });

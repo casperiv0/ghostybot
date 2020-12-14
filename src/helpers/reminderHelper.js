@@ -42,7 +42,7 @@ module.exports = async (bot) => {
         });
 
         const embed = BaseEmbed({ author: usr })
-          .setTitle("Reminder ended")
+          .setTitle("Reminder finished")
           .setDescription(`Your timer of **${time}** has ended`)
           .addField("Reminder message", msg);
 

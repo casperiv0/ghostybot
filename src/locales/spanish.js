@@ -333,6 +333,8 @@ module.exports = {
     END_DATE: "Fecha de finalización",
     POPULARITY_RANK: "Rango de popularidad",
     DOC_NOT_FOUND: "No fue encontrado en los documentos",
+    MAINTAINERS: "Maintainers",
+    LAST_MODIFIED: "Last modified",
   },
   BOT: {
     GUILDS: "Gremios",

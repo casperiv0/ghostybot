@@ -332,6 +332,8 @@ module.exports = {
     END_DATE: "End Date",
     POPULARITY_RANK: "Popularity Rank",
     DOC_NOT_FOUND: "That was not found on the docs",
+    MAINTAINERS: "Maintainers",
+    LAST_MODIFIED: "Last modified",
   },
   BOT: {
     GUILDS: "Guilds",

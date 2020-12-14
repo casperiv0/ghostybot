@@ -328,6 +328,8 @@ module.exports = {
     END_DATE: "تاريخ الانتهاء",
     POPULARITY_RANK: "الشعبية",
     DOC_NOT_FOUND: "That was not found on the docs",
+    MAINTAINERS: "Maintainers",
+    LAST_MODIFIED: "Last modified",
   },
   BOT: {
     GUILDS: "السرفرات",
@@ -434,6 +436,6 @@ module.exports = {
     TESTS: "Tests",
     LAST_UPDATED: "Last updated",
     NOT_FOUND: "Country was not found",
-    TOTAL_POP: "Population"
+    TOTAL_POP: "Population",
   },
 };

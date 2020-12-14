@@ -326,6 +326,8 @@ module.exports = {
     END_DATE: "Slutdatum",
     POPULARITY_RANK: "Popularitetsrankning",
     DOC_NOT_FOUND: "Det hittades inte i dokumenten",
+    MAINTAINERS: "Maintainers",
+    LAST_MODIFIED: "Last modified",
   },
   BOT: {
     GUILDS: "Guilds",
