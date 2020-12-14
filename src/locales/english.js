@@ -228,6 +228,7 @@ module.exports = {
     QUESTION: "Question",
     YOU_WON: "You won 50coins!",
     BOT_WON: "The bot has won!",
+    BOTH_WON: "It's a tie",
   },
   UTIL: {
     AVATAR: "Avatar",
@@ -436,6 +437,6 @@ module.exports = {
     TESTS: "Tests",
     LAST_UPDATED: "Last updated",
     NOT_FOUND: "Country was not found",
-    TOTAL_POP: "Population"
+    TOTAL_POP: "Population",
   },
 };

@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 202 commands
+  GhostyBot has a total of 203 commands
   
   ## addcmd
 
@@ -1443,7 +1443,21 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `input`
+**Required Arguments:** `rock | paper | scissors`
+
+## tictactoe
+
+**Category:** games
+
+**Description:** Play a game of tictactoe
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`
 
 ## wyr
 
@@ -2369,7 +2383,7 @@
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `country/country code`
+**Required Arguments:** N/A
 
 ## define
 

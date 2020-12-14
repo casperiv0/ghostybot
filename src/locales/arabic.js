@@ -225,6 +225,7 @@ module.exports = {
     QUESTION: "السؤال",
     YOU_WON: "You won 50coins!",
     BOT_WON: "The bot has won!",
+    BOTH_WON: "It's a tie",
   },
   UTIL: {
     AVATAR: "االافاتار",

@@ -50,6 +50,7 @@
     "discord-player": "^3.0.3",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "easy-games-js": "^1.1.2",
     "erlpack": "github:discord/erlpack",
     "eslint-plugin-react": "^7.21.5",
     "ffmpeg": "0.0.4",

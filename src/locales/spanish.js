@@ -229,6 +229,7 @@ module.exports = {
     QUESTION: "Pregunta",
     YOU_WON: "Has ganado 50 monedas!",
     BOT_WON: "El bot ha ganado!",
+    BOTH_WON: "It's a tie",
   },
   UTIL: {
     AVATAR: "Avatar",
