@@ -203,6 +203,9 @@ module.exports = {
     ADDED_MONEY: "Successfully added {amount} to user balance",
     MIN_BET: "Minimum bet of 1 is required",
     MIN_AMOUNT: "Amount must be above 0",
+    RESET_CONF: "Reset all balance? y/n",
+    RESET_SUCCESS: "Successfully reset everyone's balance",
+    RESET_CANCEL: "reset-economy was canceled",
   },
   GAMES: {
     BETS_ON: "{member_1} يراهن علي {member_2}",

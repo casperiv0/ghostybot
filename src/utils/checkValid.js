@@ -5,9 +5,7 @@ function checkValid() {
   const v = parseFloat(process.versions.node);
 
   if (v < 14) {
-    throw Error(
-      "[ERROR]: This bot requires version 14 of nodejs! Please upgrade to version 14"
-    );
+    throw Error("[ERROR]: This bot requires version 14 of nodejs! Please upgrade to version 14");
   }
 
   if (!config.token || config.token === "") {
@@ -23,10 +21,7 @@ function checkValid() {
   }
 
   if (!config.reportsChannelId || config.reportsChannelId === "") {
-    Logger.warn(
-      "bot",
-      "reportsChannelId is required for the bugreport command"
-    );
+    Logger.warn("bot", "reportsChannelId is required for the bugreport command");
   }
 
   if (!config.imdbKey || config.imdbKey === "") {
@@ -34,10 +29,7 @@ function checkValid() {
   }
 
   if (!config.feedBackChannelId || config.feedBackChannelId === "") {
-    Logger.warn(
-      "bot",
-      "feedBackChannelId is required for the feedback command"
-    );
+    Logger.warn("bot", "feedBackChannelId is required for the feedback command");
   }
 
   if (!config.openWeatherMapKey || config.openWeatherMapKey === "") {
@@ -53,6 +45,33 @@ function checkValid() {
 
   if (!config.giphyApiKey || config.giphyApiKey === "") {
     Logger.warn("bot", "giphyApiKey is required for the giphy command");
+  }
+
+  if (config.dashboard.enabled === true) {
+    const {
+      clientId,
+      clientSecret,
+      jwtSecret,
+      callbackUrl,
+      dashboardUrl,
+      discordApiUrl,
+    } = config.dashboard;
+    const msg = ". If you don't need the dashboard you can disable it in your config";
+
+    const opts = [
+      { name: "clientId", v: clientId },
+      { name: "clientSecret", v: clientSecret },
+      { name: "jwtSecret", v: jwtSecret },
+      { name: "callbackUrl", v: callbackUrl },
+      { name: "dashboardUrl", v: dashboardUrl },
+      { name: "discordApiUrl", v: discordApiUrl },
+    ];
+
+    opts.forEach((opt) => {
+      if (!opt.v || opt.v === "") {
+        throw Error(`[ERROR][DASHBOARD]: "${opt.name}" is required for the dashboard ${msg}`);
+      }
+    });
   }
 }
 

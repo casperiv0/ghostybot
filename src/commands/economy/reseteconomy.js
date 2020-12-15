@@ -1,17 +1,16 @@
-const Logger = require("../../modules/Logger");
 const { updateUserById } = require("../../utils/functions");
 
 module.exports = {
-  name: "resetxp",
-  description: "reset all users xp for current server",
-  category: "levels",
-  usage: "resetxp all",
+  name: "reseteconomy",
+  description: "Reset all money/bank in this guild",
+  category: "economy",
   memberPermissions: ["MANAGE_GUILD"],
+  aliases: ["reset-economy"],
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const filter = (m) => message.author.id === m.author.id;
 
-    message.channel.send(lang.LEVELS.RESET_CONF);
+    message.channel.send(lang.ECONOMY.RESET_CONF);
 
     message.channel
       .awaitMessages(filter, {
@@ -26,17 +25,18 @@ module.exports = {
 
           users.forEach(async (user) => {
             await updateUserById(user.id, message.guild.id, {
-              xp: 0,
+              money: 0,
+              bank: 0,
             });
           });
 
-          message.channel.send(lang.LEVELS.RESET_SUCCESS);
+          message.channel.send(lang.ECONOMY.RESET_SUCCESS);
         } else {
-          message.channel.send(lang.LEVELS.RESET_CANCEL);
+          message.channel.send(lang.ECONOMY.RESET_CANCEL);
         }
       })
       .catch((e) => {
-        Logger.error("resetxp", e);
+        bot.logger.error("reset-economy", e);
         message.channel.send("An error occurred");
       });
   },

@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
   This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 203 commands
+  GhostyBot has a total of 204 commands
   
   ## addcmd
 
@@ -1108,6 +1108,20 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`, `amount`
+
+## reseteconomy
+
+**Category:** economy
+
+**Description:** Reset all money/bank in this guild
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 ## rob
 
