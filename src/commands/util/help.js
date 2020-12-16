@@ -86,6 +86,7 @@ module.exports = {
           : [...cmd.botPermissions, "SEND_MESSAGES"].map((p) => p);
 
         embed
+          .setDescription("")
           .addField(lang.HELP.ALIASES, aliases, true)
           .addField(lang.HELP.COOLDOWN, `${cooldown}`, true)
           .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : lang.GLOBAL.NOT_SPECIFIED, true)
