@@ -31,6 +31,7 @@ module.exports = {
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
 
       const embed = BaseEmbed(message)
+        .setURL(foundPackage.links.npm)
         .setTitle(foundPackage.name)
         .setDescription(foundPackage.description)
         .addField(lang.UTIL.VERSION, foundPackage.version, true)

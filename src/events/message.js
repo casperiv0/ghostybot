@@ -11,6 +11,7 @@ const queue = new Map();
 const { owners } = require("../../config.json");
 const BaseEmbed = require("../modules/BaseEmbed");
 const Blacklist = require("../models/Blacklisted.model");
+const UserModel = require("../models/User.model");
 
 module.exports = {
   name: "message",
@@ -111,6 +112,21 @@ module.exports = {
           message.channel.send(embed);
         }
       });
+    }
+
+    // remove AFK from user if they send a message
+    const user = await UserModel.findOne({ user_id: userId, guild_id: guildId });
+    if (!message.author.bot && user && user?.afk.is_afk === true) {
+      await updateUserById(userId, guildId, {
+        afk: {
+          is_afk: false,
+          reason: null,
+        },
+      });
+
+      message.channel.send(
+        BaseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
+      );
     }
 
     // Commands
