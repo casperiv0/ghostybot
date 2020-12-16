@@ -10,7 +10,6 @@ const userSchema = new Schema({
   weekly: { type: Number, default: null },
   work: { type: Number, default: null },
   xp: { type: Number, default: 0 },
-  blacklisted: { type: Boolean, default: false },
   afk: {
     type: Object,
     default: {
