@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../modules/BaseEmbed");
 const {
   getGuildById,
   removeUser,
@@ -17,13 +17,16 @@ module.exports = {
 
       const avatar = member.user.displayAvatarURL({ dynamic: true });
 
-      const embed = new MessageEmbed()
+      const embed = new BaseEmbed({ author: member.user })
         .setTitle("👋 User left")
         .setThumbnail(avatar)
-        .setDescription(parseMessage(guild.leave_message, member.user))
-        .setColor("RED")
-        .setTimestamp()
-        .setFooter(member.user.username, avatar);
+        .setDescription(
+          parseMessage(guild.welcome_message, member.user, {
+            author: member.user,
+            guild: member.guild,
+          })
+        )
+        .setColor("RED");
 
       bot.channels.cache.get(leaveChannel).send(embed);
 

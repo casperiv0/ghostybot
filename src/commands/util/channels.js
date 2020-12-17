@@ -17,12 +17,9 @@ module.exports = {
       .join(", ");
 
     const embed = BaseEmbed(message)
-      .setColor("BLUE")
       .setTitle(`${message.guild.name}'s channels`)
       .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
-      .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels)
-      .setFooter(message.author.username)
-      .setTimestamp();
+      .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels);
 
     message.channel.send(embed);
   },

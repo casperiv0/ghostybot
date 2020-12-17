@@ -24,10 +24,7 @@ module.exports = {
 
         const embed = BaseEmbed(message)
           .setTitle("Emoji Added")
-          .setColor("BLUE")
-          .setDescription(
-            `Emoji Has Been Added! | Name: ${name || "give_name"} `
-          );
+          .setDescription(`Emoji Has Been Added! | Name: ${name || "give_name"} `);
         return message.channel.send(embed);
       }
 
@@ -38,13 +35,9 @@ module.exports = {
           customEmoji.animated ? "gif" : "png"
         }`;
 
-        await message.guild.emojis.create(
-          `${link}`,
-          `${name || `${customEmoji.name}`}`
-        );
+        await message.guild.emojis.create(`${link}`, `${name || `${customEmoji.name}`}`);
         const embed = BaseEmbed(message)
           .setTitle("Emoji Added")
-          .setColor("BLUE")
           .setDescription(
             `Emoji Has Been Added! | Name: ${
               name || `${customEmoji.name}`
@@ -57,17 +50,11 @@ module.exports = {
           return message.channel.send("Please Give Me A Valid Emoji!");
         }
 
-        message.channel.send(
-          "You Can Use Normal Emoji Without Adding In Server!"
-        );
+        message.channel.send("You Can Use Normal Emoji Without Adding In Server!");
       }
     } catch (e) {
-      if (
-        String(e).includes("DiscordAPIError: Maximum number of emojis reached (50)")
-      ) {
-        return message.channel.send(
-          "Maximum emoji count reached for this guild!"
-        );
+      if (String(e).includes("DiscordAPIError: Maximum number of emojis reached (50)")) {
+        return message.channel.send("Maximum emoji count reached for this guild!");
       } else {
         return message.channel.send(lang.GLOBAL.ERROR);
       }

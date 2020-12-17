@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../modules/BaseEmbed");
 const { getGuildById, parseMessage } = require("../utils/functions");
 
 module.exports = {
@@ -15,13 +15,15 @@ module.exports = {
 
       const avatar = member.user.displayAvatarURL({ dynamic: true });
 
-      const embed = new MessageEmbed()
+      const embed = new BaseEmbed({ author: member.user })
         .setTitle(`Welcome to **${member.guild.name}**`)
         .setThumbnail(avatar)
-        .setDescription(parseMessage(guild.welcome_message, member.user))
-        .setColor("BLUE")
-        .setTimestamp()
-        .setFooter(member.user.username, member.user.displayAvatarURL({ dynamic: true }));
+        .setDescription(
+          parseMessage(guild.welcome_message, member.user, {
+            author: member.user,
+            guild: member.guild,
+          })
+        );
 
       bot.channels.cache.get(welcomeChannel).send(embed);
     }

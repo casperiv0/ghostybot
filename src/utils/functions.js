@@ -382,15 +382,15 @@ async function getWebhook(guild) {
 }
 
 /**
- * @param {import("discord.js").Message} message
+ * @param {string} message
  * @param {import("discord.js").User} user
- * @param {string} msg
+ * @param {import("discord.js").Message} msg
  */
 function parseMessage(message, user, msg) {
   const newMessage = message
     .split(" ")
     .map((word) => {
-      const { username, tag, id, discriminator } = user;
+      const { username, tag, id, discriminator, createdAt } = user;
       let w = word;
 
       w = w
@@ -398,7 +398,8 @@ function parseMessage(message, user, msg) {
         .replace("{user.tag}", escapeMarkdown(tag))
         .replace("{user.username}", escapeMarkdown(username))
         .replace("{user.discriminator}", discriminator)
-        .replace("{user.id}", id);
+        .replace("{user.id}", id)
+        .replace("{user.createdAt}", new Date(createdAt).toLocaleString());
 
       if (msg) {
         w.replace("{guild.id}", msg.guild.id)

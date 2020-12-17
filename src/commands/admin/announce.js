@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
@@ -29,11 +29,7 @@ module.exports = {
       return message.channel.send("Please provide text or a valid channel");
     }
 
-    const embed = new MessageEmbed()
-      .setTitle("📢 Announcement 📢")
-      .setDescription(text)
-      .setFooter(message.author.username)
-      .setColor("BLUE");
+    const embed = BaseEmbed(message).setTitle("📢 Announcement 📢").setDescription(text);
 
     bot.channels.cache.get(announceChannel ? announceChannel : channel.id).send(embed);
   },

@@ -9,24 +9,14 @@ import timezones from "../../../data/timezones.json";
 
 const Settings = ({ guild, languages }) => {
   const [message, setMessage] = useState(null);
-  const [welcomeChannel, setWelcomeChannel] = useState(
-    guild.welcome_channel || ""
-  );
+  const [welcomeChannel, setWelcomeChannel] = useState(guild.welcome_channel || "");
   const [welcomeRole, setWelcomeRole] = useState(guild.welcome_role || "");
-  const [suggestChannel, setSuggestChannel] = useState(
-    guild.suggest_channel || ""
-  );
-  const [announceChannel, setAnnounceChannel] = useState(
-    guild.announce_channel || ""
-  );
+  const [suggestChannel, setSuggestChannel] = useState(guild.suggest_channel || "");
+  const [announceChannel, setAnnounceChannel] = useState(guild.announce_channel || "");
   const [leaveChannel, setLeaveChannel] = useState(guild.leave_channel || "");
-  const [levelUpMessages, setLevelUpMessages] = useState(
-    guild.level_up_messages || "false"
-  );
+  const [levelUpMessages, setLevelUpMessages] = useState(guild.level_up_messages || "false");
   const [language, setLanguage] = useState(guild.locale || "");
-  const [welcomeMessage, setWelcomeMessage] = useState(
-    guild.welcome_message || ""
-  );
+  const [welcomeMessage, setWelcomeMessage] = useState(guild.welcome_message || "");
   const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
   const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
   const [prefix, setPrefix] = useState(guild.prefix || "");
@@ -134,26 +124,23 @@ const Settings = ({ guild, languages }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${dashboard.dashboardUrl}/api/guilds/${guild.id}`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            welcome_channel: welcomeChannel,
-            welcome_role: welcomeRole,
-            leave_channel: leaveChannel,
-            suggest_channel: suggestChannel,
-            announcement_channel: announceChannel,
-            level_up_messages: levelUpMessages,
-            locale: language,
-            welcome_message: welcomeMessage,
-            audit_channel: auditChannel,
-            prefix: prefix,
-            timezone: tz,
-            auto_delete_cmd: autoDelCmd === "true",
-          }),
-        }
-      );
+      const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}`, {
+        method: "POST",
+        body: JSON.stringify({
+          welcome_channel: welcomeChannel,
+          welcome_role: welcomeRole,
+          leave_channel: leaveChannel,
+          suggest_channel: suggestChannel,
+          announcement_channel: announceChannel,
+          level_up_messages: levelUpMessages,
+          locale: language,
+          welcome_message: welcomeMessage,
+          audit_channel: auditChannel,
+          prefix: prefix,
+          timezone: tz,
+          auto_delete_cmd: autoDelCmd === "true",
+        }),
+      });
       const data = await res.json();
 
       if (data.status === "success") {
@@ -228,15 +215,13 @@ const Settings = ({ guild, languages }) => {
             <p className="mt-5">
               <strong>{"{user}"}:</strong> The user mention: @CasperTheGhost
               <br />
-              <strong>{"{user.username}"}</strong>: The user&apos;s username:
-              CasperTheGhost
+              <strong>{"{user.username}"}</strong>: The user&apos;s username: CasperTheGhost
               <br />
-              <strong>{"{user.tag}"}</strong>: The user&apos;s tag:
-              CasperTheGhost#0000 <br />
-              <strong>{"{user.id}"}</strong>: The user&apos;s id: 00000000000{" "}
-              <br />
-              <strong>{"{user.discriminator}"}</strong>: The user&apos;s
-              discriminator: #0000 <br />
+              <strong>{"{user.tag}"}</strong>: The user&apos;s tag: CasperTheGhost#0000 <br />
+              <strong>{"{user.id}"}</strong>: The user&apos;s id: 00000000000 <br />
+              <strong>{"{user.discriminator}"}</strong>: The user&apos;s discriminator: #0000 <br />
+              <strong>{"{user.createdAt}"}</strong>: the user&apos;s account created date:
+              20/12/2018 (America/New_York) <br />
             </p>
           </div>
           <div className="form-group">
