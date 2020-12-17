@@ -18,6 +18,11 @@ module.exports = {
       return message.channel.send(lang.REMINDER.ALREADY_ON);
     }
 
+    const isValid = ms(time);
+    if (!isValid) {
+        return message.channel.send(lang.REMINDER.INVALID_DATE);
+    }
+
     await bot.updateUserById(message.author.id, message.guild.id, {
       reminder: {
         ends_at: Date.now() + ms(time),

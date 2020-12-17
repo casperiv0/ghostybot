@@ -390,7 +390,7 @@ module.exports = {
       giveaway: "Giveaway commands",
       reminder: "Reminder commands",
       reactions: "Reaction role commands",
-      custom: "Custom commands"
+      custom: "Custom commands",
     },
   },
   POKEMON: {
@@ -435,6 +435,7 @@ module.exports = {
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
     NO_REMINDER_SET: "You don't have a reminder set",
+    INVALID_DATE: "That is not a valid date",
   },
   COVID: {
     CASES: "Cases",
@@ -446,7 +447,7 @@ module.exports = {
     TESTS: "Tests",
     LAST_UPDATED: "Last updated",
     NOT_FOUND: "Country was not found",
-    TOTAL_POP: "Population"
+    TOTAL_POP: "Population",
   },
   EASY_GAMES: {
     PROVIDE_MEMBER: "Please provide a  member",
