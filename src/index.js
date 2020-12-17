@@ -71,10 +71,6 @@ const giveawayManager = new MongoGiveawayManager(bot, {
     botsCanWin: false,
     reaction: "🎉",
     embedColorEnd: "#7289DA",
-    messages: {
-      hostedBy: "Hosted by {user}",
-      giveaway: "**🎉🎉 New Giveaway 🎉🎉**",
-    },
   },
 });
 

@@ -12,15 +12,18 @@ module.exports = {
     const option = args[0];
     const saveCommands = ["help", "enable", "disable"];
     const saveCategories = ["botowner", "exempt", "disabled", "custom"];
+    const guild = await getGuildById(message.guild.id);
 
     if (!option) {
       return message.channel.send("Please provide a command or category name");
     }
 
+    if (guild.custom_commands.find(({ name }) => name.toLowerCase() === option.toLowerCase())) {
+      return message.channel.send("That command cannot be disabled");
+    }
+
     const command =
       bot.commands.get(option.toLowerCase()) || bot.commands.get(bot.aliases.get(option));
-
-    const guild = await getGuildById(message.guild.id);
 
     if (!command) {
       // Disable category
