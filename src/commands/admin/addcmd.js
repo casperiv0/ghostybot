@@ -8,31 +8,19 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   requiredArgs: ["command name", "command response"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const cmdName = args[0];
     const cmdResponse = args.slice(1).join(" ");
-
-    if (!cmdName) {
-      return message.channel.send(
-        ":x: You have to give command name, `addcmd <cmd_name> <cmd_response>`"
-      );
-    }
-
-    if (!cmdResponse) {
-      return message.channel.send(
-        ":x: You have to give command cmd response, `addcmd <cmd_name> <cmd_response>`"
-      );
-    }
 
     const guild = await getGuildById(message.guild.id);
     const commands = guild?.custom_commands;
 
-    if (commands && commands.find((x) => x.name === cmdName.toLowerCase()))
-      return message.channel.send(
-        ":x: This command name is already added in guild custom commands."
-      );
+    if (commands && commands.find((x) => x.name === cmdName.toLowerCase())) {
+      return message.channel.send(lang.ADMIN.ADD_CMD_ALREADY_EXISTS);
+    }
 
     if (bot.commands.has(cmdName)) {
-      return message.channel.send(":x: This command name is already in use by the bot!");
+      return message.channel.send(lang.ADMIN.ADD_CMD_USED_BY_BOT);
     }
 
     const data = {
@@ -48,6 +36,6 @@ module.exports = {
       });
     }
 
-    message.channel.send("Added **" + cmdName.toLowerCase() + "** as a custom command in guild.");
+    return message.channel.send(lang.ADMIN.ADD_CMD_ADDED.replace("{name}", cmdName.toLowerCase()));
   },
 };

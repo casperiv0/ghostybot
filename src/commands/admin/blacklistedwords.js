@@ -8,20 +8,21 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["wordsfilter", "filterwords"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const [option, item] = args;
     const guildId = message.guild.id;
     const guild = await getGuildById(guildId);
     const blacklistWords = guild.blacklistedwords;
 
     if (!option) {
-      return message.channel.send("Please provide an option '`add`, `remove`, `get`'");
+      return message.channel.send(lang.ADMIN.BLACKLISTED_PROVIDE_OPTION);
     }
 
     switch (option) {
       case "add": {
         if (blacklistWords.includes(item)) {
           return message.channel.send(
-            `${item} already exist in blacklisted words`
+            lang.ADMIN.BLACKLISTED_ALREADY_EXISTS.replace("{item}", item)
           );
         }
         if (blacklistWords === null || !blacklistWords) {
@@ -34,36 +35,26 @@ module.exports = {
           });
         }
 
-        return message.channel.send(
-          `Successfully added **${item}** to blacklisted words`
-        );
+        return message.channel.send(lang.ADMIN.BLACKLISTED_ADDED.replace("{item}", item));
       }
       case "remove": {
         if (blacklistWords !== null) {
           if (!blacklistWords.includes(item)) {
-            return message.channel.send(
-              `${item} does not exist in blacklisted words`
-            );
+            return message.channel.send(lang.ADMIN.BLACKLISTED_NOT_EXISTS.replace("{item}", item));
           }
 
-          const words = blacklistWords.filter(
-            (w) => w.toLowerCase() !== item.toLowerCase()
-          );
+          const words = blacklistWords.filter((w) => w.toLowerCase() !== item.toLowerCase());
 
           updateGuildById(guildId, { blacklistedwords: words });
 
-          return message.channel.send(
-            `Successfully removed **${item}** from blacklisted words`
-          );
+          return message.channel.send(lang.ADMIN.BLACKLISTED_REMOVED.replace("{item}", item));
         } else {
-          return message.channel.send("There are no blacklisted words yet.");
+          return message.channel.send(lang.ADMIN.BLACKLISTED_NONE_YET);
         }
       }
       case "get": {
-        const words =
-          blacklistWords !== null &&
-          blacklistWords.map((w) => `\`${w}\``).join(", ");
-        return message.channel.send(words || "no words were found");
+        const words = blacklistWords !== null && blacklistWords.map((w) => `\`${w}\``).join(", ");
+        return message.channel.send(words || lang.ADMIN.BLACKLISTED_NO_WORDS);
       }
       default: {
         return message.channel.send(`${option} does not exist`);

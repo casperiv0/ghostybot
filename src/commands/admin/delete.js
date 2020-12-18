@@ -8,28 +8,21 @@ module.exports = {
   botPermissions: ["MANAGE_MESSAGES"],
   requiredArgs: ["amount"],
   async execute(bot, message, args) {
-    const amount = args[0];
-
-    if (!amount) {
-      return message.channel.send("Please provide a number");
-    }
+    const [amount] = args;
+    const lang = await bot.getGuildLang(message.guild.id);
 
     if (isNaN(amount) || amount > 100) {
-      return message.channel.send(
-        "amount must be a valid number and below 100"
-      );
+      return message.channel.send(lang.ADMIN.DELETE_PROVIDE_AMOUNT);
     }
 
     try {
       await message.channel.bulkDelete(Number(amount)).then(() => {
         message.channel
-          .send(`Deleted ${args[0]} messages.`)
+          .send(lang.ADMIN.DELETE_DELETED.replace("{amount}", amount))
           .then((msg) => msg.delete({ timeout: 2000 }, true));
       });
     } catch {
-      return message.channel.send(
-        "An error occurred when deleting the messages, make sure they are not older than 14days"
-      );
+      return message.channel.send(lang.ADMIN.DELETE_ERROR);
     }
   },
 };

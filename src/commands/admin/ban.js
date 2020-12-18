@@ -18,10 +18,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.CANNOT_BE_BANNED);
     }
 
-    if (
-      message.guild.me.roles.highest.comparePositionTo(banMember.roles.highest) <
-      0
-    ) {
+    if (message.guild.me.roles.highest.comparePositionTo(banMember.roles.highest) < 0) {
       return message.channel.send(
         lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", banMember.tag)
       );
@@ -29,24 +26,24 @@ module.exports = {
 
     banMember.ban({
       days: 7,
-      reason: `**Banned by:** ${message.author.tag}\n**Reason:** ${banReason}`,
+      reason: `**${lang.ADMIN.BAN_BANNED_BY}:** ${message.author.tag}\n**${lang.GLOBAL.REASON}:** ${banReason}`,
     });
 
     try {
       banMember.user.send(
-        lang.MEMBER.DM_BAN_MESSAGE.replace(
-          "{guild_name}",
-          message.guild.name
-        ).replace("{ban_reason}", banReason)
+        lang.MEMBER.DM_BAN_MESSAGE.replace("{guild_name}", message.guild.name).replace(
+          "{ban_reason}",
+          banReason
+        )
       );
       // eslint-disable-next-line no-empty
     } catch {}
 
     message.channel.send(
-      lang.MEMBER.GUILD_BAN_MESSAGE.replace(
-        "{member}",
-        banMember.user.username
-      ).replace("{ban_reason}", banReason)
+      lang.MEMBER.GUILD_BAN_MESSAGE.replace("{member}", banMember.user.username).replace(
+        "{ban_reason}",
+        banReason
+      )
     );
   },
 };

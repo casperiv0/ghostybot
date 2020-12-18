@@ -8,10 +8,8 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES"],
   requiredArgs: ["role name"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const roleName = args[0];
-    if (!roleName) {
-      message.channel.send("Please specify a role name!");
-    }
 
     message.guild.roles.create({
       data: {
@@ -21,8 +19,8 @@ module.exports = {
     });
 
     const embed = BaseEmbed(message)
-      .setTitle(`Created Role: ${roleName}`)
-      .setDescription(`Successfully created the \`${roleName}\` role`);
+      .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${roleName}`)
+      .setDescription(lang.ADMIN.CREATED_ROLE_ADDED);
 
     message.channel.send(embed);
   },

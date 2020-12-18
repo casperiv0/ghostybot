@@ -5,36 +5,36 @@ module.exports = {
   botPermissions: ["KICK_MEMBERS"],
   memberPermissions: ["KICK_MEMBERS"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const kickMember = bot.findMember(message, args);
     let kickReason = args.slice(1).join(" ");
 
     if (!kickMember) {
-      return message.channel.send("User wasn't found");
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
 
     if (!kickReason) kickReason = "Not Specified";
 
     if (!kickMember.kickable || kickMember.hasPermission("KICK_MEMBERS")) {
-      return message.channel.send("That person can't be kicked!");
+      return message.channel.send(lang.ADMIN.KICK_CANNOT_KICK);
     }
 
-    if (
-      message.guild.me.roles.highest.comparePositionTo(
-        kickMember.roles.highest
-      ) < 0
-    ) {
+    if (message.guild.me.roles.highest.comparePositionTo(kickMember.roles.highest) < 0) {
       return message.channel.send(
-        `My role must be higher than **${kickMember.user.tag}** highest role!`
+        lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", kickMember.user.tag)
       );
     }
 
     kickMember.kick(kickReason);
 
     kickMember.user.send(
-      `You've been **kicked** from **${message.guild.name}**, Reason: **${kickReason}**`
+      lang.ADMIN.KICK_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
+        "{reason}",
+        kickReason
+      )
     );
     message.channel.send(
-      `**${kickMember.user.tag}** was successfully kicked from the server. Reason: **${kickReason}**. I have also send a DM letting the person know.`
+      lang.ADMIN.SUCCESS.replace("{tag}", kickMember.user.tag).replace("{reason}", kickReason)
     );
 
     await bot.emit("guildKickAdd", message.guild, {

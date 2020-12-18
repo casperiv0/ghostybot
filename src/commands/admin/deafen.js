@@ -6,20 +6,28 @@ module.exports = {
   memberPermissions: ["DEAFEN_MEMBERS"],
   requiredArgs: ["member", "reason"],
   async execute(bot, message, args) {
-    const deafenUser = bot.findMember(message, args);
+    const lang = await bot.getGuildLang(message.guild.id);
+    const deafenMember = bot.findMember(message, args);
     const deafenReason = args.slice(1).join(" ");
 
-    if (deafenUser.voice.serverDeaf) {
-      return message.channel.send("User is not in a voice channel or isn't deafened");
+    if (!deafenMember) {
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
 
-    deafenUser.voice.setDeaf(true, "deafenReason");
+    if (deafenMember.voice.serverDeaf) {
+      return message.channel.send(lang.ADMIN.DEAFEN_ALREADY_DEAFENED);
+    }
 
-    deafenUser.user.send(
-      `You've been **Deafenned** from **${message.guild.name}**, Reason: **${deafenReason}**`
+    deafenMember.voice.setDeaf(true, "deafenReason");
+
+    deafenMember.user.send(
+      lang.ADMIN.DEAFEN_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
+        "{reason}",
+        deafenReason
+      )
     );
     message.channel.send(
-      `${deafenUser} was successfully deafenned from the server. Reason: **${deafenReason}**. I have also send a DM letting the person know.`
+      lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", deafenMember).replace("{reason}", deafenReason)
     );
   },
 };
