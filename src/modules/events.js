@@ -23,8 +23,6 @@ module.exports = function loadEvents(bot) {
 
     if (isPlayer) {
       bot.player.on(event.name, event.execute.bind(null, bot));
-    } else {
-      bot.on(event.name, event.execute.bind(null, bot));
     }
 
     delete require.cache[require.resolve(`../events/${file}`)];
