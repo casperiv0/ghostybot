@@ -36,7 +36,7 @@ module.exports = {
         }
       })
       .catch((e) => {
-        bot.logger.error("reset-economy", e);
+        bot.logger.error("reset-economy", e?.stack || e);
         message.channel.send("An error occurred");
       });
   },

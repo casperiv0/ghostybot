@@ -20,21 +20,18 @@ module.exports = {
       return message.channel.send("Reloaded all commands");
     }
 
-    const command =
-      bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
+    const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
 
     if (!command) {
       return message.channel.send("Command not found");
     }
 
     try {
-      delete require.cache[
-        require.resolve(`../${command.category}/${command.name}.js`)
-      ];
+      delete require.cache[require.resolve(`../${command.category}/${command.name}.js`)];
       setCmd(bot, command);
       message.channel.send(`Successfully reload command: \`${command.name}\``);
     } catch (e) {
-      bot.logger.error("reload_commands", e);
+      bot.logger.error("reload_commands", e?.stack || e);
       return message.channel.send("An error occurred");
     }
   },

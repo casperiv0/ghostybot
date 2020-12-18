@@ -36,7 +36,7 @@ const AddBlacklistedWord = ({ guild }) => {
 
       setResponse(data);
     } catch (e) {
-      Logger.error("add_blacklisted_word", e);
+      Logger.error("add_blacklisted_word", e?.stack || e);
     }
   }
 

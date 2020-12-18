@@ -14,7 +14,7 @@ const Logger = require("../modules/Logger");
     });
     Logger.log("database", "Connected to mongodb");
   } catch (e) {
-    Logger.error("database", e);
+    Logger.error("database", e?.stack || e);
   }
 
   connection.on("disconnected", () => {

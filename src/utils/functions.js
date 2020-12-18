@@ -455,7 +455,7 @@ async function findOrCreateMutedRole(guild) {
 function updateMuteChannelPerms(guild, memberId, perms) {
   guild.channels.cache.forEach((channel) => {
     channel.updateOverwrite(memberId, perms).catch((e) => {
-      Logger.error("mute_user", e);
+      Logger.error("mute_user", e?.stack || e);
     });
   });
 }
