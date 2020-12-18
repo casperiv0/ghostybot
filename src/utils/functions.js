@@ -306,7 +306,7 @@ function sendErrorLog(bot, error, type, msgContent) {
     .addField("Name", name, true)
     .addField("Code", code, true)
     .addField("httpStatus", httpStatus, true)
-    .addField("Timestamp", Logger.fullDate(), true)
+    .addField("Timestamp", Logger.now, true)
     .addField("Command executed", content, true)
     .setDescription(`\`\`\`${stack}\`\`\` `)
     .setColor(type === "error" ? "RED" : "ORANGE");

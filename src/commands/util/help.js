@@ -8,7 +8,7 @@ module.exports = {
   category: "util",
   cooldown: 2,
   usage: "h <category name | command name>",
-  aliases: ["h"],
+  aliases: ["h", "info", "commands"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guild = await bot.getGuildById(message.guild.id);

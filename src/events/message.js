@@ -23,6 +23,7 @@ module.exports = {
   async execute(bot, message) {
     if (message.channel.type === "dm") return;
     if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
+    if (!message.guild.available) return;
 
     const guildId = message.guild.id;
     const userId = message.author.id;

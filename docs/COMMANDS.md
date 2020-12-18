@@ -1,9 +1,500 @@
 # Ghostybot Command list
 
-  This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-  GhostyBot has a total of 204 commands
+This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
+GhostyBot has a total of 204 commands. 
+
+Click any of the command names for more information
+
+## Command list
+
+
+### Category: admin
+
+**Total commands: 36**
+
+[addcmd:](#addcmd) add guild custom commands
+
+[addrole:](#addrole) Add a role to a user
+
+[addroleall:](#addroleall) Add a role to all user of the current server
+
+[announce:](#announce) Announce something in a channel
+
+[ban:](#ban) ban
+
+[blacklistedwords:](#blacklistedwords) Add/remove blacklisted words
+
+[createrole:](#createrole) This command creates a role with the name of what you say
+
+[ctopic:](#ctopic) Update the channel topic
+
+[deafen:](#deafen) Deafen a user
+
+[delcmd:](#delcmd) Delete the custom commannd
+
+[delete:](#delete) Delete message, up to 100
+
+[ignoredchannels:](#ignoredchannels) Add/remove ignored channels
+
+[kick:](#kick) Kick a user
+
+[lockchannel:](#lockchannel) Lock A channel
+
+[mute:](#mute) Mute a user
+
+[nuke:](#nuke) Nuke the current channel, delete all messages of the channel
+
+[removerole:](#removerole) Remove a role from a user
+
+[removeroleall:](#removeroleall) remove a role from all user of the current server
+
+[removeuserwarns:](#removeuserwarns) Remove all warns from a user
+
+[say:](#say) Let the bot say something
+
+[set:](#set) Set a default channel
+
+[setwelcomemsg:](#setwelcomemsg) Sets the welcome msg
+
+[stealemoji:](#stealemoji) Steal an emoji from a different server
+
+[sticky:](#sticky) Sticky a message to the bottom of the screen
+
+[tempmute:](#tempmute) Temporary mute someone
+
+[unban:](#unban) unban a user by their id
+
+[undeafen:](#undeafen) Undeafen a user from voice channel
+
+[unlockchannel:](#unlockchannel) Unlock A channel
+
+[unmute:](#unmute) Unmute a user
+
+[unset:](#unset) Unset/disable an option
+
+[unsticky:](#unsticky) Sticky a message to the bottom of the screen
+
+[voicekick:](#voicekick) voicekick or disconnect a user from a voice channel
+
+[voicemute:](#voicemute) voicemute a user
+
+[voiceunmute:](#voiceunmute) unmute a user from voice channel
+
+[warn:](#warn) Warns a user
+
+[warnings:](#warnings) Returns how many warnings a user has
+
+  ##
+### Category: animal
+
+**Total commands: 22**
+
+[alpaca:](#alpaca) Shows a picture of a alpaca
+
+[bear:](#bear) Shows a random picture of bear and fact
+
+[bird:](#bird) Returns an image of a bird
+
+[bunny:](#bunny) Shows a picture of a bunny
+
+[camel:](#camel) Shows a picture of a camel
+
+[cat:](#cat) Shows a picture of a cat
+
+[catfact:](#catfact) Returns a cat fact
+
+[cow:](#cow) Returns a cow ascii
+
+[cowsay:](#cowsay) Let a cow say something
+
+[dog:](#dog) Shows a picture of a dog
+
+[dogfact:](#dogfact) Returns a dog fact
+
+[duck:](#duck) Shows a picture of a duck
+
+[fox:](#fox) Shows a picture of a fox
+
+[koala:](#koala) Shows a random picture of koala
+
+[lizard:](#lizard) Shows a picture of a lizard
+
+[llama:](#llama) Shows a picture of a llama
+
+[owl:](#owl) Shows a picture of a owl
+
+[panda:](#panda) Shows a picture of a panda
+
+[racoon:](#racoon) Shows an image of a raccoon
+
+[shibe:](#shibe) Returns an image of a shibe
+
+[snailfact:](#snailfact) Returns a snail fact
+
+[whale:](#whale) Shows an image of a whale
+
+  ##
+### Category: economy
+
+**Total commands: 18**
+
+[addmoney:](#addmoney) Add money to a user
+
+[balance:](#balance) balance
+
+[buy:](#buy) Buy an item from the store
+
+[daily:](#daily) daily
+
+[deposit:](#deposit) deposit money to your bank
+
+[dice:](#dice) Roll a dice
+
+[inventory:](#inventory) View your or a user inventory
+
+[moneyleaderboard:](#moneyleaderboard) Returns a leaderboard with the top 10 users money
+
+[pay:](#pay) Give money to a user
+
+[profile:](#profile) See the full profile of a user
+
+[removemoney:](#removemoney) Remove money to a user
+
+[reseteconomy:](#reseteconomy) Reset all money/bank in this guild
+
+[rob:](#rob) Rob up to 1000coins from somebody
+
+[slots:](#slots) Slots machine
+
+[store:](#store) View the store/shop to buy something
+
+[weekly:](#weekly) Collect your weekly price
+
+[withdraw:](#withdraw) Withdraw money to your bank
+
+[work:](#work) work
+
+  ##
+### Category: games
+
+**Total commands: 20**
+
+[8ball:](#8ball) 8Ball
+
+[advice:](#advice) Gives you advice
+
+[ascii:](#ascii) Transform text to ascii
+
+[bet:](#bet) Bet on somebody
+
+[block:](#block) Write text with blocks
+
+[calc:](#calc) Calculate something
+
+[compliment:](#compliment) Get a compliment
+
+[dadjoke:](#dadjoke) Shows a dadjoke
+
+[flipcoin:](#flipcoin) Flip a coin
+
+[foodporn:](#foodporn) Shows Food images
+
+[happiness:](#happiness) Get a happiness returned
+
+[iq:](#iq) Get a random Iq returned
+
+[lmgtfy:](#lmgtfy) Let me google that for you
+
+[meme:](#meme) Returns a meme
+
+[ping:](#ping) pong!
+
+[randomjoke:](#randomjoke) returns a random joke
+
+[randomnumber:](#randomnumber) Returns a random 6 digit number
+
+[rps:](#rps) Rock Paper Scissors
+
+[tictactoe:](#tictactoe) Play a game of tictactoe
+
+[wyr:](#wyr) Would you rather
+
+  ##
+### Category: hentainsfw
+
+**Total commands: 5**
+
+[hanal:](#hanal) None
+
+[hass:](#hass) None
+
+[hboobs:](#hboobs) None
+
+[hentai:](#hentai) None
+
+[neko:](#neko) None
+
+  ##
+### Category: image
+
+**Total commands: 18**
+
+[amazeme:](#amazeme) Shows interesting images or facts
+
+[amazingearth:](#amazingearth) Amazing images of light and landscape
+
+[baka:](#baka) None
+
+[changemymind:](#changemymind) Change my mind
+
+[clyde:](#clyde) Let clyde say something
+
+[cuddle:](#cuddle) Cuddle with somebody
+
+[feed:](#feed) feed somebody
+
+[giphy:](#giphy) Return a giphy image
+
+[hug:](#hug) Shows a picture of people hugging
+
+[imgfy:](#imgfy) text to image converter xD
+
+[kiss:](#kiss) Shows a picture of people kissing
+
+[owo:](#owo) OwO
+
+[pat:](#pat) Pat somebody
+
+[poke:](#poke) Poke somebody
+
+[slap:](#slap) Slap somebody
+
+[smug:](#smug) Smug
+
+[supreme:](#supreme) Display custom text as the Supreme logo
+
+[tweet:](#tweet) Returns an image with your tweet
+
+  ##
+### Category: levels
+
+**Total commands: 5**
+
+[givexp:](#givexp) Give someone Xp
+
+[leaderboard:](#leaderboard) Shows top 10 users with the highest amount of XP
+
+[level:](#level) Get your current level
+
+[resetxp:](#resetxp) reset all users xp for current server
+
+[xp:](#xp) Get Xp from mentioned user or yourself
+
+  ##
+### Category: music
+
+**Total commands: 10**
+
+[clearqueue:](#clearqueue) Clear the music playlist
+
+[nowplaying:](#nowplaying) Shows info about the current playing song
+
+[pause:](#pause) Pause a song that is playing
+
+[play:](#play) Play a song
+
+[queue:](#queue) Show top 20 songs in the queue
+
+[resume:](#resume) Resume a song that was playing
+
+[shuffle:](#shuffle) Shuffle the queue
+
+[skip:](#skip) Skip a song that is playing
+
+[stop:](#stop) stop
+
+[volume:](#volume) Set the volume between 1 to 100
+
+  ##
+### Category: nsfw
+
+**Total commands: 10**
+
+[4k:](#4k) None
+
+[anal:](#anal) anal nsfw
+
+[blowjob:](#blowjob) N/A
+
+[boobs:](#boobs) None
+
+[butt:](#butt) None
+
+[gif:](#gif) None
+
+[gonewild:](#gonewild) None
+
+[pussy:](#pussy) None
+
+[spank:](#spank) N/A
+
+[wallpaper:](#wallpaper) good wallpapers xD
+
+  ##
+### Category: util
+
+**Total commands: 43**
+
+[afk:](#afk) N/A
+
+[anime:](#anime) description
+
+[avatar:](#avatar) Get user avatar
+
+[bmi:](#bmi) Calculate your BMI
+
+[botinfo:](#botinfo) Shows info about the bot
+
+[botinvite:](#botinvite) Returns the bot invite
+
+[bugreport:](#bugreport) Report a bug to your staff
+
+[channelinfo:](#channelinfo) Get information about a channel
+
+[channels:](#channels) Shows all channels in the server
+
+[covid:](#covid) Get covid 19 information
+
+[define:](#define) Define a word
+
+[dependencies:](#dependencies) Shows a list of all bots dependencies
+
+[docs:](#docs) Returns the request query from discord.js docs
+
+[emojis:](#emojis) Get a random color
+
+[enlarge:](#enlarge) get your emoji enlarged
+
+[feedback:](#feedback) Give feedback about the bot
+
+[github:](#github) Search someone on github
+
+[hastebin:](#hastebin) Get a link of hastebin for your text
+
+[help:](#help) Shows all commands Or shows more info about a command
+
+[image:](#image) Search any image you want from google
+
+[imdb:](#imdb) Get the information about series and movie
+
+[invite:](#invite) Get a random color
+
+[membercount:](#membercount) N/A
+
+[minecraft:](#minecraft) Get info about a minecraft server
+
+[morse:](#morse) Convert a string to morse code
+
+[npm:](#npm) Search packages on npm by their name
+
+[playstore:](#playstore) Show Playstore Application Information Of Your Given Name!
+
+[pokemon:](#pokemon) Returns a pokemon information
+
+[poll:](#poll) Create a poll
+
+[randomcolor:](#randomcolor) Get a random color
+
+[roleinfo:](#roleinfo) Shows info about a role
+
+[roles:](#roles) Shows all roles from the guild
+
+[servericon:](#servericon) Shows the server icon
+
+[serverinfo:](#serverinfo) Get info about the server
+
+[skin:](#skin) Search for skins from Minecraft
+
+[spotify:](#spotify) Shows status of users
+
+[suggest:](#suggest) Create a suggestion
+
+[translate:](#translate) Translate a sentence
+
+[uptime:](#uptime) Returns the uptime of the bot
+
+[userinfo:](#userinfo) Get user info
+
+[weather:](#weather) See the weather in a country/city
+
+[wiki:](#wiki) Search something up on Wikipedia
+
+[worldclock:](#worldclock) Shows the time from other countries
+
+  ##
+### Category: exempt
+
+**Total commands: 4**
+
+[config:](#config) Returns the config
+
+[disable:](#disable) Disables a command
+
+[enable:](#enable) Enables a command
+
+[prefix:](#prefix) Set a prefix for your server
+
+  ##
+### Category: botowner
+
+**Total commands: 6**
+
+[blacklist:](#blacklist) Remove/add blacklist from a user
+
+[eval:](#eval) Eval
+
+[leaveguild:](#leaveguild) Leaves a guid by the provided Id
+
+[nickname:](#nickname) Set the bot's nick name in a guild
+
+[reload:](#reload) Reloads a command
+
+[shutdown:](#shutdown) Shuts the bot down
+
+  ##
+### Category: giveaway
+
+**Total commands: 3**
+
+[givend:](#givend) Ends a giveaway
+
+[givreroll:](#givreroll) Reroll a giveaway
+
+[givstart:](#givstart) Starts a giveaway
+
+  ##
+### Category: reactions
+
+**Total commands: 2**
+
+[rradd:](#rradd) Add a reaction role
+
+[rrremove:](#rrremove) Add a reaction role
+
+  ##
+### Category: reminder
+
+**Total commands: 2**
+
+[removereminder:](#removereminder) Remove your current reminder
+
+[setreminder:](#setreminder) Set a reminder, the bot will ping you when the timer runs out
+
   
-  ## addcmd
+
+## Detailed command list
+  
+## addcmd
 
 **Category:** admin
 
@@ -16,6 +507,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `command name`, `command response`
+
+[Back to top](#ghostybot-command-list)
 
 ## addrole
 
@@ -31,6 +524,8 @@
 
 **Required Arguments:** `member`, `role`
 
+[Back to top](#ghostybot-command-list)
+
 ## addroleall
 
 **Category:** admin
@@ -44,6 +539,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
 **Required Arguments:** `role`
+
+[Back to top](#ghostybot-command-list)
 
 ## announce
 
@@ -59,6 +556,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## ban
 
 **Category:** admin
@@ -72,6 +571,8 @@
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## blacklistedwords
 
@@ -87,6 +588,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## config
 
 **Category:** exempt
@@ -100,6 +603,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## createrole
 
@@ -115,6 +620,8 @@
 
 **Required Arguments:** `role name`
 
+[Back to top](#ghostybot-command-list)
+
 ## ctopic
 
 **Category:** admin
@@ -128,6 +635,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## deafen
 
@@ -143,6 +652,8 @@
 
 **Required Arguments:** `member`, `reason`
 
+[Back to top](#ghostybot-command-list)
+
 ## delcmd
 
 **Category:** admin
@@ -156,6 +667,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `command name`
+
+[Back to top](#ghostybot-command-list)
 
 ## delete
 
@@ -171,6 +684,8 @@
 
 **Required Arguments:** `amount`
 
+[Back to top](#ghostybot-command-list)
+
 ## disable
 
 **Category:** exempt
@@ -184,6 +699,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `command name | category name`
+
+[Back to top](#ghostybot-command-list)
 
 ## enable
 
@@ -199,6 +716,8 @@
 
 **Required Arguments:** `command name | category name`
 
+[Back to top](#ghostybot-command-list)
+
 ## ignoredchannels
 
 **Category:** admin
@@ -212,6 +731,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## kick
 
@@ -227,6 +748,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## lockchannel
 
 **Category:** admin
@@ -240,6 +763,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## mute
 
@@ -255,6 +780,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## nuke
 
 **Category:** admin
@@ -268,6 +795,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## prefix
 
@@ -283,6 +812,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## removerole
 
 **Category:** admin
@@ -296,6 +827,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
 **Required Arguments:** `member`, `role`
+
+[Back to top](#ghostybot-command-list)
 
 ## removeroleall
 
@@ -311,6 +844,8 @@
 
 **Required Arguments:** `role`
 
+[Back to top](#ghostybot-command-list)
+
 ## removeuserwarns
 
 **Category:** admin
@@ -324,6 +859,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`
+
+[Back to top](#ghostybot-command-list)
 
 ## say
 
@@ -339,6 +876,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## set
 
 **Category:** admin
@@ -352,6 +891,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## setwelcomemsg
 
@@ -367,6 +908,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## stealemoji
 
 **Category:** admin
@@ -380,6 +923,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## sticky
 
@@ -395,6 +940,8 @@
 
 **Required Arguments:** `message`
 
+[Back to top](#ghostybot-command-list)
+
 ## tempmute
 
 **Category:** admin
@@ -408,6 +955,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## unban
 
@@ -423,6 +972,8 @@
 
 **Required Arguments:** `member_id`
 
+[Back to top](#ghostybot-command-list)
+
 ## undeafen
 
 **Category:** admin
@@ -436,6 +987,8 @@
 **Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## unlockchannel
 
@@ -451,6 +1004,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## unmute
 
 **Category:** admin
@@ -464,6 +1019,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## unset
 
@@ -479,6 +1036,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## unsticky
 
 **Category:** admin
@@ -492,6 +1051,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES, ADMINISTRATOR
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## voicekick
 
@@ -507,6 +1068,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## voicemute
 
 **Category:** admin
@@ -520,6 +1083,8 @@
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## voiceunmute
 
@@ -535,6 +1100,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## warn
 
 **Category:** admin
@@ -548,6 +1115,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## warnings
 
@@ -563,6 +1132,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## alpaca
 
 **Category:** animal
@@ -576,6 +1147,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## bear
 
@@ -591,6 +1164,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## bird
 
 **Category:** animal
@@ -604,6 +1179,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## bunny
 
@@ -619,6 +1196,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## camel
 
 **Category:** animal
@@ -632,6 +1211,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## cat
 
@@ -647,6 +1228,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## catfact
 
 **Category:** animal
@@ -660,6 +1243,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## cow
 
@@ -675,6 +1260,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## cowsay
 
 **Category:** animal
@@ -688,6 +1275,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## dog
 
@@ -703,6 +1292,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## dogfact
 
 **Category:** animal
@@ -716,6 +1307,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## duck
 
@@ -731,6 +1324,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## fox
 
 **Category:** animal
@@ -744,6 +1339,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## koala
 
@@ -759,6 +1356,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## lizard
 
 **Category:** animal
@@ -772,6 +1371,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## llama
 
@@ -787,6 +1388,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## owl
 
 **Category:** animal
@@ -800,6 +1403,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## panda
 
@@ -815,6 +1420,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## racoon
 
 **Category:** animal
@@ -828,6 +1435,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## shibe
 
@@ -843,6 +1452,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## snailfact
 
 **Category:** animal
@@ -856,6 +1467,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## whale
 
@@ -871,6 +1484,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## blacklist
 
 **Category:** botowner
@@ -884,6 +1499,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## eval
 
@@ -899,6 +1516,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## leaveguild
 
 **Category:** botowner
@@ -912,6 +1531,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## nickname
 
@@ -927,6 +1548,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## reload
 
 **Category:** botowner
@@ -940,6 +1563,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## shutdown
 
@@ -955,6 +1580,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## addmoney
 
 **Category:** economy
@@ -968,6 +1595,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## balance
 
@@ -983,6 +1612,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## buy
 
 **Category:** economy
@@ -996,6 +1627,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `item name`
+
+[Back to top](#ghostybot-command-list)
 
 ## daily
 
@@ -1011,6 +1644,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## deposit
 
 **Category:** economy
@@ -1024,6 +1659,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## dice
 
@@ -1039,6 +1676,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## inventory
 
 **Category:** economy
@@ -1052,6 +1691,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## moneyleaderboard
 
@@ -1067,6 +1708,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## pay
 
 **Category:** economy
@@ -1080,6 +1723,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## profile
 
@@ -1095,6 +1740,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## removemoney
 
 **Category:** economy
@@ -1108,6 +1755,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## reseteconomy
 
@@ -1123,6 +1772,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## rob
 
 **Category:** economy
@@ -1136,6 +1787,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## slots
 
@@ -1151,6 +1804,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## store
 
 **Category:** economy
@@ -1164,6 +1819,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## weekly
 
@@ -1179,6 +1836,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## withdraw
 
 **Category:** economy
@@ -1192,6 +1851,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `amount`
+
+[Back to top](#ghostybot-command-list)
 
 ## work
 
@@ -1207,6 +1868,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## 8ball
 
 **Category:** games
@@ -1220,6 +1883,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## advice
 
@@ -1235,6 +1900,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## ascii
 
 **Category:** games
@@ -1248,6 +1915,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## bet
 
@@ -1263,6 +1932,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## block
 
 **Category:** games
@@ -1276,6 +1947,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## calc
 
@@ -1291,6 +1964,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## compliment
 
 **Category:** games
@@ -1304,6 +1979,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## dadjoke
 
@@ -1319,6 +1996,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## flipcoin
 
 **Category:** games
@@ -1332,6 +2011,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## foodporn
 
@@ -1347,6 +2028,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## happiness
 
 **Category:** games
@@ -1360,6 +2043,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## iq
 
@@ -1375,6 +2060,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## lmgtfy
 
 **Category:** games
@@ -1388,6 +2075,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## meme
 
@@ -1403,6 +2092,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## ping
 
 **Category:** games
@@ -1416,6 +2107,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## randomjoke
 
@@ -1431,6 +2124,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## randomnumber
 
 **Category:** games
@@ -1444,6 +2139,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## rps
 
@@ -1459,6 +2156,8 @@
 
 **Required Arguments:** `rock | paper | scissors`
 
+[Back to top](#ghostybot-command-list)
+
 ## tictactoe
 
 **Category:** games
@@ -1473,6 +2172,8 @@
 
 **Required Arguments:** `member`
 
+[Back to top](#ghostybot-command-list)
+
 ## wyr
 
 **Category:** games
@@ -1486,6 +2187,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## givend
 
@@ -1502,6 +2205,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## givreroll
 
 **Category:** giveaway
@@ -1515,6 +2220,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## givstart
 
@@ -1531,6 +2238,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## hanal
 
 **Category:** hentainsfw
@@ -1544,6 +2253,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## hass
 
@@ -1559,6 +2270,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## hboobs
 
 **Category:** hentainsfw
@@ -1572,6 +2285,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## hentai
 
@@ -1587,6 +2302,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## neko
 
 **Category:** hentainsfw
@@ -1600,6 +2317,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## amazeme
 
@@ -1615,6 +2334,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## amazingearth
 
 **Category:** image
@@ -1628,6 +2349,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## baka
 
@@ -1643,6 +2366,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## changemymind
 
 **Category:** image
@@ -1656,6 +2381,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## clyde
 
@@ -1671,6 +2398,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## cuddle
 
 **Category:** image
@@ -1684,6 +2413,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## feed
 
@@ -1699,6 +2430,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## giphy
 
 **Category:** image
@@ -1712,6 +2445,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## hug
 
@@ -1727,6 +2462,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## imgfy
 
 **Category:** image
@@ -1740,6 +2477,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## kiss
 
@@ -1755,6 +2494,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## owo
 
 **Category:** image
@@ -1768,6 +2509,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## pat
 
@@ -1783,6 +2526,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## poke
 
 **Category:** image
@@ -1796,6 +2541,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## slap
 
@@ -1811,6 +2558,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## smug
 
 **Category:** image
@@ -1824,6 +2573,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## supreme
 
@@ -1839,6 +2590,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## tweet
 
 **Category:** image
@@ -1852,6 +2605,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## givexp
 
@@ -1867,6 +2622,8 @@
 
 **Required Arguments:** `member`, `amount`
 
+[Back to top](#ghostybot-command-list)
+
 ## leaderboard
 
 **Category:** levels
@@ -1880,6 +2637,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## level
 
@@ -1895,6 +2654,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## resetxp
 
 **Category:** levels
@@ -1908,6 +2669,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## xp
 
@@ -1923,6 +2686,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## clearqueue
 
 **Category:** music
@@ -1936,6 +2701,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## nowplaying
 
@@ -1951,6 +2718,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## pause
 
 **Category:** music
@@ -1964,6 +2733,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## play
 
@@ -1979,6 +2750,8 @@
 
 **Required Arguments:** `song`
 
+[Back to top](#ghostybot-command-list)
+
 ## queue
 
 **Category:** music
@@ -1992,6 +2765,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## resume
 
@@ -2007,6 +2782,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## shuffle
 
 **Category:** music
@@ -2020,6 +2797,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## skip
 
@@ -2035,6 +2814,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## stop
 
 **Category:** music
@@ -2048,6 +2829,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## volume
 
@@ -2063,6 +2846,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## 4k
 
 **Category:** nsfw
@@ -2076,6 +2861,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## anal
 
@@ -2091,6 +2878,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## blowjob
 
 **Category:** nsfw
@@ -2104,6 +2893,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## boobs
 
@@ -2119,6 +2910,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## butt
 
 **Category:** nsfw
@@ -2132,6 +2925,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## gif
 
@@ -2147,6 +2942,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## gonewild
 
 **Category:** nsfw
@@ -2160,6 +2957,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## pussy
 
@@ -2175,6 +2974,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## spank
 
 **Category:** nsfw
@@ -2188,6 +2989,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## wallpaper
 
@@ -2203,6 +3006,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## rradd
 
 **Category:** reactions
@@ -2216,6 +3021,8 @@
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADD_REACTIONS, MANAGE_MESSAGES
 
 **Required Arguments:** `channel_id`
+
+[Back to top](#ghostybot-command-list)
 
 ## rrremove
 
@@ -2231,6 +3038,8 @@
 
 **Required Arguments:** `message_id`
 
+[Back to top](#ghostybot-command-list)
+
 ## removereminder
 
 **Category:** reminder
@@ -2244,6 +3053,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## setreminder
 
@@ -2259,6 +3070,8 @@
 
 **Required Arguments:** `time`, `message`
 
+[Back to top](#ghostybot-command-list)
+
 ## afk
 
 **Category:** util
@@ -2272,6 +3085,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## anime
 
@@ -2287,6 +3102,8 @@
 
 **Required Arguments:** `name`
 
+[Back to top](#ghostybot-command-list)
+
 ## avatar
 
 **Category:** util
@@ -2300,6 +3117,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## bmi
 
@@ -2315,6 +3134,8 @@
 
 **Required Arguments:** `weight`, `height`
 
+[Back to top](#ghostybot-command-list)
+
 ## botinfo
 
 **Category:** util
@@ -2328,6 +3149,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## botinvite
 
@@ -2343,6 +3166,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## bugreport
 
 **Category:** util
@@ -2356,6 +3181,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `report`
+
+[Back to top](#ghostybot-command-list)
 
 ## channelinfo
 
@@ -2371,6 +3198,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## channels
 
 **Category:** util
@@ -2384,6 +3213,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## covid
 
@@ -2399,6 +3230,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## define
 
 **Category:** util
@@ -2412,6 +3245,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `word`
+
+[Back to top](#ghostybot-command-list)
 
 ## dependencies
 
@@ -2427,6 +3262,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## docs
 
 **Category:** util
@@ -2440,6 +3277,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
 
 ## emojis
 
@@ -2455,6 +3294,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## enlarge
 
 **Category:** util
@@ -2468,6 +3309,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `emoji`
+
+[Back to top](#ghostybot-command-list)
 
 ## feedback
 
@@ -2483,6 +3326,8 @@
 
 **Required Arguments:** `message`
 
+[Back to top](#ghostybot-command-list)
+
 ## github
 
 **Category:** util
@@ -2496,6 +3341,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `username`
+
+[Back to top](#ghostybot-command-list)
 
 ## hastebin
 
@@ -2511,6 +3358,8 @@
 
 **Required Arguments:** `extension`, `code`
 
+[Back to top](#ghostybot-command-list)
+
 ## help
 
 **Category:** util
@@ -2524,6 +3373,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## image
 
@@ -2539,6 +3390,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## imdb
 
 **Category:** util
@@ -2552,6 +3405,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
 
 ## invite
 
@@ -2567,6 +3422,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## membercount
 
 **Category:** util
@@ -2580,6 +3437,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## minecraft
 
@@ -2595,6 +3454,8 @@
 
 **Required Arguments:** `server-ip`
 
+[Back to top](#ghostybot-command-list)
+
 ## morse
 
 **Category:** util
@@ -2608,6 +3469,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
 
 ## npm
 
@@ -2623,6 +3486,8 @@
 
 **Required Arguments:** `query`
 
+[Back to top](#ghostybot-command-list)
+
 ## playstore
 
 **Category:** util
@@ -2636,6 +3501,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `app`
+
+[Back to top](#ghostybot-command-list)
 
 ## pokemon
 
@@ -2651,6 +3518,8 @@
 
 **Required Arguments:** `query`
 
+[Back to top](#ghostybot-command-list)
+
 ## poll
 
 **Category:** util
@@ -2664,6 +3533,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `question`
+
+[Back to top](#ghostybot-command-list)
 
 ## randomcolor
 
@@ -2679,6 +3550,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## roleinfo
 
 **Category:** util
@@ -2692,6 +3565,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `role`
+
+[Back to top](#ghostybot-command-list)
 
 ## roles
 
@@ -2707,6 +3582,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## servericon
 
 **Category:** util
@@ -2720,6 +3597,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## serverinfo
 
@@ -2735,6 +3614,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## skin
 
 **Category:** util
@@ -2748,6 +3629,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `username`
+
+[Back to top](#ghostybot-command-list)
 
 ## spotify
 
@@ -2763,6 +3646,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## suggest
 
 **Category:** util
@@ -2776,6 +3661,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `suggestion`
+
+[Back to top](#ghostybot-command-list)
 
 ## translate
 
@@ -2791,6 +3678,8 @@
 
 **Required Arguments:** `language`, `sentence`
 
+[Back to top](#ghostybot-command-list)
+
 ## uptime
 
 **Category:** util
@@ -2804,6 +3693,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
 
 ## userinfo
 
@@ -2819,6 +3710,8 @@
 
 **Required Arguments:** N/A
 
+[Back to top](#ghostybot-command-list)
+
 ## weather
 
 **Category:** util
@@ -2832,6 +3725,8 @@
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `country/city`
+
+[Back to top](#ghostybot-command-list)
 
 ## wiki
 
@@ -2847,6 +3742,8 @@
 
 **Required Arguments:** `query`
 
+[Back to top](#ghostybot-command-list)
+
 ## worldclock
 
 **Category:** util
@@ -2861,4 +3758,5 @@
 
 **Required Arguments:** N/A
 
-  
+[Back to top](#ghostybot-command-list)
+

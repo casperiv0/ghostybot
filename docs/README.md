@@ -4,10 +4,10 @@
 - [Installation](INSTALLATION.md)
   - [Requirements](INSTALLATION.md#requirements)
   - [Usage](INSTALLATION.md#usage)
-- [Contributing](CONTRIBUTING.md)
-- [Bot Events](BOT_EVENTS.md)
+- Contributing
+  - [Guide](CONTRIBUTING.md)
+  - [Command Example](COMMAND_OPTIONS.md)
 - [API's used](APIS_USED.md)
-- [Docs in 1 page](FULL_DOC.md)
 - [FAQ](./FAQ.md)
 
 # Links

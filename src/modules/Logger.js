@@ -2,12 +2,8 @@ const moment = require("moment");
 const chalk = require("chalk");
 
 class Logger {
-  now() {
-    return moment().format("hh:mm:ss a");
-  }
-
-  fullDate() {
-    return moment().format("MMMM Do YYYY, h:mm:ss a");
+  get now() {
+    return moment().format("DD-MM-YYYY, HH:mm:ss a");
   }
 
   /**
@@ -15,9 +11,7 @@ class Logger {
    * @param {string} error
    */
   error(type, error) {
-    return console.error(
-      chalk.red(`[${type.toUpperCase()}][${this.now()}]: ${error}`)
-    );
+    return console.error(`${chalk.red("[ERROR]")}[${type.toUpperCase()}][${this.now}]: ${error}`);
   }
 
   /**
@@ -26,9 +20,7 @@ class Logger {
    */
   warn(type, warning) {
     return console.warn(
-      chalk.yellow(
-        `[WARNING][${type.toUpperCase()}][${this.now()}]: ${warning}`
-      )
+      `${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`
     );
   }
 
@@ -38,7 +30,7 @@ class Logger {
    */
   log(type, message) {
     return console.log(
-      `[INFO][${type.toUpperCase()}][${this.now()}]: ${message}`
+      `${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`
     );
   }
 }
