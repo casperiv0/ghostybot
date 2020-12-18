@@ -21,7 +21,7 @@ module.exports = {
         .setTitle("👋 User left")
         .setThumbnail(avatar)
         .setDescription(
-          parseMessage(guild.welcome_message, member.user, {
+          parseMessage(guild.leave_message, member.user, {
             author: member.user,
             guild: member.guild,
           })
