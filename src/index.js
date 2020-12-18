@@ -90,12 +90,12 @@ if (dev === true) {
 bot.login(token);
 
 // Unhandled errors
-process.on("unhandledRejection", (error) => sendErrorLog(bot, error, "error"));
+process.on("unhandledRejection", (error) => sendErrorLog(bot, error.stack || error, "error"));
 
-process.on("uncaughtExceptionMonitor", (error) => sendErrorLog(bot, error, "error"));
+process.on("uncaughtExceptionMonitor", (error) => sendErrorLog(bot, error.stack || error, "error"));
 
 process.on("warning", (warning) => {
   if (warning.stack.startsWith("(node:13988) [DEP0148]")) return;
 
-  sendErrorLog(bot, warning, "warning");
+  sendErrorLog(bot, warning.stack || warning, "warning");
 });
