@@ -131,6 +131,10 @@ module.exports = {
     embed
       .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
       .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
+      .addField(
+        "View full detail command list",
+        "[Click me](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)"
+      )
       .setTitle("Help");
 
     message.channel.send(embed);
