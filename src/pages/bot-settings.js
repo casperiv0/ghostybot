@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import { parseCookies } from "nookies";
 import AlertMessage from "../dashboard/components/AlertMessage";
+import { owners } from "../../config.json";
+import { useRouter } from "next/router";
+import { handleApiRequest } from "../utils/functions";
 
-const BotSettings = () => {
+const BotSettings = ({ isAuth, isOwner }) => {
   const [nickname, setNickname] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+
+    if (!isOwner) {
+      router.push("/dashboard?message=You are not allowed to view that page!");
+    }
+  }, [router, isAuth, isOwner]);
 
   return (
     <>
@@ -46,5 +61,21 @@ const BotSettings = () => {
     </>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const cookies = parseCookies(ctx);
+
+  const data = await handleApiRequest("/users/@me", {
+    type: "Bearer",
+    data: cookies.token,
+  });
+
+  return {
+    props: {
+      isAuth: data.error !== "invalid_token",
+      isOwner: owners.includes(data.id),
+    },
+  };
+}
 
 export default BotSettings;

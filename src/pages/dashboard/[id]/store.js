@@ -9,9 +9,15 @@ import { useRouter } from "next/router";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Logger from "../../../modules/Logger";
 
-const Store = ({ guild }) => {
+const Store = ({ guild, isAuth }) => {
   const [message, setMessage] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
 
   useEffect(() => {
     setMessage(router.query?.message);
@@ -21,9 +27,7 @@ const Store = ({ guild }) => {
     try {
       const data = await (
         await fetch(
-          `${dashboard.dashboardUrl}/api/guilds/${
-            guild.id
-          }/store?name=${encodeURIComponent(name)}`,
+          `${dashboard.dashboardUrl}/api/guilds/${guild.id}/store?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
           }
@@ -59,16 +63,13 @@ const Store = ({ guild }) => {
           <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
             Return
           </a>
-          <button
-            className="btn btn-primary ml-5"
-            onClick={addStoreItem}
-          >
+          <button className="btn btn-primary ml-5" onClick={addStoreItem}>
             Add store item
           </button>
         </div>
       </div>
 
-      {guild.store.length > 0 ? (
+      {guild?.store?.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -78,16 +79,13 @@ const Store = ({ guild }) => {
             </tr>
           </thead>
           <tbody>
-            {guild.store.map((item, idx) => {
+            {guild?.store?.map((item, idx) => {
               return (
                 <tr key={idx}>
                   <td className="cmd-response">{item.name}</td>
                   <td>{item.price}</td>
                   <td className="table-actions">
-                    <button
-                      onClick={() => deleteItem(item.name)}
-                      className="btn btn-sm btn-red"
-                    >
+                    <button onClick={() => deleteItem(item.name)} className="btn btn-sm btn-red">
                       Delete
                     </button>
                   </td>
@@ -116,8 +114,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
     },
   };
 }

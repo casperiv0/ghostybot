@@ -9,9 +9,15 @@ import { openModal } from "../../../dashboard/components/modal";
 import CreateCommandModal from "../../../dashboard/components/modal/create-command";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 
-const CustomCommands = ({ guild }) => {
+const CustomCommands = ({ guild, isAuth }) => {
   const [message, setMessage] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
 
   useEffect(() => {
     setMessage(router.query?.message);
@@ -64,7 +70,7 @@ const CustomCommands = ({ guild }) => {
         </div>
       </div>
 
-      {guild.custom_commands.length > 0 ? (
+      {guild?.custom_commands?.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -74,7 +80,7 @@ const CustomCommands = ({ guild }) => {
             </tr>
           </thead>
           <tbody>
-            {guild.custom_commands.map((cmd, idx) => {
+            {guild?.custom_commands?.map((cmd, idx) => {
               return (
                 <tr key={idx}>
                   <td>{cmd.name}</td>
@@ -109,8 +115,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
     },
   };
 }

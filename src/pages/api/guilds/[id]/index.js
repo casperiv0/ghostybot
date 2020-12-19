@@ -3,12 +3,19 @@ import {
   updateGuildById,
   handleApiRequest,
   createWebhook,
+  checkAuth,
 } from "../../../../utils/functions";
 import { token } from "../../../../../config.json";
 import hiddenItems from "../../../../data/hidden-items.json";
 
 export default async function handler(req, res) {
   const { method, query } = req;
+
+  try {
+    await checkAuth(req);
+  } catch (e) {
+    return res.json({ status: "error", error: e });
+  }
 
   switch (method) {
     case "GET": {
@@ -74,9 +81,7 @@ export default async function handler(req, res) {
       });
     }
     default: {
-      return res
-        .status(405)
-        .json({ error: "Method not allowed", status: "error" });
+      return res.status(405).json({ error: "Method not allowed", status: "error" });
     }
   }
 }

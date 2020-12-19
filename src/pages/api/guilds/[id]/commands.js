@@ -1,7 +1,14 @@
-import { getGuildById, updateGuildById } from "../../../../utils/functions";
+import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
 
 export default async function handler(req, res) {
   const { method, query } = req;
+
+  try {
+    await checkAuth(req);
+  } catch (e) {
+    return res.json({ status: "error", error: e });
+  }
+
   const guild = await getGuildById(query.id);
 
   switch (method) {

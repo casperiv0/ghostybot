@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import fetch from "node-fetch";
@@ -6,8 +6,9 @@ import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { getLanguages } from "../../../utils/functions";
 import timezones from "../../../data/timezones.json";
+import { useRouter } from "next/router";
 
-const Settings = ({ guild, languages }) => {
+const Settings = ({ guild, languages, isAuth }) => {
   const [message, setMessage] = useState(null);
   const [welcomeChannel, setWelcomeChannel] = useState(guild.welcome_channel || "");
   const [welcomeRole, setWelcomeRole] = useState(guild.welcome_role || "");
@@ -22,6 +23,13 @@ const Settings = ({ guild, languages }) => {
   const [prefix, setPrefix] = useState(guild.prefix || "");
   const [tz, setTz] = useState(guild.timezone || "");
   const [autoDelCmd, setAutoDelCmd] = useState(guild.auto_delete_cmd || "");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
 
   const fields = [
     {
@@ -179,7 +187,7 @@ const Settings = ({ guild, languages }) => {
                     value={field.value}
                     onChange={field.onChange}
                   >
-                    {field.data.map((option, idx) => {
+                    {field.data?.map((option, idx) => {
                       return (
                         <option key={idx} value={option.id}>
                           {option.name}
@@ -261,8 +269,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      guild: data?.guild || {},
+      isAuth: data.error !== "invalid_token",
       languages: langs,
     },
   };

@@ -6,11 +6,18 @@ import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 
-const ManageCommands = ({ botCommands, guild }) => {
+const ManageCommands = ({ botCommands, guild, isAuth }) => {
   const router = useRouter();
   const [message, setMessage] = useState(null);
   const [filtered, setFiltered] = useState(botCommands);
   const [length, setLength] = useState(20);
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
+
   const observer = useRef();
   const lastRef = useCallback(
     (node) => {
@@ -98,9 +105,9 @@ const ManageCommands = ({ botCommands, guild }) => {
 
       <div className="grid">
         {filtered
-          .slice(0, length)
-          .filter(({ name }) => !["help", "enable", "disable"].includes(name))
-          .map((cmd, idx) => {
+          ?.slice(0, length)
+          ?.filter(({ name }) => !["help", "enable", "disable"].includes(name))
+          ?.map((cmd, idx) => {
             const isDisabled = guild.disabled_commands?.find((c) => c === cmd.name);
             return (
               <div ref={lastRef} id={idx} key={cmd.name} className="card cmd-card">
@@ -135,9 +142,9 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
-      botCommands: data.botCommands,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
+      botCommands: data.botCommands || [],
     },
   };
 }

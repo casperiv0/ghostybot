@@ -8,9 +8,15 @@ import { openModal } from "../../../dashboard/components/modal";
 import AddBlacklistedWord from "../../../dashboard/components/modal/add-blacklistedword";
 import Logger from "../../../modules/Logger";
 
-const BlacklistedWords = ({ guild }) => {
+const BlacklistedWords = ({ guild, isAuth }) => {
   const [message, setMessage] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
 
   useEffect(() => {
     setMessage(router.query?.message);
@@ -106,8 +112,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
     },
   };
 }

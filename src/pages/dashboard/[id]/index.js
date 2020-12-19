@@ -5,13 +5,17 @@ import Link from "next/link";
 import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 
-const Guild = ({ guild }) => {
+const Guild = ({ guild, isAuth }) => {
   const router = useRouter();
+
   useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
     if (!guild.id) {
       return router.push("/dashboard?message=Guild was not found");
     }
-  }, [guild, router]);
+  }, [guild, isAuth, router]);
 
   return (
     <>
@@ -62,8 +66,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
     },
   };
 }

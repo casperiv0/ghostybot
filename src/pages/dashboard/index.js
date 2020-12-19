@@ -66,7 +66,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
+      isAuth: data.error !== "invalid_token",
       guilds: data?.guilds || [],
     },
   };

@@ -7,10 +7,16 @@ import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import categories from "../../../data/categories.json";
 
-const ManageCategories = ({ guild }) => {
+const ManageCategories = ({ guild, isAuth }) => {
   const router = useRouter();
   const [message, setMessage] = useState(null);
   const [filtered, setFiltered] = useState(categories);
+
+  useEffect(() => {
+    if (!isAuth) {
+      return router.push("/login");
+    }
+  }, [router, isAuth]);
 
   useEffect(() => {
     setMessage(router.query?.message);
@@ -84,8 +90,8 @@ const ManageCategories = ({ guild }) => {
 
       <div className="grid">
         {filtered
-          .filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
-          .map((category, idx) => {
+          ?.filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
+          ?.map((category, idx) => {
             const isDisabled = guild.disabled_categories?.find((c) => c === category);
             return (
               <div id={idx} key={category} className="card cmd-card">
@@ -120,8 +126,8 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      isAuth: data.invalid_token ? false : true,
-      guild: data?.guild,
+      isAuth: data.error !== "invalid_token",
+      guild: data?.guild || {},
     },
   };
 }
