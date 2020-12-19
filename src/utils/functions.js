@@ -115,7 +115,7 @@ async function getGuildById(guildId) {
 
     return guild;
   } catch (e) {
-    console.error(e);
+    Logger.error("GET_GUILD_BY_ID", e.stack || e);
   }
 }
 
@@ -489,6 +489,24 @@ async function handleApiRequest(path, token, method) {
   }
 }
 
+/**
+ *
+ * @param {import("next").NextApiRequest} req
+ */
+async function checkAuth(req) {
+  const token = req.cookies.token || req.headers.auth;
+  const data = await handleApiRequest("/users/@me", {
+    type: "Bearer",
+    data: token,
+  });
+
+  if (data.error) {
+    return Promise.reject(data.error);
+  } else {
+    return Promise.resolve("Authorized");
+  }
+}
+
 /* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
 function encode(obj) {
   let string = "";
@@ -531,4 +549,5 @@ module.exports = {
   escapeMarkdown,
   findOrCreateMutedRole,
   updateMuteChannelPerms,
+  checkAuth,
 };

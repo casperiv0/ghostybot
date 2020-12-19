@@ -1,7 +1,14 @@
-import { getGuildById, updateGuildById } from "../../../../utils/functions";
+import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
 
 export default async function handler(req, res) {
   const { method, query } = req;
+
+  try {
+    await checkAuth(req);
+  } catch (e) {
+    return res.json({ status: "error", error: e });
+  }
+
   const guild = await getGuildById(query.id);
   const lang = await req.bot.getGuildLang(query.id);
 
@@ -52,9 +59,7 @@ export default async function handler(req, res) {
       });
     }
     default: {
-      return res
-        .status(405)
-        .json({ error: "Method not allowed", status: "error" });
+      return res.status(405).json({ error: "Method not allowed", status: "error" });
     }
   }
 }
