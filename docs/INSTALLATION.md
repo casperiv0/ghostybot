@@ -14,6 +14,16 @@ How to install Ghostybot on your machine
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [Mongo URI](https://www.mongodb.com/)
 
+## Api Keys
+
+These api keys are not required for the bot to function. Only required for their desired command.
+
+- [openWeatherMapKey](https://openweathermap.org/)
+- [imdbKey](https://www.omdbapi.com/apikey.aspx)
+- [mongodbUri](https://www.mongodb.com/cloud/atlas)
+- [giphyApiKey](https://developers.giphy.com/)
+- [alexflipnoteKey](https://discord.gg/DpxkY3x)
+
 ## Usage
 
 1. Clone the repo: `git clone https://github.com/Dev-CasperTheGhost/ghostybot`
