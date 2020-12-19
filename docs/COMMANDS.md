@@ -494,6 +494,166 @@ Click any of the command names for more information
 
 ## Detailed command list
   
+## 4k
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## anal
+
+**Category:** nsfw
+
+**Description:** anal nsfw
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## blowjob
+
+**Category:** nsfw
+
+**Description:** N/A
+
+**Usage:** `None`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## boobs
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## butt
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## gif
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## gonewild
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## pussy
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## spank
+
+**Category:** nsfw
+
+**Description:** N/A
+
+**Usage:** `None`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## wallpaper
+
+**Category:** nsfw
+
+**Description:** good wallpapers xD
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## addcmd
 
 **Category:** admin
@@ -2837,166 +2997,6 @@ Click any of the command names for more information
 **Category:** music
 
 **Description:** Set the volume between 1 to 100
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## 4k
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## anal
-
-**Category:** nsfw
-
-**Description:** anal nsfw
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## blowjob
-
-**Category:** nsfw
-
-**Description:** N/A
-
-**Usage:** `None`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## boobs
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## butt
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## gif
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## gonewild
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pussy
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## spank
-
-**Category:** nsfw
-
-**Description:** N/A
-
-**Usage:** `None`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## wallpaper
-
-**Category:** nsfw
-
-**Description:** good wallpapers xD
 
 **Usage:** `N/A`
 

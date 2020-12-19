@@ -13,7 +13,7 @@ const Settings = ({ guild, languages, isAuth }) => {
   const [welcomeChannel, setWelcomeChannel] = useState(guild.welcome_channel || "");
   const [welcomeRole, setWelcomeRole] = useState(guild.welcome_role || "");
   const [suggestChannel, setSuggestChannel] = useState(guild.suggest_channel || "");
-  const [announceChannel, setAnnounceChannel] = useState(guild.announce_channel || "");
+  const [announceChannel, setAnnounceChannel] = useState(guild.announcement_channel || "");
   const [leaveChannel, setLeaveChannel] = useState(guild.leave_channel || "");
   const [levelUpMessages, setLevelUpMessages] = useState(guild.level_up_messages || "false");
   const [language, setLanguage] = useState(guild.locale || "");

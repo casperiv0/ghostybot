@@ -23,24 +23,21 @@ module.exports = {
       .addField(lang.GUILD.PREFIX, prefix)
       .addField(
         lang.GUILD.ANNOUNCE_CHANNEL,
-        announceCh !== null ? `<#${announceCh}>` : lang.GLOBAL.NONE
+        !announceCh ? lang.GLOBAL.NONE : `<#${announceCh}>`
       )
       .addField(
         lang.GUILD.SUGGEST_CHANNEL,
-        suggestCh !== null ? `<#${suggestCh}>` : lang.GLOBAL.NONE
+        !suggestCh ? lang.GLOBAL.NONE : `<#${suggestCh}>`
       )
       .addField(
         lang.GUILD.WELCOME_CHANNEL,
-        welcomeCh !== null ? `<#${welcomeCh}>` : lang.GLOBAL.NONE
+        !welcomeCh ? lang.GLOBAL.NONE : `<#${welcomeCh}>`
       )
       .addField(
         lang.GUILD.LEAVE_CHANNEL,
-        leaveCh !== null ? `<#${leaveCh}>` : lang.GLOBAL.NONE
+        !leaveCh ? lang.GLOBAL.NONE : `<#${leaveCh}>`
       )
-      .addField(
-        lang.GUILD.LEVEL_UP_MESSAGES,
-        levelMsgs !== null ? "true" : "false"
-      );
+      .addField(lang.GUILD.LEVEL_UP_MESSAGES, !levelMsgs ? "true" : "false");
 
     message.channel.send({ embed });
   },
