@@ -298,7 +298,7 @@ function sendErrorLog(bot, error, type, msgContent) {
   const name = error.name || "N/A";
   const code = error.code || "N/A";
   const httpStatus = error.httpStatus || "N/A";
-  const stack = error.stack || "N/A";
+  const stack = error.stack || error;
   const content = msgContent || "N/A";
 
   const embed = BaseEmbed(message)

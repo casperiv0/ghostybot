@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 204 commands. 
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -237,7 +237,7 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 18**
+**Total commands: 19**
 
 [amazeme:](#amazeme) Shows interesting images or facts
 
@@ -274,6 +274,8 @@ Click any of the command names for more information
 [supreme:](#supreme) Display custom text as the Supreme logo
 
 [tweet:](#tweet) Returns an image with your tweet
+
+[ytcomment:](#ytcomment) Returns an image with your YouTube comment
 
   ##
 ### Category: levels
@@ -2765,6 +2767,22 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ytcomment
+
+**Category:** image
+
+**Description:** Returns an image with your YouTube comment
+
+**Usage:** `ytcomment <my amazing youtube comment>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `comment`
 
 [Back to top](#ghostybot-command-list)
 
