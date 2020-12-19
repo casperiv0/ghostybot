@@ -14,11 +14,8 @@ module.exports = {
   usage: "tempmute <user> <time> <reason>",
   async execute(bot, message, args) {
     const muteMember = bot.findMember(message, args);
-    const [, time, ...reason] = args;
-
-    if (!time) {
-      return message.channel.send("Please provide a time");
-    }
+    const [, time, ...rest] = args;
+    const reason = rest.join(" ") || "N/A";
 
     if (!muteMember) {
       return message.channel.send("Please provide valid a member");
@@ -30,6 +27,10 @@ module.exports = {
 
     if (muteMember.hasPermission("MANAGE_ROLES")) {
       return message.channel.send("User can't be muted");
+    }
+
+    if (!ms(time)) {
+      return message.channel.send("Please provide a valid time: E.G.: `2d`, `1h`, ...");
     }
 
     const muteRole = await findOrCreateMutedRole(message.guild);
@@ -46,26 +47,22 @@ module.exports = {
         muted: true,
         ends_at: Date.now() + ms(time),
         time,
-        reason: reason || "N/A",
+        reason: reason,
       },
     });
 
     muteMember.user.send(
-      `You've been **temporary muted** from **${
-        message.guild.name
-      }**, Reason: **${reason.join(" ")}**, Time: **${time}**`
+      `You've been **temporary muted** from **${message.guild.name}**, Reason: **${reason}**, Time: **${time}**`
     );
     message.channel.send(
-      `${muteMember.user.tag} was successfully muted for ${time}. Reason: **${
-        reason.join(" ") || "N/A"
-      }**`
+      `${muteMember.user.tag} was successfully muted for ${time}. Reason: **${reason}**`
     );
 
     await bot.emit("guildMuteAdd", message.guild, {
       member: muteMember,
       executor: message.author,
       tempMute: true,
-      reason: reason.join(" ") || "N/A",
+      reason: reason,
       time,
     });
   },

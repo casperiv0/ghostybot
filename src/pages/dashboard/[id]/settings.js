@@ -147,6 +147,7 @@ const Settings = ({ guild, languages, isAuth }) => {
           prefix: prefix,
           timezone: tz,
           auto_delete_cmd: autoDelCmd === "true",
+          leave_message: leaveMessage,
         }),
       });
       const data = await res.json();
