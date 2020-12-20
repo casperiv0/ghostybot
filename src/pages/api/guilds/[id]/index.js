@@ -51,6 +51,8 @@ export default async function handler(req, res) {
 
         return true;
       });
+      guild.categories = gChannels.filter((c) => c.type === 4);
+      guild.categories.unshift({ id: null, name: "Disabled" });
       guild.channels.unshift({ id: null, name: "Disabled" });
       guild.roles.unshift({ id: null, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");

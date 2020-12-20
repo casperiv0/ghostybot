@@ -23,6 +23,8 @@ const Settings = ({ guild, languages, isAuth }) => {
   const [prefix, setPrefix] = useState(guild.prefix || "");
   const [tz, setTz] = useState(guild.timezone || "");
   const [autoDelCmd, setAutoDelCmd] = useState(guild.auto_delete_cmd || "");
+  const [ticketRole, setTicketRole] = useState(guild.ticket_role || "");
+  const [ticketParentChannel, setTicketParentChannel] = useState(guild.ticket_parent_channel || "");
   const router = useRouter();
 
   useEffect(() => {
@@ -79,6 +81,22 @@ const Settings = ({ guild, languages, isAuth }) => {
       onChange: (e) => setAnnounceChannel(e.target.value),
       data: guild.channels,
       label: "Announcement channel",
+    },
+    {
+      type: "select",
+      id: "ticket_role",
+      value: ticketRole,
+      onChange: (e) => setTicketRole(e.target.value),
+      data: guild.roles,
+      label: "Tickets role",
+    },
+    {
+      type: "select",
+      id: "ticket_parent_channel",
+      value: ticketParentChannel,
+      onChange: (e) => setTicketParentChannel(e.target.value),
+      data: guild.categories,
+      label: "Tickets Channel parent",
     },
     {
       type: "select",
@@ -148,6 +166,8 @@ const Settings = ({ guild, languages, isAuth }) => {
           timezone: tz,
           auto_delete_cmd: autoDelCmd === "true",
           leave_message: leaveMessage,
+          ticket_role: ticketRole,
+          ticket_parent_channel: ticketParentChannel,
         }),
       });
       const data = await res.json();
