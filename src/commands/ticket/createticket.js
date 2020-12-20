@@ -54,7 +54,7 @@ module.exports = {
         ...DEFAULT_PERMS,
         {
           id: guild.ticket_role,
-          deny: ["VIEW_CHANNEL", "SEND_MESSAGES"],
+          allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
         },
       ]);
     }
