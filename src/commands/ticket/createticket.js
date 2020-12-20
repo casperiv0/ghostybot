@@ -53,7 +53,7 @@ module.exports = {
       channel.overwritePermissions([
         ...DEFAULT_PERMS,
         {
-          id: message.guild.id,
+          id: guild.ticket_role,
           deny: ["VIEW_CHANNEL", "SEND_MESSAGES"],
         },
       ]);
