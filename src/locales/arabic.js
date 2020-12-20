@@ -385,6 +385,7 @@ module.exports = {
       reminder: "Reminder commands",
       reactions: "Reaction role commands",
       custom: "Custom commands",
+      ticket: "Ticket commands",
     },
   },
   POKEMON: {

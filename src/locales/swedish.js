@@ -364,7 +364,7 @@ module.exports = {
     CMD_DESC:
       "använda sig av `{prefix}help <command namn | alias>` för att se mer info om en command\n Mer information finns på `botinfo` command",
     OWNER_ONLY: "bara ägaren får se detta!",
-    NSFW_ONLY: "För att visa nfsw-kommandon, kolla in en nfsw-kanal!",
+    NSFW_ONLY: "För att visa nsfw-kommandon, kolla in en nsfw-kanal!",
     CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
     CATEGORIES: {
       admin: "Administration commands",
@@ -384,6 +384,7 @@ module.exports = {
       reminder: "Reminder commands",
       reactions: "Reaction role commands",
       custom: "Custom commands",
+      ticket: "Ticket commands",
     },
   },
   POKEMON: {
