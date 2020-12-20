@@ -492,4 +492,12 @@ module.exports = {
     NUKE_CANCELED: "Nuke command was canceled",
     NUKE_CONFIRM: "Are you sure you want to nuke this channel? y/n",
   },
+  TICKET: {
+    CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",
+    CLOSING: "Closing this ticket in 15 seconds, type `cancel` to cancel",
+    WILL_NOT_CLOSE: "This ticket will not be closed.",
+    ALREADY_ACTIVE_TICKET: "You already have an active ticket",
+    TICKET_FOR: "Support ticket for: {member}",
+    CREATED: "Successfully created ticket!",
+  },
 };

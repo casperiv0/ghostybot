@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 205 commands.
+GhostyBot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -345,11 +345,9 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 43**
+**Total commands: 42**
 
 [afk:](#afk) N/A
-
-[anime:](#anime) description
 
 [avatar:](#avatar) Get user avatar
 
@@ -492,170 +490,19 @@ Click any of the command names for more information
 
 [setreminder:](#setreminder) Set a reminder, the bot will ping you when the timer runs out
 
+  ##
+### Category: ticket
+
+**Total commands: 2**
+
+[closeticket:](#closeticket) Closes the active ticket, use --force to force close issue
+
+[createticket:](#createticket) Creates a ticket
+
   
 
 ## Detailed command list
   
-## 4k
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## anal
-
-**Category:** nsfw
-
-**Description:** anal nsfw
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## blowjob
-
-**Category:** nsfw
-
-**Description:** N/A
-
-**Usage:** `None`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## boobs
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## butt
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## gif
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## gonewild
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pussy
-
-**Category:** nsfw
-
-**Description:** None
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## spank
-
-**Category:** nsfw
-
-**Description:** N/A
-
-**Usage:** `None`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## wallpaper
-
-**Category:** nsfw
-
-**Description:** good wallpapers xD
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## addcmd
 
 **Category:** admin
@@ -3026,6 +2873,166 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## 4k
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## anal
+
+**Category:** nsfw
+
+**Description:** anal nsfw
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## blowjob
+
+**Category:** nsfw
+
+**Description:** N/A
+
+**Usage:** `None`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## boobs
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## butt
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## gif
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## gonewild
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## pussy
+
+**Category:** nsfw
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## spank
+
+**Category:** nsfw
+
+**Description:** N/A
+
+**Usage:** `None`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## wallpaper
+
+**Category:** nsfw
+
+**Description:** good wallpapers xD
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## rradd
 
 **Category:** reactions
@@ -3090,6 +3097,38 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## closeticket
+
+**Category:** ticket
+
+**Description:** Closes the active ticket, use --force to force close issue
+
+**Usage:** `closeticket`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## createticket
+
+**Category:** ticket
+
+**Description:** Creates a ticket
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## afk
 
 **Category:** util
@@ -3103,22 +3142,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## anime
-
-**Category:** util
-
-**Description:** description
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `name`
 
 [Back to top](#ghostybot-command-list)
 

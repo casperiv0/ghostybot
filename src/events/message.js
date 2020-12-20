@@ -110,7 +110,11 @@ module.exports = {
           const embed = BaseEmbed(message)
             .setTitle("AFK!")
             .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.afk.reason}`);
-          message.channel.send(embed);
+          const msg = await message.channel.send(embed);
+
+          setTimeout(() => {
+            msg.delete();
+          }, 5000);
         }
       });
     }
