@@ -18,7 +18,7 @@ module.exports = {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
-    bot.player.stop(message);
+    bot.player?.stop(message);
     message.react("👍");
   },
 };

@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 206 commands.
+GhostyBot has a total of 208 commands.
 
 Click any of the command names for more information
 
@@ -295,9 +295,13 @@ Click any of the command names for more information
   ##
 ### Category: music
 
-**Total commands: 10**
+**Total commands: 12**
 
 [clearqueue:](#clearqueue) Clear the music playlist
+
+[filter:](#filter) Set or remove a filter
+
+[filters:](#filters) All music filters
 
 [nowplaying:](#nowplaying) Shows info about the current playing song
 
@@ -387,7 +391,7 @@ Click any of the command names for more information
 
 [imdb:](#imdb) Get the information about series and movie
 
-[invite:](#invite) Get a random color
+[invite:](#invite) Creates an instant invite for the server
 
 [membercount:](#membercount) N/A
 
@@ -2729,6 +2733,38 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## filter
+
+**Category:** music
+
+**Description:** Set or remove a filter
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `option`, `filter`
+
+[Back to top](#ghostybot-command-list)
+
+## filters
+
+**Category:** music
+
+**Description:** All music filters
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## nowplaying
 
 **Category:** music
@@ -3453,7 +3489,7 @@ Click any of the command names for more information
 
 **Category:** util
 
-**Description:** Get a random color
+**Description:** Creates an instant invite for the server
 
 **Usage:** `N/A`
 

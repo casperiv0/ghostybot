@@ -4,7 +4,7 @@ module.exports = {
   name: "guildMemberUpdate",
   async execute(bot, oldMember, newMember) {
     if (!newMember.guild) return;
-    if (!newMember.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!newMember.guild.me.hasPermission(["MANAGE_WEBHOOKS"])) return;
 
     const avatar = newMember.user.displayAvatarURL({ dynamic: true });
     const webhook = await bot.getWebhook(newMember.guild);

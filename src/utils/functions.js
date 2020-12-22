@@ -348,6 +348,10 @@ function getLanguages() {
     .map((la) => la.slice(0, -3));
 }
 
+function formatNumber(n) {
+  return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
 /**
  * @param {import("discord.js").Client} bot
  * @param {string} channelId
@@ -372,7 +376,7 @@ async function createWebhook(bot, channelId, oldChannelId) {
  * @param {import("discord.js").Guild} guild
  */
 async function getWebhook(guild) {
-  if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+  if (!guild.me.hasPermission(["MANAGE_WEBHOOKS"])) return;
   const w = await guild.fetchWebhooks();
   const g = await getGuildById(guild.id);
   const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
@@ -550,4 +554,5 @@ module.exports = {
   findOrCreateMutedRole,
   updateMuteChannelPerms,
   checkAuth,
+  formatNumber
 };

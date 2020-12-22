@@ -22,6 +22,9 @@ module.exports = {
     }
 
     const song = bot.player.nowPlaying(message);
+    const durBar = bot.player.createProgressBar(message, {
+      timecodes: true,
+    });
 
     const embed = BaseEmbed(message)
       .setTitle(song.title)
@@ -31,7 +34,8 @@ module.exports = {
       .setDescription(
         `
       **${lang.MUSIC.DURATION}:** ${song.duration}
-      **${lang.MUSIC.VIEWS}:** ${song?.views ? song.views : "N/A"}
+      **${lang.MUSIC.VIEWS}:** ${song?.views ? bot.formatNumber(song.views) : "N/A"}
+        ${durBar}
 `
       );
 
