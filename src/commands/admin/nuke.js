@@ -33,10 +33,9 @@ module.exports = {
         channel.delete();
         channel2.send(lang.ADMIN.NUKE_NUKED);
       } else {
+        collector.stop();
         return message.channel.send(lang.ADMIN.NUKE_CANCELED);
       }
-
-      collector.stop();
     });
   },
 };
