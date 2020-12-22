@@ -86,7 +86,7 @@ module.exports = {
     }
 
     // check if message has a badword in it
-    if (!message.content.includes("!blacklistedwords") && !message.author.bot) {
+    if (!message.content.includes(`${guild.prefix}blacklistedwords`) && !message.author.bot) {
       blacklistedWords !== null &&
         blacklistedWords.forEach((word) => {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
@@ -117,7 +117,12 @@ module.exports = {
 
     // remove AFK from user if they send a message
     const user = await UserModel.findOne({ user_id: userId, guild_id: guildId });
-    if (!message.author.bot && user && user?.afk.is_afk === true) {
+    if (
+      !message.author.bot &&
+      user &&
+      user?.afk.is_afk === true &&
+      !message.content.includes(`${guild.prefix}afk`)
+    ) {
       await updateUserById(userId, guildId, {
         afk: {
           is_afk: false,
@@ -128,7 +133,7 @@ module.exports = {
       const msg = await message.channel.send(
         BaseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
       );
-      
+
       setTimeout(() => {
         msg.delete();
       }, 5000);
