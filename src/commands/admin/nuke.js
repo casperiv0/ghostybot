@@ -35,6 +35,8 @@ module.exports = {
       } else {
         return message.channel.send(lang.ADMIN.NUKE_CANCELED);
       }
+
+      collector.stop();
     });
   },
 };

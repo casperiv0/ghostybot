@@ -45,7 +45,7 @@ module.exports = {
         await bot.player.setFilters(message, {
           [filter]: false,
         });
-        return message.channel.send(`Successfully remove ${filter}`);
+        return message.channel.send(`Successfully removed ${filter}`);
       }
       default: {
         return message.channel.send(`${option} is not a valid option \`set\`, \`remove\``);
