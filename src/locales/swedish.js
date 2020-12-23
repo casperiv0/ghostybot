@@ -143,6 +143,7 @@ module.exports = {
     ALREADY_IN_VC: "Jag är redan i den röstchatten",
     MUST_BE_SAME_VC: "Du måste vara i samma röstchatt med botten",
     NO_RESULTS: "Inga låtar hittades",
+    JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
   },
   ECONOMY: {
     MONEY: "Pengar",

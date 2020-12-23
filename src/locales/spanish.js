@@ -149,6 +149,7 @@ module.exports = {
     ALREADY_IN_VC: "Ya estoy en ese canal de voz",
     MUST_BE_SAME_VC: "Debes estar en el mismo canal de voz que el bot",
     NO_RESULTS: "Ninguna cancion fue encontrada",
+    JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
   },
   ECONOMY: {
     MONEY: "Dinero",

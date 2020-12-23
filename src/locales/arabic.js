@@ -146,6 +146,7 @@ module.exports = {
     NOT_SAME_VC: "يجب ان تكون بقناتي الصوتية ",
     MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
     NO_RESULTS: "No songs were found",
+    JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
   },
   ECONOMY: {
     MONEY: "المال",
