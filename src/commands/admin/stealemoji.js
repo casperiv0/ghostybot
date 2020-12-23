@@ -47,7 +47,7 @@ module.exports = {
       } else {
         const foundEmoji = parse(emoji, { assetType: "png" });
         if (!foundEmoji[0]) {
-          return message.channel.send("Please Give Me A Valid Emoji!");
+          return message.channel.send("Please provide a valid emoji");
         }
 
         message.channel.send("You Can Use Normal Emoji Without Adding In Server!");

@@ -29,6 +29,7 @@ module.exports = {
     }
 
     if (welcomeRole) {
+      if (!member.guild.me.hasPermission("MANAGE_ROLES")) return;
       member.roles.add(welcomeRole);
     }
   },

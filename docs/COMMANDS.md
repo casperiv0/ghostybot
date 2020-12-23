@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 208 commands.
+GhostyBot has a total of 207 commands.
 
 Click any of the command names for more information
 
@@ -87,7 +87,7 @@ Click any of the command names for more information
   ##
 ### Category: animal
 
-**Total commands: 22**
+**Total commands: 21**
 
 [alpaca:](#alpaca) Shows a picture of a alpaca
 
@@ -128,8 +128,6 @@ Click any of the command names for more information
 [racoon:](#racoon) Shows an image of a raccoon
 
 [shibe:](#shibe) Returns an image of a shibe
-
-[snailfact:](#snailfact) Returns a snail fact
 
 [whale:](#whale) Shows an image of a whale
 
@@ -1456,22 +1454,6 @@ Click any of the command names for more information
 **Category:** animal
 
 **Description:** Returns an image of a shibe
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## snailfact
-
-**Category:** animal
-
-**Description:** Returns a snail fact
 
 **Usage:** `N/A`
 
