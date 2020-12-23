@@ -8,6 +8,7 @@ const { Collection, Client } = require("discord.js");
 const { token, imdbKey, alexflipnoteKey, dashboard, dev } = require("../config.json");
 const MongoGiveawayManager = require("./modules/GiveawayManager");
 const { Player } = require("discord-player");
+const logs = require("discord-logs");
 const {
   findMember,
   getGuildLang,
@@ -29,6 +30,7 @@ const bot = new Client({
   partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION"],
   restRequestTimeout: 25000,
 });
+logs(bot);
 
 [
   findMember,

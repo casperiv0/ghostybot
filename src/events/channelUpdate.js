@@ -8,26 +8,16 @@ module.exports = {
     if (!webhook) return;
 
     let msg = "";
-    const type = oldChannel.type;
+    const type = newChannel.type === "category" ? "Category" : "Channel";
 
-    if (type === "category") {
-      if (oldChannel.name !== newChannel.name) {
-        msg = `Category **${newChannel}** was updated from \`${oldChannel.name}\` to \`${newChannel.name}\``;
-      } else {
-        return;
-      }
+    if (oldChannel.name !== newChannel.name) {
+      msg = `${type} **${oldChannel.name}** was renamed to **${newChannel.name}**`;
     } else {
-      if (oldChannel.name !== newChannel.name) {
-        msg = `Channel **${oldChannel.name}** was renamed to ${newChannel}`;
-      } else if (oldChannel.topic !== newChannel.topic) {
-        msg = `Channel topic in channel ${newChannel} was updated from \`${oldChannel.topic}\` to \`${newChannel.topic}\``;
-      } else {
-        return;
-      }
+      return;
     }
 
     const embed = new MessageEmbed()
-      .setTitle("Channel Updated")
+      .setTitle("Channel Rename")
       .setDescription(msg)
       .setColor("ORANGE")
       .setTimestamp();
