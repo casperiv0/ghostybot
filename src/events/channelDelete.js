@@ -7,16 +7,16 @@ module.exports = {
     if (!channel.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
     const webhook = await bot.getWebhook(channel.guild);
     if (!webhook) return;
+    const lang = await bot.getGuildLang(channel.guild.id);
 
-    let msg = "";
-    if (channel.type === "category") {
-      msg = `Category: **${channel.name}** was deleted`;
-    } else {
-      msg = `Channel: **${channel.name}** was deleted`;
-    }
+    const type = channel.type === "category" ? "Category" : "Channel";
+    const msg = lang.EVENTS.CHANNEL_DELETED_MSG.replace("{channel_type}", type).replace(
+      "{channel}",
+      channel.name
+    );
 
     const embed = new MessageEmbed()
-      .setTitle("Channel deleted")
+      .setTitle(lang.EVENTS.CHANNEL_DELETED)
       .setDescription(msg)
       .setColor("RED")
       .setTimestamp();

@@ -12,6 +12,7 @@ const { owners } = require("../../config.json");
 const BaseEmbed = require("../modules/BaseEmbed");
 const Blacklist = require("../models/Blacklisted.model");
 const UserModel = require("../models/User.model");
+const { dashboard } = require("../../config.json");
 
 module.exports = {
   name: "message",
@@ -153,7 +154,7 @@ module.exports = {
         .addField("Prefix", serverPrefix)
         .addField("Support", "https://discord.gg/XxHrtkA")
         .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-        .addField("Dashboard", "https://ghostybot.tk");
+        .addField("Dashboard", dashboard.dashboardUrl);
 
       message.channel.send(embed);
     }

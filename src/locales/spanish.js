@@ -510,4 +510,17 @@ module.exports = {
     TICKET_FOR: "Support ticket for: {member}",
     CREATED: "Successfully created ticket!",
   },
+  EVENTS: {
+    CHANNEL_CREATED: "Channel Created",
+    CHANNEL_CREATED_MSG: "{channel_type}: **{channel}** was created",
+    CHANNEL_DELETED: "Channel Deleted",
+    CHANNEL_DELETED_MSG: "{channel_type}: **{channel}** was deleted",
+    CHANNEL_RENAME_MSG: "{channel_type}: **{channel}** was renamed to **{new_channel}**",
+    CHANNEL_RENAME: "Channel Rename",
+    EMOJI_CREATED_MSG: "Emoji: {emoji} was created",
+    EMOJI_CREATED: "New Emoji Created",
+    EMOJI_DELETED_MSG: "Emoji: **{emoji}** was deleted",
+    EMOJI_DELETED: "Emoji Deleted",
+    EMOJI_RENAMED_MSG: "Emoji: **{emoji_name}** was renamed to **{new_name}** ({emoji})",
+  },
 };
