@@ -4,15 +4,16 @@ module.exports = {
   name: "guildKickAdd",
   async execute(bot, guild, kick) {
     const webhook = await bot.getWebhook(guild);
-   if (!webhook) return;
+    if (!webhook) return;
+    const lang = await bot.getGuildLang(guild.id);
 
     const { member, executor, reason } = kick;
 
     const embed = new MessageEmbed()
-      .setTitle("User Kicked")
-      .addField("Tag", member.user.tag, true)
-      .addField("Executed by", executor.tag, true)
-      .addField("Reason", reason)
+      .setTitle(lang.EVENTS.KICK_ADD)
+      .addField(lang.EVENTS.KICK_TAG, member.user.tag, true)
+      .addField(lang.EVENTS.EXECUTED_BY, executor.tag, true)
+      .addField(lang.EVENTS.REASON, reason)
       .setColor("ORANGE");
 
     return webhook.send(embed);

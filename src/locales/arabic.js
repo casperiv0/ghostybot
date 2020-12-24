@@ -350,6 +350,9 @@ module.exports = {
     NODE_V: "NodeJS نسخة",
     REPO: "المستودع",
     DASHBOARD: "Dashboard",
+    DEVELOPER: "Developer",
+    CONTRIBUTORS: "Contributors",
+    INVITE_BOT: "Invite bot"
   },
   CONFIG: {
     OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",

@@ -355,6 +355,9 @@ module.exports = {
     NODE_V: "Version de NodeJS",
     REPO: "Repositorio",
     DASHBOARD: "Dashboard",
+    DEVELOPER: "Developer",
+    CONTRIBUTORS: "Contributors",
+    INVITE_BOT: "Invite bot"
   },
   CONFIG: {
     OPTION_CMD_WORK: "{option} necesita ser proporcionada, para que el comando funcione.",
