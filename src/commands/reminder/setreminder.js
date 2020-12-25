@@ -12,27 +12,30 @@ module.exports = {
     const [time, ...rest] = args;
     const msg = rest.join(" ");
 
-    const { user } = await bot.getUserById(message.author.id, message.guild.id);
-
-    if (user.reminder.on === true) {
-      return message.channel.send(lang.REMINDER.ALREADY_ON);
-    }
-
     const isValid = ms(time);
     if (!isValid) {
-        return message.channel.send(lang.REMINDER.INVALID_DATE);
+      return message.channel.send(lang.REMINDER.INVALID_DATE);
     }
+
+    const { user } = await bot.getUserById(message.author.id, message.guild.id);
+    const reminders = typeof user.reminder.reminders === "object" ? user.reminder.reminders : [];
 
     await bot.updateUserById(message.author.id, message.guild.id, {
       reminder: {
-        ends_at: Date.now() + ms(time),
-        msg,
-        channel_id: message.channel.id,
-        on: true,
-        time,
+        hasReminder: true,
+        reminders: [
+          ...reminders,
+          {
+            ends_at: Date.now() + ms(time),
+            msg,
+            channel_id: message.channel.id,
+            time,
+            id: reminders.length + 1,
+          },
+        ],
       },
     });
 
-    return message.channel.send(lang.REMINDER.SUCCESS);
+    return message.channel.send(lang.REMINDER.SUCCESS.replace("{time}", time));
   },
 };
