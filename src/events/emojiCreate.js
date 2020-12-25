@@ -7,12 +7,11 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(emoji.guild);
-    if (!webhook) return;
-    const lang = await bot.getGuildLang(emoji.guild.id);
+   if (!webhook) return;
 
     const embed = new MessageEmbed()
-      .setTitle(lang.EVENTS.EMOJI_CREATED)
-      .setDescription(lang.EVENTS.EMOJI_CREATED_MSG.replace("{emoji}", emoji))
+      .setTitle("New Emoji Created")
+      .setDescription(`Emoji: **${emoji}** was created`)
       .setColor("GREEN")
       .setTimestamp();
 

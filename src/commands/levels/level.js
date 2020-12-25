@@ -1,10 +1,10 @@
-const { getUserById, calculateUserXp } = require("../../utils/functions");
+const { getUserById, calculateUserXp } = require('../../utils/functions');
 
 module.exports = {
-  name: "level",
-  description: "Get your current level",
-  category: "levels",
-  aliases: ["lvl", "rank"],
+  name: 'level',
+  description: 'Get your current level',
+  category: 'levels',
+  aliases: ['lvl', 'rank'],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = bot.findMember(message, args, true);
@@ -19,8 +19,8 @@ module.exports = {
     const avatar = encodeURIComponent(member.user.displayAvatarURL());
     const isBoosting =
       member.premiumSinceTimestamp >= 1
-        ? "&isBoosting=true"
-        : "&isBoosting=false";
+        ? '&isBoosting=true'
+        : '&isBoosting=false';
 
     const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
       member.user.username

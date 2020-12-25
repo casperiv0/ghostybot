@@ -146,7 +146,6 @@ module.exports = {
     NOT_SAME_VC: "يجب ان تكون بقناتي الصوتية ",
     MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
     NO_RESULTS: "No songs were found",
-    JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
   },
   ECONOMY: {
     MONEY: "المال",
@@ -350,9 +349,6 @@ module.exports = {
     NODE_V: "NodeJS نسخة",
     REPO: "المستودع",
     DASHBOARD: "Dashboard",
-    DEVELOPER: "Developer",
-    CONTRIBUTORS: "Contributors",
-    INVITE_BOT: "Invite bot"
   },
   CONFIG: {
     OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",
@@ -505,18 +501,5 @@ module.exports = {
     ALREADY_ACTIVE_TICKET: "You already have an active ticket",
     TICKET_FOR: "Support ticket for: {member}",
     CREATED: "Successfully created ticket!",
-  },
-  EVENTS: {
-    CHANNEL_CREATED: "Channel Created",
-    CHANNEL_CREATED_MSG: "{channel_type}: **{channel}** was created",
-    CHANNEL_DELETED: "Channel Deleted",
-    CHANNEL_DELETED_MSG: "{channel_type}: **{channel}** was deleted",
-    CHANNEL_RENAME_MSG: "{channel_type}: **{channel}** was renamed to **{new_channel}**",
-    CHANNEL_RENAME: "Channel Rename",
-    EMOJI_CREATED_MSG: "Emoji: {emoji} was created",
-    EMOJI_CREATED: "New Emoji Created",
-    EMOJI_DELETED_MSG: "Emoji: **{emoji}** was deleted",
-    EMOJI_DELETED: "Emoji Deleted",
-    EMOJI_RENAMED_MSG: "Emoji: **{emoji_name}** was renamed to **{new_name}** ({emoji})",
   },
 };

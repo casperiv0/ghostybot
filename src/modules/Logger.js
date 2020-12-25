@@ -1,9 +1,9 @@
-const moment = require("moment");
-const chalk = require("chalk");
+const moment = require('moment');
+const chalk = require('chalk');
 
 class Logger {
   get now() {
-    return moment().format("DD-MM-YYYY, HH:mm:ss a");
+    return moment().format('DD-MM-YYYY, HH:mm:ss a');
   }
 
   /**
@@ -11,7 +11,7 @@ class Logger {
    * @param {string} error
    */
   error(type, error) {
-    return console.error(`${chalk.red("[ERROR]")}[${type.toUpperCase()}][${this.now}]: ${error}`);
+    return console.error(`${chalk.red('[ERROR]')}[${type.toUpperCase()}][${this.now}]: ${error}`);
   }
 
   /**
@@ -20,7 +20,7 @@ class Logger {
    */
   warn(type, warning) {
     return console.warn(
-      `${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`
+      `${chalk.yellow('[WARNING]')}[${type.toUpperCase()}][${this.now}]: ${warning}`
     );
   }
 
@@ -30,7 +30,7 @@ class Logger {
    */
   log(type, message) {
     return console.log(
-      `${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`
+      `${chalk.blueBright('[INFO]')}[${type.toUpperCase()}][${this.now}]: ${message}`
     );
   }
 }

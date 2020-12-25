@@ -1,44 +1,38 @@
-const BaseEmbed = require("../../modules/BaseEmbed");
+const createBar = require('string-progressbar');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  name: "nowplaying",
-  description: "Shows info about the current playing song",
-  category: "music",
-  aliases: ["np", "currentsong"],
-  async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
-    }
+  name: 'nowplaying',
+  description: 'Show now playing song',
+  category: 'music',
+  aliases: ['np'],
+  execute(bot, message) {
+    const queue = message.client.queue.get(message.guild.id);
+    if (!queue) return message.reply('There is nothing playing.').catch(console.error);
 
-    const playing = bot.player.isPlaying(message);
-    const queue = await bot.player.getQueue(message);
-    if (!playing) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
+    const song = queue.songs[0];
+    const seek = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000;
+    const left = song.duration - seek;
 
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
+    let nowPlaying = new MessageEmbed()
+      .setTitle('Now playing')
+      .setDescription(`${song.title}\n${song.url}`)
+      .setColor('#F8AA2A')
+      .setAuthor(message.client.user.username);
 
-    const song = bot.player.nowPlaying(message);
-    const durBar = bot.player.createProgressBar(message, {
-      timecodes: true,
-    });
-
-    const embed = BaseEmbed(message)
-      .setTitle(song.title)
-      .setURL(song.url)
-      .setAuthor(`🎵 Now ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}`)
-      .setImage(song.thumbnail)
-      .setDescription(
-        `
-      **${lang.MUSIC.DURATION}:** ${song.duration}
-      **${lang.MUSIC.VIEWS}:** ${song?.views ? bot.formatNumber(song.views) : "N/A"}
-        ${durBar}
-`
+    if (song.duration > 0) {
+      nowPlaying.addField(
+        '\u200b',
+        new Date(seek * 1000).toISOString().substr(11, 8) +
+          '[' +
+          createBar(song.duration === 0 ? seek : song.duration, seek, 20)[0] +
+          ']' +
+          (song.duration === 0 ? ' ◉ LIVE' : new Date(song.duration * 1000).toISOString().substr(11, 8)),
+        false
       );
+      nowPlaying.setFooter('Time Remaining: ' + new Date(left * 1000).toISOString().substr(11, 8));
+    }
 
-    message.channel.send(embed);
-  },
+    return message.channel.send(nowPlaying);
+  }
 };

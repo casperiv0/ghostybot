@@ -8,18 +8,17 @@ module.exports = {
 
     const webhook = await bot.getWebhook(channel.guild);
     if (!webhook) return;
-    const lang = await bot.getGuildLang(channel.guild.id);
 
     let msg = "";
 
-    const type = channel.type === "category" ? "Category" : "Channel";
-    msg = lang.EVENTS.CHANNEL_CREATED_MSG.replace("{channel_type}", type).replace(
-      "{channel}",
-      channel.name
-    );
+    if (channel.type === "category") {
+      msg = `Category: **${channel}** was created`;
+    } else if (channel.type === "text") {
+      msg = `Channel: **${channel}** was created`;
+    }
 
     const embed = new MessageEmbed()
-      .setTitle(lang.EVENTS.CHANNEL_CREATED)
+      .setTitle("Channel Created")
       .setDescription(msg)
       .setColor("GREEN")
       .setTimestamp();

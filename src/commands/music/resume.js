@@ -1,23 +1,21 @@
+const { canModifyQueue } = require('../../utils/musicutil');
+
 module.exports = {
-  name: "resume",
-  description: "Resume a song that was playing",
-  aliases: ["r"],
-  category: "music",
-  async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+  name: 'resume',
+  aliases: ['r'],
+  category: 'music',
+  description: 'Resume currently playing music',
+  execute(bot, message) {
+    const queue = message.client.queue.get(message.guild.id);
+    if (!queue) return message.reply('There is nothing playing.').catch(console.error);
+    if (!canModifyQueue(message.member)) return;
+
+    if (!queue.playing) {
+      queue.playing = true;
+      queue.connection.dispatcher.resume();
+      return queue.textChannel.send(`${message.author} ▶ resumed the music!`).catch(console.error);
     }
 
-    const queue = await bot.player.getQueue(message);
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player.resume(message);
-  },
+    return message.reply('The queue is not paused.').catch(console.error);
+  }
 };

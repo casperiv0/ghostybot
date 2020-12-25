@@ -7,13 +7,15 @@ module.exports = {
   category: "animal",
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
-    fetch("https://some-random-api.ml/facts/cat")
+    fetch("https://cat-fact.herokuapp.com/facts?animal_type=cat")
       .then((res) => res.json())
-      .then((data) => {
-        const fact = data.fact;
+      .then(async (data) => {
+        const fact = data.all[Math.floor(Math.random() * data.all.length)];
 
-        const embed = BaseEmbed(message).setTitle(lang.ANIMAL.CAT_FACT).setDescription(fact);
-        message.channel.send(embed);
+        const embed = BaseEmbed(message)
+          .setTitle(lang.ANIMAL.CAT_FACT)
+          .setDescription(fact.text);
+        await message.channel.send(embed);
       });
   },
 };

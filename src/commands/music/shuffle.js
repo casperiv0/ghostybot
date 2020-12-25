@@ -1,24 +1,21 @@
+const { canModifyQueue } = require('../../utils/musicutil');
+
 module.exports = {
-  name: "shuffle",
-  description: "Shuffle the queue",
-  aliases: ["sh"],
-  category: "music",
-  async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
-    }
+  name: 'shuffle',
+  description: 'Shuffle queue',
+  category: 'music',
+  execute(bot, message) {
+    const queue = message.client.queue.get(message.guild.id);
+    if (!queue) return message.channel.send('There is no queue.').catch(console.error);
+    if (!canModifyQueue(message.member)) return;
 
-    const queue = await bot.player.getQueue(message);
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
+    let songs = queue.songs;
+    for (let i = songs.length - 1; i > 1; i--) {
+      let j = 1 + Math.floor(Math.random() * i);
+      [songs[i], songs[j]] = [songs[j], songs[i]];
     }
-
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player.shuffle(message);
-    message.react("🔀");
-  },
+    queue.songs = songs;
+    message.client.queue.set(message.guild.id, queue);
+    queue.textChannel.send(`${message.author} 🔀 shuffled the queue`).catch(console.error);
+  }
 };

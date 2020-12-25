@@ -1,24 +1,17 @@
+const { canModifyQueue } = require('../../utils/musicutil');
+
 module.exports = {
-  name: "stop",
-  description: "stop",
-  category: "music",
-  aliases: ["leave"],
-  async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const queue = await bot.player.getQueue(message);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
-    }
+  name: 'stop',
+  description: 'Stops the music',
+  category: 'music',
+  execute(bot, message) {
+    const queue = message.client.queue.get(message.guild.id);
 
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
+    if (!queue) return message.reply('There is nothing playing.').catch(console.error);
+    if (!canModifyQueue(message.member)) return;
 
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player?.stop(message);
-    message.react("👍");
-  },
+    queue.songs = [];
+    queue.connection.dispatcher.end();
+    queue.textChannel.send(`${message.author} ⏹ stopped the music!`).catch(console.error);
+  }
 };

@@ -21,7 +21,9 @@ module.exports = {
     const user = result;
 
     if (user?.message === "Not Found") {
-      return message.channel.send(lang.UTIL.GH_NOT_FOUND).then(() => msg.delete());
+      return message.channel
+        .send(lang.UTIL.GH_NOT_FOUND)
+        .then(() => msg.delete());
     }
 
     msg.delete();
@@ -34,6 +36,7 @@ module.exports = {
     const bio = user.bio ? user.bio : "N/A";
 
     const embed = BaseEmbed(message)
+      .setAuthor(user.name)
       .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
       .addField("**Twitter**", twitter, true)
       .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following, true)
@@ -43,10 +46,6 @@ module.exports = {
       .addField(`${lang.GLOBAL.URL}`, user.html_url)
       .setDescription(`${lang.UTIL.GH_BIO}: ${bio}`)
       .setThumbnail(user.avatar_url);
-
-    if (user.name) {
-      embed.setAuthor(user.name);
-    }
 
     message.channel.send(embed);
   },

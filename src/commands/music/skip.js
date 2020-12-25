@@ -1,24 +1,18 @@
+const { canModifyQueue } = require('../../utils/musicutil');
+
 module.exports = {
-  name: "skip",
-  description: "Skip a song that is playing",
-  aliases: ["s"],
-  category: "music",
-  async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
-    }
+  name: 'skip',
+  aliases: ['s'],
+  category: 'music',
+  description: 'Skip the currently playing song',
+  execute(bot, message) {
+    const queue = message.client.queue.get(message.guild.id);
+    if (!queue)
+      return message.reply('There is nothing playing that I could skip for you.').catch(console.error);
+    if (!canModifyQueue(message.member)) return;
 
-    const queue = await bot.player.getQueue(message);
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player.skip(message);
-    message.react("👍");
-  },
+    queue.playing = true;
+    queue.connection.dispatcher.end();
+    queue.textChannel.send(`${message.author} ⏭ skipped the song`).catch(console.error);
+  }
 };

@@ -1,41 +1,25 @@
+const { canModifyQueue } = require('../../utils/musicutil');
+
 module.exports = {
-  name: "volume",
-  description: "Set the volume between 1 to 100",
-  category: "music",
-  aliases: ["vol"],
-  async execute(bot, message, args) {
-    const [newVol] = args;
-    const lang = await bot.getGuildLang(message.guild.id);
-    const queue = await bot.player.getQueue(message);
-    if (!message.member.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
-    }
+  name: 'volume',
+  aliases: ['v'],
+  description: 'Change volume of currently playing music',
+  category: 'music',
+  execute(bot, message, args) {
+    const queue = message.client.queue.get(message.guild.id);
 
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
+    if (!queue) return message.reply('There is nothing playing.').catch(console.error);
+    if (!canModifyQueue(message.member))
+      return message.reply('You need to join a voice channel first!').catch(console.error);
 
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
+    if (!args[0]) return message.reply(`🔊 The current volume is: **${queue.volume}%**`).catch(console.error);
+    if (isNaN(args[0])) return message.reply('Please use a number to set volume.').catch(console.error);
+    if (Number(args[0]) > 100 || Number(args[0]) < 0 )
+      return message.reply('Please use a number between 0 - 100.').catch(console.error);
 
-    if (isNaN(newVol)) {
-      return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
-    }
+    queue.volume = args[0];
+    queue.connection.dispatcher.setVolumeLogarithmic(args[0] / 100);
 
-    if (Number(newVol) < 0) {
-      return message.channel.send(lang.MUSIC.BETWEEN_0_100);
-    }
-
-    if (Number(newVol) > 100) {
-      return message.channel.send(lang.MUSIC.BETWEEN_0_100);
-    }
-
-    if (!newVol) {
-      return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
-    }
-
-    bot.player.setVolume(message, newVol);
-    await message.channel.send(lang.MUSIC.VOL_SUCCESS.replace("{vol}", newVol));
-  },
+    return queue.textChannel.send(`Volume set to: **${args[0]}%**`).catch(console.error);
+  }
 };

@@ -2,7 +2,7 @@ const { sendErrorLog } = require("../utils/functions");
 
 module.exports = {
   name: "error",
-  execute: (bot, error) => {
-    sendErrorLog(bot, error, "error");
+  execute: (_bot, error) => {
+    sendErrorLog(_bot, error, "error");
   },
 };

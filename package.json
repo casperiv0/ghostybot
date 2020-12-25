@@ -48,7 +48,7 @@
     "cowsay": "^1.4.0",
     "discord-giveaways": "^4.2.1",
     "discord-logs": "^1.8.2",
-    "discord-player": "github:Androz2091/discord-player#develop",
+    "discord-player": "^3.0.3",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "easy-games-js": "^1.2.1",
@@ -62,6 +62,7 @@
     "image-gen-discord": "^1.0.2",
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
+    "lyrics-finder": "^21.4.0",
     "mathjs": "^8.1.0",
     "mojang-api": "0.0.2",
     "moment": "^2.29.1",
@@ -79,11 +80,15 @@
     "qs": "^6.9.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "simple-youtube-api": "^5.2.1",
+    "soundcloud-downloader": "^0.2.2",
+    "string-progressbar": "^1.0.1",
     "tnai": "^1.0.5",
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
     "wikijs": "^6.0.1",
-    "word-definition": "^2.1.6"
+    "word-definition": "^2.1.6",
+    "ytdl-core-discord": "^1.2.5"
   },
   "devDependencies": {
     "eslint": "^7.15.0",

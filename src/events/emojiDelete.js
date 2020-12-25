@@ -7,12 +7,11 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(emoji.guild);
-    if (!webhook) return;
-    const lang = await bot.getGuildLang(emoji.guild.id);
+   if (!webhook) return;
 
     const embed = new MessageEmbed()
-      .setTitle(lang.EVENTS.EMOJI_DELETED)
-      .setDescription(lang.EVENTS.EMOJI_DELETED_MSG.replace("{emoji}", emoji))
+      .setTitle("Emoji Deleted")
+      .setDescription(`Emoji: **${emoji}** was deleted`)
       .setColor("RED")
       .setTimestamp();
 

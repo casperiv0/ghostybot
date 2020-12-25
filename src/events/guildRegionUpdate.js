@@ -1,8 +1,8 @@
-const { MessageEmbed } = require("discord.js");
-const regions = require("../data/regions.json");
+const { MessageEmbed } = require('discord.js');
+const regions = require('../data/regions.json');
 
 module.exports = {
-  name: "guildRegionUpdate",
+  name: 'guildRegionUpdate',
   /**
    * @param {import("discord.js").Client} bot
    * @param {import("discord.js").Guild} guild
@@ -10,7 +10,7 @@ module.exports = {
    * @param {string} newRegion
    */
   async execute(bot, guild, oldRegion, newRegion) {
-    if (!guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
+    if (!guild.me.hasPermission('MANAGE_WEBHOOKS')) return;
 
     const webhook = await bot.getWebhook(guild);
     if (!webhook) return;
@@ -20,11 +20,11 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setTimestamp()
-      .setColor("ORANGE")
-      .setTitle("Guild Update: `Region Update`")
-      .setDescription("Region for this guild was updated")
-      .addField("Old Region", `${oldRegion}: ${oldR.flag}`)
-      .addField("New Region", `${newRegion}: ${newR.flag}`);
+      .setColor('ORANGE')
+      .setTitle('Guild Update: `Region Update`')
+      .setDescription('Region for this guild was updated')
+      .addField('Old Region', `${oldRegion}: ${oldR.flag}`)
+      .addField('New Region', `${newRegion}: ${newR.flag}`);
 
     webhook.send(embed);
   },

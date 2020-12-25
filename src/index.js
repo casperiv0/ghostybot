@@ -1,14 +1,13 @@
-require("./utils/checkValid")();
-require("./utils/database");
-const NekoClient = require("nekos.life");
-const TnaiClient = require("tnai");
-const imdb = require("imdb-api");
-const AlexClient = require("alexflipnote.js");
-const { Collection, Client } = require("discord.js");
-const { token, imdbKey, alexflipnoteKey, dashboard, dev } = require("../config.json");
-const MongoGiveawayManager = require("./modules/GiveawayManager");
-const { Player } = require("discord-player");
-const logs = require("discord-logs");
+require('./utils/checkValid')();
+require('./utils/database');
+const NekoClient = require('nekos.life');
+const TnaiClient = require('tnai');
+const imdb = require('imdb-api');
+const AlexClient = require('alexflipnote.js');
+const { Collection, Client } = require('discord.js');
+const { token, imdbKey, alexflipnoteKey, dashboard, dev } = require('../config.json');
+const MongoGiveawayManager = require('./modules/GiveawayManager');
+const { Player } = require('discord-player');
 const {
   findMember,
   getGuildLang,
@@ -20,16 +19,17 @@ const {
   getGuildById,
   updateUserById,
   getUserById,
-  formatNumber,
-} = require("./utils/functions");
-const Logger = require("./modules/Logger");
+} = require('./utils/functions');
+const Logger = require('./modules/Logger');
+const logs = require('discord-logs');
 
 const bot = new Client({
-  disableMentions: "everyone",
+  disableMentions: 'everyone',
   fetchAllMembers: true,
-  partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION"],
+  partials: ['GUILD_MEMBER', 'MESSAGE', 'USER', 'REACTION'],
   restRequestTimeout: 25000,
 });
+
 logs(bot);
 
 [
@@ -42,7 +42,6 @@ logs(bot);
   getGuildById,
   updateUserById,
   getUserById,
-  formatNumber,
 ].forEach((func) => {
   bot[func.name] = func;
 });
@@ -61,7 +60,7 @@ if (alexflipnoteKey) {
   bot.alexClient = new AlexClient(alexflipnoteKey);
 }
 
-global.Promise = require("bluebird");
+global.Promise = require('bluebird');
 Promise.config({
   longStackTraces: true,
 });
@@ -69,37 +68,38 @@ Promise.config({
 const giveawayManager = new MongoGiveawayManager(bot, {
   storage: false,
   updateCountdownEvery: 10000,
-  DJSlib: "v12",
+  DJSlib: 'v12',
   default: {
-    embedColor: "#7289DA",
+    embedColor: '#7289DA',
     botsCanWin: false,
-    reaction: "🎉",
-    embedColorEnd: "#7289DA",
+    reaction: '🎉',
+    embedColorEnd: '#7289DA',
   },
 });
 
 bot.giveawayManager = giveawayManager;
 
-require("moment-duration-format");
-require("./modules/command")(bot);
-require("./modules/events")(bot);
-if (dashboard?.enabled) {
-  require("./server")(bot);
+require('moment-duration-format');
+require('./modules/command')(bot);
+require('./modules/events')(bot);
+if (dashboard.enabled) {
+  require('./server')(bot);
 }
 
 if (dev === true) {
-  require("./scripts/generateCommandList")(bot);
+  require('./scripts/generateCommandList')(bot);
 }
 
+bot.queue = new Map();
 bot.login(token);
 
 // Unhandled errors
-process.on("unhandledRejection", (error) => sendErrorLog(bot, error, "error"));
+process.on('unhandledRejection', (error) => sendErrorLog(bot, error, 'error'));
 
-process.on("uncaughtExceptionMonitor", (error) => sendErrorLog(bot, error, "error"));
+process.on('uncaughtExceptionMonitor', (error) => sendErrorLog(bot, error, 'error'));
 
-process.on("warning", (warning) => {
-  if (warning.stack.startsWith("(node:13988) [DEP0148]")) return;
+process.on('warning', (warning) => {
+  if (warning.stack.startsWith('(node:13988) [DEP0148]')) return;
 
-  sendErrorLog(bot, warning, "warning");
+  sendErrorLog(bot, warning, 'warning');
 });

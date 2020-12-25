@@ -1,16 +1,16 @@
-const fs = require("fs");
-const { sep } = require("path");
-const chalk = require("chalk");
-const { Collection } = require("discord.js");
+const fs = require('fs');
+const { sep } = require('path');
+const chalk = require('chalk');
+const { Collection } = require('discord.js');
 // eslint-disable-next-line no-unused-vars
-const Logger = require("./Logger");
+const Logger = require('./Logger');
 
 module.exports = function loadCommands(bot) {
-  const dir = "./src/commands";
+  const dir = './src/commands';
   fs.readdirSync(dir).forEach((dirs) => {
     const commands = fs
       .readdirSync(`${dir}${sep}${dirs}${sep}`)
-      .filter((f) => f.endsWith(".js"));
+      .filter((f) => f.endsWith('.js'));
 
     for (const file of commands) {
       const cmd = require(`../commands/${dirs}/${file}`);
@@ -31,7 +31,7 @@ module.exports = function loadCommands(bot) {
           `[ERROR][COMMANDS]: name is required for commands! (${file})`
         );
 
-      if (cmd.name.trim() === "")
+      if (cmd.name.trim() === '')
         throw new TypeError(
           `[ERROR][COMMANDS]: name cannot be empty! (${file})`
         );

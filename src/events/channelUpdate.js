@@ -1,27 +1,32 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  name: "channelUpdate",
+  name: 'channelUpdate',
   async execute(bot, oldChannel, newChannel) {
     if (!oldChannel.guild) return;
     const webhook = await bot.getWebhook(newChannel.guild);
     if (!webhook) return;
-    const lang = await bot.getGuildLang(newChannel.guild.id);
 
-    let msg = "";
-    const type = newChannel.type === "category" ? "Category" : "Channel";
+    let msg = '';
+    const type = newChannel.type === 'category' ? 'Category' : 'Channel';
+
     if (oldChannel.name !== newChannel.name) {
-      msg = lang.EVENTS.CHANNEL_RENAME_MSG.replace("{channel_type}", type)
-        .replace("{channel}", oldChannel.name)
-        .replace("{new_channel}", newChannel.name);
+      msg = `${type} **${oldChannel.name}** was renamed to **${newChannel.name}**`;
     } else {
+      if (oldChannel.name !== newChannel.name) {
+        msg = `Channel **${oldChannel.name}** was renamed to ${newChannel}`;
+      } else if (oldChannel.topic !== newChannel.topic) {
+        msg = `Channel topic in channel ${newChannel} was updated from \`${oldChannel.topic}\` to \`${newChannel.topic}\``;
+      } else {
+        return;
+      }
       return;
     }
 
     const embed = new MessageEmbed()
-      .setTitle(lang.EVENTS.CHANNEL_RENAME)
+      .setTitle('Channel Updated')
       .setDescription(msg)
-      .setColor("ORANGE")
+      .setColor('ORANGE')
       .setTimestamp();
 
     webhook.send(embed);

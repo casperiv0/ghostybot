@@ -6,24 +6,23 @@ const {
   errorEmbed,
   calculateUserXp,
   sendErrorLog,
-} = require("../utils/functions");
+} = require('../utils/functions');
 const queue = new Map();
-const { owners } = require("../../config.json");
-const BaseEmbed = require("../modules/BaseEmbed");
-const Blacklist = require("../models/Blacklisted.model");
-const UserModel = require("../models/User.model");
-const { dashboard } = require("../../config.json");
+const { owners } = require('../../config.json');
+const BaseEmbed = require('../modules/BaseEmbed');
+const Blacklist = require('../models/Blacklisted.model');
+const UserModel = require('../models/User.model');
 
 module.exports = {
-  name: "message",
+  name: 'message',
   /**
    *
    * @param {import("discord.js").Client} bot
    * @param {import("discord.js").Message} message
    */
   async execute(bot, message) {
-    if (message.channel.type === "dm") return;
-    if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
+    if (message.channel.type === 'dm') return;
+    if (!message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) return;
     if (!message.guild.available) return;
 
     const guildId = message.guild.id;
@@ -39,7 +38,7 @@ module.exports = {
     const ignoredChannels = guild?.ignored_channels;
     if (ignoredChannels.includes(message.channel.id)) return;
 
-    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const serverPrefix = guild.prefix;
     const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
 
@@ -70,9 +69,9 @@ module.exports = {
       if (newLevel > level) {
         if (guild.level_up_messages === true) {
           const embed = BaseEmbed(message)
-            .setTitle("Level up!")
-            .addField("New level", newLevel)
-            .addField("Total xp", user.xp + xp);
+            .setTitle('Level up!')
+            .addField('New level', newLevel)
+            .addField('Total xp', user.xp + xp);
 
           const msg = await message.channel.send(embed);
           const MSG_TIMEOUT_10_SECS = 10000;
@@ -87,13 +86,13 @@ module.exports = {
     }
 
     // check if message has a badword in it
-    if (!message.content.includes(`${guild.prefix}blacklistedwords`) && !message.author.bot) {
+    if (!message.content.includes('!blacklistedwords') && !message.author.bot) {
       blacklistedWords !== null &&
         blacklistedWords.forEach((word) => {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.delete();
             return message
-              .reply("You used a bad word the admin has set, therefore your message was deleted!")
+              .reply('You used a bad word the admin has set, therefore your message was deleted!')
               .then((msg) => {
                 setTimeout(() => {
                   msg.delete();
@@ -109,21 +108,20 @@ module.exports = {
 
         if (user.afk.is_afk === true) {
           const embed = BaseEmbed(message)
-            .setTitle("AFK!")
+            .setTitle('AFK!')
             .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.afk.reason}`);
-          message.channel.send(embed);
+          const msg = await message.channel.send(embed);
+
+          setTimeout(() => {
+            msg.delete();
+          }, 5000);
         }
       });
     }
 
     // remove AFK from user if they send a message
     const user = await UserModel.findOne({ user_id: userId, guild_id: guildId });
-    if (
-      !message.author.bot &&
-      user &&
-      user?.afk.is_afk === true &&
-      !message.content.includes(`${guild.prefix}afk`)
-    ) {
+    if (!message.author.bot && user && user?.afk.is_afk === true) {
       await updateUserById(userId, guildId, {
         afk: {
           is_afk: false,
@@ -131,13 +129,9 @@ module.exports = {
         },
       });
 
-      const msg = await message.channel.send(
+      message.channel.send(
         BaseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
       );
-
-      setTimeout(() => {
-        msg.delete();
-      }, 5000);
     }
 
     // Commands
@@ -150,11 +144,8 @@ module.exports = {
 
     if (message.mentions.has(bot.user.id) && !command) {
       const embed = BaseEmbed(message)
-        .setTitle("Quick Info")
-        .addField("Prefix", serverPrefix)
-        .addField("Support", "https://discord.gg/XxHrtkA")
-        .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-        .addField("Dashboard", dashboard.dashboardUrl);
+        .setTitle('Quick Info')
+        .addField('Prefix', serverPrefix);
 
       message.channel.send(embed);
     }
@@ -163,7 +154,7 @@ module.exports = {
       const isBlacklisted = blacklistedUsers.find((u) => u.user_id === message.author.id);
 
       if (isBlacklisted) {
-        return message.reply("You've been blacklisted from using this bot.");
+        return message.reply('You\'ve been blacklisted from using this bot.');
       }
     }
 
@@ -197,25 +188,25 @@ module.exports = {
 
         if (disabledCommands !== null && disabledCommands.length > 0) {
           if (disabledCommands?.includes(cmd.name)) {
-            return message.channel.send("That command was disabled for this guild");
+            return message.channel.send('That command was disabled for this guild');
           }
         }
 
         if (cmd.ownerOnly && !owners.includes(message.author.id)) {
-          return message.reply("This command can only be used by the owners!");
+          return message.reply('This command can only be used by the owners!');
         }
 
         if (cmd.requiredArgs && args.length < cmd.requiredArgs.length) {
-          const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");
+          const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(', ');
           const cmdExample = `${matchedPrefix}${cmd.name} ${cmd.requiredArgs
             .map((a) => `<${a}>`)
-            .join(" ")}`;
+            .join(' ')}`;
 
           const embed = BaseEmbed(message)
-            .setTitle("Incorrect command usage")
-            .setColor("RED")
+            .setTitle('Incorrect command usage')
+            .setColor('RED')
             .setDescription(`:x: You must provide more args: ${cmdArgs}`)
-            .addField("Example:", cmdExample);
+            .addField('Example:', cmdExample);
 
           return message.channel.send(embed);
         }
@@ -247,13 +238,13 @@ module.exports = {
             return message.channel.send(
               `You need: ${neededPermissions
                 .map((p) => `\`${p.toUpperCase()}\``)
-                .join(", ")} permissions`
+                .join(', ')} permissions`
             );
           }
         }
 
         if (cmd.nsfwOnly && cmd.nsfwOnly === true && !message.channel.nsfw) {
-          return message.channel.send("This channel is not a NSFW channel!");
+          return message.channel.send('This channel is not a NSFW channel!');
         }
 
         if (timestamps.has(userId)) {
@@ -281,8 +272,8 @@ module.exports = {
         return;
       }
     } catch (e) {
-      sendErrorLog(bot, e, "error", message.content);
-      const embed = BaseEmbed(message).setTitle("Woah! Something went wrong").setDescription(e);
+      sendErrorLog(bot, e, 'error', message.content);
+      const embed = BaseEmbed(message).setTitle('Woah! Something went wrong').setDescription(e);
 
       message.channel.send(embed);
     }

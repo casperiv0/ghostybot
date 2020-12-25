@@ -7,16 +7,12 @@ module.exports = {
       return;
     }
     const webhook = await bot.getWebhook(newEm.guild);
-    if (!webhook) return;
-    const lang = await bot.getGuildLang(newEm.guild.id);
+   if (!webhook) return;
 
     let msg = "";
 
     if (oldEm.name !== newEm.name) {
-      msg = lang.EVENTS.EMOJI_RENAMED_MSG
-        .replace("{emoji_name}", oldEm.name)
-        .replace("{new_name}", newEm.name)
-        .replace("{emoji}", newEm);
+      msg = `Emoji: **${oldEm.name}** was renamed to **${newEm.name}** (${newEm})`;
     } else {
       return;
     }

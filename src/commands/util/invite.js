@@ -1,6 +1,6 @@
 module.exports = {
   name: "invite",
-  description: "Creates an instant invite for the server",
+  description: "Get a random color",
   category: "util",
   botPermissions: ["CREATE_INSTANT_INVITE"],
   aliases: ["inv"],

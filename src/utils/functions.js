@@ -1,15 +1,15 @@
-const User = require("../models/User.model");
-const Guild = require("../models/Guild.model");
-const Warning = require("../models/Warning.model");
-const Sticky = require("../models/Sticky.model");
-const BaseEmbed = require("../modules/BaseEmbed");
-const moment = require("moment");
-const Logger = require("../modules/Logger");
-const { Util } = require("discord.js");
-const { errorLogsChannelId, dashboard } = require("../../config.json");
-const jwt = require("jsonwebtoken");
-const fetch = require("node-fetch");
-const fs = require("fs");
+const User = require('../models/User.model');
+const Guild = require('../models/Guild.model');
+const Warning = require('../models/Warning.model');
+const Sticky = require('../models/Sticky.model');
+const BaseEmbed = require('../modules/BaseEmbed');
+const moment = require('moment');
+const Logger = require('../modules/Logger');
+const { Util } = require('discord.js');
+const { errorLogsChannelId, dashboard } = require('../../config.json');
+const jwt = require('jsonwebtoken');
+const fetch = require('node-fetch');
+const fs = require('fs');
 
 /**
  *
@@ -73,8 +73,8 @@ async function addUser(userId, guildId) {
  */
 async function updateUserById(userId, guildId, data) {
   try {
-    if (typeof data !== "object") {
-      throw Error("'data' must be an object");
+    if (typeof data !== 'object') {
+      throw Error('\'data\' must be an object');
     }
 
     const user = await getUserById(userId, guildId);
@@ -115,7 +115,7 @@ async function getGuildById(guildId) {
 
     return guild;
   } catch (e) {
-    Logger.error("GET_GUILD_BY_ID", e.stack || e);
+    Logger.error('GET_GUILD_BY_ID', e.stack || e);
   }
 }
 
@@ -125,8 +125,8 @@ async function getGuildById(guildId) {
  */
 async function updateGuildById(guildId, settings) {
   try {
-    if (typeof settings !== "object") {
-      throw Error("'settings' must be an object");
+    if (typeof settings !== 'object') {
+      throw Error('\'settings\' must be an object');
     }
 
     // check if guild exists
@@ -246,9 +246,9 @@ async function removeSticky(channelId) {
  */
 const errorEmbed = (permissions, message) => {
   return BaseEmbed(message)
-    .setTitle("Woah!")
-    .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
-    .setColor("ORANGE");
+    .setTitle('Woah!')
+    .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(', ')} permissions!`)
+    .setColor('ORANGE');
 };
 
 /**
@@ -274,7 +274,7 @@ async function getGuildLang(guildId) {
   try {
     const guild = await getGuildById(guildId);
 
-    return require(`../locales/${guild?.locale || "english"}`);
+    return require(`../locales/${guild?.locale || 'english'}`);
   } catch (e) {
     console.error(e);
   }
@@ -288,28 +288,28 @@ async function getGuildLang(guildId) {
 function sendErrorLog(bot, error, type, msgContent) {
   const channel = bot.channels.cache.get(errorLogsChannelId);
   if (!channel || !errorLogsChannelId) {
-    return Logger.error("UNHANDLED ERROR", error);
+    return Logger.error('UNHANDLED ERROR', error);
   }
 
   const message = {
     author: bot.user,
   };
 
-  const name = error.name || "N/A";
-  const code = error.code || "N/A";
-  const httpStatus = error.httpStatus || "N/A";
+  const name = error.name || 'N/A';
+  const code = error.code || 'N/A';
+  const httpStatus = error.httpStatus || 'N/A';
   const stack = error.stack || error;
-  const content = msgContent || "N/A";
+  const content = msgContent || 'N/A';
 
   const embed = BaseEmbed(message)
-    .setTitle("An error occurred")
-    .addField("Name", name, true)
-    .addField("Code", code, true)
-    .addField("httpStatus", httpStatus, true)
-    .addField("Timestamp", Logger.now, true)
-    .addField("Command executed", content, true)
+    .setTitle('An error occurred')
+    .addField('Name', name, true)
+    .addField('Code', code, true)
+    .addField('httpStatus', httpStatus, true)
+    .addField('Timestamp', Logger.now, true)
+    .addField('Command executed', content, true)
     .setDescription(`\`\`\`${stack}\`\`\` `)
-    .setColor(type === "error" ? "RED" : "ORANGE");
+    .setColor(type === 'error' ? 'RED' : 'ORANGE');
 
   channel.send(embed);
 }
@@ -324,7 +324,7 @@ async function formatDate(date, guildId) {
   const m = moment(date);
 
   return {
-    date: m.tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
+    date: m.tz(tz || 'America/New_York').format('MM/DD/YYYY, h:mm:ss a'),
     tz: tz,
   };
 }
@@ -343,13 +343,9 @@ const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 function getLanguages() {
   return fs
-    .readdirSync("./src/locales/")
-    .filter((f) => f.endsWith(".js"))
+    .readdirSync('./src/locales/')
+    .filter((f) => f.endsWith('.js'))
     .map((la) => la.slice(0, -3));
-}
-
-function formatNumber(n) {
-  return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
 /**
@@ -360,7 +356,7 @@ function formatNumber(n) {
 async function createWebhook(bot, channelId, oldChannelId) {
   const channel = bot.channels.cache.get(channelId);
   if (!channel) return;
-  if (!channel.permissionsFor(bot.user.id).has("MANAGE_WEBHOOKS")) return;
+  if (!channel.permissionsFor(bot.user.id).has('MANAGE_WEBHOOKS')) return;
 
   if (oldChannelId) {
     const w = await channel.fetchWebhooks();
@@ -368,7 +364,7 @@ async function createWebhook(bot, channelId, oldChannelId) {
   }
 
   await channel.createWebhook(`audit-logs-${channelId}`, {
-    avatar: bot.user.displayAvatarURL({ format: "webp" }),
+    avatar: bot.user.displayAvatarURL({ format: 'webp' }),
   });
 }
 
@@ -376,7 +372,7 @@ async function createWebhook(bot, channelId, oldChannelId) {
  * @param {import("discord.js").Guild} guild
  */
 async function getWebhook(guild) {
-  if (!guild.me.hasPermission(["MANAGE_WEBHOOKS"])) return;
+  if (!guild.me.hasPermission('MANAGE_WEBHOOKS')) return;
   const w = await guild.fetchWebhooks();
   const g = await getGuildById(guild.id);
   const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
@@ -392,34 +388,34 @@ async function getWebhook(guild) {
  */
 function parseMessage(message, user, msg) {
   const newMessage = message
-    .split(" ")
+    .split(' ')
     .map((word) => {
       const { username, tag, id, discriminator, createdAt } = user;
       let w = word;
 
       w = w
-        .replace("{user}", user)
-        .replace("{user.tag}", escapeMarkdown(tag))
-        .replace("{user.username}", escapeMarkdown(username))
-        .replace("{user.discriminator}", discriminator)
-        .replace("{user.id}", id)
-        .replace("{user.createdAt}", new Date(createdAt).toLocaleString());
+        .replace('{user}', user)
+        .replace('{user.tag}', escapeMarkdown(tag))
+        .replace('{user.username}', escapeMarkdown(username))
+        .replace('{user.discriminator}', discriminator)
+        .replace('{user.id}', id)
+        .replace('{user.createdAt}', new Date(createdAt).toLocaleString());
 
       if (msg) {
-        w.replace("{guild.id}", msg.guild.id)
-          .replace("{guild.name}", escapeMarkdown(msg.guild.name))
-          .replace("{message.author}", msg.author)
-          .replace("{message.author.id}", msg.author.id)
-          .replace("{message.author.tag}", escapeMarkdown(msg.author.tag))
+        w.replace('{guild.id}', msg.guild.id)
+          .replace('{guild.name}', escapeMarkdown(msg.guild.name))
+          .replace('{message.author}', msg.author)
+          .replace('{message.author.id}', msg.author.id)
+          .replace('{message.author.tag}', escapeMarkdown(msg.author.tag))
           .replace(
-            "{message.author.username}",
+            '{message.author.username}',
             escapeMarkdown(escapeMarkdown(msg.author.username))
           );
       }
 
       return w;
     })
-    .join(" ");
+    .join(' ');
 
   return newMessage;
 }
@@ -439,13 +435,13 @@ function escapeMarkdown(m) {
  */
 async function findOrCreateMutedRole(guild) {
   return (
-    guild.roles.cache.find((r) => r.name === "muted") ||
+    guild.roles.cache.find((r) => r.name === 'muted') ||
     (await guild.roles.create({
       data: {
-        name: "muted",
-        color: "GRAY",
+        name: 'muted',
+        color: 'GRAY',
       },
-      reason: "Mute a user",
+      reason: 'Mute a user',
     }))
   );
 }
@@ -459,7 +455,7 @@ async function findOrCreateMutedRole(guild) {
 function updateMuteChannelPerms(guild, memberId, perms) {
   guild.channels.cache.forEach((channel) => {
     channel.updateOverwrite(memberId, perms).catch((e) => {
-      Logger.error("mute_user", e?.stack || e);
+      Logger.error('mute_user', e?.stack || e);
     });
   });
 }
@@ -474,10 +470,10 @@ function updateMuteChannelPerms(guild, memberId, perms) {
 async function handleApiRequest(path, token, method) {
   try {
     const bearer =
-      token.type === "Bearer" ? jwt.verify(token.data, dashboard.jwtSecret) : token.data;
+      token.type === 'Bearer' ? jwt.verify(token.data, dashboard.jwtSecret) : token.data;
 
     if (!bearer) {
-      return { error: "invalid_token" };
+      return { error: 'invalid_token' };
     }
 
     const res = await fetch(`${dashboard.discordApiUrl}${path}`, {
@@ -485,11 +481,11 @@ async function handleApiRequest(path, token, method) {
       headers: {
         Authorization: `${token.type} ${bearer}`,
       },
-      scope: "guilds",
+      scope: 'guilds',
     });
     return await res.json();
   } catch (e) {
-    return { error: "invalid_token" };
+    return { error: 'invalid_token' };
   }
 }
 
@@ -499,21 +495,21 @@ async function handleApiRequest(path, token, method) {
  */
 async function checkAuth(req) {
   const token = req.cookies.token || req.headers.auth;
-  const data = await handleApiRequest("/users/@me", {
-    type: "Bearer",
+  const data = await handleApiRequest('/users/@me', {
+    type: 'Bearer',
     data: token,
   });
 
   if (data.error) {
     return Promise.reject(data.error);
   } else {
-    return Promise.resolve("Authorized");
+    return Promise.resolve('Authorized');
   }
 }
 
 /* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
 function encode(obj) {
-  let string = "";
+  let string = '';
 
   for (const [key, value] of Object.entries(obj)) {
     if (!value) continue;
@@ -554,5 +550,4 @@ module.exports = {
   findOrCreateMutedRole,
   updateMuteChannelPerms,
   checkAuth,
-  formatNumber
 };

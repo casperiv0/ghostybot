@@ -1,6 +1,6 @@
-const { connect, connection } = require("mongoose");
-const { mongodbUri } = require("../../config.json");
-const Logger = require("../modules/Logger");
+const { connect, connection } = require('mongoose');
+const { mongodbUri } = require('../../config.json');
+const Logger = require('../modules/Logger');
 
 (async function database() {
   const uri = mongodbUri;
@@ -12,12 +12,12 @@ const Logger = require("../modules/Logger");
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    Logger.log("database", "Connected to mongodb");
+    Logger.log('database', 'Connected to mongodb');
   } catch (e) {
-    Logger.error("database", e?.stack || e);
+    Logger.error('database', e?.stack || e);
   }
 
-  connection.on("disconnected", () => {
-    console.error("Disconnected from mongoDB");
+  connection.on('disconnected', () => {
+    console.error('Disconnected from mongoDB');
   });
 })();

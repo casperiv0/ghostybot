@@ -1,23 +1,28 @@
 {
     "dev": false,
     "token": "",
-    "owners": [],
+    "owners": [""],
     "imdbKey": "",
     "reportsChannelId": "",
     "openWeatherMapKey": "",
+    "YOUTUBE_API_KEY": "",
     "feedBackChannelId": "",
     "mongodbUri": "",
     "giphyApiKey": "",
     "errorLogsChannelId": "",
     "alexflipnoteKey": "",
+    "MAX_PLAYLIST_SIZE": 100,
+    "PRUNING": true,
+    "STAY_TIME": 30,
+    "DEFAULT_VOLUME": 20,
     "dashboard": {
-        "enabled": true,
-        "discordApiUrl": "https://discordapp.com/api/v8/",
+        "enabled": false,
+        "discordApiUrl": "",
         "jwtSecret": "",
         "clientId": "",
         "clientSecret": "",
-        "callbackUrl": "YOUR_URL + /api/auth/callback",
-        "dashboardUrl": "http://localhost:3030",
+        "callbackUrl": "",
+        "dashboardUrl": "",
         "port": 3030
     }
 }
