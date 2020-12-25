@@ -56,7 +56,9 @@ bot.player = new Player(bot);
 bot.afk = new Map();
 bot.neko = new NekoClient();
 bot.tnai = new TnaiClient();
-bot.imdb = new imdb.Client({ apiKey: imdbKey });
+if (imdbKey) {
+  bot.imdb = new imdb.Client({ apiKey: imdbKey });
+}
 if (alexflipnoteKey) {
   bot.alexClient = new AlexClient(alexflipnoteKey);
 }

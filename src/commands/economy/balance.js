@@ -18,8 +18,9 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setTitle(`${member.user.username} ${lang.ECONOMY.BALANCE}`)
-      .addField(`${lang.ECONOMY.MONEY}:`, user.money)
-      .addField(`${lang.ECONOMY.BANK}:`, user.bank);
+      .addField(lang.ECONOMY.MONEY, user.money, true)
+      .addField(lang.ECONOMY.BANK, user.bank, true)
+      .addField(lang.COVID.TOTAL, user.bank + user.money, true);
 
     message.channel.send(embed);
   },
