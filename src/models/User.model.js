@@ -29,11 +29,8 @@ const userSchema = new Schema({
   reminder: {
     type: Object,
     default: {
-      channel_id: null,
-      ends_at: null,
-      msg: null,
-      on: false,
-      time: null,
+      hasReminder: false,
+      reminders: [],
     },
   },
 });

@@ -2,6 +2,10 @@ const UserModel = require("../models/User.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 const { updateUserById, findOrCreateMutedRole } = require("../utils/functions");
 
+/**
+ *
+ * @param {import("discord.js").Client} bot
+ */
 module.exports = async (bot) => {
   const TEN_SECOND_INTERVAL = 10000;
   bot.logger.log("Helpers", "unmuteHelper was initialized");
@@ -51,6 +55,7 @@ module.exports = async (bot) => {
           });
 
           const mutedRole = await findOrCreateMutedRole(guild);
+          if (guild.me.hasPermission("MANAGE_ROLES")) return;
           member.roles.remove(mutedRole);
 
           const webhook = await bot.getWebhook(guild);

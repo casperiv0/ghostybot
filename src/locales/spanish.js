@@ -436,7 +436,7 @@ module.exports = {
       "La reaccion fue encontrada pero el mensaje no, la reaccion ha sido eliminada de la base de datos",
   },
   REMINDER: {
-    SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
+    SUCCESS: "Success! I will ping you **in this channel** in {time}",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
     NO_REMINDER_SET: "You don't have a reminder set",

@@ -4,6 +4,8 @@
 - [Installation](INSTALLATION.md)
   - [Requirements](INSTALLATION.md#requirements)
   - [Usage](INSTALLATION.md#usage)
+  - [Api keys](INSTALLATION.md#api-keys)
+  - [Config](INSTALLATION.md#config)
 - Contributing
   - [Guide](CONTRIBUTING.md)
   - [Command Example](COMMAND_OPTIONS.md)
