@@ -10,34 +10,17 @@ module.exports = {
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const { guild } = message;
-    const {
-      name,
-      memberCount,
-      premiumSubscriptionCount,
-      premiumTier,
-      verified,
-      partnered,
-    } = guild;
-    const roles = guild.roles.cache.size;
-    const channels = guild.channels.cache.size;
-    const emojis = guild.emojis.cache.size;
-    const { date: createdAt } = await formatDate(
-      guild.createdAt,
-      message.guild.id
-    );
-    const { date: joined, tz } = await formatDate(
-      message.member.joinedAt,
-      message.guild.id
-    );
+    const { name, memberCount, premiumSubscriptionCount, premiumTier, verified, partnered } = guild;
+    const roles = bot.formatNumber(guild.roles.cache.size);
+    const channels = bot.formatNumber(guild.channels.cache.size);
+    const emojis = bot.formatNumber(guild.emojis.cache.size);
+    const { date: createdAt } = await formatDate(guild.createdAt, message.guild.id);
+    const { date: joined, tz } = await formatDate(message.member.joinedAt, message.guild.id);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
     const owner = (guild.owner && guild.owner.user.tag) || "error";
-    const isVerified = verified
-      ? lang.GUILD.IS_VERIFIED
-      : lang.GUILD.NOT_VERIFIED;
-    const isPartnered = partnered
-      ? lang.GUILD.IS_PARTNERED
-      : lang.GUILD.NOT_PARTNERED;
+    const isVerified = verified ? lang.GUILD.IS_VERIFIED : lang.GUILD.NOT_VERIFIED;
+    const isPartnered = partnered ? lang.GUILD.IS_PARTNERED : lang.GUILD.NOT_PARTNERED;
     const inviteBanner = guild.bannerURL({
       size: 2048,
       format: "png",
@@ -45,12 +28,8 @@ module.exports = {
     });
 
     const regionKey = guild.region;
-    const regionData = regions.filter((region) =>
-      region.keys.includes(regionKey)
-    )[0];
-    const region = `${regionData.flag ? regionData.flag : ""} ${toCapitalize(
-      regionKey
-    )}`;
+    const regionData = regions.filter((region) => region.keys.includes(regionKey))[0];
+    const region = `${regionData.flag ? regionData.flag : ""} ${toCapitalize(regionKey)}`;
 
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;

@@ -1,6 +1,9 @@
 const { version } = require("discord.js");
 const moment = require("moment");
 const BaseEmbed = require("../../modules/BaseEmbed");
+const {
+  dashboard: { dashboardUrl },
+} = require("../../../config.json");
 
 module.exports = {
   name: "botinfo",
@@ -18,9 +21,9 @@ module.exports = {
       .addField(
         `__**${lang.BOT.INFO}:**__`,
         `
-**${lang.BOT.USERS}:** ${bot.users.cache.size}
-**${lang.BOT.GUILDS}:** ${bot.guilds.cache.size}
-**${lang.BOT.CHANNELS}:** ${bot.channels.cache.size}
+**${lang.BOT.USERS}:** ${bot.formatNumber(bot.users.cache.size)}
+**${lang.BOT.GUILDS}:** ${bot.formatNumber(bot.guilds.cache.size)}
+**${lang.BOT.CHANNELS}:** ${bot.formatNumber(bot.channels.cache.size)}
 **${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}
 **${lang.BOT.VC_CONNS}:** ${bot.voice.connections.size}
             `,
@@ -48,7 +51,7 @@ module.exports = {
         true
       )
       .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
-      .addField(`${lang.BOT.DASHBOARD}`, "[Click Here](https://ghostybot.tk)", true)
+      .addField(`${lang.BOT.DASHBOARD}`, `[Click Here](${dashboardUrl})`, true)
       .setImage(
         "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
       );

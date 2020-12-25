@@ -1,6 +1,10 @@
 const UserModel = require("../models/User.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 
+/**
+ *
+ * @param {import("discord.js").Client} bot
+ */
 module.exports = async (bot) => {
   const TEN_SECOND_INTERVAL = 10000;
   bot.logger.log("Helpers", "reminderHelper was initialized");
@@ -40,6 +44,8 @@ module.exports = async (bot) => {
             time: null,
           },
         });
+
+        if (!channel.permissionsFor("SEND_MESSAGES")) return;
 
         const embed = BaseEmbed({ author: usr })
           .setTitle("Reminder finished")
