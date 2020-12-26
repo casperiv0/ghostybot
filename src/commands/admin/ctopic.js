@@ -19,6 +19,6 @@ module.exports = {
     if (!topic) return message.reply(lang.ADMIN.C_TOPIC_PROVIDE_TOPIC);
 
     await channel.setTopic(topic);
-    await message.channel.send(lang.ADMIN.C_TOPIC_ADDED);
+    await message.channel.send(lang.ADMIN.C_TOPIC_ADDED.replace("{topic}", topic));
   },
 };

@@ -26,7 +26,7 @@ module.exports = {
 
     banMember.ban({
       days: 7,
-      reason: `**${lang.ADMIN.BAN_BANNED_BY}:** ${message.author.tag}\n**${lang.GLOBAL.REASON}:** ${banReason}`,
+      reason: `${lang.ADMIN.BAN_BANNED_BY}: ${message.author.tag}\n**${lang.GLOBAL.REASON}:** ${banReason}`,
     });
 
     try {

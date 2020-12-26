@@ -17,7 +17,7 @@ const fs = require("fs");
  * @param {string} guildId
  * @returns {{
  * user: {
- * money: number;
+ *  money: number;
  *  bank: number;
  *  work: number;
  *  xp: number;

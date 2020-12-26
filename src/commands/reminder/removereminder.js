@@ -3,7 +3,9 @@ module.exports = {
   description: "Remove your current reminder",
   category: "reminder",
   aliases: ["delreminder"],
-  async execute(bot, message) {
+  requiredArgs: ["reminder_id"],
+  async execute(bot, message, args) {
+    const [id] = args;
     const lang = await bot.getGuildLang(message.guild.id);
 
     const { user } = await bot.getUserById(message.author.id, message.guild.id);
@@ -14,11 +16,8 @@ module.exports = {
 
     await bot.updateUserById(message.author.id, message.guild.id, {
       reminder: {
-        ends_at: null,
-        msg: null,
-        channel_id: null,
-        on: false,
-        time: null,
+        hasReminder: user.reminder.reminders?.length - 1 > 0,
+        reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),
       },
     });
 

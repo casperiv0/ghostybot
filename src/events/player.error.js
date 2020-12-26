@@ -7,7 +7,8 @@ module.exports = {
     if (error === "UnableToJoin") {
       return message.channel.send(lang.MUSIC.JOIN_ERROR);
     } else {
-      return sendErrorLog(bot, { stack: error, name: "discord-player" }, "error");
+      sendErrorLog(bot, { stack: error, name: "discord-player" }, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
   },
 };

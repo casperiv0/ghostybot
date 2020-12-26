@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 207 commands.
+GhostyBot has a total of 209 commands.
 
 Click any of the command names for more information
 
@@ -235,7 +235,7 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 19**
+**Total commands: 20**
 
 [amazeme:](#amazeme) Shows interesting images or facts
 
@@ -258,6 +258,8 @@ Click any of the command names for more information
 [imgfy:](#imgfy) text to image converter xD
 
 [kiss:](#kiss) Shows a picture of people kissing
+
+[magik:](#magik) Just Magik
 
 [owo:](#owo) OwO
 
@@ -486,7 +488,9 @@ Click any of the command names for more information
   ##
 ### Category: reminder
 
-**Total commands: 2**
+**Total commands: 3**
+
+[reminders:](#reminders) All your active reminders
 
 [removereminder:](#removereminder) Remove your current reminder
 
@@ -2491,6 +2495,22 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## magik
+
+**Category:** image
+
+**Description:** Just Magik
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## owo
 
 **Category:** image
@@ -3083,6 +3103,22 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## reminders
+
+**Category:** reminder
+
+**Description:** All your active reminders
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## removereminder
 
 **Category:** reminder
@@ -3095,7 +3131,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `reminder_id`
 
 [Back to top](#ghostybot-command-list)
 

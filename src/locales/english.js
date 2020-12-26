@@ -3,7 +3,7 @@ module.exports = {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "Not specified",
     PROVIDE_ARGS: "Please provide args",
-    ERROR: "An error occurred",
+    ERROR: "An unexpected error occurred",
     NAME: "Name",
     NOT_AN_OPTION: "{option} Is not a valid option",
     SUCCESS: "Success",
@@ -356,7 +356,7 @@ module.exports = {
     DASHBOARD: "Dashboard",
     DEVELOPER: "Developer",
     CONTRIBUTORS: "Contributors",
-    INVITE_BOT: "Invite bot"
+    INVITE_BOT: "Invite bot",
   },
   CONFIG: {
     OPTION_CMD_WORK: "{option} needs to be provided, for this command to work.",
@@ -436,7 +436,7 @@ module.exports = {
       "Reaction was found but the message was not, reaction was deleted from the database",
   },
   REMINDER: {
-    SUCCESS: "Success! I will ping you **in this channel** once the timer ends",
+    SUCCESS: "Success! I will ping you **in this channel** in {time}",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     ALREADY_ON: "You already have a reminder set",
     NO_REMINDER_SET: "You don't have a reminder set",
