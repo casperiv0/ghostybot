@@ -43,7 +43,7 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-content">
         <Link href="/dashboard">
-          <a className="nav-icon-link">GhostyBot <span className="nav-icon-extra">Dashboard</span></a>
+          <a className="nav-icon-link">{dashboard.botName} <span className="nav-icon-extra">Dashboard</span></a>
         </Link>
         <div className="dropdown-container">
           <button className="nav-link-dropdown">
@@ -68,7 +68,7 @@ const Navbar = () => {
                 <a className="dropdown-link">My servers</a>
               </Link>
               <Link href="/add">
-                <a className="dropdown-link">Invite GhostyBot</a>
+                <a className="dropdown-link">Invite {dashboard.botName}</a>
               </Link>
               {owners.includes(user?.id) ? (
                 <Link href="/bot-settings">
