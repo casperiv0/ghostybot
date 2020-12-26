@@ -85,6 +85,7 @@ bot.giveawayManager = giveawayManager;
 require("moment-duration-format");
 require("./modules/command")(bot);
 require("./modules/events")(bot);
+require("./features/load-features")(bot);
 if (dashboard?.enabled) {
   require("./server")(bot);
 }
