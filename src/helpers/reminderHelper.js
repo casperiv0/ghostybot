@@ -2,7 +2,6 @@ const UserModel = require("../models/User.model");
 const BaseEmbed = require("../modules/BaseEmbed");
 
 /**
- *
  * @param {import("discord.js").Client} bot
  */
 module.exports = async (bot) => {
