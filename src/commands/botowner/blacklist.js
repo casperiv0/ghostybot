@@ -14,7 +14,7 @@ module.exports = {
     const type = args[0];
     let member = bot.findMember(message, args);
 
-    if (!member) member = { username: "N/A", id: args[0], tag: "N/A" };
+    if (!member) member = { username: "N/A", id: args[1], tag: "N/A" };
 
     if (!type) {
       return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
