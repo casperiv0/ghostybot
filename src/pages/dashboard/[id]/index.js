@@ -20,7 +20,7 @@ const Guild = ({ guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Viewing {guild?.name} / GhostyBot Dashboard</title>
+        <title>Viewing {guild?.name} / {dashboard.botName} Dashboard</title>
       </Head>
       <div className="page-title">
         <h4>Current guild: {guild.name}</h4>
