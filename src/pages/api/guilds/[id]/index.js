@@ -52,6 +52,7 @@ export default async function handler(req, res) {
         return true;
       });
       guild.categories = gChannels.filter((c) => c.type === 4);
+      guild.voice_channels = gChannels.filter((c) => c.type === 2);
       guild.categories.unshift({ id: null, name: "Disabled" });
       guild.channels.unshift({ id: null, name: "Disabled" });
       guild.roles.unshift({ id: null, name: "Disabled" });

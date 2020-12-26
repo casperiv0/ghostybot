@@ -1,7 +1,7 @@
 {
-    "dev": true,
+    "dev": false,
     "token": "",
-    "owners": [""],
+    "owners": [],
     "imdbKey": "",
     "reportsChannelId": "",
     "openWeatherMapKey": "",
@@ -11,7 +11,7 @@
     "errorLogsChannelId": "",
     "alexflipnoteKey": "",
     "dashboard": {
-        "enabled": false,
+        "enabled": true,
         "discordApiUrl": "https://discordapp.com/api/v8/",
         "jwtSecret": "",
         "clientId": "",
