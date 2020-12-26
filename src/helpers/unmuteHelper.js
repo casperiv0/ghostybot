@@ -3,7 +3,6 @@ const BaseEmbed = require("../modules/BaseEmbed");
 const { updateUserById, findOrCreateMutedRole } = require("../utils/functions");
 
 /**
- *
  * @param {import("discord.js").Client} bot
  */
 module.exports = async (bot) => {

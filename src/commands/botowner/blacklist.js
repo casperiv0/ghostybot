@@ -12,16 +12,12 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const type = args[0];
-    const member =
-      message.mentions.users.first() ||
-      bot.users.cache.find((user) => user.id === args[1]);
+    let member = bot.findMember(message, args);
+
+    if (!member) member = { username: "N/A", id: args[1], tag: "N/A" };
 
     if (!type) {
       return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
-    }
-
-    if (!member) {
-      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
     if (member.id === bot.user.id) {
@@ -51,9 +47,7 @@ module.exports = {
       case "add": {
         const existing = users.filter((u) => u.user_id === member.id)[0];
         if (existing) {
-          return message.channel.send(
-            lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member.tag)
-          );
+          return message.channel.send(lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member.tag));
         }
 
         const blUser = new Blacklisted({ user_id: member.id });
@@ -74,20 +68,13 @@ module.exports = {
         break;
       }
       default: {
-        return message.channel.send(
-          lang.BOT_OWNER.NOT_OPTION.replace("{type}", type)
-        );
+        return message.channel.send(lang.BOT_OWNER.NOT_OPTION.replace("{type}", type));
       }
     }
     return message.channel.send(
-      lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace(
-        "{member}",
-        member.tag
-      ).replace(
+      lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", member.tag).replace(
         "{type}",
-        type === "add"
-          ? lang.BOT_OWNER.BLACKLISTED
-          : lang.BOT_OWNER.UNBLACKLISTED
+        type === "add" ? lang.BOT_OWNER.BLACKLISTED : lang.BOT_OWNER.UNBLACKLISTED
       )
     );
   },
