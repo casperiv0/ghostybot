@@ -9,9 +9,8 @@ module.exports = {
 
     let intensity = args[1] || Math.floor(Math.random() * 10);
     if (member.user.id === message.author.id) {
-      intensity = args[0];
+      intensity = args[0] || Math.floor(Math.random() * 10);
     }
-    console.log(intensity);
 
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=magik&intensity=${intensity}&image=${member.user.displayAvatarURL(

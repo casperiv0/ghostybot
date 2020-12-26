@@ -28,7 +28,7 @@ module.exports = async (bot) => {
           if (!channel) {
             bot.updateUserById(user.user_id, user.guild_id, {
               reminder: {
-                hasReminder: user.reminder.reminders?.length - 1 > 0,
+                hasReminder: user.reminder.reminders?.length - 1 >= 0,
                 reminders: user.reminder.reminders.filter((_, ix) => ix !== idx),
               },
             });
@@ -36,7 +36,7 @@ module.exports = async (bot) => {
 
           await bot.updateUserById(user.user_id, user.guild_id, {
             reminder: {
-              hasReminder: user.reminder.reminders?.length - 1 > 0,
+              hasReminder: user.reminder.reminders?.length - 1 >= 0,
               reminders: user.reminder.reminders.filter((_, ix) => ix !== idx),
             },
           });
