@@ -194,7 +194,7 @@ const Settings = ({ guild, languages, isAuth }) => {
   return (
     <>
       <Head>
-        <title>{guild?.name} - Settings / GhostyBot Dashboard</title>
+        <title>{guild?.name} - Settings / {dashboard.botName} Dashboard</title>
       </Head>
       <div className="page-title">
         <h4>{guild?.name} - Settings</h4>
