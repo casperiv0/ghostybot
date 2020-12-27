@@ -48,7 +48,7 @@
     "cowsay": "^1.4.0",
     "discord-giveaways": "^4.2.1",
     "discord-logs": "^1.8.2",
-    "discord-player": "github:Androz2091/discord-player#develop",
+    "discord-player": "^3.2.0",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "easy-games-js": "^1.2.1",
