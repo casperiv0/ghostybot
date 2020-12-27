@@ -14,16 +14,16 @@ module.exports = {
       return message.channel.send(lang.ADMIN.CURRENT_PREFIX.replace("guildPrefix", guild.prefix));
 
     if (message.author.id === ownerId) {
-      setPrefix(message, prefix);
+      setPrefix(message, prefix, lang);
     } else if (message.member.permissions.has(["MANAGE_GUILD"])) {
-      setPrefix(message, prefix);
+      setPrefix(message, prefix, lang);
     } else {
       return message.reply(lang.ADMIN.NO_PERMISSIONS);
     }
   },
 };
 
-async function setPrefix(message, prefix) {
+async function setPrefix(message, prefix, lang) {
   await updateGuildById(message.guild.id, { prefix });
 
   message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
