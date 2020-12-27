@@ -63,7 +63,7 @@ const ManageCategories = ({ guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Manage categories - GhostyBot</title>
+        <title>Manage categories - {dashboard.botName}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">

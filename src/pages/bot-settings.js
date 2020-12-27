@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import { parseCookies } from "nookies";
 import AlertMessage from "../dashboard/components/AlertMessage";
-import { owners } from "../../config.json";
+import { owners, dashboard } from "../../config.json";
 import { useRouter } from "next/router";
 import { handleApiRequest } from "../utils/functions";
 
@@ -23,7 +23,7 @@ const BotSettings = ({ isAuth, isOwner }) => {
   return (
     <>
       <Head>
-        <title>Bot Settings - GhostyBot</title>
+        <title>Bot Settings - {dashboard.botName}</title>
       </Head>
       <AlertMessage message="Any actions done on this page will not take effect yet, this page is still a WIP" />
       <div className="page-title">
