@@ -8,12 +8,9 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     message.delete();
-    if (!args[0]) {
-      return message.channel.send(
-        "Please provide text or a valid channel!\n You can also set a default channel using `set announce-channel <channel mention>`"
-      );
-    }
+    if (!args[0]) return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL);
 
     const guild = await getGuildById(message.guild.id);
     const announceChannel = guild.announcement_channel;
@@ -26,7 +23,7 @@ module.exports = {
       channel = message.mentions.channels.first();
       text = args.join(" ");
     } else {
-      return message.channel.send("Please provide text or a valid channel");
+      return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
     }
 
     const embed = BaseEmbed(message).setTitle("📢 Announcement 📢").setDescription(text);

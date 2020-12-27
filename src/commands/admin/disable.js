@@ -9,17 +9,18 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   requiredArgs: ["command name | category name"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const option = args[0];
     const saveCommands = ["help", "enable", "disable"];
     const saveCategories = ["botowner", "exempt", "disabled", "custom"];
     const guild = await getGuildById(message.guild.id);
 
     if (!option) {
-      return message.channel.send("Please provide a command or category name");
+      return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);
     }
 
     if (guild.custom_commands.find(({ name }) => name.toLowerCase() === option.toLowerCase())) {
-      return message.channel.send("That command cannot be disabled");
+      return message.channel.send(lang.ADMIN.COMMAND_CANNOT_DISABLED);
     }
 
     const command =
@@ -29,15 +30,15 @@ module.exports = {
       // Disable category
       const category = option.toLowerCase();
       if (!categories.includes(category)) {
-        return message.channel.send("Category or command was not found");
+        return message.channel.send(lang.ADMIN.COMMAND_OR_CATEGORY_NOT_FOUND);
       }
 
       if (saveCategories.includes(category)) {
-        return message.channel.send("That category cannot be disabled!");
+        return message.channel.send(lang.ADMIN.CATEGORY_CANNOT_DISABLED);
       }
 
       if (guild.disabled_categories.includes(category)) {
-        return message.channel.send("That category is already disabled");
+        return message.channel.send(lang.ADMIN.CATEGORY_ALREADY_DISABLED);
       }
 
       await updateGuildById(message.guild.id, {
@@ -45,18 +46,18 @@ module.exports = {
       });
 
       const embed = BaseEmbed(message)
-        .setTitle("Disabled category")
-        .setDescription(`Successfully **disabled** ${category}`);
+        .setTitle(lang.ADMIN.DISABLED_CATEGORY)
+        .setDescription(lang.ADMIN.CATEGORY_DISABLED.replace("{category}", category));
 
       return message.channel.send(embed);
     } else {
       // disable command
       if (saveCommands.includes(command.name)) {
-        return message.channel.send("That command cannot be disabled");
+        return message.channel.send(lang.ADMIN.COMMAND_CANNOT_DISABLED);
       }
 
       if (guild.disabled_commands.includes(command.name)) {
-        return message.channel.send("That command is already disabled");
+        return message.channel.send(lang.ADMIN.COMMAND_ALREADY_DISABLED);
       }
 
       await updateGuildById(message.guild.id, {
@@ -64,8 +65,8 @@ module.exports = {
       });
 
       const embed = BaseEmbed(message)
-        .setTitle("Disabled command")
-        .setDescription(`Successfully **disabled** ${command.name}`);
+        .setTitle(lang.ADMIN.DISABLED_COMMAND)
+        .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
 
       return message.channel.send(embed);
     }
