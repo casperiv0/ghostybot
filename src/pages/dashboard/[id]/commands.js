@@ -53,7 +53,7 @@ const CustomCommands = ({ guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Manage custom commands - GhostyBot</title>
+        <title>Manage custom commands - {dashboard.botName}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <CreateCommandModal guild={guild} />

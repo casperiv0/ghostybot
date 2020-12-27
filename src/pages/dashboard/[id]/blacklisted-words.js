@@ -52,7 +52,7 @@ const BlacklistedWords = ({ guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Manage blacklisted words - GhostyBot</title>
+        <title>Manage blacklisted words - {dashboard.botName}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <AddBlacklistedWord guild={guild} />

@@ -54,7 +54,7 @@ const Store = ({ guild, isAuth }) => {
 
       <AddStoreItem guild={guild} />
       <Head>
-        <title>{guild?.name} - Store / GhostyBot Dashboard</title>
+        <title>{guild?.name} - Store / {dashboard.botName} Dashboard</title>
       </Head>
       <div className="page-title">
         <h4>{guild?.name} - Store</h4>

@@ -78,7 +78,7 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Manage commands - GhostyBot</title>
+        <title>Manage commands - {dashboard.botName}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">

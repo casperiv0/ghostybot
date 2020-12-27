@@ -9,6 +9,7 @@ import Head from "next/head";
 import Navbar from "../dashboard/components/Navbar";
 import Footer from "../dashboard/components/Footer";
 import { useRouter } from "next/router";
+import { dashboard } from "../../config.json";
 
 function GhostyBot({ Component, pageProps }) {
   const router = useRouter();
@@ -18,10 +19,10 @@ function GhostyBot({ Component, pageProps }) {
       {router.pathname === "/" ? null : <Navbar />}
       <div className="container">
         <Head>
-          <title>GhostyBot</title>
+          <title>{dashboard.botName}</title>
           <meta
             name="description"
-            content="🤖 GhostyBot is a Custom Discord bot with a lot of commands for Discord communities. (+180 commands) Economy, util, fun, music, admin, xp system and more "
+            content={`🤖 ${dashboard.botName} is a Custom Discord bot with a lot of commands for Discord communities. (+200 commands) Economy, util, fun, music, admin, xp system and more `}
           />
           <link
             rel="apple-touch-icon"
