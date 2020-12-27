@@ -12,7 +12,7 @@ module.exports = {
     if (!banMember) {
       return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
-    if (!banReason) banReason = "Not Specified";
+    if (!banReason) banReason = lang.GLOBAL.NOT_SPECIFIED;
 
     if (!banMember.bannable || banMember.hasPermission("BAN_MEMBERS")) {
       return message.channel.send(lang.MEMBER.CANNOT_BE_BANNED);

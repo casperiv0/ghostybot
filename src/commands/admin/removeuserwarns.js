@@ -7,7 +7,7 @@ module.exports = {
   requiredArgs: ["member"],
   async execute(bot, message, args) {
     if (!message.member.hasPermission("MANAGE_GUILD")) {
-      return message.channel.send("You don't have permissions to do that!");
+      return message.channel.send(lang.ADMIN.NO_PERMISSIONS);
     }
 
     const guildId = message.guild.id;
@@ -16,23 +16,21 @@ module.exports = {
       message.guild.members.cache.get(args[1]);
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);
     }
 
     if (member.user.bot) {
-      return message.channel.send(
-        "Bot data does not save, therefore I cannot fetch its data"
-      );
+      return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
     const { warnings } = await getUserById(member.user.id, guildId);
 
     if (warnings === null || !warnings[0]) {
-      return message.channel.send("There are no warnings");
+      return message.channel.send(lang.ADMIN.NO_WARNINGS);
     }
 
     await removeUserWarnings(member.user.id, guildId);
 
-    return message.channel.send("Successfully removed all warnings");
+    return message.channel.send(lang.ADMIN.REMOVED_ALL_WARNINGS);
   },
 };

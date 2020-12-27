@@ -10,6 +10,7 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["igch", "ic"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const option = args[0];
     const item = message.mentions.channels.first() || message.channel;
@@ -18,41 +19,37 @@ module.exports = {
     const ignoredChannels = guild?.ignored_channels;
 
     if (!option) {
-      return message.channel.send(
-        "Please provide an valid option (`add`, `remove`)"
-      );
+      return message.channel.send(lang.ADMIN.VALID_OPTION);
     }
 
     if (!item) {
-      return message.channel.send("Please provide a channel");
+      return message.channel.send(lang.ADMIN.PROVIDE_CHANNEL);
     }
 
     switch (option.toLowerCase()) {
       case "add":
         if (ignoredChannels.includes(item.id)) {
-          return message.channel.send(
-            "That channel is already ignored by the bot"
-          );
+          return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_IGNORED);
         }
 
         await updateGuildById(guildId, {
           ignored_channels: [...ignoredChannels, item.id],
         });
 
-        message.channel.send(`Added ${item} to ignored channels`);
+        message.channel.send(lang.ADMIN.ADD_TO_IGNORE.replace("{item}", item));
         break;
       case "remove":
         if (!ignoredChannels.includes(item.id)) {
-          return message.channel.send("That channel is not ignored by the bot");
+          return message.channel.send(lang.ADMIN.CHANNEL_NOT_IGNORED);
         }
 
         await updateGuildById(guildId, {
           ignored_channels: ignoredChannels.filter((ci) => ci !== item.id),
         });
 
-        return message.channel.send(`Remove ${item} from ignored channels`);
+        return message.channel.send(lang.ADMIN.REMOVE_IGNORED.replace("{item}", item));
       default:
-        return message.channel.send(`\`${option}\` is not a option!`);
+        return message.channel.send(lang.ADMIN.NOT_A_OPTION.replace("{option}", option));
     }
   },
 };

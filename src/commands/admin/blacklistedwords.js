@@ -57,7 +57,7 @@ module.exports = {
         return message.channel.send(words || lang.ADMIN.BLACKLISTED_NO_WORDS);
       }
       default: {
-        return message.channel.send(`${option} does not exist`);
+        return message.channel.send(lang.ADMIN.OPTION_DOES_NOT_EXIST.replace("{option}", option));
       }
     }
   },

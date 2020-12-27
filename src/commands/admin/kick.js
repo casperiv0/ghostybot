@@ -13,7 +13,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
 
-    if (!kickReason) kickReason = "Not Specified";
+    if (!kickReason) kickReason = lang.GLOBAL.NOT_SPECIFIED;
 
     if (!kickMember.kickable || kickMember.hasPermission("KICK_MEMBERS")) {
       return message.channel.send(lang.ADMIN.KICK_CANNOT_KICK);
