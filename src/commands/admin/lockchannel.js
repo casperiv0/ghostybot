@@ -4,7 +4,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
-  execute(bot, message, args) {
+  async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     let lockReason = args.join(" ");
     let channel = message.mentions.channels.first();
