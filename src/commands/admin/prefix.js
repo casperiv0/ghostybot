@@ -11,9 +11,12 @@ module.exports = {
     const guild = await getGuildById(message.guild.id);
 
     if (!prefix)
-      return message.channel
-        .send(lang.ADMIN.CURRENT_PREFIX.replace("{guildPrefix}", guild.prefix))
-        .replace("{guildPrefix}", guild.prefix);
+      return message.channel.send(
+        lang.ADMIN.CURRENT_PREFIX.replace("{guildPrefix}", guild.prefix).replace(
+          "{guildPrefix}",
+          guild.prefix
+        )
+      );
 
     if (message.author.id === ownerId) {
       setPrefix(message, prefix, lang);
