@@ -52,7 +52,9 @@ bot.logger = Logger;
 bot.commands = new Collection();
 bot.aliases = new Collection();
 bot.cooldowns = new Collection();
-bot.player = new Player(bot);
+bot.player = new Player(bot, {
+  autoSelfDeaf: true,
+});
 bot.afk = new Map();
 bot.neko = new NekoClient();
 bot.tnai = new TnaiClient();
