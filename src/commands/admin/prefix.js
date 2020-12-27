@@ -1,5 +1,5 @@
 const { getGuildById, updateGuildById } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
+const { owners } = require("../../../config.json");
 
 module.exports = {
   name: "prefix",
@@ -13,7 +13,7 @@ module.exports = {
     if (!prefix)
       return message.channel.send(lang.ADMIN.CURRENT_PREFIX.replace("guildPrefix", guild.prefix));
 
-    if (message.author.id === ownerId) {
+    if (owners.include(message.author.id)) {
       setPrefix(message, prefix);
     } else if (message.member.permissions.has(["MANAGE_GUILD"])) {
       setPrefix(message, prefix);
