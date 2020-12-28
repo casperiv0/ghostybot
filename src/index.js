@@ -71,6 +71,7 @@ Promise.config({
 });
 
 const giveawayManager = new MongoGiveawayManager(bot, {
+  hasGuildMembersIntent: true,
   storage: false,
   updateCountdownEvery: 10000,
   DJSlib: "v12",
