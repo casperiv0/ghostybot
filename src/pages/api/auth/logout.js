@@ -1,19 +1,19 @@
 import fetch from "node-fetch";
 import { setCookie } from "nookies";
 import { encode } from "../../../utils/functions";
-import { dashboard } from "../../../../config.json";
 
 export default async function (req, res) {
   const token = req.cookies.token;
-  const { clientId, clientSecret } = dashboard;
+  const DISCORD_CLIENT_ID = process.env["DISCORD_CLIENT_ID"];
+  const DISCORD_CLIENT_SECRET = process.env["DISCORD_CLIENT_SECRET"];
 
   await fetch("https://discord.com/api/oauth2/token/revoke", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: encode({
       token: token,
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id: DISCORD_CLIENT_ID,
+      client_secret: DISCORD_CLIENT_SECRET,
     }),
   });
 

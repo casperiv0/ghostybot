@@ -1,9 +1,8 @@
 const { connect, connection } = require("mongoose");
-const { mongodbUri } = require("../../config.json");
 const Logger = require("../modules/Logger");
 
 (async function database() {
-  const uri = mongodbUri;
+  const uri = process.env["MONGO_DB_URI"];
 
   try {
     await connect(uri, {

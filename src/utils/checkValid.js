@@ -8,12 +8,12 @@ function checkValid() {
     throw Error("[ERROR]: This bot requires version 14 of nodejs! Please upgrade to version 14");
   }
 
-  if (!config.token || config.token === "") {
-    throw Error("[ERROR][BOT]: Bot token is required");
+  if (!process.env["DISCORD_BOT_TOKEN"] || process.env["DISCORD_BOT_TOKEN"] === "") {
+    throw Error("[ERROR][BOT]: DISCORD_BOT_TOKEN is required");
   }
 
-  if (!config.mongodbUri || config.mongodbUri === "") {
-    throw Error("[ERROR][BOT]: mongoUri is required");
+  if (!process.env["MONGO_DB_URI"] || process.env["MONGO_DB_URI"] === "") {
+    throw Error("[ERROR][BOT]: MONGO_DB_URI is required");
   }
 
   if (!config.owners[0]) {
@@ -48,19 +48,12 @@ function checkValid() {
   }
 
   if (config.dashboard.enabled === true) {
-    const {
-      clientId,
-      clientSecret,
-      jwtSecret,
-      callbackUrl,
-      dashboardUrl,
-      discordApiUrl,
-    } = config.dashboard;
+    const { jwtSecret, callbackUrl, dashboardUrl, discordApiUrl } = config.dashboard;
     const msg = ". If you don't need the dashboard you can disable it in your config";
 
     const opts = [
-      { name: "clientId", v: clientId },
-      { name: "clientSecret", v: clientSecret },
+      { name: "DISCORD_CLIENT_ID", v: process.env["DISCORD_CLIENT_ID"] },
+      { name: "DISCORD_CLIENT_SECRET", v: process.env["DISCORD_CLIENT_SECRET"] },
       { name: "jwtSecret", v: jwtSecret },
       { name: "callbackUrl", v: callbackUrl },
       { name: "dashboardUrl", v: dashboardUrl },

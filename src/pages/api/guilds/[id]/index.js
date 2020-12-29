@@ -5,7 +5,6 @@ import {
   createWebhook,
   checkAuth,
 } from "../../../../utils/functions";
-import { token } from "../../../../../config.json";
 import hiddenItems from "../../../../data/hidden-items.json";
 
 export default async function handler(req, res) {
@@ -21,14 +20,14 @@ export default async function handler(req, res) {
     case "GET": {
       const guild = await handleApiRequest(
         `/guilds/${query.id}`,
-        { type: "Bot", data: token },
+        { type: "Bot", data: process.env["DISCORD_BOT_TOKEN"] },
         "GET"
       );
       const gChannels = await handleApiRequest(
         `/guilds/${query.id}/channels`,
         {
           type: "Bot",
-          data: token,
+          data: process.env["DISCORD_BOT_TOKEN"],
         },
         "GET"
       );

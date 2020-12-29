@@ -6,13 +6,9 @@ import { encode } from "../../../utils/functions";
 
 export default async function handler(req, res) {
   const { query } = req;
-  const {
-    callbackUrl,
-    clientId,
-    clientSecret,
-    jwtSecret,
-    discordApiUrl,
-  } = dashboard;
+  const { callbackUrl, jwtSecret, discordApiUrl } = dashboard;
+  const DISCORD_CLIENT_ID = process.env["DISCORD_CLIENT_ID"];
+  const DISCORD_CLIENT_SECRET = process.env["DISCORD_CLIENT_SECRET"];
 
   const code = query.code;
 
@@ -27,8 +23,8 @@ export default async function handler(req, res) {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
-          client_id: clientId,
-          client_secret: clientSecret,
+          client_id: DISCORD_CLIENT_ID,
+          client_secret: DISCORD_CLIENT_SECRET,
           grant_type: "authorization_code",
           code: code,
           redirect_uri: callbackUrl,
