@@ -6,9 +6,9 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
 
     const embed = BaseEmbed(message).setTitle(
-      `${playlist.title} ${lang.MUSIC.ADDED_PL_TO_QUEUE.replace(
-        "{length}",
-        playlist.tracks.length
+      `${lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", playlist.tracks.length).replace(
+        "{name}",
+        playlist.title
       )}`
     );
 

@@ -62,6 +62,7 @@
     "image-gen-discord": "^1.0.2",
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
+    "lyrics-finder": "^21.4.0",
     "mathjs": "^8.1.0",
     "mojang-api": "0.0.2",
     "moment": "^2.29.1",

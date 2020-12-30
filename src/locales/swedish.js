@@ -136,6 +136,7 @@ module.exports = {
     VOLUME: "Volume",
     PROVIDE_SEARCH: "Ange en sökfråga",
     ADDED_TO_QUEUE: "Sång har lagts till i kön | {songs} låtar i kö",
+    ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "Nu spelas:",
     REQUESTED_BY: "Efterfrågad av",
     NO_PERMS: "Jag har inte rätt behörighet för den röstkanalen!",

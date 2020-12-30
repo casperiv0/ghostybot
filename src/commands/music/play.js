@@ -26,7 +26,7 @@ module.exports = {
     }
 
     try {
-      await bot.player.play(message, search);
+      await bot.player.play(message, search, true);
     } catch (e) {
       Logger.error("PLAY", e?.stack || e);
     }

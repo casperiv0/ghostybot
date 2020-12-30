@@ -140,7 +140,7 @@ module.exports = {
     VOLUME: "Volumen",
     PROVIDE_SEARCH: "Proporcione una consulta de búsqueda",
     ADDED_TO_QUEUE: "{song} ha sido añadida a la cola",
-    ADDED_PL_TO_QUEUE: "Playlist añadida a la cola ({length} canciones)",
+    ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     PROVIDER_NOT_SUPP: "Ese proveedor no esta soportado",
     NOW_PLAYING: "Sonando ahora:",
     REQUESTED_BY: "Pedida por:",
