@@ -1,5 +1,5 @@
 const { getGuildById, updateGuildById } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
+const { owners } = require("../../../config.json");
 
 module.exports = {
   name: "prefix",
@@ -18,7 +18,7 @@ module.exports = {
         )
       );
 
-    if (message.author.id === ownerId) {
+    if (owners.includes(message.author.id)) {
       setPrefix(message, prefix, lang);
     } else if (message.member.permissions.has(["MANAGE_GUILD"])) {
       setPrefix(message, prefix, lang);
