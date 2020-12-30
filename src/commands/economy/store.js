@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 const { updateGuildById, getGuildById } = require("../../utils/functions");
-const { ownerId } = require("../../../config.json");
+const { owners } = require("../../../config.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
     const price = args.slice(1)[1]; // take second argument after option (price)
 
     if (option) {
-      if (ownerId === message.author.id) {
+      if (owners.includes(message.author.id)) {
         updateStore(message, item, price, option, guild, guildId, lang);
       } else if (message.member.hasPermission("MANAGE_GUILD")) {
         updateStore(message, item, price, option, guild, guildId, lang);
