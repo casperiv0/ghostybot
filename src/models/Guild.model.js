@@ -30,6 +30,7 @@ const guildSchema = new Schema({
   ticket_role: { type: String, default: null },
   ticket_parent_channel: { type: String, default: null },
   member_count_channel_id: { type: String, default: null },
+  starboards_channel_id: { type: String, default: null },
 });
 
 module.exports = models.Guild || model("Guild", guildSchema);

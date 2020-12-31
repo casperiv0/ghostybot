@@ -72,8 +72,18 @@ export default async function handler(req, res) {
       const body = JSON.parse(req.body);
       const g = await getGuildById(query.id);
 
-      if (body.audit_channel) {
+      if (body?.audit_channel) {
         await createWebhook(req.bot, body.audit_channel, g.audit_channel);
+      }
+
+      if (body?.starboards_channel_id) {
+        if (g.starboards_channel_id) {
+          req.bot.starboardsManager.delete(g.starboards_channel_id);
+        }
+        req.bot.starboardsManager.create({
+          id: body?.starboards_channel_id,
+          guild: { id: g.guild_id },
+        });
       }
 
       await updateGuildById(query.id, body);

@@ -22,8 +22,10 @@ const {
   updateUserById,
   getUserById,
   formatNumber,
+  createStarboard,
 } = require("./utils/functions");
 const Logger = require("./modules/Logger");
+const MongStarboardsManager = require("./modules/StarboardsManager");
 
 const bot = new Client({
   disableMentions: "everyone",
@@ -44,6 +46,7 @@ logs(bot);
   updateUserById,
   getUserById,
   formatNumber,
+  createStarboard,
 ].forEach((func) => {
   bot[func.name] = func;
 });
@@ -71,11 +74,10 @@ Promise.config({
   longStackTraces: true,
 });
 
-const giveawayManager = new MongoGiveawayManager(bot, {
+bot.giveawayManager = new MongoGiveawayManager(bot, {
   hasGuildMembersIntent: true,
   storage: false,
   updateCountdownEvery: 10000,
-  DJSlib: "v12",
   default: {
     embedColor: "#7289DA",
     botsCanWin: false,
@@ -84,7 +86,9 @@ const giveawayManager = new MongoGiveawayManager(bot, {
   },
 });
 
-bot.giveawayManager = giveawayManager;
+bot.starboardsManager = new MongStarboardsManager(bot, {
+  storage: false,
+});
 
 require("moment-duration-format");
 require("./modules/command")(bot);

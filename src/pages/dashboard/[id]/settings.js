@@ -28,6 +28,7 @@ const Settings = ({ guild, languages, isAuth }) => {
   const [memberCountChannelId, setMemberCountChannelId] = useState(
     guild.member_count_channel_id || ""
   );
+  const [starboardsChannelId, setStarboardsChannelId] = useState(guild.starboards_channel_id || "");
   const router = useRouter();
 
   useEffect(() => {
@@ -126,7 +127,7 @@ const Settings = ({ guild, languages, isAuth }) => {
       value: tz,
       onChange: (e) => setTz(e.target.value),
       data: timezones,
-      label: "Timezones",
+      label: "Timezone",
     },
     {
       type: "input",
@@ -145,6 +146,14 @@ const Settings = ({ guild, languages, isAuth }) => {
         { id: "true", name: "On" },
       ],
       label: "Auto delete commands",
+    },
+    {
+      type: "select",
+      id: "starboards_channel_id",
+      value: starboardsChannelId,
+      onChange: (e) => setStarboardsChannelId(e.target.value),
+      data: guild.channels,
+      label: "Starboards channel",
     },
     {
       type: "select",
@@ -179,6 +188,7 @@ const Settings = ({ guild, languages, isAuth }) => {
           leave_message: leaveMessage,
           ticket_role: ticketRole,
           ticket_parent_channel: ticketParentChannel,
+          starboards_channel_id: starboardsChannelId,
         }),
       });
       const data = await res.json();
@@ -194,7 +204,9 @@ const Settings = ({ guild, languages, isAuth }) => {
   return (
     <>
       <Head>
-        <title>{guild?.name} - Settings / {dashboard.botName} Dashboard</title>
+        <title>
+          {guild?.name} - Settings / {dashboard.botName} Dashboard
+        </title>
       </Head>
       <div className="page-title">
         <h4>{guild?.name} - Settings</h4>

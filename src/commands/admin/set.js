@@ -16,12 +16,13 @@ module.exports = {
     "level-messages",
     "language",
     "member-count-channel",
+    "starboards-channel",
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
     const languages = bot.getLanguages();
     const guildId = message.guild.id;
-    const { prefix } = await getGuildById(guildId);
+    const { prefix, starboards_channel_id } = await getGuildById(guildId);
     const option = args[0];
     const item = message.mentions.channels.first() || message.mentions.roles.first();
     const language = args[1];
@@ -30,7 +31,10 @@ module.exports = {
       return message.channel.send(`Please provide an valid option (${prefix}h set)`);
     }
 
-    if (!["level-messages", "language", "member-count-channel"].includes(option.toLowerCase()) && !item) {
+    if (
+      !["level-messages", "language", "member-count-channel"].includes(option.toLowerCase()) &&
+      !item
+    ) {
       return message.channel.send("Please provide a valid channel or role!");
     }
 
@@ -86,9 +90,14 @@ module.exports = {
         message.channel.send(`Successfully updated language to ${language}!`);
         break;
       }
+      case "starboards-channel": {
+        updateItem("starboards_channel_id", item, guildId);
+        bot.createStarboard(bot, item, starboards_channel_id);
+        return message.channel.send(`Successfully set ${item} as starboards channel`);
+      }
       case "member-count-channel": {
         updateItem("member_count_channel_id", args[1], guildId);
-        break;
+        return message.channel.send("Successfully set as member count channel");
       }
       default:
         return message.channel.send(`\`${option}\` is not a option!`);

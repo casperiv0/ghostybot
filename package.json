@@ -49,6 +49,7 @@
     "discord-giveaways": "^4.4.1",
     "discord-logs": "^1.8.2",
     "discord-player": "^3.2.0",
+    "discord-starboards": "^2.1.4",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "easy-games-js": "^1.2.1",

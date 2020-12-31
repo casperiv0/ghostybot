@@ -464,6 +464,18 @@ function updateMuteChannelPerms(guild, memberId, perms) {
   });
 }
 
+/**
+ *
+ * @param {import("discord.js").Client} bot
+ * @param {import("discord.js").Channel} channel
+ */
+function createStarboard(bot, channel, deleteOld) {
+  if (deleteOld) {
+    bot.starboardsManager.delete(deleteOld);
+  }
+  bot.starboardsManager.create(channel);
+}
+
 /* DASHBOARD FUNCTIONS */
 /**
  *
@@ -554,5 +566,6 @@ module.exports = {
   findOrCreateMutedRole,
   updateMuteChannelPerms,
   checkAuth,
-  formatNumber
+  formatNumber,
+  createStarboard
 };
