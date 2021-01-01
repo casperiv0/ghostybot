@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { dashboard } from "../../config.json"
+import { dashboard } from "../../config.json";
 
 const Landing = () => {
   return (
@@ -13,10 +13,7 @@ const Landing = () => {
             <a href="/dashboard" className="nav-link">
               Dashboard
             </a>
-            <a
-              href="/add"
-              className="nav-link invite-btn"
-            >
+            <a href="/add" className="nav-link invite-btn">
               Invite
             </a>
             <a className="nav-link" href="/support">
@@ -29,16 +26,10 @@ const Landing = () => {
       <main className="main">
         <h1>{dashboard.botName}</h1>
         <p>
-          Custom Discord bot for your community needs! Moderation, music, games,
-          economy and more!
+          Custom Discord bot for your community needs! Moderation, music, games, economy and more!
         </p>
         <div className="btn-container">
-          <a
-            target="_blank"
-            rel="noreferrer opener"
-            className="main-btn"
-            href="/add"
-          >
+          <a target="_blank" rel="noreferrer opener" className="main-btn" href="/add">
             Add To discord
           </a>
           <Link href="/dashboard">

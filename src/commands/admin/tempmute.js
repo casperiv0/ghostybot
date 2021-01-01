@@ -16,12 +16,17 @@ module.exports = {
     const muteMember = bot.findMember(message, args);
     const [, time, ...rest] = args;
     const reason = rest.join(" ") || "N/A";
+    const { muted_role_id } = await bot.getGuildById(message.guild.id);
+    const muted_role =
+      !muted_role_id || muted_role_id === "Disabled"
+        ? message.guild.roles.cache.find((r) => r.name === "muted")
+        : message.guild.roles.cache.find((r) => r.id === muted_role_id);
 
     if (!muteMember) {
       return message.channel.send("Please provide valid a member");
     }
 
-    if (muteMember?.roles.cache.find((r) => r.name === "muted")) {
+    if (muteMember?.roles.cache.find((r) => r.id === muted_role.id)) {
       return message.channel.send("User is already muted!");
     }
 

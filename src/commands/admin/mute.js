@@ -12,12 +12,18 @@ module.exports = {
     const muteMember = bot.findMember(message, args);
     let muteReason = args.slice(1).join(" ");
     if (!muteReason) muteReason = lang.GLOBAL.NOT_SPECIFIED;
+    const { muted_role_id } = await bot.getGuildById(message.guild.id);
+
+    const muted_role =
+      !muted_role_id || muted_role_id === "Disabled"
+        ? message.guild.roles.cache.find((r) => r.name === "muted")
+        : message.guild.roles.cache.find((r) => r.id === muted_role_id);
 
     if (!muteMember) {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
     }
 
-    if (muteMember?.roles.cache.find((r) => r.name === "muted")) {
+    if (muteMember?.roles.cache.find((r) => r.id === muted_role.id)) {
       return message.channel.send(lang.ADMIN.MUTE_ALREADY_MUTED);
     }
 

@@ -438,7 +438,9 @@ function escapeMarkdown(m) {
  * @param {import("discord.js").Guild} guild
  */
 async function findOrCreateMutedRole(guild) {
+  const { muted_role_id } = await getGuildById(guild.id);
   return (
+    guild.roles.cache.find((r) => r.id === muted_role_id) ||
     guild.roles.cache.find((r) => r.name === "muted") ||
     (await guild.roles.create({
       data: {
@@ -567,5 +569,5 @@ module.exports = {
   updateMuteChannelPerms,
   checkAuth,
   formatNumber,
-  createStarboard
+  createStarboard,
 };

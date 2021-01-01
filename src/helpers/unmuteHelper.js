@@ -1,6 +1,6 @@
 const UserModel = require("../models/User.model");
 const BaseEmbed = require("../modules/BaseEmbed");
-const { updateUserById, findOrCreateMutedRole } = require("../utils/functions");
+const { updateUserById } = require("../utils/functions");
 
 /**
  * @param {import("discord.js").Client} bot
@@ -18,7 +18,7 @@ module.exports = async (bot) => {
       .forEach(async (user) => {
         const guild = bot.guilds.cache.get(user.guild_id);
         if (!guild) return;
-        if (!guild.me.hasPermission(["MANAGE_WEBHOOKS", "MANAGE_CHANNELS"])) return;
+        if (!guild.me.hasPermission(["MANAGE_CHANNELS"])) return;
 
         const member =
           guild.members.cache.get(user.user_id) || (await guild.members.fetch(user.user_id));
@@ -33,6 +33,11 @@ module.exports = async (bot) => {
         } else {
           const guildUser = member.user || (await bot.users.fetch(user.user_id));
           if (!user) return;
+          const { muted_role_id } = await bot.getGuildById(guild.id);
+          const muted_role =
+            !muted_role_id || muted_role_id === "Disabled"
+              ? guild.roles.cache.find((r) => r.name === "muted")
+              : guild.roles.cache.find((r) => r.id === muted_role_id);
 
           guild.channels.cache.forEach((channel) => {
             channel.permissionOverwrites.get(user.user_id)?.delete();
@@ -53,9 +58,8 @@ module.exports = async (bot) => {
             },
           });
 
-          const mutedRole = await findOrCreateMutedRole(guild);
-          if (guild.me.hasPermission("MANAGE_ROLES")) return;
-          member.roles.remove(mutedRole);
+          if (!guild.me.hasPermission("MANAGE_ROLES")) return;
+          member.roles.remove(muted_role);
 
           const webhook = await bot.getWebhook(guild);
           if (!webhook) return;

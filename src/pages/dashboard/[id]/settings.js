@@ -29,6 +29,7 @@ const Settings = ({ guild, languages, isAuth }) => {
     guild.member_count_channel_id || ""
   );
   const [starboardsChannelId, setStarboardsChannelId] = useState(guild.starboards_channel_id || "");
+  const [mutedRoleId, setMutedRoleId] = useState(guild.muted_role_id || "");
   const router = useRouter();
 
   useEffect(() => {
@@ -157,6 +158,14 @@ const Settings = ({ guild, languages, isAuth }) => {
     },
     {
       type: "select",
+      id: "muted_role_id",
+      value: mutedRoleId,
+      onChange: (e) => setMutedRoleId(e.target.value),
+      data: guild.roles,
+      label: "Muted Role",
+    },
+    {
+      type: "select",
       id: "member_count_channel_id",
       value: memberCountChannelId,
       onChange: (e) => setMemberCountChannelId(e.target.value),
@@ -189,6 +198,7 @@ const Settings = ({ guild, languages, isAuth }) => {
           ticket_role: ticketRole,
           ticket_parent_channel: ticketParentChannel,
           starboards_channel_id: starboardsChannelId,
+          muted_role_id: mutedRoleId,
         }),
       });
       const data = await res.json();

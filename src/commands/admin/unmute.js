@@ -9,13 +9,19 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   async execute(bot, message, args) {
     const mutedMember = bot.findMember(message, args);
+    const { muted_role_id } = await bot.getGuildById(message.guild.id);
+    const muted_role =
+      !muted_role_id || muted_role_id === "Disabled"
+        ? message.guild.roles.cache.find((r) => r.name === "muted")
+        : message.guild.roles.cache.find((r) => r.id === muted_role_id);
+
     if (!mutedMember) {
       return message.channel.send("Please provide a user mention!");
     }
 
-    const mutedRole = message.guild.roles.cache.find((r) => r.name === "muted");
+    const mutedRole = message.guild.roles.cache.find((r) => r.id === muted_role.id);
 
-    if (!mutedMember.roles.cache.some((r) => r.name === "muted")) {
+    if (!mutedMember.roles.cache.some((r) => r.id === muted_role.id)) {
       return message.channel.send("User is not muted!");
     }
 
@@ -34,7 +40,6 @@ module.exports = {
       });
     }
 
-    // Add role & send msg
     mutedMember.roles.remove(mutedRole);
     message.channel.send(`Successfully unmuted **${mutedMember.user.tag}**`);
 
