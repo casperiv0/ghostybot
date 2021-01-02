@@ -1,10 +1,10 @@
-const BaseEmbed = require("../modules/BaseEmbed");
+const BaseEmbed = require("../../modules/BaseEmbed");
 const {
   getGuildById,
   removeUser,
   removeUserWarnings,
   parseMessage,
-} = require("../utils/functions");
+} = require("../../utils/functions");
 
 module.exports = {
   name: "guildMemberRemove",

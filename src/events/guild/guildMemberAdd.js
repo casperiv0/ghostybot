@@ -1,5 +1,5 @@
-const BaseEmbed = require("../modules/BaseEmbed");
-const { getGuildById, parseMessage } = require("../utils/functions");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const { getGuildById, parseMessage } = require("../../utils/functions");
 
 module.exports = {
   name: "guildMemberAdd",

@@ -1,4 +1,4 @@
-const Logger = require("../modules/Logger");
+const Logger = require("../../modules/Logger");
 
 module.exports = {
   name: "ready",
@@ -13,9 +13,9 @@ module.exports = {
       "!help | https://ghostybot.tk",
     ];
 
-    require("../helpers/unmuteHelper")(bot);
-    require("../helpers/reminderHelper")(bot);
-    require("../modules/features")(bot);
+    require("../../helpers/unmuteHelper")(bot);
+    require("../../helpers/reminderHelper")(bot);
+    require("../../modules/features")(bot);
 
 
     Logger.log(

@@ -1,4 +1,4 @@
-const { sendErrorLog } = require("../utils/functions");
+const { sendErrorLog } = require("../../utils/functions");
 
 module.exports = {
   name: "error",

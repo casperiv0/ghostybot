@@ -1,4 +1,4 @@
-const { addGuild } = require("../utils/functions");
+const { addGuild } = require("../../utils/functions");
 
 module.exports = {
   name: "guildCreate",

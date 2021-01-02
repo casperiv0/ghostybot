@@ -1,4 +1,4 @@
-const BaseEmbed = require("../modules/BaseEmbed");
+const BaseEmbed = require("../../modules/BaseEmbed");
 
 module.exports = {
   name: "trackAdd",

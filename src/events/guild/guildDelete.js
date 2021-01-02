@@ -2,7 +2,7 @@ const {
   removeGuild,
   removeUser,
   removeUserWarnings,
-} = require("../utils/functions");
+} = require("../../utils/functions");
 
 module.exports = {
   name: "guildDelete",

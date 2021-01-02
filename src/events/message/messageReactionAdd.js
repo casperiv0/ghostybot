@@ -1,4 +1,4 @@
-const ReactionsModel = require("../models/Reactions.model");
+const ReactionsModel = require("../../models/Reactions.model");
 
 module.exports = {
   name: "messageReactionAdd",

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const regions = require("../data/regions.json");
+const regions = require("../../data/regions.json");
 
 module.exports = {
   name: "guildRegionUpdate",

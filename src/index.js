@@ -23,6 +23,7 @@ const {
   getUserById,
   formatNumber,
   createStarboard,
+  toCapitalize,
 } = require("./utils/functions");
 const Logger = require("./modules/Logger");
 const MongStarboardsManager = require("./modules/StarboardsManager");
@@ -47,6 +48,7 @@ logs(bot);
   getUserById,
   formatNumber,
   createStarboard,
+  toCapitalize,
 ].forEach((func) => {
   bot[func.name] = func;
 });

@@ -6,12 +6,12 @@ const {
   errorEmbed,
   calculateUserXp,
   sendErrorLog,
-} = require("../utils/functions");
+} = require("../../utils/functions");
 const queue = new Map();
-const { owners, dashboard } = require("../../config.json");
-const BaseEmbed = require("../modules/BaseEmbed");
-const Blacklist = require("../models/Blacklisted.model");
-const UserModel = require("../models/User.model");
+const { owners, dashboard } = require("../../../config.json");
+const BaseEmbed = require("../../modules/BaseEmbed");
+const Blacklist = require("../../models/Blacklisted.model");
+const UserModel = require("../../models/User.model");
 
 module.exports = {
   name: "message",
