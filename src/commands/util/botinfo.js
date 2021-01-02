@@ -10,7 +10,7 @@ module.exports = {
   name: "botinfo",
   description: "Shows info about the bot",
   category: "util",
-  aliases: ["bot"],
+  aliases: ["bot", "ping"],
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const uptime = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
