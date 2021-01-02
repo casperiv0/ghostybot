@@ -6,9 +6,7 @@ module.exports = {
       const { member_count_channel_id } = await bot.getGuildById(guild.id);
       if (!member_count_channel_id || member_count_channel_id === "Disabled") return;
 
-      const channel =
-        guild.channels.cache.get(member_count_channel_id) ||
-        (await guild.channels.fetch(member_count_channel_id));
+      const channel = guild.channels.cache.get(member_count_channel_id);
 
       if (!channel) return;
       if (!channel.permissionsFor(bot.user.id).has("MANAGE_CHANNELS")) return;
@@ -17,7 +15,7 @@ module.exports = {
     }
 
     setInterval(() => {
-      bot.guilds.cache.array().forEach((guild) => {
+      bot.guilds.cache.forEach((guild) => {
         updateMembers(guild);
       });
     }, timeout);
