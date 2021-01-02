@@ -357,6 +357,9 @@ module.exports = {
     DEVELOPER: "Developer",
     CONTRIBUTORS: "Contributors",
     INVITE_BOT: "Invite bot",
+    USED_SINCE_UP: "Used since up",
+    TOTAL_USED_CMDS: "Total used",
+    LATENCY: "Latency",
   },
   CONFIG: {
     OPTION_CMD_WORK: "{option} needs to be provided, for this command to work.",

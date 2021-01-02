@@ -1,8 +1,9 @@
+const BotModel = require("../../models/Bot.model");
 const Logger = require("../../modules/Logger");
 
 module.exports = {
   name: "ready",
-  execute(bot) {
+  async execute(bot) {
     const serverCount = bot.formatNumber(bot.guilds.cache.size);
     const channelCount = bot.formatNumber(bot.channels.cache.size);
     const userCount = bot.formatNumber(bot.users.cache.size);
@@ -17,6 +18,10 @@ module.exports = {
     require("../../helpers/reminderHelper")(bot);
     require("../../modules/features")(bot);
 
+    const _bot = await BotModel.findOne({ bot_id: bot.user.id });
+
+    _bot.used_since_up = 0;
+    await _bot.save();
 
     Logger.log(
       "bot",

@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 210 commands.
+GhostyBot has a total of 209 commands.
 
 Click any of the command names for more information
 
@@ -175,7 +175,7 @@ Click any of the command names for more information
   ##
 ### Category: games
 
-**Total commands: 20**
+**Total commands: 19**
 
 [8ball:](#8ball) 8Ball
 
@@ -204,8 +204,6 @@ Click any of the command names for more information
 [lmgtfy:](#lmgtfy) Let me google that for you
 
 [meme:](#meme) Returns a meme
-
-[ping:](#ping) pong!
 
 [randomjoke:](#randomjoke) returns a random joke
 
@@ -2084,22 +2082,6 @@ Click any of the command names for more information
 **Category:** games
 
 **Description:** Returns a meme
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## ping
-
-**Category:** games
-
-**Description:** pong!
 
 **Usage:** `N/A`
 

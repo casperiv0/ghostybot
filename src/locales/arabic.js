@@ -353,6 +353,9 @@ module.exports = {
     DEVELOPER: "Developer",
     CONTRIBUTORS: "Contributors",
     INVITE_BOT: "Invite bot",
+    USED_SINCE_UP: "Used since up",
+    TOTAL_USED_CMDS: "Total used",
+    LATENCY: "Latency",
   },
   CONFIG: {
     OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",

@@ -4,6 +4,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 const {
   dashboard: { dashboardUrl },
 } = require("../../../config.json");
+const BotModel = require("../../models/Bot.model");
 
 module.exports = {
   name: "botinfo",
@@ -14,10 +15,18 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
     const uptime = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
     const nodev = process.version;
+    const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user.id });
 
     const embed = BaseEmbed(message)
       .setTitle(`${lang.BOT.INFO_2}`)
       .addField(`${lang.MEMBER.USERNAME}:`, bot.user.username)
+      .addField(`${lang.BOT.LATENCY}:`, Math.round(bot.ws.ping), true)
+      .addField(
+        `${lang.HELP.COMMANDS}:`,
+        `
+**${lang.BOT.USED_SINCE_UP}:** ${used_since_up}
+**${lang.BOT.TOTAL_USED_CMDS}:** ${total_used_cmds}`
+      )
       .addField(
         `__**${lang.BOT.INFO}:**__`,
         `

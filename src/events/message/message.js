@@ -12,6 +12,7 @@ const { owners, dashboard } = require("../../../config.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
 const Blacklist = require("../../models/Blacklisted.model");
 const UserModel = require("../../models/User.model");
+const BotModel = require("../../models/Bot.model");
 
 module.exports = {
   name: "message",
@@ -182,6 +183,14 @@ module.exports = {
       const cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
 
       if (bot.commands.has(cmd?.name)) {
+        const _bot =
+          (await BotModel.findOne({ bot_id: bot.user.id })) ||
+          (await BotModel.create({ bot_id: bot.user.id }));
+
+        _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
+        _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
+
+        _bot.save();
         const now = Date.now();
         const timestamps = cooldowns.get(cmd.name);
         const cooldownAmount = cmd.cooldown * 1000;
