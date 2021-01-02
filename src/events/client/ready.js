@@ -18,7 +18,8 @@ module.exports = {
     require("../../helpers/reminderHelper")(bot);
     require("../../modules/features")(bot);
 
-    const _bot = await BotModel.findOne({ bot_id: bot.user.id });
+    let _bot = await BotModel.findOne({ bot_id: bot.user.id });
+    if (!_bot) _bot = await BotModel.create({ bot_id: bot.user.id });
 
     _bot.used_since_up = 0;
     await _bot.save();
