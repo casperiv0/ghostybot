@@ -19,7 +19,7 @@ module.exports = {
     const { muted_role_id } = await bot.getGuildById(message.guild.id);
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"
-        ? message.guild.roles.cache.find((r) => r.name === "muted")
+        ? await findOrCreateMutedRole(message.guild)
         : message.guild.roles.cache.find((r) => r.id === muted_role_id);
 
     if (!muteMember) {
