@@ -10,7 +10,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const amount = args[1];
-    const member = bot.findMember(message, args);
+    const member = await bot.findMember(message, args);
 
     if (!member) {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);

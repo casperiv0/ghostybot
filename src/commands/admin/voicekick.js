@@ -6,7 +6,7 @@ module.exports = {
   botPermissions: ["MOVE_MEMBERS"],
   memberPermissions: ["MOVE_MEMBERS"],
   async execute(bot, message, args) {
-    const kickUser = bot.findMember(message, args);
+    const kickUser = await bot.findMember(message, args);
     const kickReason = args.join(" ").slice(23);
 
     if (!kickUser) {

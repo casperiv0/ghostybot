@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["ttt", "tttoe"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const member = bot.findMember(message, args);
+    const member = await bot.findMember(message, args);
     const ticTacToe = new TicTacToe(member, message);
 
     ticTacToe.init(lang.EASY_GAMES);

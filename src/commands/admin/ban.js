@@ -6,7 +6,7 @@ module.exports = {
   memberPermissions: ["BAN_MEMBERS"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const banMember = bot.findMember(message, args);
+    const banMember = await bot.findMember(message, args);
     let banReason = args.slice(1).join(" ");
 
     if (!banMember) {

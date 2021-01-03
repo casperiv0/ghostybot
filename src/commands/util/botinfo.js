@@ -30,7 +30,7 @@ module.exports = {
       .addField(
         `__**${lang.BOT.INFO}:**__`,
         `
-**${lang.BOT.USERS}:** ${bot.formatNumber(bot.users.cache.size)}
+**${lang.BOT.USERS}:** ${bot.formatNumber(80000)}
 **${lang.BOT.GUILDS}:** ${bot.formatNumber(bot.guilds.cache.size)}
 **${lang.BOT.CHANNELS}:** ${bot.formatNumber(bot.channels.cache.size)}
 **${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}

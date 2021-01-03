@@ -8,7 +8,7 @@ module.exports = {
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const member = bot.findMember(message, args);
+    const member = await bot.findMember(message, args);
     const amount = args.slice(1)[0];
 
     if (!member) {

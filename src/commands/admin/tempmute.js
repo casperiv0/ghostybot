@@ -13,14 +13,15 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES"],
   usage: "tempmute <user> <time> <reason>",
   async execute(bot, message, args) {
-    const muteMember = bot.findMember(message, args);
+    const muteMember = await bot.findMember(message, args);
     const [, time, ...rest] = args;
     const reason = rest.join(" ") || "N/A";
     const { muted_role_id } = await bot.getGuildById(message.guild.id);
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"
         ? await findOrCreateMutedRole(message.guild)
-        : message.guild.roles.cache.find((r) => r.id === muted_role_id);
+        : message.guild.roles.cache.find((r) => r.id === muted_role_id) ||
+          (await findOrCreateMutedRole(message.guild));
 
     if (!muteMember) {
       return message.channel.send("Please provide valid a member");

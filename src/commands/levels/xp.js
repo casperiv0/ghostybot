@@ -8,7 +8,7 @@ module.exports = {
   usage: "xp <user>",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const member = bot.findMember(message, args, true);
+    const member = await bot.findMember(message, args, true);
 
     if (member.user.bot) {
       return message.channel.send(lang.MEMBER.BOT_DATA);

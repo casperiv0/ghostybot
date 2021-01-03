@@ -9,7 +9,7 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const muteMember = bot.findMember(message, args);
+    const muteMember = await bot.findMember(message, args);
     let muteReason = args.slice(1).join(" ");
     if (!muteReason) muteReason = lang.GLOBAL.NOT_SPECIFIED;
     const { muted_role_id } = await bot.getGuildById(message.guild.id);
@@ -17,7 +17,8 @@ module.exports = {
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"
         ? await findOrCreateMutedRole(message.guild)
-        : message.guild.roles.cache.find((r) => r.id === muted_role_id);
+        : message.guild.roles.cache.find((r) => r.id === muted_role_id) ||
+          (await findOrCreateMutedRole(message.guild));
 
     if (!muteMember) {
       return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);

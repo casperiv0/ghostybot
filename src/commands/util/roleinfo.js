@@ -9,12 +9,7 @@ module.exports = {
   requiredArgs: ["role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const roles = message.guild.roles.cache;
-
-    const role =
-      message.mentions.roles.first() ||
-      roles.find((role) => role.name === args[0]) ||
-      roles.find((r) => r.id === args[0]);
+    const role = bot.findRole(message, args[0]);
 
     if (!role) {
       return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);

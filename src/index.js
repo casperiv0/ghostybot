@@ -24,13 +24,13 @@ const {
   formatNumber,
   createStarboard,
   toCapitalize,
+  findRole,
 } = require("./utils/functions");
 const Logger = require("./modules/Logger");
 const MongStarboardsManager = require("./modules/StarboardsManager");
 
 const bot = new Client({
   disableMentions: "everyone",
-  fetchAllMembers: true,
   partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION"],
   restRequestTimeout: 25000,
 });
@@ -49,6 +49,7 @@ logs(bot);
   formatNumber,
   createStarboard,
   toCapitalize,
+  findRole,
 ].forEach((func) => {
   bot[func.name] = func;
 });

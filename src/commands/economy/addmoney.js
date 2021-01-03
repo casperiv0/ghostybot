@@ -7,7 +7,7 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
-    const member = bot.findMember(message, args);
+    const member = await bot.findMember(message, args);
     const lang = await bot.getGuildLang(message.guild.id);
     const amount = args[1];
 

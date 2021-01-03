@@ -8,16 +8,12 @@ module.exports = {
   requiredArgs: ["member", "role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const needsRole = bot.findMember(message, args);
+    const needsRole = await bot.findMember(message, args);
+    const role = await bot.findRole(message, args[1]);
 
     if (!needsRole) {
       return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
-
-    const role =
-      message.guild.roles.cache.find((role) => role.name === args.join(" ").slice(23)) ||
-      message.mentions.roles.first() ||
-      message.guild.roles.cache.get(args.join(" ").slice(23));
 
     if (!role) {
       return message.channel.send("That role was not found");

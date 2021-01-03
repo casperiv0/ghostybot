@@ -6,7 +6,7 @@ module.exports = {
   async execute(bot) {
     const serverCount = bot.formatNumber(bot.guilds.cache.size);
     const channelCount = bot.formatNumber(bot.channels.cache.size);
-    const userCount = bot.formatNumber(bot.users.cache.size);
+    const userCount = bot.formatNumber(80000);
     const statuses = [
       ` ${serverCount} servers.`,
       `!help || ${channelCount} channels`,
@@ -18,11 +18,14 @@ module.exports = {
     require("../../helpers/reminderHelper")(bot);
     require("../../modules/features")(bot);
 
-    let _bot = await BotModel.findOne({ bot_id: bot.user.id });
-    if (!_bot) _bot = await BotModel.create({ bot_id: bot.user.id });
+    const botData = await BotModel.findOne({ bot_id: bot.user.id });
 
-    _bot.used_since_up = 0;
-    await _bot.save();
+    if (!botData) {
+      BotModel.create({ bot_id: bot.user.id });
+    } else {
+      botData.used_since_up = 0;
+      await botData.save();
+    }
 
     Logger.log(
       "bot",

@@ -8,7 +8,7 @@ module.exports = {
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   async execute(bot, message, args) {
-    const mutedMember = bot.findMember(message, args);
+    const mutedMember = await bot.findMember(message, args);
     const { muted_role_id } = await bot.getGuildById(message.guild.id);
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"

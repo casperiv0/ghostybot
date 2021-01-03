@@ -255,14 +255,30 @@ const errorEmbed = (permissions, message) => {
  * @param {Message} message
  * @param {string[]} args
  * @param {Boolean} allowAuthor
+ * @returns {Promise<import("discord.js").GuildMember>}
  */
-function findMember(message, args, allowAuthor) {
+async function findMember(message, args, allowAuthor) {
   return message.guild.member(
     message.mentions.users.first() ||
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find((m) => m.user.id === args[0]) ||
       message.guild.members.cache.find((m) => m.user.tag === args[0]) ||
+      (await message.guild.members.fetch(args[0])) ||
       (allowAuthor === true ? message.member : null)
+  );
+}
+
+/**
+ * @param {Message} message
+ * @param {string} arg
+ * @returns {Promise<import("discord.js").Role>}
+ */
+async function findRole(message, arg) {
+  return (
+    message.mentions.roles.first() ||
+    message.guild.roles.cache.get(arg) ||
+    message.guild.roles.cache.find((r) => r.name === arg) ||
+    (await message.guild.roles.fetch(arg))
   );
 }
 
@@ -570,4 +586,5 @@ module.exports = {
   checkAuth,
   formatNumber,
   createStarboard,
+  findRole,
 };

@@ -12,7 +12,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const type = args[0];
-    let member = bot.findMember(message, args);
+    let member = await bot.findMember(message, args);
 
     if (!member) member = { username: "N/A", id: args[1], tag: "N/A" };
 

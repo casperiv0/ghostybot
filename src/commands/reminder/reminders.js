@@ -5,7 +5,7 @@ module.exports = {
   description: "All your active reminders",
   category: "reminder",
   async execute(bot, message, args) {
-    const member = bot.findMember(message, args, true);
+    const member = await bot.findMember(message, args, true);
     const { user } = await bot.getUserById(member.user.id, message.guild.id);
 
     if (!user.reminder.hasReminder) {

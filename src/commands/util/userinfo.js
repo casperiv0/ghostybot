@@ -10,7 +10,7 @@ module.exports = {
   aliases: ["whois", "user", "u"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const member = bot.findMember(message, args, true);
+    const member = await bot.findMember(message, args, true);
 
     if (!member) {
       return message.channel.send("User wasn't found!");
