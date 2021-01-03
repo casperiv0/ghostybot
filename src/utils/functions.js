@@ -258,14 +258,26 @@ const errorEmbed = (permissions, message) => {
  * @returns {Promise<import("discord.js").GuildMember>}
  */
 async function findMember(message, args, allowAuthor) {
-  return message.guild.member(
+  let member;
+
+  member = message.guild.member(
     message.mentions.users.first() ||
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find((m) => m.user.id === args[0]) ||
-      message.guild.members.cache.find((m) => m.user.tag === args[0]) ||
-      (allowAuthor === true ? message.member : null) ||
-      (await message.guild.members.fetch(args[0]))
+      message.guild.members.cache.find((m) => m.user.tag === args[0])
   );
+
+  if (!member) {
+    member = message.guild.member(
+      await message.guild.members.fetch(args[0]).catch(() => (member = null))
+    );
+  }
+
+  if (!member && allowAuthor) {
+    member = message.member;
+  }
+
+  return member;
 }
 
 /**
