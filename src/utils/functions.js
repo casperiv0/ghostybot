@@ -263,8 +263,8 @@ async function findMember(message, args, allowAuthor) {
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find((m) => m.user.id === args[0]) ||
       message.guild.members.cache.find((m) => m.user.tag === args[0]) ||
-      (await message.guild.members.fetch(args[0])) ||
-      (allowAuthor === true ? message.member : null)
+      (allowAuthor === true ? message.member : null) ||
+      (await message.guild.members.fetch(args[0]))
   );
 }
 
