@@ -15,6 +15,9 @@ module.exports = {
       case "NotPlaying": {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
+      case "LiveVideo": {
+        return message.channel.send(lang.MUSIC.LIVE_NOT_SUPPORTED);
+      }
       default: {
         sendErrorLog(bot, { stack: error, name: "discord-player" }, "error");
         return message.channel.send(lang.GLOBAL.ERROR);

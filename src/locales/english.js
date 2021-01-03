@@ -148,6 +148,7 @@ module.exports = {
     MUST_BE_SAME_VC: "You must be in the same voice chat with the bot",
     NO_RESULTS: "No songs were found",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
+    LIVE_NOT_SUPPORTED: "Live videos are not supported",
   },
   ECONOMY: {
     MONEY: "Money",

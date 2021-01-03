@@ -145,6 +145,7 @@ module.exports = {
     MUST_BE_SAME_VC: "Du måste vara i samma röstchatt med botten",
     NO_RESULTS: "Inga låtar hittades",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
+    LIVE_NOT_SUPPORTED: "Live videos are not supported",
   },
   ECONOMY: {
     MONEY: "Pengar",
