@@ -4,7 +4,7 @@ module.exports = {
   name: "withdraw",
   description: "Withdraw money to your bank",
   category: "economy",
-  usage: "withdraw <all | amount>",
+  usage: "<all | amount>",
   aliases: ["with"],
   requiredArgs: ["amount"],
   async execute(bot, message, args) {

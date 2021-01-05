@@ -2,6 +2,7 @@ module.exports = {
   name: "addroleall",
   aliases: ["arall", "aroleall", "giveroleall"],
   description: "Add a role to all user of the current server",
+  usage: "<role>",
   category: "admin",
   memberPermissions: ["MANAGE_ROLES", "ADMINISTRATOR"],
   botPermissions: ["MANAGE_ROLES"],

@@ -5,7 +5,7 @@ module.exports = {
   name: "inventory",
   description: "View your or a user inventory",
   category: "economy",
-  usage: "inventory <user>",
+  usage: "<user>",
   aliases: ["inv"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);

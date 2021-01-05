@@ -4,7 +4,7 @@ const { getGuildById } = require("../../utils/functions");
 module.exports = {
   name: "announce",
   description: "Announce something in a channel",
-  usage: "announce <channel> <text>",
+  usage: "<channel> <text>",
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {

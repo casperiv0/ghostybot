@@ -5,7 +5,7 @@ module.exports = {
   name: "playstore",
   aliases: ["ps"],
   description: "Show Playstore Application Information Of Your Given Name!",
-  usage: "playstore <Application Name>",
+  usage: "<Application Name>",
   category: "util",
   requiredArgs: ["app"],
   async execute(bot, message, args) {

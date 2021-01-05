@@ -5,7 +5,7 @@ module.exports = {
   name: "set",
   description: "Set a default channel",
   category: "admin",
-  usage: "set <option> <channel>",
+  usage: "<option> <channel>",
   options: [
     "suggest-channel",
     "announce-channel",

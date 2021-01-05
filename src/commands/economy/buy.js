@@ -8,7 +8,7 @@ module.exports = {
   name: "buy",
   description: "Buy an item from the store",
   category: "economy",
-  usage: "buy <item name>",
+  usage: "<item name>",
   cooldown: 10,
   requiredArgs: ["item name",],
   async execute(bot, message, args) {

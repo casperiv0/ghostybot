@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["haste"],
   description: "Get a link of hastebin for your text",
   category: "util",
-  usage: "hastebin <extension (js, ts, ...)> <code>",
+  usage: "<extension (js, ts, ...)> <code>",
   requiredArgs: ["extension", "code"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);

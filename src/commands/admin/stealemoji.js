@@ -5,7 +5,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "stealemoji",
   category: "admin",
-  usage: "stealemoji <emoji> <custom name>",
+  usage: "<emoji> <custom name>",
   description: "Steal an emoji from a different server",
   botPermissions: ["MANAGE_EMOJIS"],
   memberPermissions: ["MANAGE_EMOJIS"],

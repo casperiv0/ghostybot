@@ -2,7 +2,7 @@ const { getGuildById, updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "delcmd",
-  usage: "delcmd <cmd_name>",
+  usage: "<cmd_name>",
   description: "Delete the custom commannd",
   category: "admin",
   aliases: ["removecmd"],

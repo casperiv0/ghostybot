@@ -6,7 +6,6 @@ module.exports = {
   category: "util",
   aliases: ["spot"],
   description: "Shows status of users",
-  usage: "",
   async execute(bot, message, args) {
     let user =
       message.mentions.members.first() ||

@@ -2,7 +2,7 @@ const { getGuildById, updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "addcmd",
-  usage: "addcmd <cmd_name> <cmd_response>",
+  usage: "<cmd_name> <cmd_response>",
   description: "add guild custom commands",
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],

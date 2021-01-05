@@ -6,7 +6,7 @@ module.exports = {
   category: "reminder",
   requiredArgs: ["time", "message"],
   aliases: ["addreminder", "remind", "remindme"],
-  usage: "setreminder <time> <message>",
+  usage: "<time> <message>",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const [time, ...rest] = args;

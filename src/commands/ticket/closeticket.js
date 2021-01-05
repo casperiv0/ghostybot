@@ -4,7 +4,6 @@ module.exports = {
   category: "ticket",
   botPermissions: ["MANAGE_CHANNELS"],
   cooldown: 10,
-  usage: "closeticket",
   async execute(bot, message, args) {
     const channel = message.channel;
     const lang = await bot.getGuildLang(message.guild.id);

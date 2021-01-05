@@ -5,7 +5,7 @@ module.exports = {
   name: "rradd",
   description: "Add a reaction role",
   category: "reactions",
-  usage: "rradd <channel_id>",
+  usage: "<channel_id>",
   memberPermissions: ["ADMINISTRATOR"],
   botPermissions: ["MANAGE_ROLES", "ADD_REACTIONS", "MANAGE_MESSAGES"],
   requiredArgs: ["channel_id"],

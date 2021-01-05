@@ -4,7 +4,7 @@ module.exports = {
   name: "givexp",
   description: "Give someone Xp",
   category: "levels",
-  usage: "givexp <user> <amount>",
+  usage: "<user> <amount>",
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {

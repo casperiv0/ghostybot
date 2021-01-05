@@ -2,7 +2,7 @@ module.exports = {
   name: "unlockchannel",
   description: "Unlock A channel",
   category: "admin",
-  usage: "unlockchannel <channel mention | current channel>",
+  usage: "<channel mention | current channel>",
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
   execute(bot, message) {

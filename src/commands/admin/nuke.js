@@ -1,7 +1,6 @@
 module.exports = {
   name: "nuke",
   description: "Nuke the current channel, delete all messages of the channel",
-  usage: "nuke",
   aliases: ["channelnuke"],
   category: "admin",
   botPermissions: ["MANAGE_CHANNELS"],

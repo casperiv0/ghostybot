@@ -5,7 +5,6 @@ module.exports = {
   name: "resetxp",
   description: "reset all users xp for current server",
   category: "levels",
-  usage: "resetxp all",
   memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);

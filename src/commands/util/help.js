@@ -7,7 +7,7 @@ module.exports = {
   description: "Shows all commands Or shows more info about a command",
   category: "util",
   cooldown: 2,
-  usage: "h <category name | command name>",
+  usage: "<category name | command name>",
   aliases: ["h", "info", "commands"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
@@ -93,7 +93,7 @@ module.exports = {
           .setDescription("")
           .addField(lang.HELP.ALIASES, aliases, true)
           .addField(lang.HELP.COOLDOWN, `${cooldown}`, true)
-          .addField("Usage", cmd.usage ? `${prefix}${cmd.usage}` : lang.GLOBAL.NOT_SPECIFIED, true)
+          .addField(lang.HELP.USAGE, cmd.usage ? `${prefix}${cmd.name} ${cmd.usage}` : lang.GLOBAL.NOT_SPECIFIED, true)
           .addField(lang.UTIL.CATEGORY, cmd.category, true)
           .addField(
             lang.UTIL.DESCRIPTION,

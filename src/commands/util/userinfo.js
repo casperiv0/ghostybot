@@ -5,7 +5,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "userinfo",
   description: "Get user info",
-  usage: "!userinfo <user>",
+  usage: "<user>",
   category: "util",
   aliases: ["whois", "user", "u"],
   async execute(bot, message, args) {
