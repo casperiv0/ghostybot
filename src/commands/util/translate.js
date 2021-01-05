@@ -4,7 +4,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "translate",
   description: "Translate a sentence",
-  usage: "!translate <language> <sentence>",
+  usage: "<language> <sentence>",
   category: "util",
   requiredArgs: ["language", "sentence"],
   async execute(bot, message, args) {

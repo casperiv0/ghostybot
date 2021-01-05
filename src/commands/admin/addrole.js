@@ -2,6 +2,7 @@ module.exports = {
   name: "addrole",
   aliases: ["ar", "arole", "giverole"],
   description: "Add a role to a user",
+  usage: "<member> <role>",
   category: "admin",
   memberPermissions: ["SEND_MESSAGES", "MANAGE_ROLES", "ADMINISTRATOR"],
   botPermissions: ["MANAGE_ROLES"],

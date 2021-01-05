@@ -7,7 +7,7 @@ module.exports = {
   description: "Slots machine",
   category: "economy",
   cooldown: 20,
-  usage: "slots <amount>",
+  usage: "<amount>",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const { user } = await getUserById(message.author.id, message.guild.id);

@@ -4,7 +4,7 @@ module.exports = {
   name: "mute",
   description: "Mute a user",
   category: "admin",
-  usage: "mute <@user>",
+  usage: "<@user>",
   botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {

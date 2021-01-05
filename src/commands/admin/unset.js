@@ -3,7 +3,7 @@ const { updateGuildById } = require("../../utils/functions");
 module.exports = {
   name: "unset",
   description: "Unset/disable an option",
-  usage: "unset <option>",
+  usage: "<option>",
   options: [
     "welcome-channel",
     "leave-channel",

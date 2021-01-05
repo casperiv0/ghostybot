@@ -4,7 +4,7 @@ module.exports = {
   name: "deposit",
   description: "deposit money to your bank",
   category: "economy",
-  usage: "!deposit <all | amount>",
+  usage: "<all | amount>",
   aliases: ["dep"],
   requiredArgs: ["amount"],
   async execute(bot, message, args) {

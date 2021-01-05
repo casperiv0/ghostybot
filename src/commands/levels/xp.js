@@ -5,7 +5,7 @@ module.exports = {
   name: "xp",
   description: "Get Xp from mentioned user or yourself",
   category: "levels",
-  usage: "xp <user>",
+  usage: "<user>",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = await bot.findMember(message, args, true);

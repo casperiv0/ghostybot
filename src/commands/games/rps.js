@@ -5,7 +5,7 @@ module.exports = {
   name: "rps",
   description: "Rock Paper Scissors",
   category: "games",
-  usage: "rps <rock | paper | scissors>",
+  usage: "<rock | paper | scissors>",
   requiredArgs: ["rock | paper | scissors"],
   cooldown: 5,
   async execute(bot, message, args) {

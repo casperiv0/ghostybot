@@ -4,7 +4,7 @@ module.exports = {
   name: "ytcomment",
   description: "Returns an image with your YouTube comment",
   category: "image",
-  usage: "ytcomment <my amazing youtube comment>",
+  usage: "<my amazing youtube comment>",
   requiredArgs: ["comment"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);

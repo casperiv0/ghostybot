@@ -4,7 +4,7 @@ module.exports = {
   name: "rrremove",
   description: "Add a reaction role",
   category: "reactions",
-  usage: "rrremove <message_id>",
+  usage: "<message_id>",
   aliases: ["rrdel", "rrr", "rrdelete"],
   requiredArgs: ["message_id"],
   async execute(bot, message, args) {

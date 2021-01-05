@@ -9,7 +9,7 @@ module.exports = {
   category: "economy",
   options: ["no-options", "add", "remove"],
   aliases: ["shop"],
-  usage: "store <option | no-args>",
+  usage: "<option | no-args>",
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;

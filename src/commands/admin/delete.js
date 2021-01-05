@@ -1,7 +1,7 @@
 module.exports = {
   name: "delete",
   description: "Delete message, up to 100",
-  usage: "delete <1-100>",
+  usage: "<1-100>",
   aliases: ["purge", "clear"],
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],

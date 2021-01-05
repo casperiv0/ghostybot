@@ -2,6 +2,7 @@ module.exports = {
   name: "ctopic",
   description: "Update the channel topic",
   category: "admin",
+  usage: "<channel> <topic>",
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
   async execute(bot, message, args) {

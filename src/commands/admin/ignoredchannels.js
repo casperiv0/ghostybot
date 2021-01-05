@@ -5,7 +5,7 @@ module.exports = {
   name: "ignoredchannels",
   description: "Add/remove ignored channels",
   category: "admin",
-  usage: "set <option> <channel>",
+  usage: "<option> <channel>",
   options: ["add", "remove"],
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["igch", "ic"],

@@ -1,6 +1,7 @@
 module.exports = {
   name: "ban",
   description: "ban",
+  usage: "<user>",
   category: "admin",
   botPermissions: ["BAN_MEMBERS"],
   memberPermissions: ["BAN_MEMBERS"],

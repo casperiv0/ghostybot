@@ -3,7 +3,7 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "bmi",
   description: "Calculate your BMI",
-  usage: "bmi <weight in kilograms> <height in centimeters>",
+  usage: "<weight in kilograms> <height in centimeters>",
   category: "util",
   requiredArgs: ["weight", "height"],
   async execute(bot, message, args) {

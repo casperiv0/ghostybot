@@ -4,6 +4,7 @@ module.exports = {
   name: "blacklistedwords",
   description: "Add/remove blacklisted words",
   category: "admin",
+  usage: "<add | remove | get> [word]",
   options: ["get", "add", "remove"],
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["wordsfilter", "filterwords"],

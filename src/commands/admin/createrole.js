@@ -4,6 +4,7 @@ module.exports = {
   name: "createrole",
   description: "This command creates a role with the name of what you say",
   category: "admin",
+  usage: "<role_name>",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
   requiredArgs: ["role name"],

@@ -6,7 +6,7 @@ module.exports = {
   name: "blacklist",
   description: "Remove/add blacklist from a user",
   category: "botowner",
-  usage: "blacklist <option> <level> <user>",
+  usage: "<option> <level> <user>",
   options: ["add", "remove", "view"],
   ownerOnly: true,
   async execute(bot, message, args) {

@@ -11,7 +11,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
-  usage: "tempmute <user> <time> <reason>",
+  usage: "<user> <time> <reason>",
   async execute(bot, message, args) {
     const muteMember = await bot.findMember(message, args);
     const [, time, ...rest] = args;
