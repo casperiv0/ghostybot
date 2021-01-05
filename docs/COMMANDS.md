@@ -3445,7 +3445,7 @@ Click any of the command names for more information
 
 **Description:** Get a link of hastebin for your text
 
-**Usage:** `hastbin <extension (js, ts, ...)> <code>`
+**Usage:** `hastebin <extension (js, ts, ...)> <code>`
 
 **Member Permissions:** None
 
