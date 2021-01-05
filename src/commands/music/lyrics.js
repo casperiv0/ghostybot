@@ -13,6 +13,7 @@ module.exports = {
     const song = await (
       await fetch("https://some-random-api.ml/lyrics?title=" + title)
     ).json();
+    if (song.error) return message.channel.send(`No lyrics found for ${title}.`)
     const songTitle = song.title;
     const songAuthor = song.author;
     const songThumbnail = song.thumbnail.genius;
