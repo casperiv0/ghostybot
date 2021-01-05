@@ -19,7 +19,7 @@ module.exports = {
         .setTitle(`Welcome to **${member.guild.name}**`)
         .setThumbnail(avatar)
         .setDescription(
-          parseMessage(guild.welcome_message, member.user, {
+          parseMessage(welcomeData?.message, member.user, {
             author: member.user,
             guild: member.guild,
           })
