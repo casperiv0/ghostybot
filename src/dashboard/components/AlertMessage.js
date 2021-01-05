@@ -4,6 +4,7 @@ const AlertMessage = ({ type = "warning", message }) => {
   return (
     <div className={`alert-message alert-${type}`}>
       {type === "warning" ? <Warning /> : null}
+      {type === "error" ? <Warning /> : null}
       {type === "success" ? <Check /> : null}
       {message}
     </div>

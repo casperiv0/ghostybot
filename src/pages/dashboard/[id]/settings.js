@@ -11,6 +11,7 @@ import Switch from "../../../dashboard/components/Switch";
 
 const Settings = ({ guild, languages, isAuth }) => {
   const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
   const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
   const [leaveData, setLeaveData] = useState(guild?.leave_data || {});
   const [levelData, setLevelData] = useState(guild?.level_data || {});
@@ -286,6 +287,7 @@ const Settings = ({ guild, languages, isAuth }) => {
 
   async function onSubmit(e) {
     setMessage(null);
+    setError(null);
     e.preventDefault();
 
     try {
@@ -312,6 +314,8 @@ const Settings = ({ guild, languages, isAuth }) => {
 
       if (data.status === "success") {
         setMessage(data.message);
+      } else {
+        setError(data.error);
       }
     } catch (e) {
       console.error(e);
@@ -332,6 +336,7 @@ const Settings = ({ guild, languages, isAuth }) => {
         </a>
       </div>
       {message ? <AlertMessage type="success" message={message} /> : null}
+      {error ? <AlertMessage type="error" message={error} /> : null}
 
       <form onSubmit={onSubmit}>
         <div className="grid">

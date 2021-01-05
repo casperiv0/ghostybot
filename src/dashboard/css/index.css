@@ -121,6 +121,11 @@ select:focus {
   color: var(--secondary);
 }
 
+.alert-error {
+  background: #dc3545;
+  color: #fff;
+}
+
 .loader {
   border: 4px solid var(--secondary);
   border-top: 4px solid var(--blue);
