@@ -24,19 +24,6 @@ const guildSchema = new Schema({
   member_count_channel_id: { type: String, default: null },
   muted_role_id: { type: String, default: null },
 
-  // OLD Stuff - delete after migrating
-  starboards_channel_id: { type: String, default: null },
-  ticket_role: { type: String, default: null },
-  ticket_parent_channel: { type: String, default: null },
-  welcome_channel: { type: String, default: null },
-  leave_channel: { type: String, default: null },
-  welcome_role: { type: String, default: null },
-  welcome_message: { type: String, default: DEFAULT_MESSAGE },
-  leave_message: { type: String, default: DEFAULT_MESSAGE },
-  level_up_messages: { type: Boolean, default: false },
-
-
-  // NEW STUFF - don't use this yet.
   level_data: {
     type: Object,
     default: { message: "{user.tag} advanced to level {newLevel}", enabled: true },
