@@ -43,7 +43,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
-    "alexflipnote.js": "^2.3.3",
+    "alexflipnote.js": "^2.3.4",
     "chalk": "^4.1.0",
     "cows": "^2.1.0",
     "cowsay": "^1.4.0",
@@ -71,7 +71,7 @@
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.32",
-    "mongoose": "^5.11.9",
+    "mongoose": "^5.11.10",
     "ms": "^2.1.3",
     "nekos.life": "^2.0.7",
     "next": "^10.0.4",
