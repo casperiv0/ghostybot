@@ -10,17 +10,13 @@ module.exports = {
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
-    const data = (await User.find({ guild_id: guildId }))
-      .sort((a, b) => b.xp - a.xp)
-      .splice(0, 10);
+    const data = (await User.find({ guild_id: guildId })).sort((a, b) => b.xp - a.xp).splice(0, 10);
 
-    const embed = BaseEmbed(message).setTitle(
-      `${message.guild.name} ${lang.LEVELS.LEADERBOARD}`
-    );
+    const embed = BaseEmbed(message).setTitle(`${message.guild.name} ${lang.LEVELS.LEADERBOARD}`);
 
-    data.forEach((item, idx) => {
+    data.forEach(async (item, idx) => {
       const userId = item.user_id;
-      const member = message.guild.members.cache.get(userId);
+      const member = await bot.findMember(message, [userId]);
       const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
@@ -32,6 +28,8 @@ module.exports = {
       }
     });
 
-    message.channel.send({ embed });
+    setTimeout(() => {
+      message.channel.send({ embed });
+    }, 300);
   },
 };

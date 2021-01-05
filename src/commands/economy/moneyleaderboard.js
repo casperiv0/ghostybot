@@ -21,22 +21,22 @@ module.exports = {
       .setTitle(`${message.guild.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
       .setFooter(lang.ECONOMY.BOTH_COUNTED);
 
-    data.forEach((item, idx) => {
+    data.forEach(async (item, idx) => {
       const userId = item._doc.user_id;
-      const member = message.guild.members.cache.get(userId);
+      const member = await bot.findMember(message, [userId]);
       const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
         embed.addField(
           member.user.username,
-          `${isInPlace ? places[idx] : ""} ${data[idx].total} ${
-            lang.ECONOMY.TOTAL_BALANCE
-          }`,
+          `${isInPlace ? places[idx] : ""} ${data[idx].total} ${lang.ECONOMY.TOTAL_BALANCE}`,
           true
         );
       }
     });
 
-    message.channel.send({ embed });
+    setTimeout(() => {
+      message.channel.send({ embed });
+    }, 300);
   },
 };
