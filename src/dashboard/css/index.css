@@ -201,6 +201,30 @@ td {
   margin-left: 0.5rem;
 }
 
+/* Settings */
+.settings-group {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--secondary);
+}
+
+.group-header {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.group-title {
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.settings-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

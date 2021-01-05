@@ -326,8 +326,13 @@ function sendErrorLog(bot, error, type, msgContent) {
   const name = error.name || "N/A";
   const code = error.code || "N/A";
   const httpStatus = error.httpStatus || "N/A";
-  const stack = error.stack || error;
+  let stack = error.stack || error;
   const content = msgContent || "N/A";
+
+  if (stack.length >= 2048) {
+    console.error(stack);
+    stack = "An error occurred but was too long to send to Discord, check your console.";
+  }
 
   const embed = BaseEmbed(message)
     .setTitle("An error occurred")

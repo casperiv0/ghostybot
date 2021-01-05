@@ -11,6 +11,12 @@ module.exports = {
     const ticketId = tickets.size + 1;
     let hasActiveTicket = false;
 
+    if (!guild.ticket_data.enabled) {
+      return message.channel.send(
+        "Tickets are not enabled for this guild! An administrator can enable it in GhostyBot's settings"
+      );
+    }
+
     tickets.forEach((ch) => {
       if (!ch.topic) return;
       if (ch.topic.includes(message.author.tag)) {
@@ -45,15 +51,15 @@ module.exports = {
       permissionOverwrites: DEFAULT_PERMS,
     });
 
-    if (guild.ticket_parent_channel !== null && guild.ticket_parent_channel !== "Disabled") {
-      channel.setParent(guild.ticket_parent_channel);
+    if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
+      channel.setParent(guild.ticket_data.parent_id);
     }
 
-    if (guild.ticket_role !== null && guild.ticket_role !== "Disabled") {
+    if (guild.ticket_data.role_id !== null && guild.ticket_data.role_id !== "Disabled") {
       channel.overwritePermissions([
         ...DEFAULT_PERMS,
         {
-          id: guild.ticket_role,
+          id: guild.ticket_data.role_id,
           allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
         },
       ]);

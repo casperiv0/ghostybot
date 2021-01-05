@@ -7,11 +7,11 @@ module.exports = {
     if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
 
     const guild = await getGuildById(member.guild.id);
-    const welcomeChannel = guild?.welcome_channel;
-    const welcomeRole = guild?.welcome_role;
+    const welcomeData = guild?.welcome_data;
+    if (!welcomeData.enabled) return;
 
-    if (welcomeChannel) {
-      if (!member.guild.channels.cache.find((ch) => ch.id === welcomeChannel)) return;
+    if (welcomeData.channel_id) {
+      if (!member.guild.channels.cache.find((ch) => ch.id === welcomeData.channel_id)) return;
 
       const avatar = member.user.displayAvatarURL({ dynamic: true });
 
@@ -25,12 +25,12 @@ module.exports = {
           })
         );
 
-      bot.channels.cache.get(welcomeChannel).send(embed);
+      bot.channels.cache.get(welcomeData.channel_id).send(embed);
     }
 
-    if (welcomeRole) {
+    if (welcomeData.role_id) {
       if (!member.guild.me.hasPermission("MANAGE_ROLES")) return;
-      member.roles.add(welcomeRole);
+      member.roles.add(welcomeData.role_id);
     }
   },
 };

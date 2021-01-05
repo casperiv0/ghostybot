@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import fetch from "node-fetch";
@@ -7,28 +7,22 @@ import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { getLanguages } from "../../../utils/functions";
 import timezones from "../../../data/timezones.json";
 import { useRouter } from "next/router";
+import Switch from "../../../dashboard/components/Switch";
 
 const Settings = ({ guild, languages, isAuth }) => {
   const [message, setMessage] = useState(null);
-  const [welcomeChannel, setWelcomeChannel] = useState(guild.welcome_channel || "");
-  const [welcomeRole, setWelcomeRole] = useState(guild.welcome_role || "");
+  const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
+  const [leaveData, setLeaveData] = useState(guild?.leave_data || {});
+  const [levelData, setLevelData] = useState(guild?.level_data || {});
+  const [ticketData, setTicketData] = useState(guild?.ticket_data || {});
+  const [starboardsData, setStarboardsData] = useState(guild?.starboards_data || {});
   const [suggestChannel, setSuggestChannel] = useState(guild.suggest_channel || "");
   const [announceChannel, setAnnounceChannel] = useState(guild.announcement_channel || "");
-  const [leaveChannel, setLeaveChannel] = useState(guild.leave_channel || "");
-  const [levelUpMessages, setLevelUpMessages] = useState(guild.level_up_messages || "false");
   const [language, setLanguage] = useState(guild.locale || "");
-  const [welcomeMessage, setWelcomeMessage] = useState(guild.welcome_message || "");
-  const [leaveMessage, setLeaveMessage] = useState(guild.leave_message || "");
   const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
   const [prefix, setPrefix] = useState(guild.prefix || "");
   const [tz, setTz] = useState(guild.timezone || "");
   const [autoDelCmd, setAutoDelCmd] = useState(guild.auto_delete_cmd || "");
-  const [ticketRole, setTicketRole] = useState(guild.ticket_role || "");
-  const [ticketParentChannel, setTicketParentChannel] = useState(guild.ticket_parent_channel || "");
-  const [memberCountChannelId, setMemberCountChannelId] = useState(
-    guild.member_count_channel_id || ""
-  );
-  const [starboardsChannelId, setStarboardsChannelId] = useState(guild.starboards_channel_id || "");
   const [mutedRoleId, setMutedRoleId] = useState(guild.muted_role_id || "");
   const router = useRouter();
 
@@ -40,29 +34,188 @@ const Settings = ({ guild, languages, isAuth }) => {
 
   const fields = [
     {
-      type: "select",
-      id: "welcome_channel",
-      value: welcomeChannel,
-      onChange: (e) => setWelcomeChannel(e.target.value),
-      data: guild.channels,
-      label: "Welcome channel",
+      enabled: welcomeData?.enabled ?? false,
+      id: "welcome",
+      title: "Welcome",
+      onChecked: () => {
+        setWelcomeData((prev) => ({
+          ...prev,
+          enabled: !welcomeData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "select",
+          id: "welcome_channel",
+          label: "Welcome channel",
+          value: welcomeData?.channel_id || "",
+          onChange: (e) =>
+            setWelcomeData((prev) => ({
+              ...prev,
+              channel_id: e.target.value,
+            })),
+          data: guild.channels,
+        },
+        {
+          type: "select",
+          id: "welcome_role",
+          value: welcomeData?.role_id || "",
+          onChange: (e) =>
+            setWelcomeData((prev) => ({
+              ...prev,
+              role_id: e.target.value,
+            })),
+          data: guild.roles,
+          label: "Welcome role",
+        },
+        {
+          type: "textarea",
+          id: "welcome_message",
+          value: welcomeData?.message || "",
+          onChange: (e) =>
+            setWelcomeData((prev) => ({
+              ...prev,
+              message: e.target.value,
+            })),
+          label: "Welcome message",
+        },
+      ],
     },
     {
-      type: "select",
-      id: "welcome_role",
-      value: welcomeRole,
-      onChange: (e) => setWelcomeRole(e.target.value),
-      data: guild.roles,
-      label: "Welcome role",
+      enabled: leaveData?.enabled ?? false,
+      id: "leave_data",
+      title: "Leave message",
+      onChecked: () => {
+        setLeaveData((prev) => ({
+          ...prev,
+          enabled: !leaveData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "select",
+          id: "leave_channel",
+          label: "Leave channel",
+          value: leaveData?.channel_id || "",
+          onChange: (e) =>
+            setLeaveData((prev) => ({
+              ...prev,
+              channel_id: e.target.value,
+            })),
+          data: guild.channels,
+        },
+        {
+          type: "textarea",
+          id: "leave_message",
+          value: leaveData?.message || "",
+          onChange: (e) =>
+            setLeaveData((prev) => ({
+              ...prev,
+              message: e.target.value,
+            })),
+          label: "Leave message",
+        },
+      ],
     },
     {
-      type: "select",
-      id: "leave_channel",
-      value: leaveChannel,
-      onChange: (e) => setLeaveChannel(e.target.value),
-      data: guild.channels,
-      label: "Leave channel",
+      enabled: levelData?.enabled ?? false,
+      id: "level_data",
+      title: "Levels",
+      onChecked: () => {
+        setLevelData((prev) => ({
+          ...prev,
+          enabled: !levelData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "textarea",
+          id: "level_message",
+          value: levelData?.message || "",
+          onChange: (e) =>
+            setLevelData((prev) => ({
+              ...prev,
+              message: e.target.value,
+            })),
+          label: "Level message",
+        },
+      ],
     },
+    {
+      enabled: ticketData?.enabled ?? false,
+      id: "ticket_data",
+      title: "Tickets",
+      onChecked: () => {
+        setTicketData((prev) => ({
+          ...prev,
+          enabled: !ticketData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "select",
+          id: "ticket_role",
+          value: ticketData?.role_id || "",
+          onChange: (e) =>
+            setTicketData((prev) => ({
+              ...prev,
+              role_id: e.target.value,
+            })),
+          label: "Ticket role",
+          data: guild.roles,
+        },
+        {
+          type: "select",
+          id: "ticket_parent_id",
+          value: ticketData?.parent_id || "",
+          onChange: (e) =>
+            setTicketData((prev) => ({
+              ...prev,
+              parent_id: e.target.value,
+            })),
+          label: "Parent",
+          data: guild.categories,
+        },
+      ],
+    },
+    {
+      enabled: starboardsData?.enabled ?? false,
+      id: "starboards_data",
+      title: "Starboard",
+      onChecked: () => {
+        setStarboardsData((prev) => ({
+          ...prev,
+          enabled: !starboardsData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "select",
+          id: "starboards_channel_id",
+          value: starboardsData?.channel_id || "",
+          onChange: (e) =>
+            setStarboardsData((prev) => ({
+              ...prev,
+              channel_id: e.target.value,
+            })),
+          label: "Starboards channel",
+          data: guild.channels,
+        },
+        {
+          type: "input",
+          id: "starboards_emoji",
+          value: starboardsData?.emoji || "",
+          onChange: (e) =>
+            setStarboardsData((prev) => ({
+              ...prev,
+              emoji: e.target.value,
+            })),
+          label: "Starboards emoji",
+        },
+      ],
+    },
+  ];
+  const mainFields = [
     {
       type: "select",
       id: "audit_channel",
@@ -86,33 +239,6 @@ const Settings = ({ guild, languages, isAuth }) => {
       onChange: (e) => setAnnounceChannel(e.target.value),
       data: guild.channels,
       label: "Announcement channel",
-    },
-    {
-      type: "select",
-      id: "ticket_role",
-      value: ticketRole,
-      onChange: (e) => setTicketRole(e.target.value),
-      data: guild.roles,
-      label: "Tickets role",
-    },
-    {
-      type: "select",
-      id: "ticket_parent_channel",
-      value: ticketParentChannel,
-      onChange: (e) => setTicketParentChannel(e.target.value),
-      data: guild.categories,
-      label: "Tickets Channel parent",
-    },
-    {
-      type: "select",
-      id: "level_up_messages",
-      value: levelUpMessages,
-      onChange: (e) => setLevelUpMessages(e.target.value),
-      data: [
-        { id: "false", name: "Off" },
-        { id: "true", name: "On" },
-      ],
-      label: "Level up messages",
     },
     {
       type: "select",
@@ -150,27 +276,11 @@ const Settings = ({ guild, languages, isAuth }) => {
     },
     {
       type: "select",
-      id: "starboards_channel_id",
-      value: starboardsChannelId,
-      onChange: (e) => setStarboardsChannelId(e.target.value),
-      data: guild.channels,
-      label: "Starboards channel",
-    },
-    {
-      type: "select",
       id: "muted_role_id",
       value: mutedRoleId,
       onChange: (e) => setMutedRoleId(e.target.value),
       data: guild.roles,
       label: "Muted Role",
-    },
-    {
-      type: "select",
-      id: "member_count_channel_id",
-      value: memberCountChannelId,
-      onChange: (e) => setMemberCountChannelId(e.target.value),
-      data: guild.voice_channels,
-      label: "Member count channel Id (bot needs 'Manage Channel' permissions for this channel)",
     },
   ];
 
@@ -182,22 +292,19 @@ const Settings = ({ guild, languages, isAuth }) => {
       const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}`, {
         method: "POST",
         body: JSON.stringify({
-          welcome_channel: welcomeChannel,
-          welcome_role: welcomeRole,
-          leave_channel: leaveChannel,
+          welcome_data: welcomeData,
+          leave_data: leaveData,
+          ticket_data: ticketData,
+          level_data: levelData,
+          starboards_data: starboardsData,
+
           suggest_channel: suggestChannel,
           announcement_channel: announceChannel,
-          level_up_messages: levelUpMessages,
           locale: language,
-          welcome_message: welcomeMessage,
           audit_channel: auditChannel,
           prefix: prefix,
           timezone: tz,
           auto_delete_cmd: autoDelCmd === "true",
-          leave_message: leaveMessage,
-          ticket_role: ticketRole,
-          ticket_parent_channel: ticketParentChannel,
-          starboards_channel_id: starboardsChannelId,
           muted_role_id: mutedRoleId,
         }),
       });
@@ -228,75 +335,52 @@ const Settings = ({ guild, languages, isAuth }) => {
 
       <form onSubmit={onSubmit}>
         <div className="grid">
-          {fields.map((field, idx) => {
+          {mainFields.map((field, idx) => {
             return (
-              <div key={idx} className="form-group">
-                <label htmlFor={field.id} className="form-label">
+              <div className="form-group" key={`main-field-${idx}`} id={field.id}>
+                <label className="form-label" htmlFor={field.id}>
                   {field.label}
                 </label>
                 {field.type === "select" ? (
-                  <select
-                    className="form-input"
-                    id={field.id}
-                    value={field.value}
-                    onChange={field.onChange}
-                  >
-                    {field.data?.map((option, idx) => {
-                      return (
-                        <option key={idx} value={option.id}>
-                          {option.name}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <SelectField item={field} />
                 ) : (
-                  <input
-                    className="form-input"
-                    type="text"
-                    id={field.id}
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
+                  <InputField item={field} />
                 )}
               </div>
             );
           })}
         </div>
-
-        <div className="grid col-2">
-          <div className="form-group">
-            <label htmlFor="welcome-message" className="form-label">
-              Welcome description
-            </label>
-            <textarea
-              id="welcome-message"
-              className="form-input"
-              onChange={(e) => setWelcomeMessage(e.target.value)}
-              value={welcomeMessage}
-            ></textarea>
-            <p className="mt-5">
-              <strong>{"{user}"}:</strong> The user mention: @CasperTheGhost
-              <br />
-              <strong>{"{user.username}"}</strong>: The user&apos;s username: CasperTheGhost
-              <br />
-              <strong>{"{user.tag}"}</strong>: The user&apos;s tag: CasperTheGhost#0000 <br />
-              <strong>{"{user.id}"}</strong>: The user&apos;s id: 00000000000 <br />
-              <strong>{"{user.discriminator}"}</strong>: The user&apos;s discriminator: #0000 <br />
-              <strong>{"{user.createdAt}"}</strong>: the user&apos;s account created date:
-              20/12/2018 (America/New_York) <br />
-            </p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="leave-message" className="form-label">
-              Leave description
-            </label>
-            <textarea
-              id="leave-message"
-              className="form-input"
-              onChange={(e) => setLeaveMessage(e.target.value)}
-              value={leaveMessage}
-            ></textarea>
-          </div>
+        <div style={{ marginTop: "1rem" }} className="grid settings-grid">
+          {fields.map((field, idx) => {
+            return (
+              <div id={field.id} key={idx} className="form-group settings-group">
+                <header className="group-header">
+                  <h1 className="group-title">{field.title}</h1>
+                  <Switch
+                    title="Enabled Or disable feature"
+                    checked={field.enabled}
+                    onChange={field.onChecked}
+                  />
+                </header>
+                {field.fields?.map((item, idx) => {
+                  return (
+                    <div className="form-group" key={`field-${idx}`}>
+                      <label htmlFor={item.id} className="form-label">
+                        {item.label}
+                      </label>
+                      {item.type === "select" ? (
+                        <SelectField item={item} />
+                      ) : item.type === "textarea" ? (
+                        <TextareaField item={item} />
+                      ) : (
+                        <InputField item={item} />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
 
         <button type="submit" className="btn btn-primary float-right">
@@ -306,6 +390,43 @@ const Settings = ({ guild, languages, isAuth }) => {
     </>
   );
 };
+
+function SelectField({ item }) {
+  return (
+    <select className="form-input" id={item.id} value={item.value} onChange={item.onChange}>
+      {item.data?.map((option, idx) => {
+        return (
+          <option key={idx} value={option.id}>
+            {option.name}
+          </option>
+        );
+      })}
+    </select>
+  );
+}
+
+function TextareaField({ item }) {
+  return (
+    <textarea
+      value={item.value}
+      onChange={item.onChange}
+      id={item.id}
+      className="form-input"
+    ></textarea>
+  );
+}
+
+function InputField({ item }) {
+  return (
+    <input
+      className="form-input"
+      type="text"
+      id={item.id}
+      value={item.value}
+      onChange={item.onChange}
+    />
+  );
+}
 
 export async function getServerSideProps(ctx) {
   const cookies = parseCookies(ctx);

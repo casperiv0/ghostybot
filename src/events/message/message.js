@@ -68,7 +68,7 @@ module.exports = {
       const newLevel = calculateUserXp(user.xp + xp);
 
       if (newLevel > level) {
-        if (guild.level_up_messages === true) {
+        if (guild.level_data.enabled === true) {
           const embed = BaseEmbed(message)
             .setTitle("Level up!")
             .addField("New level", newLevel)

@@ -1,6 +1,6 @@
 const UserModel = require("../models/User.model");
 const BaseEmbed = require("../modules/BaseEmbed");
-const { updateUserById } = require("../utils/functions");
+const { updateUserById, findOrCreateMutedRole } = require("../utils/functions");
 
 /**
  * @param {import("discord.js").Client} bot
@@ -37,7 +37,8 @@ module.exports = async (bot) => {
           const muted_role =
             !muted_role_id || muted_role_id === "Disabled"
               ? guild.roles.cache.find((r) => r.name === "muted")
-              : guild.roles.cache.find((r) => r.id === muted_role_id);
+              : guild.roles.cache.find((r) => r.id === muted_role_id) ||
+                (await findOrCreateMutedRole(guild));
 
           guild.channels.cache.forEach((channel) => {
             channel.permissionOverwrites.get(user.user_id)?.delete();

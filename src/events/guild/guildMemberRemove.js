@@ -10,10 +10,11 @@ module.exports = {
   name: "guildMemberRemove",
   async execute(bot, member) {
     const guild = await getGuildById(member.guild.id);
-    const leaveChannel = guild.leave_channel;
+    const leaveData = guild.leave_data;
+    if (!leaveData.enabled) return;
 
-    if (leaveChannel) {
-      if (!member.guild.channels.cache.find((ch) => ch.id === leaveChannel)) return;
+    if (leaveData.channel_id) {
+      if (!member.guild.channels.cache.find((ch) => ch.id === leaveData.channel_id)) return;
 
       const avatar = member.user.displayAvatarURL({ dynamic: true });
 
@@ -28,7 +29,7 @@ module.exports = {
         )
         .setColor("RED");
 
-      bot.channels.cache.get(leaveChannel).send(embed);
+      bot.channels.cache.get(leaveData.channel_id).send(embed);
 
       await removeUser(member.user.id, member.guild.id);
       await removeUserWarnings(member.user.id, member.guild.id);
