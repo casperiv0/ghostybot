@@ -290,6 +290,7 @@ module.exports = {
     SCORE: "Puntaje",
     CREATED_BY: "Creado por {member}",
     MENTIONABLE: "Mencionable",
+    POSITION: "Position (from top)",
     ROLE_NOT_FOUND: "Role no encontrado",
     ROLES: "Roles",
     NO_GUILD_ICON: "Este gremio no tiene icono",
