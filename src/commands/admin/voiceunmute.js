@@ -5,23 +5,16 @@ module.exports = {
   botPermissions: ["MUTE_MEMBERS"],
   memberPermissions: ["MUTE_MEMBERS"],
   async execute(bot, message, args) {
-    const unmuteUser = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
+    const lang = await bot.getGuildLang(message.guild.id);
+    const unmuteUser = await bot.findMember(message, args);
 
     if (!unmuteUser.voice.serverMute) {
-      return message.channel.send(
-        "User is not in a voice channel or isn't muted"
-      );
+      return message.channel.send(lang.ADMIN.USER_NOT_VOICE_OR_NOT_MUTED);
     }
 
     unmuteUser.voice.setMute(false, "unmuteReason");
 
-    unmuteUser.user.send(
-      `You've been **Unmuted** from **${message.guild.name}**`
-    );
-    message.channel.send(
-      `**${unmuteUser.user.tag}** was successfully unmuted from the server. I have also send a DM letting the person know.`
-    );
+    unmuteUser.user.send(lang.ADMIN.YOU_UNMUTED.replace("{guildName}", message.guild.name));
+    message.channel.send(lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteUser.user.tag));
   },
 };

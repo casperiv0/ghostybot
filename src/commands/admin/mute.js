@@ -21,7 +21,7 @@ module.exports = {
           (await findOrCreateMutedRole(message.guild));
 
     if (!muteMember) {
-      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
+      return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
     }
 
     if (muteMember?.roles.cache.find((r) => r.id === muted_role.id)) {

@@ -13,6 +13,7 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES"],
   usage: "<user> <time> <reason>",
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const muteMember = await bot.findMember(message, args);
     const [, time, ...rest] = args;
     const reason = rest.join(" ") || "N/A";
@@ -24,19 +25,19 @@ module.exports = {
           (await findOrCreateMutedRole(message.guild));
 
     if (!muteMember) {
-      return message.channel.send("Please provide valid a member");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
     }
 
     if (muteMember?.roles.cache.find((r) => r.id === muted_role.id)) {
-      return message.channel.send("User is already muted!");
+      return message.channel.send(lang.ADMIN.ALREADY_MUTED);
     }
 
     if (muteMember.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("User can't be muted");
+      return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
     }
 
     if (!ms(time)) {
-      return message.channel.send("Please provide a valid time: E.G.: `2d`, `1h`, ...");
+      return message.channel.send(`${lang.ADMIN.PROVIDE_VALID_TIME} \`2d\`, \`1h\`, ...`);
     }
 
     const muteRole = await findOrCreateMutedRole(message.guild);
@@ -57,12 +58,15 @@ module.exports = {
       },
     });
 
-    muteMember.user.send(
-      `You've been **temporary muted** from **${message.guild.name}**, Reason: **${reason}**, Time: **${time}**`
-    );
-    message.channel.send(
-      `${muteMember.user.tag} was successfully muted for ${time}. Reason: **${reason}**`
-    );
+    muteMember.user.send(lang.ADMIN.TEMP_MUTED
+      .replace("{guildName}", message.guild.name)
+      .replace("{reason}", reason)
+      .replace("{time}", time));
+
+    message.channel.send(lang.ADMIN.SUCCES_MUTED
+      .replace("{muteMemberTag}", muteMember.user.tag)
+      .replace("{time}", time)
+      .replace("{reason}", reason));
 
     await bot.emit("guildMuteAdd", message.guild, {
       member: muteMember,

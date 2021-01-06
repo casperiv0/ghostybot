@@ -1,30 +1,24 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const { getUserById, getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "warnings",
   description: "Returns how many warnings a user has",
   category: "admin",
   async execute(bot, message, args) {
-    const guildId = message.guild.id;
+    const guild = await bot.getGuildById(message.guild.id);
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = await bot.findMember(message, args);
+    const { warnings } = member;
+    const { prefix } = guild;
     const warningNr = args[1];
-    const member =
-      message.guild.member(message.mentions.users.first()) ||
-      message.guild.members.cache.get(args[0]);
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
 
     if (member.user.bot) {
-      return message.channel.send(
-        "Bot data does not save, therefore I cannot fetch its data"
-      );
+      return message.channel.send(lang.MEMBER.BOT_DATA);
     }
-
-    const guild = await getGuildById(guildId);
-    const { warnings } = await getUserById(member.user.id, message.guild.id);
-    const prefix = guild.prefix;
 
     const embed = BaseEmbed(message);
 
@@ -32,29 +26,25 @@ module.exports = {
       const warning = warnings?.filter((w, idx) => idx === warningNr - 1)[0];
 
       if (!warning) {
-        return message.channel.send(
-          `warning wasn't found or ${member.user.tag} doesn't have any warnings`
-        );
+        return message.channel.send(lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", member.user.tag));
       }
 
       const warnedOn = warning?.date
         ? new Date(warning?.date)?.toLocaleString()
         : "N/A";
       embed
-        .setTitle(`Warning: ${warningNr}`)
-        .addField("**Reason**", warning?.reason || "No reason")
-        .addField("**Warned on:**", warnedOn);
+        .setTitle(`${lang.ADMIN.WARNING} ${warningNr}`)
+        .addField(`**${lang.EVENTS.REASON}**`, warning?.reason || lang.GLOBAL.NOT_SPECIFIED)
+        .addField(`**${lang.ADMIN.WARNED_ON}**`, warnedOn);
 
       return message.channel.send({ embed });
     }
 
     embed
-      .setTitle(`${member.user.tag}'s warnings`)
-      .addField("**Total warnings**", warnings?.length || 0)
+      .setTitle(lang.ADMIN.MEMBER_WARNS.replace("{memberTag}", member.user.tag))
+      .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, warnings?.length || 0)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setDescription(
-        `Use \`${prefix}warnings <user> <warning number>\` to view more info about a specific warning `
-      );
+      .setDescription(lang.ADMIN.USE_WARNS.replace("{prefix}", prefix));
 
     message.channel.send({ embed });
   },

@@ -6,16 +6,15 @@ module.exports = {
   memberPermissions: ["BAN_MEMBERS"],
   requiredArgs: ["member_id"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const userId = args[0];
 
     if (!userId) {
-      return message.channel.send("Please provide a user id");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_USERID);
     }
 
     const bannedUser = await message.guild.members.unban(userId);
 
-    message.channel.send(
-      `**${bannedUser.username}** was successfully unbanned from the server.`
-    );
+    message.channel.send(lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", bannedUser.username));
   },
 };

@@ -6,30 +6,31 @@ module.exports = {
   botPermissions: ["MOVE_MEMBERS"],
   memberPermissions: ["MOVE_MEMBERS"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const kickUser = await bot.findMember(message, args);
     const kickReason = args.join(" ").slice(23);
 
     if (!kickUser) {
-      return message.channel.send("Please provide a member!");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
     }
 
     if (kickUser.hasPermission("MOVE_MEMBERS" || "ADMINISTRATOR")) {
-      return message.channel.send("User can't be disconnected.");
+      return message.channel.send(lang.ADMIN.CAN_NOT_DISC);
     }
 
     if (!kickUser.voice.channel) {
-      return message.channel.send("User is not in a voice at the moment.");
+      return message.channel.send(lang.ADMIN.NOT_IN_VOICE);
     }
-
-    if (!kickUser) return message.channel.send("User wasn't found");
 
     kickUser.voice.kick(kickReason);
 
-    kickUser.user.send(
-      `You've been **disconnected** from **${message.guild.name}**, Reason: **${kickReason}**`
-    );
-    message.channel.send(
-      `**${kickUser.user.tag}** was successfully disconnected from **${kickUser.voice.channel}**. Reason: **${kickReason}**. I have also send a DM letting the person know.`
-    );
+    kickUser.user.send(lang.ADMIN.YOU_DISC
+      .replace("{guildName}", message.guild.name)
+      .replace("{reason}", kickReason));
+
+    message.channel.send(lang.ADMIN.USER_DISC
+      .replace("{kickUserTag}", kickUser.user.tag)
+      .replace("{kickUserVoiceChannel}", kickUser.voice.channel)
+      .replace("{reason}", kickReason));
   },
 };

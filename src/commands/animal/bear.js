@@ -13,9 +13,9 @@ module.exports = {
     ).then((res) => res.json());
 
     const embed = BaseEmbed(message)
-      .setTitle(`${data.fact}`)
+      .setTitle(data.fact)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.image})`)
-      .setImage(`${data.image}`);
+      .setImage(data.image);
 
     message.channel.send(embed);
   },

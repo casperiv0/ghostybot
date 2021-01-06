@@ -5,8 +5,9 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "stealemoji",
   category: "admin",
-  usage: "<emoji> <custom name>",
+  usage: "<emoji> [custom name]",
   description: "Steal an emoji from a different server",
+  requiredArgs: ["emoji"],
   botPermissions: ["MANAGE_EMOJIS"],
   memberPermissions: ["MANAGE_EMOJIS"],
   async execute(bot, message, args) {
@@ -14,17 +15,13 @@ module.exports = {
     const emoji = args[0];
     const name = args.slice(1).join(" ");
 
-    if (!emoji) {
-      return message.channel.send("Please Give Me A Emoji!");
-    }
-
     try {
       if (emoji.startsWith("https://cdn.discordapp.com")) {
-        await message.guild.emojis.create(emoji, name || "give_name");
+        await message.guild.emojis.create(emoji, name || lang.ADMIN.GIVE_NAME);
 
         const embed = BaseEmbed(message)
-          .setTitle("Emoji Added")
-          .setDescription(`Emoji Has Been Added! | Name: ${name || "give_name"} `);
+          .setTitle(lang.ADMIN.EMOJI_ADDED)
+          .setDescription(`${lang.ADMIN.EMOJI_ADDED_NAME} ${name || lang.ADMIN.GIVE_NAME}`);
         return message.channel.send(embed);
       }
 
@@ -37,24 +34,22 @@ module.exports = {
 
         await message.guild.emojis.create(`${link}`, `${name || `${customEmoji.name}`}`);
         const embed = BaseEmbed(message)
-          .setTitle("Emoji Added")
+          .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(
-            `Emoji Has Been Added! | Name: ${
-              name || `${customEmoji.name}`
-            } | Preview: [Click me](${link})`
+            `${lang.ADMIN.EMOJI_ADDED_NAME} ${name || customEmoji.name} | ${lang.ADMIN.PREVIEW} [${lang.HELP.CLICK_ME}](${link})`
           );
         return message.channel.send(embed);
       } else {
         const foundEmoji = parse(emoji, { assetType: "png" });
         if (!foundEmoji[0]) {
-          return message.channel.send("Please provide a valid emoji");
+          return message.channel.send(lang.ADMIN.PROVIDE_VALID_EMOJI);
         }
 
-        message.channel.send("You Can Use Normal Emoji Without Adding In Server!");
+        message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
       }
     } catch (e) {
-      if (String(e).includes("DiscordAPIError: Maximum number of emojis reached (50)")) {
-        return message.channel.send("Maximum emoji count reached for this guild!");
+      if (String(e).includes("DiscordAPIError: Maximum number of emojis reached")) {
+        return message.channel.send(lang.ADMIN.MAX_EMOJI);
       } else {
         return message.channel.send(lang.GLOBAL.ERROR);
       }

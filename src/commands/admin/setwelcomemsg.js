@@ -4,20 +4,17 @@ module.exports = {
   name: "setwelcomemsg",
   description: "Sets the welcome msg",
   category: "admin",
+  usage: "<message>",
+  requiredArgs: ["message"],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const msg = args.join(" ");
-
-    if (!msg) {
-      return message.channel.send("Please provide a message");
-    }
 
     await updateGuildById(message.guild.id, {
       welcome_message: msg,
     });
 
-    return message.channel.send(
-      "Successfully updated welcome message (please use dashboard for better experience)"
-    );
+    return message.channel.send(lang.ADMIN.UPDATE_WEL_MES);
   },
 };
