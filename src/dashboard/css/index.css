@@ -5,6 +5,7 @@
   --blue: #7289da;
   --red: #e44444;
   --content-width: 95%;
+  --main-br: 0.3rem;
 }
 
 *,
@@ -84,7 +85,7 @@ select:focus {
   color: #fff;
   background: var(--secondary);
   border: 1px solid var(--dark);
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   resize: vertical;
   transition: border 200ms;
 }
@@ -94,8 +95,8 @@ select:focus {
 }
 
 .alert-message {
-  padding: 0.5rem 0.7rem;
-  border-radius: 0.5rem;
+  padding: 1rem;
+  border-radius: var(--main-br);
   color: #fff;
   background: var(--blue);
   font-size: 1.2rem;
@@ -106,9 +107,9 @@ select:focus {
 
 .alert-message svg {
   margin-right: 0.8rem;
+  min-width: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
-  min-width: 1.5rem;
 }
 
 .alert-success {
@@ -183,7 +184,6 @@ td {
 }
 
 .table-actions {
-  text-align: center;
   width: 10%;
 }
 
@@ -209,7 +209,7 @@ td {
 /* Settings */
 .settings-group {
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   background: var(--secondary);
 }
 

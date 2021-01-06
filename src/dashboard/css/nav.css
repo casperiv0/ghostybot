@@ -57,7 +57,7 @@
   transform: scale(0);
   padding: 0.5rem;
   opacity: 0;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   background: var(--dark);
   box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.2);
   top: 2.5rem;
@@ -73,7 +73,7 @@
 }
 
 .dropdown-link {
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   padding: 0.5rem 0.8rem;
   cursor: pointer;
   text-decoration: none;
@@ -86,9 +86,24 @@
   font-weight: 600;
 }
 
+.dropdown-link:focus {
+  outline: none;
+  background: var(--blue);
+}
+
+.logout:focus {
+  outline: none;
+  background: var(--red);
+  color: #fff;
+}
+
 @media (hover: hover) {
   .dropdown-link:hover {
     background: var(--blue);
+  }
+  .logout:hover {
+    background: var(--red);
+    color: #fff;
   }
 }
 

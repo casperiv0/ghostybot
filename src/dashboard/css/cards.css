@@ -3,7 +3,7 @@
   padding: 0.5rem;
   color: #fff;
   text-decoration: none;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   transition: 250ms;
 }
 
@@ -15,7 +15,7 @@
 .guild-card-img {
   width: 65px;
   height: 65px;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   background-color: var(--primary);
 }
 
@@ -40,7 +40,7 @@
 
 .disabled::after {
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   content: attr(aria-label);
   position: absolute;
   opacity: 0;
@@ -54,6 +54,11 @@
 
 .disabled:hover::after {
   opacity: 1;
+}
+
+.guild-card:focus {
+  background: var(--blue);
+  outline: none;
 }
 
 @media (hover: hover) {

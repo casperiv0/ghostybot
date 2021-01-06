@@ -515,7 +515,7 @@ Click any of the command names for more information
 
 **Description:** add guild custom commands
 
-**Usage:** `addcmd <cmd_name> <cmd_response>`
+**Usage:** `<cmd_name> <cmd_response>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -531,7 +531,7 @@ Click any of the command names for more information
 
 **Description:** Add a role to a user
 
-**Usage:** `N/A`
+**Usage:** `<member> <role>`
 
 **Member Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADMINISTRATOR
 
@@ -547,7 +547,7 @@ Click any of the command names for more information
 
 **Description:** Add a role to all user of the current server
 
-**Usage:** `N/A`
+**Usage:** `<role>`
 
 **Member Permissions:** MANAGE_ROLES, ADMINISTRATOR
 
@@ -563,7 +563,7 @@ Click any of the command names for more information
 
 **Description:** Announce something in a channel
 
-**Usage:** `announce <channel> <text>`
+**Usage:** `<channel> <text>`
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -579,7 +579,7 @@ Click any of the command names for more information
 
 **Description:** ban
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** BAN_MEMBERS
 
@@ -595,7 +595,7 @@ Click any of the command names for more information
 
 **Description:** Add/remove blacklisted words
 
-**Usage:** `N/A`
+**Usage:** `<add | remove | get> [word]`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -627,7 +627,7 @@ Click any of the command names for more information
 
 **Description:** This command creates a role with the name of what you say
 
-**Usage:** `N/A`
+**Usage:** `<role_name>`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -643,7 +643,7 @@ Click any of the command names for more information
 
 **Description:** Update the channel topic
 
-**Usage:** `N/A`
+**Usage:** `<channel> <topic>`
 
 **Member Permissions:** MANAGE_CHANNELS
 
@@ -675,7 +675,7 @@ Click any of the command names for more information
 
 **Description:** Delete the custom commannd
 
-**Usage:** `delcmd <cmd_name>`
+**Usage:** `<cmd_name>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -691,7 +691,7 @@ Click any of the command names for more information
 
 **Description:** Delete message, up to 100
 
-**Usage:** `delete <1-100>`
+**Usage:** `<1-100>`
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -739,7 +739,7 @@ Click any of the command names for more information
 
 **Description:** Add/remove ignored channels
 
-**Usage:** `set <option> <channel>`
+**Usage:** `<option> <channel>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -787,7 +787,7 @@ Click any of the command names for more information
 
 **Description:** Mute a user
 
-**Usage:** `mute <@user>`
+**Usage:** `<@user>`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -803,7 +803,7 @@ Click any of the command names for more information
 
 **Description:** Nuke the current channel, delete all messages of the channel
 
-**Usage:** `nuke`
+**Usage:** `N/A`
 
 **Member Permissions:** MANAGE_CHANNELS
 
@@ -899,7 +899,7 @@ Click any of the command names for more information
 
 **Description:** Set a default channel
 
-**Usage:** `set <option> <channel>`
+**Usage:** `<option> <channel>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -931,7 +931,7 @@ Click any of the command names for more information
 
 **Description:** Steal an emoji from a different server
 
-**Usage:** `stealemoji <emoji> <custom name>`
+**Usage:** `<emoji> <custom name>`
 
 **Member Permissions:** MANAGE_EMOJIS
 
@@ -963,7 +963,7 @@ Click any of the command names for more information
 
 **Description:** Temporary mute someone
 
-**Usage:** `tempmute <user> <time> <reason>`
+**Usage:** `<user> <time> <reason>`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -1011,7 +1011,7 @@ Click any of the command names for more information
 
 **Description:** Unlock A channel
 
-**Usage:** `unlockchannel <channel mention | current channel>`
+**Usage:** `<channel mention | current channel>`
 
 **Member Permissions:** MANAGE_CHANNELS
 
@@ -1027,7 +1027,7 @@ Click any of the command names for more information
 
 **Description:** Unmute a user
 
-**Usage:** `unmute <@user>`
+**Usage:** `<@user>`
 
 **Member Permissions:** MANAGE_ROLES, MANAGE_CHANNELS
 
@@ -1043,7 +1043,7 @@ Click any of the command names for more information
 
 **Description:** Unset/disable an option
 
-**Usage:** `unset <option>`
+**Usage:** `<option>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -1491,7 +1491,7 @@ Click any of the command names for more information
 
 **Description:** Remove/add blacklist from a user
 
-**Usage:** `blacklist <option> <level> <user>`
+**Usage:** `<option> <level> <user>`
 
 **Member Permissions:** None
 
@@ -1619,7 +1619,7 @@ Click any of the command names for more information
 
 **Description:** Buy an item from the store
 
-**Usage:** `buy <item name>`
+**Usage:** `<item name>`
 
 **Member Permissions:** None
 
@@ -1651,7 +1651,7 @@ Click any of the command names for more information
 
 **Description:** deposit money to your bank
 
-**Usage:** `!deposit <all | amount>`
+**Usage:** `<all | amount>`
 
 **Member Permissions:** None
 
@@ -1683,7 +1683,7 @@ Click any of the command names for more information
 
 **Description:** View your or a user inventory
 
-**Usage:** `inventory <user>`
+**Usage:** `<user>`
 
 **Member Permissions:** None
 
@@ -1795,7 +1795,7 @@ Click any of the command names for more information
 
 **Description:** Slots machine
 
-**Usage:** `slots <amount>`
+**Usage:** `<amount>`
 
 **Member Permissions:** None
 
@@ -1811,7 +1811,7 @@ Click any of the command names for more information
 
 **Description:** View the store/shop to buy something
 
-**Usage:** `store <option | no-args>`
+**Usage:** `<option | no-args>`
 
 **Member Permissions:** None
 
@@ -1843,7 +1843,7 @@ Click any of the command names for more information
 
 **Description:** Withdraw money to your bank
 
-**Usage:** `withdraw <all | amount>`
+**Usage:** `<all | amount>`
 
 **Member Permissions:** None
 
@@ -2067,7 +2067,7 @@ Click any of the command names for more information
 
 **Description:** Let me google that for you
 
-**Usage:** `lmgtfy <search query>`
+**Usage:** `<search query>`
 
 **Member Permissions:** None
 
@@ -2131,7 +2131,7 @@ Click any of the command names for more information
 
 **Description:** Rock Paper Scissors
 
-**Usage:** `rps <rock | paper | scissors>`
+**Usage:** `<rock | paper | scissors>`
 
 **Member Permissions:** None
 
@@ -2212,7 +2212,7 @@ Click any of the command names for more information
 
 **Description:** Starts a giveaway
 
-**Usage:** `givstart <time> <winner count> <price>
+**Usage:** `<time> <winner count> <price>
  **Example:** !givstart 2d 10 Discord nitro`
 
 **Member Permissions:** MANAGE_GUILD
@@ -2613,7 +2613,7 @@ Click any of the command names for more information
 
 **Description:** Returns an image with your YouTube comment
 
-**Usage:** `ytcomment <my amazing youtube comment>`
+**Usage:** `<my amazing youtube comment>`
 
 **Member Permissions:** None
 
@@ -2629,7 +2629,7 @@ Click any of the command names for more information
 
 **Description:** Give someone Xp
 
-**Usage:** `givexp <user> <amount>`
+**Usage:** `<user> <amount>`
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -2677,7 +2677,7 @@ Click any of the command names for more information
 
 **Description:** reset all users xp for current server
 
-**Usage:** `resetxp all`
+**Usage:** `N/A`
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -2693,7 +2693,7 @@ Click any of the command names for more information
 
 **Description:** Get Xp from mentioned user or yourself
 
-**Usage:** `xp <user>`
+**Usage:** `<user>`
 
 **Member Permissions:** None
 
@@ -2805,7 +2805,7 @@ Click any of the command names for more information
 
 **Description:** Play a song
 
-**Usage:** `play <youtube link | song name>`
+**Usage:** `<youtube link | song name>`
 
 **Member Permissions:** None
 
@@ -2949,7 +2949,7 @@ Click any of the command names for more information
 
 **Description:** N/A
 
-**Usage:** `None`
+**Usage:** `N/A`
 
 **Member Permissions:** None
 
@@ -3045,7 +3045,7 @@ Click any of the command names for more information
 
 **Description:** N/A
 
-**Usage:** `None`
+**Usage:** `N/A`
 
 **Member Permissions:** None
 
@@ -3077,7 +3077,7 @@ Click any of the command names for more information
 
 **Description:** Add a reaction role
 
-**Usage:** `rradd <channel_id>`
+**Usage:** `<channel_id>`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -3093,7 +3093,7 @@ Click any of the command names for more information
 
 **Description:** Add a reaction role
 
-**Usage:** `rrremove <message_id>`
+**Usage:** `<message_id>`
 
 **Member Permissions:** None
 
@@ -3141,7 +3141,7 @@ Click any of the command names for more information
 
 **Description:** Set a reminder, the bot will ping you when the timer runs out
 
-**Usage:** `setreminder <time> <message>`
+**Usage:** `<time> <message>`
 
 **Member Permissions:** None
 
@@ -3157,7 +3157,7 @@ Click any of the command names for more information
 
 **Description:** Closes the active ticket, use --force to force close issue
 
-**Usage:** `closeticket`
+**Usage:** `N/A`
 
 **Member Permissions:** None
 
@@ -3221,7 +3221,7 @@ Click any of the command names for more information
 
 **Description:** Calculate your BMI
 
-**Usage:** `bmi <weight in kilograms> <height in centimeters>`
+**Usage:** `<weight in kilograms> <height in centimeters>`
 
 **Member Permissions:** None
 
@@ -3445,7 +3445,7 @@ Click any of the command names for more information
 
 **Description:** Get a link of hastebin for your text
 
-**Usage:** `hastebin <extension (js, ts, ...)> <code>`
+**Usage:** `<extension (js, ts, ...)> <code>`
 
 **Member Permissions:** None
 
@@ -3461,7 +3461,7 @@ Click any of the command names for more information
 
 **Description:** Shows all commands Or shows more info about a command
 
-**Usage:** `h <category name | command name>`
+**Usage:** `<category name | command name>`
 
 **Member Permissions:** None
 
@@ -3589,7 +3589,7 @@ Click any of the command names for more information
 
 **Description:** Show Playstore Application Information Of Your Given Name!
 
-**Usage:** `playstore <Application Name>`
+**Usage:** `<Application Name>`
 
 **Member Permissions:** None
 
@@ -3765,7 +3765,7 @@ Click any of the command names for more information
 
 **Description:** Translate a sentence
 
-**Usage:** `!translate <language> <sentence>`
+**Usage:** `<language> <sentence>`
 
 **Member Permissions:** None
 
@@ -3797,7 +3797,7 @@ Click any of the command names for more information
 
 **Description:** Get user info
 
-**Usage:** `!userinfo <user>`
+**Usage:** `<user>`
 
 **Member Permissions:** None
 

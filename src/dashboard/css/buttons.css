@@ -2,7 +2,7 @@
   padding: 0.5rem 0.8rem;
   color: #fff;
   text-decoration: none;
-  border-radius: 0.5rem;
+  border-radius: var(--main-br);
   background: var(--secondary);
   transition: 200ms;
   font-size: 1.1rem;
@@ -23,6 +23,12 @@
 
 .btn-secondary {
   background: var(--primary);
+}
+
+.btn-primary:focus,
+.btn-secondary:focus {
+  background: var(--blue);
+  outline: none;
 }
 
 @media (hover: hover) {

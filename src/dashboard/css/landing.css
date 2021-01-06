@@ -71,7 +71,7 @@
   text-decoration: none;
   border: 1px solid transparent;
   padding: 0.8rem 1.2rem;
-  border-radius: 5px;
+  border-radius: var(--main-br);
   transition: 0.2s;
   text-align: center;
 }

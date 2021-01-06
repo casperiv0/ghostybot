@@ -38,5 +38,6 @@ module.exports = {
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/no-onchange": "off",
+    "react/display-name": "off",
   },
 };

@@ -99,6 +99,13 @@ export default async function handler(req, res) {
             status: "error",
           });
         }
+      } else {
+        if (body?.starboards_data?.enabled === false) {
+          try {
+            req.bot.starboardsManager.delete(g.starboards_data.channel_id);
+            // eslint-disable-next-line no-empty
+          } catch {}
+        }
       }
 
       await updateGuildById(query.id, body);
