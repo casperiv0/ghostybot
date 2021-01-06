@@ -19,7 +19,7 @@ module.exports = {
     const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
     const name = role.name;
     const id = role.id;
-    const color = role.color;
+    const color = role.color || "#2F3136";
     const position = message.guild.roles.cache.size - role.position;
 
     const embed = BaseEmbed(message)

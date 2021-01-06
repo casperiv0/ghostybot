@@ -13,6 +13,7 @@ module.exports = {
     const webhook = w.find((w) => w.name === bot.user.username);
     let option = args[0];
     const guildId = message.guild.id;
+    const guild = await bot.getGuildById(guildId);
 
     if (!option) {
       return message.channel.send(lang.ADMIN.PROVIDE_VALID_OPTION);
@@ -22,19 +23,19 @@ module.exports = {
 
     switch (option) {
       case "welcome-channel":
-        updateItem("welcome_data", guildId);
-        break;
-      case "leave-channel":
-        updateItem("leave_data", guildId);
+        await updateGuildById(guildId, { welcome_data: { ...guild.welcome_data, enabled: false } });
         break;
       case "welcome-role":
-        updateItem("welcome_data", guildId);
+        await updateGuildById(guildId, { welcome_data: { ...guild.welcome_data, enabled: false } });
+        break;
+      case "leave-channel":
+        await updateGuildById(guildId, { leave_data: { ...guild.leave_data, enabled: false } });
         break;
       case "suggest-channel":
-        updateItem("suggest_channel", guildId);
+        updateItem("suggest_channel", guild);
         break;
       case "level-messages":
-        updateItem("level_data", guildId);
+        await updateGuildById(guildId, { level_data: { ...guild.level_data, enabled: false } });
         break;
       case "audit-channel":
         if (!webhook) return message.reply(lang.ADMIN.CANNOT_RESET);
@@ -53,8 +54,8 @@ module.exports = {
   },
 };
 
-async function updateItem(type, guildId) {
-  await updateGuildById(guildId, {
-    [type]: { enabled: false },
+async function updateItem(type, guild) {
+  await updateGuildById(guild, {
+    [type]: null,
   });
 }
