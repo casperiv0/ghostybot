@@ -289,6 +289,7 @@ module.exports = {
     SCORE: "Score",
     CREATED_BY: "Created by {member}",
     MENTIONABLE: "Mentionable",
+    POSITION: "Position (from top)",
     ROLE_NOT_FOUND: "Role was not found",
     ROLES: "Roles",
     NO_GUILD_ICON: "This guild has no icon",

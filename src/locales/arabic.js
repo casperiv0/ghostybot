@@ -287,6 +287,7 @@ module.exports = {
     SCORE: "النتيجة",
     CREATED_BY: "بواسطة {member}",
     MENTIONABLE: "المنشن",
+    POSITION: "Position (from top)",
     ROLE_NOT_FOUND: "لم يتم العثور علي الرول",
     ROLES: "الرولات",
     NO_GUILD_ICON: "هذا السرفر لا يملك صورة",

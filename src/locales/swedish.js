@@ -286,6 +286,7 @@ module.exports = {
     SCORE: "Göra",
     CREATED_BY: "Created by {member}",
     MENTIONABLE: "Nämnbar",
+    POSITION: "Position (from top)",
     ROLE_NOT_FOUND: "Roll hittades inte",
     ROLES: "Roller",
     NO_GUILD_ICON: "Den här guilden har ingen ikon",

@@ -9,7 +9,7 @@ module.exports = {
   requiredArgs: ["role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const role = bot.findRole(message, args[0]);
+    const role = await bot.findRole(message, args[0]);
 
     if (!role) {
       return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
@@ -20,12 +20,14 @@ module.exports = {
     const name = role.name;
     const id = role.id;
     const color = role.color;
+    const position = message.guild.roles.cache.size - role.position;
 
     const embed = BaseEmbed(message)
       .setTitle(`**${name}**`)
       .setColor(color)
       .addField(`**${lang.MEMBER.CREATED_ON}**`, `${date} (${tz})`, true)
       .addField(`**${lang.UTIL.MENTIONABLE}**`, mentionable, true)
+      .addField(`**${lang.UTIL.POSITION}**`, position, true)
       .addField(`**${lang.MEMBER.ID}**`, id, true);
 
     message.channel.send(embed);
