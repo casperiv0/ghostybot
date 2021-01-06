@@ -8,17 +8,14 @@ module.exports = {
   memberPermissions: ["MANAGE_MESSAGES"],
   requiredArgs: ["message"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const stickyMsg = args.join(" ");
 
-    if (!stickyMsg[0]) {
-      return message.reply("Please provide a message");
-    }
-
     if (stickyMsg.length > 1800) {
-      return message.channel.send("Your sticky message can not be longer than 1800 characters!");
+      return message.channel.send(lang.ADMIN.STICKY_LONG);
     }
 
-    const msg = `__***:warning: Sticky Message, Read Before Typing! :warning:***__ \n\n ${stickyMsg}`;
+    const msg = `${lang.ADMIN.STICKY_READ} \n\n ${stickyMsg}`;
 
     message.delete();
 

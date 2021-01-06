@@ -14,13 +14,14 @@ module.exports = {
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
     let option = args[0];
     const guildId = message.guild.id;
 
     if (!option) {
-      return message.channel.send("Please provide a valid option!");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_OPTION);
     }
 
     option = option.toLowerCase();
@@ -43,19 +44,17 @@ module.exports = {
         break;
       case "audit-channel":
         if (!webhook)
-          return message.reply(
-            "Cannot reset this! As there is no webhook for logging"
-          );
+          return message.reply(lang.ADMIN.CANNOT_RESET);
         if (webhook) {
           webhook.delete();
-          message.channel.send("Succesfully reset logging!");
+          message.channel.send(lang.ADMIN.SUC_RESET);
         }
         break;
       default:
-        return message.channel.send(`\`${option}\` is not a valid option!`);
+        return message.channel.send(lang.GLOBAL.NOT_AN_OPTION);
     }
 
-    return message.channel.send(`Successfully disabled \`${option}\` `);
+    return message.channel.send(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", `\`${option}\``));
   },
 };
 

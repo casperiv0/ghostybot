@@ -20,6 +20,7 @@ module.exports = {
   ],
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const languages = bot.getLanguages();
     const guildId = message.guild.id;
     const { prefix, starboards_channel_id } = await getGuildById(guildId);
@@ -28,79 +29,79 @@ module.exports = {
     const language = args[1];
 
     if (!option) {
-      return message.channel.send(`Please provide an valid option (${prefix}h set)`);
+      return message.channel.send(`${lang.ADMIN.PROVIDE_VALID_OPTION} (${prefix}h set)`);
     }
 
     if (
       !["level-messages", "language", "member-count-channel"].includes(option.toLowerCase()) &&
       !item
     ) {
-      return message.channel.send("Please provide a valid channel or role!");
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_CHANNEL_OR_ROLE);
     }
 
     switch (option.toLowerCase()) {
       case "suggest-channel":
         updateItem("suggest_channel", item, guildId);
-        message.channel.send(`Suggest channel is now: ${item}`);
+        message.channel.send(`${lang.ADMIN.SUG_CHAN_NOW} ${item}`);
         break;
       case "announce-channel":
         updateItem("announcement_channel", item, guildId);
-        message.channel.send(`Announcement channel is now: ${item}`);
+        message.channel.send(`${lang.ADMIN.AN_CHAN_NOW} ${item}`);
         break;
       case "welcome-channel":
         updateItem("welcome_channel", item, guildId);
-        message.channel.send(`Enabled welcome messages. Welcome channel is now: ${item}`);
+        message.channel.send(`${lang.ADMIN.WEL_CHAN_NOW} ${item}`);
         break;
       case "leave-channel":
         updateItem("leave_channel", item, guildId);
-        message.channel.send(`Enabled user leave messages. User Leave channel is now: ${item}`);
+        message.channel.send(`${lang.ADMIN.LEAV_CHAN_NOW} ${item}`);
         break;
       case "audit-channel":
         if (
           !message.guild.me.hasPermission("MANAGE_WEBHOOKS") ||
           !message.guild.me.hasPermission("VIEW_AUDIT_LOG")
         ) {
-          return message.channel.send("I need `MANAGE_WEBHOOKS`, permissions for audit-logs");
+          return message.channel.send(lang.ADMIN.PERM_NEED);
         }
 
         await createWebhook(bot, item.id);
 
-        message.channel.send(`Enabled audit logs. Audit logs channel is now: ${item}`);
+        message.channel.send(`${lang.ADMIN.AUD_CHAN_NOW} ${item}`);
         break;
       case "welcome-role":
         updateItem("welcome_role", item, guildId);
-        message.channel.send(`Enabled welcome roles. Welcome role: ${item}`);
+        message.channel.send(`${lang.ADMIN.WEL_ROLE} ${item}`);
         break;
       case "level-messages":
         updateItem("level_up_messages", true, guildId);
-        message.channel.send("Successfully Enabled level up messages!");
+        message.channel.send(lang.ADMIN.EN_LVL_UP);
         break;
       case "language": {
         if (!language) {
-          return message.channel.send("Please provide a language");
+          return message.channel.send(lang.ADMIN.PROVIDE_LANG);
         }
         if (!languages.includes(language)) {
           return message.channel.send(
-            `Language is not available. Available languages: ${languages
+            `${lang.ADMIN.LANG_NOT_AVAILABLE} ${languages
               .map((l) => `\`${l}\``)
               .join(", ")}`
           );
         }
         updateItem("locale", language, guildId);
-        message.channel.send(`Successfully updated language to ${language}!`);
+        message.channel.send(`${lang.ADMIN.LANG_UPDATE} ${language}!`);
         break;
       }
       case "starboards-channel": {
         updateItem("starboards_channel_id", item, guildId);
         bot.createStarboard(bot, item, starboards_channel_id);
-        return message.channel.send(`Successfully set ${item} as starboards channel`);
+        return message.channel.send(lang.ADMIN.SET_STARBOARD_CHAN.replace("{channel}", item));
       }
       case "member-count-channel": {
         updateItem("member_count_channel_id", args[1], guildId);
-        return message.channel.send("Successfully set as member count channel");
+        return message.channel.send(lang.ADMIN.SET_MEM_COUNT_CHAN);
       }
       default:
-        return message.channel.send(`\`${option}\` is not a option!`);
+        return message.channel.send(lang.GLOBAL.NOT_AN_OPTION.replace("{option}", option));
     }
   },
 };

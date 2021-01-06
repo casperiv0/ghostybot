@@ -8,10 +8,11 @@ module.exports = {
   botPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
   memberPermissions: ["MANAGE_MESSAGES"],
   execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     message.delete();
 
     removeSticky(message.channel.id);
 
-    message.channel.send(`Cleared sticky for **${message.channel}**`);
+    message.channel.send(lang.ADMIN.STICKY_CLEAR.replace("{channel}", message.channel));
   },
 };

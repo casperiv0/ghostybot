@@ -12,7 +12,7 @@ module.exports = {
     const amount = args.slice(1)[0];
 
     if (!member) {
-      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
+      return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
     }
 
     if (member.user.bot) {

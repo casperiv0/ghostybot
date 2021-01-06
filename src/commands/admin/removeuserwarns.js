@@ -6,6 +6,7 @@ module.exports = {
   category: "admin",
   requiredArgs: ["member"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     if (!message.member.hasPermission("MANAGE_GUILD")) {
       return message.channel.send(lang.ADMIN.NO_PERMISSIONS);
     }

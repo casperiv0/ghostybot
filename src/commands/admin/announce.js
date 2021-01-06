@@ -26,7 +26,7 @@ module.exports = {
       return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
     }
 
-    const embed = BaseEmbed(message).setTitle("📢 Announcement 📢").setDescription(text);
+    const embed = BaseEmbed(message).setTitle(lang.ADMIN.ANNOUNCEMENT).setDescription(text);
 
     bot.channels.cache.get(announceChannel ? announceChannel : channel.id).send(embed);
   },

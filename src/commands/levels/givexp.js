@@ -13,7 +13,7 @@ module.exports = {
     const member = await bot.findMember(message, args);
 
     if (!member) {
-      return message.channel.send(lang.MEMBER.PROVIDE_MEMBER);
+      return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
     }
 
     if (member.user.bot) {

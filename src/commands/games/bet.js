@@ -9,7 +9,7 @@ module.exports = {
     const member = await bot.findMember(message, args);
 
     if (!member) {
-      return message.reply(lang.MEMBER.PROVIDE_MEMBER);
+      return message.reply(lang.EASY_GAMES.PROVIDE_MEMBER);
     }
 
     const n = Math.random();

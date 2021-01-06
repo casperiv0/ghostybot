@@ -5,23 +5,14 @@ module.exports = {
   botPermissions: ["DEAFEN_MEMBERS"],
   memberPermissions: ["DEAFEN_MEMBERS"],
   async execute(bot, message, args) {
-    const undeafenUser = message.guild.member(
-      message.mentions.users.first() || message.guild.members.cache.get(args[0])
-    );
+    const lang = await bot.getGuildLang(message.guild.id);
+    const undeafenUser = await bot.findMember(message, args);
 
-    if (!undeafenUser.voice.serverDeaf) {
-      return message.channel.send(
-        "User is not in a voice channel or isn't deafened"
-      );
-    }
+    if (!undeafenUser.voice.serverDeaf) return message.channel.send(lang.ADMIN.NOT_IN_VOICE_OR_NOT_DEAF);
 
     undeafenUser.voice.setDeaf(false, "undeafenReason");
 
-    undeafenUser.user.send(
-      `You've been **undeafened** from **${message.guild.name}**`
-    );
-    message.channel.send(
-      `**${undeafenUser.user.tag}** was successfully undeafened from the server. I have also send a DM letting the person know.`
-    );
+    undeafenUser.user.send(lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", message.guild.name));
+    message.channel.send(lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag));
   },
 };

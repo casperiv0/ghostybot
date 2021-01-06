@@ -101,8 +101,8 @@ module.exports = {
             true
           )
           .addField(lang.HELP.OPTIONS, options, true)
-          .addField("Bot Permissions", botPerms, true)
-          .addField("Member Permissions", memberPerms, true);
+          .addField(lang.HELP.BOT_PERMS, botPerms, true)
+          .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
       }
 
       return message.channel.send(embed);
@@ -136,8 +136,8 @@ module.exports = {
       .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
       .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
       .addField(
-        "View full detail command list",
-        "[Click me](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)"
+        lang.HELP.FULL_CMD_LIST,
+        `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
       )
       .setTitle("Help");
 

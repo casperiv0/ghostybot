@@ -6,33 +6,30 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
-    const reason = args.slice(1).join(" ");
-    const member =
-      message.guild.member(message.mentions.users.first()) ||
-      message.guild.members.cache.get(args[0]);
+    const lang = await bot.getGuildLang(message.guild.id);
+    const member = await bot.findMember(message, args);
 
     if (!member) {
-      return message.channel.send("Please provide a valid user");
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
     }
 
     if (member.user.bot) {
-      return message.channel.send(
-        "Bot data does not save, therefore I cannot fetch its data"
-      );
+      return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
     if (member.hasPermission("MANAGE_MESSAGES")) {
-      return message.channel.send("User can't be warned");
+      return message.channel.send(lang.ADMIN.USER_NOT_WARN);
     }
 
     await addWarning(member.user.id, message.guild.id, reason);
 
     const { warnings } = await getUserById(member.user.id, message.guild.id);
 
-    return message.channel.send(
-      `${member.user.tag} was warned with reason: ${reason} (Total warnings: ${
-        warnings ? warnings.length : "0"
-      })`
-    );
+    return message.channel.send(lang.ADMIN.USER_WARNED
+      .replace("{memberTag}", member.user.tag)
+      .replace("{reason}", reason)
+      .replace("{warningsTotal}", warnings
+        ? warnings.length 
+        : "0"));
   },
 };
