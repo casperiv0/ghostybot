@@ -11,7 +11,7 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setTitle(lang.EVENTS.KICK_ADD)
-      .addField(lang.EVENTS.KICK_TAG, member.user.tag, true)
+      .addField(lang.MEMBER.TAG, member.user.tag, true)
       .addField(lang.EVENTS.EXECUTED_BY, executor.tag, true)
       .addField(lang.EVENTS.REASON, reason)
       .setColor("ORANGE");
