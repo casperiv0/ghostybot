@@ -301,7 +301,7 @@ Click any of the command names for more information
 
 [filters:](#filters) All music filters
 
-[lyrics:](#lyrics) Get lyrics for the currently playing song
+[lyrics:](#lyrics) Get lyrics for the song
 
 [nowplaying:](#nowplaying) Shows info about the current playing song
 
@@ -915,13 +915,13 @@ Click any of the command names for more information
 
 **Description:** Sets the welcome msg
 
-**Usage:** `N/A`
+**Usage:** `<message>`
 
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `message`
 
 [Back to top](#ghostybot-command-list)
 
@@ -931,13 +931,13 @@ Click any of the command names for more information
 
 **Description:** Steal an emoji from a different server
 
-**Usage:** `<emoji> <custom name>`
+**Usage:** `<emoji> [custom name]`
 
 **Member Permissions:** MANAGE_EMOJIS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
 
-**Required Arguments:** N/A
+**Required Arguments:** `emoji`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2755,7 +2755,7 @@ Click any of the command names for more information
 
 **Category:** music
 
-**Description:** Get lyrics for the currently playing song
+**Description:** Get lyrics for the song
 
 **Usage:** `N/A`
 
@@ -2763,7 +2763,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `song title`
 
 [Back to top](#ghostybot-command-list)
 

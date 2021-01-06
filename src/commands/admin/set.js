@@ -49,11 +49,15 @@ module.exports = {
         message.channel.send(`${lang.ADMIN.AN_CHAN_NOW} ${item}`);
         break;
       case "welcome-channel":
-        updateItem("welcome_channel", item, guildId);
+        updateItem("welcome_data", { enabled: true, channel_id: item?.id }, guildId);
         message.channel.send(`${lang.ADMIN.WEL_CHAN_NOW} ${item}`);
         break;
+      case "welcome-role":
+        updateItem("welcome_data", { enabled: true, role_id: item?.id }, guildId);
+        message.channel.send(`${lang.ADMIN.WEL_ROLE} ${item}`);
+        break;
       case "leave-channel":
-        updateItem("leave_channel", item, guildId);
+        updateItem("leave_data", { enabled: true, channel_id: item?.id }, guildId);
         message.channel.send(`${lang.ADMIN.LEAV_CHAN_NOW} ${item}`);
         break;
       case "audit-channel":
@@ -68,12 +72,8 @@ module.exports = {
 
         message.channel.send(`${lang.ADMIN.AUD_CHAN_NOW} ${item}`);
         break;
-      case "welcome-role":
-        updateItem("welcome_role", item, guildId);
-        message.channel.send(`${lang.ADMIN.WEL_ROLE} ${item}`);
-        break;
       case "level-messages":
-        updateItem("level_up_messages", true, guildId);
+        updateItem("level_data", { enabled: true }, guildId);
         message.channel.send(lang.ADMIN.EN_LVL_UP);
         break;
       case "language": {
@@ -82,9 +82,7 @@ module.exports = {
         }
         if (!languages.includes(language)) {
           return message.channel.send(
-            `${lang.ADMIN.LANG_NOT_AVAILABLE} ${languages
-              .map((l) => `\`${l}\``)
-              .join(", ")}`
+            `${lang.ADMIN.LANG_NOT_AVAILABLE} ${languages.map((l) => `\`${l}\``).join(", ")}`
           );
         }
         updateItem("locale", language, guildId);
@@ -92,7 +90,7 @@ module.exports = {
         break;
       }
       case "starboards-channel": {
-        updateItem("starboards_channel_id", item, guildId);
+        updateItem("starboards_data", { enabled: true, channel_id: item?.id }, guildId);
         bot.createStarboard(bot, item, starboards_channel_id);
         return message.channel.send(lang.ADMIN.SET_STARBOARD_CHAN.replace("{channel}", item));
       }

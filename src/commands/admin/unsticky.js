@@ -7,7 +7,7 @@ module.exports = {
   category: "admin",
   botPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
   memberPermissions: ["MANAGE_MESSAGES"],
-  execute(bot, message) {
+  async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     message.delete();
 

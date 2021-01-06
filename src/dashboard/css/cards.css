@@ -56,6 +56,10 @@
   opacity: 1;
 }
 
+.disabled:focus::after {
+  opacity: 1;
+}
+
 .guild-card:focus {
   background: var(--blue);
   outline: none;

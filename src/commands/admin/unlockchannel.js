@@ -5,7 +5,7 @@ module.exports = {
   usage: "<channel mention | current channel>",
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
-  execute(bot, message) {
+  async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const channel = message.mentions.channels.first() || message.channel;
 
