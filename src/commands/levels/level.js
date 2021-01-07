@@ -1,4 +1,5 @@
 const { getUserById, calculateUserXp } = require("../../utils/functions");
+const { MessageAttachment } = require("discord.js");
 
 module.exports = {
   name: "level",
@@ -30,6 +31,8 @@ module.exports = {
       user.xp
     }&custombg=2F3136&xpcolor=fff${isBoosting}`;
 
-    message.channel.send(url);
+    const attach = new MessageAttachment(url, "rank.png");
+
+    message.channel.send(attach);
   },
 };

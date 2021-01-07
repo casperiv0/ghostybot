@@ -5,9 +5,15 @@ module.exports = {
   category: "nsfw",
   nsfwOnly: true,
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await bot.neko.nsfw.blowJob();
 
-    const blowjob = BaseEmbed(message).setImage(data.url).setURL(data.url);
+    const blowjob = BaseEmbed(message)
+      .setDescription(
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`
+      )
+      .setImage(data.url);
+
     message.channel.send(blowjob);
   },
 };

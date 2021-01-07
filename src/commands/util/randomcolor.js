@@ -11,7 +11,7 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setThumbnail(preview)
-      .setColor(`#${color}`)
+      .setColor(color)
       .setTitle(`#${color}`);
 
     message.channel.send(embed);

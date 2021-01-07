@@ -5,16 +5,13 @@ module.exports = {
   name: "tweet",
   description: "Returns an image with your tweet",
   category: "image",
+  requiredArgs: ["text"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
     const { username } = message.author;
 
-    if (!text) {
-      return message.channel.send("Please provide text");
-    }
-
-    const sendMsg = await message.channel.send("⚙ Processing Image..");
+    const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(

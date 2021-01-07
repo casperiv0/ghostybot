@@ -12,12 +12,12 @@ module.exports = {
       "http://api.obutts.ru/butts/0/1/random"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const butt = BaseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(http://media.obutts.ru/${data[0].preview})`
       )
       .setImage(`http://media.obutts.ru/${data[0].preview}`);
 
-    message.channel.send(embed);
+    message.channel.send(butt);
   },
 };

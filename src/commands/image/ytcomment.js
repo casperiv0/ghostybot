@@ -15,7 +15,7 @@ module.exports = {
       format: "png",
     });
 
-    const sendMsg = await message.channel.send("⚙ Processing Image..");
+    const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
     sendMsg.delete();
     const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(

@@ -137,6 +137,14 @@ module.exports = {
     NO_RESULTS: "Ninguna cancion fue encontrada",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
     LIVE_NOT_SUPPORTED: "Live videos are not supported",
+    SUC_REM_FILTER: "Successfully removed {filter}",
+    SUC_APPLIED_FILTER: "Successfully applied {filter}",
+    FILTER_NOT_FOUND: "That filter was not found",
+    FILTER_ALREADY_ENABLED: "Filter `{filter}` is already enabled",
+    FILTER_NOT_ENABLED: "Filter `{filter}` is not enabled?",
+    NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
+    NO_LIRYCS: "No lyrics found for {songTitle}.",
+    NOW: "Now", //🎵 lang.MUSIC.NOW ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}
   },
   ECONOMY: {
     MONEY: "Dinero",
@@ -410,7 +418,6 @@ module.exports = {
       "Ningun pokemon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
   },
   REACTIONS: {
-    NO_CHANNEL_ID: "Por favor proporciona el ID del canal",
     NO_ROLE: "Por favor proporciona un rol valido",
     CHANNEL_NOT_FOUND: "El canal con el ID `{channelId}` no fue encontrado",
     TITLE: "Rol por reaccion",
@@ -420,12 +427,21 @@ module.exports = {
     DELETE_SUCCESS: "Se ha eliminado la reacción",
     FOUND_NO_MSG:
       "La reaccion fue encontrada pero el mensaje no, la reaccion ha sido eliminada de la base de datos",
+    ROLES:
+      "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766",
+    EMOJIS:
+      "Please send your emojis below. The order will match with the order of the roles. Separate with a space",
+    VALID_EMOJI: "You must provide a valid emojis (no custom emojis)!",
   },
   REMINDER: {
     SUCCESS: "Success! I will ping you **in this channel** in {time}",
     REMOVE_SUCCESS: "Successfully removed your reminder",
     NO_REMINDER_SET: "You don't have a reminder set",
     INVALID_DATE: "That is not a valid date",
+    NO_ACTIVE_REM: "User doesn't have any active reminders",
+    MESSAGE: "Message:",
+    TIME: "Time:",
+    USER_REMINDERS: "{memberUsername}'s active reminders",
   },
   COVID: {
     CASES: "Cases",
@@ -601,6 +617,8 @@ module.exports = {
     ALREADY_ACTIVE_TICKET: "You already have an active ticket",
     TICKET_FOR: "Support ticket for: {member}",
     CREATED: "Successfully created ticket!",
+    NOT_ENABLED: "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
+    TICKET: "ticket-#{Id}",
   },
   EVENTS: {
     CHANNEL_CREATED: "Channel Created",

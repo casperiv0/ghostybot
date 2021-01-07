@@ -12,12 +12,12 @@ module.exports = {
       "https://nekobot.xyz/api/image?type=gonewild"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const gonewild = BaseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`
       )
-      .setImage(`${data.message}`);
+      .setImage(data.message);
 
-    message.channel.send(embed);
+    message.channel.send(gonewild);
   },
 };

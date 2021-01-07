@@ -28,9 +28,7 @@ module.exports = {
       );
     }
 
-    message.channel.send(
-      "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766"
-    );
+    message.channel.send(lang.REACTIONS.ROLES);
 
     const roleMsgs = await message.channel.awaitMessages(filter, {
       time: 600000,
@@ -38,15 +36,13 @@ module.exports = {
       errors: ["time"],
     });
     const roleMsg = roleMsgs.first();
-    roles = parseRoles(roleMsg, guild);
+    roles = parseRoles(roleMsg, bot);
 
     if (!roles[0]) {
-      return message.channel.send("You must provide a valid role id!");
+      return message.channel.send(lang.REACTIONS.NO_ROLE);
     }
 
-    message.channel.send(
-      "Please send your emojis below. The order will match with the order of the roles. Separate with a space"
-    );
+    message.channel.send(lang.REACTIONS.EMOJIS);
 
     const emojiMsgs = await message.channel.awaitMessages(filter, {
       time: 600000,
@@ -57,7 +53,7 @@ module.exports = {
     emojis = parseEmojis(emojiMsg);
 
     if (!emojis[0]) {
-      return message.channel.send("You must provide a valid emojis (no custom emojis)!");
+      return message.channel.send(lang.REACTIONS.VALID_EMOJI);
     }
 
     const embed = BaseEmbed(message)
@@ -99,7 +95,7 @@ function createDescription(roles, emojis) {
   return strings.join("\n");
 }
 
-function parseRoles(msg, guild) {
+function parseRoles(msg, bot) {
   const content = msg.content.trim().split(/ +/g);
 
   // Remove any duplicates
@@ -107,10 +103,10 @@ function parseRoles(msg, guild) {
 
   let roles = [];
 
-  filtered.forEach(async (roleId) => {
-    const role = guild.roles.cache.get(roleId) || (await guild.roles.fetch(roleId));
+  filtered.forEach(async (Role) => {
+    const role = bot.findRole(msg, Role);
 
-    roles = [...roles, role];
+    roles = [...roles, role.id];
     return role;
   });
 

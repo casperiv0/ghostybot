@@ -29,7 +29,7 @@ module.exports = {
     const embed = BaseEmbed(message)
       .setTitle(song.title)
       .setURL(song.url)
-      .setAuthor(`🎵 Now ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}`)
+      .setAuthor(`🎵 ${lang.MUSIC.NOW} ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}`)
       .setImage(song.thumbnail)
       .setDescription(
         `

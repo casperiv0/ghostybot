@@ -1,3 +1,5 @@
+const { dashboard } = require("../../../config.json");
+
 module.exports = {
   name: "createticket",
   description: "Creates a ticket",
@@ -7,14 +9,12 @@ module.exports = {
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guild = await bot.getGuildById(message.guild.id);
-    const tickets = message.guild.channels.cache.filter((ch) => ch.name.startsWith("ticket-"));
+    const tickets = message.guild.channels.cache.filter((ch) => ch.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", '')));
     const ticketId = tickets.size + 1;
     let hasActiveTicket = false;
 
     if (!guild.ticket_data.enabled) {
-      return message.channel.send(
-        "Tickets are not enabled for this guild! An administrator can enable it in GhostyBot's settings"
-      );
+      return message.channel.send(lang.TICKET.NOT_ENABLED.replace("{botName}", dashboard.botName));
     }
 
     tickets.forEach((ch) => {
@@ -43,7 +43,7 @@ module.exports = {
       },
     ];
 
-    const channel = await message.guild.channels.create(`ticket-#${ticketId}`, {
+    const channel = await message.guild.channels.create(lang.TICKET.TICKET.replace("{Id}", ticketId), {
       type: "text",
       nsfw: false,
       topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
