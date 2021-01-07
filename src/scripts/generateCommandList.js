@@ -1,6 +1,7 @@
 const targetFile = "./docs/COMMANDS.md";
 const fs = require("fs");
 const categoriesData = require("../data/categories.json");
+const { dashboard } = require("../../config.json");
 
 module.exports = (bot) => {
   const detailedCommandList = mapDetailedCommands(bot.commands);
@@ -82,10 +83,10 @@ ${commands
 }
 
 function writeToFile(detailedCommandList, notDetailedCommandList, length) {
-  const DEFAULT = `# Ghostybot Command list
+  const DEFAULT = `# ${dashboard.botName} Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of ${length} commands.
+${dashboard.botName} has a total of ${length} commands.
 
 Click any of the command names for more information
 

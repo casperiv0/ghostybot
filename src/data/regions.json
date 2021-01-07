@@ -1,62 +1,22 @@
-[
-    {
-        "keys": ["europe", "eu-west", "eu-central"],
-        "flag": ":flag_eu:"
-    },
-    {
-        "keys": ["brazil"],
-        "flag": ":flag_br:"
-    },
-    {
-        "keys": ["hongkong"],
-        "flag": ":flag_hk:"
-    },
-    {
-        "keys":[ "india"],
-        "flag": ":flag_in:"
-    },
-    {
-        "keys": ["japan"],
-        "flag": ":flag_jp:"
-    },
-    {
-        "keys": ["russia"],
-        "flag": ":flag_ru:"
-    },
-    {
-        "keys": ["singapore"],
-        "flag": ":flag_sg:"
-    },
-    {
-        "keys": ["southafrica"],
-        "flag": ":flag_za:"
-    },
-    {
-        "keys": ["sydney"],
-        "flag": ":flag_au:"
-    },
-    {
-        "keys": ["frankfurt"],
-        "flag": ":flag_de:"
-    },
-        {
-        "keys": ["us-central", "us-east", "us-west", "us-south"],
-        "flag": ":flag_us:"
-    },
-    {
-        "keys": ["amsterdam"],
-        "flag": ":flag_nl:"
-    },
-    {
-        "keys": ["dubai"],
-        "flag": ":flag_ae:"
-    },
-    {
-        "keys": ["south-korea"],
-        "flag": ":flag_kr:"
-    },
-    {
-        "keys": ["london"],
-        "flag": ":flag_gb:"
-    }
-]
+{
+    "europe": ":flag_eu: Europe",
+    "eu-west": ":flag_eu: Europe-West",
+    "eu-central": ":flag_eu: Europe-Central",
+    "brazil": ":flag_br: Brazil",
+    "hongkong": ":flag_hk: Hongkong",
+    "india": ":flag_in: India",
+    "japan": ":flag_jp: Japan",
+    "russia": ":flag_ru: Russia",
+    "singapore": ":flag_sg: Singapore",
+    "southafrica": ":flag_za: South Africa",
+    "sydney": ":flag_au: Sydney", 
+    "frankfurt": ":flag_de: Frankfurt",
+    "us-central": ":flag_us: USA-Central",
+    "us-east": ":flag_us: US-East",
+    "us-west": ":flag_us: US-West",
+    "us-south": ":flag_us: US-South",
+    "amsterdam": ":flag_nl: Amsterdam",
+    "dubai": ":flag_ae: Dubai",
+    "south-korea": ":flag_kr: South Korea",
+    "london": ":flag_gb: London"
+}

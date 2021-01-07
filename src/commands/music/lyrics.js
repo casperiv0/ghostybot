@@ -9,11 +9,12 @@ module.exports = {
   category: "music",
   requiredArgs: ["song title"],
   async execute(bot, message, args) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const title = encodeURIComponent(args.join(" "));
     const song = await (
       await fetch("https://some-random-api.ml/lyrics?title=" + title)
     ).json();
-    if (song.error) return message.channel.send(`No lyrics found for ${title}.`)
+    if (song.error) return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title))
     const songTitle = song.title;
     const songAuthor = song.author;
     const songThumbnail = song.thumbnail.genius;

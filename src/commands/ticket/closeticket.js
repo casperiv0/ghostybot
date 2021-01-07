@@ -8,7 +8,7 @@ module.exports = {
     const channel = message.channel;
     const lang = await bot.getGuildLang(message.guild.id);
 
-    if (!channel.name.startsWith("ticket-")) {
+    if (!channel.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ''))) {
       return message.channel.send(lang.TICKET.CANNOT_DO_ACTION);
     }
 
