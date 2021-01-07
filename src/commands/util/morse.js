@@ -1,4 +1,3 @@
-const { lang } = require("moment");
 const morseCode = require("../../data/morse");
 
 module.exports = {
