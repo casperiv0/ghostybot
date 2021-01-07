@@ -5,7 +5,7 @@ module.exports = {
     description: "Convert a string to morse code",
     category: "util",
     requiredArgs: ["text"],
-    execute(bot, message, args) {
+    async execute(bot, message, args) {
         const lang = await bot.getGuildLang(message.guild.id);
         const morse = args
             .join(" ")
