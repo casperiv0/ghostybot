@@ -235,6 +235,7 @@ module.exports = {
   },
   UTIL: {
     PROCESSING_IMAGE: "⚙ Processing Image..",
+    TEXT_NOT_SUP: "That text is not supported",
     AVATAR: "Avatar",
     NOT_AFK: "You are not afk anymore",
     AFK: "You are now afk",
