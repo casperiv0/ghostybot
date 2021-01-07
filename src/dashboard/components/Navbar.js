@@ -43,7 +43,9 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-content">
         <Link href="/dashboard">
-          <a className="nav-icon-link">{dashboard.botName} <span className="nav-icon-extra">Dashboard</span></a>
+          <a className="nav-icon-link">
+            {dashboard.botName} <span className="nav-icon-extra">Dashboard</span>
+          </a>
         </Link>
         <div className="dropdown-container">
           <button className="nav-link-dropdown">

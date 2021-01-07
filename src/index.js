@@ -50,6 +50,7 @@ logs(bot);
   createStarboard,
   toCapitalize,
   findRole,
+  sendErrorLog,
 ].forEach((func) => {
   bot[func.name] = func;
 });

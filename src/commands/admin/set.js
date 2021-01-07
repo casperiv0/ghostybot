@@ -23,7 +23,7 @@ module.exports = {
     const lang = await bot.getGuildLang(message.guild.id);
     const languages = bot.getLanguages();
     const guildId = message.guild.id;
-    const { prefix, starboards_channel_id } = await getGuildById(guildId);
+    const { prefix, starboards_data } = await getGuildById(guildId);
     const option = args[0];
     const item = message.mentions.channels.first() || message.mentions.roles.first();
     const language = args[1];
@@ -91,7 +91,14 @@ module.exports = {
       }
       case "starboards-channel": {
         updateItem("starboards_data", { enabled: true, channel_id: item?.id }, guildId);
-        bot.createStarboard(bot, item, starboards_channel_id);
+        bot.createStarboard(bot, item, { emoji: "⭐" }, starboards_data.channel_id);
+        updateGuildById(guildId, {
+          starboards_Data: {
+            enabled: true,
+            channel_id: item.id,
+            emoji: "⭐",
+          },
+        });
         return message.channel.send(lang.ADMIN.SET_STARBOARD_CHAN.replace("{channel}", item));
       }
       case "member-count-channel": {

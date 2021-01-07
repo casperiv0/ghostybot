@@ -205,7 +205,7 @@ const Settings = ({ guild, languages, isAuth }) => {
         {
           type: "input",
           id: "starboards_emoji",
-          value: starboardsData?.emoji || "",
+          value: starboardsData?.emoji || "⭐",
           onChange: (e) =>
             setStarboardsData((prev) => ({
               ...prev,

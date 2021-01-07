@@ -504,12 +504,19 @@ function updateMuteChannelPerms(guild, memberId, perms) {
  *
  * @param {import("discord.js").Client} bot
  * @param {import("discord.js").Channel} channel
+ * @param {Object} options
  */
-function createStarboard(bot, channel, deleteOld) {
+async function createStarboard(bot, channel, options, deleteOld) {
   if (deleteOld) {
     bot.starboardsManager.delete(deleteOld);
   }
-  bot.starboardsManager.create(channel);
+
+  await bot.starboardsManager.create(channel, {
+    ...options,
+    selfStar: true,
+    starEmbed: true,
+    attachments: true,
+  });
 }
 
 /* DASHBOARD FUNCTIONS */

@@ -77,22 +77,29 @@ export default async function handler(req, res) {
       }
 
       if (body?.starboards_data?.enabled) {
-        if (body.starboards_data?.channel_id && body.starboards_data?.channel_id !== "Disabled") {
-          if (g.starboards_data?.channel_id) {
-            try {
-              req.bot.starboardsManager.delete(g.starboards_data.channel_id);
-              // eslint-disable-next-line no-empty
-            } catch {}
+        /**
+         * check if starboards is enabled and no channel is provider
+         */
+        if (body.starboards_data?.channel_id !== "Disabled") {
+          try {
+            const starboard = req.bot.starboardsManager.starboards.find(
+              (s) => s.channelID === g.starboards_data?.channel_id
+            );
+
+            await req.bot.createStarboard(
+              req.bot,
+              {
+                id: body?.starboards_data?.channel_id,
+                guild: { id: g.guild_id },
+              },
+              {
+                emoji: body?.starboards_data?.emoji || "⭐",
+              },
+              starboard ? starboard?.channelID : undefined
+            );
+          } catch (e) {
+            req.bot.sendErrorLog(req.bot, e, "error");
           }
-          req.bot.starboardsManager.create(
-            {
-              id: body?.starboards_data?.channel_id,
-              guild: { id: g.guild_id },
-            },
-            {
-              emoji: body?.starboards_data?.emoji || "⭐",
-            }
-          );
         } else {
           return res.json({
             error: "Starboards channel must be provided when starboards is enabled!",
@@ -100,11 +107,15 @@ export default async function handler(req, res) {
           });
         }
       } else {
-        if (body?.starboards_data?.enabled === false) {
-          try {
-            req.bot.starboardsManager.delete(g.starboards_data.channel_id);
-            // eslint-disable-next-line no-empty
-          } catch {}
+        try {
+          req.bot.starboardsManager.delete(g.starboards_data.channel_id);
+          // eslint-disable-next-line no-empty
+        } catch (e) {
+          req.bot.sendErrorLog(req.bot, e, "error");
+          return res.json({
+            error: "An error occurred when deleting the starboard, please try again later",
+            status: "error",
+          });
         }
       }
 
