@@ -5,13 +5,12 @@ module.exports = {
   name: "changemymind",
   description: "Change my mind",
   category: "image",
+  requiredArgs: ["text"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
-    if (!text) return message.channel.send("Please provide text");
-
-    const sendMsg = await message.channel.send("⚙ Processing Image..");
+    const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=changemymind&text=${text}`

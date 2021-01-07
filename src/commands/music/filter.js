@@ -21,7 +21,7 @@ module.exports = {
     }
 
     if (!filters.includes(filter)) {
-      return message.channel.send("That filter was not found");
+      return message.channel.send(lang.MUSIC.FILTER_NOT_FOUND);
     }
 
     const currentFilters = queue.filters;
@@ -29,26 +29,27 @@ module.exports = {
     switch (option.toLowerCase()) {
       case "set": {
         if (currentFilters[filter] === true) {
-          return message.channel.send(`filter \`${filter}\` is already enabled`);
+          return message.channel.send(lang.MUSIC.FILTER_ALREADY_ENABLED.replace("{filter}", filter));
         }
 
         await bot.player.setFilters(message, {
           [filter]: true,
         });
-        return message.channel.send(`Successfully applied ${filter}`);
+        return message.channel.send(lang.MUSIC.SUC_APPLIED_FILTER.replace("{filter}", filter));
       }
       case "remove": {
         if (currentFilters[filter] === false) {
-          return message.channel.send(`filter \`${filter}\` is not enabled?`);
+          return message.channel.send(lang.MUSIC.FILTER_NOT_ENABLED.replace("{filter}", filter));
         }
 
         await bot.player.setFilters(message, {
           [filter]: false,
         });
-        return message.channel.send(`Successfully removed ${filter}`);
+        return message.channel.send(lang.MUSIC.SUC_REM_FILTER.replace("{filter}", filter));
       }
       default: {
-        return message.channel.send(`${option} is not a valid option \`set\`, \`remove\``);
+        return message.channel.send(lang.MUSIC.NOT_VALID_OPTION
+          .replace("{option}", option));
       }
     }
   },

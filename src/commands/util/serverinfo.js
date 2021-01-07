@@ -1,4 +1,4 @@
-const { formatDate, toCapitalize } = require("../../utils/functions");
+const { formatDate } = require("../../utils/functions");
 const regions = require("../../data/regions.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
@@ -27,9 +27,7 @@ module.exports = {
       dynamic: true,
     });
 
-    const regionKey = guild.region;
-    const regionData = regions.filter((region) => region.keys.includes(regionKey))[0];
-    const region = `${regionData.flag ? regionData.flag : ""} ${toCapitalize(regionKey)}`;
+    const region = regions[guild.region];
 
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;

@@ -6,10 +6,15 @@ module.exports = {
   category: "nsfw",
   nsfwOnly: true,
   async execute(bot, message) {
+    const lang = await bot.getGuildLang(message.guild.id);
     const data = await bot.neko.sfw.wallpaper();
 
-    const embed = BaseEmbed(message).setImage(data.url);
+    const wallpaper = BaseEmbed(message)
+      .setDescription(
+        `${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`
+      )
+      .setImage(data.url);
 
-    message.channel.send(embed);
+    message.channel.send(wallpaper);
   },
 };

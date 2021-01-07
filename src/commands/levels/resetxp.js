@@ -36,7 +36,7 @@ module.exports = {
       })
       .catch((e) => {
         Logger.error("resetxp", e?.stack || e);
-        message.channel.send("An error occurred");
+        message.channel.send(lang.GLOBAL.ERROR);
       });
   },
 };

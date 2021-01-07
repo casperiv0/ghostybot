@@ -12,12 +12,12 @@ module.exports = {
       "http://api.oboobs.ru/boobs/0/1/random"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const boobs = BaseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(http://media.oboobs.ru/${data[0].preview})`
       )
       .setImage(`http://media.oboobs.ru/${data[0].preview}`);
 
-    message.channel.send(embed);
+    message.channel.send(boobs);
   },
 };
