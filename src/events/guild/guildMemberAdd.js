@@ -1,4 +1,3 @@
-const { DEFAULT_MESSAGE } = require("../../models/Guild.model");
 const BaseEmbed = require("../../modules/BaseEmbed");
 const { getGuildById, parseMessage } = require("../../utils/functions");
 
@@ -10,7 +9,12 @@ module.exports = {
     const guild = await getGuildById(member.guild.id);
     const welcomeData = guild?.welcome_data;
     if (!welcomeData.enabled) return;
-    const message = welcomeData?.message || DEFAULT_MESSAGE;
+    const message =
+      welcomeData?.message ||
+      `**Username:** {user.username}
+    **Tag:** {user.tag}
+    **Id:** {user.id}
+    `;
 
     if (welcomeData.channel_id) {
       if (!member.guild.channels.cache.find((ch) => ch.id === welcomeData.channel_id)) return;

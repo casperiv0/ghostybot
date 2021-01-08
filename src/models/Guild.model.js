@@ -56,6 +56,3 @@ const guildSchema = new Schema({
 });
 
 module.exports = models.Guild || model("Guild", guildSchema);
-module.exports = {
-  DEFAULT_MESSAGE,
-};
