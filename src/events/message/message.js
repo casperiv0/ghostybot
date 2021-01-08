@@ -37,7 +37,7 @@ module.exports = {
     const disabledCategories = guild?.disabled_categories;
 
     const ignoredChannels = guild?.ignored_channels;
-    if (ignoredChannels.includes(message.channel.id)) return;
+    if (ignoredChannels?.includes(message.channel.id)) return;
 
     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const serverPrefix = guild.prefix;

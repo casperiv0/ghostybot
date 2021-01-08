@@ -413,7 +413,8 @@ async function getWebhook(guild) {
   if (!guild.me.hasPermission(["MANAGE_WEBHOOKS"])) return;
   const w = await guild.fetchWebhooks();
   const g = await getGuildById(guild.id);
-  const webhook = w.find((w) => w.name === `audit-logs-${g.audit_channel}`);
+  if (!g) return;
+  const webhook = w.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
   if (!webhook) return null;
 
   return webhook;
