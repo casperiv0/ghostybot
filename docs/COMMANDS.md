@@ -1513,7 +1513,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3483,7 +3483,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 

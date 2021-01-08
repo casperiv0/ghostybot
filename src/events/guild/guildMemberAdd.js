@@ -1,3 +1,4 @@
+const { DEFAULT_MESSAGE } = require("../../models/Guild.model");
 const BaseEmbed = require("../../modules/BaseEmbed");
 const { getGuildById, parseMessage } = require("../../utils/functions");
 
@@ -9,6 +10,7 @@ module.exports = {
     const guild = await getGuildById(member.guild.id);
     const welcomeData = guild?.welcome_data;
     if (!welcomeData.enabled) return;
+    const message = welcomeData?.message || DEFAULT_MESSAGE;
 
     if (welcomeData.channel_id) {
       if (!member.guild.channels.cache.find((ch) => ch.id === welcomeData.channel_id)) return;
@@ -19,7 +21,7 @@ module.exports = {
         .setTitle(`Welcome to **${member.guild.name}**`)
         .setThumbnail(avatar)
         .setDescription(
-          parseMessage(welcomeData?.message, member.user, {
+          parseMessage(message, member.user, {
             author: member.user,
             guild: member.guild,
           })
