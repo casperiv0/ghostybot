@@ -426,8 +426,8 @@ async function getWebhook(guild) {
  */
 function parseMessage(message, user, msg) {
   const newMessage = message
-    .split(" ")
-    .map((word) => {
+    ?.split(" ")
+    ?.map((word) => {
       const { username, tag, id, discriminator, createdAt } = user;
       let w = word;
 
