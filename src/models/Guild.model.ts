@@ -1,9 +1,34 @@
-const { model, Schema, models } = require("mongoose");
+import { model, Schema, models, Document, ObjectId } from "mongoose";
 
 const DEFAULT_MESSAGE = `**Username:** {user.username}
 **Tag:** {user.tag}
 **Id:** {user.id}
 `;
+
+export interface GuildData {
+  _id: ObjectId;
+  guild_id: string;
+  prefix: string;
+  store: StoreItem[];
+  blacklistedwords: string[];
+  announcement_channel: string | null;
+  suggest_channel: string | null;
+  audit_channel: string | null;
+}
+
+export interface StoreItem {
+  name: string;
+  price: number;
+}
+
+export interface IGuild extends Document {
+  guild_id: string;
+  store: StoreItem[];
+  blacklistedwords: string[];
+  announcement_channel: string | null;
+  suggest_channel: string | null;
+  audit_channel: string | null;
+}
 
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
@@ -55,4 +80,4 @@ const guildSchema = new Schema({
   },
 });
 
-module.exports = models.Guild || model("Guild", guildSchema);
+export default models.Guild || model("Guild", guildSchema);

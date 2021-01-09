@@ -1,4 +1,20 @@
-const { model, Schema, models } = require("mongoose");
+import { model, Schema, models, Document } from "mongoose";
+import { AfkObj, Mute, Reminders } from "../utils/Util";
+
+export interface IUser extends Document {
+  user_id: string;
+  guild_id: string;
+  inventory: any[];
+  money: number;
+  bank: number;
+  daily: number;
+  weekly: number;
+  work: number;
+  xp: number;
+  afk: AfkObj;
+  mute: Mute;
+  reminder: Reminders;
+}
 
 const userSchema = new Schema({
   user_id: { type: String, required: true },
@@ -35,4 +51,4 @@ const userSchema = new Schema({
   },
 });
 
-module.exports = models.User || model("User", userSchema);
+export default models.User || model<IUser>("User", userSchema);
