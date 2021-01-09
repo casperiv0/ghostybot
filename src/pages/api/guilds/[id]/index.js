@@ -80,7 +80,10 @@ export default async function handler(req, res) {
         /**
          * check if starboards is enabled and no channel is provider
          */
-        if (body.starboards_data?.channel_id !== "Disabled") {
+        if (
+          body.starboards_data?.channel_id !== "Disabled" ||
+          body.starboards_data?.channel_id !== null
+        ) {
           try {
             const starboard = req.bot.starboardsManager.starboards.find(
               (s) => s.channelID === g.starboards_data?.channel_id
@@ -111,11 +114,14 @@ export default async function handler(req, res) {
           req.bot.starboardsManager.delete(g.starboards_data.channel_id);
           // eslint-disable-next-line no-empty
         } catch (e) {
-          req.bot.sendErrorLog(req.bot, e, "error");
-          return res.json({
-            error: "An error occurred when deleting the starboard, please try again later",
-            status: "error",
-          });
+          // eslint-disable-next-line quotes
+          if (!e?.stack?.includes('Error: The channel "')) {
+            req.bot.sendErrorLog(req.bot, e, "error");
+            return res.json({
+              error: "An error occurred when deleting the starboard, please try again later",
+              status: "error",
+            });
+          }
         }
       }
 
