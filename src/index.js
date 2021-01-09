@@ -32,6 +32,9 @@ const MongStarboardsManager = require("./modules/StarboardsManager");
 const bot = new Client({
   disableMentions: "everyone",
   partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION"],
+  ws: {
+    intents: ["GUILD_MEMBERS"],
+  },
   restRequestTimeout: 25000,
 });
 logs(bot);
