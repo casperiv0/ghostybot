@@ -314,10 +314,11 @@ async function getGuildLang(guildId) {
  * @param {"warning" | "error"} type
  * @param {?string} msgContent
  */
-function sendErrorLog(bot, error, type, msgContent) {
-  const channel = bot.channels.cache.get(errorLogsChannelId);
+async function sendErrorLog(bot, error, type, msgContent) {
+  const channel =
+    bot.channels.cache.get(errorLogsChannelId) || (await bot.channels.fetch(errorLogsChannelId));
   if (!channel || !errorLogsChannelId) {
-    return Logger.error("UNHANDLED ERROR", error);
+    return Logger.error("UNHANDLED ERROR", error?.stack || error);
   }
 
   const message = {
