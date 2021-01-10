@@ -1,4 +1,3 @@
-const { getUserById, updateUserById } = require("../../utils/functions");
 const jobs = require("../../data/jobs.json");
 const moment = require("moment");
 const BaseEmbed = require("../../modules/BaseEmbed");
@@ -12,7 +11,7 @@ module.exports = {
     const member = message.author;
     const timeout = 3600000;
 
-    const { user } = await getUserById(member.id, message.guild.id);
+    const { user } = await bot.getUserById(member.id, message.guild.id);
     const work = user.work;
 
     if (work !== null && timeout - (Date.now() - work) > 0) {
@@ -26,7 +25,7 @@ module.exports = {
       const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
       const embed = BaseEmbed(message)
-        .setTitle("Work!")
+        .setTitle(lang.ECONOMY.WORK)
         .setDescription(
           `${lang.ECONOMY.WORKED
             .replace("{member}", member.username)
@@ -36,7 +35,7 @@ module.exports = {
 
       message.channel.send(embed);
 
-      await updateUserById(member.id, message.guild.id, {
+      await bot.updateUserById(member.id, message.guild.id, {
         money: user.money + amount,
         work: Date.now(),
       });

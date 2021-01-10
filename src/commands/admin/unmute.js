@@ -1,5 +1,3 @@
-const { getUserById, updateUserById } = require("../../utils/functions");
-
 module.exports = {
   name: "unmute",
   description: "Unmute a user",
@@ -7,6 +5,7 @@ module.exports = {
   usage: "<@user>",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
+  requiredArgs: ["user"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const mutedMember = await bot.findMember(message, args);
@@ -17,7 +16,7 @@ module.exports = {
         : message.guild.roles.cache.find((r) => r.id === muted_role_id);
 
     if (!mutedMember) {
-      return message.channel.send(lang.MEMBER.NOT_FOUND);
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
     }
 
     const mutedRole = message.guild.roles.cache.find((r) => r.id === muted_role.id);
@@ -30,9 +29,9 @@ module.exports = {
       channel.permissionOverwrites.get(mutedMember.id)?.delete();
     });
 
-    const { user } = await getUserById(mutedMember.user.id, message.guild.id);
+    const { user } = await bot.getUserById(mutedMember.user.id, message.guild.id);
     if (user.mute.muted) {
-      await updateUserById(mutedMember.user.id, message.guild.id, {
+      await bot.updateUserById(mutedMember.user.id, message.guild.id, {
         mute: {
           muted: false,
           ends_at: null,

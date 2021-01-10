@@ -3,8 +3,10 @@ module.exports = {
   aliases: ["disconnect"],
   description: "voicekick or disconnect a user from a voice channel",
   category: "admin",
+  usage: "<user>",
   botPermissions: ["MOVE_MEMBERS"],
   memberPermissions: ["MOVE_MEMBERS"],
+  requiredArgs: ["user"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const kickUser = await bot.findMember(message, args);

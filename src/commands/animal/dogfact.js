@@ -15,6 +15,7 @@ module.exports = {
         const embed = BaseEmbed(message)
           .setTitle(lang.ANIMAL.DOG_FACT)
           .setDescription(fact);
+
         message.channel.send(embed);
       });
   },

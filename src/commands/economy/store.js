@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById, getGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 const { owners } = require("../../../config.json");
 const BaseEmbed = require("../../modules/BaseEmbed");
 
@@ -13,7 +13,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
-    const guild = await getGuildById(guildId);
+    const guild = await bot.getGuildById(guildId);
     const option = args[0];
     const prefix = guild.prefix;
     let item = args.slice(1)[0]; // Take first argument after option (item)
@@ -29,9 +29,7 @@ module.exports = {
       }
     } else {
       if (!guild?.store) {
-        return message.channel.send(
-          `The store for this server is empty! Ask a moderator to add items to the store using \`${prefix}store add <item>\` `
-        );
+        return message.channel.send(lang.ECONOMY.STORE_EMPTY.replace("{prefix}", prefix));
       }
 
       const items = guild.store

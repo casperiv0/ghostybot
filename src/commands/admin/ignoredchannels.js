@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById, getGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "ignoredchannels",
@@ -15,7 +15,7 @@ module.exports = {
     const option = args[0];
     const item = message.mentions.channels.first() || message.channel;
 
-    const guild = await getGuildById(guildId);
+    const guild = await bot.getGuildById(guildId);
     const ignoredChannels = guild?.ignored_channels;
 
     if (!option) {

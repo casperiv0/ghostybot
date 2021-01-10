@@ -1,5 +1,3 @@
-const { getUserById, updateUserById } = require("../../utils/functions");
-
 module.exports = {
   name: "addmoney",
   description: "Add money to a user",
@@ -12,7 +10,7 @@ module.exports = {
     const amount = args[1];
 
     if (!member) {
-      return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
     }
 
     if (member.user.bot) {
@@ -23,8 +21,8 @@ module.exports = {
       return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
-    const { user } = await getUserById(member.user.id, message.guild.id);
-    await updateUserById(member.user.id, message.guild.id, {
+    const { user } = await bot.getUserById(member.user.id, message.guild.id);
+    await bot.updateUserById(member.user.id, message.guild.id, {
       bank: user.bank + Number(amount),
     });
 

@@ -12,7 +12,10 @@ module.exports = {
       .then((data) => {
         const fact = data.fact;
 
-        const embed = BaseEmbed(message).setTitle(lang.ANIMAL.CAT_FACT).setDescription(fact);
+        const embed = BaseEmbed(message)
+        .setTitle(lang.ANIMAL.CAT_FACT)
+        .setDescription(fact);
+        
         message.channel.send(embed);
       });
   },

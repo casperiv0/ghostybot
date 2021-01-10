@@ -15,7 +15,7 @@ module.exports = {
       return message.channel.send(lang.ADMIN.STICKY_LONG);
     }
 
-    const msg = `${lang.ADMIN.STICKY_READ} \n\n ${stickyMsg}`;
+    const msg = lang.ADMIN.STICKY_READ + "\n\n" + stickyMsg;
 
     message.delete();
 

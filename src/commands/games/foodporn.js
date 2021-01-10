@@ -19,7 +19,7 @@ module.exports = {
     const comments = children.data.num_comments;
 
     const embed = BaseEmbed(message)
-      .setTitle(`${title}`)
+      .setTitle(title)
       .setURL(url)
       .setImage(image)
       .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
