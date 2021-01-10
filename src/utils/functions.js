@@ -41,7 +41,7 @@ async function getUserById(userId, guildId) {
 
     return {
       user,
-      warnings: warnings,
+      warnings: warnings || [],
     };
   } catch (e) {
     console.error(e);
