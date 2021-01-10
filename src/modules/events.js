@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const Logger = require("./Logger");
 const glob = require("glob");
-const types = ["channel", "client", "guild", "message", "player"];
+const types = ["channel", "client", "guild", "message", "player", "sb"];
 
 module.exports = function loadEvents(bot) {
   const eventFiles = glob.sync("./src/events/**/*.js");
@@ -11,7 +11,7 @@ module.exports = function loadEvents(bot) {
     let type = "Bot";
 
     types.forEach((t) => {
-      if (file.includes(t)) {
+      if (file.includes(`${t}.`)) {
         type = t;
       }
     });
@@ -24,10 +24,18 @@ module.exports = function loadEvents(bot) {
       throw new TypeError(`[ERROR]: name is required for events! (${file})`);
     }
 
-    if (type === "player") {
-      bot.player.on(event.name, event.execute.bind(null, bot));
-    } else {
-      bot.on(event.name, event.execute.bind(null, bot));
+    switch (type) {
+      case "player": {
+        bot.player.on(event.name, event.execute.bind(null, bot));
+        break;
+      }
+      case "sb": {
+        bot.starboardsManager.on(event.name, event.execute.bind(null, bot));
+        break;
+      }
+      default: {
+        bot.on(event.name, event.execute.bind(null, bot));
+      }
     }
 
     delete require.cache[require.resolve(`../../${file}`)];

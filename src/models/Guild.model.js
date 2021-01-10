@@ -39,7 +39,7 @@ const guildSchema = new Schema({
   },
   leave_data: {
     type: Object,
-    default: { message: DEFAULT_MESSAGE, enabled: true },
+    default: { message: DEFAULT_MESSAGE, enabled: false, channel_id: null },
   },
   ban_data: {
     type: Object,

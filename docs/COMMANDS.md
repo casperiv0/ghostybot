@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 209 commands.
+GhostyBot has a total of 210 commands.
 
 Click any of the command names for more information
 
@@ -293,13 +293,15 @@ Click any of the command names for more information
   ##
 ### Category: music
 
-**Total commands: 13**
+**Total commands: 14**
 
 [clearqueue:](#clearqueue) Clear the music playlist
 
 [filter:](#filter) Set or remove a filter
 
 [filters:](#filters) All music filters
+
+[loop:](#loop) Loop a song that is playing
 
 [lyrics:](#lyrics) Get lyrics for the song
 
@@ -2751,6 +2753,22 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## loop
+
+**Category:** music
+
+**Description:** Loop a song that is playing
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## lyrics
 
 **Category:** music
@@ -2763,7 +2781,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `song title`
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

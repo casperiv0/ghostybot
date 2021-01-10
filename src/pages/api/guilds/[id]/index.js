@@ -80,13 +80,18 @@ export default async function handler(req, res) {
         /**
          * check if starboards is enabled and no channel is provider
          */
-        if (
-          body.starboards_data?.channel_id !== "Disabled" ||
-          body.starboards_data?.channel_id !== null
-        ) {
+        if (body.starboards_data?.channel_id !== "Disabled") {
+          if (body?.starboards_data?.channel_id === null) {
+            return res.json({
+              error: "Starboards channel must be provided when starboards is enabled!",
+              status: "error",
+            });
+          }
           try {
             const starboard = req.bot.starboardsManager.starboards.find(
-              (s) => s.channelID === g.starboards_data?.channel_id
+              (s) =>
+                s.channelID === g.starboards_data?.channel_id &&
+                s.emoji === g.starboards_data?.emoji
             );
 
             await req.bot.createStarboard(
