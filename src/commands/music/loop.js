@@ -4,6 +4,7 @@ module.exports = {
   category: "music",
   async execute(bot, message) {
     const lang = await bot.getGuildLang(message.guild.id);
+
     if (!message.member.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
@@ -12,15 +13,14 @@ module.exports = {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
-        
     if (bot.player.getQueue(message).tracks.length > 1) {
-            const modeloop = !bot.player.getQueue(message).loopMode;
-            bot.player.setLoopMode(message, modeloop);
+      const modeloop = !bot.player.getQueue(message).loopMode;
+      bot.player.setLoopMode(message, modeloop);
     } else {
-            const moderepeat = !bot.player.getQueue(message).repeatMode;
-            bot.player.setRepeatMode(message, moderepeat);
-    };
+      const moderepeat = !bot.player.getQueue(message).repeatMode;
+      bot.player.setRepeatMode(message, moderepeat);
+    }
 
     message.react("🔁");
-   },
+  },
 };
