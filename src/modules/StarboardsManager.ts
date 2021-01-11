@@ -13,8 +13,8 @@ class MongStarboardsManager extends StarboardsManager {
     return true;
   }
 
-  async deleteStarboard(channelID: any) {
-    await StarboardModel.findOneAndDelete({ channelID });
+  async deleteStarboard(channelID: string, emoji: string) {
+    await StarboardModel.findOneAndDelete({ channelID, emoji });
 
     return true;
   }

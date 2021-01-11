@@ -1,9 +1,3 @@
-const {
-  getGuildById,
-  getUserById,
-  updateUserById,
-} = require("../../utils/functions");
-
 module.exports = {
   name: "buy",
   description: "Buy an item from the store",
@@ -14,8 +8,8 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
-    const guild = await getGuildById(guildId);
-    const { user } = await getUserById(message.author.id, message.guild.id);
+    const guild = await bot.getGuildById(guildId);
+    const { user } = await bot.getUserById(message.author.id, message.guild.id);
     const inventory = user?.inventory;
     const prefix = guild.prefix;
     let query = args[0];
@@ -50,12 +44,12 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
 
     if (!inventory) {
-      updateUserById(message.author.id, guildId, {
+      bot.updateUserById(message.author.id, guildId, {
         inventory: [item.name],
         money: user.money - item.price,
       });
     } else {
-      updateUserById(message.author.id, guildId, {
+      bot.updateUserById(message.author.id, guildId, {
         inventory: [...inventory, item.name],
         money: user.money - item.price,
       });

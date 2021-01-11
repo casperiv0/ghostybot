@@ -1,8 +1,7 @@
-const { getUserById, updateUserById } = require("../../utils/functions");
-
 module.exports = {
   name: "pay",
   description: "Give money to a user",
+  usage: "<member>, <amount>",
   category: "economy",
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
@@ -11,7 +10,7 @@ module.exports = {
     const amount = Number(args[1]);
 
     if (!member) {
-      return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);
     }
 
     if (member.user.bot) {
@@ -22,8 +21,8 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
-    const { user: receiver } = await getUserById(member.id, message.guild.id);
-    const { user: sender } = await getUserById(
+    const { user: receiver } = await bot.getUserById(member.id, message.guild.id);
+    const { user: sender } = await bot.getUserById(
       message.author.id,
       message.guild.id
     );
@@ -40,10 +39,10 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.CANNOT_PAY_SELF);
     }
 
-    await updateUserById(member.id, message.guild.id, {
+    await bot.updateUserById(member.id, message.guild.id, {
       money: receiver.money + amount,
     });
-    await updateUserById(message.author.id, message.guild.id, {
+    await bot.updateUserById(message.author.id, message.guild.id, {
       money: sender.money - amount,
     });
 

@@ -12,6 +12,7 @@ module.exports = {
   botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
   usage: "<user> <time> <reason>",
+  requiredArgs: ["user", "time", "reason"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const muteMember = await bot.findMember(message, args);

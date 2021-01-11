@@ -1,10 +1,9 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const { getGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "announce",
   description: "Announce something in a channel",
-  usage: "<channel> <text>",
+  usage: "[channel] <text>",
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
@@ -12,7 +11,7 @@ module.exports = {
     message.delete();
     if (!args[0]) return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL);
 
-    const guild = await getGuildById(message.guild.id);
+    const guild = await bot.getGuildById(message.guild.id);
     const announceChannel = guild.announcement_channel;
     let channel = message.mentions.channels.first();
     let text;
@@ -26,7 +25,9 @@ module.exports = {
       return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
     }
 
-    const embed = BaseEmbed(message).setTitle(lang.ADMIN.ANNOUNCEMENT).setDescription(text);
+    const embed = BaseEmbed(message)
+    .setTitle(lang.ADMIN.ANNOUNCEMENT)
+    .setDescription(text);
 
     bot.channels.cache.get(announceChannel ? announceChannel : channel.id).send(embed);
   },

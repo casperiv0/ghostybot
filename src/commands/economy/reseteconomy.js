@@ -1,5 +1,3 @@
-const { updateUserById } = require("../../utils/functions");
-
 module.exports = {
   name: "reseteconomy",
   description: "Reset all money/bank in this guild",
@@ -24,7 +22,7 @@ module.exports = {
           const users = await message.guild.members.fetch();
 
           users.forEach(async (user) => {
-            await updateUserById(user.id, message.guild.id, {
+            await bot.updateUserById(user.id, message.guild.id, {
               money: 0,
               bank: 0,
             });

@@ -1,20 +1,16 @@
-const { getUserById, removeUserWarnings } = require("../../utils/functions");
+const { removeUserWarnings } = require("../../utils/functions");
 
 module.exports = {
   name: "removeuserwarns",
   description: "Remove all warns from a user",
   category: "admin",
+  memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    if (!message.member.hasPermission("MANAGE_GUILD")) {
-      return message.channel.send(lang.ADMIN.NO_PERMISSIONS);
-    }
+    const member = await bot.findMember(message, args);
 
     const guildId = message.guild.id;
-    const member =
-      message.guild.member(message.mentions.users.first()) ||
-      message.guild.members.cache.get(args[1]);
 
     if (!member) {
       return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);
@@ -24,7 +20,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    const { warnings } = await getUserById(member.user.id, guildId);
+    const { warnings } = await bot.getUserById(member.user.id, guildId);
 
     if (warnings === null || !warnings[0]) {
       return message.channel.send(lang.ADMIN.NO_WARNINGS);

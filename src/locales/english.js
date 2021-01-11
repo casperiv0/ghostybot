@@ -205,6 +205,9 @@ module.exports = {
     RESET_CONF: "Reset all balance? y/n",
     RESET_SUCCESS: "Successfully reset everyone's balance",
     RESET_CANCEL: "reset-economy was canceled",
+    PROVIDE_AMOUNT: "Please provide an amount to withdraw",
+    NO_MONEY: "You don't have that much money in your bank!",
+    WORK: "Work!",
   },
   GAMES: {
     BETS_ON: "{member_1} bets on {member_2}",
@@ -473,8 +476,7 @@ module.exports = {
     ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",
     DEL_CMD_NOT_FOUND: "That command was not found",
     DEL_CMD_DELETED: "Successfully deleted the **{cmd}** Command",
-    DEL_CMD_NO_COMMANDS: "This guild doesn't have any custom commands",
-    BLACKLISTED_PROVIDE_OPTION: "Please provide an option '`add`, `remove`, `get`'",
+    DEL_CMD_NO_COMMANDS: "This guild doesn't have any custom commands", 
     BLACKLISTED_ALREADY_EXISTS: "**{item}** already exist in blacklisted words",
     BLACKLISTED_ADDED: "Successfully added **{item}** to blacklisted words",
     BLACKLISTED_NOT_EXISTS: "**{item}** does not exist in blacklisted words",
@@ -610,6 +612,8 @@ module.exports = {
     MEMBER_WARNS: "{memberTag}'s warnings",
     TOTAL_WARNS: "Total warnings",
     USE_WARNS: "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
+    ROLE_NOT_FOUND: "That role was not found",
+    GUILD_CONFIG: "{guildName}'s config",
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",
@@ -643,5 +647,7 @@ module.exports = {
     KICK_ADD: "Member Kicked",
     EXECUTED_BY: "Executed By",
     REASON: "Reason",
+    STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
+    STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
   },
 };

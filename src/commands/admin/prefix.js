@@ -1,4 +1,4 @@
-const { getGuildById, updateGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 const { owners } = require("../../../config.json");
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const prefix = args[0];
-    const guild = await getGuildById(message.guild.id);
+    const guild = await bot.getGuildById(message.guild.id);
 
     if (!prefix)
       return message.channel.send(

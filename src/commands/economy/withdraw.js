@@ -1,5 +1,3 @@
-const { getUserById, updateUserById } = require("../../utils/functions");
-
 module.exports = {
   name: "withdraw",
   description: "Withdraw money to your bank",
@@ -10,14 +8,14 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = message.author;
-    const { user } = await getUserById(member.id, message.guild.id);
+    const { user } = await bot.getUserById(member.id, message.guild.id);
     const bank = user.bank;
     let amount = args[0];
 
-    if (!amount) return message.reply("Please provide an amount to withdraw");
+    if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
 
     if (amount === "all") {
-      updateUserById(member.id, message.guild.id, {
+      bot.updateUserById(member.id, message.guild.id, {
         money: user.money + bank,
         bank: user.bank - bank,
       });
@@ -35,10 +33,10 @@ module.exports = {
     }
 
     if (bank < amount) {
-      return message.channel.send("You don't have that much money in your bank!");
+      return message.channel.send(lang.ECONOMY.NO_MONEY);
     }
 
-    await updateUserById(member.id, message.guild.id, {
+    await bot.updateUserById(member.id, message.guild.id, {
       money: user.money + Number(amount),
       bank: user.bank - amount,
     });

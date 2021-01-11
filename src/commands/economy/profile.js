@@ -1,9 +1,5 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const {
-  getGuildById,
-  getUserById,
-  calculateUserXp,
-} = require("../../utils/functions");
+const { calculateUserXp } = require("../../utils/functions");
 
 module.exports = {
   name: "profile",
@@ -20,8 +16,8 @@ module.exports = {
 
     const userId = member.id;
     const guildId = message.guild.id;
-    const { user } = await getUserById(userId, guildId);
-    const guild = await getGuildById(guildId);
+    const { user } = await bot.getUserById(userId, guildId);
+    const guild = await bot.getGuildById(guildId);
 
     const { money, bank, inventory, xp } = user;
     const level = calculateUserXp(xp);

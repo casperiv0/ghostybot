@@ -41,7 +41,7 @@ async function getUserById(userId, guildId) {
 
     return {
       user,
-      warnings: warnings,
+      warnings: warnings || [],
     };
   } catch (e) {
     console.error(e);
@@ -507,6 +507,7 @@ function updateMuteChannelPerms(guild, memberId, perms) {
  * @param {import("discord.js").Client} bot
  * @param {import("discord.js").Channel} channel
  * @param {Object} options
+ * @param {String} deleteOld
  */
 async function createStarboard(bot, channel, options, deleteOld) {
   if (deleteOld) {
@@ -518,6 +519,7 @@ async function createStarboard(bot, channel, options, deleteOld) {
     selfStar: true,
     starEmbed: true,
     attachments: true,
+    resolveImageUrl: true,
   });
 }
 

@@ -1,14 +1,14 @@
 module.exports = {
   name: "removeroleall",
   aliases: ["rrall", "rroleall", "takeroleall"],
-  description: "remove a role from all user of the current server",
+  description: "remove a role from all users of the current server",
   category: "admin",
   botPermissions: ["MANAGE_ROLES"],
   memberPermissions: ["MANAGE_ROLES"],
   requiredArgs: ["role"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
-    const role = await bot.findRole(message, args[0]);
+    const role = await bot.findRole(message, args.join(" "));
 
     if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
       return message.channel.send(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name));
