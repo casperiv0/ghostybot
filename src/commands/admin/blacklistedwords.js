@@ -7,7 +7,7 @@ module.exports = {
   usage: "<option> [word]",
   options: ["get", "add", "remove"],
   memberPermissions: ["ADMINISTRATOR"],
-  aliases: ["wordsfilter", "filterwords"],
+  aliases: ["wordsfilter", "filterwords", "blacklistedword"],
   requiredArgs: ["option"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
