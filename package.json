@@ -13,11 +13,6 @@
     "build": "next build",
     "migrate": "node ./src/db/migrations"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "./src/**/*.+(js)": [
       "eslint --fix",

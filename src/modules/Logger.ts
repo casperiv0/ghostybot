@@ -1,9 +1,9 @@
-const moment = require("moment");
-const chalk = require("chalk");
+import chalk from "chalk";
+import moment from "moment";
 
 class Logger {
   get now() {
-    return moment().format("DD-MM-YYYY, HH:mm:ss a");
+    return moment().format("DD-MM-YYYY, HH:mm:ss");
   }
 
   error(type: string, error: string) {

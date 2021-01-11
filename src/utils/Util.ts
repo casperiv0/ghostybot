@@ -1,10 +1,12 @@
 import {
   ClientUser,
+  Guild,
   GuildMember,
   Message,
   MessageEmbed,
   TextChannel,
   UserResolvable,
+  Webhook,
 } from "discord.js";
 import Bot from "../structures/Bot";
 import User, { IUser, UserUpdateData } from "../models/User.model";
@@ -163,6 +165,18 @@ export default class Util {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  async getWebhook(guild: Guild): Promise<Webhook | undefined> {
+    if (!guild.me?.hasPermission(["MANAGE_WEBHOOKS"])) return;
+
+    const w = await guild.fetchWebhooks();
+    const g = await this.getGuildById(guild.id);
+    if (!g) return;
+    const webhook = w.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
+    if (!webhook) return;
+
+    return webhook;
   }
 
   baseEmbed(message: Message | { author: ClientUser | null }): MessageEmbed {
