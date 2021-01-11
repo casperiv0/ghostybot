@@ -5,8 +5,8 @@ module.exports = {
   description: "Sets the welcome msg",
   category: "admin",
   usage: "<message>",
+  memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["message"],
-  memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const msg = args.join(" ");

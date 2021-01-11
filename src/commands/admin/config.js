@@ -19,7 +19,7 @@ module.exports = {
     const levelMsgs = guild?.level_up_messages;
 
     const embed = BaseEmbed(message)
-      .setTitle(`${name}'s config`)
+      .setTitle(lang.ADMIN.GUILD_CONFIG.replace("{guildName}", name))
       .addField(lang.GUILD.PREFIX, prefix)
       .addField(
         lang.GUILD.ANNOUNCE_CHANNEL,

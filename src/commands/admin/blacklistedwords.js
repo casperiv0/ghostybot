@@ -1,23 +1,20 @@
-const { getGuildById, updateGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "blacklistedwords",
   description: "Add/remove blacklisted words",
   category: "admin",
-  usage: "<add | remove | get> [word]",
+  usage: "<option> [word]",
   options: ["get", "add", "remove"],
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["wordsfilter", "filterwords"],
+  requiredArgs: ["option"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const [option, item] = args;
     const guildId = message.guild.id;
-    const guild = await getGuildById(guildId);
+    const guild = await bot.getGuildById(guildId);
     const blacklistWords = guild.blacklistedwords;
-
-    if (!option) {
-      return message.channel.send(lang.ADMIN.BLACKLISTED_PROVIDE_OPTION);
-    }
 
     switch (option) {
       case "add": {

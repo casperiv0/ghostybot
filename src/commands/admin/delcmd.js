@@ -1,4 +1,4 @@
-const { getGuildById, updateGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "delcmd",
@@ -11,7 +11,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const cmdName = args[0];
-    const guild = await getGuildById(message.guild.id);
+    const guild = await bot.getGuildById(message.guild.id);
     const commands = guild?.custom_commands;
 
     if (commands) {

@@ -3,7 +3,9 @@ const BaseEmbed = require("../../modules/BaseEmbed");
 module.exports = {
   name: "warnings",
   description: "Returns how many warnings a user has",
+  usage: "<user>",
   category: "admin",
+  requiredArgs: ["user"],
   async execute(bot, message, args) {
     const guild = await bot.getGuildById(message.guild.id);
     const lang = await bot.getGuildLang(message.guild.id);
@@ -13,7 +15,7 @@ module.exports = {
     const warningNr = args[1];
 
     if (!member) {
-      return message.channel.send(lang.MEMBER.NOT_FOUND);
+      return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
     }
 
     if (member.user.bot) {

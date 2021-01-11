@@ -1,5 +1,4 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const { getUserById } = require("../../utils/functions");
 
 module.exports = {
   name: "inventory",
@@ -15,7 +14,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    const { user } = await getUserById(member.id, message.guild.id);
+    const { user } = await bot.getUserById(member.id, message.guild.id);
     const inventory = user?.inventory;
 
     if (!inventory || !inventory?.[0]) {

@@ -13,7 +13,7 @@ module.exports = {
 
     const embed = BaseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data[0]})`)
-      .setImage(`${data[0]}`);
+      .setImage(data[0]);
 
     message.channel.send(embed);
   },

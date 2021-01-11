@@ -1,4 +1,4 @@
-const { getGuildById, updateGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 
 module.exports = {
   name: "addcmd",
@@ -12,7 +12,7 @@ module.exports = {
     const cmdName = args[0];
     const cmdResponse = args.slice(1).join(" ");
 
-    const guild = await getGuildById(message.guild.id);
+    const guild = await bot.getGuildById(message.guild.id);
     const commands = guild?.custom_commands;
 
     if (commands && commands.find((x) => x.name === cmdName.toLowerCase())) {

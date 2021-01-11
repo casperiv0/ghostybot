@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const { updateGuildById, getGuildById, createWebhook } = require("../../utils/functions");
+const { updateGuildById, createWebhook } = require("../../utils/functions");
 
 module.exports = {
   name: "set",
@@ -18,12 +18,12 @@ module.exports = {
     "member-count-channel",
     "starboards-channel",
   ],
-  memberPermissions: ["ADMINISTRATOR"],
+  memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const languages = bot.getLanguages();
     const guildId = message.guild.id;
-    const { prefix, starboards_data } = await getGuildById(guildId);
+    const { prefix, starboards_data } = await bot.getGuildById(guildId);
     const option = args[0];
     const item = message.mentions.channels.first() || message.mentions.roles.first();
     const language = args[1];

@@ -15,7 +15,7 @@ module.exports = {
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(${data.image})`
       )
-      .setImage(`${data.image}`);
+      .setImage(data.image);
 
     message.channel.send(embed);
   },

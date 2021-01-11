@@ -1,5 +1,5 @@
 const BaseEmbed = require("../../modules/BaseEmbed");
-const { updateGuildById, getGuildById } = require("../../utils/functions");
+const { updateGuildById } = require("../../utils/functions");
 const categories = require("../../data/categories.json");
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const option = args[0];
-    const guild = await getGuildById(message.guild.id);
+    const guild = await bot.getGuildById(message.guild.id);
 
     if (!option) {
       return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);

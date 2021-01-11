@@ -4,7 +4,8 @@ module.exports = {
   name: "say",
   description: "Let the bot say something",
   category: "admin",
-  memberPermissions: ["ADMINISTRATOR"],
+  memberPermissions: ["MANAGE_MESSAGES"],
+  requiredArgs: ["text | type(embed)"],
   execute(bot, message, args) {
     const type = args[0];
     let msg = args.join(" ");
