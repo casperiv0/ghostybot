@@ -46,7 +46,7 @@ Click any of the command names for more information
 
 [removerole:](#removerole) Remove a role from a user
 
-[removeroleall:](#removeroleall) remove a role from all user of the current server
+[removeroleall:](#removeroleall) remove a role from all users of the current server
 
 [removeuserwarns:](#removeuserwarns) Remove all warns from a user
 
@@ -587,7 +587,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -597,13 +597,13 @@ Click any of the command names for more information
 
 **Description:** Add/remove blacklisted words
 
-**Usage:** `<add | remove | get> [word]`
+**Usage:** `<option> [word]`
 
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `option`
 
 [Back to top](#ghostybot-command-list)
 
@@ -851,7 +851,7 @@ Click any of the command names for more information
 
 **Category:** admin
 
-**Description:** remove a role from all user of the current server
+**Description:** remove a role from all users of the current server
 
 **Usage:** `N/A`
 
@@ -871,7 +871,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Member Permissions:** None
+**Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
 
@@ -887,11 +887,11 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Member Permissions:** ADMINISTRATOR
+**Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text | type(embed)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -903,7 +903,7 @@ Click any of the command names for more information
 
 **Usage:** `<option> <channel>`
 
-**Member Permissions:** ADMINISTRATOR
+**Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
 
@@ -919,7 +919,7 @@ Click any of the command names for more information
 
 **Usage:** `<message>`
 
-**Member Permissions:** ADMINISTRATOR
+**Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
 
@@ -971,7 +971,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`, `time`, `reason`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1035,7 +1035,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1077,13 +1077,13 @@ Click any of the command names for more information
 
 **Description:** voicekick or disconnect a user from a voice channel
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** MOVE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MOVE_MEMBERS
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1093,13 +1093,13 @@ Click any of the command names for more information
 
 **Description:** voicemute a user
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** MUTE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1109,13 +1109,13 @@ Click any of the command names for more information
 
 **Description:** unmute a user from voice channel
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** MUTE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1125,13 +1125,13 @@ Click any of the command names for more information
 
 **Description:** Warns a user
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1141,13 +1141,13 @@ Click any of the command names for more information
 
 **Description:** Returns how many warnings a user has
 
-**Usage:** `N/A`
+**Usage:** `<user>`
 
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `user`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1285,13 +1285,13 @@ Click any of the command names for more information
 
 **Description:** Let a cow say something
 
-**Usage:** `N/A`
+**Usage:** `<text>`
 
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1717,7 +1717,7 @@ Click any of the command names for more information
 
 **Description:** Give money to a user
 
-**Usage:** `N/A`
+**Usage:** `<member>, <amount>`
 
 **Member Permissions:** None
 

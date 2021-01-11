@@ -71,6 +71,9 @@ module.exports = {
         await createWebhook(bot, item.id);
 
         message.channel.send(`${lang.ADMIN.AUD_CHAN_NOW} ${item}`);
+        updateGuildById(guildId, {
+          audit_channel: item.id,
+        });
         break;
       case "level-messages":
         updateItem("level_data", { enabled: true }, guildId);
