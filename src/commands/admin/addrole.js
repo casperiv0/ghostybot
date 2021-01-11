@@ -30,7 +30,7 @@ module.exports = {
 
     if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0)
       return message.channel.send(
-        lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", needsRole.name)
+        lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", needsRole.user.username)
       );
 
     if (needsRole.roles.cache.some((r) => role.id === r.id)) {
