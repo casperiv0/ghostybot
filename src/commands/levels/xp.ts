@@ -13,23 +13,24 @@ export default class XpCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    // const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args, true);
-    const lang = [] as any;
 
-    if (member.user?.bot) {
+    if (member?.user?.bot) {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    console.log(message);
+    if (!member) {
+      return message.channel.send(lang.MEMBER.NOT_FOUND);
+    }
 
-    const user = await this.bot.utils.getUserById("ddd", "dd");
+    const user = await this.bot.utils.getUserById(member?.user?.id, message.guild?.id);
 
     const embed = this.bot.utils
       .baseEmbed(message)
       .setTitle(`${member.user.username} ${lang.LEVELS.XP}`)
       .setDescription(`${lang.LEVELS.XP}: ${user?.xp}`);
 
-    message.channel.send({ embed });
+    return message.channel.send({ embed });
   }
 }

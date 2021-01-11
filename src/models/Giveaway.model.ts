@@ -1,4 +1,4 @@
-const { model, Schema, models } = require("mongoose");
+import { model, Schema, models, Document } from "mongoose";
 
 const GiveawaySchema = new Schema({
   messageID: String,
@@ -13,4 +13,4 @@ const GiveawaySchema = new Schema({
   hostedBy: String,
 });
 
-module.exports = models.Giveaway || model("Giveaway", GiveawaySchema);
+export default models.Giveaway || model("Giveaway", GiveawaySchema);

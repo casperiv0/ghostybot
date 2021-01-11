@@ -18,7 +18,7 @@ module.exports = (bot) => {
       req.bot = bot;
 
       handle(req, res, parsedUrl);
-    }).listen(port, (err) => {
+    }).listen(port, (err: string) => {
       if (err) throw err;
       bot.logger.log("dashboard", `Dashboard was started at: http://localhost:${port}`);
     });

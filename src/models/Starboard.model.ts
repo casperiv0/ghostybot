@@ -1,4 +1,4 @@
-const { model, Schema, models } = require("mongoose");
+import { model, Schema, models, Document } from "mongoose";
 
 const StarboardModel = new Schema({
   guildID: { type: String, required: true },
@@ -6,4 +6,4 @@ const StarboardModel = new Schema({
   options: { type: Object, default: {} },
 });
 
-module.exports = models.Starboard || model("Starboard", StarboardModel);
+export default models.Starboard || model("Starboard", StarboardModel);

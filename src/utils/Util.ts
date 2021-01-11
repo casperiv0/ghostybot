@@ -1,56 +1,14 @@
-import { ObjectId } from "mongoose";
 import {
   ClientUser,
   GuildMember,
   Message,
   MessageEmbed,
   TextChannel,
-  User as DiscordUser,
   UserResolvable,
 } from "discord.js";
 import Bot from "../structures/Bot";
-import User, { IUser } from "../models/User.model";
+import User, { IUser, UserUpdateData } from "../models/User.model";
 import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
-
-export interface UserData {
-  _id: ObjectId;
-  user_id: string;
-  guild_id: string;
-  inventory: any[];
-  money: number;
-  bank: number;
-  daily: number;
-  weekly: number;
-  work: number;
-  xp: number;
-  afk: AfkObj;
-  mute: Mute;
-  reminder: Reminders;
-}
-
-export interface AfkObj {
-  is_afk: boolean;
-  reason: string | null;
-}
-
-export interface Mute {
-  muted: boolean;
-  ends_at: number;
-  reason: string;
-}
-
-export interface Reminders {
-  hasReminder: boolean;
-  reminders: Reminder[];
-}
-
-export interface Reminder {
-  _id: string;
-  channel_id: string;
-  msg: string;
-  time: string;
-  ends_at: number;
-}
 
 export default class Util {
   bot: Bot;
@@ -59,7 +17,7 @@ export default class Util {
     this.bot = bot;
   }
 
-  async getUserById(userId: string, guildId: string): Promise<IUser | undefined> {
+  async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
     try {
       let user: IUser | undefined = await User.findOne({ user_id: userId, guild_id: guildId });
 
@@ -73,9 +31,13 @@ export default class Util {
     }
   }
 
-  async addUser(userId: string, guildId: string): Promise<IUser | undefined> {
+  async addUser(
+    userId: string,
+    guildId: string | undefined,
+    data?: UserUpdateData
+  ): Promise<IUser | undefined> {
     try {
-      const user: IUser = new User({ user_id: userId, guild_id: guildId });
+      const user: IUser = new User({ user_id: userId, guild_id: guildId, ...data });
 
       await user.save();
 
@@ -85,22 +47,22 @@ export default class Util {
     }
   }
 
-  async updateUserById(userId: string, guildId: string, data: UserData) {
+  async updateUserById(userId: string, guildId: string, data: UserUpdateData): Promise<void> {
     try {
-      if (typeof data !== "object") {
-        throw Error("'data' must be an object");
+      const user = await this.getUserById(userId, guildId);
+
+      if (!user) {
+        this.addUser(userId, guildId, data);
+        return;
       }
 
-      const user = await this.getUserById(userId, guildId);
-      if (!user) return;
-
-      User.findByIdAndUpdate({ user_id: userId, guild_id: guildId }, data);
+      await User.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
     } catch (e) {
       console.error(e);
     }
   }
 
-  async getGuildById(guildId: string): Promise<GuildData | undefined> {
+  async getGuildById(guildId: string | undefined): Promise<GuildData | undefined> {
     try {
       let guild = await GuildModel.findOne({ guild_id: guildId });
 
@@ -114,7 +76,7 @@ export default class Util {
     }
   }
 
-  async addGuild(guildId: string): Promise<IGuild | undefined> {
+  async addGuild(guildId: string | undefined): Promise<IGuild | undefined> {
     try {
       const guild: IGuild = new GuildModel({ guild_id: guildId });
 
@@ -126,7 +88,7 @@ export default class Util {
     }
   }
 
-  async sendErrorLog(error: any, type: "warning" | "error") {
+  async sendErrorLog(error: any, type: "warning" | "error"): Promise<void> {
     const channelId = this.bot.config.errorLogsChannelId;
     const channel = (this.bot.channels.cache.get(channelId) ||
       (await this.bot.channels.fetch(channelId))) as TextChannel;
@@ -165,12 +127,16 @@ export default class Util {
     message: Message,
     args: string[],
     allowAuthor: boolean
-  ): Promise<DiscordUser | GuildMember | undefined | null> {
+  ): Promise<GuildMember | undefined | null> {
     let member;
     if (!message.guild) return;
+    const mention = // Check if the first mention is not the bot prefix
+      message.mentions.users.first()?.id !== this.bot.user?.id
+        ? message.mentions.users.first()
+        : message.mentions.users.array()[1];
 
     member = message?.guild?.member(
-      message.mentions.users.first() ||
+      mention ||
         message.guild.members.cache.get(args[0]) ||
         message.guild.members.cache.find((m) => m.user.id === args[0]) ||
         (message.guild.members.cache.find((m) => m.user.tag === args[0]) as UserResolvable)
@@ -189,13 +155,27 @@ export default class Util {
     return member;
   }
 
-  baseEmbed(message: Message | { author: ClientUser | null }) {
+  async getGuildLang(guildId: string | undefined): Promise<any> {
+    try {
+      const guild = await this.getGuildById(guildId);
+
+      return require(`../locales/${guild?.locale || "english"}`);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  baseEmbed(message: Message | { author: ClientUser | null }): MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
 
     return new MessageEmbed()
       .setFooter(message.author?.username, avatar)
       .setColor("#7289DA")
       .setTimestamp();
+  }
+
+  calculateXp(xp: number): number {
+    return Math.floor(0.1 * Math.sqrt(xp));
   }
 
   formatNumber(n: number | string): string {

@@ -9,11 +9,53 @@ export interface GuildData {
   _id: ObjectId;
   guild_id: string;
   prefix: string;
+  locale: string;
   store: StoreItem[];
   blacklistedwords: string[];
   announcement_channel: string | null;
   suggest_channel: string | null;
   audit_channel: string | null;
+  custom_commands: CustomCommand[];
+  disabled_commands: string[];
+  disabled_categories: string[];
+  ignored_channels: string[];
+  sticky_data: StickyData;
+  timezone: string;
+  auto_delete_cmd: boolean;
+  member_count_channel_id: string;
+  muted_role_id: string;
+  level_data: LevelData;
+  welcome_data: WelcomeData;
+  leave_data: LeaveData;
+  ban_data: any;
+  ticket_data: any;
+  starboards_data: any;
+}
+
+export interface IGuild extends Document {
+  guild_id: string;
+  prefix: string;
+  locale: string;
+  store: StoreItem[];
+  blacklistedwords: string[];
+  announcement_channel: string | null;
+  suggest_channel: string | null;
+  audit_channel: string | null;
+  custom_commands: CustomCommand[];
+  disabled_commands: string[];
+  disabled_categories: string[];
+  ignored_channels: string[];
+  sticky_data: StickyData;
+  timezone: string;
+  auto_delete_cmd: boolean;
+  member_count_channel_id: string;
+  muted_role_id: string;
+  level_data: LevelData;
+  welcome_data: WelcomeData;
+  leave_data: LeaveData;
+  ban_data: any;
+  ticket_data: any;
+  starboards_data: any;
 }
 
 export interface StoreItem {
@@ -21,13 +63,33 @@ export interface StoreItem {
   price: number;
 }
 
-export interface IGuild extends Document {
-  guild_id: string;
-  store: StoreItem[];
-  blacklistedwords: string[];
-  announcement_channel: string | null;
-  suggest_channel: string | null;
-  audit_channel: string | null;
+export interface StickyData {
+  channel_id: string;
+  message: string;
+  message_id: string;
+}
+
+export interface LeaveData {
+  enabled: boolean;
+  channel_id: string | null;
+  message: string | null;
+}
+
+export interface WelcomeData {
+  enabled: boolean;
+  channel_id: string | null;
+  role_id: string | null;
+  message: string | null;
+}
+
+export interface LevelData {
+  message: string;
+  enabled: boolean;
+}
+
+export interface CustomCommand {
+  response: string;
+  name: string;
 }
 
 const guildSchema = new Schema({
@@ -64,7 +126,7 @@ const guildSchema = new Schema({
   },
   leave_data: {
     type: Object,
-    default: { message: DEFAULT_MESSAGE, enabled: true },
+    default: { message: DEFAULT_MESSAGE, enabled: false, channel_id: null },
   },
   ban_data: {
     type: Object,

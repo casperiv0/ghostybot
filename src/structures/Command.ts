@@ -27,6 +27,7 @@ export default class Command {
    * @param {Bot} bot bot
    * @param {Message} message discord.js message
    * @param {string[]} args message args
+   * @returns {any}
    */
   async execute(bot: Bot, message: Message, args: string[]): Promise<any> {}
 }

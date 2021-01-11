@@ -1,4 +1,4 @@
-import { Message, MessageReaction } from "discord.js";
+import { Message } from "discord.js";
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 
@@ -305,10 +305,12 @@ export default class MessageEvent extends Event {
   async execute(bot: Bot, message: Message) {
     if (!message?.guild?.available || !message.guild) return;
     if (message.channel.type === "dm") return;
+    if (!bot.user) return;
 
     const guildId = message?.guild?.id;
     const userId = message?.author?.id;
     const guild = await bot.utils.getGuildById(guildId);
+    const mentions = message.mentions.members;
 
     const escapeRegex = (str?: string) => str?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const prefixReg = new RegExp(`^(<@!?${bot?.user?.id}>|${escapeRegex(guild?.prefix)})\\s*`);
@@ -317,7 +319,48 @@ export default class MessageEvent extends Event {
     const prefix = prefixArr?.[0];
     if (!prefix) return; // prefix didn't match
 
+    // LEVEL
+    if (!message.author.bot) {
+      const user = await bot.utils.getUserById(userId, guildId);
+      if (!user) return;
+      const xp = Math.ceil(Math.random() * (5 * 10));
+      const level = bot.utils.calculateXp(user.xp);
+      const newLevel = bot.utils.calculateXp(user.xp + xp);
+
+      if (newLevel > level) {
+        if (guild?.level_data.enabled) {
+          const embed = bot.utils
+            .baseEmbed(message)
+            .setTitle("Level Up!")
+            .addField("New level", newLevel)
+            .addField("Total xp", user.xp + xp);
+
+          const msg = await message.channel.send(embed);
+          if (!msg) return;
+
+          setTimeout(() => {
+            if (!msg) return;
+            msg?.delete();
+          }, 10_000);
+        }
+      }
+
+      await bot.utils.updateUserById(userId, guildId, { xp: user.xp + xp });
+    }
+
     const [cmd, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
+
+    // Bot mention
+    if (mentions?.has(bot.user.id) && !cmd) {
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle("Quick Info")
+        .addField("Prefix", guild?.prefix)
+        .addField("Support", "https://discord.gg/XxHrtkA")
+        .addField("Dashboard", bot.config.dashboard.dashboardUrl);
+
+      return message.channel.send({ embed });
+    }
 
     try {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);

@@ -1,20 +1,17 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es2021: true,
     node: true,
   },
   extends: [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
   ],
-  plugins: ["jsx-a11y"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-  },
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
@@ -22,6 +19,7 @@ module.exports = {
       jsx: true,
     },
   },
+  plugins: ["@typescript-eslint", "jsx-a11y"],
   rules: {
     quotes: ["error", "double"],
     semi: ["error", "always"],
@@ -34,10 +32,7 @@ module.exports = {
     "default-case": ["warn"],
     "default-case-last": ["error"],
     "no-useless-catch": ["warn"],
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "jsx-a11y/no-onchange": "off",
-    "react/display-name": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };

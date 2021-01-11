@@ -1,4 +1,4 @@
-const { model, Schema, models } = require("mongoose");
+import { model, Schema, models, Document } from "mongoose";
 
 const ReactionsSchema = new Schema({
   guild_id: { type: String, required: true },
@@ -7,4 +7,4 @@ const ReactionsSchema = new Schema({
   reactions: { type: Array, required: true },
 });
 
-module.exports = models.Reaction || model("Reaction", ReactionsSchema);
+export default models.Reaction || model("Reaction", ReactionsSchema);

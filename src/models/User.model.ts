@@ -1,10 +1,9 @@
-import { model, Schema, models, Document } from "mongoose";
-import { AfkObj, Mute, Reminders } from "../utils/Util";
+import { model, Schema, models, Document, ObjectId } from "mongoose";
 
 export interface IUser extends Document {
   user_id: string;
   guild_id: string;
-  inventory: any[];
+  inventory: string[];
   money: number;
   bank: number;
   daily: number;
@@ -50,5 +49,58 @@ const userSchema = new Schema({
     },
   },
 });
+
+export interface UserUpdateData {
+  inventory?: string[];
+  money?: number;
+  bank?: number;
+  daily?: number;
+  weekly?: number;
+  work?: number;
+  xp?: number;
+  afk?: AfkObj;
+  mute?: Mute;
+  reminder?: Reminders;
+}
+
+export interface UserData {
+  _id: ObjectId;
+  user_id: string;
+  guild_id: string;
+  inventory: string[];
+  money: number;
+  bank: number;
+  daily: number;
+  weekly: number;
+  work: number;
+  xp: number;
+  afk: AfkObj;
+  mute: Mute;
+  reminder: Reminders;
+}
+
+export interface AfkObj {
+  is_afk: boolean;
+  reason: string | null;
+}
+
+export interface Mute {
+  muted: boolean;
+  ends_at: number;
+  reason: string;
+}
+
+export interface Reminders {
+  hasReminder: boolean;
+  reminders: Reminder[];
+}
+
+export interface Reminder {
+  _id: string;
+  channel_id: string;
+  msg: string;
+  time: string;
+  ends_at: number;
+}
 
 export default models.User || model<IUser>("User", userSchema);
