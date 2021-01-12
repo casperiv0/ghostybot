@@ -10,6 +10,7 @@ module.exports = {
   async execute(bot, message, args) {
     const lang = await bot.getGuildLang(message.guild.id);
     const member = await bot.findMember(message, args);
+    const reason = args[0] || lang.GLOBAL.NOT_SPECIFIED;
 
     if (!member) {
       return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
@@ -27,11 +28,10 @@ module.exports = {
 
     const { warnings } = await getUserById(member.user.id, message.guild.id);
 
-    return message.channel.send(lang.ADMIN.USER_WARNED
-      .replace("{memberTag}", member.user.tag)
-      .replace("{reason}", reason)
-      .replace("{warningsTotal}", warnings
-        ? warnings.length 
-        : "0"));
+    return message.channel.send(
+      lang.ADMIN.USER_WARNED.replace("{memberTag}", member.user.tag)
+        .replace("{reason}", reason)
+        .replace("{warningsTotal}", warnings ? warnings.length : "0")
+    );
   },
 };
