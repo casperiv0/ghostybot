@@ -1,4 +1,5 @@
 import Head from "next/head";
+import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import "../dashboard/css/index.css";
@@ -14,7 +15,7 @@ import Footer from "../dashboard/components/Footer";
 import { dashboard } from "../../config.json";
 import Loader from "../dashboard/components/Loader";
 
-function GhostyBot({ Component, pageProps }) {
+function GhostyBot({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 

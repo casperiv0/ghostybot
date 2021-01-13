@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   GLOBAL: {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "No especificado",

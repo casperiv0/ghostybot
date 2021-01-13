@@ -6,7 +6,7 @@ const Landing = () => {
     <>
       <nav className="nav-bar">
         <div className="nav-content-landing">
-          <a href="#" className="nav-icon">
+          <a href="/" className="nav-icon">
             {dashboard.botName}
           </a>
           <div className="nav-links">
@@ -33,7 +33,9 @@ const Landing = () => {
             Add To discord
           </a>
           <Link href="/dashboard">
-            <a className="main-btn">Open Dashboard</a>
+            <a href="/dashboard" className="main-btn">
+              Open Dashboard
+            </a>
           </Link>
         </div>
       </main>

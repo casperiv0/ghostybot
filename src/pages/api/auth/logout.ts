@@ -1,8 +1,10 @@
+import { NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { setCookie } from "nookies";
+import ApiRequest from "../../../interfaces/ApiRequest";
 import { encode } from "../../../utils/functions";
 
-export default async function (req, res) {
+export default async function (req: ApiRequest, res: NextApiResponse) {
   const token = req.cookies.token;
   const DISCORD_CLIENT_ID = process.env["DISCORD_CLIENT_ID"];
   const DISCORD_CLIENT_SECRET = process.env["DISCORD_CLIENT_SECRET"];

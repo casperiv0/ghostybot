@@ -1,10 +1,12 @@
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
+import { NextApiResponse } from "next";
 import { setCookie } from "nookies";
 import { dashboard } from "../../../../config.json";
 import { encode } from "../../../utils/functions";
+import ApiRequest from "../../../interfaces/ApiRequest";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { query } = req;
   const { callbackUrl, jwtSecret, discordApiUrl } = dashboard;
   const DISCORD_CLIENT_ID = process.env["DISCORD_CLIENT_ID"];

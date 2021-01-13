@@ -1,15 +1,17 @@
-import { handleApiRequest } from "../../../utils/functions";
 import hiddenItems from "../../../data/hidden-items.json";
+import ApiRequest from "../../../interfaces/ApiRequest";
+import { NextApiResponse } from "next";
+import Guild from "../../../interfaces/Guild";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, headers } = req;
 
   switch (method) {
     case "GET": {
       const token = req.cookies.token || headers.auth;
-      const guilds = await handleApiRequest(
+      const guilds = await req.bot.utils.handleApiRequest(
         "/users/@me/guilds",
-        { data: token, type: "Bearer" },
+        { data: `${token}`, type: "Bearer" },
         "GET"
       );
 
@@ -21,18 +23,18 @@ export default async function handler(req, res) {
         });
       }
 
-      const isAdminGuilds = guilds.filter((guild) => {
+      const isAdminGuilds = guilds.filter((guild: Guild) => {
         return (
           guild.permissions === "8" /* ADMINISTRATOR */ ||
           guild.permissions === "2147483647" /* ALL */
         );
       });
-      const filteredGuilds = isAdminGuilds.map((guild) => {
+      const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
         const g = req.bot.guilds.cache.get(guild.id);
         return { ...guild, ...g, inGuild: g ? true : false };
       });
 
-      filteredGuilds.forEach((guild) => {
+      filteredGuilds.forEach((guild: Guild) => {
         hiddenItems.forEach((item) => {
           return (guild[item] = undefined);
         });
@@ -41,9 +43,7 @@ export default async function handler(req, res) {
       return res.json({ guilds: filteredGuilds });
     }
     default: {
-      return res
-        .status(405)
-        .json({ error: "Method not allowed", status: "error" });
+      return res.status(405).json({ error: "Method not allowed", status: "error" });
     }
   }
 }

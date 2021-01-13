@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   GLOBAL: {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "Ej angivet",
@@ -530,7 +530,6 @@ module.exports = {
     DISABLED_COMMAND: "Disabled command",
     ENABLED_CATEGORY: "Enabled category",
     ENABLED_COMMAND: "Enabled command",
-    PROVIDE_VALID_OPTION: "Please provide an valid option (`add`, `remove`)",
     PROVIDE_CHANNEL: "Please provide a channel",
     CHANNEL_ALREADY_IGNORED: "That channel is already ignored by the bot",
     CHANNEL_NOT_IGNORED: "That channel is not ignored by the bot",
@@ -571,7 +570,8 @@ module.exports = {
     LANG_UPDATE: "Successfully updated language to",
     SET_STARBOARD_CHAN: "Successfully set {channel} as starboards channel",
     SET_MEM_COUNT_CHAN: "Successfully set as member count channel",
-    UPDATE_WEL_MES: "Successfully updated welcome message (please use dashboard for better experience)",
+    UPDATE_WEL_MES:
+      "Successfully updated welcome message (please use dashboard for better experience)",
     GIVE_NAME: "give_name",
     EMOJI_ADDED: "Emoji Added",
     EMOJI_ADDED_NAME: "Emoji Has Been Added! | Name:",
@@ -582,13 +582,15 @@ module.exports = {
     STICKY_READ: "__***:warning: Sticky Message, Read Before Typing! :warning:***__",
     ALREADY_MUTED: "User is already muted!",
     CAN_NOT_MUTED: "User can't be muted",
-    TEMP_MUTED: "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
+    TEMP_MUTED:
+      "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
     SUCCES_MUTED: "{muteMemberTag} was successfully muted for {time}. Reason: **{reason}**",
     PROVIDE_VALID_USERID: "Please provide a user id",
     SUC_UNBAN: "**{bannedUsername}** was successfully unbanned from the server.",
     NOT_IN_VOICE_OR_NOT_DEAF: "User is not in a voice channel or isn't deafened",
     UNDEAFENED_USER: "You've been **undeafened** from **{guildName}**",
-    UNDEAFENED: "**{undeafenUserTag}** was successfully undeafened from the server. I have also send a DM letting the person know.",
+    UNDEAFENED:
+      "**{undeafenUserTag}** was successfully undeafened from the server. I have also send a DM letting the person know.",
     CHAN_NOT_LOCK: "That channel is not locked!",
     SUC_UNLOCK: "{channel} was successfully unlocked",
     NOT_MUTED: "User is not muted!",
@@ -599,13 +601,16 @@ module.exports = {
     CAN_NOT_DISC: "User can't be disconnected.",
     NOT_IN_VOICE: "User is not in a voice at the moment.",
     YOU_DISC: "You've been **disconnected** from **{guildName}**, Reason: **{reason}**",
-    USER_DISC: "**{kickUserTag}** was successfully disconnected from **{kickUserVoiceChannel}**. Reason: **{reason}**. I have also send a DM letting the person know.",
+    USER_DISC:
+      "**{kickUserTag}** was successfully disconnected from **{kickUserVoiceChannel}**. Reason: **{reason}**. I have also send a DM letting the person know.",
     USER_NOT_VOICE_OR_MUTED: "User is not in a voice channel or is already muted",
     YOU_MUTED: "You've been **Muted** from **{guildName}**, Reason: **{reason}**",
-    USER_MUTED: "**{muteUserTag}** was successfully muted from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
+    USER_MUTED:
+      "**{muteUserTag}** was successfully muted from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
     USER_NOT_VOICE_OR_NOT_MUTED: "User is not in a voice channel or isn't muted",
     YOU_UNMUTED: "You've been **Unmuted** from **{guildName}**",
-    USER_SUC_UNMUTED: "**{unmuteUserTag}** was successfully unmuted from the server. I have also send a DM letting the person know.",
+    USER_SUC_UNMUTED:
+      "**{unmuteUserTag}** was successfully unmuted from the server. I have also send a DM letting the person know.",
     USER_NOT_WARN: "User can't be warned",
     USER_WARNED: "{memberTag} was warned with reason: {reason} (Total warnings: {warningsTotal})",
     WARN_NOT_FOUND: "warning wasn't found or {memberTag} doesn't have any warnings",
@@ -613,7 +618,8 @@ module.exports = {
     WARNED_ON: "Warned on:",
     MEMBER_WARNS: "{memberTag}'s warnings",
     TOTAL_WARNS: "Total warnings",
-    USE_WARNS: "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
+    USE_WARNS:
+      "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
   },
@@ -624,7 +630,8 @@ module.exports = {
     ALREADY_ACTIVE_TICKET: "You already have an active ticket",
     TICKET_FOR: "Support ticket for: {member}",
     CREATED: "Successfully created ticket!",
-    NOT_ENABLED: "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
+    NOT_ENABLED:
+      "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
     TICKET: "ticket-#{Id}",
   },
   EVENTS: {

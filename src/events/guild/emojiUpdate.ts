@@ -19,7 +19,7 @@ export default class EmojiUpdateEvent extends Event {
     if (oldEm.name !== newEm.name) {
       msg = lang.EVENTS.EMOJI_RENAMED_MSG.replace("{emoji_name}", oldEm.name)
         .replace("{new_name}", newEm.name)
-        .replace("{emoji}", newEm);
+        .replace("{emoji}", `${newEm}`);
     } else {
       return;
     }

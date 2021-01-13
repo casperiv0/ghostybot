@@ -10,6 +10,7 @@ import {
   Util as DiscordUtil,
   Role,
 } from "discord.js";
+import jwt from "jsonwebtoken";
 import Bot from "../structures/Bot";
 import User, { IUser, UserUpdateData } from "../models/User.model";
 import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
@@ -149,8 +150,8 @@ export default class Util {
     args: string[],
     allowAuthor: boolean
   ): Promise<GuildMember | undefined | null> {
-    let member;
     if (!message.guild) return;
+    let member: GuildMember | null;
     const mention = // Check if the first mention is not the bot prefix
       message.mentions.users.first()?.id !== this.bot.user?.id
         ? message.mentions.users.first()
@@ -176,14 +177,12 @@ export default class Util {
     return member;
   }
 
-  async getGuildLang(guildId: string | undefined): Promise<any> {
-    try {
-      const guild = await this.getGuildById(guildId);
+  async getGuildLang(
+    guildId: string | undefined
+  ): Promise<typeof import("../locales/english").default> {
+    const guild = await this.getGuildById(guildId);
 
-      return require(`../locales/${guild?.locale || "english"}`);
-    } catch (e) {
-      this.bot.logger.error("ADD_GUILD", e?.stack || e);
-    }
+    return import(`../locales/${guild?.locale}`).then((f) => f.default);
   }
 
   async createWebhook(channelId: string, oldChannelId?: string) {
@@ -228,6 +227,33 @@ export default class Util {
         reason: "Mute a user",
       }))
     );
+  }
+
+  async handleApiRequest(
+    path: string,
+    tokenData: { data: string; type: "Bot" | "Bearer" },
+    method?: string
+  ) {
+    try {
+      const bearer =
+        tokenData.type === "Bearer"
+          ? jwt.verify(tokenData.data, this.bot.config.dashboard.jwtSecret)
+          : tokenData.data;
+
+      if (!bearer) {
+        return { error: "invalid_token" };
+      }
+
+      const res = await fetch(`${this.bot.config.dashboard.discordApiUrl}${path}`, {
+        method,
+        headers: {
+          Authorization: `${tokenData.type} ${bearer}`,
+        },
+      });
+      return await res.json();
+    } catch (e) {
+      return { error: "invalid_token" };
+    }
   }
 
   baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {

@@ -18,7 +18,7 @@ export default class EmojiDeleteEvent extends Event {
     const embed = bot.utils
       .baseEmbed({ author: bot.user })
       .setTitle(lang.EVENTS.EMOJI_DELETED)
-      .setDescription(lang.EVENTS.EMOJI_DELETED_MSG.replace("{emoji}", emoji))
+      .setDescription(lang.EVENTS.EMOJI_DELETED_MSG.replace("{emoji}", `${emoji}`))
       .setColor("RED")
       .setTimestamp();
 

@@ -1,19 +1,27 @@
 import { parseCookies } from "nookies";
+import { GetServerSideProps } from "next";
+import { FC, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import Image from "next/image";
 import { dashboard } from "../../../config.json";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import AlertMessage from "../../dashboard/components/AlertMessage";
-import Link from "next/link";
+import Guild from "../../interfaces/Guild";
 
-const Dashboard = ({ isAuth, guilds }) => {
+interface Props {
+  isAuth: boolean;
+  guilds: Guild[];
+}
+
+const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
   const router = useRouter();
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    setMessage(router.query?.message);
+    setMessage(`${router.query?.message}`);
     if (!isAuth) {
-      return router.push("/api/auth/login");
+      router.push("/api/auth/login");
+      return;
     }
   }, [isAuth, router]);
 
@@ -30,8 +38,9 @@ const Dashboard = ({ isAuth, guilds }) => {
           return (
             <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "/dashboard"}>
               <a
+                href={`/dashboard/${guild.id}`}
                 className={`card guild-card ${!guild.inGuild ? "disabled" : ""}`}
-                aria-label={!guild.inGuild ? "The bot must be in this guild!" : null}
+                aria-label={!guild.inGuild ? "The bot must be in this guild!" : undefined}
               >
                 {guild.icon === null ? (
                   <div className="guild-card-img"></div>
@@ -53,8 +62,7 @@ const Dashboard = ({ isAuth, guilds }) => {
     </>
   );
 };
-
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
   const data = await (
     await fetch(`${dashboard.dashboardUrl}/api/guilds`, {
@@ -70,6 +78,6 @@ export async function getServerSideProps(ctx) {
       guilds: data?.guilds || [],
     },
   };
-}
+};
 
 export default Dashboard;

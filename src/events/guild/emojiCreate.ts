@@ -19,7 +19,7 @@ export default class EmojiCreateEvent extends Event {
     const embed = bot.utils
       .baseEmbed({ author: bot.user })
       .setTitle(lang.EVENTS.EMOJI_CREATED)
-      .setDescription(lang.EVENTS.EMOJI_CREATED_MSG.replace("{emoji}", emoji))
+      .setDescription(lang.EVENTS.EMOJI_CREATED_MSG.replace("{emoji}", `${emoji}`))
       .setColor("GREEN")
       .setTimestamp();
 
