@@ -14,8 +14,8 @@ module.exports = {
     const prefix = guild.prefix;
     const announceCh = guild?.announcement_channel;
     const suggestCh = guild?.suggest_channel;
-    const welcomeCh = guild?.welcome_Data.channel_id;
-    const leaveCh = guild?.leave_data.channel_id;
+    const welcomeCh = guild?.welcome_data?.channel_id;
+    const leaveCh = guild?.leave_data?.channel_id;
     const levelMsgs = guild?.level_up_messages;
 
     const embed = BaseEmbed(message)
