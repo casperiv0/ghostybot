@@ -1,7 +1,12 @@
 import StarboardsManager from "discord-starboards";
 import StarboardModel from "../models/Starboard.model";
+import Bot from "../structures/Bot";
 
 class MongStarboardsManager extends StarboardsManager {
+  constructor(bot: Bot) {
+    super(bot);
+  }
+
   async getAllStarboards() {
     return await StarboardModel.find();
   }
@@ -20,4 +25,4 @@ class MongStarboardsManager extends StarboardsManager {
   }
 }
 
-module.exports = MongStarboardsManager;
+export default MongStarboardsManager;

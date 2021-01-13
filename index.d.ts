@@ -1,4 +1,13 @@
-declare module "discord-starboards";
+import { Client } from "discord.js";
+
+declare module "discord-starboards" {
+  export interface StarboardOptions {
+    storage?: string;
+  }
+  export default class StarboardsManager {
+    constructor(client: Client, options: StarboardOptions) {}
+  }
+}
 
 declare namespace NodeJS {
   export interface ProcessEnv {
