@@ -1,14 +1,17 @@
-const { MessageEmbed } = require("discord.js");
+import { Role } from "discord.js";
+import Bot from "../../structures/Bot";
+import Event from "../../structures/Event";
 
-module.exports = {
-  name: "roleUpdate",
-  async execute(bot, oldRole, newRole) {
+export default class RoleUpdateEvent extends Event {
+  constructor(bot: Bot) {
+    super(bot, "roleUpdate");
+  }
+
+  async execute(bot: Bot, oldRole: Role, newRole: Role) {
     if (!newRole.guild) return;
-    if (!newRole.guild.me.hasPermission("MANAGE_WEBHOOKS")) {
-      return;
-    }
-    const webhook = await bot.getWebhook(newRole.guild);
-   if (!webhook) return;
+    if (!newRole.guild.available) return;
+    const webhook = await bot.utils.getWebhook(newRole.guild);
+    if (!webhook) return;
 
     let msg = "";
     if (oldRole.name !== newRole.name) {
@@ -19,12 +22,13 @@ module.exports = {
       return;
     }
 
-    const embed = new MessageEmbed()
+    const embed = bot.utils
+      .baseEmbed({ author: bot.user })
       .setTitle("Role Updated")
       .setDescription(msg)
       .setColor("ORANGE")
       .setTimestamp();
 
     webhook.send(embed);
-  },
-};
+  }
+}

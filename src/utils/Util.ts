@@ -1,16 +1,18 @@
 import {
-  ClientUser,
   Guild,
   GuildMember,
   Message,
   MessageEmbed,
   TextChannel,
+  User as DiscordUser,
   UserResolvable,
   Webhook,
+  Util as DiscordUtil,
 } from "discord.js";
 import Bot from "../structures/Bot";
 import User, { IUser, UserUpdateData } from "../models/User.model";
 import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
+import UserModel from "../models/User.model";
 
 export default class Util {
   bot: Bot;
@@ -29,7 +31,7 @@ export default class Util {
 
       return user;
     } catch (e) {
-      this.bot.logger.error("GET_USER_BY_ID", e);
+      this.bot.logger.error("GET_USER_BY_ID", e?.stack || e);
     }
   }
 
@@ -45,7 +47,7 @@ export default class Util {
 
       return user;
     } catch (e) {
-      this.bot.logger.error("ADD_USER", e);
+      this.bot.logger.error("ADD_USER", e?.stack || e);
     }
   }
 
@@ -61,6 +63,14 @@ export default class Util {
       await User.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  async removeUser(userId: string, guildId: string): Promise<void> {
+    try {
+      await UserModel.findOneAndDelete({ user_id: userId, guild_id: guildId });
+    } catch (e) {
+      this.bot.logger.error("REMOVE_USER", e?.stack || e);
     }
   }
 
@@ -86,7 +96,15 @@ export default class Util {
 
       return guild;
     } catch (e) {
-      this.bot.logger.error("ADD_GUILD", e.stack || e);
+      this.bot.logger.error("ADD_GUILD", e?.stack || e);
+    }
+  }
+
+  async removeGuild(guildId: string): Promise<void> {
+    try {
+      await GuildModel.findOneAndDelete({ guild_id: guildId });
+    } catch (e) {
+      this.bot.logger.error("REMOVE_GUILD", e?.stack || e);
     }
   }
 
@@ -163,8 +181,24 @@ export default class Util {
 
       return require(`../locales/${guild?.locale || "english"}`);
     } catch (e) {
-      console.error(e);
+      this.bot.logger.error("ADD_GUILD", e?.stack || e);
     }
+  }
+
+  async createWebhook(channelId: string, oldChannelId?: string) {
+    const channel = this.bot.channels.cache.get(channelId);
+    if (!channel) return;
+    if (!this.bot.user) return;
+    if (!(channel as TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS")) return;
+
+    if (oldChannelId) {
+      const webhooks = await (channel as TextChannel).fetchWebhooks();
+      webhooks.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
+    }
+
+    await (channel as TextChannel).createWebhook(`audit-logs-${channelId}`, {
+      avatar: this.bot.user.displayAvatarURL({ format: "png" }),
+    });
   }
 
   async getWebhook(guild: Guild): Promise<Webhook | undefined> {
@@ -179,13 +213,57 @@ export default class Util {
     return webhook;
   }
 
-  baseEmbed(message: Message | { author: ClientUser | null }): MessageEmbed {
+  baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
 
     return new MessageEmbed()
       .setFooter(message.author?.username, avatar)
       .setColor("#7289DA")
       .setTimestamp();
+  }
+
+  parseMessage(
+    message: string,
+    user: DiscordUser,
+    msg?: Message | { guild: Guild; author: DiscordUser }
+  ): string {
+    return message
+      .split(" ")
+      .map((word) => {
+        const { username, tag, id, discriminator, createdAt } = user;
+        word
+          .replace("{user}", `<@${id}>`)
+          .replace("{user.tag}", this.escapeMarkdown(tag))
+          .replace("{user.username}", this.escapeMarkdown(username))
+          .replace("{user.discriminator}", discriminator)
+          .replace("{user.id}", id)
+          .replace("{user.createdAt}", new Date(createdAt).toLocaleString());
+
+        if (msg) {
+          if (!msg.guild) return word;
+
+          word
+            .replace("{guild.id}", msg.guild.id)
+            .replace("{guild.name}", this.escapeMarkdown(msg.guild.name))
+            .replace("{message.author}", `<@${msg.author.id}>`)
+            .replace("{message.author.id}", msg.author.id)
+            .replace("{message.author.tag}", this.escapeMarkdown(msg.author.tag))
+            .replace("{message.author.username}", this.escapeMarkdown(msg.author.username));
+        }
+
+        return word;
+      })
+      .join(" ");
+  }
+
+  escapeMarkdown(message: string): string {
+    return DiscordUtil.escapeMarkdown(message, {
+      codeBlock: true,
+      spoiler: true,
+      inlineCode: true,
+      inlineCodeContent: true,
+      codeBlockContent: true,
+    });
   }
 
   calculateXp(xp: number): number {
