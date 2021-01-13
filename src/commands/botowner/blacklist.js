@@ -10,9 +10,9 @@ module.exports = {
   options: ["add", "remove", "view"],
   ownerOnly: true,
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const type = args[0];
-    let member = await bot.findMember(message, args);
+    let member = await bot.utils.findMember(message, args);
 
     if (!member) member = { username: "N/A", id: args[1], tag: "N/A" };
 

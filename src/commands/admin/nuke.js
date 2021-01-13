@@ -6,7 +6,7 @@ module.exports = {
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     let channel = message.channel;
 
     if (!channel) {

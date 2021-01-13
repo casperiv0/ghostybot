@@ -8,7 +8,7 @@ module.exports = {
   usage: "<youtube link | song name>",
   requiredArgs: ["song"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const voiceChannel = message.member.voice.channel;
     const search = args.join(" ");
 

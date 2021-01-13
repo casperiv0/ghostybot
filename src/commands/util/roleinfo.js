@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["role"],
   requiredArgs: ["role"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const role = await bot.findRole(message, args[0]);
 
     if (!role) {

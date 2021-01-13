@@ -6,16 +6,16 @@ module.exports = {
   aliases: ["with"],
   requiredArgs: ["amount"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const member = message.author;
-    const { user } = await bot.getUserById(member.id, message.guild.id);
+    const { user } = await bot.utils.getUserById(member.id, message.guild.id);
     const bank = user.bank;
     let amount = args[0];
 
     if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
 
     if (amount === "all") {
-      bot.updateUserById(member.id, message.guild.id, {
+      bot.utils.updateUserById(member.id, message.guild.id, {
         money: user.money + bank,
         bank: user.bank - bank,
       });
@@ -36,7 +36,7 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.NO_MONEY);
     }
 
-    await bot.updateUserById(member.id, message.guild.id, {
+    await bot.utils.updateUserById(member.id, message.guild.id, {
       money: user.money + Number(amount),
       bank: user.bank - amount,
     });

@@ -9,7 +9,7 @@ module.exports = {
   requiredArgs: ["amount"],
   async execute(bot, message, args) {
     const [amount] = args;
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     if (isNaN(amount) || amount > 100) {
       return message.channel.send(lang.ADMIN.DELETE_PROVIDE_AMOUNT);

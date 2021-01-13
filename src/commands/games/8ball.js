@@ -6,7 +6,7 @@ module.exports = {
   description: "8Ball",
   category: "games",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const question = args.join(" ");
 
     if (!question) {

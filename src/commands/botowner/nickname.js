@@ -4,7 +4,7 @@ module.exports = {
   category: "botowner",
   ownerOnly: true,
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const nickname = args.join(" ");
 
     message.guild.members.cache

@@ -5,7 +5,7 @@ module.exports = {
   description: "Would you rather",
   category: "games",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     const replies = require("../../data/wouldYouRather.json");
 

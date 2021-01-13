@@ -6,7 +6,7 @@ module.exports = {
   description: "Returns a cat fact",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     fetch("https://some-random-api.ml/facts/cat")
       .then((res) => res.json())
       .then((data) => {

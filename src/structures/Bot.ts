@@ -6,7 +6,6 @@ import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
 import CommandHandler from "../modules/CommandHandler";
 import EventHandler from "../modules/EventHandler";
-import HelperHandler from "../modules/HelperHandler";
 
 import MongStarboardsManager from "../modules/StarboardsManager";
 import MongoGiveawayManager from "../modules/GiveawayManager";
@@ -66,7 +65,6 @@ class Bot extends Client {
 
     new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();
-    new HelperHandler(this).loadHelpers();
   }
 }
 

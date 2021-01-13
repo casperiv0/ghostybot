@@ -5,8 +5,8 @@ module.exports = {
   category: "economy",
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args);
     const amount = Number(args[1]);
 
     if (!member) {
@@ -21,8 +21,8 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
     }
 
-    const { user: receiver } = await bot.getUserById(member.id, message.guild.id);
-    const { user: sender } = await bot.getUserById(
+    const { user: receiver } = await bot.utils.getUserById(member.id, message.guild.id);
+    const { user: sender } = await bot.utils.getUserById(
       message.author.id,
       message.guild.id
     );
@@ -39,10 +39,10 @@ module.exports = {
       return message.channel.send(lang.ECONOMY.CANNOT_PAY_SELF);
     }
 
-    await bot.updateUserById(member.id, message.guild.id, {
+    await bot.utils.updateUserById(member.id, message.guild.id, {
       money: receiver.money + amount,
     });
-    await bot.updateUserById(message.author.id, message.guild.id, {
+    await bot.utils.updateUserById(message.author.id, message.guild.id, {
       money: sender.money - amount,
     });
 

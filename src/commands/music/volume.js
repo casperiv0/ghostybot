@@ -5,7 +5,7 @@ module.exports = {
   aliases: ["vol"],
   async execute(bot, message, args) {
     const [newVol] = args;
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const queue = await bot.player.getQueue(message);
     if (!message.member.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);

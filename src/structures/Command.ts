@@ -7,9 +7,14 @@ export interface CommandOptions {
   category: string;
   usage?: string;
   aliases?: string[];
+  cooldown?: number;
   requiredArgs?: string[];
+
   memberPermissions?: PermissionString[];
   botPermissions?: PermissionString[];
+
+  ownerOnly?: boolean;
+  nsfwOnly?: boolean;
 }
 
 export default class Command {

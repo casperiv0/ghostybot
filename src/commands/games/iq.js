@@ -5,7 +5,7 @@ module.exports = {
   description: "Get a random Iq returned",
   category: "games",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     const iq = Math.floor(Math.random() * 100) + 1;
 

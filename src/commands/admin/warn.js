@@ -8,8 +8,8 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args);
     const reason = args[0] || lang.GLOBAL.NOT_SPECIFIED;
 
     if (!member) {

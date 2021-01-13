@@ -20,10 +20,10 @@ module.exports = {
   ],
   memberPermissions: ["MANAGE_GUILD"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const languages = bot.getLanguages();
     const guildId = message.guild.id;
-    const { prefix, starboards_data } = await bot.getGuildById(guildId);
+    const { prefix, starboards_data } = await bot.utils.getGuildById(guildId);
     const option = args[0];
     const item = message.mentions.channels.first() || message.mentions.roles.first();
     const language = args[1];

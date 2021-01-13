@@ -6,8 +6,8 @@ module.exports = {
   memberPermissions: ["DEAFEN_MEMBERS"],
   requiredArgs: ["member", "reason"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const deafenMember = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const deafenMember = await bot.utils.findMember(message, args);
     const deafenReason = args.slice(1).join(" ");
 
     if (!deafenMember) {

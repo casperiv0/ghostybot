@@ -7,7 +7,7 @@ module.exports = {
   requiredArgs: ["option", "filter"],
   options: ["set", "remove"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const [option, filter] = args;
 
     if (!message.member.voice.channel) {

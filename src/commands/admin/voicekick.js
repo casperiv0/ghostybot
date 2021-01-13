@@ -8,8 +8,8 @@ module.exports = {
   memberPermissions: ["MOVE_MEMBERS"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const kickUser = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const kickUser = await bot.utils.findMember(message, args);
     const kickReason = args.join(" ").slice(23);
 
     if (!kickUser) {

@@ -7,7 +7,7 @@ module.exports = {
   category: "hentainsfw",
   nsfwOnly: true,
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     const data = await fetch(
       "https://nekobot.xyz/api/image?type=hass"

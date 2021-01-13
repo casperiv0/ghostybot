@@ -7,7 +7,7 @@ module.exports = {
   description: "Search something up on Wikipedia",
   requiredArgs: ["query"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     if (!args[0]) {
       return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }

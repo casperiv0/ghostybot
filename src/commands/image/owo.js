@@ -6,7 +6,7 @@ module.exports = {
   description: "OwO",
   category: "image",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("https://rra.ram.moe/i/r?type=owo").then((res) =>
       res.json()
     );

@@ -1,8 +1,13 @@
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 import BotModel from "../../models/Bot.model";
+import HelperHandler from "../../modules/HelperHandler";
 
-export default class ErrorEvent extends Event {
+export default class ReadyEvent extends Event {
+  constructor(bot: Bot) {
+    super(bot, "ready");
+  }
+
   async execute(bot: Bot) {
     const serverCount = bot.utils.formatNumber(bot.guilds.cache.size);
     const channelCount = bot.utils.formatNumber(bot.channels.cache.size);
@@ -17,6 +22,7 @@ export default class ErrorEvent extends Event {
     // require("../../helpers/unmuteHelper")(bot);
     // require("../../helpers/reminderHelper")(bot);
     // require("../../modules/features")(bot);
+    new HelperHandler(bot).loadHelpers();
 
     const botData = await BotModel.findOne({ bot_id: bot?.user?.id });
 

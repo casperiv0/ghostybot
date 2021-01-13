@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   const guild = await getGuildById(query.id);
-  const lang = await req.bot.getGuildLang(query.id);
+  const lang = await req.bot.utils.getGuildLang(query.id);
 
   switch (method) {
     case "POST": {

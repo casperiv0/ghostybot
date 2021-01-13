@@ -9,7 +9,7 @@ module.exports = {
   requiredArgs: ["message_id"],
   async execute(bot, message, args) {
     const [messageId] = args;
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     if (!messageId) {
       return message.channel.send(lang.REACTIONS.NO_MSG_ID);

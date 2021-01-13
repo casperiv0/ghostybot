@@ -25,6 +25,8 @@ export default class HelperHandler {
         );
       }
 
+      helper.execute(this.bot);
+
       if (this.bot.config.debug) {
         this.bot.logger.log("HELPER", `Loaded ${helper.name}`);
       }

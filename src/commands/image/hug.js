@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a picture of people hugging",
   category: "image",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("https://nekos.life/api/hug").then((res) =>
       res.json()
     );

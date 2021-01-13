@@ -6,7 +6,7 @@ module.exports = {
   description: "Get a compliment",
   category: "games",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     
     const { compliment } = await fetch(
       "https://complimentr.com/api"

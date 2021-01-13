@@ -5,7 +5,7 @@ module.exports = {
   description: "Just Magik",
   category: "image",
   async execute(bot, message, args) {
-    const member = await bot.findMember(message, args, true);
+    const member = await bot.utils.findMember(message, args, true);
 
     let intensity = args[1] || Math.floor(Math.random() * 10);
     if (member.user.id === message.author.id) {

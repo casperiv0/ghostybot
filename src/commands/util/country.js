@@ -8,7 +8,7 @@ module.exports = {
     category: 'util',
     requiredArgs: ["country"],
     async execute(bot, message, args) {
-        const lang = await bot.getGuildLang(message.guild.id);
+        const lang = await bot.utils.getGuildLang(message.guild.id);
         const query = args.join(" ");
         const country = await fetch("https://restcountries.eu/rest/v2/name/" + encodeURIComponent(query)).then(r => r.json());
         if(country.message) return message.channel.send(lang.COVID.NOT_FOUND);

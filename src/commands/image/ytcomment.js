@@ -7,7 +7,7 @@ module.exports = {
   usage: "<my amazing youtube comment>",
   requiredArgs: ["comment"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const comment = args.join(" ");
     const username = message.author.username;
     const avatar = message.author.displayAvatarURL({

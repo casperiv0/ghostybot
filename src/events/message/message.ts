@@ -213,24 +213,7 @@ import Event from "../../structures/Event";
 //           }
 //         }
 
-//         if (cmd.ownerOnly && !owners.includes(message.author.id)) {
-//           return message.reply("This command can only be used by the owners!");
-//         }
-
-//         if (cmd.requiredArgs && args.length < cmd.requiredArgs.length) {
-//           const cmdArgs = cmd.requiredArgs.map((a) => `\`${a}\``).join(", ");
-//           const cmdExample = `${matchedPrefix}${cmd.name} ${cmd.requiredArgs
-//             .map((a) => `<${a}>`)
-//             .join(" ")}`;
-
-//           const embed = BaseEmbed(message)
-//             .setTitle("Incorrect command usage")
-//             .setColor("RED")
-//             .setDescription(`:x: You must provide more args: ${cmdArgs}`)
-//             .addField("Example:", cmdExample);
-
-//           return message.channel.send(embed);
-//         }
+//
 
 //         // botPermissions
 //         if (cmd.botPermissions) {
@@ -264,9 +247,7 @@ import Event from "../../structures/Event";
 //           }
 //         }
 
-//         if (cmd.nsfwOnly && cmd.nsfwOnly === true && !message.channel.nsfw) {
-//           return message.channel.send("This channel is not a NSFW channel!");
-//         }
+//
 
 //         if (timestamps.has(userId)) {
 //           const expTime = timestamps.get(userId) + cooldownAmount;
@@ -366,6 +347,30 @@ export default class MessageEvent extends Event {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
 
       if (!command) return;
+
+      if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
+        return message.reply("This command can only be used by the owners!");
+      }
+
+      if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
+        const cmdArgs = command.options.requiredArgs.map((a) => `\`${a}\``).join(", ");
+        const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
+          .map((a) => `<${a}>`)
+          .join(" ")}`;
+
+        const embed = bot.utils
+          .baseEmbed(message)
+          .setTitle("Incorrect command usage")
+          .setColor("RED")
+          .setDescription(`:x: You must provide more args: ${cmdArgs}`)
+          .addField("Example:", cmdExample);
+
+        return message.channel.send(embed);
+      }
+
+      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
+        return message.channel.send("This channel is not a NSFW channel!");
+      }
 
       command.execute(bot, message, args);
     } catch (e) {

@@ -7,7 +7,7 @@ module.exports = {
   description: "Return a giphy image",
   category: "image",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     if (!giphyApiKey) {
       message.channel.send(lang.IMAGE.NO_GIPHY_KEY);

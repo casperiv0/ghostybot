@@ -10,8 +10,8 @@ module.exports = {
   usage: "<category name | command name>",
   aliases: ["h", "info", "commands"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const guild = await bot.getGuildById(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild.id);
     const prefix = guild.prefix;
     const cmdArgs = args[0];
     const nsfw = message.channel.nsfw;

@@ -7,11 +7,11 @@ module.exports = {
   description: "work",
   category: "economy",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const member = message.author;
     const timeout = 3600000;
 
-    const { user } = await bot.getUserById(member.id, message.guild.id);
+    const { user } = await bot.utils.getUserById(member.id, message.guild.id);
     const work = user.work;
 
     if (work !== null && timeout - (Date.now() - work) > 0) {
@@ -35,7 +35,7 @@ module.exports = {
 
       message.channel.send(embed);
 
-      await bot.updateUserById(member.id, message.guild.id, {
+      await bot.utils.updateUserById(member.id, message.guild.id, {
         money: user.money + amount,
         work: Date.now(),
       });

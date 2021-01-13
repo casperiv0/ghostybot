@@ -8,7 +8,7 @@ module.exports = {
   description: "Get lyrics for the song",
   category: "music",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const playing = bot.player.isPlaying(message);
     const queue = await bot.player.getQueue(message);
     const np = playing || queue ? bot.player.nowPlaying(message) : false;

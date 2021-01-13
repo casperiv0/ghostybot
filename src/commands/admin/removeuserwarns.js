@@ -7,8 +7,8 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args);
 
     const guildId = message.guild.id;
 
@@ -20,7 +20,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    const { warnings } = await bot.getUserById(member.user.id, guildId);
+    const { warnings } = await bot.utils.getUserById(member.user.id, guildId);
 
     if (warnings === null || !warnings[0]) {
       return message.channel.send(lang.ADMIN.NO_WARNINGS);

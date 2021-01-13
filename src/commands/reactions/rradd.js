@@ -14,7 +14,7 @@ module.exports = {
     let roles = null;
     const [channelId] = args;
     const { guild } = message;
-    const lang = await bot.getGuildLang(guild.id);
+    const lang = await bot.utils.getGuildLang(guild.id);
     const filter = (m) => message.author.id === m.author.id;
 
     if (!channelId) {

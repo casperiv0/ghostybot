@@ -6,7 +6,7 @@ module.exports = {
   description: "Get covid 19 information",
   category: "util",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const query = args.join("");
 
     let country = await (

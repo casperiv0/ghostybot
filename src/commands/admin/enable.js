@@ -9,9 +9,9 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   requiredArgs: ["command name | category name"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const option = args[0];
-    const guild = await bot.getGuildById(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild.id);
 
     if (!option) {
       return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);

@@ -5,8 +5,8 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member", "amount"],
   async execute(bot, message, args) {
-    const member = await bot.findMember(message, args);
-    const lang = await bot.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const amount = args[1];
 
     if (!member) {
@@ -21,8 +21,8 @@ module.exports = {
       return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
     }
 
-    const { user } = await bot.getUserById(member.user.id, message.guild.id);
-    await bot.updateUserById(member.user.id, message.guild.id, {
+    const { user } = await bot.utils.getUserById(member.user.id, message.guild.id);
+    await bot.utils.updateUserById(member.user.id, message.guild.id, {
       bank: user.bank + Number(amount),
     });
 

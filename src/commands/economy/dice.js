@@ -6,8 +6,8 @@ module.exports = {
   category: "economy",
   cooldown: 5,
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const { user } = await bot.getUserById(message.author.id, message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const { user } = await bot.utils.getUserById(message.author.id, message.guild.id);
     const roll = Math.floor(Math.random() * 6) + 1;
     const price = 200;
 
@@ -19,7 +19,7 @@ module.exports = {
       embed.setDescription(
         `🎉 ${lang.ECONOMY.DICE_WON.replace("{price}", price)}`
       );
-      bot.updateUserById(message.author.id, message.guild.id, {
+      bot.utils.updateUserById(message.author.id, message.guild.id, {
         money: user.money + price,
       });
     } else {

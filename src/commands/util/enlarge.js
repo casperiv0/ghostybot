@@ -8,7 +8,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["emoji"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const emoji = args[0];
     if (!emoji) {
       return message.channel.send(lang.UTIL.PROVIDE_EMOJI);

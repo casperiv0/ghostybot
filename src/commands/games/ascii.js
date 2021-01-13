@@ -5,7 +5,7 @@ module.exports = {
   description: "Transform text to ascii",
   category: "games",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) {

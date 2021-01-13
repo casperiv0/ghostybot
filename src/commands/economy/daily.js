@@ -5,8 +5,8 @@ module.exports = {
   description: "daily",
   category: "economy",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const { user } = await bot.getUserById(message.author.id, message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const { user } = await bot.utils.getUserById(message.author.id, message.guild.id);
     const timeout = 86400000; /* 24h timeout */
     const amount = 500;
     const currentMoney = user.money;
@@ -16,7 +16,7 @@ module.exports = {
       const time = moment(timeout - (Date.now() - daily)).format("h [hrs], m [mins], s [secs]");
       message.channel.send(`${lang.ECONOMY.DAILY_ERROR} ${time} remaining`);
     } else {
-      bot.updateUserById(message.author.id, message.guild.id, {
+      bot.utils.updateUserById(message.author.id, message.guild.id, {
         daily: Date.now(),
         money: currentMoney + amount,
       });

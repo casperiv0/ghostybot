@@ -6,7 +6,7 @@ module.exports = {
   description: "text to image converter xD",
   category: "image",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const text = args.join(" ");
 
     if (!text) {

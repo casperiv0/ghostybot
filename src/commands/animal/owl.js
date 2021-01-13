@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a picture of a owl",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("http://pics.floofybot.moe/owl").then((res) =>
       res.json()
     );

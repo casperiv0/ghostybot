@@ -16,6 +16,13 @@ import User, { IUser, UserUpdateData } from "../models/User.model";
 import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
 import UserModel from "../models/User.model";
 
+export interface ErrorLog {
+  name?: string;
+  stack?: string;
+  code?: string | number;
+  httpStatus?: string | number;
+}
+
 export default class Util {
   bot: Bot;
 
@@ -53,7 +60,11 @@ export default class Util {
     }
   }
 
-  async updateUserById(userId: string, guildId: string, data: UserUpdateData): Promise<void> {
+  async updateUserById(
+    userId: string,
+    guildId: string | undefined,
+    data: UserUpdateData
+  ): Promise<void> {
     try {
       const user = await this.getUserById(userId, guildId);
 
@@ -110,13 +121,13 @@ export default class Util {
     }
   }
 
-  async sendErrorLog(error: any, type: "warning" | "error"): Promise<void> {
+  async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
     const channelId = this.bot.config.errorLogsChannelId;
     const channel = (this.bot.channels.cache.get(channelId) ||
       (await this.bot.channels.fetch(channelId))) as TextChannel;
 
     if (!channel || !channelId) {
-      return this.bot.logger.error("UNHANDLED ERROR", error?.stack || error);
+      return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
     }
 
     const message = {
@@ -128,7 +139,7 @@ export default class Util {
     const httpStatus = error.httpStatus || "N/A";
     let stack = error.stack || error;
 
-    if (stack.length >= 2048) {
+    if (typeof stack === "string" && stack.length >= 2048) {
       console.error(stack);
       stack = "An error occurred but was too long to send to Discord, check your console.";
     }
@@ -148,7 +159,7 @@ export default class Util {
   async findMember(
     message: Message,
     args: string[],
-    allowAuthor: boolean
+    allowAuthor?: boolean
   ): Promise<GuildMember | undefined | null> {
     if (!message.guild) return;
     let member: GuildMember | null;

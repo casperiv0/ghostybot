@@ -7,8 +7,8 @@ module.exports = {
   category: "economy",
   cooldown: 2,
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args, true);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args, true);
 
     if (member.user.bot) {
       return message.channel.send(lang.MEMBER.BOT_DATA);
@@ -16,8 +16,8 @@ module.exports = {
 
     const userId = member.id;
     const guildId = message.guild.id;
-    const { user } = await bot.getUserById(userId, guildId);
-    const guild = await bot.getGuildById(guildId);
+    const { user } = await bot.utils.getUserById(userId, guildId);
+    const guild = await bot.utils.getGuildById(guildId);
 
     const { money, bank, inventory, xp } = user;
     const level = calculateUserXp(xp);

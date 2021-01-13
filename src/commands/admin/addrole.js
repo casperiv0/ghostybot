@@ -8,8 +8,8 @@ module.exports = {
   botPermissions: ["MANAGE_ROLES"],
   requiredArgs: ["member", "role"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const needsRole = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const needsRole = await bot.utils.findMember(message, args);
     const role = await bot.findRole(message, args[1]);
 
     if (!needsRole) {

@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["mc"],
   requiredArgs: ["server-ip"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const server = args[0];
 
     if (!server) {

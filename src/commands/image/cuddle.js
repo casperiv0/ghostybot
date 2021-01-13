@@ -5,7 +5,7 @@ module.exports = {
   description: "Cuddle with somebody",
   category: "image",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await bot.neko.sfw.cuddle();
 
     const user = message.mentions.users.first() || message.author;

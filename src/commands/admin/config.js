@@ -7,7 +7,7 @@ module.exports = {
   category: "exempt",
   aliases: ["conf", "cfg"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const { name, id: guildId } = message.guild;
     const guild = await getGuildById(guildId);
 

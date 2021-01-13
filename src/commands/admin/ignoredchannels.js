@@ -10,12 +10,12 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["igch", "ic"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const option = args[0];
     const item = message.mentions.channels.first() || message.channel;
 
-    const guild = await bot.getGuildById(guildId);
+    const guild = await bot.utils.getGuildById(guildId);
     const ignoredChannels = guild?.ignored_channels;
 
     if (!option) {

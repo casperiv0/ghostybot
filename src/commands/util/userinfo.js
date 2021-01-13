@@ -9,8 +9,8 @@ module.exports = {
   category: "util",
   aliases: ["whois", "user", "u"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args, true);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args, true);
 
     if (!member) {
       return message.channel.send("User wasn't found!");

@@ -6,7 +6,7 @@ module.exports = {
   description: "Pat somebody",
   category: "image",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("https://nekos.life/api/v2/img/pat").then((res) =>
       res.json()
     );

@@ -8,7 +8,7 @@ module.exports = {
   category: "economy",
   aliases: ["mlb"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
     const data = (await User.find({ guild_id: guildId }))
       .map((v) => {
@@ -23,7 +23,7 @@ module.exports = {
 
     data.forEach(async (item, idx) => {
       const userId = item._doc.user_id;
-      const member = await bot.findMember(message, [userId]);
+      const member = await bot.utils.findMember(message, [userId]);
       const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {

@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a picture of a cat",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("https://nekos.life/api/v2/img/meow").then((res) =>
       res.json()
     );

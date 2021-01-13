@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a picture of a dog",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch(
       "https://dog.ceo/api/breeds/image/random"
     ).then((res) => res.json());

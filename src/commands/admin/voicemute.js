@@ -7,8 +7,8 @@ module.exports = {
   memberPermissions: ["MUTE_MEMBERS"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const muteUser = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const muteUser = await bot.utils.findMember(message, args);
     const muteReason = args.join(" ").slice(23);
 
     if (!muteUser) {

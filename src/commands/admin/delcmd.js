@@ -9,9 +9,9 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   requiredArgs: ["command name"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const cmdName = args[0];
-    const guild = await bot.getGuildById(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild.id);
     const commands = guild?.custom_commands;
 
     if (commands) {

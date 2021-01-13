@@ -7,8 +7,8 @@ module.exports = {
   memberPermissions: ["MUTE_MEMBERS"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const unmuteUser = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const unmuteUser = await bot.utils.findMember(message, args);
 
     if (!unmuteUser) {
       return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);

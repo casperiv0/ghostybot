@@ -4,7 +4,7 @@ module.exports = {
   category: "botowner",
   ownerOnly: true,
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     
     await message.channel.send(lang.BOT_OWNER.SHUTDOWN);
     process.exit(1);

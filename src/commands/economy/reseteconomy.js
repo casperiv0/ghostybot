@@ -5,7 +5,7 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   aliases: ["reset-economy"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const filter = (m) => message.author.id === m.author.id;
 
     message.channel.send(lang.ECONOMY.RESET_CONF);
@@ -22,7 +22,7 @@ module.exports = {
           const users = await message.guild.members.fetch();
 
           users.forEach(async (user) => {
-            await bot.updateUserById(user.id, message.guild.id, {
+            await bot.utils.updateUserById(user.id, message.guild.id, {
               money: 0,
               bank: 0,
             });

@@ -11,8 +11,6 @@ export default class ReminderHelper extends Helper {
   async execute(bot: Bot) {
     const TEN_SECOND_INTERVAL = 10000;
 
-    const { updateUserById, baseEmbed } = bot.utils;
-
     setInterval(async () => {
       const reminders = await UserModel.find({ "reminder.hasReminder": true });
       if (!reminders) return;
@@ -29,24 +27,27 @@ export default class ReminderHelper extends Helper {
 
             const channel = guild.channels.cache.get(channel_id);
 
+            console.log(user.reminder.reminders.length - 1);
+
             if (!channel) {
-              updateUserById(user.user_id, user.guild_id, {
+              bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
-                  hasReminder: user.reminder.reminders?.length - 1 >= 0,
+                  hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                   reminders: user.reminder.reminders.filter((_, ix: number) => ix !== idx),
                 },
               });
               return;
             }
 
-            await updateUserById(user.user_id, user.guild_id, {
+            await bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
-                hasReminder: user.reminder.reminders?.length - 1 >= 0,
+                hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                 reminders: user.reminder.reminders.filter((_, ix) => ix !== idx),
               },
             });
 
-            const embed = baseEmbed({ author: usr })
+            const embed = bot.utils
+              .baseEmbed({ author: usr })
               .setTitle("Reminder finished")
               .setDescription(`Your timer of **${time}** has ended`)
               .addField("Reminder message", msg);

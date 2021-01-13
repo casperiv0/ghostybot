@@ -6,7 +6,7 @@ module.exports = {
   description: "Returns an image of a shibe",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch("http://shibe.online/api/shibes").then((res) =>
       res.json()
     );

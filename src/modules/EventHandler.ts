@@ -19,6 +19,11 @@ export default class EventHandler {
     for (const file of files) {
       delete require.cache[file];
       const { name } = parse(`../../${file}`);
+
+      if (!name) {
+        throw Error(`[ERROR][EVENT]: event must have a name (${file})`);
+      }
+
       const File = await (await import(`../../${file}`)).default;
       const event = new File(this.bot, name) as Event;
 

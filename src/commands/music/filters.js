@@ -6,7 +6,7 @@ module.exports = {
   description: "All music filters",
   category: "music",
   async execute(bot, message) {
-    const { prefix } = await bot.getGuildById(message.guild.id);
+    const { prefix } = await bot.utils.getGuildById(message.guild.id);
 
     const embed = BaseEmbed(message)
       .setTitle("Filters")

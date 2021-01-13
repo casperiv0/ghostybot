@@ -5,7 +5,7 @@ module.exports = {
   description: "None",
   category: "image",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await bot.neko.sfw.baka();
 
     const embed = BaseEmbed(message)

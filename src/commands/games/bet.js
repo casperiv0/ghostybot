@@ -5,8 +5,8 @@ module.exports = {
   description: "Bet on somebody",
   category: "games",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args);
 
     if (!member) {
       return message.reply(lang.EASY_GAMES.PROVIDE_MEMBER);

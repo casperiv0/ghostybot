@@ -7,7 +7,7 @@ module.exports = {
   category: "nsfw",
   nsfwOnly: true,
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch(
       "http://api.obutts.ru/butts/0/1/random"
     ).then((res) => res.json());

@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   aliases: ["channel"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     let channel = message.mentions.channels.first();
 
     if (!channel) {

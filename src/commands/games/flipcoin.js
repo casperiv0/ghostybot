@@ -5,7 +5,7 @@ module.exports = {
   description: "Flip a coin",
   category: "games",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
 
     const replies = [
       `**${lang.GAMES.LANDED_HEADS}**`,

@@ -5,7 +5,7 @@ module.exports = {
   description: "Write text with blocks",
   category: "games",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     if (!args.length) {
       return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }

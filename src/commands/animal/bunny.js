@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a picture of a bunny",
   category: "animal",
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await fetch(
       "https://api.bunnies.io/v2/loop/random/?media=gif,png"
     ).then((res) => res.json());

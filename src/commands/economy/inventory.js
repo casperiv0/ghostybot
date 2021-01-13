@@ -7,14 +7,14 @@ module.exports = {
   usage: "<user>",
   aliases: ["inv"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const member = await bot.findMember(message, args, true);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const member = await bot.utils.findMember(message, args, true);
 
     if (member.user.bot) {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    const { user } = await bot.getUserById(member.id, message.guild.id);
+    const { user } = await bot.utils.getUserById(member.id, message.guild.id);
     const inventory = user?.inventory;
 
     if (!inventory || !inventory?.[0]) {

@@ -11,9 +11,9 @@ module.exports = {
   aliases: ["shop"],
   usage: "<option | no-args>",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const guildId = message.guild.id;
-    const guild = await bot.getGuildById(guildId);
+    const guild = await bot.utils.getGuildById(guildId);
     const option = args[0];
     const prefix = guild.prefix;
     let item = args.slice(1)[0]; // Take first argument after option (item)

@@ -6,7 +6,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["query"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const query = args.join(" ");
 
     if (!query) {

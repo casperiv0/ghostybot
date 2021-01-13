@@ -8,7 +8,7 @@ module.exports = {
   memberPermissions: ["MANAGE_MESSAGES"],
   requiredArgs: ["message"],
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const stickyMsg = args.join(" ");
 
     if (stickyMsg.length > 1800) {

@@ -8,8 +8,8 @@ module.exports = {
   cooldown: 20,
   usage: "<amount>",
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
-    const { user } = await bot.getUserById(message.author.id, message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const { user } = await bot.utils.getUserById(message.author.id, message.guild.id);
     const numbers = [];
     let amount = args[0];
     let hasWon = false;
@@ -55,13 +55,13 @@ module.exports = {
 
     if (hasWon) {
       embed.setTitle(lang.ECONOMY.WON_SLOTS.replace("{amount}", amount));
-      await bot.updateUserById(message.author.id, message.guild.id, {
+      await bot.utils.updateUserById(message.author.id, message.guild.id, {
         money: user.money + amount,
       });
     } else {
       const removalCount = amount ? amount : 0;
       embed.setTitle(lang.ECONOMY.LOST_SLOTS);
-      await bot.updateUserById(message.author.id, message.guild.id, {
+      await bot.utils.updateUserById(message.author.id, message.guild.id, {
         money: user.money - removalCount,
       });
     }

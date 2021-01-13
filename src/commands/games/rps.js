@@ -9,7 +9,7 @@ module.exports = {
   requiredArgs: ["rock | paper | scissors"],
   cooldown: 5,
   async execute(bot, message, args) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const input = args.join("").toLowerCase();
 
     const replies = [lang.GAMES.ROCK, lang.GAMES.PAPER, lang.GAMES.SCISSORS];
@@ -23,8 +23,8 @@ module.exports = {
 
     const hasWon = checkWon(inp.toLowerCase(), reply.toLowerCase());
     if (hasWon === true) {
-      const { user } = await bot.getUserById(message.author.id, message.guild.id);
-      await bot.updateUserById(message.author.id, message.guild.id, {
+      const { user } = await bot.utils.getUserById(message.author.id, message.guild.id);
+      await bot.utils.updateUserById(message.author.id, message.guild.id, {
         money: user.money + 50,
       });
     }

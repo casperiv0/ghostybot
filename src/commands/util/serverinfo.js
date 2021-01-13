@@ -8,7 +8,7 @@ module.exports = {
   category: "util",
   aliases: ["guild", "server"],
   async execute(bot, message) {
-    const lang = await bot.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild.id);
     const { guild } = message;
     const { name, memberCount, premiumSubscriptionCount, premiumTier, verified, partnered } = guild;
     const roles = bot.formatNumber(guild.roles.cache.size);
