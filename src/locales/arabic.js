@@ -329,6 +329,11 @@ module.exports = {
     DOC_NOT_FOUND: "That was not found on the docs",
     MAINTAINERS: "Maintainers",
     LAST_MODIFIED: "Last modified",
+    ALPHA_CODE: "Alpha-2 code",
+    CALLING_CODES: "Calling Codes",
+    DOMAINS: "Domains",
+    CAPITAL: "Capital",
+    TIMEZONES: "Timezones",
   },
   BOT: {
     GUILDS: "السرفرات",
