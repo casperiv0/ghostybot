@@ -31,7 +31,9 @@ export default class CommandHandler {
         this.bot.aliases.set(alias, command.name);
       });
 
-    //   this.bot.logger.log("COMMAND", `Loaded ${command.name}`);
+      if (this.bot.config.debug) {
+        this.bot.logger.log("COMMAND", `Loaded ${command.name}`);
+      }
     }
   }
 }

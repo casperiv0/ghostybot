@@ -33,7 +33,10 @@ export default class EventHandler {
       }
 
       this.bot.on(event.name, event.execute.bind(null, this.bot));
-      this.bot.logger.log("EVENT", `${type}: Loaded ${event.name}`);
+
+      if (this.bot.config.debug) {
+        this.bot.logger.log("EVENT", `${type}: Loaded ${event.name}`);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import { Client, Collection } from "discord.js";
 import CommandHandler from "../modules/CommandHandler";
 import EventHandler from "../modules/EventHandler";
+import HelperHandler from "../modules/HelperHandler";
 import Command from "./Command";
 import Logger from "../modules/Logger";
 import Util from "../utils/Util";
@@ -28,6 +29,7 @@ class Bot extends Client {
 
     new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();
+    new HelperHandler(this).loadHelpers();
   }
 }
 

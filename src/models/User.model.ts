@@ -87,7 +87,8 @@ export interface AfkObj {
 export interface Mute {
   muted: boolean;
   ends_at: number;
-  reason: string;
+  reason: string | null;
+  time: string | null;
 }
 
 export interface Reminders {
@@ -96,7 +97,6 @@ export interface Reminders {
 }
 
 export interface Reminder {
-  _id: string;
   channel_id: string;
   msg: string;
   time: string;

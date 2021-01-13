@@ -8,6 +8,7 @@ import {
   UserResolvable,
   Webhook,
   Util as DiscordUtil,
+  Role,
 } from "discord.js";
 import Bot from "../structures/Bot";
 import User, { IUser, UserUpdateData } from "../models/User.model";
@@ -211,6 +212,22 @@ export default class Util {
     if (!webhook) return;
 
     return webhook;
+  }
+
+  async findOrCreateMutedRole(guild: Guild): Promise<Role | undefined> {
+    const dbGuild = await this.getGuildById(guild.id);
+
+    return (
+      guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
+      guild.roles.cache.find((r) => r.name === "muted") ||
+      (await guild.roles.create({
+        data: {
+          name: "muted",
+          color: "GRAY",
+        },
+        reason: "Mute a user",
+      }))
+    );
   }
 
   baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {
