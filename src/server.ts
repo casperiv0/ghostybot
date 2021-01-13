@@ -1,26 +1,23 @@
-const { createServer } = require("http");
-const { parse } = require("url");
-const next = require("next");
-const {
-  dashboard: { port },
-  ...rest
-} = require("../config.json");
+import Bot from "./structures/Bot";
+import { createServer } from "http";
+import { parse } from "url";
+import next from "next";
 
-module.exports = (bot) => {
-  const dev = rest?.dev ? rest.dev : false;
+export default (bot: Bot) => {
+  const config = bot.config;
+  const dev = config.dev;
   const app = next({ dev: dev });
   const handle = app.getRequestHandler();
 
   app.prepare().then(() => {
     createServer((req, res) => {
-      const parsedUrl = parse(req.url, true);
+      const parsedUrl: any = parse(`${req.url}`);
 
-      req.bot = bot;
+      (req as any).bot = bot;
 
       handle(req, res, parsedUrl);
-    }).listen(port, (err: string) => {
-      if (err) throw err;
-      bot.logger.log("dashboard", `Dashboard was started at: http://localhost:${port}`);
+    }).listen(config.dashboard.port, () => {
+      bot.logger.log("dashboard", "Dashboard was started");
     });
   });
 };

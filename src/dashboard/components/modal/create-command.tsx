@@ -1,40 +1,40 @@
-import { useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "../../../modules/Logger";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
+import { Guild } from "discord.js";
 
-const CreateCommandModal = ({ guild }) => {
+interface Props {
+  guild: Guild;
+}
+
+const CreateCommandModal: FC<Props> = ({ guild }: Props) => {
   const [name, setName] = useState("");
   const [cmdRes, setCmdRes] = useState("");
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  async function onSubmit(e) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name,
-            response: cmdRes,
-          }),
-        }
-      );
+      const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands`, {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          response: cmdRes,
+        }),
+      });
       const data = await res.json();
 
       if (data.status === "success") {
         closeModal("createCommandModal");
         setName("");
         setCmdRes("");
-        setResponse("");
-        router.push(
-          `/dashboard/${guild.id}/commands?message=Successfully Added command`
-        );
+        setResponse(null);
+        router.push(`/dashboard/${guild.id}/commands?message=Successfully Added command`);
       }
 
       setResponse(data);
@@ -63,7 +63,7 @@ const CreateCommandModal = ({ guild }) => {
             value={cmdRes}
             onChange={(e) => setCmdRes(e.target.value)}
             className="form-input"
-            maxLength="1800"
+            maxLength={1800}
           ></textarea>
         </div>
         <div className="float-right">

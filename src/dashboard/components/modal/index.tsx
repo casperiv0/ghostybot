@@ -1,7 +1,13 @@
-import { useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import { XIcon } from "../icons";
 
-const Modal = ({ title, id, children }) => {
+interface Props {
+  title: string;
+  id: string;
+  children: ReactNode;
+}
+
+const Modal: FC<Props> = ({ title, id, children }: Props) => {
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -27,17 +33,15 @@ const Modal = ({ title, id, children }) => {
   );
 };
 
-export function openModal(id) {
+export function openModal(id: string) {
   document.querySelector(`#${id}`)?.classList.add("active");
   document.querySelector(`#${id}-container`)?.classList.remove("closed");
   document.querySelector(`#${id}-container`)?.classList.add("active");
 }
 
-export function closeModal(id) {
+export function closeModal(id: string) {
   document.querySelector(`#${id}`)?.classList.add("active");
-  document
-    .querySelector(`#${id}-container`)
-    ?.classList.replace("active", "closed");
+  document.querySelector(`#${id}-container`)?.classList.replace("active", "closed");
 
   setTimeout(() => {
     document.querySelector(`#${id}`)?.classList.remove("active");

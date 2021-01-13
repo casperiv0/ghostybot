@@ -34,5 +34,6 @@ module.exports = {
     "no-useless-catch": ["warn"],
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/react-in-jsx-scope": "off"
   },
 };

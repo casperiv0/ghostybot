@@ -1,15 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { parseCookies } from "nookies";
-import { dashboard, owners } from "../../../config.json";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { dashboard, owners } from "../../../config.json";
 import Loader from "./Loader";
+
+export interface User {
+  username: string;
+  id: string;
+  avatar: string | null;
+}
 
 const Navbar = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const fetchAuth = useCallback(async () => {
     const cookies = parseCookies();
@@ -43,7 +49,7 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-content">
         <Link href="/dashboard">
-          <a className="nav-icon-link">
+          <a href="/dashboard" className="nav-icon-link">
             {dashboard.botName} <span className="nav-icon-extra">Dashboard</span>
           </a>
         </Link>
@@ -67,18 +73,26 @@ const Navbar = () => {
           <div className="dropdown">
             <div className="dropdown-content">
               <Link href="/dashboard">
-                <a className="dropdown-link">My servers</a>
+                <a href="/dashboard" className="dropdown-link">
+                  My servers
+                </a>
               </Link>
               <Link href="/add">
-                <a className="dropdown-link">Invite {dashboard.botName}</a>
+                <a href="/add" className="dropdown-link">
+                  Invite {dashboard.botName}
+                </a>
               </Link>
-              {owners.includes(user?.id) ? (
+              {owners.includes(`${user?.id}`) ? (
                 <Link href="/bot-settings">
-                  <a className="dropdown-link">Bot Settings</a>
+                  <a href="/bot-settings" className="dropdown-link">
+                    Bot Settings
+                  </a>
                 </Link>
               ) : null}
               <Link href="/logout">
-                <a className="dropdown-link logout">Logout</a>
+                <a href="/logout" className="dropdown-link logout">
+                  Logout
+                </a>
               </Link>
             </div>
           </div>

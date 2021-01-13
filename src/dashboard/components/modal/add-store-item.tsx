@@ -1,40 +1,40 @@
-import { useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "../../../modules/Logger";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
+import { Guild } from "discord.js";
 
-const AddStoreItem = ({ guild }) => {
+interface Props {
+  guild: Guild;
+}
+
+const AddStoreItem: FC<Props> = ({ guild }: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  async function onSubmit(e) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${dashboard.dashboardUrl}/api/guilds/${guild.id}/store`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name,
-            price,
-          }),
-        }
-      );
+      const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/store`, {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          price,
+        }),
+      });
       const data = await res.json();
 
       if (data.status === "success") {
         closeModal("addStoreItem");
         setName("");
         setPrice("");
-        setResponse("");
-        router.push(
-          `/dashboard/${guild.id}/store?message=${name} was added to the store`
-        );
+        setResponse(null);
+        router.push(`/dashboard/${guild.id}/store?message=${name} was added to the store`);
       }
 
       setResponse(data);

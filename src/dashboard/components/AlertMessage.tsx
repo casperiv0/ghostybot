@@ -1,6 +1,12 @@
+import { FC } from "react";
 import { Check, Warning } from "./icons";
 
-const AlertMessage = ({ type = "warning", message }) => {
+interface Props {
+  type?: "warning" | "error" | "success";
+  message: string;
+}
+
+const AlertMessage: FC<Props> = ({ type = "warning", message }: Props) => {
   return (
     <div className={`alert-message alert-${type}`}>
       {type === "warning" ? <Warning /> : null}

@@ -1,9 +1,14 @@
-const targetFile = "./docs/COMMANDS.md";
-const fs = require("fs");
-const categoriesData = require("../data/categories.json");
-const { dashboard } = require("../../config.json");
+const TARGET_FILE = "./docs/COMMANDS.md";
+import fs from "fs";
+import { Collection } from "discord.js";
+import categoriesData from "../data/categories.json";
+import Bot from "../structures/Bot";
+import { dashboard } from "../../config.json";
+import Command from "../structures/Command";
 
-module.exports = (bot) => {
+type Commands = Collection<string, Command>;
+
+export default (bot: Bot) => {
   const detailedCommandList = mapDetailedCommands(bot.commands);
   const notDetailedCommandList = mapNotDetailedCommand(bot.commands);
 
@@ -12,7 +17,7 @@ module.exports = (bot) => {
   bot.logger.log("command_list", "Successfully generated command list");
 };
 
-function mapDetailedCommands(cmds) {
+function mapDetailedCommands(cmds: Commands) {
   return cmds
     .map((cmd) => {
       return commandItem(cmd);
@@ -20,17 +25,14 @@ function mapDetailedCommands(cmds) {
     .join("\n");
 }
 
-function mapNotDetailedCommand(cmds) {
-  const categories = [];
+function mapNotDetailedCommand(cmds: Commands) {
+  const categories: any = [];
   const filteredCategories = categoriesData.filter((c) => !["custom", "disabled"].includes(c));
 
   for (let i = 0; i < filteredCategories.length; i++) {
     const category = cmds
-      .filter(({ category }) => category === filteredCategories[i])
-      .map(({ name, description }) => ({
-        name,
-        description,
-      }));
+      .filter(({ options }) => options.category === filteredCategories[i])
+      .map(({ options }) => ({ name: options.name, description: options.description }));
 
     categories.push(category);
   }
@@ -99,5 +101,5 @@ ${notDetailedCommandList}
 ${detailedCommandList}
 `;
 
-  fs.writeFileSync(targetFile, DEFAULT);
+  fs.writeFileSync(TARGET_FILE, DEFAULT);
 }

@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "../../../modules/Logger";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
+import { Guild } from "discord.js";
 
-const AddBlacklistedWord = ({ guild }) => {
+interface Props {
+  guild: Guild;
+}
+
+const AddBlacklistedWord: FC<Props> = ({ guild }: Props) => {
   const [word, setWord] = useState("");
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  async function onSubmit(e) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
 
     try {
@@ -28,7 +33,7 @@ const AddBlacklistedWord = ({ guild }) => {
       if (data.status === "success") {
         closeModal("addBlacklistedWord");
         setWord("");
-        setResponse("");
+        setResponse(null);
         router.push(
           `/dashboard/${guild.id}/blacklisted-words?message=Successfully blacklisted word: ${word}`
         );
