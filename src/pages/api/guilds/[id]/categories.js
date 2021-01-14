@@ -13,8 +13,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "PUT": {
-      const body = req.body;
-      const { type, name } = body;
+      const { type, name } = JSON.parse(req.body);
 
       if (!type || !name) {
         return res.status(400).json({ status: "error", error: "Must provide `type` and `name`" });

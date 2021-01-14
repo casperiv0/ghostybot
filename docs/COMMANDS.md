@@ -565,7 +565,7 @@ Click any of the command names for more information
 
 **Description:** Announce something in a channel
 
-**Usage:** `<channel> <text>`
+**Usage:** `[channel] <text>`
 
 **Member Permissions:** MANAGE_MESSAGES
 
