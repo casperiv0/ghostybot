@@ -1,28 +1,37 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { openModal } from "../../../dashboard/components/modal";
 import AddBlacklistedWord from "../../../dashboard/components/modal/add-blacklistedword";
 import Logger from "../../../modules/Logger";
+import Guild from "../../../interfaces/Guild";
+import { GetServerSideProps } from "next";
 
-const BlacklistedWords = ({ guild, isAuth }) => {
-  const [message, setMessage] = useState(null);
+interface Props {
+  guild: Guild;
+  isAuth: boolean;
+}
+
+const BlacklistedWords: FC<Props> = ({ guild, isAuth }: Props) => {
+  const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (!isAuth) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
   }, [router, isAuth]);
 
   useEffect(() => {
-    setMessage(router.query?.message);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
 
-  async function deleteWord(word) {
+  async function deleteWord(word: string) {
     try {
       const data = await (
         await fetch(
@@ -99,7 +108,7 @@ const BlacklistedWords = ({ guild, isAuth }) => {
   );
 };
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
@@ -116,6 +125,6 @@ export async function getServerSideProps(ctx) {
       guild: data?.guild || {},
     },
   };
-}
+};
 
 export default BlacklistedWords;

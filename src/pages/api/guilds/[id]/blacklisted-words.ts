@@ -1,6 +1,8 @@
+import { NextApiResponse } from "next";
+import ApiRequest from "../../../../interfaces/ApiRequest";
 import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
@@ -9,12 +11,12 @@ export default async function handler(req, res) {
     return res.json({ status: "error", error: e });
   }
 
-  const guild = await getGuildById(query.id);
+  const guild = await getGuildById(`${query.id}`);
 
   switch (method) {
     case "POST": {
       const body = JSON.parse(req.body);
-      const { word } = body;
+      const word = body.word;
 
       if (!word) {
         return res.status(400).json({ status: "error", error: "Please fill in all fields" });
@@ -48,8 +50,8 @@ export default async function handler(req, res) {
       }
 
       await updateGuildById(query.id, {
-        blacklistedwords: guild.blacklistedwords?.filter((w) => {
-          return w.toLowerCase() !== word.toLowerCase();
+        blacklistedwords: guild.blacklistedwords?.filter((w: string) => {
+          return w.toLowerCase() !== (word as string).toLowerCase();
         }),
       });
 

@@ -27,9 +27,9 @@ export interface GuildData {
   level_data: LevelData;
   welcome_data: WelcomeData;
   leave_data: LeaveData;
+  starboards_data: StarboardData;
   ban_data: any;
   ticket_data: any;
-  starboards_data: any;
 }
 
 export interface IGuild extends Document {
@@ -53,9 +53,34 @@ export interface IGuild extends Document {
   level_data: LevelData;
   welcome_data: WelcomeData;
   leave_data: LeaveData;
+  starboards_data: StarboardData;
   ban_data: any;
   ticket_data: any;
-  starboards_data: any;
+}
+
+export interface UpdateGuildData {
+  prefix?: string;
+  locale?: string;
+  store?: StoreItem[];
+  blacklistedwords?: string[];
+  announcement_channel?: string | null;
+  suggest_channel?: string | null;
+  audit_channel?: string | null;
+  custom_commands?: CustomCommand[];
+  disabled_commands?: string[];
+  disabled_categories?: string[];
+  ignored_channels?: string[];
+  sticky_data?: StickyData;
+  timezone?: string;
+  auto_delete_cmd?: boolean;
+  member_count_channel_id?: string;
+  muted_role_id?: string;
+  level_data?: LevelData;
+  welcome_data?: WelcomeData;
+  leave_data?: LeaveData;
+  starboards_data?: StarboardData;
+  ban_data?: any;
+  ticket_data?: any;
 }
 
 export interface StoreItem {
@@ -90,6 +115,12 @@ export interface LevelData {
 export interface CustomCommand {
   response: string;
   name: string;
+}
+
+export interface StarboardData {
+  enabled: boolean;
+  channel_id: string;
+  emoji: string;
 }
 
 const guildSchema = new Schema({

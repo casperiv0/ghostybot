@@ -1,6 +1,7 @@
 import { Channel, Role } from "discord.js";
+import { GuildData } from "../models/Guild.model";
 
-interface Guild {
+interface Guild extends GuildData {
   id: string;
   name: string;
   icon: string | null;

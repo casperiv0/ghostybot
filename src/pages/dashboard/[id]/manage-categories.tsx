@@ -1,66 +1,60 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import { useState, useEffect, useRef, useCallback } from "react";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
+import categories from "../../../data/categories.json";
+import Guild from "../../../interfaces/Guild";
+import { GetServerSideProps } from "next";
 
-const ManageCommands = ({ botCommands, guild, isAuth }) => {
+interface Props {
+  guild: Guild;
+  isAuth: boolean;
+}
+
+const ManageCategories = ({ guild, isAuth }: Props) => {
   const router = useRouter();
-  const [message, setMessage] = useState(null);
-  const [filtered, setFiltered] = useState(botCommands);
-  const [length, setLength] = useState(20);
+  const [message, setMessage] = useState<string | null>(null);
+  const [filtered, setFiltered] = useState(categories);
 
   useEffect(() => {
     if (!isAuth) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
   }, [router, isAuth]);
 
-  const observer = useRef();
-  const lastRef = useCallback(
-    (node) => {
-      if (length > botCommands.length) return;
-      if (observer.current) observer.current?.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setLength((p) => p + 20);
-        }
-      });
-      if (node) observer.current?.observe(node);
-    },
-    [length, botCommands]
-  );
-
   useEffect(() => {
-    setMessage(router.query?.message);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
 
-  function handleSearch(value) {
-    let filter;
+  function handleSearch(value: string) {
+    let filter: string[];
 
     if (value === "@enabled") {
-      filter = botCommands.filter((cmd) => {
-        return !guild.disabled_commands.find((c) => c === cmd.name);
+      filter = categories.filter((cat) => {
+        return !guild.disabled_categories.find((c) => c === cat);
       });
     } else if (value === "@disabled") {
-      filter = botCommands.filter((cmd) => {
-        return !!guild.disabled_commands.find((c) => c === cmd.name);
+      filter = categories.filter((cat) => {
+        return !!guild.disabled_categories.find((c) => c === cat);
       });
     } else {
-      filter = botCommands.filter((cmd) => cmd.name.toLowerCase().includes(value.toLowerCase()));
+      filter = categories.filter((cate) => cate.toLowerCase().includes(value.toLowerCase()));
     }
 
     setFiltered(filter);
   }
 
-  async function updateCommand(type, cmdName) {
+  async function updateCategory(type: string, category: string) {
     const data = await (
-      await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands`, {
+      await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/categories`, {
         method: "PUT",
         body: JSON.stringify({
-          name: cmdName,
+          name: category,
           type: type,
         }),
       })
@@ -68,9 +62,9 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
 
     if (data.status === "success") {
       router.push(
-        `/dashboard/${guild.id}/manage-commands?message=Successfully ${
+        `/dashboard/${guild.id}/manage-categories?message=Successfully ${
           type === "enable" ? "enabled" : "disabled"
-        } command: ${cmdName}`
+        } category: ${category}`
       );
     }
   }
@@ -78,11 +72,11 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
   return (
     <>
       <Head>
-        <title>Manage commands - {dashboard.botName}</title>
+        <title>Manage categories - {dashboard.botName}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
-        <h4>{guild?.name} - Enable/disable commands</h4>
+        <h4>{guild?.name} - Enable/disable categories</h4>
 
         <div>
           <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
@@ -93,7 +87,7 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
 
       <div className="form-group">
         <label className="sr-only" htmlFor="search">
-          Search for commands
+          Search for categories
         </label>
         <input
           id="search"
@@ -105,17 +99,16 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
 
       <div className="grid">
         {filtered
-          ?.slice(0, length)
-          ?.filter(({ name }) => !["help", "enable", "disable"].includes(name))
-          ?.map((cmd, idx) => {
-            const isDisabled = guild.disabled_commands?.find((c) => c === cmd.name);
+          ?.filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
+          ?.map((category, idx) => {
+            const isDisabled = guild.disabled_categories?.find((c) => c === category);
             return (
-              <div ref={lastRef} id={idx} key={cmd.name} className="card cmd-card">
-                <p>{cmd.name}</p>
+              <div id={`${idx}`} key={category} className="card cmd-card">
+                <p>{category}</p>
 
                 <div>
                   <button
-                    onClick={() => updateCommand(isDisabled ? "enable" : "disable", cmd.name)}
+                    onClick={() => updateCategory(isDisabled ? "enable" : "disable", category)}
                     className="btn btn-secondary"
                   >
                     {isDisabled ? "Enable" : "Disable"}
@@ -129,7 +122,7 @@ const ManageCommands = ({ botCommands, guild, isAuth }) => {
   );
 };
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
@@ -144,8 +137,8 @@ export async function getServerSideProps(ctx) {
     props: {
       isAuth: data.error !== "invalid_token",
       guild: data?.guild || {},
-      botCommands: data.botCommands || [],
     },
   };
-}
-export default ManageCommands;
+};
+
+export default ManageCategories;

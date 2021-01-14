@@ -6,12 +6,12 @@ import next from "next";
 export default (bot: Bot) => {
   const config = bot.config;
   const dev = config.dev;
-  const app = next({ dev: dev });
+  const app = next({ dev });
   const handle = app.getRequestHandler();
 
   app.prepare().then(() => {
     createServer((req, res) => {
-      const parsedUrl: any = parse(`${req.url}`);
+      const parsedUrl = parse(req.url!, true);
 
       (req as any).bot = bot;
 

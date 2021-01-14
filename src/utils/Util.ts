@@ -13,8 +13,9 @@ import {
 import jwt from "jsonwebtoken";
 import Bot from "../structures/Bot";
 import User, { IUser, UserUpdateData } from "../models/User.model";
-import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
+import GuildModel, { GuildData, IGuild, UpdateGuildData } from "../models/Guild.model";
 import UserModel from "../models/User.model";
+import ApiRequest from "../interfaces/ApiRequest";
 
 export interface ErrorLog {
   name?: string;
@@ -110,6 +111,21 @@ export default class Util {
       return guild;
     } catch (e) {
       this.bot.logger.error("ADD_GUILD", e?.stack || e);
+    }
+  }
+
+  async updateGuildById(guildId: string | undefined, data: UpdateGuildData) {
+    try {
+      // check if guild exists
+      const guild = await this.getGuildById(guildId);
+
+      if (!guild) {
+        await this.addGuild(guildId);
+      }
+
+      await GuildModel.findOneAndUpdate({ guild_id: guildId }, data);
+    } catch (e) {
+      console.error(e);
     }
   }
 
@@ -240,6 +256,24 @@ export default class Util {
     );
   }
 
+  async createStarboard(
+    channel: { id: string | undefined; guild: { id: string | undefined } },
+    options,
+    old: { channelID: string | undefined; emoji: string | undefined }
+  ) {
+    if (old) {
+      this.bot.starboardsManager.delete(old.channelID, old.emoji);
+    }
+
+    this.bot.starboardsManager.create(channel, {
+      ...options,
+      selfStar: true,
+      starEmbed: true,
+      attachments: true,
+      resolveImageUrl: true,
+    });
+  }
+
   async handleApiRequest(
     path: string,
     tokenData: { data: string; type: "Bot" | "Bearer" },
@@ -264,6 +298,20 @@ export default class Util {
       return await res.json();
     } catch (e) {
       return { error: "invalid_token" };
+    }
+  }
+
+  async checkAuth(req: ApiRequest) {
+    const token = req.cookies.token || req.headers.auth;
+    const data = await this.handleApiRequest("/users/@me", {
+      type: "Bearer",
+      data: `${token}`,
+    });
+
+    if (data.error) {
+      return Promise.reject(data.error);
+    } else {
+      return Promise.resolve("Authorized");
     }
   }
 

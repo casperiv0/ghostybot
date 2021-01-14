@@ -121,29 +121,6 @@ async function getGuildById(guildId) {
 
 /**
  * @param {string} guildId
- * @param {object} settings
- */
-async function updateGuildById(guildId, settings) {
-  try {
-    if (typeof settings !== "object") {
-      throw Error("'settings' must be an object");
-    }
-
-    // check if guild exists
-    const guild = await getGuildById(guildId);
-
-    if (!guild) {
-      await addGuild(guildId);
-    }
-
-    await Guild.findOneAndUpdate({ guild_id: guildId }, settings);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-/**
- * @param {string} guildId
  */
 async function addGuild(guildId) {
   try {

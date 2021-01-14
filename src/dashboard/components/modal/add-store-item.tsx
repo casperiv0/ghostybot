@@ -4,7 +4,7 @@ import Logger from "../../../modules/Logger";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
-import { Guild } from "discord.js";
+import Guild from "../../../interfaces/Guild";
 
 interface Props {
   guild: Guild;

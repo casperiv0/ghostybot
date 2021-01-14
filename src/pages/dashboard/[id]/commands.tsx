@@ -1,6 +1,6 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import Head from "next/head";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
@@ -8,22 +8,31 @@ import Logger from "../../../modules/Logger";
 import { openModal } from "../../../dashboard/components/modal";
 import CreateCommandModal from "../../../dashboard/components/modal/create-command";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
+import Guild from "../../../interfaces/Guild";
+import { GetServerSideProps } from "next";
 
-const CustomCommands = ({ guild, isAuth }) => {
-  const [message, setMessage] = useState(null);
+interface Props {
+  guild: Guild;
+  isAuth: boolean;
+}
+
+const CustomCommands: FC<Props> = ({ guild, isAuth }: Props) => {
+  const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (!isAuth) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
   }, [router, isAuth]);
 
   useEffect(() => {
-    setMessage(router.query?.message);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
 
-  async function deleteCommand(name) {
+  async function deleteCommand(name: string) {
     try {
       const data = await (
         await fetch(
@@ -102,7 +111,7 @@ const CustomCommands = ({ guild, isAuth }) => {
   );
 };
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
@@ -119,6 +128,6 @@ export async function getServerSideProps(ctx) {
       guild: data?.guild || {},
     },
   };
-}
+};
 
 export default CustomCommands;

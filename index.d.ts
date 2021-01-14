@@ -5,7 +5,11 @@ declare module "discord-starboards" {
     storage?: string;
   }
   export default class StarboardsManager {
-    constructor(client: Client, options: StarboardOptions) {}
+    starboards: any;
+
+    constructor(client: Client, options: StarboardOptions) {
+      super(client, options);
+    }
   }
 }
 

@@ -18,7 +18,8 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    setMessage(`${router.query?.message}`);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
     if (!isAuth) {
       router.push("/api/auth/login");
       return;
