@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, FC, ChangeEventHandler, FormEvent } from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import fetch from "node-fetch";
@@ -8,10 +8,35 @@ import { getLanguages } from "../../../utils/functions";
 import timezones from "../../../data/timezones.json";
 import { useRouter } from "next/router";
 import Switch from "../../../dashboard/components/Switch";
+import Guild from "../../../interfaces/Guild";
+import { GetServerSideProps } from "next";
 
-const Settings = ({ guild, languages, isAuth }) => {
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
+export interface FieldItem {
+  type: "select" | "input" | "textarea";
+  id: string;
+  label: string;
+  onChange: ChangeEventHandler<any>;
+  value: any;
+  data?: any[];
+}
+
+export interface Field {
+  enabled: boolean;
+  id: string;
+  title: string;
+  onChecked: () => void;
+  fields: FieldItem[];
+}
+
+interface Props {
+  guild: Guild;
+  languages: string[];
+  isAuth: boolean;
+}
+
+const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
   const [leaveData, setLeaveData] = useState(guild?.leave_data || {});
   const [levelData, setLevelData] = useState(guild?.level_data || {});
@@ -29,11 +54,12 @@ const Settings = ({ guild, languages, isAuth }) => {
 
   useEffect(() => {
     if (!isAuth) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
   }, [router, isAuth]);
 
-  const fields = [
+  const fields: Field[] = [
     {
       enabled: welcomeData?.enabled ?? false,
       id: "welcome",
@@ -285,7 +311,7 @@ const Settings = ({ guild, languages, isAuth }) => {
     },
   ];
 
-  async function onSubmit(e) {
+  async function onSubmit(e: FormEvent) {
     setMessage(null);
     setError(null);
     e.preventDefault();
@@ -347,9 +373,9 @@ const Settings = ({ guild, languages, isAuth }) => {
                   {field.label}
                 </label>
                 {field.type === "select" ? (
-                  <SelectField item={field} />
+                  <SelectField item={field as FieldItem} />
                 ) : (
-                  <InputField item={field} />
+                  <InputField item={field as FieldItem} />
                 )}
               </div>
             );
@@ -396,7 +422,11 @@ const Settings = ({ guild, languages, isAuth }) => {
   );
 };
 
-function SelectField({ item }) {
+interface Item {
+  item: FieldItem;
+}
+
+function SelectField({ item }: Item) {
   return (
     <select className="form-input" id={item.id} value={item.value} onChange={item.onChange}>
       {item.data?.map((option, idx) => {
@@ -410,7 +440,7 @@ function SelectField({ item }) {
   );
 }
 
-function TextareaField({ item }) {
+function TextareaField({ item }: Item) {
   return (
     <textarea
       value={item.value}
@@ -421,7 +451,7 @@ function TextareaField({ item }) {
   );
 }
 
-function InputField({ item }) {
+function InputField({ item }: Item) {
   return (
     <input
       className="form-input"
@@ -433,7 +463,7 @@ function InputField({ item }) {
   );
 }
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
   const langs = getLanguages().map((lang) => {
     return { id: lang, name: lang };
@@ -454,6 +484,6 @@ export async function getServerSideProps(ctx) {
       languages: langs,
     },
   };
-}
+};
 
 export default Settings;

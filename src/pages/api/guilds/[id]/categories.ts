@@ -1,17 +1,22 @@
 import { NextApiResponse } from "next";
 import ApiRequest from "../../../../interfaces/ApiRequest";
-import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
-    await checkAuth(req);
+    await req.bot.utils.checkAuth(req);
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
 
-  const guild = await getGuildById(`${query.id}`);
+  const guild = await req.bot.utils.getGuildById(`${query.id}`);
+  if (!guild) {
+    return res.json({
+      status: "error",
+      error: "An unexpected error occurred",
+    });
+  }
 
   switch (method) {
     case "PUT": {
@@ -22,13 +27,13 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       if (type === "enable") {
-        await updateGuildById(query.id, {
+        await req.bot.utils.updateGuildById(`${query.id}`, {
           disabled_categories: guild.disabled_categories.filter(
             (c: string) => c !== name.toLowerCase()
           ),
         });
       } else if (type === "disable") {
-        await updateGuildById(query.id, {
+        await req.bot.utils.updateGuildById(`${query.id}`, {
           disabled_categories: [...guild.disabled_categories, name],
         });
       } else {

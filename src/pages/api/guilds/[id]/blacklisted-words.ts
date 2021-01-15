@@ -1,17 +1,22 @@
 import { NextApiResponse } from "next";
 import ApiRequest from "../../../../interfaces/ApiRequest";
-import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
-    await checkAuth(req);
+    await req.bot.utils.checkAuth(req);
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
 
-  const guild = await getGuildById(`${query.id}`);
+  const guild = await req.bot.utils.getGuildById(`${query.id}`);
+  if (!guild) {
+    return res.json({
+      status: "error",
+      error: "An unexpected error occurred",
+    });
+  }
 
   switch (method) {
     case "POST": {
@@ -36,7 +41,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      await updateGuildById(query.id, {
+      await req.bot.utils.updateGuildById(`${query.id}`, {
         blacklistedwords: [...guild.blacklistedwords, word.toLowerCase()],
       });
 
@@ -49,7 +54,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         return res.status(400).json({ status: "error", error: "Must provide a word" });
       }
 
-      await updateGuildById(query.id, {
+      await req.bot.utils.updateGuildById(`${query.id}`, {
         blacklistedwords: guild.blacklistedwords?.filter((w: string) => {
           return w.toLowerCase() !== (word as string).toLowerCase();
         }),

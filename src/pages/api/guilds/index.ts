@@ -1,6 +1,6 @@
+import { NextApiResponse } from "next";
 import hiddenItems from "../../../data/hidden-items.json";
 import ApiRequest from "../../../interfaces/ApiRequest";
-import { NextApiResponse } from "next";
 import Guild from "../../../interfaces/Guild";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {

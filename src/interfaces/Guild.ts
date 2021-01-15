@@ -1,4 +1,4 @@
-import { Channel, Role } from "discord.js";
+import { CategoryChannel, Channel, Role } from "discord.js";
 import { GuildData } from "../models/Guild.model";
 
 interface Guild extends GuildData {
@@ -11,6 +11,8 @@ interface Guild extends GuildData {
   roles: Role[];
   channels: Channel[];
   inGuild: boolean;
+
+  categories: CategoryChannel[];
 }
 
 export default Guild;

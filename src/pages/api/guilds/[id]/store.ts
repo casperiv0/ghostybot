@@ -1,16 +1,24 @@
-import { checkAuth, getGuildById, updateGuildById } from "../../../../utils/functions";
+import { NextApiResponse } from "next";
+import ApiRequest from "../../../../interfaces/ApiRequest";
+import { CustomCommand, StoreItem } from "../../../../models/Guild.model";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
-    await checkAuth(req);
+    await req.bot.utils.checkAuth(req);
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
 
-  const guild = await getGuildById(query.id);
-  const lang = await req.bot.utils.getGuildLang(query.id);
+  const guild = await req.bot.utils.getGuildById(`${query.id}`);
+  const lang = await req.bot.utils.getGuildLang(`${query.id}`);
+  if (!guild) {
+    return res.json({
+      status: "error",
+      error: "An unexpected error occurred",
+    });
+  }
 
   switch (method) {
     case "POST": {
@@ -27,20 +35,20 @@ export default async function handler(req, res) {
       const price = Number(body.price);
       const name = body.name.toLowerCase();
 
-      if (!isNumber.test(price)) {
+      if (!isNumber.test(`${price}`)) {
         return res.status(400).json({
           error: lang.ECONOMY.MUST_BE_NUMBER,
           status: "error",
         });
       }
 
-      if (guild.custom_commands?.find((x) => x.name === name))
+      if (guild.custom_commands?.find((x: CustomCommand) => x.name === name))
         return res.status(400).json({
           error: lang.ECONOMY.ALREADY_EXISTS.replace("{item}", name),
           status: "error",
         });
 
-      await updateGuildById(query.id, {
+      await req.bot.utils.updateGuildById(`${query.id}`, {
         store: [...guild.store, { name: name, price: price }],
       });
 
@@ -48,14 +56,14 @@ export default async function handler(req, res) {
     }
     case "DELETE": {
       const filtered = guild.store?.filter(
-        (item) => item.name.toLowerCase() !== query.name.toLowerCase()
+        (item: StoreItem) => item.name.toLowerCase() !== (query.name as string).toLowerCase()
       );
 
-      await updateGuildById(query.id, { store: filtered });
+      await req.bot.utils.updateGuildById(`${query.id}`, { store: filtered });
 
       return res.json({
         status: "success",
-        message: lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", query.name),
+        message: lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", `${query.name}`),
       });
     }
     default: {
