@@ -19,10 +19,11 @@ export default class ReadyEvent extends Event {
       "!help | https://ghostybot.tk",
     ];
 
-    // require("../../helpers/unmuteHelper")(bot);
-    // require("../../helpers/reminderHelper")(bot);
-    // require("../../modules/features")(bot);
     new HelperHandler(bot).loadHelpers();
+
+    if (bot.config.dev === true) {
+      import("../../scripts/generateCommandList").then((v) => v.default(bot));
+    }
 
     const botData = await BotModel.findOne({ bot_id: bot?.user?.id });
 

@@ -1,7 +1,7 @@
-const config = require("../../config.json");
-const Logger = require("../modules/Logger");
+import config from "../../config.json";
+import Logger from "../modules/Logger";
 
-function checkValid() {
+(function checkValid() {
   const v = parseFloat(process.versions.node);
 
   if (v < 14) {
@@ -66,6 +66,4 @@ function checkValid() {
       }
     });
   }
-}
-
-module.exports = checkValid;
+})();

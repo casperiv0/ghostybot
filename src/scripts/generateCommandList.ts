@@ -25,12 +25,17 @@ function mapDetailedCommands(cmds: Commands) {
     .join("\n");
 }
 
+interface Category {
+  name: string;
+  description: string;
+}
+
 function mapNotDetailedCommand(cmds: Commands) {
-  const categories: any = [];
+  const categories: Category[][] = [];
   const filteredCategories = categoriesData.filter((c) => !["custom", "disabled"].includes(c));
 
   for (let i = 0; i < filteredCategories.length; i++) {
-    const category = cmds
+    const category: Category[] = cmds
       .filter(({ options }) => options.category === filteredCategories[i])
       .map(({ options }) => ({ name: options.name, description: options.description }));
 
@@ -44,33 +49,37 @@ function mapNotDetailedCommand(cmds: Commands) {
     .join("##");
 }
 
-function commandItem(command) {
+function commandItem(command: Command) {
   return `## ${command.name}
 
-**Category:** ${command.category}
+**Category:** ${command.options.category}
 
-**Description:** ${command.description || "N/A"}
+**Description:** ${command.options.description || "N/A"}
 
-**Usage:** ${`\`${command.usage || "N/A"}\``}
+**Usage:** ${`\`${command.options.usage || "N/A"}\``}
 
 **Member Permissions:** ${
-    !command.memberPermissions ? "None" : command.memberPermissions.map((p) => p).join(", ")
+    !command.options.memberPermissions
+      ? "None"
+      : command.options.memberPermissions.map((p) => p).join(", ")
   }
 
 **Bot Permissions:** ${
-    !command.botPermissions
+    !command.options.botPermissions
       ? "SEND_MESSAGES"
-      : ["SEND_MESSAGES", ...command.botPermissions].map((p) => p).join(", ")
+      : ["SEND_MESSAGES", ...command.options.botPermissions].map((p) => p).join(", ")
   }
 
 **Required Arguments:** ${
-    command?.requiredArgs ? command?.requiredArgs.map((a) => `\`${a}\``).join(", ") : "N/A"
+    command.options.requiredArgs
+      ? command.options.requiredArgs.map((a) => `\`${a}\``).join(", ")
+      : "N/A"
   }
 
 [Back to top](#ghostybot-command-list)\n`;
 }
 
-function categoryItem(commands, categoryName) {
+function categoryItem(commands, categoryName: string) {
   return `
 ### Category: ${categoryName}
 
@@ -84,7 +93,7 @@ ${commands
   `;
 }
 
-function writeToFile(detailedCommandList, notDetailedCommandList, length) {
+function writeToFile(detailedCommandList, notDetailedCommandList, length: number) {
   const DEFAULT = `# ${dashboard.botName} Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).

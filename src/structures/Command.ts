@@ -3,7 +3,7 @@ import Bot from "./Bot";
 
 export interface CommandOptions {
   name: string;
-  description?: string;
+  description: string;
   category: string;
   usage?: string;
   aliases?: string[];

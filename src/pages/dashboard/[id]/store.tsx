@@ -4,18 +4,26 @@ import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 import { openModal } from "../../../dashboard/components/modal";
 import AddStoreItem from "../../../dashboard/components/modal/add-store-item";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Logger from "../../../modules/Logger";
+import Guild from "../../../interfaces/Guild";
+import { GetServerSideProps } from "next";
 
-const Store = ({ guild, isAuth }) => {
+interface Props {
+  guild: Guild;
+  isAuth: boolean;
+}
+
+const Store: FC<Props> = ({ guild, isAuth }: Props) => {
   const [message, setMessage] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     if (!isAuth) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
   }, [router, isAuth]);
 
@@ -23,7 +31,7 @@ const Store = ({ guild, isAuth }) => {
     setMessage(router.query?.message);
   }, [router]);
 
-  async function deleteItem(name) {
+  async function deleteItem(name: string) {
     try {
       const data = await (
         await fetch(
@@ -54,7 +62,9 @@ const Store = ({ guild, isAuth }) => {
 
       <AddStoreItem guild={guild} />
       <Head>
-        <title>{guild?.name} - Store / {dashboard.botName} Dashboard</title>
+        <title>
+          {guild?.name} - Store / {dashboard.botName} Dashboard
+        </title>
       </Head>
       <div className="page-title">
         <h4>{guild?.name} - Store</h4>
@@ -100,8 +110,7 @@ const Store = ({ guild, isAuth }) => {
     </>
   );
 };
-
-export async function getServerSideProps(ctx) {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
@@ -118,6 +127,6 @@ export async function getServerSideProps(ctx) {
       guild: data?.guild || {},
     },
   };
-}
+};
 
 export default Store;
