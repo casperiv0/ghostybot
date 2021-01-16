@@ -36,9 +36,9 @@ module.exports = {
       errors: ["time"],
     });
     const roleMsg = roleMsgs.first();
-    roles = parseRoles(roleMsg, bot);
+    roles = await parseRoles(roleMsg, bot);
 
-    if (!roles[0]) {
+    if (!roles?.[0]) {
       return message.channel.send(lang.REACTIONS.NO_ROLE);
     }
 
@@ -95,7 +95,7 @@ function createDescription(roles, emojis) {
   return strings.join("\n");
 }
 
-function parseRoles(msg, bot) {
+async function parseRoles(msg, bot) {
   const content = msg.content.trim().split(/ +/g);
 
   // Remove any duplicates
@@ -103,10 +103,10 @@ function parseRoles(msg, bot) {
 
   let roles = [];
 
-  filtered.forEach(async (r) => {
-    const role = bot.findRole(msg, r);
+  await filtered.forEach(async (r) => {
+    const role = await bot.findRole(msg, r);
 
-    roles = [...roles, role.id];
+    roles = [...roles, role];
     return role;
   });
 
