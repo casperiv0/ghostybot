@@ -20,7 +20,7 @@ module.exports = {
 
     const bmi = (weight / ((height * height) / 10000)).toFixed(2);
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${message.author.username} ${lang.UTIL.BMI}`)
       .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`)
       .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`)

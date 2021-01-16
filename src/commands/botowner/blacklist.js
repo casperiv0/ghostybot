@@ -38,7 +38,7 @@ module.exports = {
           return message.channel.send(lang.BOT_OWNER.NOT_BLD);
         }
 
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
           .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member.username}`)
           .addField(`${lang.LEVELS.LEVEL}`, "2");
 

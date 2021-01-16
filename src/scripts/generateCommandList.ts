@@ -27,7 +27,7 @@ function mapDetailedCommands(cmds: Commands) {
 
 interface Category {
   name: string;
-  description: string;
+  description: string | undefined;
 }
 
 function mapNotDetailedCommand(cmds: Commands) {

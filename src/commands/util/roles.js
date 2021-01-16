@@ -12,7 +12,7 @@ module.exports = {
         .map((r) => r)
         .join(",\n") || lang.GLOBAL.NONE;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${message.guild.name} ${lang.UTIL.ROLES}`)
       .setDescription(
         `${roles.length > 2048 ? roles.slice(0, 2030) + "..." : roles}`

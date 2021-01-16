@@ -13,7 +13,7 @@ module.exports = {
       return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(question)
       .setDescription(
         lang.UTIL.CREATED_BY.replace("{member}", message.author.tag)

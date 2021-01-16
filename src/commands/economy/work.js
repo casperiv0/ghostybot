@@ -24,7 +24,7 @@ module.exports = {
     } else {
       const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ECONOMY.WORK)
         .setDescription(
           `${lang.ECONOMY.WORKED

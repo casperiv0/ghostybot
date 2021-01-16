@@ -21,7 +21,7 @@ module.exports = {
       return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
       .setDescription(bug);
 

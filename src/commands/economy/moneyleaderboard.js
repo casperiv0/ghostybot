@@ -17,7 +17,7 @@ module.exports = {
       .sort((a, b) => b.total - a.total)
       .splice(0, 10);
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${message.guild.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
       .setFooter(lang.ECONOMY.BOTH_COUNTED);
 

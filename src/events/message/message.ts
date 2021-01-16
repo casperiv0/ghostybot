@@ -73,7 +73,7 @@ import Event from "../../structures/Event";
 
 //       if (newLevel > level) {
 //         if (guild.level_data.enabled === true) {
-//           const embed = BaseEmbed(message)
+//           const embed = bot.utils.baseEmbed(message)
 //             .setTitle("Level up!")
 //             .addField("New level", newLevel)
 //             .addField("Total xp", user.xp + xp);
@@ -112,7 +112,7 @@ import Event from "../../structures/Event";
 //         const { user } = await getUserById(member.user.id, guildId);
 
 //         if (user.afk.is_afk === true) {
-//           const embed = BaseEmbed(message)
+//           const embed = bot.utils.baseEmbed(message)
 //             .setTitle("AFK!")
 //             .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.afk.reason}`);
 //           message.channel.send(embed);
@@ -136,7 +136,7 @@ import Event from "../../structures/Event";
 //       });
 
 //       const msg = await message.channel.send(
-//         BaseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
+//         bot.utils.baseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
 //       );
 
 //       setTimeout(() => {
@@ -153,7 +153,7 @@ import Event from "../../structures/Event";
 //     const customCmds = guild?.custom_commands;
 
 //     if (message.mentions.has(bot.user.id) && !command) {
-//       const embed = BaseEmbed(message)
+//       const embed = bot.utils.baseEmbed(message)
 //         .setTitle("Quick Info")
 //         .addField("Prefix", serverPrefix)
 //         .addField("Support", "https://discord.gg/XxHrtkA")
@@ -275,7 +275,7 @@ import Event from "../../structures/Event";
 //       }
 //     } catch (e) {
 //       sendErrorLog(bot, e, "error", message.content);
-//       const embed = BaseEmbed(message).setTitle("Woah! Something went wrong").setDescription(e);
+//       const embed = bot.utils.baseEmbed(message).setTitle("Woah! Something went wrong").setDescription(e);
 
 //       message.channel.send(embed);
 //     }

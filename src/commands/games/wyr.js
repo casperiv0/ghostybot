@@ -11,7 +11,7 @@ module.exports = {
 
     const reply = replies[Math.floor(Math.random() * replies.length)];
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GAMES.WYR + "qsdklhqlksdsh")
       .setDescription(`**${reply}**`);
 

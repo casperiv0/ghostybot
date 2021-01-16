@@ -16,7 +16,7 @@ module.exports = {
       .map((channel) => `<#${channel.id}>`)
       .join(", ");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${message.guild.name}'s channels`)
       .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
       .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels);

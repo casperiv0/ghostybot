@@ -11,7 +11,7 @@ module.exports = {
     try {
       const calculation = math.evaluate(args.join(" "));
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.GAMES.CALC)
         .addField(
           `${lang.BOT_OWNER.EVAL_INPUT}:`,

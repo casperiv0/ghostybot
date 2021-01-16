@@ -28,7 +28,7 @@ module.exports = {
         return message.channel.send(lang.UTIL.PS_NOT_FOUND);
       }
 
-      const Embed = BaseEmbed(message)
+      const Embed = bot.utils.baseEmbed(message)
         .setThumbnail(app.icon)
         .setURL(app.url)
         .setTitle(`${app.title}`)

@@ -28,7 +28,7 @@ module.exports = {
 
     const image = data.images.original.url;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(data.title)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
       .setImage(`${image}`);

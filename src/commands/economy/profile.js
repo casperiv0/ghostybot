@@ -22,7 +22,7 @@ module.exports = {
     const { money, bank, inventory, xp } = user;
     const level = calculateUserXp(xp);
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${member.user.username} ${lang.ECONOMY.PROFILE}`)
       .addField(`**${lang.LEVELS.XP}**`, xp, true)
       .addField(`**${lang.LEVELS.LEVEL}**`, level, true)

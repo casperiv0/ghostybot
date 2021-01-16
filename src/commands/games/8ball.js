@@ -15,7 +15,7 @@ module.exports = {
 
     const answer = answers[Math.floor(Math.random() * answers.length)];
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle("8Ball")
       .addField(`${lang.GAMES.QUESTION}:`, question)
       .addField(`${lang.GAMES.ANSWER}:`, answer);

@@ -22,7 +22,7 @@ module.exports = {
       username
     )}&comment=${encodeURIComponent(comment)}&avatar=${encodeURIComponent(avatar)}`;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${url})`)
       .setImage(url);
 

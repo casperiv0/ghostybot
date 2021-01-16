@@ -49,7 +49,7 @@ module.exports = {
       hasWon = true;
     }
 
-    let embed = BaseEmbed(message).setDescription(
+    let embed = bot.utils.baseEmbed(message).setDescription(
       `${items[numbers[0]]} ${items[numbers[1]]} ${items[numbers[2]]}`
     );
 

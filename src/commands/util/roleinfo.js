@@ -22,7 +22,7 @@ module.exports = {
     const color = role.color || "#2F3136";
     const position = message.guild.roles.cache.size - role.position;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`**${name}**`)
       .setColor(color)
       .addField(`**${lang.MEMBER.CREATED_ON}**`, `${date} (${tz})`, true)

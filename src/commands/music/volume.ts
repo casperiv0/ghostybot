@@ -1,13 +1,22 @@
-module.exports = {
-  name: "volume",
-  description: "Set the volume between 1 to 100",
-  category: "music",
-  aliases: ["vol"],
-  async execute(bot, message, args) {
+import { Message } from "discord.js";
+import Command from "../../structures/Command";
+import Bot from "../../structures/Bot";
+
+export default class RemindersCommand extends Command {
+  constructor(bot: Bot) {
+    super(bot, {
+      name: "volume",
+      description: "Set the volume between 1 to 100",
+      category: "music",
+      aliases: ["vol"],
+    });
+  }
+
+  async execute(bot: Bot, message: Message, args: string[]) {
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const [newVol] = args;
-    const lang = await bot.utils.getGuildLang(message.guild.id);
-    const queue = await bot.player.getQueue(message);
-    if (!message.member.voice.channel) {
+    const queue = bot.player.getQueue(message);
+    if (!message.member?.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
@@ -19,7 +28,7 @@ module.exports = {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
 
-    if (isNaN(newVol)) {
+    if (isNaN(Number(newVol))) {
       return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
     }
 
@@ -35,7 +44,7 @@ module.exports = {
       return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
     }
 
-    bot.player.setVolume(message, newVol);
+    bot.player.setVolume(message, Number(newVol));
     await message.channel.send(lang.MUSIC.VOL_SUCCESS.replace("{vol}", newVol));
-  },
-};
+  }
+}

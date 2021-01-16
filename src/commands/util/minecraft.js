@@ -31,7 +31,7 @@ module.exports = {
     const version = data.server.name;
     const protocol = data.server.protocol;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${server}`)
       .addField(lang.MEMBER.STATUS, status, true)
       .addField(lang.UTIL.PLAYERS, players, true)

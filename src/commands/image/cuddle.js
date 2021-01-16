@@ -11,7 +11,7 @@ module.exports = {
     const user = message.mentions.users.first() || message.author;
     const cuddled = message.author.id === user.id ? "themselfs" : user.username;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(
         `${message.author.username} ${lang.IMAGE.CUDDLES} ${cuddled}`
       )

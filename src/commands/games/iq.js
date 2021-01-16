@@ -9,7 +9,7 @@ module.exports = {
 
     const iq = Math.floor(Math.random() * 100) + 1;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GAMES.IQ_TEST)
       .setDescription(lang.GAMES.IQ_IS.replace("{iq}", iq));
 

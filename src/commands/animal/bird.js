@@ -11,7 +11,7 @@ module.exports = {
       await fetch("https://some-random-api.ml/img/birb")
     ).json();
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
       .setImage(data.link);
 

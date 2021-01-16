@@ -11,7 +11,7 @@ module.exports = {
     const roll = Math.floor(Math.random() * 6) + 1;
     const price = 200;
 
-    const embed = BaseEmbed(message).setTitle(
+    const embed = bot.utils.baseEmbed(message).setTitle(
       `🎲 ${lang.ECONOMY.DICE_LANDED.replace("{roll}", roll)}`
     );
 

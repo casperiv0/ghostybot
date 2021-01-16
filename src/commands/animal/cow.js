@@ -11,7 +11,7 @@ module.exports = {
 
     const cow = cows[Math.floor(Math.random() * cows.length)];
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.ANIMAL.COW)
       .setDescription(`\`\`\`${cow}\`\`\``);
 

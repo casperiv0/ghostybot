@@ -56,7 +56,7 @@ module.exports = {
       return message.channel.send(lang.REACTIONS.VALID_EMOJI);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.REACTIONS.TITLE)
       .setDescription(`${lang.REACTIONS.DESC}\n ${createDescription(roles, emojis)}`);
 

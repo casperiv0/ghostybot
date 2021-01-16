@@ -11,7 +11,7 @@ module.exports = {
       "https://dog.ceo/api/breeds/image/random"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`
       )

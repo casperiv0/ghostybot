@@ -45,7 +45,7 @@ module.exports = {
         disabled_categories: [...guild.disabled_categories, category],
       });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ADMIN.DISABLED_CATEGORY)
         .setDescription(lang.ADMIN.CATEGORY_DISABLED.replace("{category}", category));
 
@@ -64,7 +64,7 @@ module.exports = {
         disabled_commands: [...guild.disabled_commands, command.name],
       });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ADMIN.DISABLED_COMMAND)
         .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
 

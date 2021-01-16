@@ -17,7 +17,7 @@ module.exports = {
         afk: { is_afk: false, reason: null },
       });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.GLOBAL.SUCCESS)
         .setDescription(lang.UTIL.NOT_AFK);
 
@@ -30,7 +30,7 @@ module.exports = {
       afk: { is_afk: true, reason: reason },
     });
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GLOBAL.SUCCESS)
       .setDescription(`${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${reason}`);
 

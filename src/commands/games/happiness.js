@@ -9,7 +9,7 @@ module.exports = {
 
     const happiness = Math.floor(Math.random() * 100) + 1;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GAMES.HAPPINESS)
       .setDescription(`${happiness}%`);
 

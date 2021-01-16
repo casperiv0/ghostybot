@@ -17,7 +17,7 @@ module.exports = {
     const nodev = process.version;
     const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user.id });
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${lang.BOT.INFO_2}`)
       .addField(`${lang.MEMBER.USERNAME}:`, bot.user.username)
       .addField(`${lang.BOT.LATENCY}:`, Math.round(bot.ws.ping), true)

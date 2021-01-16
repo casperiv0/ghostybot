@@ -32,7 +32,7 @@ module.exports = {
     const verLevel = guild.verificationLevel;
     const mfaLevel = guild.mfaLevel;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(name)
       .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
       .addField(`**${lang.GUILD.OWNER}**`, owner, true)

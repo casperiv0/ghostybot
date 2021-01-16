@@ -19,7 +19,7 @@ module.exports = {
       if (emoji.startsWith("https://cdn.discordapp.com")) {
         await message.guild.emojis.create(emoji, name || lang.ADMIN.GIVE_NAME);
 
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(`${lang.ADMIN.EMOJI_ADDED_NAME} ${name || lang.ADMIN.GIVE_NAME}`);
         return message.channel.send(embed);
@@ -33,7 +33,7 @@ module.exports = {
         }`;
 
         await message.guild.emojis.create(`${link}`, `${name || `${customEmoji.name}`}`);
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(
             `${lang.ADMIN.EMOJI_ADDED_NAME} ${name || customEmoji.name} | ${lang.ADMIN.PREVIEW} [${lang.HELP.CLICK_ME}](${link})`

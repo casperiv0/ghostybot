@@ -1,18 +1,26 @@
-const BaseEmbed = require("../../modules/BaseEmbed");
+import { Message } from "discord.js";
+import Command from "../../structures/Command";
+import Bot from "../../structures/Bot";
 
-module.exports = {
-  name: "nowplaying",
-  description: "Shows info about the current playing song",
-  category: "music",
-  aliases: ["np", "currentsong"],
-  async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
-    if (!message.member.voice.channel) {
+export default class NowPlayingCommand extends Command {
+  constructor(bot: Bot) {
+    super(bot, {
+      name: "nowplaying",
+      description: "Shows info about the current playing song",
+      category: "music",
+      aliases: ["np", "currentsong"],
+    });
+  }
+
+  async execute(bot: Bot, message: Message) {
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+
+    if (!message.member?.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
     const playing = bot.player.isPlaying(message);
-    const queue = await bot.player.getQueue(message);
+    const queue = bot.player.getQueue(message);
     if (!playing) {
       return message.channel.send(lang.MUSIC.NO_QUEUE);
     }
@@ -26,7 +34,8 @@ module.exports = {
       timecodes: true,
     });
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils
+      .baseEmbed(message)
       .setTitle(song.title)
       .setURL(song.url)
       .setAuthor(`🎵 ${lang.MUSIC.NOW} ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}`)
@@ -34,11 +43,10 @@ module.exports = {
       .setDescription(
         `
       **${lang.MUSIC.DURATION}:** ${song.duration}
-      **${lang.MUSIC.VIEWS}:** ${song?.views ? bot.formatNumber(song.views) : "N/A"}
         ${durBar}
 `
       );
 
     message.channel.send(embed);
-  },
-};
+  }
+}

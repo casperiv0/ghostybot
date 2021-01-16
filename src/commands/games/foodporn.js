@@ -18,7 +18,7 @@ module.exports = {
     const upvotes = children.data.ups;
     const comments = children.data.num_comments;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(title)
       .setURL(url)
       .setImage(image)

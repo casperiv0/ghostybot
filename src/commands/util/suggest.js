@@ -21,7 +21,7 @@ module.exports = {
       return message.reply(lang.GLOBAL.PROVIDE_ARGS);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.UTIL.NEW_SUGGESTION)
       .setDescription(suggestion)
       .setAuthor(

@@ -12,7 +12,7 @@ module.exports = {
       .then((data) => {
         const fact = data.fact;
 
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ANIMAL.CAT_FACT)
         .setDescription(fact);
         

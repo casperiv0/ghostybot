@@ -40,7 +40,7 @@ module.exports = {
         return message.channel.send(lang.HELP.CAT_NOT_EXIST);
       }
 
-      const embed = BaseEmbed(message).setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
+      const embed = bot.utils.baseEmbed(message).setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
       if (cmdArgs === "botowner") {
         if (isBotOwner) {
@@ -73,7 +73,7 @@ module.exports = {
       let memberPerms;
       let botPerms;
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
         .setDescription(`${lang.HELP.CUSTOM_CMD}`);
 
@@ -118,7 +118,7 @@ module.exports = {
       cates.push(category);
     }
 
-    const embed = BaseEmbed(message);
+    const embed = bot.utils.baseEmbed(message);
 
     for (let i = 0; i < cates.length; i++) {
       const name = lang.HELP.CATEGORIES[categories[i]];

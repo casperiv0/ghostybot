@@ -14,7 +14,7 @@ module.exports = {
       `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.IMAGE.CLYDE)
       .setImage(data.message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`);

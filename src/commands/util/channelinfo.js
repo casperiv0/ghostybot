@@ -24,7 +24,7 @@ module.exports = {
         ? lang.UTIL.TEXT_CHANNEL
         : lang.UTIL.VOICE_CHANNEL;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${channel.name}`)
       .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
       .addField(lang.UTIL.CHANNEL_TOPIC, topic, true)

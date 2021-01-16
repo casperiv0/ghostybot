@@ -14,7 +14,7 @@ module.exports = {
 
     if (!feedBackChannelId || feedBackChannelId === "") return;
 
-    const embed = BaseEmbed(message).setTitle(lang.UTIL.NEW_FEEDBACK).setDescription(feedback);
+    const embed = bot.utils.baseEmbed(message).setTitle(lang.UTIL.NEW_FEEDBACK).setDescription(feedback);
 
     bot.channels.cache.get(feedBackChannelId).send(embed);
 

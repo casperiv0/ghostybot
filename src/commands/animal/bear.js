@@ -12,7 +12,7 @@ module.exports = {
       "https://no-api-key.com/api/v1/animals/bear"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(data.fact)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.image})`)
       .setImage(data.image);

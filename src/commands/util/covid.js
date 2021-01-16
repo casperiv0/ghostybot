@@ -20,7 +20,7 @@ module.exports = {
     const { tz, date } = await bot.formatDate(country.updated, message.guild.id);
     const Title = country.country ? `Covid: ${country.country}` : "Covid";
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(Title)
       .addField(
         lang.COVID.TOTAL,

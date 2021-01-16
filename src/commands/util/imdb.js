@@ -20,7 +20,7 @@ module.exports = {
       const movie = await bot.imdb.get({ name: search });
       const released = new Date(movie.released).toLocaleDateString();
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(movie.title)
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)

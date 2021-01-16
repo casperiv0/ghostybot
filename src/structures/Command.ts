@@ -3,12 +3,14 @@ import Bot from "./Bot";
 
 export interface CommandOptions {
   name: string;
-  description: string;
+  description?: string;
   category: string;
   usage?: string;
-  aliases?: string[];
   cooldown?: number;
+
+  aliases?: string[];
   requiredArgs?: string[];
+  options?: string[];
 
   memberPermissions?: PermissionString[];
   botPermissions?: PermissionString[];

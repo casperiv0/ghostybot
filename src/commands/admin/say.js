@@ -14,7 +14,7 @@ module.exports = {
 
     if (type === "embed") {
       msg = args.slice(1).join(" ");
-      const embed = BaseEmbed(message).setDescription(msg);
+      const embed = bot.utils.baseEmbed(message).setDescription(msg);
       return message.channel.send(embed);
     }
 

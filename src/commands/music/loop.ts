@@ -1,11 +1,20 @@
-module.exports = {
-  name: "loop",
-  description: "Loop a song that is playing",
-  category: "music",
-  async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+import { Message } from "discord.js";
+import Command from "../../structures/Command";
+import Bot from "../../structures/Bot";
 
-    if (!message.member.voice.channel) {
+export default class LoopCommand extends Command {
+  constructor(bot: Bot) {
+    super(bot, {
+      name: "loop",
+      description: "Loop a song that is playing",
+      category: "music",
+    });
+  }
+
+  async execute(bot: Bot, message: Message) {
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+
+    if (!message.member?.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
@@ -22,5 +31,5 @@ module.exports = {
     }
 
     message.react("🔁");
-  },
-};
+  }
+}

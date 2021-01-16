@@ -10,7 +10,7 @@ module.exports = {
     const bots = message.guild.members.cache.filter((mem) => mem.user.bot).size;
     const humans = message.guild.members.cache.filter((mem) => !mem.user.bot).size;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${name} ${lang.MEMBER.MEMBERS}`)
       .addField(`**${lang.UTIL.TOTAL_MB}**`, bot.formatNumber(memberCount), true)
       .addField(`**${lang.UTIL.HUMANS}**`, bot.formatNumber(humans), true)

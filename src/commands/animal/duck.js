@@ -11,7 +11,7 @@ module.exports = {
       "https://random-d.uk/api/v1/random?type=gif"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
       .setImage(data.url);
 

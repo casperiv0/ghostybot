@@ -12,7 +12,7 @@ module.exports = {
       "https://complimentr.com/api"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GAMES.COMPLIMENT)
       .setDescription(compliment);
 

@@ -21,7 +21,7 @@ module.exports = {
     const Rome = tz("Europe/Rome").format("hh:mm:ss");
     const Singapore = tz("Asia/Singapore").format("hh:mm:ss");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle("World time zones")
       .addField("Los Angeles, US", LosAngeles, true)
       .addField("New York, US", newYork, true)

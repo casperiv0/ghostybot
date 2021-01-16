@@ -12,8 +12,8 @@ import {
 } from "discord.js";
 import jwt from "jsonwebtoken";
 import Bot from "../structures/Bot";
-import User, { IUser, UserUpdateData } from "../models/User.model";
-import GuildModel, { GuildData, IGuild, UpdateGuildData } from "../models/Guild.model";
+import User, { IUser, UserData } from "../models/User.model";
+import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
 import UserModel from "../models/User.model";
 import ApiRequest from "../interfaces/ApiRequest";
 
@@ -48,7 +48,7 @@ export default class Util {
   async addUser(
     userId: string,
     guildId: string | undefined,
-    data?: UserUpdateData
+    data?: Partial<UserData>
   ): Promise<IUser | undefined> {
     try {
       const user: IUser = new User({ user_id: userId, guild_id: guildId, ...data });
@@ -64,7 +64,7 @@ export default class Util {
   async updateUserById(
     userId: string,
     guildId: string | undefined,
-    data: UserUpdateData
+    data: Partial<UserData>
   ): Promise<void> {
     try {
       const user = await this.getUserById(userId, guildId);
@@ -114,7 +114,7 @@ export default class Util {
     }
   }
 
-  async updateGuildById(guildId: string | undefined, data: UpdateGuildData) {
+  async updateGuildById(guildId: string | undefined, data: Partial<GuildData>) {
     try {
       // check if guild exists
       const guild = await this.getGuildById(guildId);

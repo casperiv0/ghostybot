@@ -39,7 +39,7 @@ module.exports = {
     const windDeg = data.wind.deg;
     const country = data.sys.country;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${data.name} ${lang.UTIL.WEATHER}`)
       .addField(`**${lang.UTIL.MAIN}**`, main, true)
       .addField(`**${lang.UTIL.CURRENT}**`, desc, true)

@@ -21,7 +21,7 @@ module.exports = {
         )}`
       ).then((res) => res.json());
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(data.name)
         .setDescription(data.description)
         .addField("ID", data.id, true)

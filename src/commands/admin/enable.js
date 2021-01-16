@@ -35,7 +35,7 @@ module.exports = {
         disabled_categories: guild.disabled_categories.filter((c) => c !== category),
       });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ADMIN.ENABLED_CATEGORY)
         .setDescription(lang.ADMIN.CATEGORY_ENABLED.replace("{category}", category));
 
@@ -54,7 +54,7 @@ module.exports = {
         disabled_commands: guild.disabled_commands.filter((c) => c !== command.name),
       });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(lang.ADMIN.ENABLED_COMMAND)
         .setDescription(lang.ADMIN.COMMAND_ENABLED.replace("{commandName}", command.name));
 

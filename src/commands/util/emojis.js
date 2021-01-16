@@ -24,7 +24,7 @@ module.exports = {
         ? `${nonAnimated.join(" ").slice(1010)}...`
         : nonAnimated.join(" ");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .addField(
         `${lang.UTIL.ANIMATED}:`,
         animated.length === 0 ? lang.GLOBAL.NONE : animatedV

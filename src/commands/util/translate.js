@@ -12,7 +12,7 @@ module.exports = {
     try {
       const result = await translate(args.slice(1).join(" "), { to: args[0] });
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setDescription(result.text)
         .setTitle(lang.UTIL.G_TRANSLATE);
 

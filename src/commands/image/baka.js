@@ -8,7 +8,7 @@ module.exports = {
     const lang = await bot.utils.getGuildLang(message.guild.id);
     const data = await bot.neko.sfw.baka();
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
       .setImage(`${data.url}`);
 

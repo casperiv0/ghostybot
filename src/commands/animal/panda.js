@@ -11,7 +11,7 @@ module.exports = {
       "https://some-random-api.ml/img/panda"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
       .setImage(data.link);
 

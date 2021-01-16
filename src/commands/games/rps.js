@@ -36,7 +36,7 @@ module.exports = {
         ? lang.GAMES.BOTH_WON
         : lang.GAMES.BOT_WON;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.GAMES.RPS)
       .setDescription(`**${lang.GAMES.WINNER}:** ${winner}`)
       .addField(lang.GAMES.YOUR_CHOICE, toCapitalize(input))

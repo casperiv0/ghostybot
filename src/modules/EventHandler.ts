@@ -1,3 +1,4 @@
+import { PlayerEvents } from "discord-player";
 import glob from "glob";
 import { parse } from "path";
 import Bot from "../structures/Bot";
@@ -26,6 +27,7 @@ export default class EventHandler {
 
       const File = await (await import(`../../${file}`)).default;
       const event = new File(this.bot, name) as Event;
+      const isPlayer = file.includes("player.");
 
       types.forEach((t) => {
         if (file.includes(`${t}.`)) {
@@ -37,7 +39,11 @@ export default class EventHandler {
         throw new TypeError(`[ERROR][events]: execute function is required for events! (${file})`);
       }
 
-      this.bot.on(event.name, event.execute.bind(null, this.bot));
+      if (isPlayer) {
+        this.bot.player.on(event.name as keyof PlayerEvents, event.execute.bind(null, this.bot));
+      } else {
+        this.bot.on(event.name, event.execute.bind(null, this.bot));
+      }
 
       if (this.bot.config.debug) {
         this.bot.logger.log("EVENT", `${type}: Loaded ${event.name}`);

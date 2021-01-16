@@ -9,7 +9,7 @@ module.exports = {
     const lang = await bot.utils.getGuildLang(message.guild.id);
     const dependencies = Object.entries(pkg.dependencies).join(",\n");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.UTIL.DEPENDENCIES)
       .setDescription(dependencies);
 

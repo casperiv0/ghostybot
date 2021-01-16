@@ -11,7 +11,7 @@ module.exports = {
       res.json()
     );
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(https://cdn.ram.moe/${data.path.replace(
           "/i/",

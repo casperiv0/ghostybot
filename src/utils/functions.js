@@ -222,7 +222,7 @@ async function removeSticky(channelId) {
  * @param {Object} message
  */
 const errorEmbed = (permissions, message) => {
-  return BaseEmbed(message)
+  return bot.utils.baseEmbed(message)
     .setTitle("Woah!")
     .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
     .setColor("ORANGE");
@@ -313,7 +313,7 @@ async function sendErrorLog(bot, error, type, msgContent) {
     stack = "An error occurred but was too long to send to Discord, check your console.";
   }
 
-  const embed = BaseEmbed(message)
+  const embed = bot.utils.baseEmbed(message)
     .setTitle("An error occurred")
     .addField("Name", name, true)
     .addField("Code", code, true)

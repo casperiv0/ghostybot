@@ -39,7 +39,7 @@ module.exports = {
         )
         ?.join(",\n ");
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setTitle(`${message.guild.name} ${lang.ECONOMY.STORE}`)
         .setDescription(`${items}`);
 

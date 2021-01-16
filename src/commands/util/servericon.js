@@ -10,7 +10,7 @@ module.exports = {
     if (icon === null) {
       message.channel.send(lang.UTIL.NO_GUILD_ICON);
     } else {
-      const embed = BaseEmbed(message).setImage(icon);
+      const embed = bot.utils.baseEmbed(message).setImage(icon);
 
       message.channel.send(embed);
     }

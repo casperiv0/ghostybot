@@ -25,7 +25,7 @@ module.exports = {
       .replace(/9/g, ":nine:")
       .replace(/0/g, ":zero:");
 
-    const embed = BaseEmbed(message).setDescription(blocks);
+    const embed = bot.utils.baseEmbed(message).setDescription(blocks);
 
     message.channel.send(embed);
   },

@@ -16,7 +16,7 @@ module.exports = {
 
     const custom = Util.parseEmoji(emoji);
 
-    const embed = BaseEmbed(message).setTitle(
+    const embed = bot.utils.baseEmbed(message).setTitle(
       lang.UTIL.ENLARGED_EMOJI.replace("{emoji}", emoji)
     );
 

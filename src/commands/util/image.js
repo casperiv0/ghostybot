@@ -41,7 +41,7 @@ module.exports = {
 
       const randomIndex = Math.floor(Math.random() * urls.length);
       const image = urls[randomIndex];
-      const embed = BaseEmbed(message).setImage(image);
+      const embed = bot.utils.baseEmbed(message).setImage(image);
       message.channel.send(embed);
     });
   },

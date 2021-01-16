@@ -19,7 +19,7 @@ module.exports = {
       },
     });
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${roleName}`)
       .setDescription(lang.ADMIN.CREATED_ROLE_ADDED);
 

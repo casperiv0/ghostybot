@@ -18,7 +18,7 @@ module.exports = {
     const leaveCh = guild?.leave_data?.channel_id;
     const levelMsgs = guild?.level_up_messages;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.ADMIN.GUILD_CONFIG.replace("{guildName}", name))
       .addField(lang.GUILD.PREFIX, prefix)
       .addField(lang.GUILD.ANNOUNCE_CHANNEL, !announceCh ? lang.GLOBAL.NONE : `<#${announceCh}>`)

@@ -35,7 +35,7 @@ module.exports = {
 
     const { username, id, tag } = member.user;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .addField(`**${lang.MEMBER.ID}**`, id, true)
       .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
       .addField(`**${lang.MEMBER.BOT}**`, isBot, true)

@@ -25,7 +25,7 @@ module.exports = {
       return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
     .setTitle(lang.ADMIN.ANNOUNCEMENT)
     .setDescription(text);
 

@@ -14,7 +14,7 @@ module.exports = {
 
     const n = Math.random();
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(
         lang.GAMES.BETS_ON.replace(
           "{member_1}",

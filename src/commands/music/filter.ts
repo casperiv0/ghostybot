@@ -1,16 +1,24 @@
-const filters = require("../../data/filters.json");
+import { Message } from "discord.js";
+import Command from "../../structures/Command";
+import Bot from "../../structures/Bot";
+import filters from "../../data/filters.json";
 
-module.exports = {
-  name: "filter",
-  description: "Set or remove a filter",
-  category: "music",
-  requiredArgs: ["option", "filter"],
-  options: ["set", "remove"],
-  async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+export default class FilterCommand extends Command {
+  constructor(bot: Bot) {
+    super(bot, {
+      name: "filter",
+      description: "Set or remove a filter",
+      category: "music",
+      requiredArgs: ["option", "filter"],
+      options: ["set", "remove"],
+    });
+  }
+
+  async execute(bot: Bot, message: Message, args: string[]) {
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const [option, filter] = args;
 
-    if (!message.member.voice.channel) {
+    if (!message.member?.voice.channel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
     }
 
@@ -29,9 +37,12 @@ module.exports = {
     switch (option.toLowerCase()) {
       case "set": {
         if (currentFilters[filter] === true) {
-          return message.channel.send(lang.MUSIC.FILTER_ALREADY_ENABLED.replace("{filter}", filter));
+          return message.channel.send(
+            lang.MUSIC.FILTER_ALREADY_ENABLED.replace("{filter}", filter)
+          );
         }
 
+        // @ts-expect-error ignore below
         await bot.player.setFilters(message, {
           [filter]: true,
         });
@@ -42,15 +53,15 @@ module.exports = {
           return message.channel.send(lang.MUSIC.FILTER_NOT_ENABLED.replace("{filter}", filter));
         }
 
+        // @ts-expect-error ignore below
         await bot.player.setFilters(message, {
           [filter]: false,
         });
         return message.channel.send(lang.MUSIC.SUC_REM_FILTER.replace("{filter}", filter));
       }
       default: {
-        return message.channel.send(lang.MUSIC.NOT_VALID_OPTION
-          .replace("{option}", option));
+        return message.channel.send(lang.MUSIC.NOT_VALID_OPTION.replace("{option}", option));
       }
     }
-  },
-};
+  }
+}

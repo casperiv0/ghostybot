@@ -24,7 +24,7 @@ module.exports = {
       });
 
     sendMsg.delete();
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
       .setImage(data.message);
 

@@ -23,7 +23,7 @@ module.exports = {
 
     const mapped = inventory?.map((item) => item).join(",\n ");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${member.user.username} ${lang.ECONOMY.INVENTORY}`)
       .setDescription(`${mapped}`);
 

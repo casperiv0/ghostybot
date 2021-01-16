@@ -26,7 +26,7 @@ module.exports = {
     const skin = `https://visage.surgeplay.com/skin/2048/${uuid.id}.png`;
     const face = `https://visage.surgeplay.com/face/2048/${uuid.id}.png`;
     message.channel.send(
-      BaseEmbed(message)
+      bot.utils.baseEmbed(message)
       .setAuthor(lang.UTIL.SKIN_NAME.replace("{name}", uuid.username), face)
       .setDescription(`${lang.UTIL.DOWNLOAD_SKIN}(${skin})`)
       .setImage(full)

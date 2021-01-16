@@ -33,7 +33,7 @@ module.exports = {
     const location = user.location ? user.location : "N/A";
     const bio = user.bio ? user.bio : "N/A";
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
       .addField("**Twitter**", twitter, true)
       .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following, true)

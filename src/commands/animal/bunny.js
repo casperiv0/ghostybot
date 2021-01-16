@@ -11,7 +11,7 @@ module.exports = {
       "https://api.bunnies.io/v2/loop/random/?media=gif,png"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setDescription(
         `${lang.IMAGE.CLICK_TO_VIEW}(${data.media.gif})`
       )

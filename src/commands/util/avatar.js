@@ -13,7 +13,7 @@ module.exports = {
     const webp = avatar(member, "webp");
     const jpg = avatar(member, "jpg");
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${member.user.username} ${lang.UTIL.AVATAR}`)
       .setDescription(`[png](${png}) | [webp](${webp}) | [jpg](${jpg})`)
       .setImage(`${webp}`);

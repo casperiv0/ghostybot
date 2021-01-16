@@ -30,7 +30,7 @@ module.exports = {
       const { tz, date } = await bot.formatDate(foundPackage.date, message.guild.id);
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
 
-      const embed = BaseEmbed(message)
+      const embed = bot.utils.baseEmbed(message)
         .setURL(foundPackage.links.npm)
         .setTitle(foundPackage.name)
         .setDescription(foundPackage.description)
@@ -41,7 +41,7 @@ module.exports = {
       return message.channel.send(embed);
     }
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(lang.UTIL.NPM_SEARCH)
       .setDescription(lang.UTIL.NPM_TOP_5.replace("{query}", query));
 

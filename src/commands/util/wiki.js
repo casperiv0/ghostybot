@@ -23,7 +23,7 @@ module.exports = {
     const title = result.raw.title;
     const url = result.raw.fullurl;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${title} (read more)`)
       .setURL(url)
       .setDescription(`${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`);

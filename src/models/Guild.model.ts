@@ -28,8 +28,8 @@ export interface GuildData {
   welcome_data: WelcomeData;
   leave_data: LeaveData;
   starboards_data: StarboardData;
-  ban_data: any;
-  ticket_data: any;
+  ban_data: BanData;
+  ticket_data: TicketData;
 }
 
 export interface IGuild extends Document {
@@ -54,33 +54,8 @@ export interface IGuild extends Document {
   welcome_data: WelcomeData;
   leave_data: LeaveData;
   starboards_data: StarboardData;
-  ban_data: any;
-  ticket_data: any;
-}
-
-export interface UpdateGuildData {
-  prefix?: string;
-  locale?: string;
-  store?: StoreItem[];
-  blacklistedwords?: string[];
-  announcement_channel?: string | null;
-  suggest_channel?: string | null;
-  audit_channel?: string | null;
-  custom_commands?: CustomCommand[];
-  disabled_commands?: string[];
-  disabled_categories?: string[];
-  ignored_channels?: string[];
-  sticky_data?: StickyData;
-  timezone?: string;
-  auto_delete_cmd?: boolean;
-  member_count_channel_id?: string;
-  muted_role_id?: string;
-  level_data?: LevelData;
-  welcome_data?: WelcomeData;
-  leave_data?: LeaveData;
-  starboards_data?: StarboardData;
-  ban_data?: any;
-  ticket_data?: any;
+  ban_data: BanData;
+  ticket_data: TicketData;
 }
 
 export interface StoreItem {
@@ -121,6 +96,18 @@ export interface StarboardData {
   enabled: boolean;
   channel_id: string;
   emoji: string;
+}
+
+export interface TicketData {
+  enabled: boolean;
+  channel_id: string | null;
+  parent_id: string | null;
+  role_id: string | null;
+}
+
+export interface BanData {
+  enabled: boolean;
+  message: string;
 }
 
 const guildSchema = new Schema({
@@ -165,7 +152,7 @@ const guildSchema = new Schema({
   },
   ticket_data: {
     type: Object,
-    default: { enabled: false, channel_id: null, parent_id: null },
+    default: { enabled: false, channel_id: null, parent_id: null, role_id: null },
   },
   starboards_data: {
     type: Object,

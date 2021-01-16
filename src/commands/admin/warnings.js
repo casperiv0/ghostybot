@@ -22,7 +22,7 @@ module.exports = {
       return message.channel.send(lang.MEMBER.BOT_DATA);
     }
 
-    const embed = BaseEmbed(message);
+    const embed = bot.utils.baseEmbed(message);
 
     if (warningNr) {
       const warning = warnings?.filter((w, idx) => idx === warningNr - 1)[0];

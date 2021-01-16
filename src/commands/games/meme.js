@@ -12,7 +12,7 @@ module.exports = {
       "https://meme-api.herokuapp.com/gimme"
     ).then((res) => res.json());
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(data.title)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
       .setImage(data.url);

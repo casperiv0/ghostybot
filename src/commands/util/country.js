@@ -27,7 +27,7 @@ module.exports = {
             languages += `${lang.name}\n`
         });
 
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
             .setAuthor(name)
             .setTitle(nativeName)
             .addField(lang.UTIL.ALPHA_CODE, alphaCode, true)

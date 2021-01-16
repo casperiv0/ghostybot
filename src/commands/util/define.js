@@ -18,7 +18,7 @@ module.exports = {
       if (data.err) {
         message.channel.send(lang.UTIL.NO_DEF_FOUND.replace("{word}", word));
       } else {
-        const embed = BaseEmbed(message)
+        const embed = bot.utils.baseEmbed(message)
           .setTitle(lang.UTIL.DEF_FOR_WORD.replace("{word}", word))
           .addField(lang.UTIL.CATEGORY, data.category)
           .addField(lang.UTIL.DEFINITION, data.definition);

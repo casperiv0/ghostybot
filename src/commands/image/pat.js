@@ -13,7 +13,7 @@ module.exports = {
     const user = message.mentions.users.first() || message.author;
     const patted = message.author.id === user.id ? "themselfs" : user.username;
 
-    const embed = BaseEmbed(message)
+    const embed = bot.utils.baseEmbed(message)
       .setTitle(`${message.author.username} ${lang.IMAGE.PATTED} ${patted}`)
       .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
       .setImage(`${data.url}`);
