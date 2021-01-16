@@ -1,7 +1,7 @@
 # GhostyBotDEV Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBotDEV has a total of 66 commands.
+GhostyBotDEV has a total of 126 commands.
 
 Click any of the command names for more information
 
@@ -63,14 +63,84 @@ Click any of the command names for more information
   ##
 ### Category: economy
 
-**Total commands: 0**
+**Total commands: 18**
 
+[addmoney:](#addmoney) Add money to a user
+
+[balance:](#balance) balance
+
+[buy:](#buy) Buy an item from the store
+
+[daily:](#daily) daily
+
+[deposit:](#deposit) deposit money to your bank
+
+[dice:](#dice) Roll a dice
+
+[inventory:](#inventory) View your or a user inventory
+
+[moneyleaderboard:](#moneyleaderboard) Returns a leaderboard with the top 10 users money
+
+[pay:](#pay) Give money to a user
+
+[profile:](#profile) See the full profile of a user
+
+[removemoney:](#removemoney) Remove money to a user
+
+[reseteconomy:](#reseteconomy) Reset all money/bank in this guild
+
+[rob:](#rob) Rob up to 1000coins from somebody
+
+[slots:](#slots) Slots machine
+
+[store:](#store) View the store/shop to buy something
+
+[weekly:](#weekly) Collect your weekly price
+
+[withdraw:](#withdraw) Withdraw money to your bank
+
+[work:](#work) work
 
   ##
 ### Category: games
 
-**Total commands: 0**
+**Total commands: 18**
 
+[8ball:](#8ball) 8Ball
+
+[advice:](#advice) Gives you advice
+
+[ascii:](#ascii) Transform text to ascii
+
+[bet:](#bet) Bet on somebody
+
+[block:](#block) Write text with blocks
+
+[calc:](#calc) Calculate something
+
+[compliment:](#compliment) Get a compliment
+
+[dadjoke:](#dadjoke) Shows a dadjoke
+
+[flipcoin:](#flipcoin) Flip a coin
+
+[happiness:](#happiness) Get a happiness returned
+
+[iq:](#iq) Get a random Iq returned
+
+[lmgtfy:](#lmgtfy) Let me google that for you
+
+[meme:](#meme) Returns a meme
+
+[randomjoke:](#randomjoke) returns a random joke
+
+[randomnumber:](#randomnumber) Returns a random 6 digit number
+
+[rps:](#rps) Rock Paper Scissors
+
+[tictactoe:](#tictactoe) Play a game of tictactoe
+
+[wyr:](#wyr) Would you rather
 
   ##
 ### Category: hentainsfw
@@ -90,8 +160,49 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 0**
+**Total commands: 21**
 
+[amazeme:](#amazeme) Shows interesting images or facts
+
+[amazingearth:](#amazingearth) Amazing images of light and landscape
+
+[baka:](#baka) None
+
+[changemymind:](#changemymind) Change my mind
+
+[clyde:](#clyde) Let clyde say something
+
+[cuddle:](#cuddle) Cuddle with somebody
+
+[feed:](#feed) feed somebody
+
+[foodporn:](#foodporn) Shows Food images
+
+[giphy:](#giphy) Return a giphy image
+
+[hug:](#hug) Shows a picture of people hugging
+
+[imgfy:](#imgfy) text to image converter xD
+
+[kiss:](#kiss) Shows a picture of people kissing
+
+[magik:](#magik) Just Magik
+
+[owo:](#owo) OwO
+
+[pat:](#pat) Pat somebody
+
+[poke:](#poke) Poke somebody
+
+[slap:](#slap) Slap somebody
+
+[smug:](#smug) Smug
+
+[supreme:](#supreme) Display custom text as the Supreme logo
+
+[tweet:](#tweet) Returns an image with your tweet
+
+[ytcomment:](#ytcomment) Returns an image with your YouTube comment
 
   ##
 ### Category: levels
@@ -181,9 +292,15 @@ Click any of the command names for more information
   ##
 ### Category: botowner
 
-**Total commands: 1**
+**Total commands: 4**
+
+[blacklist:](#blacklist) Remove/add blacklist from a user
 
 [eval:](#eval) Eval
+
+[leaveguild:](#leaveguild) Leaves a guid by the provided Id
+
+[shutdown:](#shutdown) Shuts the bot down
 
   ##
 ### Category: giveaway
@@ -565,6 +682,22 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## blacklist
+
+**Category:** botowner
+
+**Description:** Remove/add blacklist from a user
+
+**Usage:** `<option> <level> <user>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## eval
 
 **Category:** botowner
@@ -578,6 +711,614 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## leaveguild
+
+**Category:** botowner
+
+**Description:** Leaves a guid by the provided Id
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## shutdown
+
+**Category:** botowner
+
+**Description:** Shuts the bot down
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## addmoney
+
+**Category:** economy
+
+**Description:** Add money to a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## balance
+
+**Category:** economy
+
+**Description:** balance
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## buy
+
+**Category:** economy
+
+**Description:** Buy an item from the store
+
+**Usage:** `<item name>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `item name`
+
+[Back to top](#ghostybot-command-list)
+
+## daily
+
+**Category:** economy
+
+**Description:** daily
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## deposit
+
+**Category:** economy
+
+**Description:** deposit money to your bank
+
+**Usage:** `<all | amount>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## dice
+
+**Category:** economy
+
+**Description:** Roll a dice
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## inventory
+
+**Category:** economy
+
+**Description:** View your or a user inventory
+
+**Usage:** `<user>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## moneyleaderboard
+
+**Category:** economy
+
+**Description:** Returns a leaderboard with the top 10 users money
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## pay
+
+**Category:** economy
+
+**Description:** Give money to a user
+
+**Usage:** `<member>, <amount>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## profile
+
+**Category:** economy
+
+**Description:** See the full profile of a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## removemoney
+
+**Category:** economy
+
+**Description:** Remove money to a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## reseteconomy
+
+**Category:** economy
+
+**Description:** Reset all money/bank in this guild
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## rob
+
+**Category:** economy
+
+**Description:** Rob up to 1000coins from somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`, `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## slots
+
+**Category:** economy
+
+**Description:** Slots machine
+
+**Usage:** `<amount>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## store
+
+**Category:** economy
+
+**Description:** View the store/shop to buy something
+
+**Usage:** `<option | no-args>`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## weekly
+
+**Category:** economy
+
+**Description:** Collect your weekly price
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## withdraw
+
+**Category:** economy
+
+**Description:** Withdraw money to your bank
+
+**Usage:** `<all | amount>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## work
+
+**Category:** economy
+
+**Description:** work
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## 8ball
+
+**Category:** games
+
+**Description:** 8Ball
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## advice
+
+**Category:** games
+
+**Description:** Gives you advice
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ascii
+
+**Category:** games
+
+**Description:** Transform text to ascii
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## bet
+
+**Category:** games
+
+**Description:** Bet on somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## block
+
+**Category:** games
+
+**Description:** Write text with blocks
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## calc
+
+**Category:** games
+
+**Description:** Calculate something
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `calculation`
+
+[Back to top](#ghostybot-command-list)
+
+## compliment
+
+**Category:** games
+
+**Description:** Get a compliment
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## dadjoke
+
+**Category:** games
+
+**Description:** Shows a dadjoke
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## flipcoin
+
+**Category:** games
+
+**Description:** Flip a coin
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## happiness
+
+**Category:** games
+
+**Description:** Get a happiness returned
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## iq
+
+**Category:** games
+
+**Description:** Get a random Iq returned
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## lmgtfy
+
+**Category:** games
+
+**Description:** Let me google that for you
+
+**Usage:** `<search query>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## meme
+
+**Category:** games
+
+**Description:** Returns a meme
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## randomjoke
+
+**Category:** games
+
+**Description:** returns a random joke
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## randomnumber
+
+**Category:** games
+
+**Description:** Returns a random 6 digit number
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## rps
+
+**Category:** games
+
+**Description:** Rock Paper Scissors
+
+**Usage:** `<rock | paper | scissors>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `rock | paper | scissors`
+
+[Back to top](#ghostybot-command-list)
+
+## tictactoe
+
+**Category:** games
+
+**Description:** Play a game of tictactoe
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`
+
+[Back to top](#ghostybot-command-list)
+
+## wyr
+
+**Category:** games
+
+**Description:** Would you rather
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
@@ -708,6 +1449,342 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## amazeme
+
+**Category:** image
+
+**Description:** Shows interesting images or facts
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## amazingearth
+
+**Category:** image
+
+**Description:** Amazing images of light and landscape
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## baka
+
+**Category:** image
+
+**Description:** None
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## changemymind
+
+**Category:** image
+
+**Description:** Change my mind
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## clyde
+
+**Category:** image
+
+**Description:** Let clyde say something
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## cuddle
+
+**Category:** image
+
+**Description:** Cuddle with somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## feed
+
+**Category:** image
+
+**Description:** feed somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## foodporn
+
+**Category:** image
+
+**Description:** Shows Food images
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## giphy
+
+**Category:** image
+
+**Description:** Return a giphy image
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## hug
+
+**Category:** image
+
+**Description:** Shows a picture of people hugging
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## imgfy
+
+**Category:** image
+
+**Description:** text to image converter xD
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## kiss
+
+**Category:** image
+
+**Description:** Shows a picture of people kissing
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## magik
+
+**Category:** image
+
+**Description:** Just Magik
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## owo
+
+**Category:** image
+
+**Description:** OwO
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## pat
+
+**Category:** image
+
+**Description:** Pat somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## poke
+
+**Category:** image
+
+**Description:** Poke somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## slap
+
+**Category:** image
+
+**Description:** Slap somebody
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## smug
+
+**Category:** image
+
+**Description:** Smug
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## supreme
+
+**Category:** image
+
+**Description:** Display custom text as the Supreme logo
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## tweet
+
+**Category:** image
+
+**Description:** Returns an image with your tweet
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## ytcomment
+
+**Category:** image
+
+**Description:** Returns an image with your YouTube comment
+
+**Usage:** `<my amazing youtube comment>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `comment`
 
 [Back to top](#ghostybot-command-list)
 

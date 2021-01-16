@@ -8,7 +8,7 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args);
     const reason = args[0] || lang.GLOBAL.NOT_SPECIFIED;
 
@@ -24,9 +24,9 @@ module.exports = {
       return message.channel.send(lang.ADMIN.USER_NOT_WARN);
     }
 
-    await addWarning(member.user.id, message.guild.id, reason);
+    await addWarning(member.user.id, message.guild?.id, reason);
 
-    const { warnings } = await getUserById(member.user.id, message.guild.id);
+    const { warnings } = await getUserById(member.user.id, message.guild?.id);
 
     return message.channel.send(
       lang.ADMIN.USER_WARNED.replace("{memberTag}", member.user.tag)

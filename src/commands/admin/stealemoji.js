@@ -11,7 +11,7 @@ module.exports = {
   botPermissions: ["MANAGE_EMOJIS"],
   memberPermissions: ["MANAGE_EMOJIS"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const emoji = args[0];
     const name = args.slice(1).join(" ");
 

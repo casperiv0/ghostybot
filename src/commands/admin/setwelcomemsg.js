@@ -8,10 +8,10 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["message"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const msg = args.join(" ");
 
-    await updateGuildById(message.guild.id, {
+    await updateGuildById(message.guild?.id, {
       welcome_message: msg,
     });
 

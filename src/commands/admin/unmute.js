@@ -7,9 +7,9 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const mutedMember = await bot.utils.findMember(message, args);
-    const { muted_role_id } = await bot.utils.getGuildById(message.guild.id);
+    const { muted_role_id } = await bot.utils.getGuildById(message.guild?.id);
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"
         ? message.guild.roles.cache.find((r) => r.name === "muted")
@@ -29,9 +29,9 @@ module.exports = {
       channel.permissionOverwrites.get(mutedMember.id)?.delete();
     });
 
-    const { user } = await bot.utils.getUserById(mutedMember.user.id, message.guild.id);
+    const { user } = await bot.utils.getUserById(mutedMember.user.id, message.guild?.id);
     if (user.mute.muted) {
-      await bot.utils.updateUserById(mutedMember.user.id, message.guild.id, {
+      await bot.utils.updateUserById(mutedMember.user.id, message.guild?.id, {
         mute: {
           muted: false,
           ends_at: null,

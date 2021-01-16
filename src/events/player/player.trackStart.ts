@@ -10,7 +10,7 @@ export default class PlayerTrackStarEvent extends Event {
 
   async execute(bot: Bot, message: Message, track: Track) {
     if (!message.guild?.available) return;
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     const embed = bot.utils
       .baseEmbed(message)

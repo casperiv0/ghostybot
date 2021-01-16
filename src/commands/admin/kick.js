@@ -5,7 +5,7 @@ module.exports = {
   botPermissions: ["KICK_MEMBERS"],
   memberPermissions: ["KICK_MEMBERS"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const kickMember = await bot.utils.findMember(message, args);
     let kickReason = args.slice(1).join(" ");
 

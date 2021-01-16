@@ -5,7 +5,7 @@ module.exports = {
   description: "",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const { name, memberCount } = message.guild;
     const bots = message.guild.members.cache.filter((mem) => mem.user.bot).size;
     const humans = message.guild.members.cache.filter((mem) => !mem.user.bot).size;

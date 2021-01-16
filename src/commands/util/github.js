@@ -8,7 +8,7 @@ module.exports = {
   aliases: ["gh"],
   requiredArgs: ["username"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const username = args[0];
 
     if (!username) {

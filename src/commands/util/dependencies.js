@@ -6,7 +6,7 @@ module.exports = {
   description: "Shows a list of all bots dependencies",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const dependencies = Object.entries(pkg.dependencies).join(",\n");
 
     const embed = bot.utils.baseEmbed(message)

@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["weight", "height"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const [weight, height] = args;
 
     if (!weight) {

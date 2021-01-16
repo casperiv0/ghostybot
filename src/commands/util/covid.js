@@ -6,7 +6,7 @@ module.exports = {
   description: "Get covid 19 information",
   category: "util",
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const query = args.join("");
 
     let country = await (
@@ -17,7 +17,7 @@ module.exports = {
     if (country.message) {
       return message.channel.send(lang.COVID.NOT_FOUND);
     }
-    const { tz, date } = await bot.formatDate(country.updated, message.guild.id);
+    const { tz, date } = await bot.formatDate(country.updated, message.guild?.id);
     const Title = country.country ? `Covid: ${country.country}` : "Covid";
 
     const embed = bot.utils.baseEmbed(message)

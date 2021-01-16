@@ -6,7 +6,7 @@ module.exports = {
   category: "util",
   aliases: ["av"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args, true);
 
     const png = avatar(member, "png");

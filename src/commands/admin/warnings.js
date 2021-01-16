@@ -7,8 +7,8 @@ module.exports = {
   category: "admin",
   requiredArgs: ["user"],
   async execute(bot, message, args) {
-    const guild = await bot.utils.getGuildById(message.guild.id);
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild?.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args);
     const { warnings } = member;
     const { prefix } = guild;

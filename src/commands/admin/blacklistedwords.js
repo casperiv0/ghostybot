@@ -10,9 +10,9 @@ module.exports = {
   aliases: ["wordsfilter", "filterwords", "blacklistedword"],
   requiredArgs: ["option"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const [option, item] = args;
-    const guildId = message.guild.id;
+    const guildId = message.guild?.id;
     const guild = await bot.utils.getGuildById(guildId);
     const blacklistWords = guild.blacklistedwords;
 

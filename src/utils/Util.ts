@@ -190,7 +190,7 @@ export default class Util {
       (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
 
     if (!member) {
-      member = await message.guild.members.fetch(args[0]).catch(() => (member = null));
+      member = await message.guild.members.fetch(args[0])[0];
     }
 
     if (!member && allowAuthor) {
@@ -390,5 +390,9 @@ export default class Util {
     }
 
     return string.substring(1);
+  }
+
+  toCapitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 }

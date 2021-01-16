@@ -10,7 +10,7 @@ export default class PlayerTrackAddEvent extends Event {
 
   async execute(bot: Bot, message: Message, queue: Queue, track: Track) {
     if (!message.guild?.available) return;
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     const embed = bot.utils
       .baseEmbed(message)

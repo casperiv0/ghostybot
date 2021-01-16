@@ -6,7 +6,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["text"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const morse = args
       .join(" ")
       .toLowerCase()

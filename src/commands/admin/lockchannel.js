@@ -5,7 +5,7 @@ module.exports = {
   botPermissions: ["MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_CHANNELS"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     let lockReason = args.join(" ");
     let channel = message.mentions.channels.first();
 
@@ -16,7 +16,7 @@ module.exports = {
     }
 
     if (
-      channel.permissionsFor(message.guild.id).has("SEND_MESSAGES") === false
+      channel.permissionsFor(message.guild?.id).has("SEND_MESSAGES") === false
     ) {
       return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_LOCKED);
     }
@@ -24,7 +24,7 @@ module.exports = {
     if (!lockReason)
       return message.reply(lang.ADMIN.REASON_LOCK_CHANNEL);
 
-    channel.updateOverwrite(message.guild.id, {
+    channel.updateOverwrite(message.guild?.id, {
       SEND_MESSAGES: false,
     });
     message.channel.send(lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", channel).replace("{lockReason}", lockReason));

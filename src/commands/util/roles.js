@@ -5,10 +5,10 @@ module.exports = {
   description: "Shows all roles from the guild",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const roles =
       message.guild.roles.cache
-        .filter((r) => r.id !== message.guild.id)
+        .filter((r) => r.id !== message.guild?.id)
         .map((r) => r)
         .join(",\n") || lang.GLOBAL.NONE;
 

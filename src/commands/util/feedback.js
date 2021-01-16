@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["message"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const feedback = args.join(" ");
 
     if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);

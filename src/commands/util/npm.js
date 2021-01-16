@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   requiredArgs: ["query"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const query = args.join(" ");
 
     if (!query) {
@@ -27,7 +27,7 @@ module.exports = {
 
     // if it was found, show more info about the package, otherwise return a list of the top 5
     if (foundPackage) {
-      const { tz, date } = await bot.formatDate(foundPackage.date, message.guild.id);
+      const { tz, date } = await bot.formatDate(foundPackage.date, message.guild?.id);
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
 
       const embed = bot.utils.baseEmbed(message)

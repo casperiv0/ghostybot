@@ -8,11 +8,11 @@ module.exports = {
   category: "admin",
   memberPermissions: ["ADMINISTRATOR"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const w = await message.guild.fetchWebhooks();
     const webhook = w.find((w) => w.name === bot.user.username);
     let option = args[0];
-    const guildId = message.guild.id;
+    const guildId = message.guild?.id;
     const guild = await bot.utils.getGuildById(guildId);
 
     if (!option) {

@@ -8,14 +8,14 @@ module.exports = {
   category: "util",
   aliases: ["guild", "server"],
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const { guild } = message;
     const { name, memberCount, premiumSubscriptionCount, premiumTier, verified, partnered } = guild;
     const roles = bot.formatNumber(guild.roles.cache.size);
     const channels = bot.formatNumber(guild.channels.cache.size);
     const emojis = bot.formatNumber(guild.emojis.cache.size);
-    const { date: createdAt } = await formatDate(guild.createdAt, message.guild.id);
-    const { date: joined, tz } = await formatDate(message.member.joinedAt, message.guild.id);
+    const { date: createdAt } = await formatDate(guild.createdAt, message.guild?.id);
+    const { date: joined, tz } = await formatDate(message.member.joinedAt, message.guild?.id);
     const boosts = premiumSubscriptionCount;
     const boostLevel = premiumTier;
     const owner = (guild.owner && guild.owner.user.tag) || "error";

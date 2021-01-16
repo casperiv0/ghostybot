@@ -7,11 +7,11 @@ module.exports = {
   category: "admin",
   memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     message.delete();
     if (!args[0]) return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL);
 
-    const guild = await bot.utils.getGuildById(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild?.id);
     const announceChannel = guild.announcement_channel;
     let channel = message.mentions.channels.first();
     let text;

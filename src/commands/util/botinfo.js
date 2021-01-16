@@ -12,7 +12,7 @@ module.exports = {
   category: "util",
   aliases: ["bot", "ping"],
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const uptime = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
     const nodev = process.version;
     const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user.id });

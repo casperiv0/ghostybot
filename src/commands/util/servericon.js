@@ -5,7 +5,7 @@ module.exports = {
   description: "Shows the server icon",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const icon = message.guild.iconURL({ dynamic: true, size: 2048 });
     if (icon === null) {
       message.channel.send(lang.UTIL.NO_GUILD_ICON);

@@ -5,7 +5,7 @@ module.exports = {
   description: "Get a random color",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const nonAnimated = [];
     const animated = [];
 

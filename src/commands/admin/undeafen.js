@@ -5,7 +5,7 @@ module.exports = {
   botPermissions: ["DEAFEN_MEMBERS"],
   memberPermissions: ["DEAFEN_MEMBERS"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const undeafenUser = await bot.utils.findMember(message, args);
 
     if (!undeafenUser.voice.serverDeaf) return message.channel.send(lang.ADMIN.NOT_IN_VOICE_OR_NOT_DEAF);

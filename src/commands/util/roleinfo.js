@@ -8,14 +8,14 @@ module.exports = {
   aliases: ["role"],
   requiredArgs: ["role"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const role = await bot.findRole(message, args[0]);
 
     if (!role) {
       return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
     }
 
-    const { date, tz } = await formatDate(role.createdAt, message.guild.id);
+    const { date, tz } = await formatDate(role.createdAt, message.guild?.id);
     const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
     const name = role.name;
     const id = role.id;

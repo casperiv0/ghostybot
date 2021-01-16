@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   description: "",
   async execute(bot, message, args) {
-    const guildId = message.guild.id;
+    const guildId = message.guild?.id;
     const userId = message.author.id;
     const lang = await bot.utils.getGuildLang(guildId);
     const { user } = await getUserById(userId, guildId);

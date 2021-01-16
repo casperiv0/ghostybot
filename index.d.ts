@@ -1,6 +1,18 @@
 declare module "discord-starboards";
 declare module "image-gen-discord";
 declare module "cowsay";
+declare module "easy-games-js";
+
+declare module "one-liner-joke" {
+  interface Options {
+    exclude_tags?: string[];
+  }
+  namespace Joke {
+    export function getRandomJoke(opts: Options): { body: string };
+  }
+
+  export = Joke;
+}
 
 declare namespace NodeJS {
   export interface ProcessEnv {

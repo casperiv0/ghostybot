@@ -10,8 +10,8 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   aliases: ["igch", "ic"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
-    const guildId = message.guild.id;
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const guildId = message.guild?.id;
     const option = args[0];
     const item = message.mentions.channels.first() || message.channel;
 

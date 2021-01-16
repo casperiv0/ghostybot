@@ -6,7 +6,7 @@ module.exports = {
   category: "util",
   aliases: ["up"],
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const uptime = moment
       .duration(bot.uptime)
       .format(" D [days], H [hrs], m [mins], s [secs]");

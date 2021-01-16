@@ -9,11 +9,11 @@ module.exports = {
   memberPermissions: ["ADMINISTRATOR"],
   requiredArgs: ["command name | category name"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const option = args[0];
     const saveCommands = ["help", "enable", "disable"];
     const saveCategories = ["botowner", "exempt", "disabled", "custom"];
-    const guild = await bot.utils.getGuildById(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild?.id);
 
     if (!option) {
       return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);
@@ -41,7 +41,7 @@ module.exports = {
         return message.channel.send(lang.ADMIN.CATEGORY_ALREADY_DISABLED);
       }
 
-      await updateGuildById(message.guild.id, {
+      await updateGuildById(message.guild?.id, {
         disabled_categories: [...guild.disabled_categories, category],
       });
 
@@ -60,7 +60,7 @@ module.exports = {
         return message.channel.send(lang.ADMIN.COMMAND_ALREADY_DISABLED);
       }
 
-      await updateGuildById(message.guild.id, {
+      await updateGuildById(message.guild?.id, {
         disabled_commands: [...guild.disabled_commands, command.name],
       });
 

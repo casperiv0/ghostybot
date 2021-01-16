@@ -9,15 +9,15 @@ module.exports = {
   category: "util",
   aliases: ["whois", "user", "u"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args, true);
 
     if (!member) {
       return message.channel.send("User wasn't found!");
     }
 
-    const { date: joinedAt, tz } = await formatDate(member.joinedAt, message.guild.id);
-    const { date: createdAt } = await formatDate(member.user.createdAt, message.guild.id);
+    const { date: joinedAt, tz } = await formatDate(member.joinedAt, message.guild?.id);
+    const { date: createdAt } = await formatDate(member.user.createdAt, message.guild?.id);
     const nickname = member.nickname || "None";
     const isBot = member.user.bot;
     const userFlags = (await member.user.fetchFlags())
@@ -27,11 +27,11 @@ module.exports = {
 
     const roles =
       member.roles.cache
-        .filter((r) => r.id !== message.guild.id)
+        .filter((r) => r.id !== message.guild?.id)
         .sort((a, b) => b.rawPosition - a.rawPosition)
         .map((r) => r)
         .join(", ") || "None";
-    const roleCount = member.roles.cache.filter((r) => r.id !== message.guild.id).size;
+    const roleCount = member.roles.cache.filter((r) => r.id !== message.guild?.id).size;
 
     const { username, id, tag } = member.user;
 

@@ -8,7 +8,7 @@ module.exports = {
   usage: "<extension (js, ts, ...)> <code>",
   requiredArgs: ["extension", "code"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const [extension, ...rest] = args;
     const code = rest.join(" ");
 

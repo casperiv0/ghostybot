@@ -14,11 +14,11 @@ module.exports = {
   usage: "<user> <time> <reason>",
   requiredArgs: ["user", "time", "reason"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const muteMember = await bot.utils.findMember(message, args);
     const [, time, ...rest] = args;
     const reason = rest.join(" ") || "N/A";
-    const { muted_role_id } = await bot.utils.getGuildById(message.guild.id);
+    const { muted_role_id } = await bot.utils.getGuildById(message.guild?.id);
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"
         ? await findOrCreateMutedRole(message.guild)
@@ -50,7 +50,7 @@ module.exports = {
     });
 
     muteMember.roles.add(muteRole);
-    await updateUserById(muteMember.user.id, message.guild.id, {
+    await updateUserById(muteMember.user.id, message.guild?.id, {
       mute: {
         muted: true,
         ends_at: Date.now() + ms(time),

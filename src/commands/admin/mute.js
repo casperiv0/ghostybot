@@ -8,11 +8,11 @@ module.exports = {
   botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
   memberPermissions: ["MANAGE_ROLES"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const muteMember = await bot.utils.findMember(message, args);
     let muteReason = args.slice(1).join(" ");
     if (!muteReason) muteReason = lang.GLOBAL.NOT_SPECIFIED;
-    const { muted_role_id } = await bot.utils.getGuildById(message.guild.id);
+    const { muted_role_id } = await bot.utils.getGuildById(message.guild?.id);
 
     const muted_role =
       !muted_role_id || muted_role_id === "Disabled"

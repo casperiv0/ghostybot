@@ -7,10 +7,10 @@ module.exports = {
   memberPermissions: ["MANAGE_GUILD"],
   requiredArgs: ["member"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const member = await bot.utils.findMember(message, args);
 
-    const guildId = message.guild.id;
+    const guildId = message.guild?.id;
 
     if (!member) {
       return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);

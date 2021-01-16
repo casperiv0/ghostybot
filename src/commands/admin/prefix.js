@@ -6,9 +6,9 @@ module.exports = {
   description: "Set a prefix for your server",
   category: "exempt",
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const prefix = args[0];
-    const guild = await bot.utils.getGuildById(message.guild.id);
+    const guild = await bot.utils.getGuildById(message.guild?.id);
 
     if (!prefix)
       return message.channel.send(
@@ -29,7 +29,7 @@ module.exports = {
 };
 
 async function setPrefix(message, prefix, lang) {
-  await updateGuildById(message.guild.id, { prefix });
+  await updateGuildById(message.guild?.id, { prefix });
 
   message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
 }

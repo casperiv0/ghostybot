@@ -7,7 +7,7 @@ module.exports = {
   category: "util",
   aliases: ["channel"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     let channel = message.mentions.channels.first();
 
     if (!channel) {
@@ -18,7 +18,7 @@ module.exports = {
 
     const topic = channel.topic ? channel.topic : "N/A";
     const channelId = channel.id;
-    const { date, tz } = await formatDate(channel.createdAt, message.guild.id);
+    const { date, tz } = await formatDate(channel.createdAt, message.guild?.id);
     const type =
       channel.type === "text"
         ? lang.UTIL.TEXT_CHANNEL

@@ -8,9 +8,9 @@ module.exports = {
   cooldown: 300,
   requiredArgs: ["suggestion"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const suggestion = args.join(" ");
-    const guild = await getGuildById(message.guild.id);
+    const guild = await getGuildById(message.guild?.id);
     const suggestChannel = guild?.suggest_channel;
 
     if (!suggestChannel) {

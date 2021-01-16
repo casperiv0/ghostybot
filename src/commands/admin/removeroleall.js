@@ -7,7 +7,7 @@ module.exports = {
   memberPermissions: ["MANAGE_ROLES"],
   requiredArgs: ["role"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const role = await bot.findRole(message, args.join(" "));
 
     if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {

@@ -8,7 +8,7 @@ module.exports = {
   cooldown: 300,
   requiredArgs: ["report"],
   async execute(bot, message, args) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const bug = args.join(" ");
 
     if (!reportsChannelId) {

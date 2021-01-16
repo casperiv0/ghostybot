@@ -5,7 +5,7 @@ module.exports = {
   description: "Shows all channels in the server",
   category: "util",
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     const channels = message.guild.channels.cache;
     const voiceChannels = channels
       .filter((channel) => channel.type === "voice")

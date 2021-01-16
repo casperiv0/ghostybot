@@ -30,7 +30,7 @@ import Event from "../../structures/Event";
 //     if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 //     if (!message.guild.available) return;
 
-//     const guildId = message.guild.id;
+//     const guildId = message.guild?.id;
 //     const userId = message.author.id;
 //     const cooldowns = bot.cooldowns;
 //     const guild = await getGuildById(guildId);
@@ -181,7 +181,7 @@ import Event from "../../structures/Event";
 //     }
 
 //     // music queue
-//     const serverQueue = queue.get(message.guild.id);
+//     const serverQueue = queue.get(message.guild?.id);
 
 //     try {
 //       const cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));

@@ -8,7 +8,7 @@ module.exports = {
   botPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
   memberPermissions: ["MANAGE_MESSAGES"],
   async execute(bot, message) {
-    const lang = await bot.utils.getGuildLang(message.guild.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
     message.delete();
 
     removeSticky(message.channel.id);
