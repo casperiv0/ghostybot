@@ -2,14 +2,14 @@ import { useState, useEffect, FC, ChangeEventHandler, FormEvent } from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import fetch from "node-fetch";
+import { GetServerSideProps } from "next";
+import fs from "fs";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
-import { getLanguages } from "../../../utils/functions";
 import timezones from "../../../data/timezones.json";
 import { useRouter } from "next/router";
 import Switch from "../../../dashboard/components/Switch";
 import Guild from "../../../interfaces/Guild";
-import { GetServerSideProps } from "next";
 
 export interface FieldItem {
   type: "select" | "input" | "textarea";
@@ -464,6 +464,13 @@ function InputField({ item }: Item) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  function getLanguages() {
+    return fs
+      .readdirSync("./src/locales/")
+      .filter((f) => f.endsWith(".ts"))
+      .map((la) => la.slice(0, -3));
+  }
+
   const cookies = parseCookies(ctx);
   const langs = getLanguages().map((lang) => {
     return { id: lang, name: lang };

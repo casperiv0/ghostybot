@@ -5,7 +5,6 @@ import {
   MessageEmbed,
   TextChannel,
   User as DiscordUser,
-  UserResolvable,
   Webhook,
   Util as DiscordUtil,
   Role,
@@ -184,17 +183,14 @@ export default class Util {
         ? message.mentions.users.first()
         : message.mentions.users.array()[1];
 
-    member = message?.guild?.member(
-      mention ||
-        message.guild.members.cache.get(args[0]) ||
-        message.guild.members.cache.find((m) => m.user.id === args[0]) ||
-        (message.guild.members.cache.find((m) => m.user.tag === args[0]) as UserResolvable)
-    );
+    member =
+      message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
+      message.guild.members.cache.get(args[0]) ||
+      message.guild.members.cache.find((m) => m.user.id === args[0]) ||
+      (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
 
     if (!member) {
-      member = message.guild.member(
-        (await message.guild.members.fetch(args[0]).catch(() => (member = null))) as UserResolvable
-      );
+      member = await message.guild.members.fetch(args[0]).catch(() => (member = null));
     }
 
     if (!member && allowAuthor) {
@@ -258,10 +254,8 @@ export default class Util {
       guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
       guild.roles.cache.find((r) => r.name === "muted") ||
       (await guild.roles.create({
-        data: {
-          name: "muted",
-          color: "GRAY",
-        },
+        name: "muted",
+        color: "GRAY",
         reason: "Mute a user",
       }))
     );
@@ -385,5 +379,16 @@ export default class Util {
 
   formatNumber(n: number | string): string {
     return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  }
+
+  encode(obj) {
+    let string = "";
+
+    for (const [key, value] of Object.entries(obj)) {
+      if (!value) continue;
+      string += `&${encodeURIComponent(key)}=${encodeURIComponent(`${value}`)}`;
+    }
+
+    return string.substring(1);
   }
 }

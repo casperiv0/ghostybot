@@ -46,7 +46,7 @@
     "discord-logs": "^1.8.2",
     "discord-player": "^3.2.1",
     "discord-starboards": "git+https://github.com/SimonLeclere/discord-starboards.git#develop",
-    "discord.js": "^12.5.1",
+    "discord.js": "github:discordjs/discord.js#master",
     "dotenv": "^8.2.0",
     "easy-games-js": "^1.2.1",
     "eslint-plugin-react": "^7.22.0",

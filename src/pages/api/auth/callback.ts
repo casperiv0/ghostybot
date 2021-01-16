@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { NextApiResponse } from "next";
 import { setCookie } from "nookies";
 import { dashboard } from "../../../../config.json";
-import { encode } from "../../../utils/functions";
 import ApiRequest from "../../../interfaces/ApiRequest";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
@@ -24,7 +23,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({
+        body: req.bot.utils.encode({
           client_id: DISCORD_CLIENT_ID,
           client_secret: DISCORD_CLIENT_SECRET,
           grant_type: "authorization_code",

@@ -2,7 +2,6 @@ import { NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { setCookie } from "nookies";
 import ApiRequest from "../../../interfaces/ApiRequest";
-import { encode } from "../../../utils/functions";
 
 export default async function (req: ApiRequest, res: NextApiResponse) {
   const token = req.cookies.token;
@@ -12,7 +11,7 @@ export default async function (req: ApiRequest, res: NextApiResponse) {
   await fetch("https://discord.com/api/oauth2/token/revoke", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encode({
+    body: req.bot.utils.encode({
       token: token,
       client_id: DISCORD_CLIENT_ID,
       client_secret: DISCORD_CLIENT_SECRET,

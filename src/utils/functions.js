@@ -340,13 +340,6 @@ const toCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
  */
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
-function getLanguages() {
-  return fs
-    .readdirSync("./src/locales/")
-    .filter((f) => f.endsWith(".js"))
-    .map((la) => la.slice(0, -3));
-}
-
 function formatNumber(n) {
   return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
@@ -532,18 +525,6 @@ async function checkAuth(req) {
   } else {
     return Promise.resolve("Authorized");
   }
-}
-
-/* THANKS TO: https://github.com/discord/discord-api-docs/issues/1701#issuecomment-642143814 🎉 */
-function encode(obj) {
-  let string = "";
-
-  for (const [key, value] of Object.entries(obj)) {
-    if (!value) continue;
-    string += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-  }
-
-  return string.substring(1);
 }
 
 module.exports = {
