@@ -1,7 +1,7 @@
 # GhostyBotDEV Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBotDEV has a total of 126 commands.
+GhostyBotDEV has a total of 168 commands.
 
 Click any of the command names for more information
 
@@ -280,8 +280,91 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 0**
+**Total commands: 42**
 
+[afk:](#afk) N/A
+
+[avatar:](#avatar) Get user avatar
+
+[bmi:](#bmi) Calculate your BMI
+
+[botinfo:](#botinfo) Shows info about the bot
+
+[botinvite:](#botinvite) Returns the bot invite
+
+[bugreport:](#bugreport) Report a bug to your staff
+
+[channelinfo:](#channelinfo) Get information about a channel
+
+[channels:](#channels) Shows all channels in the server
+
+[country:](#country) Get information about a country
+
+[covid:](#covid) Get covid 19 information
+
+[define:](#define) Define a word
+
+[dependencies:](#dependencies) Shows a list of all bots dependencies
+
+[docs:](#docs) Returns the request query from discord.js docs
+
+[emojis:](#emojis) Get a random color
+
+[enlarge:](#enlarge) get your emoji enlarged
+
+[feedback:](#feedback) Give feedback about the bot
+
+[github:](#github) Search someone on github
+
+[hastebin:](#hastebin) Get a link of hastebin for your text
+
+[help:](#help) Shows all commands Or shows more info about a command
+
+[image:](#image) Search any image you want from google
+
+[imdb:](#imdb) Get the information about series and movie
+
+[invite:](#invite) Creates an instant invite for the server
+
+[membercount:](#membercount) N/A
+
+[minecraft:](#minecraft) Get info about a minecraft server
+
+[morse:](#morse) Convert a string to morse code
+
+[npm:](#npm) Search packages on npm by their name
+
+[playstore:](#playstore) Show Playstore Application Information Of Your Given Name!
+
+[pokemon:](#pokemon) Returns a pokemon information
+
+[poll:](#poll) Create a poll
+
+[randomcolor:](#randomcolor) Get a random color
+
+[roleinfo:](#roleinfo) Shows info about a role
+
+[roles:](#roles) Shows all roles from the guild
+
+[servericon:](#servericon) Shows the server icon
+
+[serverinfo:](#serverinfo) Get info about the server
+
+[skin:](#skin) Search for skins from Minecraft
+
+[suggest:](#suggest) Create a suggestion
+
+[translate:](#translate) Translate a sentence
+
+[uptime:](#uptime) Returns the uptime of the bot
+
+[userinfo:](#userinfo) Get user info
+
+[weather:](#weather) See the weather in a country/city
+
+[wiki:](#wiki) Search something up on Wikipedia
+
+[worldclock:](#worldclock) Shows the time from other countries
 
   ##
 ### Category: exempt
@@ -2359,6 +2442,678 @@ Click any of the command names for more information
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## afk
+
+**Category:** util
+
+**Description:** N/A
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## avatar
+
+**Category:** util
+
+**Description:** Get user avatar
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bmi
+
+**Category:** util
+
+**Description:** Calculate your BMI
+
+**Usage:** `<weight in kilograms> <height in centimeters>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `weight`, `height`
+
+[Back to top](#ghostybot-command-list)
+
+## botinfo
+
+**Category:** util
+
+**Description:** Shows info about the bot
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## botinvite
+
+**Category:** util
+
+**Description:** Returns the bot invite
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bugreport
+
+**Category:** util
+
+**Description:** Report a bug to your staff
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `report`
+
+[Back to top](#ghostybot-command-list)
+
+## channelinfo
+
+**Category:** util
+
+**Description:** Get information about a channel
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## channels
+
+**Category:** util
+
+**Description:** Shows all channels in the server
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## country
+
+**Category:** util
+
+**Description:** Get information about a country
+
+**Usage:** `<country>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `country`
+
+[Back to top](#ghostybot-command-list)
+
+## covid
+
+**Category:** util
+
+**Description:** Get covid 19 information
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## define
+
+**Category:** util
+
+**Description:** Define a word
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `word`
+
+[Back to top](#ghostybot-command-list)
+
+## dependencies
+
+**Category:** util
+
+**Description:** Shows a list of all bots dependencies
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## docs
+
+**Category:** util
+
+**Description:** Returns the request query from discord.js docs
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## emojis
+
+**Category:** util
+
+**Description:** Get a random color
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## enlarge
+
+**Category:** util
+
+**Description:** get your emoji enlarged
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `emoji`
+
+[Back to top](#ghostybot-command-list)
+
+## feedback
+
+**Category:** util
+
+**Description:** Give feedback about the bot
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `message`
+
+[Back to top](#ghostybot-command-list)
+
+## github
+
+**Category:** util
+
+**Description:** Search someone on github
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `username`
+
+[Back to top](#ghostybot-command-list)
+
+## hastebin
+
+**Category:** util
+
+**Description:** Get a link of hastebin for your text
+
+**Usage:** `<extension (js, ts, ...)> <code>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `extension`, `code`
+
+[Back to top](#ghostybot-command-list)
+
+## help
+
+**Category:** util
+
+**Description:** Shows all commands Or shows more info about a command
+
+**Usage:** `<category name | command name>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## image
+
+**Category:** util
+
+**Description:** Search any image you want from google
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## imdb
+
+**Category:** util
+
+**Description:** Get the information about series and movie
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## invite
+
+**Category:** util
+
+**Description:** Creates an instant invite for the server
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES, CREATE_INSTANT_INVITE
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## membercount
+
+**Category:** util
+
+**Description:** N/A
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## minecraft
+
+**Category:** util
+
+**Description:** Get info about a minecraft server
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `server-ip`
+
+[Back to top](#ghostybot-command-list)
+
+## morse
+
+**Category:** util
+
+**Description:** Convert a string to morse code
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## npm
+
+**Category:** util
+
+**Description:** Search packages on npm by their name
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## playstore
+
+**Category:** util
+
+**Description:** Show Playstore Application Information Of Your Given Name!
+
+**Usage:** `<Application Name>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `app`
+
+[Back to top](#ghostybot-command-list)
+
+## pokemon
+
+**Category:** util
+
+**Description:** Returns a pokemon information
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## poll
+
+**Category:** util
+
+**Description:** Create a poll
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `question`
+
+[Back to top](#ghostybot-command-list)
+
+## randomcolor
+
+**Category:** util
+
+**Description:** Get a random color
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## roleinfo
+
+**Category:** util
+
+**Description:** Shows info about a role
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `role`
+
+[Back to top](#ghostybot-command-list)
+
+## roles
+
+**Category:** util
+
+**Description:** Shows all roles from the guild
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## servericon
+
+**Category:** util
+
+**Description:** Shows the server icon
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## serverinfo
+
+**Category:** util
+
+**Description:** Get info about the server
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## skin
+
+**Category:** util
+
+**Description:** Search for skins from Minecraft
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `username`
+
+[Back to top](#ghostybot-command-list)
+
+## suggest
+
+**Category:** util
+
+**Description:** Create a suggestion
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `suggestion`
+
+[Back to top](#ghostybot-command-list)
+
+## translate
+
+**Category:** util
+
+**Description:** Translate a sentence
+
+**Usage:** `<language> <sentence>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `language`, `text`
+
+[Back to top](#ghostybot-command-list)
+
+## uptime
+
+**Category:** util
+
+**Description:** Returns the uptime of the bot
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## userinfo
+
+**Category:** util
+
+**Description:** Get user info
+
+**Usage:** `<user>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## weather
+
+**Category:** util
+
+**Description:** See the weather in a country/city
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `country/city`
+
+[Back to top](#ghostybot-command-list)
+
+## wiki
+
+**Category:** util
+
+**Description:** Search something up on Wikipedia
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## worldclock
+
+**Category:** util
+
+**Description:** Shows the time from other countries
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
 

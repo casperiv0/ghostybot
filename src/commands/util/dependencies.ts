@@ -1,24 +1,27 @@
 import { Message } from "discord.js";
+import pkg from "../../../package.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class IqCommand extends Command {
+export default class DependenciesCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      name: "iq",
-      description: "Get a random Iq returned",
-      category: "games",
+      name: "dependencies",
+      description: "Shows a list of all bots dependencies",
+      category: "util",
+      aliases: ["deps"]
     });
   }
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const iq = Math.floor(Math.random() * 100) + 1;
+
+    const dependencies = Object.entries(pkg.dependencies).join(",\n");
 
     const embed = bot.utils
       .baseEmbed(message)
-      .setTitle(lang.GAMES.IQ_TEST)
-      .setDescription(lang.GAMES.IQ_IS.replace("{iq}", `${iq}`));
+      .setTitle(lang.UTIL.DEPENDENCIES)
+      .setDescription(dependencies);
 
     message.channel.send(embed);
   }

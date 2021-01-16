@@ -4,7 +4,7 @@ import Bot from "../../structures/Bot";
 import BlacklistedModel from "../../models/Blacklisted.model";
 import { UserData } from "../../models/User.model";
 
-export default class RemindersCommand extends Command {
+export default class BlacklistCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "blacklist",

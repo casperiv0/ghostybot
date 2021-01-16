@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class RemindersCommand extends Command {
+export default class MemeCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "meme",

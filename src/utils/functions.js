@@ -96,21 +96,6 @@ const errorEmbed = (permissions, message) => {
 };
 
 /**
- * @param {number | string} date
- * @param {string} guildId
- * @returns {{date: string, tz: string}}
- */
-async function formatDate(date, guildId) {
-  const tz = await (await getGuildById(guildId)).timezone;
-  const m = moment(date);
-
-  return {
-    date: m.tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
-    tz: tz,
-  };
-}
-
-/**
  * @param {import("discord.js").Guild} guild
  */
 async function findOrCreateMutedRole(guild) {

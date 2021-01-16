@@ -22,10 +22,6 @@ export default {
     WELCOME_CHANNEL: "Welcome Channel",
     LEAVE_CHANNEL: "Leave Channel",
     PREFIX: "Prefix",
-    IS_VERIFIED: "Yes, this server is verified",
-    IS_PARTNERED: "Yes, this server is partnered",
-    NOT_VERIFIED: "Nope, this server isn't verified",
-    NOT_PARTNERED: "Nope, this server isn't partnered",
     OWNER: "Guild owner",
     CHANNEL_C: "Channel count",
     EMOJI_C: "Emoji count",
@@ -41,7 +37,6 @@ export default {
   },
   MEMBER: {
     TAG: "Tag",
-    BOT: "Bot",
     ROLES: "Roles",
     BADGES: "Badges",
     ONLINE: "Online",

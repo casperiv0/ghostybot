@@ -9,6 +9,7 @@ import {
   Util as DiscordUtil,
   Role,
 } from "discord.js";
+import moment from "moment";
 import jwt from "jsonwebtoken";
 import Bot from "../structures/Bot";
 import User, { IUser, UserData } from "../models/User.model";
@@ -277,6 +278,16 @@ export default class Util {
       attachments: true,
       resolveImageUrl: true,
     });
+  }
+
+  async formatDate(date: string | Date | number | null, guildId: string | undefined) {
+    const tz = await (await this.getGuildById(guildId))?.timezone;
+    const m = moment(date);
+
+    return {
+      date: (m as any).tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
+      tz: tz,
+    };
   }
 
   async handleApiRequest(
