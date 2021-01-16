@@ -619,6 +619,7 @@ module.exports = {
     USE_WARNS: "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
+    ADD_TO_IGNORE: "Successfully added {item} to ignored channels"
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",

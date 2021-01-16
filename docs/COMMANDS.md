@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 210 commands.
+GhostyBot has a total of 211 commands.
 
 Click any of the command names for more information
 
@@ -351,7 +351,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 42**
+**Total commands: 43**
 
 [afk:](#afk) N/A
 
@@ -368,6 +368,8 @@ Click any of the command names for more information
 [channelinfo:](#channelinfo) Get information about a channel
 
 [channels:](#channels) Shows all channels in the server
+
+[country:](#country) Get information about a country
 
 [covid:](#covid) Get covid 19 information
 
@@ -3326,6 +3328,22 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## country
+
+**Category:** util
+
+**Description:** Get information about a country
+
+**Usage:** `<country>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `country`
 
 [Back to top](#ghostybot-command-list)
 
