@@ -204,6 +204,17 @@ export default class Util {
     return member;
   }
 
+  async findRole(message: Message, arg: string): Promise<Role | null> {
+    if (!message.guild) return null;
+    return (
+      message.mentions.roles.first() ||
+      message.guild.roles.cache.get(arg) ||
+      message.guild.roles.cache.find((r) => r.name === arg) ||
+      message.guild.roles.cache.find((r) => r.name.startsWith(arg)) ||
+      (await message.guild.roles.fetch(arg))
+    );
+  }
+
   async getGuildLang(
     guildId: string | undefined
   ): Promise<typeof import("../locales/english").default> {

@@ -1,17 +1,6 @@
-import { Client } from "discord.js";
-
-declare module "discord-starboards" {
-  export interface StarboardOptions {
-    storage?: string;
-  }
-  export default class StarboardsManager {
-    starboards: any;
-
-    constructor(client: Client, options: StarboardOptions) {
-      super(client, options);
-    }
-  }
-}
+declare module "discord-starboards";
+declare module "image-gen-discord";
+declare module "cowsay";
 
 declare namespace NodeJS {
   export interface ProcessEnv {

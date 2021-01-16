@@ -222,7 +222,8 @@ async function removeSticky(channelId) {
  * @param {Object} message
  */
 const errorEmbed = (permissions, message) => {
-  return bot.utils.baseEmbed(message)
+  return bot.utils
+    .baseEmbed(message)
     .setTitle("Woah!")
     .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
     .setColor("ORANGE");
@@ -255,21 +256,6 @@ async function findMember(message, args, allowAuthor) {
   }
 
   return member;
-}
-
-/**
- * @param {Message} message
- * @param {string} arg
- * @returns {Promise<import("discord.js").Role>}
- */
-async function findRole(message, arg) {
-  return (
-    message.mentions.roles.first() ||
-    message.guild.roles.cache.get(arg) ||
-    message.guild.roles.cache.find((r) => r.name === arg) ||
-    message.guild.roles.cache.find((r) => r.name.startsWith(arg)) ||
-    (await message.guild.roles.fetch(arg))
-  );
 }
 
 /**
@@ -313,7 +299,8 @@ async function sendErrorLog(bot, error, type, msgContent) {
     stack = "An error occurred but was too long to send to Discord, check your console.";
   }
 
-  const embed = bot.utils.baseEmbed(message)
+  const embed = bot.utils
+    .baseEmbed(message)
     .setTitle("An error occurred")
     .addField("Name", name, true)
     .addField("Code", code, true)

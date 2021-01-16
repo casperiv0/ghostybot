@@ -1,4 +1,18 @@
+import { GiveawaysMessages } from "discord-giveaways";
 import { model, Schema, models, Document } from "mongoose";
+
+export interface IGiveaway extends Document {
+  messageID: string;
+  channelID: string;
+  guildID: string;
+  startAt: number;
+  endAt: number;
+  ended: boolean;
+  winnerCount: number;
+  prize: string;
+  messages: GiveawaysMessages;
+  hostedBy: string;
+}
 
 const GiveawaySchema = new Schema({
   messageID: String,
@@ -13,4 +27,4 @@ const GiveawaySchema = new Schema({
   hostedBy: String,
 });
 
-export default models.Giveaway || model("Giveaway", GiveawaySchema);
+export default models.Giveaway || model<IGiveaway>("Giveaway", GiveawaySchema);

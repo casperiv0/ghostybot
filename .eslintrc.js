@@ -35,6 +35,11 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/react-in-jsx-scope": "off",
-    "jsx-a11y/no-onchange": "off"
+    "jsx-a11y/no-onchange": "off",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };

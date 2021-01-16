@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 40 commands.
+GhostyBot has a total of 66 commands.
 
 Click any of the command names for more information
 
@@ -16,8 +16,49 @@ Click any of the command names for more information
   ##
 ### Category: animal
 
-**Total commands: 0**
+**Total commands: 21**
 
+[alpaca:](#alpaca) Shows a picture of a alpaca
+
+[bear:](#bear) Shows a random picture of bear and fact
+
+[bird:](#bird) Returns an image of a bird
+
+[bunny:](#bunny) Shows a picture of a bunny
+
+[camel:](#camel) Shows a picture of a camel
+
+[cat:](#cat) Shows a picture of a cat
+
+[catfact:](#catfact) Returns a cat fact
+
+[cow:](#cow) Returns a cow ascii
+
+[cowsay:](#cowsay) Let a cow say something
+
+[dog:](#dog) Shows a picture of a dog
+
+[dogfact:](#dogfact) Returns a dog fact
+
+[duck:](#duck) Shows a picture of a duck
+
+[fox:](#fox) Shows a picture of a fox
+
+[koala:](#koala) Shows a random picture of koala
+
+[lizard:](#lizard) Shows a picture of a lizard
+
+[llama:](#llama) Shows a picture of a llama
+
+[owl:](#owl) Shows a picture of a owl
+
+[panda:](#panda) Shows a picture of a panda
+
+[racoon:](#racoon) Shows an image of a raccoon
+
+[shibe:](#shibe) Returns an image of a shibe
+
+[whale:](#whale) Shows an image of a whale
 
   ##
 ### Category: economy
@@ -147,14 +188,22 @@ Click any of the command names for more information
   ##
 ### Category: giveaway
 
-**Total commands: 0**
+**Total commands: 3**
 
+[givend:](#givend) Ends a giveaway
+
+[givreroll:](#givreroll) Reroll a giveaway
+
+[givstart:](#givstart) Starts a giveaway
 
   ##
 ### Category: reactions
 
-**Total commands: 0**
+**Total commands: 2**
 
+[rradd:](#rradd) Add a reaction role
+
+[rrremove:](#rrremove) Add a reaction role
 
   ##
 ### Category: reminder
@@ -180,6 +229,342 @@ Click any of the command names for more information
 
 ## Detailed command list
   
+## alpaca
+
+**Category:** animal
+
+**Description:** Shows a picture of a alpaca
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bear
+
+**Category:** animal
+
+**Description:** Shows a random picture of bear and fact
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bird
+
+**Category:** animal
+
+**Description:** Returns an image of a bird
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bunny
+
+**Category:** animal
+
+**Description:** Shows a picture of a bunny
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## camel
+
+**Category:** animal
+
+**Description:** Shows a picture of a camel
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## cat
+
+**Category:** animal
+
+**Description:** Shows a picture of a cat
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## catfact
+
+**Category:** animal
+
+**Description:** Returns a cat fact
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## cow
+
+**Category:** animal
+
+**Description:** Returns a cow ascii
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## cowsay
+
+**Category:** animal
+
+**Description:** Let a cow say something
+
+**Usage:** `<text>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## dog
+
+**Category:** animal
+
+**Description:** Shows a picture of a dog
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## dogfact
+
+**Category:** animal
+
+**Description:** Returns a dog fact
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## duck
+
+**Category:** animal
+
+**Description:** Shows a picture of a duck
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## fox
+
+**Category:** animal
+
+**Description:** Shows a picture of a fox
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## koala
+
+**Category:** animal
+
+**Description:** Shows a random picture of koala
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## lizard
+
+**Category:** animal
+
+**Description:** Shows a picture of a lizard
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## llama
+
+**Category:** animal
+
+**Description:** Shows a picture of a llama
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## owl
+
+**Category:** animal
+
+**Description:** Shows a picture of a owl
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## panda
+
+**Category:** animal
+
+**Description:** Shows a picture of a panda
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## racoon
+
+**Category:** animal
+
+**Description:** Shows an image of a raccoon
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## shibe
+
+**Category:** animal
+
+**Description:** Returns an image of a shibe
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## whale
+
+**Category:** animal
+
+**Description:** Shows an image of a whale
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## eval
 
 **Category:** botowner
@@ -193,6 +578,56 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `text`
+
+[Back to top](#ghostybot-command-list)
+
+## givend
+
+**Category:** giveaway
+
+**Description:** Ends a giveaway
+
+**Usage:** `givend <messageId> 
+ **Example:** !giveaway end <messageId>`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `messageId`
+
+[Back to top](#ghostybot-command-list)
+
+## givreroll
+
+**Category:** giveaway
+
+**Description:** Reroll a giveaway
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `messageId`
+
+[Back to top](#ghostybot-command-list)
+
+## givstart
+
+**Category:** giveaway
+
+**Description:** Starts a giveaway
+
+**Usage:** `<time> <winner count> <price>
+ **Example:** !givstart 2d 10 Discord nitro`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `time`, `winnerCount`, `prize`
 
 [Back to top](#ghostybot-command-list)
 
@@ -737,6 +1172,38 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## rradd
+
+**Category:** reactions
+
+**Description:** Add a reaction role
+
+**Usage:** `<channel_id>`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADD_REACTIONS, MANAGE_MESSAGES
+
+**Required Arguments:** `channel_id`
+
+[Back to top](#ghostybot-command-list)
+
+## rrremove
+
+**Category:** reactions
+
+**Description:** Add a reaction role
+
+**Usage:** `<message_id>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `message_id`
 
 [Back to top](#ghostybot-command-list)
 

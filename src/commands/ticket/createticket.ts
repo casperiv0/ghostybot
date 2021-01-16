@@ -69,7 +69,7 @@ export default class CreateTicketCommand extends Command {
       channel?.setParent(guild.ticket_data.parent_id);
     }
 
-    if (guild.ticket_data.role_id !== null && guild.ticket_data.role_id !== "Disabled") {
+    if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
       (channel as TextChannel)?.overwritePermissions([
         ...DEFAULT_PERMS,
         {
