@@ -104,7 +104,7 @@ function parseRoles(msg, bot) {
   let roles = [];
 
   filtered.forEach(async (r) => {
-    const role = bot.findRole(msg, r.id);
+    const role = bot.findRole(msg, r);
 
     roles = [...roles, role.id];
     return role;
