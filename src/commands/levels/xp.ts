@@ -14,23 +14,28 @@ export default class XpCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const member = await bot.utils.findMember(message, args, true);
+    try {
+      const member = await bot.utils.findMember(message, args, true);
 
-    if (member?.user?.bot) {
-      return message.channel.send(lang.MEMBER.BOT_DATA);
+      if (member?.user?.bot) {
+        return message.channel.send(lang.MEMBER.BOT_DATA);
+      }
+
+      if (!member) {
+        return message.channel.send(lang.MEMBER.NOT_FOUND);
+      }
+
+      const user = await (this.bot.utils as any).gdetUserById(member?.user?.id, message.guild?.id);
+
+      const embed = this.bot.utils
+        .baseEmbed(message)
+        .setTitle(`${member.user.username} ${lang.LEVELS.XP}`)
+        .setDescription(`${lang.LEVELS.XP}: ${user?.xp}`);
+
+      return message.channel.send({ embed });
+    } catch (e) {
+      bot.utils.sendErrorLog(e, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    if (!member) {
-      return message.channel.send(lang.MEMBER.NOT_FOUND);
-    }
-
-    const user = await this.bot.utils.getUserById(member?.user?.id, message.guild?.id);
-
-    const embed = this.bot.utils
-      .baseEmbed(message)
-      .setTitle(`${member.user.username} ${lang.LEVELS.XP}`)
-      .setDescription(`${lang.LEVELS.XP}: ${user?.xp}`);
-
-    return message.channel.send({ embed });
   }
 }

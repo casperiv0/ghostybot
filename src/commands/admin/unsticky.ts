@@ -16,10 +16,15 @@ export default class UnStickyCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    message.delete();
-
-    await bot.utils.removeSticky(message.channel.id);
-
-    message.channel.send(lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${message.channel}`));
+    try {
+      message.delete();
+  
+      await bot.utils.removeSticky(message.channel.id);
+  
+      message.channel.send(lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${message.channel}`));
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

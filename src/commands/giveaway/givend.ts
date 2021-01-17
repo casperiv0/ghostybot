@@ -16,12 +16,17 @@ export default class GiveEndCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    // const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const [messageId] = args;
-
-    bot.giveawayManager
-      .delete(messageId)
-      .then(() => message.channel.send("Successfully ended giveaway"))
-      .catch(() => message.channel.send("Giveaway not ended yet or was not found"));
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    try {
+      const [messageId] = args;
+  
+      bot.giveawayManager
+        .delete(messageId)
+        .then(() => message.channel.send("Successfully ended giveaway"))
+        .catch(() => message.channel.send("Giveaway not ended yet or was not found"));
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

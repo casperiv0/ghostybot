@@ -16,28 +16,33 @@ export default class LockChannelCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    let lockReason = args.join(" ");
-    let channel = message.mentions.channels.first() as TextChannel;
-
-    if (channel) {
-      lockReason = args.join(" ").slice(22);
-    } else {
-      channel = message.channel as TextChannel;
+    try {
+      let lockReason = args.join(" ");
+      let channel = message.mentions.channels.first() as TextChannel;
+  
+      if (channel) {
+        lockReason = args.join(" ").slice(22);
+      } else {
+        channel = message.channel as TextChannel;
+      }
+  
+      if (channel.permissionsFor(message.guild!.id)?.has("SEND_MESSAGES") === false) {
+        return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_LOCKED);
+      }
+  
+      channel.updateOverwrite(message.guild!.id, {
+        SEND_MESSAGES: false,
+      });
+  
+      message.channel.send(
+        lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
+          "{lockReason}",
+          lockReason
+        )
+      );
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    if (channel.permissionsFor(message.guild!.id)?.has("SEND_MESSAGES") === false) {
-      return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_LOCKED);
-    }
-
-    channel.updateOverwrite(message.guild!.id, {
-      SEND_MESSAGES: false,
-    });
-
-    message.channel.send(
-      lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
-        "{lockReason}",
-        lockReason
-      )
-    );
   }
 }

@@ -13,14 +13,21 @@ export default class SupremeCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const text = args.join(" ");
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const image = await bot.alexClient.image.supreme({
-      text: encodeURIComponent(text),
-    });
+    try {
+      const text = args.join(" ");
 
-    const att = new MessageAttachment(image, "supreme.png");
+      const image = await bot.alexClient.image.supreme({
+        text: encodeURIComponent(text),
+      });
 
-    message.channel.send(att);
+      const att = new MessageAttachment(image, "supreme.png");
+
+      message.channel.send(att);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

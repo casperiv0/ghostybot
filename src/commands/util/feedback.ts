@@ -14,18 +14,23 @@ export default class FeedbackCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const feedback = args.join(" ");
-
-    if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
-    if (!bot.config.feedBackChannelId || bot.config.feedBackChannelId === "") return;
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.UTIL.NEW_FEEDBACK)
-      .setDescription(feedback);
-
-    (bot.channels.cache.get(bot.config.feedBackChannelId) as TextChannel)?.send(embed);
-
-    message.channel.send(lang.UTIL.FEEDBACK_SEND);
+    try {
+      const feedback = args.join(" ");
+  
+      if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+      if (!bot.config.feedBackChannelId || bot.config.feedBackChannelId === "") return;
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.UTIL.NEW_FEEDBACK)
+        .setDescription(feedback);
+  
+      (bot.channels.cache.get(bot.config.feedBackChannelId) as TextChannel)?.send(embed);
+  
+      message.channel.send(lang.UTIL.FEEDBACK_SEND);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

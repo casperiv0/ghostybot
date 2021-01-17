@@ -14,13 +14,18 @@ export default class CatCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const data = await fetch("http://shibe.online/api/shibes").then((res) => res.json());
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data[0]})`)
-      .setImage(data[0]);
-
-    message.channel.send(embed);
+    try {
+      const data = await fetch("http://shibe.online/api/shibes").then((res) => res.json());
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data[0]})`)
+        .setImage(data[0]);
+  
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

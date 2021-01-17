@@ -17,26 +17,31 @@ export default class RrRemoveCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const [messageId] = args;
-
-    const reaction = await ReactionsModel.findOne({
-      guild_id: message.guild?.id,
-      message_id: messageId,
-    });
-
-    if (!reaction) {
-      return message.channel.send(lang.REACTIONS.NOT_FOUND);
+    try {
+      const [messageId] = args;
+  
+      const reaction = await ReactionsModel.findOne({
+        guild_id: message.guild?.id,
+        message_id: messageId,
+      });
+  
+      if (!reaction) {
+        return message.channel.send(lang.REACTIONS.NOT_FOUND);
+      }
+  
+      const channel = message.guild?.channels.cache.get(reaction.channel_id);
+      const msg =
+        (channel as TextChannel).messages.cache.get(messageId) ||
+        (await (channel as TextChannel).messages.fetch(messageId));
+      if (!msg) return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+  
+      msg.delete();
+      await ReactionsModel.findOneAndDelete({ message_id: messageId });
+  
+      return message.channel.send(lang.REACTIONS.DELETE_SUCCESS);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const channel = message.guild?.channels.cache.get(reaction.channel_id);
-    const msg =
-      (channel as TextChannel).messages.cache.get(messageId) ||
-      (await (channel as TextChannel).messages.fetch(messageId));
-    if (!msg) return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
-
-    msg.delete();
-    await ReactionsModel.findOneAndDelete({ message_id: messageId });
-
-    return message.channel.send(lang.REACTIONS.DELETE_SUCCESS);
   }
 }

@@ -14,15 +14,20 @@ export default class PauseCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    if (!message.member?.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+    try {
+      if (!message.member?.voice.channel) {
+        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+      }
+  
+      if (!bot.player.isPlaying(message)) {
+        return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+  
+      bot.player.pause(message);
+      message.react("⏯️");
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player.pause(message);
-    message.react("⏯️");
   }
 }

@@ -13,32 +13,37 @@ export default class BetCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const member = await bot.utils.findMember(message, args);
+    try {
+      const member = await bot.utils.findMember(message, args);
 
-    if (!member) {
-      return message.reply(lang.EASY_GAMES.PROVIDE_MEMBER);
-    }
+      if (!member) {
+        return message.reply(lang.EASY_GAMES.PROVIDE_MEMBER);
+      }
 
-    const number = Math.random();
+      const number = Math.random();
 
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(
-        lang.GAMES.BETS_ON.replace("{member_1}", message.author.username).replace(
-          "{member_2}",
-          member.user.username
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(
+          lang.GAMES.BETS_ON.replace("{member_1}", message.author.username).replace(
+            "{member_2}",
+            member.user.username
+          )
         )
-      )
-      .setDescription(
-        number > 0.5
-          ? lang.GAMES.WON_BET.replace("{member_1}", message.author.username)
-              .replace("{member_2}", member.user.username)
-              .replace("{member_1}", message.author.username)
-          : lang.GAMES.LOST_BET.replace("{member_1}", message.author.username)
-              .replace("{member_2}", member.user.username)
-              .replace("{member_1}", message.author.username)
-      );
+        .setDescription(
+          number > 0.5
+            ? lang.GAMES.WON_BET.replace("{member_1}", message.author.username)
+                .replace("{member_2}", member.user.username)
+                .replace("{member_1}", message.author.username)
+            : lang.GAMES.LOST_BET.replace("{member_1}", message.author.username)
+                .replace("{member_2}", member.user.username)
+                .replace("{member_1}", message.author.username)
+        );
 
-    return message.channel.send(embed);
+      return message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

@@ -13,25 +13,32 @@ export default class FoodPornCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) =>
-      res.json()
-    );
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const children = data[0].data.children[0];
-    const permaLink = children.data.permalink;
-    const url = `https://reddit.com${permaLink}`;
-    const image = children.data.url;
-    const title = children.data.title;
-    const upvotes = children.data.ups;
-    const comments = children.data.num_comments;
+    try {
+      const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) =>
+        res.json()
+      );
 
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(title)
-      .setURL(url)
-      .setImage(image)
-      .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
+      const children = data[0].data.children[0];
+      const permaLink = children.data.permalink;
+      const url = `https://reddit.com${permaLink}`;
+      const image = children.data.url;
+      const title = children.data.title;
+      const upvotes = children.data.ups;
+      const comments = children.data.num_comments;
 
-    message.channel.send({ embed });
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(title)
+        .setURL(url)
+        .setImage(image)
+        .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
+
+      message.channel.send({ embed });
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

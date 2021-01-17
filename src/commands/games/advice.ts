@@ -13,8 +13,15 @@ export default class AdviceCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const data = await fetch("https://api.adviceslip.com/advice").then((res) => res.json());
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    message.channel.send(data.slip.advice);
+    try {
+      const data = await fetch("https://api.adviceslip.com/advice").then((res) => res.json());
+  
+      message.channel.send(data.slip.advice);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

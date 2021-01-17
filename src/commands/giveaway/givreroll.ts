@@ -15,11 +15,16 @@ export default class GivReRollCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    // const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const [messageId] = args;
-
-    bot.giveawayManager
-      .reroll(messageId)
-      .catch(() => message.channel.send(`No giveaway found with id: ${messageId}`));
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    try {
+      const [messageId] = args;
+  
+      bot.giveawayManager
+        .reroll(messageId)
+        .catch(() => message.channel.send(`No giveaway found with id: ${messageId}`));
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

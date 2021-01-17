@@ -9,19 +9,23 @@ export default class PlayerPlaylistAddEvent extends Event {
   }
 
   async execute(bot: Bot, message: Message, queue: Queue, playlist: Playlist) {
-    if (!message.guild?.available) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
-    if (!playlist) return;
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(
-        `${lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", `${playlist.tracks.length}`).replace(
-          "{name}",
-          `${playlist.title}`
-        )}`
-      );
-
-    return message.channel.send(embed);
+    try {
+      if (!message.guild?.available) return;
+      const lang = await bot.utils.getGuildLang(message.guild?.id);
+      if (!playlist) return;
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(
+          `${lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", `${playlist.tracks.length}`).replace(
+            "{name}",
+            `${playlist.title}`
+          )}`
+        );
+  
+      return message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+    }
   }
 }

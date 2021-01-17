@@ -15,25 +15,30 @@ export default class BugReportCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const bug = args.join(" ");
-
-    if (!bot.config.reportsChannelId) {
-      return message.channel.send(
-        lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId")
-      );
+    try {
+      const bug = args.join(" ");
+  
+      if (!bot.config.reportsChannelId) {
+        return message.channel.send(
+          lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId")
+        );
+      }
+  
+      if (!bug) {
+        return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+      }
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
+        .setDescription(bug);
+  
+      (bot.channels.cache.get(bot.config.reportsChannelId) as TextChannel)?.send(embed);
+  
+      return message.channel.send(lang.UTIL.BUG_REPORTED);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    if (!bug) {
-      return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
-    }
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
-      .setDescription(bug);
-
-    (bot.channels.cache.get(bot.config.reportsChannelId) as TextChannel)?.send(embed);
-
-    return message.channel.send(lang.UTIL.BUG_REPORTED);
   }
 }

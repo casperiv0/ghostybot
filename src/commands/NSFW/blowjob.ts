@@ -13,13 +13,18 @@ export default class BlowjobCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const data = await bot.neko.nsfw.blowJob();
-
-    const blowjob = bot.utils
-      .baseEmbed(message)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
-      .setImage(data.url);
-
-    message.channel.send(blowjob);
+    try {
+      const data = await bot.neko.nsfw.blowJob();
+  
+      const blowjob = bot.utils
+        .baseEmbed(message)
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
+        .setImage(data.url);
+  
+      message.channel.send(blowjob);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

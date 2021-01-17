@@ -14,9 +14,16 @@ export default class LmgtfyCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const query = encodeURIComponent(args.join(" "));
-    const url = `https://lmgtfy.com/?q=${query}&s=g`;
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    message.channel.send(url);
+    try {
+      const query = encodeURIComponent(args.join(" "));
+      const url = `https://lmgtfy.com/?q=${query}&s=g`;
+
+      message.channel.send(url);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

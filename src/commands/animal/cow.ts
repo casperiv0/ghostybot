@@ -14,15 +14,20 @@ export default class CowCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const cows = cowsPack();
-
-    const cow = cows[Math.floor(Math.random() * cows.length)];
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.ANIMAL.COW)
-      .setDescription(`\`\`\`${cow}\`\`\``);
-
-    message.channel.send(embed);
+    try {
+      const cows = cowsPack();
+  
+      const cow = cows[Math.floor(Math.random() * cows.length)];
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.ANIMAL.COW)
+        .setDescription(`\`\`\`${cow}\`\`\``);
+  
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

@@ -16,33 +16,38 @@ export default class AnnounceCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    message.delete();
-    if (!args[0])
-      return message.channel.send(
-        lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL
+    try {
+      message.delete();
+      if (!args[0])
+        return message.channel.send(
+          lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL
+        );
+  
+      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const announceChannel = guild?.announcement_channel;
+      let channel = message.mentions.channels.first();
+      let text: string;
+  
+      if (channel) {
+        text = args.splice(1).join(" ");
+      } else if (announceChannel !== null) {
+        channel = message.mentions.channels.first();
+        text = args.join(" ");
+      } else {
+        return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
+      }
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.ADMIN.ANNOUNCEMENT)
+        .setDescription(text);
+  
+      (bot.channels.cache.get(announceChannel ? announceChannel : channel!.id) as TextChannel)?.send(
+        embed
       );
-
-    const guild = await bot.utils.getGuildById(message.guild?.id);
-    const announceChannel = guild?.announcement_channel;
-    let channel = message.mentions.channels.first();
-    let text: string;
-
-    if (channel) {
-      text = args.splice(1).join(" ");
-    } else if (announceChannel !== null) {
-      channel = message.mentions.channels.first();
-      text = args.join(" ");
-    } else {
-      return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.ADMIN.ANNOUNCEMENT)
-      .setDescription(text);
-
-    (bot.channels.cache.get(announceChannel ? announceChannel : channel!.id) as TextChannel)?.send(
-      embed
-    );
   }
 }

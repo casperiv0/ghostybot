@@ -15,13 +15,18 @@ export default class ComplimentCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const { compliment } = await fetch("https://complimentr.com/api").then((res) => res.json());
+    try {
+      const { compliment } = await fetch("https://complimentr.com/api").then((res) => res.json());
 
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.GAMES.COMPLIMENT)
-      .setDescription(compliment);
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.GAMES.COMPLIMENT)
+        .setDescription(compliment);
 
-    message.channel.send(embed);
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

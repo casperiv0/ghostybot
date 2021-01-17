@@ -15,34 +15,39 @@ export default class LyricsCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const playing = bot.player.isPlaying(message);
-    const queue = bot.player.getQueue(message);
-    const np = playing || queue ? bot.player.nowPlaying(message) : false;
-    const title = (np && np.title) || encodeURIComponent(args.join(" "));
-
-    const song = await (
-      await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`)
-    ).json();
-
-    if (song.error) {
-      return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
+    try {
+      const playing = bot.player.isPlaying(message);
+      const queue = bot.player.getQueue(message);
+      const np = playing || queue ? bot.player.nowPlaying(message) : false;
+      const title = (np && np.title) || encodeURIComponent(args.join(" "));
+  
+      const song = await (
+        await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`)
+      ).json();
+  
+      if (song.error) {
+        return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
+      }
+  
+      const songTitle = (np && np.title) || song.title;
+      const songAuthor = (np && np.author) || song.author;
+      const songThumbnail = (np && np.thumbnail) || song.thumbnail.genius;
+      const songLyrics = song.lyrics;
+  
+      const lyricsEmbed = bot.utils
+        .baseEmbed(message)
+        .setAuthor(songAuthor)
+        .setTitle(songTitle)
+        .setDescription(songLyrics)
+        .setThumbnail(songThumbnail);
+  
+      if (lyricsEmbed.description!.length >= 2048) {
+        lyricsEmbed.description = `${lyricsEmbed.description!.substr(0, 2045)}...`;
+      }
+      return message.channel.send(lyricsEmbed).catch((e) => bot.logger.error("Lyrics", e));
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const songTitle = (np && np.title) || song.title;
-    const songAuthor = (np && np.author) || song.author;
-    const songThumbnail = (np && np.thumbnail) || song.thumbnail.genius;
-    const songLyrics = song.lyrics;
-
-    const lyricsEmbed = bot.utils
-      .baseEmbed(message)
-      .setAuthor(songAuthor)
-      .setTitle(songTitle)
-      .setDescription(songLyrics)
-      .setThumbnail(songThumbnail);
-
-    if (lyricsEmbed.description!.length >= 2048) {
-      lyricsEmbed.description = `${lyricsEmbed.description!.substr(0, 2045)}...`;
-    }
-    return message.channel.send(lyricsEmbed).catch((e) => bot.logger.error("Lyrics", e));
   }
 }

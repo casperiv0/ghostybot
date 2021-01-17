@@ -14,11 +14,18 @@ export default class AsciiCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const text = args.join(" ");
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    figlet.text(text, (e, txt) => {
-      if (e) return;
-      message.channel.send(`\`\`\` ${txt?.trimRight()} \`\`\``);
-    });
+    try {
+      const text = args.join(" ");
+
+      figlet.text(text, (e, txt) => {
+        if (e) return;
+        message.channel.send(`\`\`\` ${txt?.trimRight()} \`\`\``);
+      });
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

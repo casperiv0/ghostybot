@@ -16,25 +16,29 @@ export default class GuildMemberMuteAddEvent extends Event {
   }
 
   async execute(bot: Bot, guild: Guild, mute: MuteData) {
-    if (!guild) return;
-    if (!guild.available) return;
-    const webhook = await bot.utils.getWebhook(guild);
-    if (!webhook) return;
-
-    const { member, executor, tempMute, time, reason } = mute;
-
-    const embed = bot.utils
-      .baseEmbed({ author: bot.user })
-      .setTitle("User muted")
-      .addField("Tag", member.user.tag, true)
-      .addField("Executed by", executor.tag, true)
-      .addField("Reason", reason)
-      .setColor("ORANGE");
-
-    if (tempMute) {
-      embed.addField("Muted for", time);
+    try {
+      if (!guild) return;
+      if (!guild.available) return;
+      const webhook = await bot.utils.getWebhook(guild);
+      if (!webhook) return;
+  
+      const { member, executor, tempMute, time, reason } = mute;
+  
+      const embed = bot.utils
+        .baseEmbed({ author: bot.user })
+        .setTitle("User muted")
+        .addField("Tag", member.user.tag, true)
+        .addField("Executed by", executor.tag, true)
+        .addField("Reason", reason)
+        .setColor("ORANGE");
+  
+      if (tempMute) {
+        embed.addField("Muted for", time);
+      }
+  
+      return webhook.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
     }
-
-    return webhook.send(embed);
   }
 }

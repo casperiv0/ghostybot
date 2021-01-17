@@ -15,8 +15,15 @@ export default class CowSayCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const text = args.join(" ");
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    message.channel.send(`\`\`\` ${cowSay.say({ text, T: "U", e: "oO" })} \`\`\``);
+    try {
+      const text = args.join(" ");
+
+      message.channel.send(`\`\`\` ${cowSay.say({ text, T: "U", e: "oO" })} \`\`\``);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

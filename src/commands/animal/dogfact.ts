@@ -14,17 +14,22 @@ export default class DogFactCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    fetch("https://some-random-api.ml/facts/dog")
-      .then((res) => res.json())
-      .then((data) => {
-        const fact = data.fact;
-
-        const embed = bot.utils
-          .baseEmbed(message)
-          .setTitle(lang.ANIMAL.DOG_FACT)
-          .setDescription(fact);
-
-        message.channel.send(embed);
-      });
+    try {
+      fetch("https://some-random-api.ml/facts/dog")
+        .then((res) => res.json())
+        .then((data) => {
+          const fact = data.fact;
+  
+          const embed = bot.utils
+            .baseEmbed(message)
+            .setTitle(lang.ANIMAL.DOG_FACT)
+            .setDescription(fact);
+  
+          message.channel.send(embed);
+        });
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

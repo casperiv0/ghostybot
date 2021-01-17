@@ -8,11 +8,16 @@ export default class GuildDeleteEvent extends Event {
   }
 
   async execute(bot: Bot, guild: Guild) {
-    if (!guild) return;
-    await bot.utils.removeGuild(guild.id);
-
-    guild.members.cache.forEach((member: GuildMember) => {
-      bot.utils.removeUser(member.id, guild.id);
-    });
+    try {
+      if (!guild) return;
+      await bot.utils.removeGuild(guild.id);
+  
+      guild.members.cache.forEach((member: GuildMember) => {
+        bot.utils.removeUser(member.id, guild.id);
+        bot.utils.removeUserWarnings(member.id, guild.id);
+      });
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+    }
   }
 }

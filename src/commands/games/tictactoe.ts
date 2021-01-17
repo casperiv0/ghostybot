@@ -16,9 +16,14 @@ export default class TicTacToeCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const member = await bot.utils.findMember(message, args);
-    const ticTacToe = new TicTacToe(member, message);
-
-    ticTacToe.init(lang.EASY_GAMES);
+    try {
+      const member = await bot.utils.findMember(message, args);
+      const ticTacToe = new TicTacToe(member, message);
+  
+      ticTacToe.init(lang.EASY_GAMES);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

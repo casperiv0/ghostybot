@@ -14,20 +14,24 @@ export default class ResumeCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
+    try {
+      if (!message.member?.voice.channel) {
+        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+      }
 
-    if (!message.member?.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+      const queue = bot.player.getQueue(message);
+      if (!bot.player.isPlaying(message)) {
+        return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+
+      if (!queue) {
+        return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+
+      bot.player.resume(message);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const queue = bot.player.getQueue(message);
-    if (!bot.player.isPlaying(message)) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    bot.player.resume(message);
   }
 }

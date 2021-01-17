@@ -15,16 +15,21 @@ export default class MorseCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const morse = args
-      .join(" ")
-      .toLowerCase()
-      .replace(/./g, (x) => `${morseCode[x]}\u2001`)
-      .trim();
-
-    if (morse.includes("undefined")) {
-      return message.channel.send(lang.UTIL.TEXT_NOT_SUP);
+    try {
+      const morse = args
+        .join(" ")
+        .toLowerCase()
+        .replace(/./g, (x) => `${morseCode[x]}\u2001`)
+        .trim();
+  
+      if (morse.includes("undefined")) {
+        return message.channel.send(lang.UTIL.TEXT_NOT_SUP);
+      }
+  
+      message.channel.send(morse);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    message.channel.send(morse);
   }
 }

@@ -15,25 +15,30 @@ export default class QueueCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    if (!message.member?.voice.channel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+    try {
+      if (!message.member?.voice.channel) {
+        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+      }
+  
+      const queue = bot.player.getQueue(message);
+  
+      if (!queue) {
+        return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(`${message.guild?.name} ${lang.MUSIC.QUEUE}`)
+        .setDescription(
+          queue.tracks.splice(0, 1024).map((song, idx) => {
+            return `${++idx}: ${song.title}`;
+          })
+        );
+  
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const queue = bot.player.getQueue(message);
-
-    if (!queue) {
-      return message.channel.send(lang.MUSIC.NO_QUEUE);
-    }
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(`${message.guild?.name} ${lang.MUSIC.QUEUE}`)
-      .setDescription(
-        queue.tracks.splice(0, 1024).map((song, idx) => {
-          return `${++idx}: ${song.title}`;
-        })
-      );
-
-    message.channel.send(embed);
   }
 }

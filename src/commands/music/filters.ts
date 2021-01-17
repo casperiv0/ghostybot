@@ -13,15 +13,22 @@ export default class FiltersCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const guild = await bot.utils.getGuildById(message.guild?.id);
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle("Filters")
-      .setDescription(
-        `${filters.map((f) => `${f}`).join("\n")}\n **Use:** ${guild?.prefix}filter set <filter>`
-      );
+    try {
+      const guild = await bot.utils.getGuildById(message.guild?.id);
 
-    return message.channel.send(embed);
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle("Filters")
+        .setDescription(
+          `${filters.map((f) => `${f}`).join("\n")}\n **Use:** ${guild?.prefix}filter set <filter>`
+        );
+
+      return message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

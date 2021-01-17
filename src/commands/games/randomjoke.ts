@@ -14,8 +14,15 @@ export default class JokeCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    message.channel.send(
-      getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body
-    );
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+
+    try {
+      message.channel.send(
+        getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body
+      );
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

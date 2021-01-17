@@ -15,15 +15,20 @@ export default class GonewildCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const data = await fetch("https://nekobot.xyz/api/image?type=gonewild").then((res) =>
-      res.json()
-    );
-
-    const gonewild = bot.utils
-      .baseEmbed(message)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
-      .setImage(data.message);
-
-    message.channel.send(gonewild);
+    try {
+      const data = await fetch("https://nekobot.xyz/api/image?type=gonewild").then((res) =>
+        res.json()
+      );
+  
+      const gonewild = bot.utils
+        .baseEmbed(message)
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
+        .setImage(data.message);
+  
+      message.channel.send(gonewild);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

@@ -16,34 +16,39 @@ export default class NukeCommand extends Command {
 
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const channel = message.channel as TextChannel;
-
-    if (!channel) {
+    try {
+      const channel = message.channel as TextChannel;
+  
+      if (!channel) {
+        return message.channel.send(lang.GLOBAL.ERROR);
+      }
+  
+      const position = channel.position;
+      const topic = channel.topic;
+  
+      const filter = (m: Message) => m.author.id === message.author.id;
+      const collector = message.channel.createMessageCollector(filter, {
+        time: 15000,
+      });
+  
+      message.channel.send(lang.ADMIN.NUKE_CONFIRM);
+  
+      collector.on("collect", async (m) => {
+        if (m.content?.toLowerCase() === "y") {
+          const channel2 = await channel.clone();
+  
+          channel2.setPosition(position);
+          channel2.setTopic(topic);
+          channel.delete();
+          channel2.send(lang.ADMIN.NUKE_NUKED);
+        } else {
+          collector.stop();
+          return message.channel.send(lang.ADMIN.NUKE_CANCELED);
+        }
+      });
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
-
-    const position = channel.position;
-    const topic = channel.topic;
-
-    const filter = (m: Message) => m.author.id === message.author.id;
-    const collector = message.channel.createMessageCollector(filter, {
-      time: 15000,
-    });
-
-    message.channel.send(lang.ADMIN.NUKE_CONFIRM);
-
-    collector.on("collect", async (m) => {
-      if (m.content?.toLowerCase() === "y") {
-        const channel2 = await channel.clone();
-
-        channel2.setPosition(position);
-        channel2.setTopic(topic);
-        channel.delete();
-        channel2.send(lang.ADMIN.NUKE_NUKED);
-      } else {
-        collector.stop();
-        return message.channel.send(lang.ADMIN.NUKE_CANCELED);
-      }
-    });
   }
 }

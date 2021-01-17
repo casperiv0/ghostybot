@@ -15,17 +15,22 @@ export default class ImgfyCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const text = args.join(" ");
+    try {
+      const text = args.join(" ");
 
-    const image = `https://flamingtext.com/net-fu/proxy_form.cgi?script=3d-logo&text=${encodeURIComponent(
-      text
-    )}&_loc=generate&imageoutput=true`;
+      const image = `https://flamingtext.com/net-fu/proxy_form.cgi?script=3d-logo&text=${encodeURIComponent(
+        text
+      )}&_loc=generate&imageoutput=true`;
 
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
-      .setImage(image);
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
+        .setImage(image);
 
-    message.channel.send(embed);
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

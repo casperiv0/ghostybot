@@ -15,14 +15,19 @@ export default class MemeCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const data = await fetch("https://meme-api.herokuapp.com/gimme").then((res) => res.json());
-
-    const embed = bot.utils
-      .baseEmbed(message)
-      .setTitle(data.title)
-      .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
-      .setImage(data.url);
-
-    message.channel.send(embed);
+    try {
+      const data = await fetch("https://meme-api.herokuapp.com/gimme").then((res) => res.json());
+  
+      const embed = bot.utils
+        .baseEmbed(message)
+        .setTitle(data.title)
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
+        .setImage(data.url);
+  
+      message.channel.send(embed);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }

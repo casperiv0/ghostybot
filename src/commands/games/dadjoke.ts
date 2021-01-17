@@ -13,8 +13,15 @@ export default class DadJokeCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const data = await fetch("https://icanhazdadjoke.com/slack").then((res) => res.json());
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    message.channel.send(data.attachments[0].fallback);
+    try {
+      const data = await fetch("https://icanhazdadjoke.com/slack").then((res) => res.json());
+
+      message.channel.send(data.attachments[0].fallback);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
   }
 }
