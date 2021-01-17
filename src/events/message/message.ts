@@ -1,5 +1,6 @@
 import { Message, TextChannel } from "discord.js";
 import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
+import BotModel from "../../models/Bot.model";
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 
@@ -15,13 +16,15 @@ export default class MessageEvent extends Event {
     const guild = await bot.utils.getGuildById(guildId);
     const mentions = message.mentions.members;
     const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
+    const customCommands = guild?.custom_commands;
+
+    if (guild?.ignored_channels?.includes(message.channel.id)) return;
 
     const escapeRegex = (str?: string) => str?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const prefixReg = new RegExp(`^(<@!?${bot?.user?.id}>|${escapeRegex(guild?.prefix)})\\s*`);
 
     const prefixArr = message.content.match(prefixReg);
     const prefix = prefixArr?.[0];
-    if (!prefix) return; // prefix didn't match
 
     // sticky
     const sticky = await bot.utils.getSticky(message.channel.id);
@@ -41,6 +44,24 @@ export default class MessageEvent extends Event {
       await sticky?.save();
     }
 
+    // check if message has a badword in it
+    if (!message.content.includes(`${guild?.prefix}blacklistedwords`) && !message.author.bot) {
+      guild?.blacklistedwords.forEach((word) => {
+        if (message.content.toLowerCase().includes(word.toLowerCase())) {
+          message.deletable && message.delete();
+          return message.channel
+            .send(
+              `<@${userId}> You used a bad word the admin has set, therefore your message was deleted!`
+            )
+            .then((msg) => {
+              setTimeout(() => {
+                msg.delete();
+              }, 5000);
+            });
+        }
+      });
+    }
+
     // check if mention user is afk
     if (mentions && mentions?.size > 0 && !prefixReg.test(message.content)) {
       mentions.forEach(async (member) => {
@@ -55,6 +76,30 @@ export default class MessageEvent extends Event {
           );
         }
       });
+    }
+
+    // remove AFK from user if they send a message
+    const user = await bot.utils.getUserById(userId, guildId);
+    if (
+      !message.author.bot &&
+      user &&
+      user?.afk.is_afk === true &&
+      !message.content.includes(`${guild?.prefix}afk`)
+    ) {
+      await bot.utils.updateUserById(userId, guildId, {
+        afk: {
+          is_afk: false,
+          reason: null,
+        },
+      });
+
+      const msg = await message.channel.send(
+        bot.utils.baseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
+      );
+
+      setTimeout(() => {
+        msg.delete();
+      }, 5000);
     }
 
     // LEVEL
@@ -86,6 +131,7 @@ export default class MessageEvent extends Event {
       await bot.utils.updateUserById(userId, guildId, { xp: user.xp + xp });
     }
 
+    if (!prefix) return; // prefix didn't match
     if (!prefixReg.test(message.content) || message.author.bot || userId === bot.user.id) return;
     const [cmd, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
 
@@ -109,10 +155,29 @@ export default class MessageEvent extends Event {
       return message.channel.send({ embed });
     }
 
+    if (customCommands) {
+      if (guild?.auto_delete_cmd === true) {
+        message?.delete();
+      }
+
+      const command = customCommands.find((c) => c.name === cmd);
+      if (command) {
+        return message.channel.send(command.response);
+      }
+    }
+
     try {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
       if (!command) return;
 
+      const _bot =
+        (await BotModel.findOne({ bot_id: bot.user.id })) ||
+        (await BotModel.create({ bot_id: bot.user.id }));
+
+      _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
+      _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
+
+      _bot.save();
       const timestamps = bot.cooldowns.get(command.name);
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
@@ -199,8 +264,6 @@ export default class MessageEvent extends Event {
 
       command.execute(bot, message, args);
     } catch (e) {
-      console.log(e);
-
       bot.utils.sendErrorLog(e, "error");
       return message.channel.send("An unexpected error occurred");
     }

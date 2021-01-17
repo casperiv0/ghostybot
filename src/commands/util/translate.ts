@@ -11,6 +11,7 @@ export default class TranslateCommand extends Command {
       usage: "<language> <sentence>",
       category: "util",
       requiredArgs: ["language", "text"],
+      aliases: ["tr"],
     });
   }
 
