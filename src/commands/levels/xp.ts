@@ -25,7 +25,7 @@ export default class XpCommand extends Command {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
 
-      const user = await (this.bot.utils as any).gdetUserById(member?.user?.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member?.user?.id, message.guild?.id);
 
       const embed = this.bot.utils
         .baseEmbed(message)
@@ -33,9 +33,9 @@ export default class XpCommand extends Command {
         .setDescription(`${lang.LEVELS.XP}: ${user?.xp}`);
 
       return message.channel.send({ embed });
-    } catch (e) {
-      bot.utils.sendErrorLog(e, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send("lang.GLOBAL.ERROR");
     }
   }
 }

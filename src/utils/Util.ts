@@ -167,7 +167,7 @@ export default class Util {
     const channel = (this.bot.channels.cache.get(channelId) ||
       (await this.bot.channels.fetch(channelId))) as TextChannel;
 
-    if (!channel || !channelId) {
+    if (!channel || !channelId || !channel.permissionsFor(this.bot.user!)?.has("SEND_MESSAGES")) {
       return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
     }
 
@@ -280,8 +280,10 @@ export default class Util {
       guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
       guild.roles.cache.find((r) => r.name === "muted") ||
       (await guild.roles.create({
-        name: "muted",
-        color: "GRAY",
+        data: {
+          name: "muted",
+          color: "GRAY",
+        },
         reason: "Mute a user",
       }))
     );

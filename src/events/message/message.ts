@@ -169,107 +169,102 @@ export default class MessageEvent extends Event {
         }
       }
 
-      try {
-        const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
-        if (!command) return;
+      const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
+      if (!command) return;
 
-        const _bot =
-          (await BotModel.findOne({ bot_id: bot.user.id })) ||
-          (await BotModel.create({ bot_id: bot.user.id }));
+      const _bot =
+        (await BotModel.findOne({ bot_id: bot.user.id })) ||
+        (await BotModel.create({ bot_id: bot.user.id }));
 
-        _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
-        _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
+      _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
+      _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
 
-        _bot.save();
-        const timestamps = bot.cooldowns.get(command.name);
-        const now = Date.now();
-        const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
+      _bot.save();
+      const timestamps = bot.cooldowns.get(command.name);
+      const now = Date.now();
+      const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-        if (guild?.disabled_categories?.includes(command.options.category)) {
+      if (guild?.disabled_categories?.includes(command.options.category)) {
+        return message.channel.send(
+          `That command is disabled because this guild disabled the ${command.options.category} category`
+        );
+      }
+
+      if (guild?.disabled_commands?.includes(command.name)) {
+        return message.channel.send("That command was disabled for this guild");
+      }
+
+      if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
+        return message.reply("This command can only be used by the owners!");
+      }
+
+      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
+        return message.channel.send("This channel is not a NSFW channel!");
+      }
+
+      if (command.options.memberPermissions) {
+        const neededPerms: string[] = [];
+        command.options.memberPermissions.forEach((perm) => {
+          if (!(message.channel as TextChannel).permissionsFor(message.member!)?.has(perm)) {
+            neededPerms.push(perm);
+          }
+        });
+
+        if (neededPerms.length > 0) {
           return message.channel.send(
-            `That command is disabled because this guild disabled the ${command.options.category} category`
+            `You need: ${neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")} permissions`
           );
         }
-
-        if (guild?.disabled_commands?.includes(command.name)) {
-          return message.channel.send("That command was disabled for this guild");
-        }
-
-        if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
-          return message.reply("This command can only be used by the owners!");
-        }
-
-        if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
-          return message.channel.send("This channel is not a NSFW channel!");
-        }
-
-        if (command.options.memberPermissions) {
-          const neededPerms: string[] = [];
-          command.options.memberPermissions.forEach((perm) => {
-            if (!(message.channel as TextChannel).permissionsFor(message.member!)?.has(perm)) {
-              neededPerms.push(perm);
-            }
-          });
-
-          if (neededPerms.length > 0) {
-            return message.channel.send(
-              `You need: ${neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")} permissions`
-            );
-          }
-        }
-
-        if (command.options.botPermissions) {
-          const neededPerms: string[] = [];
-          command.options.botPermissions.forEach((perm) => {
-            if (!(message.channel as TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
-              neededPerms.push(perm);
-            }
-          });
-
-          if (neededPerms.length > 0) {
-            return message.channel.send(bot.utils.errorEmbed(neededPerms, message));
-          }
-        }
-
-        if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
-          const cmdArgs = command.options.requiredArgs.map((a) => `\`${a}\``).join(", ");
-          const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
-            .map((a) => `<${a}>`)
-            .join(" ")}`;
-
-          const embed = bot.utils
-            .baseEmbed(message)
-            .setTitle("Incorrect command usage")
-            .setColor("RED")
-            .setDescription(`:x: You must provide more args: ${cmdArgs}`)
-            .addField("Example:", cmdExample);
-
-          return message.channel.send(embed);
-        }
-
-        if (timestamps?.has(userId)) {
-          const userTime = timestamps.get(userId);
-          const expireTime = userTime! + cooldown;
-
-          if (now < expireTime) {
-            const timeLeft = (expireTime - now) / 1000;
-
-            return message.reply(
-              `Please wait **${timeLeft.toFixed(1)}** more seconds before using the **${
-                command.name
-              }** command`
-            );
-          }
-        }
-
-        timestamps?.set(userId, now);
-        setTimeout(() => timestamps?.delete(userId), cooldown);
-
-        command.execute(bot, message, args);
-      } catch (e) {
-        bot.utils.sendErrorLog(e, "error");
-        return message.channel.send("An unexpected error occurred");
       }
+
+      if (command.options.botPermissions) {
+        const neededPerms: string[] = [];
+        command.options.botPermissions.forEach((perm) => {
+          if (!(message.channel as TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
+            neededPerms.push(perm);
+          }
+        });
+
+        if (neededPerms.length > 0) {
+          return message.channel.send(bot.utils.errorEmbed(neededPerms, message));
+        }
+      }
+
+      if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
+        const cmdArgs = command.options.requiredArgs.map((a) => `\`${a}\``).join(", ");
+        const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
+          .map((a) => `<${a}>`)
+          .join(" ")}`;
+
+        const embed = bot.utils
+          .baseEmbed(message)
+          .setTitle("Incorrect command usage")
+          .setColor("RED")
+          .setDescription(`:x: You must provide more args: ${cmdArgs}`)
+          .addField("Example:", cmdExample);
+
+        return message.channel.send(embed);
+      }
+
+      if (timestamps?.has(userId)) {
+        const userTime = timestamps.get(userId);
+        const expireTime = userTime! + cooldown;
+
+        if (now < expireTime) {
+          const timeLeft = (expireTime - now) / 1000;
+
+          return message.reply(
+            `Please wait **${timeLeft.toFixed(1)}** more seconds before using the **${
+              command.name
+            }** command`
+          );
+        }
+      }
+
+      timestamps?.set(userId, now);
+      setTimeout(() => timestamps?.delete(userId), cooldown);
+
+      command.execute(bot, message, args);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

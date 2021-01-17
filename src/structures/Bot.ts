@@ -31,6 +31,7 @@ class Bot extends Client {
 
   constructor() {
     super({
+      disableMentions: "everyone",
       partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION"],
       restRequestTimeout: 25000,
     });

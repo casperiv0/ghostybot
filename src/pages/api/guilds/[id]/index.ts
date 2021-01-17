@@ -91,6 +91,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               status: "error",
             });
           }
+
           try {
             const starboard = req.bot.starboardsManager.starboards.find(
               (s) =>
