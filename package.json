@@ -2,21 +2,16 @@
   "name": "ghostybotv2",
   "version": "1.0.0",
   "description": "A Custom Discord bot with a lot of commands for Discord communities.",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=14.0.0"
   },
   "scripts": {
     "format": "eslint --ext .js --fix",
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "next build",
     "migrate": "node ./src/db/migrations"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "./src/**/*.+(js)": [
@@ -83,10 +78,25 @@
     "tnai": "^1.0.5",
     "trev": "^2.0.8",
     "twemoji-parser": "^13.0.0",
+    "typescript": "^4.1.3",
     "wikijs": "^6.0.1",
     "word-definition": "^2.1.6"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.23",
+    "@types/figlet": "^1.2.1",
+    "@types/glob": "^7.1.3",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mathjs": "^6.0.11",
+    "@types/mongoose": "^5.10.3",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^14.14.20",
+    "@types/node-fetch": "^2.5.7",
+    "@types/react": "^17.0.0",
+    "@types/request": "^2.48.5",
+    "@types/twemoji-parser": "^12.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
     "eslint": "^7.17.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react-hooks": "^4.2.0",

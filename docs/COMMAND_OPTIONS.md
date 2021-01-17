@@ -18,18 +18,29 @@ these are the available options for the commands
 ## Example command file
 
 ```js
-module.exports = {
-  name: "addrole",
-  aliases: ["ar", "arole", "giverole"],
-  description: "Add a role to a user",
-  category: "admin",
-  memberPermissions: ["SEND_MESSAGES", "MANAGE_ROLES", "ADMINISTRATOR"],
-  botPermissions: ["MANAGE_ROLES"],
-  requiredArgs: ["member", "role"],
-  async execute(bot, message, args) {
-    // Command code here
-  },
-};
+import { Message } from "discord.js";
+import Command from "../../structures/Command";
+import Bot from "../../structures/Bot";
+
+export default class MyCommand extends Command {
+  constructor(bot: Bot) {
+    super(bot, {
+      name: "",
+      description: "",
+      category: "",
+    });
+  }
+
+  async execute(bot: Bot, message: Message, args: string[]) {
+    const lang = await bot.utils.getGuildLang(message.guild?.id);
+
+    try {
+    } catch (err) {
+      bot.utils.sendErrorLog(err, "error");
+      return message.channel.send(lang.GLOBAL.ERROR);
+    }
+  }
+}
 ```
 
 ##

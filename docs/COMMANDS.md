@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 211 commands.
+GhostyBot has a total of 207 commands.
 
 Click any of the command names for more information
 
@@ -10,7 +10,7 @@ Click any of the command names for more information
 
 ### Category: admin
 
-**Total commands: 36**
+**Total commands: 35**
 
 [addcmd:](#addcmd) add guild custom commands
 
@@ -52,9 +52,7 @@ Click any of the command names for more information
 
 [say:](#say) Let the bot say something
 
-[set:](#set) Set a default channel
-
-[setwelcomemsg:](#setwelcomemsg) Sets the welcome msg
+[set:](#set) N/A
 
 [stealemoji:](#stealemoji) Steal an emoji from a different server
 
@@ -70,7 +68,7 @@ Click any of the command names for more information
 
 [unmute:](#unmute) Unmute a user
 
-[unset:](#unset) Unset/disable an option
+[unset:](#unset) N/A
 
 [unsticky:](#unsticky) Sticky a message to the bottom of the screen
 
@@ -175,7 +173,7 @@ Click any of the command names for more information
   ##
 ### Category: games
 
-**Total commands: 19**
+**Total commands: 18**
 
 [8ball:](#8ball) 8Ball
 
@@ -194,8 +192,6 @@ Click any of the command names for more information
 [dadjoke:](#dadjoke) Shows a dadjoke
 
 [flipcoin:](#flipcoin) Flip a coin
-
-[foodporn:](#foodporn) Shows Food images
 
 [happiness:](#happiness) Get a happiness returned
 
@@ -233,7 +229,7 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 20**
+**Total commands: 21**
 
 [amazeme:](#amazeme) Shows interesting images or facts
 
@@ -248,6 +244,8 @@ Click any of the command names for more information
 [cuddle:](#cuddle) Cuddle with somebody
 
 [feed:](#feed) feed somebody
+
+[foodporn:](#foodporn) Shows Food images
 
 [giphy:](#giphy) Return a giphy image
 
@@ -288,7 +286,7 @@ Click any of the command names for more information
 
 [resetxp:](#resetxp) reset all users xp for current server
 
-[xp:](#xp) Get Xp from mentioned user or yourself
+[xp:](#xp) Get xp from a user or yourself
 
   ##
 ### Category: music
@@ -351,7 +349,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 43**
+**Total commands: 42**
 
 [afk:](#afk) N/A
 
@@ -391,7 +389,7 @@ Click any of the command names for more information
 
 [help:](#help) Shows all commands Or shows more info about a command
 
-[image:](#image) Search any image you want from google
+[randomimage:](#randomimage) Search any image you want from google
 
 [imdb:](#imdb) Get the information about series and movie
 
@@ -423,8 +421,6 @@ Click any of the command names for more information
 
 [skin:](#skin) Search for skins from Minecraft
 
-[spotify:](#spotify) Shows status of users
-
 [suggest:](#suggest) Create a suggestion
 
 [translate:](#translate) Translate a sentence
@@ -455,17 +451,13 @@ Click any of the command names for more information
   ##
 ### Category: botowner
 
-**Total commands: 6**
+**Total commands: 4**
 
 [blacklist:](#blacklist) Remove/add blacklist from a user
 
 [eval:](#eval) Eval
 
 [leaveguild:](#leaveguild) Leaves a guid by the provided Id
-
-[nickname:](#nickname) Set the bot's nick name in a guild
-
-[reload:](#reload) Reloads a command
 
 [shutdown:](#shutdown) Shuts the bot down
 
@@ -781,7 +773,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
-**Required Arguments:** N/A
+**Required Arguments:** `reason`
 
 [Back to top](#ghostybot-command-list)
 
@@ -825,7 +817,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Member Permissions:** None
+**Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
 
@@ -901,31 +893,15 @@ Click any of the command names for more information
 
 **Category:** admin
 
-**Description:** Set a default channel
+**Description:** N/A
 
-**Usage:** `<option> <channel>`
+**Usage:** `N/A`
 
-**Member Permissions:** MANAGE_GUILD
+**Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## setwelcomemsg
-
-**Category:** admin
-
-**Description:** Sets the welcome msg
-
-**Usage:** `<message>`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `message`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1045,11 +1021,11 @@ Click any of the command names for more information
 
 **Category:** admin
 
-**Description:** Unset/disable an option
+**Description:** N/A
 
-**Usage:** `<option>`
+**Usage:** `N/A`
 
-**Member Permissions:** ADMINISTRATOR
+**Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
 
@@ -1537,38 +1513,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## nickname
-
-**Category:** botowner
-
-**Description:** Set the bot's nick name in a guild
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## reload
-
-**Category:** botowner
-
-**Description:** Reloads a command
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## shutdown
 
 **Category:** botowner
@@ -1885,7 +1829,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1917,7 +1861,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1949,7 +1893,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1965,7 +1909,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `calculation`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2006,22 +1950,6 @@ Click any of the command names for more information
 **Category:** games
 
 **Description:** Flip a coin
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## foodporn
-
-**Category:** games
-
-**Description:** Shows Food images
 
 **Usage:** `N/A`
 
@@ -2077,7 +2005,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `query`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2190,7 +2118,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `messageId`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2206,7 +2134,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `messageId`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2223,7 +2151,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `time`, `winnerCount`, `prize`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2383,7 +2311,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2419,6 +2347,22 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## foodporn
+
+**Category:** image
+
+**Description:** Shows Food images
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## giphy
 
 **Category:** image
@@ -2431,7 +2375,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2463,7 +2407,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `text`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2695,7 +2639,7 @@ Click any of the command names for more information
 
 **Category:** levels
 
-**Description:** Get Xp from mentioned user or yourself
+**Description:** Get xp from a user or yourself
 
 **Usage:** `<user>`
 
@@ -3507,7 +3451,7 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## image
+## randomimage
 
 **Category:** util
 
@@ -3763,22 +3707,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## spotify
-
-**Category:** util
-
-**Description:** Shows status of users
-
-**Usage:** `N/A`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## suggest
 
 **Category:** util
@@ -3807,7 +3735,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `language`, `sentence`
+**Required Arguments:** `language`, `text`
 
 [Back to top](#ghostybot-command-list)
 
