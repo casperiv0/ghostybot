@@ -136,7 +136,8 @@ export default class MessageEvent extends Event {
 
       if (!prefix) return; // prefix didn't match
       if (!prefixReg.test(message.content) || message.author.bot || userId === bot.user.id) return;
-      const [cmd, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
+      const [arg, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
+      const cmd = arg.toLowerCase();
 
       if (blacklistedUsers) {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === userId);
