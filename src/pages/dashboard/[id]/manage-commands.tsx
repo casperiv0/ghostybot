@@ -43,7 +43,8 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth }: Props) => {
   );
 
   useEffect(() => {
-    setMessage(`${router.query?.message}`);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
 
   function handleSearch(value: string) {

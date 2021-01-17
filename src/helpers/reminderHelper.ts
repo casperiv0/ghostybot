@@ -24,10 +24,7 @@ export default class ReminderHelper extends Helper {
 
             const { channel_id, msg, time } = reminder;
             const usr = bot.users.cache.get(user.user_id) || (await bot.users.fetch(user.user_id));
-
             const channel = guild.channels.cache.get(channel_id);
-
-            console.log(user.reminder.reminders.length - 1);
 
             if (!channel) {
               bot.utils.updateUserById(user.user_id, user.guild_id, {

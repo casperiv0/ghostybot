@@ -1,7 +1,7 @@
-# GhostyBotDEV Command list
+# GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBotDEV has a total of 168 commands.
+GhostyBot has a total of 207 commands.
 
 Click any of the command names for more information
 
@@ -10,8 +10,77 @@ Click any of the command names for more information
 
 ### Category: admin
 
-**Total commands: 0**
+**Total commands: 35**
 
+[addcmd:](#addcmd) add guild custom commands
+
+[addrole:](#addrole) Add a role to a user
+
+[addroleall:](#addroleall) Add a role to all user of the current server
+
+[announce:](#announce) Announce something in a channel
+
+[ban:](#ban) ban
+
+[blacklistedwords:](#blacklistedwords) Add/remove blacklisted words
+
+[createrole:](#createrole) This command creates a role with the name of what you say
+
+[ctopic:](#ctopic) Update the channel topic
+
+[deafen:](#deafen) Deafen a user
+
+[delcmd:](#delcmd) Delete the custom commannd
+
+[delete:](#delete) Delete message, up to 100
+
+[ignoredchannels:](#ignoredchannels) Add/remove ignored channels
+
+[kick:](#kick) Kick a user
+
+[lockchannel:](#lockchannel) Lock A channel
+
+[mute:](#mute) Mute a user
+
+[nuke:](#nuke) Nuke the current channel, delete all messages of the channel
+
+[removerole:](#removerole) Remove a role from a user
+
+[removeroleall:](#removeroleall) remove a role from all users of the current server
+
+[removeuserwarns:](#removeuserwarns) Remove all warns from a user
+
+[say:](#say) Let the bot say something
+
+[set:](#set) N/A
+
+[stealemoji:](#stealemoji) Steal an emoji from a different server
+
+[sticky:](#sticky) Sticky a message to the bottom of the screen
+
+[tempmute:](#tempmute) Temporary mute someone
+
+[unban:](#unban) unban a user by their id
+
+[undeafen:](#undeafen) Undeafen a user from voice channel
+
+[unlockchannel:](#unlockchannel) Unlock A channel
+
+[unmute:](#unmute) Unmute a user
+
+[unset:](#unset) N/A
+
+[unsticky:](#unsticky) Sticky a message to the bottom of the screen
+
+[voicekick:](#voicekick) voicekick or disconnect a user from a voice channel
+
+[voicemute:](#voicemute) voicemute a user
+
+[voiceunmute:](#voiceunmute) unmute a user from voice channel
+
+[warn:](#warn) Warns a user
+
+[warnings:](#warnings) Returns how many warnings a user has
 
   ##
 ### Category: animal
@@ -320,7 +389,7 @@ Click any of the command names for more information
 
 [help:](#help) Shows all commands Or shows more info about a command
 
-[image:](#image) Search any image you want from google
+[randomimage:](#randomimage) Search any image you want from google
 
 [imdb:](#imdb) Get the information about series and movie
 
@@ -369,8 +438,15 @@ Click any of the command names for more information
   ##
 ### Category: exempt
 
-**Total commands: 0**
+**Total commands: 4**
 
+[config:](#config) Returns the config
+
+[disable:](#disable) Disables a command
+
+[enable:](#enable) Enables a command
+
+[prefix:](#prefix) Set a prefix for your server
 
   ##
 ### Category: botowner
@@ -429,6 +505,630 @@ Click any of the command names for more information
 
 ## Detailed command list
   
+## addcmd
+
+**Category:** admin
+
+**Description:** add guild custom commands
+
+**Usage:** `<cmd_name> <cmd_response>`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `command name`, `command response`
+
+[Back to top](#ghostybot-command-list)
+
+## addrole
+
+**Category:** admin
+
+**Description:** Add a role to a user
+
+**Usage:** `<member> <role>`
+
+**Member Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `member`, `role`
+
+[Back to top](#ghostybot-command-list)
+
+## addroleall
+
+**Category:** admin
+
+**Description:** Add a role to all user of the current server
+
+**Usage:** `<role>`
+
+**Member Permissions:** MANAGE_ROLES, ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `role`
+
+[Back to top](#ghostybot-command-list)
+
+## announce
+
+**Category:** admin
+
+**Description:** Announce something in a channel
+
+**Usage:** `[channel] <text>`
+
+**Member Permissions:** MANAGE_MESSAGES
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ban
+
+**Category:** admin
+
+**Description:** ban
+
+**Usage:** `<user>`
+
+**Member Permissions:** BAN_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## blacklistedwords
+
+**Category:** admin
+
+**Description:** Add/remove blacklisted words
+
+**Usage:** `<option> [word]`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `option`
+
+[Back to top](#ghostybot-command-list)
+
+## config
+
+**Category:** exempt
+
+**Description:** Returns the config
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## createrole
+
+**Category:** admin
+
+**Description:** This command creates a role with the name of what you say
+
+**Usage:** `<role_name>`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `role name`
+
+[Back to top](#ghostybot-command-list)
+
+## ctopic
+
+**Category:** admin
+
+**Description:** Update the channel topic
+
+**Usage:** `<channel> <topic>`
+
+**Member Permissions:** MANAGE_CHANNELS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## deafen
+
+**Category:** admin
+
+**Description:** Deafen a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** DEAFEN_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
+
+**Required Arguments:** `member`, `reason`
+
+[Back to top](#ghostybot-command-list)
+
+## delcmd
+
+**Category:** admin
+
+**Description:** Delete the custom commannd
+
+**Usage:** `<cmd_name>`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `command name`
+
+[Back to top](#ghostybot-command-list)
+
+## delete
+
+**Category:** admin
+
+**Description:** Delete message, up to 100
+
+**Usage:** `<1-100>`
+
+**Member Permissions:** MANAGE_MESSAGES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
+
+**Required Arguments:** `amount`
+
+[Back to top](#ghostybot-command-list)
+
+## disable
+
+**Category:** exempt
+
+**Description:** Disables a command
+
+**Usage:** `N/A`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `command name | category name`
+
+[Back to top](#ghostybot-command-list)
+
+## enable
+
+**Category:** exempt
+
+**Description:** Enables a command
+
+**Usage:** `N/A`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `command name | category name`
+
+[Back to top](#ghostybot-command-list)
+
+## ignoredchannels
+
+**Category:** admin
+
+**Description:** Add/remove ignored channels
+
+**Usage:** `<option> <channel>`
+
+**Member Permissions:** ADMINISTRATOR
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## kick
+
+**Category:** admin
+
+**Description:** Kick a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** KICK_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, KICK_MEMBERS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## lockchannel
+
+**Category:** admin
+
+**Description:** Lock A channel
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_CHANNELS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** `reason`
+
+[Back to top](#ghostybot-command-list)
+
+## mute
+
+**Category:** admin
+
+**Description:** Mute a user
+
+**Usage:** `<@user>`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## nuke
+
+**Category:** admin
+
+**Description:** Nuke the current channel, delete all messages of the channel
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_CHANNELS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## prefix
+
+**Category:** exempt
+
+**Description:** Set a prefix for your server
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## removerole
+
+**Category:** admin
+
+**Description:** Remove a role from a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `member`, `role`
+
+[Back to top](#ghostybot-command-list)
+
+## removeroleall
+
+**Category:** admin
+
+**Description:** remove a role from all users of the current server
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `role`
+
+[Back to top](#ghostybot-command-list)
+
+## removeuserwarns
+
+**Category:** admin
+
+**Description:** Remove all warns from a user
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `member`
+
+[Back to top](#ghostybot-command-list)
+
+## say
+
+**Category:** admin
+
+**Description:** Let the bot say something
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_MESSAGES
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text | type(embed)`
+
+[Back to top](#ghostybot-command-list)
+
+## set
+
+**Category:** admin
+
+**Description:** N/A
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## stealemoji
+
+**Category:** admin
+
+**Description:** Steal an emoji from a different server
+
+**Usage:** `<emoji> [custom name]`
+
+**Member Permissions:** MANAGE_EMOJIS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
+
+**Required Arguments:** `emoji`
+
+[Back to top](#ghostybot-command-list)
+
+## sticky
+
+**Category:** admin
+
+**Description:** Sticky a message to the bottom of the screen
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_MESSAGES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
+
+**Required Arguments:** `message`
+
+[Back to top](#ghostybot-command-list)
+
+## tempmute
+
+**Category:** admin
+
+**Description:** Temporary mute someone
+
+**Usage:** `<user> <time> <reason>`
+
+**Member Permissions:** MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
+
+**Required Arguments:** `user`, `time`, `reason`
+
+[Back to top](#ghostybot-command-list)
+
+## unban
+
+**Category:** admin
+
+**Description:** unban a user by their id
+
+**Usage:** `N/A`
+
+**Member Permissions:** BAN_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
+
+**Required Arguments:** `member_id`
+
+[Back to top](#ghostybot-command-list)
+
+## undeafen
+
+**Category:** admin
+
+**Description:** Undeafen a user from voice channel
+
+**Usage:** `N/A`
+
+**Member Permissions:** DEAFEN_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## unlockchannel
+
+**Category:** admin
+
+**Description:** Unlock A channel
+
+**Usage:** `<channel mention | current channel>`
+
+**Member Permissions:** MANAGE_CHANNELS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## unmute
+
+**Category:** admin
+
+**Description:** Unmute a user
+
+**Usage:** `<@user>`
+
+**Member Permissions:** MANAGE_ROLES, MANAGE_CHANNELS
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## unset
+
+**Category:** admin
+
+**Description:** N/A
+
+**Usage:** `N/A`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## unsticky
+
+**Category:** admin
+
+**Description:** Sticky a message to the bottom of the screen
+
+**Usage:** `N/A`
+
+**Member Permissions:** MANAGE_MESSAGES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES, ADMINISTRATOR
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## voicekick
+
+**Category:** admin
+
+**Description:** voicekick or disconnect a user from a voice channel
+
+**Usage:** `<user>`
+
+**Member Permissions:** MOVE_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, MOVE_MEMBERS
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## voicemute
+
+**Category:** admin
+
+**Description:** voicemute a user
+
+**Usage:** `<user>`
+
+**Member Permissions:** MUTE_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## voiceunmute
+
+**Category:** admin
+
+**Description:** unmute a user from voice channel
+
+**Usage:** `<user>`
+
+**Member Permissions:** MUTE_MEMBERS
+
+**Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## warn
+
+**Category:** admin
+
+**Description:** Warns a user
+
+**Usage:** `<user>`
+
+**Member Permissions:** MANAGE_GUILD
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
+## warnings
+
+**Category:** admin
+
+**Description:** Returns how many warnings a user has
+
+**Usage:** `<user>`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `user`
+
+[Back to top](#ghostybot-command-list)
+
 ## alpaca
 
 **Category:** animal
@@ -2751,7 +3451,7 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## image
+## randomimage
 
 **Category:** util
 

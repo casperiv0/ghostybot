@@ -17,6 +17,7 @@ import config from "../../config.json";
 class Bot extends Client {
   commands: Collection<string, Command>;
   aliases: Collection<string, string>;
+  cooldowns: Collection<string, Collection<string, number>>;
   logger: typeof Logger;
   utils: Util;
   config: typeof config;
@@ -36,6 +37,7 @@ class Bot extends Client {
 
     this.commands = new Collection();
     this.aliases = new Collection();
+    this.cooldowns = new Collection();
     this.logger = Logger;
     this.utils = new Util(this);
     this.config = config;

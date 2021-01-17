@@ -8,14 +8,17 @@ import {
   Webhook,
   Util as DiscordUtil,
   Role,
+  Snowflake,
+  PermissionObject,
 } from "discord.js";
 import moment from "moment";
 import jwt from "jsonwebtoken";
 import Bot from "../structures/Bot";
-import User, { IUser, UserData } from "../models/User.model";
+import UserModel, { IUser, UserData } from "../models/User.model";
+import WarningModal, { IWarning } from "../models/Warning.model";
 import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
-import UserModel from "../models/User.model";
 import ApiRequest from "../interfaces/ApiRequest";
+import StickyModel, { Sticky } from "../models/Sticky.model";
 
 export interface ErrorLog {
   name?: string;
@@ -33,7 +36,7 @@ export default class Util {
 
   async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
     try {
-      let user: IUser | undefined = await User.findOne({ user_id: userId, guild_id: guildId });
+      let user: IUser | undefined = await UserModel.findOne({ user_id: userId, guild_id: guildId });
 
       if (!user) {
         user = await this.addUser(userId, guildId);
@@ -45,13 +48,35 @@ export default class Util {
     }
   }
 
+  async getUserWarnings(userId: string, guildId: string | undefined): Promise<IWarning[]> {
+    return WarningModal.find({ user_id: userId, guild_id: guildId });
+  }
+
+  async addWarning(userId: string, guildId: string | undefined, reason: string) {
+    try {
+      const warning = new WarningModal({ guild_id: guildId, user_id: userId, reason });
+
+      await warning.save();
+    } catch (e) {
+      this.bot.logger.error("ADD_WARNING", e?.stack || e);
+    }
+  }
+
+  async removeUserWarnings(userId: string, guildId: string | undefined) {
+    try {
+      await WarningModal.deleteMany({ user_id: userId, guild_id: guildId });
+    } catch (e) {
+      this.bot.logger.error("REMOVE_USER_WARNINGS", e?.stack || e);
+    }
+  }
+
   async addUser(
     userId: string,
     guildId: string | undefined,
     data?: Partial<UserData>
   ): Promise<IUser | undefined> {
     try {
-      const user: IUser = new User({ user_id: userId, guild_id: guildId, ...data });
+      const user: IUser = new UserModel({ user_id: userId, guild_id: guildId, ...data });
 
       await user.save();
 
@@ -74,7 +99,7 @@ export default class Util {
         return;
       }
 
-      await User.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
+      await UserModel.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
     } catch (e) {
       console.error(e);
     }
@@ -288,6 +313,57 @@ export default class Util {
       date: (m as any).tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
       tz: tz,
     };
+  }
+
+  async updateMuteChannelPerms(
+    guild: Guild,
+    memberId: Snowflake,
+    perms: Partial<PermissionObject>
+  ) {
+    guild.channels.cache.forEach((channel) => {
+      channel.updateOverwrite(memberId, perms).catch((e) => {
+        this.bot.logger.error("mute_user", e);
+      });
+    });
+  }
+
+  async addSticky(messageId: string, channelId: string, message: string) {
+    try {
+      const sticky = new StickyModel({
+        message_id: messageId,
+        message,
+        channel_id: channelId,
+      });
+
+      await sticky.save();
+    } catch (e) {
+      this.bot.logger.error("add_sticky", e?.stack || e);
+    }
+  }
+
+  async getSticky(channelId: string): Promise<Sticky | undefined> {
+    try {
+      const sticky = await StickyModel.findOne({ channel_id: channelId });
+
+      return sticky;
+    } catch (e) {
+      this.bot.logger.error("get_sticky", e?.stack || e);
+    }
+  }
+
+  async removeSticky(channelId: string) {
+    try {
+      await StickyModel.findOneAndDelete({ channel_id: channelId });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  errorEmbed(permissions: string[], message: Message) {
+    return this.baseEmbed(message)
+      .setTitle("Woah!")
+      .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
+      .setColor("ORANGE");
   }
 
   async handleApiRequest(

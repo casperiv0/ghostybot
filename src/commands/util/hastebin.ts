@@ -3,7 +3,7 @@ import hastebin from "hastebin-gen";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class RemindersCommand extends Command {
+export default class HastebinCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "hastebin",

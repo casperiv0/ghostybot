@@ -68,7 +68,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       return res.json({
         guild: { ...guild, ...(g as any)._doc },
-        botCommands: req.bot.commands,
+        botCommands: req.bot.commands.map((cmd) => cmd.name),
         status: "success",
       });
     }

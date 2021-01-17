@@ -471,6 +471,8 @@ export default {
     DRAW: "Its a draw",
   },
   ADMIN: {
+    SET_CMD:
+      "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}. Thank you for your understanding",
     ADD_CMD_ALREADY_EXISTS: "This command name is already added in guild custom commands.",
     ADD_CMD_USED_BY_BOT: "This command name is already in use by the bot",
     ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",
@@ -621,7 +623,7 @@ export default {
       "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
-    ADD_TO_IGNORE: "Successfully added {item} to ignored channels"
+    ADD_TO_IGNORE: "Successfully added {item} to ignored channels",
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",

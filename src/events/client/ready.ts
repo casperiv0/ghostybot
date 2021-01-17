@@ -2,6 +2,7 @@ import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
 import BotModel from "../../models/Bot.model";
 import HelperHandler from "../../modules/HelperHandler";
+import FeatureHandler from "../../modules/FeatureHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
@@ -20,6 +21,7 @@ export default class ReadyEvent extends Event {
     ];
 
     new HelperHandler(bot).loadHelpers();
+    new FeatureHandler(bot).loadFeatures();
 
     if (bot.config.dev === true) {
       import("../../scripts/generateCommandList").then((v) => v.default(bot));

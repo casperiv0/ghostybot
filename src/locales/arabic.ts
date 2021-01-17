@@ -471,6 +471,7 @@ export default {
     DRAW: "Its a draw",
   },
   ADMIN: {
+    SET_CMD: "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
     ADD_CMD_ALREADY_EXISTS: "This command name is already added in guild custom commands.",
     ADD_CMD_USED_BY_BOT: "This command name is already in use by the bot",
     ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",

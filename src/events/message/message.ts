@@ -1,297 +1,20 @@
-import { Message } from "discord.js";
+import { Message, TextChannel } from "discord.js";
+import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
 import Bot from "../../structures/Bot";
 import Event from "../../structures/Event";
-
-// const {
-//   getGuildById,
-//   getSticky,
-//   getUserById,
-//   updateUserById,
-//   errorEmbed,
-//   calculateUserXp,
-//   sendErrorLog,
-// } = require("../../utils/functions");
-// const queue = new Map();
-// const { owners, dashboard } = require("../../../config.json");
-// const BaseEmbed = require("../../modules/BaseEmbed");
-// const Blacklist = require("../../models/Blacklisted.model");
-// const UserModel = require("../../models/User.model");
-// const BotModel = require("../../models/Bot.model");
-
-// module.exports = {
-//   name: "message",
-//   /**
-//    *
-//    * @param {import("discord.js").Client} bot
-//    * @param {import("discord.js").Message} message
-//    */
-//   async execute(bot, message) {
-//     if (message.channel.type === "dm") return;
-//     if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
-//     if (!message.guild.available) return;
-
-//     const guildId = message.guild?.id;
-//     const userId = message.author.id;
-//     const cooldowns = bot.cooldowns;
-//     const guild = await getGuildById(guildId);
-//     const blacklistedWords = guild?.blacklistedwords;
-//     const blacklistedUsers = await Blacklist.find();
-//     const mentions = message.mentions.members;
-//     const disabledCommands = guild?.disabled_commands;
-//     const disabledCategories = guild?.disabled_categories;
-
-//     const ignoredChannels = guild?.ignored_channels;
-//     if (ignoredChannels?.includes(message.channel.id)) return;
-
-//     const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-//     const serverPrefix = guild.prefix;
-//     const prefix = new RegExp(`^(<@!?${bot.user.id}>|${escapeRegex(serverPrefix)})\\s*`);
-
-//     // Check if sticky
-//     const sticky = await getSticky(message.channel.id);
-//     const isSticky = message.channel.id === sticky?.channel_id;
-
-//     if (isSticky) {
-//       if (message.author.bot || message.content === sticky.message) return;
-
-//       const fMessage = message.channel.messages.cache.get(sticky.message_id);
-//       if (fMessage) {
-//         fMessage.delete();
-//       }
-
-//       const stickyMessage = await message.channel.send(sticky?.message);
-//       sticky.message_id = stickyMessage.id;
-//       await sticky.save();
-//     }
-
-//     // xp - levels
-//     if (!message.author.bot) {
-//       const { user } = await getUserById(userId, guildId);
-//       const xp = Math.ceil(Math.random() * (5 * 10));
-//       const level = calculateUserXp(user.xp);
-//       const newLevel = calculateUserXp(user.xp + xp);
-
-//       if (newLevel > level) {
-//         if (guild.level_data.enabled === true) {
-//           const embed = bot.utils.baseEmbed(message)
-//             .setTitle("Level up!")
-//             .addField("New level", newLevel)
-//             .addField("Total xp", user.xp + xp);
-
-//           const msg = await message.channel.send(embed);
-//           const MSG_TIMEOUT_10_SECS = 10000;
-
-//           setTimeout(() => {
-//             msg?.delete();
-//           }, MSG_TIMEOUT_10_SECS);
-//         }
-//       }
-
-//       await updateUserById(userId, guildId, { xp: user.xp + xp });
-//     }
-
-//     // check if message has a badword in it
-//     if (!message.content.includes(`${guild.prefix}blacklistedwords`) && !message.author.bot) {
-//       blacklistedWords !== null &&
-//         blacklistedWords.forEach((word) => {
-//           if (message.content.toLowerCase().includes(word.toLowerCase())) {
-//             message.delete();
-//             return message
-//               .reply("You used a bad word the admin has set, therefore your message was deleted!")
-//               .then((msg) => {
-//                 setTimeout(() => {
-//                   msg.delete();
-//                 }, 5000);
-//               });
-//           }
-//         });
-//     }
-
-//     if (mentions && !prefix.test(message.content)) {
-//       mentions.forEach(async (member) => {
-//         const { user } = await getUserById(member.user.id, guildId);
-
-//         if (user.afk.is_afk === true) {
-//           const embed = bot.utils.baseEmbed(message)
-//             .setTitle("AFK!")
-//             .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user.afk.reason}`);
-//           message.channel.send(embed);
-//         }
-//       });
-//     }
-
-//     // remove AFK from user if they send a message
-//     const user = await UserModel.findOne({ user_id: userId, guild_id: guildId });
-//     if (
-//       !message.author.bot &&
-//       user &&
-//       user?.afk.is_afk === true &&
-//       !message.content.includes(`${guild.prefix}afk`)
-//     ) {
-//       await updateUserById(userId, guildId, {
-//         afk: {
-//           is_afk: false,
-//           reason: null,
-//         },
-//       });
-
-//       const msg = await message.channel.send(
-//         bot.utils.baseEmbed(message).setDescription(`**${message.author.tag}** is not afk anymore`)
-//       );
-
-//       setTimeout(() => {
-//         msg.delete();
-//       }, 5000);
-//     }
-
-//     // Commands
-//     if (!prefix.test(message.content) || message.author.bot || userId === bot.user.id) return;
-
-//     const [, matchedPrefix] = message.content.match(prefix);
-//     const args = message.content.slice(matchedPrefix.length).trim().split(/ +/g);
-//     const command = args.shift().toLowerCase();
-//     const customCmds = guild?.custom_commands;
-
-//     if (message.mentions.has(bot.user.id) && !command) {
-//       const embed = bot.utils.baseEmbed(message)
-//         .setTitle("Quick Info")
-//         .addField("Prefix", serverPrefix)
-//         .addField("Support", "https://discord.gg/XxHrtkA")
-//         .addField("Vote on top.gg", "https://top.gg/bot/632843197600759809")
-//         .addField("Dashboard", dashboard.dashboardUrl);
-
-//       message.channel.send(embed);
-//     }
-
-//     if (blacklistedUsers) {
-//       const isBlacklisted = blacklistedUsers.find((u) => u.user_id === message.author.id);
-
-//       if (isBlacklisted) {
-//         return message.reply("You've been blacklisted from using this bot.");
-//       }
-//     }
-
-//     if (customCmds) {
-//       if (guild?.auto_delete_cmd === true) {
-//         message.delete();
-//       }
-
-//       const customCmd = customCmds.find((x) => x.name === command);
-//       if (customCmd) message.channel.send(customCmd.response);
-//     }
-
-//     // music queue
-//     const serverQueue = queue.get(message.guild?.id);
-
-//     try {
-//       const cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command));
-
-//       if (bot.commands.has(cmd?.name)) {
-//         const _bot =
-//           (await BotModel.findOne({ bot_id: bot.user.id })) ||
-//           (await BotModel.create({ bot_id: bot.user.id }));
-
-//         _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
-//         _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
-
-//         _bot.save();
-//         const now = Date.now();
-//         const timestamps = cooldowns.get(cmd.name);
-//         const cooldownAmount = cmd.cooldown * 1000;
-
-//         if (disabledCategories !== null && disabledCategories.length > 0) {
-//           if (disabledCategories?.includes(cmd.category)) {
-//             return message.channel.send(
-//               `That command is disabled because this guild disabled the ${cmd.category} category`
-//             );
-//           }
-//         }
-
-//         if (disabledCommands !== null && disabledCommands.length > 0) {
-//           if (disabledCommands?.includes(cmd.name)) {
-//             return message.channel.send("That command was disabled for this guild");
-//           }
-//         }
-
-//
-
-//         // botPermissions
-//         if (cmd.botPermissions) {
-//           const neededPermissions = [];
-//           cmd.botPermissions.forEach((perm) => {
-//             if (!message.channel.permissionsFor(message.guild.me).has(perm)) {
-//               neededPermissions.push(perm);
-//             }
-//           });
-
-//           if (neededPermissions[0]) {
-//             return message.channel.send(errorEmbed(neededPermissions, message));
-//           }
-//         }
-
-//         // memberPermissions
-//         if (cmd.memberPermissions) {
-//           const neededPermissions = [];
-//           cmd.memberPermissions.forEach((perm) => {
-//             if (!message.channel.permissionsFor(message.member).has(perm)) {
-//               neededPermissions.push(perm);
-//             }
-//           });
-
-//           if (neededPermissions.length > 0) {
-//             return message.channel.send(
-//               `You need: ${neededPermissions
-//                 .map((p) => `\`${p.toUpperCase()}\``)
-//                 .join(", ")} permissions`
-//             );
-//           }
-//         }
-
-//
-
-//         if (timestamps.has(userId)) {
-//           const expTime = timestamps.get(userId) + cooldownAmount;
-
-//           if (now < expTime) {
-//             const timeleft = (expTime - now) / 1000;
-//             return message.reply(
-//               `Please wait **${timeleft.toFixed(1)}** more seconds before using the **${
-//                 cmd.name
-//               }** command`
-//             );
-//           }
-//         }
-
-//         timestamps.set(userId, now);
-//         setTimeout(() => timestamps.delete(userId), cooldownAmount);
-
-//         if (guild?.auto_delete_cmd === true) {
-//           message.delete();
-//         }
-
-//         cmd.execute(bot, message, args, serverQueue, queue);
-//       } else {
-//         return;
-//       }
-//     } catch (e) {
-//       sendErrorLog(bot, e, "error", message.content);
-//       const embed = bot.utils.baseEmbed(message).setTitle("Woah! Something went wrong").setDescription(e);
-
-//       message.channel.send(embed);
-//     }
-//   },
-// };
 
 export default class MessageEvent extends Event {
   async execute(bot: Bot, message: Message) {
     if (!message?.guild?.available || !message.guild) return;
     if (message.channel.type === "dm") return;
     if (!bot.user) return;
+    if (!message.guild?.me) return;
 
     const guildId = message?.guild?.id;
     const userId = message?.author?.id;
     const guild = await bot.utils.getGuildById(guildId);
     const mentions = message.mentions.members;
+    const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
 
     const escapeRegex = (str?: string) => str?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const prefixReg = new RegExp(`^(<@!?${bot?.user?.id}>|${escapeRegex(guild?.prefix)})\\s*`);
@@ -299,6 +22,40 @@ export default class MessageEvent extends Event {
     const prefixArr = message.content.match(prefixReg);
     const prefix = prefixArr?.[0];
     if (!prefix) return; // prefix didn't match
+
+    // sticky
+    const sticky = await bot.utils.getSticky(message.channel.id);
+    const isSticky = message.channel.id === sticky?.channel_id;
+
+    if (isSticky) {
+      if (!sticky) return;
+      if (message.author.bot || message.content === sticky?.message) return;
+
+      const msg = message.channel.messages.cache.get(sticky?.message_id);
+      if (msg) {
+        msg?.delete();
+      }
+
+      const stickyMessage = await message.channel.send(sticky?.message);
+      sticky.message_id = stickyMessage.id;
+      await sticky?.save();
+    }
+
+    // check if mention user is afk
+    if (mentions && mentions?.size > 0 && !prefixReg.test(message.content)) {
+      mentions.forEach(async (member) => {
+        const user = await bot.utils.getUserById(member.user.id, guildId);
+
+        if (user?.afk?.is_afk) {
+          message.channel.send(
+            bot.utils
+              .baseEmbed(message)
+              .setTitle("AFK!")
+              .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user?.afk?.reason}`)
+          );
+        }
+      });
+    }
 
     // LEVEL
     if (!message.author.bot) {
@@ -329,7 +86,16 @@ export default class MessageEvent extends Event {
       await bot.utils.updateUserById(userId, guildId, { xp: user.xp + xp });
     }
 
+    if (!prefixReg.test(message.content) || message.author.bot || userId === bot.user.id) return;
     const [cmd, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
+
+    if (blacklistedUsers) {
+      const isBlacklisted = blacklistedUsers.find((u) => u.user_id === userId);
+
+      if (isBlacklisted) {
+        return message.reply("You've been blacklisted from using this bot.");
+      }
+    }
 
     // Bot mention
     if (mentions?.has(bot.user.id) && !cmd) {
@@ -345,11 +111,56 @@ export default class MessageEvent extends Event {
 
     try {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
-
       if (!command) return;
+
+      const timestamps = bot.cooldowns.get(command.name);
+      const now = Date.now();
+      const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
+
+      if (guild?.disabled_categories?.includes(command.options.category)) {
+        return message.channel.send(
+          `That command is disabled because this guild disabled the ${command.options.category} category`
+        );
+      }
+
+      if (guild?.disabled_commands?.includes(command.name)) {
+        return message.channel.send("That command was disabled for this guild");
+      }
 
       if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
         return message.reply("This command can only be used by the owners!");
+      }
+
+      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
+        return message.channel.send("This channel is not a NSFW channel!");
+      }
+
+      if (command.options.memberPermissions) {
+        const neededPerms: string[] = [];
+        command.options.memberPermissions.forEach((perm) => {
+          if (!(message.channel as TextChannel).permissionsFor(message.member!)?.has(perm)) {
+            neededPerms.push(perm);
+          }
+        });
+
+        if (neededPerms.length > 0) {
+          return message.channel.send(
+            `You need: ${neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")} permissions`
+          );
+        }
+      }
+
+      if (command.options.botPermissions) {
+        const neededPerms: string[] = [];
+        command.options.botPermissions.forEach((perm) => {
+          if (!(message.channel as TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
+            neededPerms.push(perm);
+          }
+        });
+
+        if (neededPerms.length > 0) {
+          return message.channel.send(bot.utils.errorEmbed(neededPerms, message));
+        }
       }
 
       if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
@@ -368,12 +179,28 @@ export default class MessageEvent extends Event {
         return message.channel.send(embed);
       }
 
-      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
-        return message.channel.send("This channel is not a NSFW channel!");
+      if (timestamps?.has(userId)) {
+        const userTime = timestamps.get(userId);
+        const expireTime = userTime! + cooldown;
+
+        if (now < expireTime) {
+          const timeLeft = (expireTime - now) / 1000;
+
+          return message.reply(
+            `Please wait **${timeLeft.toFixed(1)}** more seconds before using the **${
+              command.name
+            }** command`
+          );
+        }
       }
+
+      timestamps?.set(userId, now);
+      setTimeout(() => timestamps?.delete(userId), cooldown);
 
       command.execute(bot, message, args);
     } catch (e) {
+      console.log(e);
+
       bot.utils.sendErrorLog(e, "error");
       return message.channel.send("An unexpected error occurred");
     }

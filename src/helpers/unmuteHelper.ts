@@ -10,14 +10,6 @@ export default class ReminderHelper extends Helper {
   async execute(bot: Bot) {
     const TEN_SECOND_INTERVAL = 10000;
 
-    const {
-      updateUserById,
-      getGuildById,
-      baseEmbed,
-      getWebhook,
-      findOrCreateMutedRole,
-    } = bot.utils;
-
     setInterval(async () => {
       const mutes = await UserModel.find({ "mute.muted": true });
       if (!mutes) return;
@@ -34,7 +26,7 @@ export default class ReminderHelper extends Helper {
             guild.members.cache.get(user.user_id) || (await guild.members.fetch(user.user_id));
 
           if (!member) {
-            await updateUserById(user.user_id, user.guild_id, {
+            await bot.utils.updateUserById(user.user_id, user.guild_id, {
               mute: {
                 muted: false,
                 ends_at: 0,
@@ -45,18 +37,19 @@ export default class ReminderHelper extends Helper {
           } else {
             const guildUser = member.user || (await bot.users.fetch(user.user_id));
             if (!user) return;
-            const dbGuild = await getGuildById(guild.id);
+            const dbGuild = await bot.utils.getGuildById(guild.id);
             const muted_role =
               !dbGuild?.muted_role_id || dbGuild?.muted_role_id === "Disabled"
                 ? guild.roles.cache.find((r) => r.name === "muted")
                 : guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
-                  (await findOrCreateMutedRole(guild));
+                  (await bot.utils.findOrCreateMutedRole(guild));
 
             guild.channels.cache.forEach((channel) => {
               channel.permissionOverwrites.get(user.user_id)?.delete();
             });
 
-            const embed = baseEmbed({ author: guildUser })
+            const embed = bot.utils
+              .baseEmbed({ author: guildUser })
               .setAuthor(guildUser.tag, guildUser.displayAvatarURL({ dynamic: true }))
               .setTitle("Unmute")
               .setDescription(
@@ -64,7 +57,7 @@ export default class ReminderHelper extends Helper {
               )
               .addField("Mute lasted", user.mute.time);
 
-            updateUserById(user.user_id, user.guild_id, {
+            bot.utils.updateUserById(user.user_id, user.guild_id, {
               mute: {
                 muted: false,
                 ends_at: 0,
@@ -77,7 +70,7 @@ export default class ReminderHelper extends Helper {
             if (!muted_role) return;
             member.roles.remove(muted_role);
 
-            const webhook = await getWebhook(guild);
+            const webhook = await bot.utils.getWebhook(guild);
             if (!webhook) return;
             webhook.send(embed);
           }

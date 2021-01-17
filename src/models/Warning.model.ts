@@ -1,6 +1,13 @@
 import { model, Schema, models, Document } from "mongoose";
 
-interface IWarning extends Document {
+export interface IWarning extends Document {
+  user_id: string;
+  guild_id: string;
+  reason: string | null;
+  date: number;
+}
+
+export interface UserWarnings {
   user_id: string;
   guild_id: string;
   reason: string | null;

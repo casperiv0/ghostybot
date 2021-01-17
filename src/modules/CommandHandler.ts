@@ -1,4 +1,5 @@
 import glob from "glob";
+import { Collection } from "discord.js";
 import { parse } from "path";
 import Bot from "../structures/Bot";
 import Command from "../structures/Command";
@@ -30,6 +31,10 @@ export default class CommandHandler {
       command.options.aliases?.forEach((alias) => {
         this.bot.aliases.set(alias, command.name);
       });
+
+      if (!this.bot.cooldowns.has(command.name)) {
+        this.bot.cooldowns.set(command.name, new Collection());
+      }
 
       if (this.bot.config.debug) {
         this.bot.logger.log("COMMAND", `Loaded ${command.name}`);

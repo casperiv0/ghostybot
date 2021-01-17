@@ -50,19 +50,6 @@ const userSchema = new Schema({
   },
 });
 
-export interface UserUpdateData {
-  inventory?: string[];
-  money?: number;
-  bank?: number;
-  daily?: number;
-  weekly?: number;
-  work?: number;
-  xp?: number;
-  afk?: AfkObj;
-  mute?: Mute;
-  reminder?: Reminders;
-}
-
 export interface UserData {
   _id: ObjectId;
   user_id: string;

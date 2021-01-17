@@ -1,6 +1,6 @@
 import { model, Schema, models, Document } from "mongoose";
 
-interface Sticky extends Document {
+export interface Sticky extends Document {
   channel_id: string;
   message_id: string;
   message: string;

@@ -7,8 +7,8 @@ import Bot from "../../structures/Bot";
 export default class ImageCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      name: "image",
-      aliases: ["randomimage", "imagesearch"],
+      name: "randomimage",
+      aliases: ["imagesearch"],
       description: "Search any image you want from google",
       category: "util",
       requiredArgs: ["text"],
