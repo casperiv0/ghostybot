@@ -13,6 +13,6 @@ export default class AlpacaCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    randomGen.alpaca(message, "embed");
+    randomGen.alpaca(message, "message");
   }
 }

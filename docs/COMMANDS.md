@@ -1761,7 +1761,7 @@ Click any of the command names for more information
 
 **Usage:** `<option | no-args>`
 
-**Member Permissions:** MANAGE_GUILD
+**Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
 
