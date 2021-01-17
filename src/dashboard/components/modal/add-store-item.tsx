@@ -48,7 +48,9 @@ const AddStoreItem: FC<Props> = ({ guild }: Props) => {
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Enter Name</label>
+          <label className="form-label" htmlFor="name">
+            Enter Name
+          </label>
           <input
             id="name"
             value={name}
@@ -57,7 +59,9 @@ const AddStoreItem: FC<Props> = ({ guild }: Props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="price">Enter Price</label>
+          <label className="form-label" htmlFor="price">
+            Enter Price
+          </label>
           <input
             id="price"
             value={price}

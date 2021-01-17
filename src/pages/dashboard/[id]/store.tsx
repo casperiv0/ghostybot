@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Store: FC<Props> = ({ guild, isAuth }: Props) => {
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -28,7 +28,8 @@ const Store: FC<Props> = ({ guild, isAuth }: Props) => {
   }, [router, isAuth]);
 
   useEffect(() => {
-    setMessage(router.query?.message);
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
 
   async function deleteItem(name: string) {

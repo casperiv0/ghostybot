@@ -20,6 +20,6 @@
     "isolatedModules": true,
     "noUnusedLocals": true
   },
-  "exclude": ["node_modules", ".next"],
+  "exclude": ["node_modules", ".next", ".vscode", ".github"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
