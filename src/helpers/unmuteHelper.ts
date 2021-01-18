@@ -37,12 +37,7 @@ export default class ReminderHelper extends Helper {
           } else {
             const guildUser = member.user || (await bot.users.fetch(user.user_id));
             if (!user) return;
-            const dbGuild = await bot.utils.getGuildById(guild.id);
-            const muted_role =
-              !dbGuild?.muted_role_id || dbGuild?.muted_role_id === "Disabled"
-                ? guild.roles.cache.find((r) => r.name === "muted")
-                : guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
-                  (await bot.utils.findOrCreateMutedRole(guild));
+            const mutedRole = await bot.utils.findOrCreateMutedRole(guild);
 
             guild.channels.cache.forEach((channel) => {
               channel.permissionOverwrites.get(user.user_id)?.delete();
@@ -67,8 +62,8 @@ export default class ReminderHelper extends Helper {
             });
 
             if (!guild.me.hasPermission("MANAGE_ROLES")) return;
-            if (!muted_role) return;
-            member.roles.remove(muted_role);
+            if (!mutedRole) return;
+            member.roles.remove(mutedRole);
 
             const webhook = await bot.utils.getWebhook(guild);
             if (!webhook) return;

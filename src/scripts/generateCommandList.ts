@@ -79,7 +79,7 @@ function commandItem(command: Command) {
 [Back to top](#ghostybot-command-list)\n`;
 }
 
-function categoryItem(commands, categoryName: string) {
+function categoryItem(commands: Category[], categoryName: string) {
   return `
 ### Category: ${categoryName}
 
@@ -93,7 +93,7 @@ ${commands
   `;
 }
 
-function writeToFile(detailedCommandList, notDetailedCommandList, length: number) {
+function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
   const DEFAULT = `# ${dashboard.botName} Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).

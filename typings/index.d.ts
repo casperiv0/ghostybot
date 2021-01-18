@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* Definitions created by Dev-CasperTheGhost */
-declare module "discord-starboards";
 declare module "cowsay";
 declare module "easy-games-js";
 

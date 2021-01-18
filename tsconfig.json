@@ -18,8 +18,9 @@
     "allowJs": true,
     "noEmit": true,
     "isolatedModules": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "typeRoots": ["./node_modules/@types", "./typings"]
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["typings/next-env.d.ts", "typings/index.d.ts", "**/*.ts", "**/*.tsx"]
 }

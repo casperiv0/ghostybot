@@ -49,6 +49,7 @@ export default class ReminderHelper extends Helper {
               .setDescription(`Your timer of **${time}** has ended`)
               .addField("Reminder message", msg);
 
+            if (!channel.permissionsFor(guild.me!)?.has("SEND_MESSAGES")) return;
             (channel as TextChannel).send(`<@${user.user_id}>`, embed);
           });
       });

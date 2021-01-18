@@ -53,7 +53,9 @@ class Bot extends Client {
       leaveOnEnd: false,
       leaveOnStop: false,
     });
-    this.starboardsManager = new MongStarboardsManager(this);
+    this.starboardsManager = new MongStarboardsManager(this, {
+      storage: false
+    });
     this.giveawayManager = new MongoGiveawayManager(this, {
       hasGuildMembersIntent: true,
       updateCountdownEvery: 10000,

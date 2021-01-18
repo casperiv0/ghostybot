@@ -1,6 +1,10 @@
-import StarboardsManager from "discord-starboards";
+import StarboardsManager, {
+  StarboardClientOptions,
+  Starboard as StarboardData,
+  StarboardOptions,
+} from "discord-starboards";
+import { Channel, Client } from "discord.js";
 import StarboardModel from "../models/Starboard.model";
-import Bot from "../structures/Bot";
 
 export interface Starboard {
   channelID: string;
@@ -19,19 +23,15 @@ export interface Starboard {
 }
 
 class MongStarboardsManager extends StarboardsManager {
-  starboards: Starboard[];
-
-  constructor(bot: Bot) {
-    super(bot);
-
-    this.starboards = [];
+  constructor(client: Client, options?: StarboardClientOptions) {
+    super(client, options);
   }
 
   async getAllStarboards() {
     return await StarboardModel.find();
   }
 
-  async saveStarboard(data: Starboard) {
+  async saveStarboard(data: StarboardData) {
     const giv = new StarboardModel(data);
     await giv.save();
 
@@ -44,9 +44,8 @@ class MongStarboardsManager extends StarboardsManager {
     return true;
   }
 
-  delete(channelId: string | undefined, emoji: string | undefined) {}
-
-  create(channel: any, options: any) {}
+  async create(channel: Channel, options?: Partial<StarboardOptions>) {}
+  async delete(channelID: string, emoji: string) {}
 }
 
 export default MongStarboardsManager;

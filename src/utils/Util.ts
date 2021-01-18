@@ -295,10 +295,11 @@ export default class Util {
     old: { channelID: string | undefined; emoji: string | undefined }
   ) {
     if (old) {
+      if (!old.channelID || !old.emoji) return;
       this.bot.starboardsManager.delete(old.channelID, old.emoji);
     }
 
-    this.bot.starboardsManager.create(channel, {
+    this.bot.starboardsManager.create(channel as any, {
       ...options,
       selfStar: true,
       starEmbed: true,
