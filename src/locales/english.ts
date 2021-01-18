@@ -276,6 +276,7 @@ export default {
     DB_GENRES: "Genres",
     DB_AWARDS: "Awards",
     DB_LANGS: "Languages",
+    POPULATION: "Population",
     DB_RELEASED: "Released",
     DB_NOT_FOUND: "No movie was found with {search}",
     TOTAL_MB: "Total",
@@ -332,6 +333,8 @@ export default {
     DOMAINS: "Domains",
     CAPITAL: "Capital",
     TIMEZONES: "Timezones",
+    WEB_HTTP: "URL must start with `http://` or `https://`",
+    WEB_NSFW: "Cannot display this site in a non-NSFW channel",
   },
   BOT: {
     GUILDS: "Guilds",

@@ -35,6 +35,7 @@ export default class CountryCommand extends Command {
       const timezones = country[0].timezones;
       const region = country[0].region;
       const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png` || "";
+      const population = bot.utils.formatNumber(country[0].population);
       let languages = "";
 
       country[0].languages.forEach((lang) => {
@@ -51,6 +52,7 @@ export default class CountryCommand extends Command {
         .addField(lang.UTIL.DOMAINS, domains, true)
         .addField(lang.UTIL.CAPITAL, capital, true)
         .addField(lang.UTIL.DB_LANGS, languages, true)
+        .addField(lang.UTIL.POPULATION, population, true)
         .addField(lang.UTIL.TIMEZONES, timezones, false)
         .setThumbnail(flag);
 

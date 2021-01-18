@@ -282,6 +282,7 @@ export default {
     DB_GENRES: "Genero",
     DB_AWARDS: "Premios",
     DB_LANGS: "Lenguajes",
+    POPULATION: "Population",
     DB_RELEASED: "Liberada",
     DB_NOT_FOUND: "No fue encontrado nada con {search}",
     TOTAL_MB: "Total",
@@ -338,6 +339,8 @@ export default {
     DOMAINS: "Domains",
     CAPITAL: "Capital",
     TIMEZONES: "Timezones",
+    WEB_HTTP: "URL must start with `http://` or `https://`",
+    WEB_NSFW: "Cannot display this site in a non-NSFW channel",
   },
   BOT: {
     GUILDS: "Gremios",
@@ -477,7 +480,8 @@ export default {
     DRAW: "Its a draw",
   },
   ADMIN: {
-    SET_CMD: "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
+    SET_CMD:
+      "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
     ADD_CMD_ALREADY_EXISTS: "This command name is already added in guild custom commands.",
     ADD_CMD_USED_BY_BOT: "This command name is already in use by the bot",
     ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",
@@ -576,7 +580,8 @@ export default {
     LANG_UPDATE: "Successfully updated language to",
     SET_STARBOARD_CHAN: "Successfully set {channel} as starboards channel",
     SET_MEM_COUNT_CHAN: "Successfully set as member count channel",
-    UPDATE_WEL_MES: "Successfully updated welcome message (please use dashboard for better experience)",
+    UPDATE_WEL_MES:
+      "Successfully updated welcome message (please use dashboard for better experience)",
     GIVE_NAME: "give_name",
     EMOJI_ADDED: "Emoji Added",
     EMOJI_ADDED_NAME: "Emoji Has Been Added! | Name:",
@@ -587,13 +592,15 @@ export default {
     STICKY_READ: "__***:warning: Sticky Message, Read Before Typing! :warning:***__",
     ALREADY_MUTED: "User is already muted!",
     CAN_NOT_MUTED: "User can't be muted",
-    TEMP_MUTED: "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
+    TEMP_MUTED:
+      "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
     SUCCES_MUTED: "{muteMemberTag} was successfully muted for {time}. Reason: **{reason}**",
     PROVIDE_VALID_USERID: "Please provide a user id",
     SUC_UNBAN: "**{bannedUsername}** was successfully unbanned from the server.",
     NOT_IN_VOICE_OR_NOT_DEAF: "User is not in a voice channel or isn't deafened",
     UNDEAFENED_USER: "You've been **undeafened** from **{guildName}**",
-    UNDEAFENED: "**{undeafenUserTag}** was successfully undeafened from the server. I have also send a DM letting the person know.",
+    UNDEAFENED:
+      "**{undeafenUserTag}** was successfully undeafened from the server. I have also send a DM letting the person know.",
     CHAN_NOT_LOCK: "That channel is not locked!",
     SUC_UNLOCK: "{channel} was successfully unlocked",
     NOT_MUTED: "User is not muted!",
@@ -604,13 +611,16 @@ export default {
     CAN_NOT_DISC: "User can't be disconnected.",
     NOT_IN_VOICE: "User is not in a voice at the moment.",
     YOU_DISC: "You've been **disconnected** from **{guildName}**, Reason: **{reason}**",
-    USER_DISC: "**{kickUserTag}** was successfully disconnected from **{kickUserVoiceChannel}**. Reason: **{reason}**. I have also send a DM letting the person know.",
+    USER_DISC:
+      "**{kickUserTag}** was successfully disconnected from **{kickUserVoiceChannel}**. Reason: **{reason}**. I have also send a DM letting the person know.",
     USER_NOT_VOICE_OR_MUTED: "User is not in a voice channel or is already muted",
     YOU_MUTED: "You've been **Muted** from **{guildName}**, Reason: **{reason}**",
-    USER_MUTED: "**{muteUserTag}** was successfully muted from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
+    USER_MUTED:
+      "**{muteUserTag}** was successfully muted from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
     USER_NOT_VOICE_OR_NOT_MUTED: "User is not in a voice channel or isn't muted",
     YOU_UNMUTED: "You've been **Unmuted** from **{guildName}**",
-    USER_SUC_UNMUTED: "**{unmuteUserTag}** was successfully unmuted from the server. I have also send a DM letting the person know.",
+    USER_SUC_UNMUTED:
+      "**{unmuteUserTag}** was successfully unmuted from the server. I have also send a DM letting the person know.",
     USER_NOT_WARN: "User can't be warned",
     USER_WARNED: "{memberTag} was warned with reason: {reason} (Total warnings: {warningsTotal})",
     WARN_NOT_FOUND: "warning wasn't found or {memberTag} doesn't have any warnings",
@@ -618,7 +628,8 @@ export default {
     WARNED_ON: "Warned on:",
     MEMBER_WARNS: "{memberTag}'s warnings",
     TOTAL_WARNS: "Total warnings",
-    USE_WARNS: "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
+    USE_WARNS:
+      "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
   },
@@ -629,7 +640,8 @@ export default {
     ALREADY_ACTIVE_TICKET: "You already have an active ticket",
     TICKET_FOR: "Support ticket for: {member}",
     CREATED: "Successfully created ticket!",
-    NOT_ENABLED: "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
+    NOT_ENABLED:
+      "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
     TICKET: "ticket-#{Id}",
   },
   EVENTS: {

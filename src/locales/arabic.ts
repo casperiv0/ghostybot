@@ -279,6 +279,7 @@ export default {
     DB_GENRES: "الانواع",
     DB_AWARDS: "الجوائز",
     DB_LANGS: "اللغات",
+    POPULATION: "Population",
     DB_RELEASED: "تم الاصدار",
     DB_NOT_FOUND: "لم يتم العثور علي فيلم   {search}",
     TOTAL_MB: "الاجمالي",
@@ -334,6 +335,8 @@ export default {
     DOMAINS: "Domains",
     CAPITAL: "Capital",
     TIMEZONES: "Timezones",
+    WEB_HTTP: "URL must start with `http://` or `https://`",
+    WEB_NSFW: "Cannot display this site in a non-NSFW channel",
   },
   BOT: {
     GUILDS: "السرفرات",
@@ -471,7 +474,8 @@ export default {
     DRAW: "Its a draw",
   },
   ADMIN: {
-    SET_CMD: "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
+    SET_CMD:
+      "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
     ADD_CMD_ALREADY_EXISTS: "This command name is already added in guild custom commands.",
     ADD_CMD_USED_BY_BOT: "This command name is already in use by the bot",
     ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",

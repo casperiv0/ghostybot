@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 207 commands.
+GhostyBot has a total of 208 commands.
 
 Click any of the command names for more information
 
@@ -349,7 +349,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 42**
+**Total commands: 43**
 
 [afk:](#afk) N/A
 
@@ -430,6 +430,8 @@ Click any of the command names for more information
 [userinfo:](#userinfo) Get user info
 
 [weather:](#weather) See the weather in a country/city
+
+[web:](#web) Returns a screenshot of the requested website
 
 [wiki:](#wiki) Search something up on Wikipedia
 
@@ -3784,6 +3786,22 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `country/city`
+
+[Back to top](#ghostybot-command-list)
+
+## web
+
+**Category:** util
+
+**Description:** Returns a screenshot of the requested website
+
+**Usage:** `<url EG: https://google.com >`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `url`
 
 [Back to top](#ghostybot-command-list)
 
