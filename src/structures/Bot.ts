@@ -49,9 +49,8 @@ class Bot extends Client {
     this.player = new Player(this, {
       autoSelfDeaf: true,
       leaveOnEmpty: true,
-      leaveOnEmptyCooldown: 60,
-      leaveOnEnd: false,
-      leaveOnStop: false,
+      leaveOnEnd: true,
+      leaveOnStop: true,
     });
     this.starboardsManager = new MongStarboardsManager(this, {
       storage: false
