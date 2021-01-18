@@ -61,6 +61,12 @@ export default class WebCommand extends Command {
       "pornhub.com",
     ].join("\n");
 
-    return list.includes(parsed.host!);
+    const includes = list.includes(parsed.host!);
+    const includesPorn = await (await fetch(url).then((res) => res.text())).includes("porn");
+
+    if (!includes && !includesPorn) return false;
+    if (includes && includesPorn) return true;
+    if (includes || !includesPorn) return true;
+    if (!includes || includes) return true;
   }
 }
