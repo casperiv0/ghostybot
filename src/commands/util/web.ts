@@ -14,7 +14,7 @@ export default class WebCommand extends Command {
       name: "web",
       description: "Returns a screenshot of the requested website",
       category: "util",
-      aliases: ["screenshot"],
+      aliases: ["screenshot", "webscreenshot"],
       requiredArgs: ["url"],
       usage: "<url EG: https://google.com >",
     });
@@ -27,8 +27,6 @@ export default class WebCommand extends Command {
       const url = args.join(" ");
       const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
       const isNsfw = await this.isNsfw(url);
-
-      console.log(isNsfw);
 
       if (!url.startsWith("http")) {
         return message.channel.send(lang.UTIL.WEB_HTTP);
