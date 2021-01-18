@@ -428,7 +428,7 @@ export default class Util {
       .split(" ")
       .map((word) => {
         const { username, tag, id, discriminator, createdAt } = user;
-        word
+        word = word
           .replace("{user}", `<@${id}>`)
           .replace("{user.tag}", this.escapeMarkdown(tag))
           .replace("{user.username}", this.escapeMarkdown(username))
