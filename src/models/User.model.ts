@@ -84,6 +84,7 @@ export interface Reminders {
 }
 
 export interface Reminder {
+  _id: string;
   id: number;
   channel_id: string;
   msg: string;

@@ -18,11 +18,11 @@ export default class ReminderHelper extends Helper {
       reminders.forEach((user: IUser) => {
         user.reminder.reminders
           .filter((r) => r.ends_at <= Date.now())
-          .forEach(async (reminder: Reminder, idx: number) => {
+          .forEach(async (reminder: Reminder) => {
             const guild = bot.guilds.cache.get(user.guild_id);
             if (!guild) return;
 
-            const { channel_id, msg, time } = reminder;
+            const { channel_id, msg, time, _id: reminderId } = reminder;
             const usr = bot.users.cache.get(user.user_id) || (await bot.users.fetch(user.user_id));
             const channel = guild.channels.cache.get(channel_id);
 
@@ -30,7 +30,9 @@ export default class ReminderHelper extends Helper {
               bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
                   hasReminder: !(user.reminder.reminders?.length - 1 === 0),
-                  reminders: user.reminder.reminders.filter((_, ix: number) => ix !== idx),
+                  reminders: user.reminder.reminders.filter(
+                    (rem: Reminder) => rem._id !== reminderId
+                  ),
                 },
               });
               return;
@@ -39,7 +41,9 @@ export default class ReminderHelper extends Helper {
             await bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
                 hasReminder: !(user.reminder.reminders?.length - 1 === 0),
-                reminders: user.reminder.reminders.filter((_, ix) => ix !== idx),
+                reminders: user.reminder.reminders.filter(
+                  (rem: Reminder) => rem._id !== reminderId
+                ),
               },
             });
 

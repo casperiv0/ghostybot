@@ -377,7 +377,7 @@ Click any of the command names for more information
 
 [docs:](#docs) Returns the request query from discord.js docs
 
-[emojiinfo:](#emojiinfo) Returns information about an emoji
+[emojiinfo:](#emojiinfo) Returns information about a custom emoji
 
 [emojis:](#emojis) Get a random color
 
@@ -3721,7 +3721,7 @@ Click any of the command names for more information
 
 **Category:** util
 
-**Description:** Returns information about an emoji
+**Description:** Returns information about a custom emoji
 
 **Usage:** `N/A`
 

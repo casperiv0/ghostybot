@@ -1,7 +1,8 @@
+import { Message } from "discord.js";
 import ms from "ms";
+import { v4 } from "uuid";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message } from "discord.js";
 
 export default class SetReminderCommand extends Command {
   constructor(bot: Bot) {
@@ -20,16 +21,16 @@ export default class SetReminderCommand extends Command {
     try {
       const [time, ...rest] = args;
       const msg = rest.join(" ");
-  
+
       const isValid = ms(time);
       if (!isValid) {
         return message.channel.send(lang.REMINDER.INVALID_DATE);
       }
-  
+
       const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) return;
       const reminders = typeof user.reminder.reminders === "object" ? user.reminder.reminders : [];
-  
+
       await bot.utils.updateUserById(message.author.id, message.guild?.id, {
         reminder: {
           hasReminder: true,
@@ -41,11 +42,12 @@ export default class SetReminderCommand extends Command {
               channel_id: message.channel.id,
               time,
               id: reminders.length + 1,
+              _id: v4(),
             },
           ],
         },
       });
-  
+
       return message.channel.send(lang.REMINDER.SUCCESS.replace("{time}", time));
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
