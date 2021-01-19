@@ -51,7 +51,9 @@ export default class IpLookupCommand extends Command {
           isp = "N/A",
           org = "N/A",
           timezone,
+          countryCode,
         } = data;
+        const flag = `https://www.countryflags.io/${countryCode}/flat/64.png` || "";
 
         const embed = bot.utils.baseEmbed(message).setTitle(`${city}/${regionName} - ${country}`)
           .setDescription(`
@@ -60,7 +62,8 @@ export default class IpLookupCommand extends Command {
 **ISP:** ${isp}
 **Org:** ${org}
 **Timezone:** ${timezone}
-`);
+`)
+        .setThumbnail(flag);
 
         return message.channel.send(embed);
       } else {
