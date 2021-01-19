@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 209 commands.
+GhostyBot has a total of 210 commands.
 
 Click any of the command names for more information
 
@@ -349,7 +349,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 44**
+**Total commands: 45**
 
 [afk:](#afk) N/A
 
@@ -376,6 +376,8 @@ Click any of the command names for more information
 [dependencies:](#dependencies) Shows a list of all bots dependencies
 
 [docs:](#docs) Returns the request query from discord.js docs
+
+[emojiinfo:](#emojiinfo) Returns information about an emoji
 
 [emojis:](#emojis) Get a random color
 
@@ -3712,6 +3714,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query`
+
+[Back to top](#ghostybot-command-list)
+
+## emojiinfo
+
+**Category:** util
+
+**Description:** Returns information about an emoji
+
+**Usage:** `N/A`
+
+**Aliases:** `emoji`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `emoji`
 
 [Back to top](#ghostybot-command-list)
 

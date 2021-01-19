@@ -89,7 +89,7 @@ export default class HelpCommand extends Command {
           options = cmd.options.options
             ? cmd.options.options.map((option) => option)
             : lang.GLOBAL.NONE;
-          cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : lang.GLOBAL.NONE;
+          cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
           memberPerms = !cmd.options.memberPermissions
             ? lang.GLOBAL.NONE
             : [...cmd.options.memberPermissions].map((p) => p);

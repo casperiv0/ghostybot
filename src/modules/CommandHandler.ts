@@ -21,9 +21,13 @@ export default class CommandHandler {
       const command = new File(this.bot, options) as Command;
 
       if (!command.execute) {
-        throw new TypeError(
-          `[ERROR][COMMANDS]: execute function is required for commands! (${file})`
-        );
+        new Error(`[ERROR][COMMANDS]: 'execute' function is required for commands! (${file})`);
+        process.exit();
+      }
+
+      if (!command.name || command.name === "") {
+        new Error(`[ERROR][COMMANDS]: 'name' is required for commands! (${file})`);
+        process.exit();
       }
 
       this.bot.commands.set(command.name, command);
