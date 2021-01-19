@@ -337,6 +337,7 @@ export default {
     TIMEZONES: "Timezones",
     WEB_HTTP: "URL must start with `http://` or `https://`",
     WEB_NSFW: "Cannot display this site in a non-NSFW channel",
+    IP_NOT_FOUND: "No results were found",
   },
   BOT: {
     GUILDS: "Guilds",

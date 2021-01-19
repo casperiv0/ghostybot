@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 208 commands.
+GhostyBot has a total of 209 commands.
 
 Click any of the command names for more information
 
@@ -349,7 +349,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 43**
+**Total commands: 44**
 
 [afk:](#afk) N/A
 
@@ -394,6 +394,8 @@ Click any of the command names for more information
 [imdb:](#imdb) Get the information about series and movie
 
 [invite:](#invite) Creates an instant invite for the server
+
+[ip:](#ip) Search an IP
 
 [membercount:](#membercount) N/A
 
@@ -515,6 +517,8 @@ Click any of the command names for more information
 
 **Usage:** `<cmd_name> <cmd_response>`
 
+**Aliases:** N/A
+
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
@@ -530,6 +534,8 @@ Click any of the command names for more information
 **Description:** Add a role to a user
 
 **Usage:** `<member> <role>`
+
+**Aliases:** `ar`,`arole`,`giverole`
 
 **Member Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADMINISTRATOR
 
@@ -547,6 +553,8 @@ Click any of the command names for more information
 
 **Usage:** `<role>`
 
+**Aliases:** `arall`,`aroleall`,`giveroleall`
+
 **Member Permissions:** MANAGE_ROLES, ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
@@ -562,6 +570,8 @@ Click any of the command names for more information
 **Description:** Announce something in a channel
 
 **Usage:** `[channel] <text>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -579,6 +589,8 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
+**Aliases:** N/A
+
 **Member Permissions:** BAN_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
@@ -594,6 +606,8 @@ Click any of the command names for more information
 **Description:** Add/remove blacklisted words
 
 **Usage:** `<option> [word]`
+
+**Aliases:** `wordsfilter`,`filterwords`,`blacklistedword`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -611,6 +625,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `conf`,`cfg`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -626,6 +642,8 @@ Click any of the command names for more information
 **Description:** This command creates a role with the name of what you say
 
 **Usage:** `<role_name>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -643,6 +661,8 @@ Click any of the command names for more information
 
 **Usage:** `<channel> <topic>`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_CHANNELS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
@@ -658,6 +678,8 @@ Click any of the command names for more information
 **Description:** Deafen a user
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** DEAFEN_MEMBERS
 
@@ -675,6 +697,8 @@ Click any of the command names for more information
 
 **Usage:** `<cmd_name>`
 
+**Aliases:** `removecmd`
+
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
@@ -690,6 +714,8 @@ Click any of the command names for more information
 **Description:** Delete message, up to 100
 
 **Usage:** `<1-100>`
+
+**Aliases:** `purge`,`clear`
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -707,6 +733,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
@@ -722,6 +750,8 @@ Click any of the command names for more information
 **Description:** Enables a command
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -739,6 +769,8 @@ Click any of the command names for more information
 
 **Usage:** `<option> <channel>`
 
+**Aliases:** `igch`,`ic`
+
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES
@@ -754,6 +786,8 @@ Click any of the command names for more information
 **Description:** Kick a user
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** KICK_MEMBERS
 
@@ -771,6 +805,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_CHANNELS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
@@ -786,6 +822,8 @@ Click any of the command names for more information
 **Description:** Mute a user
 
 **Usage:** `<@user>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -803,6 +841,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `channelnuke`
+
 **Member Permissions:** MANAGE_CHANNELS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
@@ -818,6 +858,8 @@ Click any of the command names for more information
 **Description:** Set a prefix for your server
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -835,6 +877,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `rr`,`rrole`,`takerole`
+
 **Member Permissions:** MANAGE_ROLES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
@@ -850,6 +894,8 @@ Click any of the command names for more information
 **Description:** remove a role from all users of the current server
 
 **Usage:** `N/A`
+
+**Aliases:** `rrall`,`rroleall`,`takeroleall`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -867,6 +913,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -882,6 +930,8 @@ Click any of the command names for more information
 **Description:** Let the bot say something
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -899,6 +949,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -914,6 +966,8 @@ Click any of the command names for more information
 **Description:** Steal an emoji from a different server
 
 **Usage:** `<emoji> [custom name]`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_EMOJIS
 
@@ -931,6 +985,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_MESSAGES
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
@@ -946,6 +1002,8 @@ Click any of the command names for more information
 **Description:** Temporary mute someone
 
 **Usage:** `<user> <time> <reason>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -963,6 +1021,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** BAN_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
@@ -978,6 +1038,8 @@ Click any of the command names for more information
 **Description:** Undeafen a user from voice channel
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** DEAFEN_MEMBERS
 
@@ -995,6 +1057,8 @@ Click any of the command names for more information
 
 **Usage:** `<channel mention | current channel>`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_CHANNELS
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
@@ -1010,6 +1074,8 @@ Click any of the command names for more information
 **Description:** Unmute a user
 
 **Usage:** `<@user>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_ROLES, MANAGE_CHANNELS
 
@@ -1027,6 +1093,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1042,6 +1110,8 @@ Click any of the command names for more information
 **Description:** Sticky a message to the bottom of the screen
 
 **Usage:** `N/A`
+
+**Aliases:** `removesticky`
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -1059,6 +1129,8 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
+**Aliases:** `disconnect`
+
 **Member Permissions:** MOVE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MOVE_MEMBERS
@@ -1074,6 +1146,8 @@ Click any of the command names for more information
 **Description:** voicemute a user
 
 **Usage:** `<user>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MUTE_MEMBERS
 
@@ -1091,6 +1165,8 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
+**Aliases:** N/A
+
 **Member Permissions:** MUTE_MEMBERS
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
@@ -1106,6 +1182,8 @@ Click any of the command names for more information
 **Description:** Warns a user
 
 **Usage:** `<user>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -1123,6 +1201,8 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1138,6 +1218,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of a alpaca
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1155,6 +1237,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1170,6 +1254,8 @@ Click any of the command names for more information
 **Description:** Returns an image of a bird
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1187,6 +1273,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1202,6 +1290,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of a camel
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1219,6 +1309,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1234,6 +1326,8 @@ Click any of the command names for more information
 **Description:** Returns a cat fact
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1251,6 +1345,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1266,6 +1362,8 @@ Click any of the command names for more information
 **Description:** Let a cow say something
 
 **Usage:** `<text>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1283,6 +1381,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1298,6 +1398,8 @@ Click any of the command names for more information
 **Description:** Returns a dog fact
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1315,6 +1417,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1330,6 +1434,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of a fox
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1347,6 +1453,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1362,6 +1470,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of a lizard
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1379,6 +1489,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1394,6 +1506,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of a owl
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1411,6 +1525,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1426,6 +1542,8 @@ Click any of the command names for more information
 **Description:** Shows an image of a raccoon
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1443,6 +1561,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1458,6 +1578,8 @@ Click any of the command names for more information
 **Description:** Shows an image of a whale
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1475,6 +1597,8 @@ Click any of the command names for more information
 
 **Usage:** `<option> <level> <user>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1490,6 +1614,8 @@ Click any of the command names for more information
 **Description:** Eval
 
 **Usage:** `N/A`
+
+**Aliases:** `e`
 
 **Member Permissions:** None
 
@@ -1507,6 +1633,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1522,6 +1650,8 @@ Click any of the command names for more information
 **Description:** Shuts the bot down
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1539,6 +1669,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1554,6 +1686,8 @@ Click any of the command names for more information
 **Description:** balance
 
 **Usage:** `N/A`
+
+**Aliases:** `bal`
 
 **Member Permissions:** None
 
@@ -1571,6 +1705,8 @@ Click any of the command names for more information
 
 **Usage:** `<item name>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1586,6 +1722,8 @@ Click any of the command names for more information
 **Description:** daily
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1603,6 +1741,8 @@ Click any of the command names for more information
 
 **Usage:** `<all | amount>`
 
+**Aliases:** `dep`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1618,6 +1758,8 @@ Click any of the command names for more information
 **Description:** Roll a dice
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1635,6 +1777,8 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1650,6 +1794,8 @@ Click any of the command names for more information
 **Description:** Returns a leaderboard with the top 10 users money
 
 **Usage:** `N/A`
+
+**Aliases:** `mlb`
 
 **Member Permissions:** None
 
@@ -1667,6 +1813,8 @@ Click any of the command names for more information
 
 **Usage:** `<member>, <amount>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1682,6 +1830,8 @@ Click any of the command names for more information
 **Description:** See the full profile of a user
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1699,6 +1849,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1714,6 +1866,8 @@ Click any of the command names for more information
 **Description:** Reset all money/bank in this guild
 
 **Usage:** `N/A`
+
+**Aliases:** `reset-economy`
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -1731,6 +1885,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1746,6 +1902,8 @@ Click any of the command names for more information
 **Description:** Slots machine
 
 **Usage:** `<amount>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1763,6 +1921,8 @@ Click any of the command names for more information
 
 **Usage:** `<option | no-args>`
 
+**Aliases:** `shop`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1778,6 +1938,8 @@ Click any of the command names for more information
 **Description:** Collect your weekly price
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1795,6 +1957,8 @@ Click any of the command names for more information
 
 **Usage:** `<all | amount>`
 
+**Aliases:** `with`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1810,6 +1974,8 @@ Click any of the command names for more information
 **Description:** work
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1827,6 +1993,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1842,6 +2010,8 @@ Click any of the command names for more information
 **Description:** Gives you advice
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1859,6 +2029,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1874,6 +2046,8 @@ Click any of the command names for more information
 **Description:** Bet on somebody
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1891,6 +2065,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1906,6 +2082,8 @@ Click any of the command names for more information
 **Description:** Calculate something
 
 **Usage:** `N/A`
+
+**Aliases:** `math`
 
 **Member Permissions:** None
 
@@ -1923,6 +2101,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1938,6 +2118,8 @@ Click any of the command names for more information
 **Description:** Shows a dadjoke
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1955,6 +2137,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -1970,6 +2154,8 @@ Click any of the command names for more information
 **Description:** Get a happiness returned
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -1987,6 +2173,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2002,6 +2190,8 @@ Click any of the command names for more information
 **Description:** Let me google that for you
 
 **Usage:** `<search query>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2019,6 +2209,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2034,6 +2226,8 @@ Click any of the command names for more information
 **Description:** returns a random joke
 
 **Usage:** `N/A`
+
+**Aliases:** `joke`
 
 **Member Permissions:** None
 
@@ -2051,6 +2245,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `number`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2066,6 +2262,8 @@ Click any of the command names for more information
 **Description:** Rock Paper Scissors
 
 **Usage:** `<rock | paper | scissors>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2083,6 +2281,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `ttt`,`tttoe`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2098,6 +2298,8 @@ Click any of the command names for more information
 **Description:** Would you rather
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2116,6 +2318,8 @@ Click any of the command names for more information
 **Usage:** `givend <messageId> 
  **Example:** !giveaway end <messageId>`
 
+**Aliases:** `gend`
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2131,6 +2335,8 @@ Click any of the command names for more information
 **Description:** Reroll a giveaway
 
 **Usage:** `N/A`
+
+**Aliases:** `greroll`
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -2149,6 +2355,8 @@ Click any of the command names for more information
 **Usage:** `<time> <winner count> <price>
  **Example:** !givstart 2d 10 Discord nitro`
 
+**Aliases:** `gstart`
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2164,6 +2372,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2181,6 +2391,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2196,6 +2408,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2213,6 +2427,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2228,6 +2444,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2245,6 +2463,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2260,6 +2480,8 @@ Click any of the command names for more information
 **Description:** Amazing images of light and landscape
 
 **Usage:** `N/A`
+
+**Aliases:** `earthporn`
 
 **Member Permissions:** None
 
@@ -2277,6 +2499,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2292,6 +2516,8 @@ Click any of the command names for more information
 **Description:** Change my mind
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2309,6 +2535,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2324,6 +2552,8 @@ Click any of the command names for more information
 **Description:** Cuddle with somebody
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2341,6 +2571,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2356,6 +2588,8 @@ Click any of the command names for more information
 **Description:** Shows Food images
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2373,6 +2607,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2388,6 +2624,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of people hugging
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2405,6 +2643,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `texttoimage`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2420,6 +2660,8 @@ Click any of the command names for more information
 **Description:** Shows a picture of people kissing
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2437,6 +2679,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2452,6 +2696,8 @@ Click any of the command names for more information
 **Description:** OwO
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2469,6 +2715,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2484,6 +2732,8 @@ Click any of the command names for more information
 **Description:** Poke somebody
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2501,6 +2751,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2516,6 +2768,8 @@ Click any of the command names for more information
 **Description:** Smug
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2533,6 +2787,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2548,6 +2804,8 @@ Click any of the command names for more information
 **Description:** Returns an image with your tweet
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2565,6 +2823,8 @@ Click any of the command names for more information
 
 **Usage:** `<my amazing youtube comment>`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2580,6 +2840,8 @@ Click any of the command names for more information
 **Description:** Give someone Xp
 
 **Usage:** `<user> <amount>`
+
+**Aliases:** N/A
 
 **Member Permissions:** MANAGE_GUILD
 
@@ -2597,6 +2859,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `lb`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2612,6 +2876,8 @@ Click any of the command names for more information
 **Description:** Get your current level
 
 **Usage:** `N/A`
+
+**Aliases:** `lvl`,`rank`
 
 **Member Permissions:** None
 
@@ -2629,6 +2895,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** MANAGE_GUILD
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2644,6 +2912,8 @@ Click any of the command names for more information
 **Description:** Get xp from a user or yourself
 
 **Usage:** `<user>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2661,6 +2931,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `cq`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2676,6 +2948,8 @@ Click any of the command names for more information
 **Description:** Set or remove a filter
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2693,6 +2967,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2708,6 +2984,8 @@ Click any of the command names for more information
 **Description:** Loop a song that is playing
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2725,6 +3003,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `ly`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2740,6 +3020,8 @@ Click any of the command names for more information
 **Description:** Shows info about the current playing song
 
 **Usage:** `N/A`
+
+**Aliases:** `np`,`currentsong`
 
 **Member Permissions:** None
 
@@ -2757,6 +3039,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2772,6 +3056,8 @@ Click any of the command names for more information
 **Description:** Play a song
 
 **Usage:** `<youtube link | song name>`
+
+**Aliases:** `p`
 
 **Member Permissions:** None
 
@@ -2789,6 +3075,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `q`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2804,6 +3092,8 @@ Click any of the command names for more information
 **Description:** Resume a song that was playing
 
 **Usage:** `N/A`
+
+**Aliases:** `r`
 
 **Member Permissions:** None
 
@@ -2821,6 +3111,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `sh`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2836,6 +3128,8 @@ Click any of the command names for more information
 **Description:** Skip a song that is playing
 
 **Usage:** `N/A`
+
+**Aliases:** `s`
 
 **Member Permissions:** None
 
@@ -2853,6 +3147,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `leave`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2868,6 +3164,8 @@ Click any of the command names for more information
 **Description:** Set the volume between 1 to 100
 
 **Usage:** `N/A`
+
+**Aliases:** `vol`
 
 **Member Permissions:** None
 
@@ -2885,6 +3183,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2900,6 +3200,8 @@ Click any of the command names for more information
 **Description:** anal nsfw
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2917,6 +3219,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2932,6 +3236,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2949,6 +3255,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2964,6 +3272,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -2981,6 +3291,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -2996,6 +3308,8 @@ Click any of the command names for more information
 **Description:** None
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3013,6 +3327,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3028,6 +3344,8 @@ Click any of the command names for more information
 **Description:** good wallpapers xD
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3045,6 +3363,8 @@ Click any of the command names for more information
 
 **Usage:** `<channel_id>`
 
+**Aliases:** N/A
+
 **Member Permissions:** ADMINISTRATOR
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADD_REACTIONS, MANAGE_MESSAGES
@@ -3060,6 +3380,8 @@ Click any of the command names for more information
 **Description:** Add a reaction role
 
 **Usage:** `<message_id>`
+
+**Aliases:** `rrdel`,`rrr`,`rrdelete`
 
 **Member Permissions:** None
 
@@ -3077,6 +3399,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3092,6 +3416,8 @@ Click any of the command names for more information
 **Description:** Remove your current reminder
 
 **Usage:** `N/A`
+
+**Aliases:** `delreminder`
 
 **Member Permissions:** None
 
@@ -3109,6 +3435,8 @@ Click any of the command names for more information
 
 **Usage:** `<time> <message>`
 
+**Aliases:** `addreminder`,`remind`,`remindme`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3124,6 +3452,8 @@ Click any of the command names for more information
 **Description:** Closes the active ticket, use --force to force close issue
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3141,6 +3471,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
@@ -3156,6 +3488,8 @@ Click any of the command names for more information
 **Description:** N/A
 
 **Usage:** `N/A`
+
+**Aliases:** `setafk`,`makemeafk`
 
 **Member Permissions:** None
 
@@ -3173,6 +3507,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `av`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3188,6 +3524,8 @@ Click any of the command names for more information
 **Description:** Calculate your BMI
 
 **Usage:** `<weight in kilograms> <height in centimeters>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3205,6 +3543,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `bot`,`ping`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3220,6 +3560,8 @@ Click any of the command names for more information
 **Description:** Returns the bot invite
 
 **Usage:** `N/A`
+
+**Aliases:** `botinv`
 
 **Member Permissions:** None
 
@@ -3237,6 +3579,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3252,6 +3596,8 @@ Click any of the command names for more information
 **Description:** Get information about a channel
 
 **Usage:** `N/A`
+
+**Aliases:** `channel`
 
 **Member Permissions:** None
 
@@ -3269,6 +3615,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3284,6 +3632,8 @@ Click any of the command names for more information
 **Description:** Get information about a country
 
 **Usage:** `<country>`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3301,6 +3651,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3316,6 +3668,8 @@ Click any of the command names for more information
 **Description:** Define a word
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3333,6 +3687,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `deps`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3348,6 +3704,8 @@ Click any of the command names for more information
 **Description:** Returns the request query from discord.js docs
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3365,6 +3723,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3380,6 +3740,8 @@ Click any of the command names for more information
 **Description:** get your emoji enlarged
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3397,6 +3759,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3412,6 +3776,8 @@ Click any of the command names for more information
 **Description:** Search someone on github
 
 **Usage:** `N/A`
+
+**Aliases:** `gh`
 
 **Member Permissions:** None
 
@@ -3429,6 +3795,8 @@ Click any of the command names for more information
 
 **Usage:** `<extension (js, ts, ...)> <code>`
 
+**Aliases:** `haste`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3444,6 +3812,8 @@ Click any of the command names for more information
 **Description:** Shows all commands Or shows more info about a command
 
 **Usage:** `<category name | command name>`
+
+**Aliases:** `h`,`info`,`commands`
 
 **Member Permissions:** None
 
@@ -3461,6 +3831,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `imagesearch`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3476,6 +3848,8 @@ Click any of the command names for more information
 **Description:** Get the information about series and movie
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3493,11 +3867,31 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `inv`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES, CREATE_INSTANT_INVITE
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ip
+
+**Category:** util
+
+**Description:** Search an IP
+
+**Usage:** `N/A`
+
+**Aliases:** `ip-lookup`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `ip`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3508,6 +3902,8 @@ Click any of the command names for more information
 **Description:** N/A
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3525,6 +3921,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `mc`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3540,6 +3938,8 @@ Click any of the command names for more information
 **Description:** Convert a string to morse code
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3557,6 +3957,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3572,6 +3974,8 @@ Click any of the command names for more information
 **Description:** Show Playstore Application Information Of Your Given Name!
 
 **Usage:** `<Application Name>`
+
+**Aliases:** `ps`
 
 **Member Permissions:** None
 
@@ -3589,6 +3993,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3604,6 +4010,8 @@ Click any of the command names for more information
 **Description:** Create a poll
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3621,6 +4029,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `color`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3636,6 +4046,8 @@ Click any of the command names for more information
 **Description:** Shows info about a role
 
 **Usage:** `N/A`
+
+**Aliases:** `role`
 
 **Member Permissions:** None
 
@@ -3653,6 +4065,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3668,6 +4082,8 @@ Click any of the command names for more information
 **Description:** Shows the server icon
 
 **Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3685,6 +4101,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `guild`,`server`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3700,6 +4118,8 @@ Click any of the command names for more information
 **Description:** Search for skins from Minecraft
 
 **Usage:** `N/A`
+
+**Aliases:** `minecraftskin`
 
 **Member Permissions:** None
 
@@ -3717,6 +4137,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3732,6 +4154,8 @@ Click any of the command names for more information
 **Description:** Translate a sentence
 
 **Usage:** `<language> <sentence>`
+
+**Aliases:** `tr`
 
 **Member Permissions:** None
 
@@ -3749,6 +4173,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `up`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3764,6 +4190,8 @@ Click any of the command names for more information
 **Description:** Get user info
 
 **Usage:** `<user>`
+
+**Aliases:** `whois`,`user`,`u`
 
 **Member Permissions:** None
 
@@ -3781,6 +4209,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** N/A
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3796,6 +4226,8 @@ Click any of the command names for more information
 **Description:** Returns a screenshot of the requested website
 
 **Usage:** `<url EG: https://google.com >`
+
+**Aliases:** `screenshot`,`webscreenshot`
 
 **Member Permissions:** None
 
@@ -3813,6 +4245,8 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
+**Aliases:** `wikipediasearch`,`wikipedia`
+
 **Member Permissions:** None
 
 **Bot Permissions:** SEND_MESSAGES
@@ -3828,6 +4262,8 @@ Click any of the command names for more information
 **Description:** Shows the time from other countries
 
 **Usage:** `N/A`
+
+**Aliases:** `clock`,`timezones`,`time`
 
 **Member Permissions:** None
 
