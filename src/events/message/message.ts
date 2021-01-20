@@ -220,7 +220,7 @@ export default class MessageEvent extends Event {
           return message.channel.send(
             lang.MESSAGE.NEED_PERMS.replace(
               "{perms}",
-              neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")
+              neededPerms.map((p) => `\`${lang.PERMISSIONS[p.toUpperCase()]}\``).join(", ")
             )
           );
         }
