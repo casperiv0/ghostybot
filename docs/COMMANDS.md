@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 210 commands.
+GhostyBot has a total of 211 commands.
 
 Click any of the command names for more information
 
@@ -349,7 +349,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 45**
+**Total commands: 46**
 
 [afk:](#afk) N/A
 
@@ -374,6 +374,8 @@ Click any of the command names for more information
 [define:](#define) Define a word
 
 [dependencies:](#dependencies) Shows a list of all bots dependencies
+
+[discordstatus:](#discordstatus) Returns the current status of Discord
 
 [docs:](#docs) Returns the request query from discord.js docs
 
@@ -3690,6 +3692,24 @@ Click any of the command names for more information
 **Usage:** `N/A`
 
 **Aliases:** `deps`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## discordstatus
+
+**Category:** util
+
+**Description:** Returns the current status of Discord
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 

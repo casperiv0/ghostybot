@@ -76,11 +76,18 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const body = JSON.parse(req.body);
       const g = await req.bot.utils.getGuildById(`${guildId}`);
 
+      if (!g) {
+        return res.json({
+          error: "An unexpected error occurred",
+          status: "error",
+        });
+      }
+
       if (body?.audit_channel) {
         await req.bot.utils.createWebhook(body.audit_channel, g?.audit_channel || undefined);
       }
 
-      if (body?.starboards_data?.enabled) {
+      if (body?.starboards_data?.enabled === true) {
         /**
          * check if starboards is enabled and no channel is provider
          */
@@ -96,7 +103,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
             const starboard = req.bot.starboardsManager.starboards.find(
               (s) =>
                 s.channelID === g?.starboards_data?.channel_id &&
-                s.emoji === g?.starboards_data?.emoji
+                s.options.emoji === g?.starboards_data?.emoji
             );
 
             await req.bot.utils.createStarboard(
@@ -109,7 +116,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               },
               {
                 channelID: starboard?.channelID,
-                emoji: starboard?.emoji,
+                emoji: starboard?.options.emoji,
               }
             );
           } catch (e) {
@@ -123,8 +130,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         }
       } else {
         try {
-          req.bot.starboardsManager.delete(g?.starboards_data.channel_id, g?.starboards_data.emoji);
-          // eslint-disable-next-line no-empty
+          req.bot.starboardsManager.delete(g.starboards_data.channel_id, g?.starboards_data.emoji);
         } catch (e) {
           // eslint-disable-next-line quotes
           if (!e?.stack?.includes('Error: The channel "')) {

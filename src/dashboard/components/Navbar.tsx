@@ -3,7 +3,7 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { dashboard, owners } from "../../../config.json";
+import { dashboard } from "../../../config.json";
 import Loader from "./Loader";
 
 export interface User {
@@ -82,13 +82,7 @@ const Navbar = () => {
                   Invite {dashboard.botName}
                 </a>
               </Link>
-              {owners.includes(`${user?.id}`) ? (
-                <Link href="/bot-settings">
-                  <a href="/bot-settings" className="dropdown-link">
-                    Bot Settings
-                  </a>
-                </Link>
-              ) : null}
+
               <Link href="/logout">
                 <a href="/logout" className="dropdown-link logout">
                   Logout

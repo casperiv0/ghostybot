@@ -28,6 +28,7 @@ export default class EventHandler {
       const File = await (await import(`../../${file}`)).default;
       const event = new File(this.bot, name) as Event;
       const isPlayer = file.includes("player.");
+      const isStarboard = file.includes("sb.");
 
       types.forEach((t) => {
         if (file.includes(`${t}.`)) {
@@ -41,6 +42,8 @@ export default class EventHandler {
 
       if (isPlayer) {
         this.bot.player.on(event.name as keyof PlayerEvents, event.execute.bind(null, this.bot));
+      } else if (isStarboard) {
+        (this.bot.starboardsManager as any).on(event.name, event.execute.bind(null, this.bot));
       } else {
         this.bot.on(event.name, event.execute.bind(null, this.bot));
       }

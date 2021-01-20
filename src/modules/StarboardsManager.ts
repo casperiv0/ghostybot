@@ -1,9 +1,8 @@
 import StarboardsManager, {
   StarboardClientOptions,
   Starboard as StarboardData,
-  StarboardOptions,
 } from "discord-starboards";
-import { Channel, Client } from "discord.js";
+import { Client } from "discord.js";
 import StarboardModel from "../models/Starboard.model";
 
 export interface Starboard {
@@ -39,13 +38,10 @@ class MongStarboardsManager extends StarboardsManager {
   }
 
   async deleteStarboard(channelID: string, emoji: string) {
-    await StarboardModel.findOneAndDelete({ channelID, emoji });
+    await StarboardModel.findOneAndDelete({ channelID, "options.emoji": emoji });
 
     return true;
   }
-
-  async create(channel: Channel, options?: Partial<StarboardOptions>) {}
-  async delete(channelID: string, emoji: string) {}
 }
 
 export default MongStarboardsManager;
