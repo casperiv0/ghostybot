@@ -30,10 +30,19 @@ export default class RrRemoveCommand extends Command {
       }
 
       const channel = message.guild?.channels.cache.get(reaction.channel_id);
-      const msg =
-        (channel as TextChannel).messages.cache.get(messageId) ||
-        (await (channel as TextChannel).messages.fetch(messageId));
-      if (!msg) return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+
+      let msg: Message | undefined;
+      try {
+        msg =
+          (channel as TextChannel).messages.cache.get(messageId) ||
+          (await (channel as TextChannel).messages.fetch(messageId));
+      } catch {
+        return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+      }
+
+      if (!msg) {
+        return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+      }
 
       msg.deletable && msg.delete();
       await ReactionsModel.findOneAndDelete({ message_id: messageId });
