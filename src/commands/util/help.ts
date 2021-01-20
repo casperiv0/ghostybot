@@ -92,11 +92,11 @@ export default class HelpCommand extends Command {
           cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
           memberPerms = !cmd.options.memberPermissions
             ? lang.GLOBAL.NONE
-            : [...cmd.options.memberPermissions].map((p) => p);
+            : [...cmd.options.memberPermissions].map((p) => lang.PERMISSIONS[p.toUpperCase()]);
 
           botPerms = !cmd.options.botPermissions
-            ? ["SEND_MESSAGES"].map((p) => p)
-            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map((p) => p);
+            ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
+            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()]);
 
           const embed = bot.utils
             .baseEmbed(message)
