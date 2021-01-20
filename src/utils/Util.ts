@@ -362,13 +362,6 @@ export default class Util {
     }
   }
 
-  errorEmbed(permissions: string[], message: Message) {
-    return this.baseEmbed(message)
-      .setTitle("Woah!")
-      .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
-      .setColor("ORANGE");
-  }
-
   async handleApiRequest(
     path: string,
     tokenData: { data: string; type: "Bot" | "Bearer" },
@@ -408,6 +401,13 @@ export default class Util {
     } else {
       return Promise.resolve("Authorized");
     }
+  }
+
+  errorEmbed(permissions: string[], message: Message) {
+    return this.baseEmbed(message)
+      .setTitle("Woah!")
+      .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
+      .setColor("ORANGE");
   }
 
   baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {

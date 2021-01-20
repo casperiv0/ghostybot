@@ -17,7 +17,7 @@ export default class SayCommand extends Command {
     const [type] = args;
     let msg = args.join(" ");
 
-    message.delete();
+    message.deletable && message.delete();
 
     if (type === "embed") {
       msg = args.slice(1).join(" ");

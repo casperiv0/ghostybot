@@ -18,17 +18,17 @@ export default class StickyCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const stickyMsg = args.join(" ");
-  
+
       if (stickyMsg.length > 1800) {
         return message.channel.send(lang.ADMIN.STICKY_LONG);
       }
-  
+
       const msg = lang.ADMIN.STICKY_READ + "\n\n" + stickyMsg;
-  
-      message.delete();
-  
+
+      message.deletable && message.delete();
+
       const stickyMessage = await message.channel.send(msg);
-  
+
       await bot.utils.addSticky(stickyMessage.id, message.channel.id, msg);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

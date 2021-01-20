@@ -22,19 +22,19 @@ export default class YtCommentCommand extends Command {
         dynamic: false,
         format: "png",
       });
-  
+
       const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
-  
-      sendMsg.delete();
+
+      sendMsg.deletable && sendMsg.delete();
       const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(
         username
       )}&comment=${encodeURIComponent(comment)}&avatar=${encodeURIComponent(avatar)}`;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${url})`)
         .setImage(url);
-  
+
       message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

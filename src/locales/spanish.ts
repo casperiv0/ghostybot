@@ -666,4 +666,22 @@ export default {
     STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
     STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
   },
+  MESSAGE: {
+    USER_IS_AFK: "{tag} is AFK!\n **Reason**: {reason}",
+    NOT_AFK_ANYMORE: "{tag} is not AFK anymore",
+    BLACKLISTED: "You're blacklisted from using this bot.",
+    CATEGORY_DISABLED:
+      "That command is disabled because this guild disabled the {category} category",
+    COMMAND_DISABLED: "That command was disabled for this guild",
+    NOT_NSFW: "This channel is not an NSFW channel!",
+    OWNER_ONLY: "This command can only be used by the owners!",
+    INCORRECT_ARGS: "Incorrect command usage",
+    REQUIRED_ARGS: "You must provide more args: {args}",
+    COOLDOWN_AMOUNT: "Please wait **{time}** more seconds before using the **{command}** command",
+    BAD_WORD:
+      "{mention}, you used a bad word the admin has set, therefore your message was deleted",
+    EXAMPLE: "Example:",
+    SUPPORT: "Support",
+    NEED_PERMS: "You need: {perms} permissions",
+  },
 };

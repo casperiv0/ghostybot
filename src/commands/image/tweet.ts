@@ -32,7 +32,7 @@ export default class TweetCommand extends Command {
           message.channel.send(lang.GLOBAL.ERROR);
         });
 
-      sendMsg.delete();
+      sendMsg.deletable && sendMsg.delete();
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)

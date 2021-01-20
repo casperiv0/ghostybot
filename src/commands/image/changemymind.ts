@@ -17,19 +17,19 @@ export default class ChangeMyMindCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const text = args.join(" ");
-  
+
       const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
-  
+
       const data = await fetch(
         `https://nekobot.xyz/api/imagegen?type=changemymind&text=${text}`
       ).then((res) => res.json());
-  
-      sendMsg.delete();
+
+      sendMsg.deletable && sendMsg.delete();
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
         .setImage(data.message);
-  
+
       message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

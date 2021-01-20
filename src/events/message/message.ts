@@ -16,6 +16,7 @@ export default class MessageEvent extends Event {
       const guildId = message?.guild?.id;
       const userId = message?.author?.id;
       const guild = await bot.utils.getGuildById(guildId);
+      const lang = await bot.utils.getGuildLang(guildId);
       const mentions = message.mentions.members;
       const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
       const customCommands = guild?.custom_commands;
@@ -38,7 +39,7 @@ export default class MessageEvent extends Event {
 
         const msg = message.channel.messages.cache.get(sticky?.message_id);
         if (msg) {
-          msg?.delete();
+          msg.deletable && msg?.delete();
         }
 
         const stickyMessage = await message.channel.send(sticky?.message);
@@ -46,18 +47,16 @@ export default class MessageEvent extends Event {
         await sticky?.save();
       }
 
-      // check if message has a badword in it
+      // check if message has a bad word in it
       if (!message.content.includes(`${guild?.prefix}blacklistedwords`) && !message.author.bot) {
         guild?.blacklistedwords.forEach((word) => {
           if (message.content.toLowerCase().includes(word.toLowerCase())) {
             message.deletable && message.delete();
             return message.channel
-              .send(
-                `<@${userId}> You used a bad word the admin has set, therefore your message was deleted!`
-              )
+              .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
               .then((msg) => {
                 setTimeout(() => {
-                  msg.delete();
+                  msg.deletable && msg.delete();
                 }, 5000);
               });
           }
@@ -74,7 +73,12 @@ export default class MessageEvent extends Event {
               bot.utils
                 .baseEmbed(message)
                 .setTitle("AFK!")
-                .setDescription(`${member.user.tag} is AFK!\n **Reason:** ${user?.afk?.reason}`)
+                .setDescription(
+                  lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace(
+                    "{reason}",
+                    `${user?.afk.reason}`
+                  )
+                )
             );
           }
         });
@@ -98,11 +102,11 @@ export default class MessageEvent extends Event {
         const msg = await message.channel.send(
           bot.utils
             .baseEmbed(message)
-            .setDescription(`**${message.author.tag}** is not afk anymore`)
+            .setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag))
         );
 
         setTimeout(() => {
-          msg.delete();
+          msg.deletable && msg.delete();
         }, 5000);
       }
 
@@ -118,16 +122,16 @@ export default class MessageEvent extends Event {
           if (guild?.level_data.enabled) {
             const embed = bot.utils
               .baseEmbed(message)
-              .setTitle("Level Up!")
-              .addField("New level", newLevel)
-              .addField("Total xp", user.xp + xp);
+              .setTitle(lang.LEVELS.LEVEL_UP)
+              .addField(lang.LEVELS.NEW_LEVEL, newLevel)
+              .addField(lang.LEVELS.TOTAL_XP, user.xp + xp);
 
             const msg = await message.channel.send(embed);
             if (!msg) return;
 
             setTimeout(() => {
               if (!msg) return;
-              msg?.delete();
+              msg.deletable && msg?.delete();
             }, 10_000);
           }
         }
@@ -144,7 +148,7 @@ export default class MessageEvent extends Event {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === userId);
 
         if (isBlacklisted) {
-          return message.reply("You've been blacklisted from using this bot.");
+          return message.reply(lang.MESSAGE.BLACKLISTED);
         }
       }
 
@@ -153,16 +157,16 @@ export default class MessageEvent extends Event {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
-          .addField("Prefix", guild?.prefix)
-          .addField("Support", "https://discord.gg/XxHrtkA")
-          .addField("Dashboard", bot.config.dashboard.dashboardUrl);
+          .addField(lang.GUILD.PREFIX, guild?.prefix)
+          .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
+          .addField(lang.BOT.DASHBOARD, bot.config.dashboard.dashboardUrl);
 
         return message.channel.send({ embed });
       }
 
       if (customCommands) {
         if (guild?.auto_delete_cmd === true) {
-          message?.delete();
+          message.deletable && message?.delete();
         }
 
         const command = customCommands.find((c) => c.name === cmd);
@@ -188,20 +192,20 @@ export default class MessageEvent extends Event {
 
       if (guild?.disabled_categories?.includes(command.options.category)) {
         return message.channel.send(
-          `That command is disabled because this guild disabled the ${command.options.category} category`
+          lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category)
         );
       }
 
       if (guild?.disabled_commands?.includes(command.name)) {
-        return message.channel.send("That command was disabled for this guild");
+        return message.channel.send(lang.MESSAGE.COMMAND_DISABLED);
       }
 
       if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
-        return message.reply("This command can only be used by the owners!");
+        return message.reply(lang.MESSAGE.OWNER_ONLY);
       }
 
       if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
-        return message.channel.send("This channel is not a NSFW channel!");
+        return message.channel.send(lang.MESSAGE.NOT_NSFW);
       }
 
       if (command.options.memberPermissions) {
@@ -214,7 +218,10 @@ export default class MessageEvent extends Event {
 
         if (neededPerms.length > 0) {
           return message.channel.send(
-            `You need: ${neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")} permissions`
+            lang.MESSAGE.NEED_PERMS.replace(
+              "{perms}",
+              neededPerms.map((p) => `\`${p.toUpperCase()}\``).join(", ")
+            )
           );
         }
       }
@@ -240,10 +247,10 @@ export default class MessageEvent extends Event {
 
         const embed = bot.utils
           .baseEmbed(message)
-          .setTitle("Incorrect command usage")
+          .setTitle(lang.MESSAGE.INCORRECT_ARGS)
           .setColor("RED")
-          .setDescription(`:x: You must provide more args: ${cmdArgs}`)
-          .addField("Example:", cmdExample);
+          .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
+          .addField(lang.MESSAGE.EXAMPLE, cmdExample);
 
         return message.channel.send(embed);
       }
@@ -256,9 +263,10 @@ export default class MessageEvent extends Event {
           const timeLeft = (expireTime - now) / 1000;
 
           return message.reply(
-            `Please wait **${timeLeft.toFixed(1)}** more seconds before using the **${
+            lang.MESSAGE.COOLDOWN_AMOUNT.replace("{time}", `${timeLeft.toFixed(1)}`).replace(
+              "{command}",
               command.name
-            }** command`
+            )
           );
         }
       }

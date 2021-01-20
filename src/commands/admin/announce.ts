@@ -17,7 +17,6 @@ export default class AnnounceCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      message.delete();
       if (!args[0])
         return message.channel.send(
           lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL

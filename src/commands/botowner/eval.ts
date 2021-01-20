@@ -3,7 +3,7 @@ import { inspect } from "util";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-const classified = ["bot.config", "bot.token"];
+const classified = ["bot.config", "bot.token", "process.env"];
 
 export default class EvalCommand extends Command {
   constructor(bot: Bot) {
