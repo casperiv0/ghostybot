@@ -322,6 +322,7 @@ export default {
     VERSION: "الاصدار",
     PROTOCOL: "البروتوكول",
     DESCRIPTION: "الوصف",
+    NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "السرفر غير موجود",
     MC_PROVIDE_IP: "من فضلك ادخل اي بي السرفى",
     NPM_SEARCH: "NPM بحث",

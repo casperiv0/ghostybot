@@ -19,10 +19,6 @@ export default class NpmCommand extends Command {
     try {
       const query = args.join(" ");
 
-      if (!query) {
-        return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
-      }
-
       const data = await fetch(
         `http://registry.npmjs.com/-/v1/search?text=${query}&size=5`
       ).then((res) => res.json());
@@ -30,6 +26,10 @@ export default class NpmCommand extends Command {
       const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
         return { ...pkg, searchScore };
       });
+
+      if (foundPackages.length <= 0) {
+        return message.channel.send(lang.UTIL.NPM_NOT_FOUND.replace("{query}", query));
+      }
 
       // Most accurate package
       const foundPackage = foundPackages.find((d) => d.searchScore > 10000);

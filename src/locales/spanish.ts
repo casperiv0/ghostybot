@@ -325,6 +325,7 @@ export default {
     VERSION: "Version",
     PROTOCOL: "Protocolo",
     DESCRIPTION: "Descripción",
+    NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "Servidor no fue encontrado",
     MC_PROVIDE_IP: "Proporciona una IP",
     NPM_SEARCH: "Busqueda de NPM",
