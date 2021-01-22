@@ -203,27 +203,35 @@ export default class Util {
     allowAuthor?: boolean
   ): Promise<GuildMember | undefined | null> {
     if (!message.guild) return;
-    let member: GuildMember | null;
-    const mention = // Check if the first mention is not the bot prefix
-      message.mentions.users.first()?.id !== this.bot.user?.id
-        ? message.mentions.users.first()
-        : message.mentions.users.array()[1];
+    try {
+      let member: GuildMember | null;
+      const mention = // Check if the first mention is not the bot prefix
+        message.mentions.users.first()?.id !== this.bot.user?.id
+          ? message.mentions.users.first()
+          : message.mentions.users.array()[1];
 
-    member =
-      message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
-      message.guild.members.cache.get(args[0]) ||
-      message.guild.members.cache.find((m) => m.user.id === args[0]) ||
-      (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
+      member =
+        message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
+        message.guild.members.cache.get(args[0]) ||
+        message.guild.members.cache.find((m) => m.user.id === args[0]) ||
+        (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
 
-    if (!member) {
-      member = await message.guild.members.fetch(args[0])[0];
+      if (!member) {
+        member = await message.guild.members.fetch(args[0])[0];
+      }
+
+      if (!member && allowAuthor) {
+        member = message.member;
+      }
+
+      return member;
+    } catch (e) {
+      if (e.includes("DiscordAPIError: Unknown Member")) {
+        return null;
+      } else {
+        this.sendErrorLog(e, "error");
+      }
     }
-
-    if (!member && allowAuthor) {
-      member = message.member;
-    }
-
-    return member;
   }
 
   async findRole(message: Message, arg: string): Promise<Role | null> {
