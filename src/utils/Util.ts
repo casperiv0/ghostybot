@@ -227,7 +227,7 @@ export default class Util {
       return member;
     } catch (e) {
       if (e.includes("DiscordAPIError: Unknown Member")) {
-        return null;
+        return undefined;
       } else {
         this.sendErrorLog(e, "error");
       }

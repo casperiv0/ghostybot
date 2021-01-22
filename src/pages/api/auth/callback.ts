@@ -38,11 +38,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const token = jwt.sign(data.access_token, jwtSecret);
 
   const expiresInMilliseconds = data.expires_in * 1000;
+
   setCookie({ res }, "token", token, {
     expires: new Date(Date.now() + expiresInMilliseconds),
-    httpOnly: true,
+    httpOnly: req.bot.config.dev, // do not set the 'true' if in 'dev'
+    secure: req.bot.config.dev, // do not set the 'true' if in 'dev'
     path: "/",
-    secure: true,
   });
 
   res.redirect("/dashboard");

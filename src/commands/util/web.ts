@@ -6,7 +6,7 @@ import Bot from "../../structures/Bot";
 
 const PORN_BLACKLIST_LIST_URL =
   "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt";
-const CAPTURE_URL = "https://image.thum.io/get/width/1920/crop/675/noanimate/";
+const CAPTURE_URL = "https://image.thum.io/get/width/2160/crop/3840/noanimate/";
 
 export default class WebCommand extends Command {
   constructor(bot: Bot) {
