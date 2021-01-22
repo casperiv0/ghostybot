@@ -43,7 +43,7 @@ export default class NpmCommand extends Command {
           .baseEmbed(message)
           .setURL(foundPackage.links.npm)
           .setTitle(foundPackage.name)
-          .setDescription(foundPackage.description)
+          .setDescription(foundPackage?.description ?? lang.GLOBAL.NONE)
           .addField(lang.UTIL.VERSION, foundPackage.version, true)
           .addField(lang.UTIL.LAST_MODIFIED, `${date} (${tz})`, true)
           .addField(lang.UTIL.MAINTAINERS, maintainers);
