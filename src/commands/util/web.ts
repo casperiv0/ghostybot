@@ -22,10 +22,10 @@ export default class WebCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
     try {
       const url = args.join(" ");
-      const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
       const isNsfw = await this.isNsfw(url);
 
       if (!url.startsWith("http")) {
@@ -45,6 +45,7 @@ export default class WebCommand extends Command {
       message.channel.send(attachment);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
+      sendMsg.deletable && sendMsg.delete();
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
