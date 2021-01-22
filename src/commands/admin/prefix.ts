@@ -20,7 +20,9 @@ export default class PrefixCommand extends Command {
 
       if (!prefix)
         return message.channel.send(
-          lang.ADMIN.CURRENT_PREFIX.replaceAll("{guildPrefix}", `${guild?.prefix}`)
+          lang.ADMIN.CURRENT_PREFIX
+          .replace("{guildPrefix}", `${guild?.prefix}`)
+          .replace("{guildPrefix}", `${guild?.prefix}`)
         );
 
       await bot.utils.updateGuildById(message.guild?.id, { prefix });
