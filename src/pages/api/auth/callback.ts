@@ -41,8 +41,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   setCookie({ res }, "token", token, {
     expires: new Date(Date.now() + expiresInMilliseconds),
-    httpOnly: req.bot.config.dev, // do not set the 'true' if in 'dev'
-    secure: req.bot.config.dev, // do not set the 'true' if in 'dev'
+    httpOnly: !req.bot.config.dev, // do not set the 'true' if in 'dev'
+    secure: !req.bot.config.dev, // do not set the 'true' if in 'dev'
     path: "/",
   });
 
