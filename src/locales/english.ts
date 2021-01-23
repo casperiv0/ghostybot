@@ -114,6 +114,7 @@ export default {
   MUSIC: {
     MUST_BE_IN_VC: "You need to be in a voice channel",
     NO_QUEUE: "There are no songs currently playing",
+    NO_PREV_QUEUE: "No previous track was found",
     QUEUE_CLEARED: "The queue was cleared",
     QUEUE: "Music Queue",
     BETWEEN_0_100: "Volume must be between 0 and 100",
