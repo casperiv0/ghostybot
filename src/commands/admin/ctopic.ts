@@ -20,18 +20,18 @@ export default class CTopicCommand extends Command {
     try {
       let channel: TextChannel = message.mentions.channels.first() as TextChannel;
       let topic: string;
-  
+
       if (!channel) {
         channel = message.channel as TextChannel;
         topic = args.join(" ");
       } else {
         topic = args.slice(1).join(" ").trim();
       }
-  
+
       if (!topic) {
         return message.reply(lang.ADMIN.C_TOPIC_PROVIDE_TOPIC);
       }
-  
+
       await channel.setTopic(topic);
       await message.channel.send(lang.ADMIN.C_TOPIC_ADDED.replace("{topic}", topic));
     } catch (err) {
