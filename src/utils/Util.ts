@@ -289,10 +289,8 @@ export default class Util {
       guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
       guild.roles.cache.find((r) => r.name === "muted") ||
       (await guild.roles.create({
-        data: {
-          name: "muted",
-          color: "GRAY",
-        },
+        name: "muted",
+        color: "GRAY",
         reason: "Mute a user",
       }))
     );

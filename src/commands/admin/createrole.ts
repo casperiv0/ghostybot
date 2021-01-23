@@ -21,10 +21,8 @@ export default class CreateRoleCommand extends Command {
       const [roleName] = args;
 
       message.guild?.roles.create({
-        data: {
-          name: roleName,
-          color: "BLUE",
-        },
+        name: roleName,
+        color: "BLUE",
       });
 
       const embed = bot.utils
