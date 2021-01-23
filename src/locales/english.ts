@@ -118,6 +118,8 @@ export default {
     QUEUE_CLEARED: "The queue was cleared",
     QUEUE: "Music Queue",
     BETWEEN_0_100: "Volume must be between 0 and 100",
+    BETWEEN_1_TOTALQUEUE: "Use a track number between 1 and {totalQueue}",
+    REMOVE_SUCCESS: "has been removed from the queue",
     VOL_SUCCESS: "Successfully set volume to {vol}%",
     PLAYING: "Playing",
     PAUSED: "Paused",
