@@ -10,7 +10,7 @@ export default class ChannelUpdateEvent extends Event {
   async execute(bot: Bot, oldChannel: GuildChannel, newChannel: GuildChannel) {
     try {
       if (!oldChannel.guild?.available) return;
-      if (!oldChannel.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!oldChannel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
   
       const webhook = await bot.utils.getWebhook(newChannel.guild);
       if (!webhook) return;

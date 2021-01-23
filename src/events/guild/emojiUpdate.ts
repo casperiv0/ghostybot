@@ -10,7 +10,7 @@ export default class EmojiUpdateEvent extends Event {
   async execute(bot: Bot, oldEm: GuildEmoji, newEm: GuildEmoji) {
     try {
       if (!newEm.guild) return;
-      if (!newEm.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!newEm.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
       const webhook = await bot.utils.getWebhook(newEm.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newEm.guild.id);

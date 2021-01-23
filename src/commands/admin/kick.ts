@@ -27,7 +27,7 @@ export default class KickCommand extends Command {
   
       if (!kickReason) kickReason = lang.GLOBAL.NOT_SPECIFIED;
   
-      if (!kickMember.kickable || kickMember.hasPermission("KICK_MEMBERS")) {
+      if (!kickMember.kickable || kickMember.permissions.has("KICK_MEMBERS")) {
         return message.channel.send(lang.ADMIN.KICK_CANNOT_KICK);
       }
   

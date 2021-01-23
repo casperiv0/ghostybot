@@ -11,7 +11,7 @@ export default class MessageDeleteEvent extends Event {
     try {
       if (!message.guild?.available) return;
       if (!message.guild) return;
-      if (!message.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!message.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
 
       const webhook = await bot.utils.getWebhook(message.guild);
       if (!webhook) return;

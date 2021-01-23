@@ -19,7 +19,7 @@ export default class GuildMemberUpdateEvent extends Event {
       // Member passed membership screening
       if (oldMember.pending && !newMember.pending) {
         if (welcomeData.role_id) {
-          if (!newMember.guild.me?.hasPermission("MANAGE_ROLES")) return;
+          if (!newMember.guild.me?.permissions.has("MANAGE_ROLES")) return;
           newMember.roles.add(welcomeData.role_id);
         }
       }

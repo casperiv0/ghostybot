@@ -10,7 +10,7 @@ export default class MessageUpdateEvent extends Event {
   async execute(bot: Bot, oldMsg: Message, newMsg: Message) {
     try {
       if (!newMsg.guild?.available) return;
-      if (!newMsg.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!newMsg.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
       const webhook = await bot.utils.getWebhook(newMsg.guild);
       if (!webhook) return;
       const guild = await bot.utils.getGuildById(newMsg.guild.id);

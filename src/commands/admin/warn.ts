@@ -28,7 +28,7 @@ export default class WarnCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      if (member.hasPermission("MANAGE_MESSAGES")) {
+      if (member.permissions.has("MANAGE_MESSAGES")) {
         return message.channel.send(lang.ADMIN.USER_NOT_WARN);
       }
 
