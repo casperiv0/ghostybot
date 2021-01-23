@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class VolumeCommand extends Command {
+export default class RemoveCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "remove",
