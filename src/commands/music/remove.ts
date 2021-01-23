@@ -9,6 +9,7 @@ export default class RemoveCommand extends Command {
       description: "Remove a song from the queue",
       category: "music",
       aliases: [],
+      requiredArgs: ["track-number"],
     });
   }
 
@@ -39,10 +40,6 @@ export default class RemoveCommand extends Command {
   
       if (Number(songNo) > queue.tracks.length) {
         return message.channel.send(lang.MUSIC.BETWEEN_1_TOTALQUEUE);
-      }
-  
-      if (!songNo) {
-        return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
   
       const song = queue.tracks[Number(songNo)];
