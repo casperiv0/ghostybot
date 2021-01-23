@@ -152,9 +152,12 @@ export default {
   MUSIC: {
     MUST_BE_IN_VC: "يجب ان تكون بقناة صوتية",
     NO_QUEUE: "ليس هناك شيئ لتشغيله",
+    NO_PREV_QUEUE: "No previous track was found",
     QUEUE_CLEARED: "تم حذف القائمة",
     QUEUE: "قائمة الموسيقيlume",
     BETWEEN_0_100: "يجب ان يكون الصوت بين 0 و 100",
+    BETWEEN_1_TOTALQUEUE: "Use a track number between 1 and {totalQueue}",
+    REMOVE_SUCCESS: "has been removed from the queue",
     VOL_SUCCESS: "تم ضبط الصوت الي {vol}%",
     PLAYING: "جاري التشغيل",
     PAUSED: "تم الايقاف",

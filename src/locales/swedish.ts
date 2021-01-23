@@ -151,10 +151,13 @@ export default {
   MUSIC: {
     MUST_BE_IN_VC: "Du måste vara i en röstkanal",
     NO_QUEUE: "Det finns inga låtar för närvarande",
+    NO_PREV_QUEUE: "No previous track was found",
     QUEUE_CLEARED: "Kön rensades",
     QUEUE: "Musik kö",
     BETWEEN_0_100: "Volymen måste vara mellan 0 och 100",
     VOL_SUCCESS: "Ställ in volymen till {vol}%",
+    BETWEEN_1_TOTALQUEUE: "Use a track number between 1 and {totalQueue}",
+    REMOVE_SUCCESS: "has been removed from the queue",
     PLAYING: "Spelar",
     PAUSED: "Paused",
     DURATION: "Varaktighet",

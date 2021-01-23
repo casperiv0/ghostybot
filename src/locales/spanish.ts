@@ -154,9 +154,12 @@ export default {
   MUSIC: {
     MUST_BE_IN_VC: "Necesitas estar en un canal de voz",
     NO_QUEUE: "No hay canciones sonando ahora",
+    NO_PREV_QUEUE: "No previous track was found",
     QUEUE_CLEARED: "La cola se ha vaciado",
     QUEUE: "Cola de canciones",
     BETWEEN_0_100: "El volumen debe estar entre 0 y 100",
+    BETWEEN_1_TOTALQUEUE: "Use a track number between 1 and {totalQueue}",
+    REMOVE_SUCCESS: "has been removed from the queue",
     VOL_SUCCESS: "Se ha establecido el volumen a {vol}%",
     PLAYING: "Reproduciendo",
     PAUSED: "Pausado",
