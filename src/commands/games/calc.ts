@@ -1,7 +1,8 @@
 import { Message } from "discord.js";
-import math from "mathjs";
+import { create, all } from "mathjs";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
+const math = create(all);
 
 export default class CalcCommand extends Command {
   constructor(bot: Bot) {
@@ -17,7 +18,7 @@ export default class CalcCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const calculation = math.evaluate(args.join(" "));
+      const calculation = math?.evaluate?.(args.join(" "));
 
       const embed = bot.utils
         .baseEmbed(message)
