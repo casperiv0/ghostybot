@@ -49,18 +49,26 @@ export default class MessageEvent extends Event {
 
       // check if message has a bad word in it
       if (!message.content.includes(`${guild?.prefix}blacklistedwords`) && !message.author.bot) {
+        let hasBadWord = false;
+
         guild?.blacklistedwords.forEach((word) => {
-          if (message.content.toLowerCase().includes(word.toLowerCase())) {
-            message.deletable && message.delete();
-            return message.channel
-              .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
-              .then((msg) => {
-                setTimeout(() => {
-                  msg.deletable && msg.delete();
-                }, 5000);
-              });
-          }
+          message.content.split(" ").forEach((messageWord) => {
+            if (word.toLowerCase() === messageWord.toLowerCase()) {
+              return (hasBadWord = true);
+            }
+          });
         });
+
+        if (hasBadWord) {
+          message.deletable && message.delete();
+          return message.channel
+            .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
+            .then((msg) => {
+              setTimeout(() => {
+                msg.deletable && msg.delete();
+              }, 5000);
+            });
+        }
       }
 
       // check if mention user is afk
