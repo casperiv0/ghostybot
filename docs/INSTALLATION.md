@@ -55,8 +55,8 @@ These api keys are not required for the bot to function. Only required for their
 3. Rename `config.example.json` to `config.json`: `cp config.example.json config.json`
 4. Rename `.env.example` to `.env`: `Linux: cp .env.example .env`
 5. Create a bot at [Discord Developers](https://discord.com/developers/applications) and grab the tokens
-6. Copy your tokens and paste into `.env` [more info about the .env](#.env)
-7. Modify `config.json` where needed [more info about config.json](#config.json)
+6. Copy your tokens and paste into `.env` [more info about the .env](#env)
+7. Modify `config.json` where needed [more info about config.json](#configjson)
 8. Run `npm run build` to create the dashboard, if you have `enabled: false` for the dashboard, skip this step
 9. Run the bot: `npm start`
    - Using pm2: `pm2 start src/index.js --name ghostybot`
