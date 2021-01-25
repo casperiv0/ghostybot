@@ -9,7 +9,7 @@ export default class _8BallCommand extends Command {
       name: "8ball",
       description: "8Ball",
       category: "games",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 
@@ -17,15 +17,15 @@ export default class _8BallCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const question = args.join(" ");
-  
+
       const answer = answers[Math.floor(Math.random() * answers.length)];
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle("8Ball")
         .addField(`${lang.GAMES.QUESTION}:`, question)
         .addField(`${lang.GAMES.ANSWER}:`, answer);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

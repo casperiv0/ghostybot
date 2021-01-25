@@ -10,7 +10,7 @@ export default class StealEmojiCommand extends Command {
       category: "admin",
       usage: "<emoji> [custom name]",
       description: "Steal an emoji from a different server",
-      requiredArgs: ["emoji"],
+      requiredArgs: [{ name: "emoji" }],
       botPermissions: ["MANAGE_EMOJIS"],
       memberPermissions: ["MANAGE_EMOJIS"],
     });

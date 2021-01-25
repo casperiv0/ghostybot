@@ -194,7 +194,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** wasn't found in the store, please use `{prefix}store` to see all items in the store",
     ALREADY_OWN_ITEM: "You already own this item",
-    PROVIDE_VALID_AMOUNT: "Please provide a valid numeric amount",
     DEPOSITED_ALL: "Successfully deposited all your money!",
     DEPOSITED_AMOUNT: "Successfully deposited **{amount} coins**",
     WITHDRAW_ALL: "Successfully Withdrew all your money!",
@@ -597,7 +596,6 @@ export default {
     NO_WARNINGS: "There are no warnings",
     REMOVED_ALL_WARNINGS: "Successfully removed all warnings",
     ANNOUNCEMENT: "📢 Announcement 📢",
-    PROVIDE_VALID_TIME: "Please provide a valid time: E.G.:",
     PROVIDE_VALID_MEMBER: "Please provide valid a member",
     PROVIDE_VALID_EMOJI: "Please provide a valid emoji",
     PROVIDE_VALID_OPTION: "Please provide an valid option",
@@ -722,5 +720,7 @@ export default {
     EXAMPLE: "Example:",
     SUPPORT: "Support",
     NEED_PERMS: "You need: {perms} permissions",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };

@@ -11,7 +11,7 @@ export default class VoiceUnMuteCommand extends Command {
       category: "admin",
       botPermissions: ["MUTE_MEMBERS"],
       memberPermissions: ["MUTE_MEMBERS"],
-      requiredArgs: ["user"],
+      requiredArgs: [{ name: "user" }],
     });
   }
 
@@ -19,18 +19,20 @@ export default class VoiceUnMuteCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const unmuteMember = await bot.utils.findMember(message, args);
-  
+
       if (!unmuteMember) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
-  
+
       if (!unmuteMember.voice.serverMute) {
         return message.channel.send(lang.ADMIN.USER_NOT_VOICE_OR_NOT_MUTED);
       }
-  
+
       unmuteMember.voice.setMute(false, "unmuteReason");
-  
-      unmuteMember.user.send(lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`));
+
+      unmuteMember.user.send(
+        lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`)
+      );
       message.channel.send(
         lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag)
       );

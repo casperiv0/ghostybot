@@ -10,7 +10,7 @@ export default class MinecraftCommand extends Command {
       description: "Get info about a minecraft server",
       category: "util",
       aliases: ["mc"],
-      requiredArgs: ["server-ip"],
+      requiredArgs: [{ name: "server-ip" }],
     });
   }
 
@@ -18,21 +18,21 @@ export default class MinecraftCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [server] = args;
-  
+
       const url = `https://mcapi.us/server/status?ip=${server}`;
       const data = await fetch(url).then((res) => res.json());
-  
+
       if (!data.server.name) {
         return message.channel.send(lang.UTIL.MC_NOT_FOUND);
       }
-  
+
       const status = data.online ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
       const players = data.players.now;
       const maxPlayers = data.players.max;
       const description = data.motd;
       const version = data.server.name;
       const protocol = data.server.protocol;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${server}`)
@@ -42,7 +42,7 @@ export default class MinecraftCommand extends Command {
         .addField(lang.UTIL.VERSION, version, true)
         .addField(lang.UTIL.PROTOCOL, protocol, true)
         .addField(lang.UTIL.DESCRIPTION, description ? description : lang.GLOBAL.NONE);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

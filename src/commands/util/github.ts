@@ -10,7 +10,7 @@ export default class GitHubCommand extends Command {
       description: "Search someone on github",
       category: "util",
       aliases: ["gh"],
-      requiredArgs: ["username"],
+      requiredArgs: [{ name: "username" }],
     });
   }
 

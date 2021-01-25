@@ -198,7 +198,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** No fue encontrado en la tienda, Por favor usa `{prefix}store` Para ver todos los items en la tienda",
     ALREADY_OWN_ITEM: "Ya tienes ese item",
-    PROVIDE_VALID_AMOUNT: "Por favor proporciona una cantidad numerica valida",
     DEPOSITED_ALL: "Has depositado todo el dinero!",
     DEPOSITED_AMOUNT: "Has depositado **{amount} Monedas**",
     WITHDRAW_ALL: "Has retirado todo el dinero!",

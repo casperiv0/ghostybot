@@ -9,7 +9,7 @@ export default class EnlargeCommand extends Command {
       name: "enlarge",
       description: "get your emoji enlarged",
       category: "util",
-      requiredArgs: ["emoji"],
+      requiredArgs: [{ name: "emoji" }],
     });
   }
 
@@ -20,13 +20,13 @@ export default class EnlargeCommand extends Command {
       if (!emoji) {
         return message.channel.send(lang.UTIL.PROVIDE_EMOJI);
       }
-  
+
       const custom = Util.parseEmoji(emoji);
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.ENLARGED_EMOJI.replace("{emoji}", emoji));
-  
+
       if (custom?.id) {
         embed.setImage(
           `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`
@@ -37,7 +37,7 @@ export default class EnlargeCommand extends Command {
         if (!parsed[0]) {
           return message.channel.send(lang.UTIL.INVALID_EMOJI);
         }
-  
+
         embed.setImage(parsed[0].url);
         return message.channel.send(embed);
       }

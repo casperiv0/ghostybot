@@ -10,7 +10,7 @@ export default class DeafenCommand extends Command {
       category: "admin",
       botPermissions: ["DEAFEN_MEMBERS"],
       memberPermissions: ["DEAFEN_MEMBERS"],
-      requiredArgs: ["member", "reason"],
+      requiredArgs: [{ name: "member" }, { name: "reason" }],
     });
   }
 
@@ -20,17 +20,17 @@ export default class DeafenCommand extends Command {
     try {
       const deafenMember = await bot.utils.findMember(message, args);
       const deafenReason = args.slice(1).join(" ");
-  
+
       if (!deafenMember) {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
-  
+
       if (deafenMember?.voice?.serverDeaf) {
         return message.channel.send(lang.ADMIN.DEAFEN_ALREADY_DEAFENED);
       }
-  
+
       deafenMember.voice.setDeaf(true, "deafenReason");
-  
+
       deafenMember.user.send(
         lang.ADMIN.DEAFEN_SUCCESS_DM.replace("{guild}", `${message.guild?.name}`).replace(
           "{reason}",

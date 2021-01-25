@@ -9,7 +9,7 @@ export default class ImgfyCommand extends Command {
       aliases: ["texttoimage"],
       description: "text to image converter xD",
       category: "image",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

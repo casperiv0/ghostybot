@@ -11,7 +11,7 @@ export default class RemoveRoleAllCommand extends Command {
       category: "admin",
       botPermissions: ["MANAGE_ROLES"],
       memberPermissions: ["MANAGE_ROLES"],
-      requiredArgs: ["role"],
+      requiredArgs: [{ name: "role" }],
     });
   }
 
@@ -20,17 +20,19 @@ export default class RemoveRoleAllCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const role = await bot.utils.findRole(message, args.join(" "));
-  
+
       if (!role) {
         return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-        return message.channel.send(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name));
+        return message.channel.send(
+          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name)
+        );
       }
-  
+
       message.guild.members.cache.forEach((member) => member.roles.remove(role));
-  
+
       message.channel.send(lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name));
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -9,7 +9,7 @@ export default class WarningsCommand extends Command {
       description: "Returns how many warnings a user has",
       usage: "<user>",
       category: "admin",
-      requiredArgs: ["user"],
+      requiredArgs: [{ name: "user" }],
     });
   }
 

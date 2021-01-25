@@ -1,4 +1,5 @@
 import { Message, TextChannel } from "discord.js";
+import ms from "ms";
 import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
 import BotModel from "../../models/Bot.model";
 import Bot from "../../structures/Bot";
@@ -247,20 +248,46 @@ export default class MessageEvent extends Event {
         }
       }
 
-      if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
-        const cmdArgs = command.options.requiredArgs.map((a) => `\`${a}\``).join(", ");
-        const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
-          .map((a) => `<${a}>`)
-          .join(" ")}`;
+      if (command.options.requiredArgs) {
+        if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
+          const cmdArgs = command.options.requiredArgs.map((a) => `\`${a.name}\``).join(", ");
+          const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
+            .map((a) => `<${a.name}>`)
+            .join(" ")}`;
 
-        const embed = bot.utils
-          .baseEmbed(message)
-          .setTitle(lang.MESSAGE.INCORRECT_ARGS)
-          .setColor("RED")
-          .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
-          .addField(lang.MESSAGE.EXAMPLE, cmdExample);
+          const embed = bot.utils
+            .baseEmbed(message)
+            .setTitle(lang.MESSAGE.INCORRECT_ARGS)
+            .setColor("RED")
+            .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
+            .addField(lang.MESSAGE.EXAMPLE, cmdExample);
 
-        return message.channel.send(embed);
+          return message.channel.send(embed);
+        }
+
+        let incorrectArg = false;
+        command.options.requiredArgs.map((arg, i) => {
+          switch (arg?.type) {
+            case "number": {
+              if (!Number(args[i])) {
+                message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
+                return (incorrectArg = true);
+              }
+              break;
+            }
+            case "time": {
+              if (!ms(args[i])) {
+                message.channel.send(lang.MESSAGE.MUST_BE_DATE);
+                return (incorrectArg = true);
+              }
+              break;
+            }
+            default:
+              break;
+          }
+        });
+
+        if (incorrectArg) return;
       }
 
       if (timestamps?.has(userId)) {

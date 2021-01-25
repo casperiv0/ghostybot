@@ -10,7 +10,7 @@ export default class CountryCommand extends Command {
       description: "Get information about a country",
       usage: "<country>",
       category: "util",
-      requiredArgs: ["country"],
+      requiredArgs: [{ name: "country" }],
     });
   }
 

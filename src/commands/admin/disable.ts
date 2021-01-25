@@ -10,7 +10,7 @@ export default class DisableCommand extends Command {
       description: "Disables a command",
       category: "exempt",
       memberPermissions: ["ADMINISTRATOR"],
-      requiredArgs: ["command name | category name"],
+      requiredArgs: [{ name: "command name | category name" }],
     });
   }
 

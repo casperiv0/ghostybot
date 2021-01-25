@@ -10,7 +10,7 @@ export default class SetReminderCommand extends Command {
       name: "setreminder",
       description: "Set a reminder, the bot will ping you when the timer runs out",
       category: "reminder",
-      requiredArgs: ["time", "message"],
+      requiredArgs: [{ type: "time", name: "time" }, { name: "message" }],
       aliases: ["addreminder", "remind", "remindme"],
       usage: "<time> <message>",
     });

@@ -12,7 +12,7 @@ export default class AddRoleAllCommand extends Command {
       category: "admin",
       memberPermissions: ["MANAGE_ROLES", "ADMINISTRATOR"],
       botPermissions: ["MANAGE_ROLES"],
-      requiredArgs: ["role"],
+      requiredArgs: [{ name: "role" }],
     });
   }
 

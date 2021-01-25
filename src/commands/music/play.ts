@@ -10,7 +10,7 @@ export default class PlayCommand extends Command {
       aliases: ["p"],
       category: "music",
       usage: "<youtube link | song name>",
-      requiredArgs: ["song"],
+      requiredArgs: [{ name: "song" }],
     });
   }
 
@@ -40,4 +40,3 @@ export default class PlayCommand extends Command {
     }
   }
 }
-

@@ -10,7 +10,7 @@ export default class UnBanCommand extends Command {
       category: "admin",
       botPermissions: ["BAN_MEMBERS"],
       memberPermissions: ["BAN_MEMBERS"],
-      requiredArgs: ["member_id"],
+      requiredArgs: [{ name: "member_id" }],
     });
   }
 
@@ -18,13 +18,13 @@ export default class UnBanCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [userId] = args;
-  
+
       if (!userId) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_USERID);
       }
-  
+
       const bannedUser = await message.guild?.members.unban(userId);
-  
+
       message.channel.send(
         lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`)
       );

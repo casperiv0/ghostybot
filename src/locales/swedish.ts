@@ -195,7 +195,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** hittades inte i butiken, använd `{prefix}store` för att se alla artiklar i butiken",
     ALREADY_OWN_ITEM: "Du äger redan det här föremålet",
-    PROVIDE_VALID_AMOUNT: "Ange ett giltigt numeriskt belopp",
     DEPOSITED_ALL: "Har deponerat alla dina pengar!",
     DEPOSITED_AMOUNT: "Har deponerats framgångsrikt **{amount} mynt**",
     WITHDRAW_ALL: "Lyckades tillbaka alla dina pengar!",

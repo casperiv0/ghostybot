@@ -9,7 +9,7 @@ export default class RockPaperScissorsCommand extends Command {
       description: "Rock Paper Scissors",
       category: "games",
       usage: "<rock | paper | scissors>",
-      requiredArgs: ["rock | paper | scissors"],
+      requiredArgs: [{ name: "rock | paper | scissors" }],
       cooldown: 5,
     });
   }

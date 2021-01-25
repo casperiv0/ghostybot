@@ -11,7 +11,7 @@ export default class GiveEndCommand extends Command {
       usage: "givend <messageId> \n **Example:** !giveaway end <messageId>",
       memberPermissions: ["MANAGE_GUILD"],
       aliases: ["gend"],
-      requiredArgs: ["messageId"],
+      requiredArgs: [{ name: "messageId" }],
     });
   }
 
@@ -19,7 +19,7 @@ export default class GiveEndCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [messageId] = args;
-  
+
       bot.giveawayManager
         .delete(messageId)
         .then(() => message.channel.send("Successfully ended giveaway"))

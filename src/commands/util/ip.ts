@@ -26,7 +26,7 @@ export default class IpLookupCommand extends Command {
       name: "ip",
       description: "Search an IP",
       category: "util",
-      requiredArgs: ["ip"],
+      requiredArgs: [{ name: "ip" }],
       aliases: ["ip-lookup"],
     });
   }
@@ -55,15 +55,19 @@ export default class IpLookupCommand extends Command {
         } = data;
         const flag = `https://www.countryflags.io/${countryCode}/flat/64.png` || "";
 
-        const embed = bot.utils.baseEmbed(message).setTitle(`${city}/${regionName} - ${country}`)
-          .setDescription(`
+        const embed = bot.utils
+          .baseEmbed(message)
+          .setTitle(`${city}/${regionName} - ${country}`)
+          .setDescription(
+            `
 **ZIP:** ${zip}
 **Lon/Lat:** ${lon}/${lat}
 **ISP:** ${isp}
 **Org:** ${org}
 **Timezone:** ${timezone}
-`)
-        .setThumbnail(flag);
+`
+          )
+          .setThumbnail(flag);
 
         return message.channel.send(embed);
       } else {

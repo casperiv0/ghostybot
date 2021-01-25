@@ -10,7 +10,7 @@ export default class StickyCommand extends Command {
       category: "admin",
       botPermissions: ["MANAGE_MESSAGES"],
       memberPermissions: ["MANAGE_MESSAGES"],
-      requiredArgs: ["message"],
+      requiredArgs: [{ name: "message" }],
     });
   }
 

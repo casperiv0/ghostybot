@@ -10,7 +10,7 @@ export default class BuyCommand extends Command {
       category: "economy",
       usage: "<item name>",
       cooldown: 10,
-      requiredArgs: ["item name"],
+      requiredArgs: [{ name: "item name" }],
     });
   }
 
@@ -23,35 +23,35 @@ export default class BuyCommand extends Command {
       const inventory = user?.inventory;
       const prefix = guild?.prefix;
       let query = args[0];
-  
+
       if (!guild?.store) {
         return message.channel.send(lang.ECONOMY.STORE_EMPTY);
       }
-  
+
       if (!query) {
         return message.channel.send(lang.ECONOMY.PROVIDE_ITEM_TO_BUY);
       }
-  
+
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       query = query.toLowerCase();
-  
+
       const item = guild?.store?.filter((storeItem) => storeItem.name === query)[0];
-  
+
       if (!item)
         return message.channel.send(
           lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", query).replace("{prefix}", `${prefix}`)
         );
-  
+
       if (inventory && inventory?.includes(item.name)) {
         return message.channel.send(lang.ECONOMY.ALREADY_OWN_ITEM);
       }
-  
+
       if (!user?.money !== null && user?.money < item.price)
         return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
-  
+
       if (!inventory) {
         bot.utils.updateUserById(message.author.id, guildId, {
           inventory: [item.name],
@@ -63,7 +63,7 @@ export default class BuyCommand extends Command {
           money: user.money - item.price,
         });
       }
-  
+
       message.channel.send(
         lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace("{price}", `${item.price}`)
       );

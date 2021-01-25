@@ -11,7 +11,7 @@ export default class DelCmdCommand extends Command {
       category: "admin",
       aliases: ["removecmd"],
       memberPermissions: ["ADMINISTRATOR"],
-      requiredArgs: ["command name"],
+      requiredArgs: [{ name: "command name" }],
     });
   }
 
@@ -21,16 +21,16 @@ export default class DelCmdCommand extends Command {
       const guild = await bot.utils.getGuildById(message.guild?.id);
       const commands = guild?.custom_commands;
       const [cmdName] = args;
-  
+
       if (commands) {
         const data = commands.find((cmd) => cmd.name === cmdName.toLowerCase());
-  
+
         if (!data) {
           return message.channel.send(lang.ADMIN.DEL_CMD_NOT_FOUND);
         }
-  
+
         const filtered = commands.filter((cmd) => cmd.name !== cmdName.toLowerCase());
-  
+
         await bot.utils.updateGuildById(message.guild?.id, {
           custom_commands: filtered,
         });

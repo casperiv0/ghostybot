@@ -9,7 +9,7 @@ export default class NpmCommand extends Command {
       name: "npm",
       description: "Search packages on npm by their name",
       category: "util",
-      requiredArgs: ["query"],
+      requiredArgs: [{ name: "query" }],
     });
   }
 

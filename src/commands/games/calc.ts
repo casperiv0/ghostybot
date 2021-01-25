@@ -11,7 +11,7 @@ export default class CalcCommand extends Command {
       description: "Calculate something",
       category: "games",
       aliases: ["math"],
-      requiredArgs: ["calculation"],
+      requiredArgs: [{ name: "calculation" }],
     });
   }
 

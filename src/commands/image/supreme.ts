@@ -8,7 +8,7 @@ export default class SupremeCommand extends Command {
       name: "supreme",
       description: "Display custom text as the Supreme logo",
       category: "image",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

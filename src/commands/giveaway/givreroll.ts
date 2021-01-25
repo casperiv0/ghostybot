@@ -10,7 +10,7 @@ export default class GivReRollCommand extends Command {
       category: "giveaway",
       memberPermissions: ["MANAGE_GUILD"],
       aliases: ["greroll"],
-      requiredArgs: ["messageId"],
+      requiredArgs: [{ name: "messageId" }],
     });
   }
 
@@ -18,7 +18,7 @@ export default class GivReRollCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [messageId] = args;
-  
+
       bot.giveawayManager
         .reroll(messageId)
         .catch(() => message.channel.send(`No giveaway found with id: ${messageId}`));

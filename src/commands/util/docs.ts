@@ -9,7 +9,7 @@ export default class DocsCommand extends Command {
       name: "docs",
       description: "Returns the request query from discord.js docs",
       category: "util",
-      requiredArgs: ["query"],
+      requiredArgs: [{ name: "query" }],
     });
   }
 
@@ -18,13 +18,13 @@ export default class DocsCommand extends Command {
     try {
       const query = args.join(" ");
       const url = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(query)}`;
-  
+
       const data = await fetch(url).then((res) => res.json());
-  
+
       if (!data) {
         return message.channel.send(lang.UTIL.DOC_NOT_FOUND);
       }
-  
+
       const embed = {
         ...data,
         author: {},
@@ -34,7 +34,7 @@ export default class DocsCommand extends Command {
           icon_url: message.author.displayAvatarURL({ dynamic: true }),
         },
       };
-  
+
       return message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

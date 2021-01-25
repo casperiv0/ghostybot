@@ -9,7 +9,7 @@ export default class DefineCommand extends Command {
       name: "define",
       description: "Define a word",
       category: "util",
-      requiredArgs: ["word"],
+      requiredArgs: [{ name: "word" }],
     });
   }
 
@@ -27,7 +27,7 @@ export default class DefineCommand extends Command {
             .setTitle(lang.UTIL.DEF_FOR_WORD.replace("{word}", word))
             .addField(lang.UTIL.CATEGORY, data.category)
             .addField(lang.UTIL.DEFINITION, data.definition);
-  
+
           message.channel.send(embed);
         }
       });

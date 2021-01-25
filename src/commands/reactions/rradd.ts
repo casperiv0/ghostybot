@@ -12,7 +12,7 @@ export default class RrAddCommand extends Command {
       usage: "<channel_id>",
       memberPermissions: ["ADMINISTRATOR"],
       botPermissions: ["MANAGE_ROLES", "ADD_REACTIONS", "MANAGE_MESSAGES"],
-      requiredArgs: ["channel_id"],
+      requiredArgs: [{ name: "channel_id" }],
     });
   }
 
@@ -25,16 +25,16 @@ export default class RrAddCommand extends Command {
       const { guild } = message;
       if (!guild) return;
       const filter = (m: Message) => message.author.id === m.author.id;
-  
+
       const channel = guild.channels.cache.get(channelId);
       if (!channel) {
         return message.channel.send(
           lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId)
         );
       }
-  
+
       message.channel.send(lang.REACTIONS.ROLES);
-  
+
       const roleMsgs = await message.channel.awaitMessages(filter, {
         time: 600000,
         max: 1,
@@ -43,13 +43,13 @@ export default class RrAddCommand extends Command {
       const roleMsg = roleMsgs.first();
       if (!roleMsg) return;
       roles = await this.parseRoles(roleMsg, bot);
-  
+
       if (!roles?.[0]) {
         return message.channel.send(lang.REACTIONS.NO_ROLE);
       }
-  
+
       message.channel.send(lang.REACTIONS.EMOJIS);
-  
+
       const emojiMsgs = await message.channel.awaitMessages(filter, {
         time: 600000,
         max: 1,
@@ -58,37 +58,37 @@ export default class RrAddCommand extends Command {
       const emojiMsg = emojiMsgs.first();
       if (!emojiMsg) return;
       emojis = this.parseEmojis(emojiMsg);
-  
+
       if (!emojis?.[0]) {
         return message.channel.send(lang.REACTIONS.VALID_EMOJI);
       }
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.REACTIONS.TITLE)
         .setDescription(`${lang.REACTIONS.DESC}\n ${this.createDescription(roles, emojis)}`);
-  
+
       const msg = await (channel as TextChannel).send(embed);
-  
+
       emojis.forEach((em: string) => {
         msg.react(em);
       });
-  
+
       const reactions: Reaction[] = [];
-  
+
       for (let i = 0; i < roles.length; i++) {
         reactions.push({ role_id: roles[i].id, emoji: emojis[i].toString() });
       }
-  
+
       const newRR = new ReactionsModel({
         guild_id: guild.id,
         message_id: msg.id,
         reactions: reactions,
         channel_id: channelId,
       });
-  
+
       newRR.save();
-  
+
       return message.channel.send(lang.REACTIONS.SUCCESS);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

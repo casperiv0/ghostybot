@@ -8,7 +8,7 @@ export default class BlockCommand extends Command {
       name: "block",
       description: "Write text with blocks",
       category: "games",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

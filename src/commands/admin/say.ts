@@ -9,7 +9,7 @@ export default class SayCommand extends Command {
       description: "Let the bot say something",
       category: "admin",
       memberPermissions: ["MANAGE_MESSAGES"],
-      requiredArgs: ["text | type(embed)"],
+      requiredArgs: [{ name: "text | type(embed)" }],
     });
   }
 

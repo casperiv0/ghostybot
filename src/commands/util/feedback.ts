@@ -8,7 +8,7 @@ export default class FeedbackCommand extends Command {
       name: "feedback",
       description: "Give feedback about the bot",
       category: "util",
-      requiredArgs: ["message"],
+      requiredArgs: [{ name: "message" }],
     });
   }
 
@@ -16,17 +16,17 @@ export default class FeedbackCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const feedback = args.join(" ");
-  
+
       if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
       if (!bot.config.feedBackChannelId || bot.config.feedBackChannelId === "") return;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_FEEDBACK)
         .setDescription(feedback);
-  
+
       (bot.channels.cache.get(bot.config.feedBackChannelId) as TextChannel)?.send(embed);
-  
+
       message.channel.send(lang.UTIL.FEEDBACK_SEND);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

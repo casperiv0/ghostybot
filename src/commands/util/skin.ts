@@ -10,7 +10,7 @@ export default class SkinCommand extends Command {
       description: "Search for skins from Minecraft",
       category: "util",
       aliases: ["minecraftskin"],
-      requiredArgs: ["username"],
+      requiredArgs: [{ name: "username" }],
     });
   }
 

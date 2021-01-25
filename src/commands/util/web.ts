@@ -15,7 +15,7 @@ export default class WebCommand extends Command {
       description: "Returns a screenshot of the requested website",
       category: "util",
       aliases: ["screenshot", "webscreenshot"],
-      requiredArgs: ["url"],
+      requiredArgs: [{ name: "url" }],
       usage: "<url EG: https://google.com >",
     });
   }

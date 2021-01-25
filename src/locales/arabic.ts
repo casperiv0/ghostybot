@@ -196,7 +196,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** الغرض ليس موجود بالمتجر فضلك استخدمuse `{prefix}store` لتري جميع الاغراض المتوفرة بالمتجر",
     ALREADY_OWN_ITEM: "انت بالفعل تمتلك هذا الغرض ",
-    PROVIDE_VALID_AMOUNT: "من فضلك استخدم رقم صحيح ",
     DEPOSITED_ALL: "تم ادخار جميع اموالك بنجاح",
     DEPOSITED_AMOUNT: "تم ادخار **{amount} كوينز**",
     WITHDRAW_ALL: "لقد سحبت جميع اموالك بنجاح",

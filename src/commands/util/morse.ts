@@ -9,7 +9,7 @@ export default class MorseCommand extends Command {
       name: "morse",
       description: "Convert a string to morse code",
       category: "util",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 
@@ -21,11 +21,11 @@ export default class MorseCommand extends Command {
         .toLowerCase()
         .replace(/./g, (x) => `${morseCode[x]}\u2001`)
         .trim();
-  
+
       if (morse.includes("undefined")) {
         return message.channel.send(lang.UTIL.TEXT_NOT_SUP);
       }
-  
+
       message.channel.send(morse);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

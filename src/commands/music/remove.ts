@@ -9,7 +9,7 @@ export default class RemoveCommand extends Command {
       description: "Remove a song from the queue",
       category: "music",
       aliases: [],
-      requiredArgs: ["track-number"],
+      requiredArgs: [{ name: "track-number", type: "number" }],
     });
   }
 
@@ -21,27 +21,31 @@ export default class RemoveCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       if (!bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (isNaN(Number(songNo))) {
         return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
-  
+
       if (Number(songNo) < 1) {
-        return message.channel.send(lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`));
+        return message.channel.send(
+          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`)
+        );
       }
-  
+
       if (Number(songNo) >= queue.tracks.length) {
-        return message.channel.send(lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`));
+        return message.channel.send(
+          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`)
+        );
       }
-  
+
       const song = queue.tracks[Number(songNo)];
       bot.player.remove(message, Number(songNo));
       await message.channel.send(`**${song.title}** ${lang.MUSIC.REMOVE_SUCCESS}`);

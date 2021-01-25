@@ -9,7 +9,7 @@ export default class GiphyCommand extends Command {
       name: "giphy",
       description: "Return a giphy image",
       category: "image",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

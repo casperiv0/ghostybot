@@ -58,9 +58,11 @@ function commandItem(command: Command) {
 
 **Usage:** ${`\`${command.options.usage || "N/A"}\``}
 
-**Aliases:** ${command.options.aliases?.map((value) => {
-    return `\`${value}\``;
-  }) || "N/A"}
+**Aliases:** ${
+    command.options.aliases?.map((value) => {
+      return `\`${value}\``;
+    }) || "N/A"
+  }
 
 **Member Permissions:** ${
     !command.options.memberPermissions
@@ -76,7 +78,9 @@ function commandItem(command: Command) {
 
 **Required Arguments:** ${
     command.options.requiredArgs
-      ? command.options.requiredArgs.map((a) => `\`${a}\``).join(", ")
+      ? command.options.requiredArgs
+          .map((a) => `\`${a.name}${a.type ? `(${a.type})` : "(string)"}\``)
+          .join(", ")
       : "N/A"
   }
 

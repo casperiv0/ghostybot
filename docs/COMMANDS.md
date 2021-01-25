@@ -531,7 +531,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `command name`, `command response`
+**Required Arguments:** `command name(string)`, `command response(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -549,7 +549,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `member`, `role`
+**Required Arguments:** `member(string)`, `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -567,7 +567,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `role`
+**Required Arguments:** `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -603,7 +603,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -621,7 +621,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `option`
+**Required Arguments:** `option(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -657,7 +657,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `role name`
+**Required Arguments:** `role name(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -693,7 +693,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, DEAFEN_MEMBERS
 
-**Required Arguments:** `member`, `reason`
+**Required Arguments:** `member(string)`, `reason(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -711,7 +711,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `command name`
+**Required Arguments:** `command name(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -729,7 +729,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
 
-**Required Arguments:** `amount`
+**Required Arguments:** `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -747,7 +747,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `command name | category name`
+**Required Arguments:** `command name | category name(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -765,7 +765,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `command name | category name`
+**Required Arguments:** `command name | category name(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -819,7 +819,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
 
-**Required Arguments:** `reason`
+**Required Arguments:** `reason(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -891,7 +891,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `member`, `role`
+**Required Arguments:** `member(string)`, `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -909,7 +909,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `role`
+**Required Arguments:** `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -927,7 +927,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`
+**Required Arguments:** `member(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -945,7 +945,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text | type(embed)`
+**Required Arguments:** `text | type(embed)(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -981,7 +981,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
 
-**Required Arguments:** `emoji`
+**Required Arguments:** `emoji(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -999,7 +999,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_MESSAGES
 
-**Required Arguments:** `message`
+**Required Arguments:** `message(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1017,7 +1017,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
-**Required Arguments:** `user`, `time`, `reason`
+**Required Arguments:** `user(string)`, `time(time)`, `reason(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1035,7 +1035,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, BAN_MEMBERS
 
-**Required Arguments:** `member_id`
+**Required Arguments:** `member_id(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1089,7 +1089,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1143,7 +1143,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MOVE_MEMBERS
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1161,7 +1161,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1179,7 +1179,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MUTE_MEMBERS
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1197,7 +1197,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1215,7 +1215,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `user`
+**Required Arguments:** `user(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1377,7 +1377,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1629,7 +1629,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1683,7 +1683,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`, `amount`
+**Required Arguments:** `member(string)`, `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1719,7 +1719,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `item name`
+**Required Arguments:** `item name(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1755,7 +1755,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `amount`
+**Required Arguments:** `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1827,7 +1827,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`, `amount`
+**Required Arguments:** `member(string)`, `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1863,7 +1863,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`, `amount`
+**Required Arguments:** `member(string)`, `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1899,7 +1899,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`, `amount`
+**Required Arguments:** `member(string)`, `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1971,7 +1971,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `amount`
+**Required Arguments:** `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2007,7 +2007,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2043,7 +2043,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2079,7 +2079,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2097,7 +2097,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `calculation`
+**Required Arguments:** `calculation(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2205,7 +2205,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2277,7 +2277,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `rock | paper | scissors`
+**Required Arguments:** `rock | paper | scissors(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2295,7 +2295,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`
+**Required Arguments:** `member(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2332,7 +2332,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `messageId`
+**Required Arguments:** `messageId(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2350,7 +2350,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `messageId`
+**Required Arguments:** `messageId(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2369,7 +2369,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `time`, `winnerCount`, `prize`
+**Required Arguments:** `time(time)`, `winnerCount(number)`, `prize(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2531,7 +2531,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2549,7 +2549,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2621,7 +2621,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2657,7 +2657,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2801,7 +2801,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2819,7 +2819,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2837,7 +2837,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `comment`
+**Required Arguments:** `comment(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2855,7 +2855,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `member`, `amount`
+**Required Arguments:** `member(string)`, `amount(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2981,7 +2981,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `option`, `filter`
+**Required Arguments:** `option(string)`, `filter(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3089,7 +3089,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `song`
+**Required Arguments:** `song(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3125,7 +3125,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `track-number`
+**Required Arguments:** `track-number(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3413,7 +3413,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADD_REACTIONS, MANAGE_MESSAGES
 
-**Required Arguments:** `channel_id`
+**Required Arguments:** `channel_id(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3431,7 +3431,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `message_id`
+**Required Arguments:** `message_id(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3467,7 +3467,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `reminder_id`
+**Required Arguments:** `reminder_id(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3485,7 +3485,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `time`, `message`
+**Required Arguments:** `time(time)`, `message(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3575,7 +3575,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `weight`, `height`
+**Required Arguments:** `weight(number)`, `height(number)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3629,7 +3629,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `report`
+**Required Arguments:** `report(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3683,7 +3683,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `country`
+**Required Arguments:** `country(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3719,7 +3719,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `word`
+**Required Arguments:** `word(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3773,7 +3773,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3791,7 +3791,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `emoji`
+**Required Arguments:** `emoji(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3827,7 +3827,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `emoji`
+**Required Arguments:** `emoji(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3845,7 +3845,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `message`
+**Required Arguments:** `message(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3863,7 +3863,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `username`
+**Required Arguments:** `username(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3881,7 +3881,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `extension`, `code`
+**Required Arguments:** `extension(string)`, `code(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3917,7 +3917,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3935,7 +3935,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3971,7 +3971,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `ip`
+**Required Arguments:** `ip(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4007,7 +4007,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `server-ip`
+**Required Arguments:** `server-ip(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4025,7 +4025,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `text`
+**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4043,7 +4043,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4061,7 +4061,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `app`
+**Required Arguments:** `app(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4079,7 +4079,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4097,7 +4097,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `question`
+**Required Arguments:** `question(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4133,7 +4133,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `role`
+**Required Arguments:** `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4205,7 +4205,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `username`
+**Required Arguments:** `username(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4223,7 +4223,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `suggestion`
+**Required Arguments:** `suggestion(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4241,7 +4241,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `language`, `text`
+**Required Arguments:** `language(string)`, `text(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4295,7 +4295,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `country/city`
+**Required Arguments:** `country/city(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4313,7 +4313,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `url`
+**Required Arguments:** `url(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4331,7 +4331,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `query`
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 

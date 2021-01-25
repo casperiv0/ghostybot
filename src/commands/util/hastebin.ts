@@ -11,7 +11,7 @@ export default class HastebinCommand extends Command {
       description: "Get a link of hastebin for your text",
       category: "util",
       usage: "<extension (js, ts, ...)> <code>",
-      requiredArgs: ["extension", "code"],
+      requiredArgs: [{ name: "extension" }, { name: "code" }],
     });
   }
 
