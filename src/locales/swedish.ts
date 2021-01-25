@@ -702,7 +702,7 @@ export default {
     NOT_AFK_ANYMORE: "{tag} är inte AFK längre ",
     BLACKLISTED: "Du är svartlistad från att använda den här botten.",
     CATEGORY_DISABLED:
-    "Det kommandot är inaktiverat eftersom den här guilden inaktiverade {category} kategori",
+      "Det kommandot är inaktiverat eftersom den här guilden inaktiverade {category} kategori",
     COMMAND_DISABLED: "Det kommandot inaktiverades för denna guild",
     NOT_NSFW: "Den här kanalen är inte en NSFW-kanal!",
     OWNER_ONLY: "Detta kommando kan bara användas av ägarna!",
@@ -714,5 +714,7 @@ export default {
     EXAMPLE: "Exempel:",
     SUPPORT: "Stöd",
     NEED_PERMS: "Du behöver: {perms} behörigheter",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };

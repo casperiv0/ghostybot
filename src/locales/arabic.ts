@@ -713,5 +713,7 @@ export default {
     EXAMPLE: "Example:",
     SUPPORT: "Support",
     NEED_PERMS: "You need: {perms} permissions",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };
