@@ -23,7 +23,10 @@ export default class BotInfoCommand extends Command {
       );
       const nodev = process.version;
       const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user?.id });
-  
+      const userCount = bot.utils.formatNumber(
+        bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0)
+      );
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.BOT.INFO_2}`)
@@ -38,7 +41,7 @@ export default class BotInfoCommand extends Command {
         .addField(
           `__**${lang.BOT.INFO}:**__`,
           `
-  **${lang.BOT.USERS}:** ${bot.utils.formatNumber(80000)}
+  **${lang.BOT.USERS}:** ${userCount}
   **${lang.BOT.GUILDS}:** ${bot.utils.formatNumber(bot.guilds.cache.size)}
   **${lang.BOT.CHANNELS}:** ${bot.utils.formatNumber(bot.channels.cache.size)}
   **${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}
@@ -48,7 +51,9 @@ export default class BotInfoCommand extends Command {
         )
         .addField(
           `__**${lang.BOT.SYSTEM_INFO}**__`,
-          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
+            2
+          )}MB
   **${lang.BOT.UPTIME}:** ${uptime}
   **${lang.BOT.NODE_V}:** ${nodev}
   **${lang.BOT.DJS_V}:** ${version}`,
@@ -68,11 +73,15 @@ export default class BotInfoCommand extends Command {
           true
         )
         .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
-        .addField(`${lang.BOT.DASHBOARD}`, `[Click Here](${bot.config.dashboard.dashboardUrl})`, true)
+        .addField(
+          `${lang.BOT.DASHBOARD}`,
+          `[Click Here](${bot.config.dashboard.dashboardUrl})`,
+          true
+        )
         .setImage(
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
         );
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

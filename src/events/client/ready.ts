@@ -12,7 +12,9 @@ export default class ReadyEvent extends Event {
   async execute(bot: Bot) {
     const serverCount = bot.utils.formatNumber(bot.guilds.cache.size);
     const channelCount = bot.utils.formatNumber(bot.channels.cache.size);
-    const userCount = bot.utils.formatNumber(80000);
+    const userCount = bot.utils.formatNumber(
+      bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0)
+    );
     const statuses = [
       ` ${serverCount} servers.`,
       `!help || ${channelCount} channels`,
