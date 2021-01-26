@@ -488,6 +488,7 @@ export default {
     NO_ACTIVE_REM: "User doesn't have any active reminders",
     MESSAGE: "Message:",
     TIME: "Time:",
+    ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
   },
   COVID: {
