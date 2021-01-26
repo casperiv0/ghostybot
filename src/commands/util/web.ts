@@ -34,7 +34,7 @@ export default class WebCommand extends Command {
       const available = await this.isAvailable(url);
 
       if (!available) {
-        return message.channel.send("This site seems to be unavailable");
+        return message.channel.send(lang.UTIL.WEB_UNAVAILABLE);
       }
 
       const isNsfw = await this.isNsfw(url);
