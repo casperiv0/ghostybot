@@ -11,7 +11,7 @@ export default class CreateRoleCommand extends Command {
       usage: "<role_name>",
       botPermissions: ["MANAGE_ROLES"],
       memberPermissions: ["MANAGE_ROLES"],
-      requiredArgs: ["role name"],
+      requiredArgs: [{ name: "role name" }],
     });
   }
 

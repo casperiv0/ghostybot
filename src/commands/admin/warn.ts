@@ -10,7 +10,7 @@ export default class WarnCommand extends Command {
       category: "admin",
       usage: "<user>",
       memberPermissions: ["MANAGE_GUILD"],
-      requiredArgs: ["user"],
+      requiredArgs: [{ name: "user" }],
     });
   }
 

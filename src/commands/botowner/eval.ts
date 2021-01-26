@@ -13,7 +13,7 @@ export default class EvalCommand extends Command {
       category: "botowner",
       ownerOnly: true,
       aliases: ["e"],
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

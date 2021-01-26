@@ -9,7 +9,7 @@ export default class FilterCommand extends Command {
       name: "filter",
       description: "Set or remove a filter",
       category: "music",
-      requiredArgs: ["option", "filter"],
+      requiredArgs: [{ name: "option" }, { name: "filter" }],
       options: ["set", "remove"],
     });
   }

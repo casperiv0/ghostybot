@@ -9,7 +9,7 @@ export default class LmgtfyCommand extends Command {
       description: "Let me google that for you",
       category: "games",
       usage: "<search query>",
-      requiredArgs: ["query"],
+      requiredArgs: [{ name: "query" }],
     });
   }
 

@@ -10,7 +10,7 @@ export default class CowSayCommand extends Command {
       description: "Let a cow say something",
       usage: "<text>",
       category: "animal",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

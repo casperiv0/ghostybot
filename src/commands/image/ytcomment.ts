@@ -9,7 +9,7 @@ export default class YtCommentCommand extends Command {
       description: "Returns an image with your YouTube comment",
       category: "image",
       usage: "<my amazing youtube comment>",
-      requiredArgs: ["comment"],
+      requiredArgs: [{ name: "comment" }],
     });
   }
 

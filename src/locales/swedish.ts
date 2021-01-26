@@ -195,7 +195,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** hittades inte i butiken, använd `{prefix}store` för att se alla artiklar i butiken",
     ALREADY_OWN_ITEM: "Du äger redan det här föremålet",
-    PROVIDE_VALID_AMOUNT: "Ange ett giltigt numeriskt belopp",
     DEPOSITED_ALL: "Har deponerat alla dina pengar!",
     DEPOSITED_AMOUNT: "Har deponerats framgångsrikt **{amount} mynt**",
     WITHDRAW_ALL: "Lyckades tillbaka alla dina pengar!",
@@ -374,6 +373,7 @@ export default {
     TIMEZONES: "Timezones",
     WEB_HTTP: "URL must start with `http://` or `https://`",
     WEB_NSFW: "Cannot display this site in a non-NSFW channel",
+    WEB_UNAVAILABLE: "This site seems to be unavailable",
     IP_NOT_FOUND: "No results were found",
   },
   BOT: {
@@ -487,6 +487,7 @@ export default {
     NO_ACTIVE_REM: "User doesn't have any active reminders",
     MESSAGE: "Message:",
     TIME: "Time:",
+    ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
   },
   COVID: {
@@ -703,7 +704,7 @@ export default {
     NOT_AFK_ANYMORE: "{tag} är inte AFK längre ",
     BLACKLISTED: "Du är svartlistad från att använda den här botten.",
     CATEGORY_DISABLED:
-    "Det kommandot är inaktiverat eftersom den här guilden inaktiverade {category} kategori",
+      "Det kommandot är inaktiverat eftersom den här guilden inaktiverade {category} kategori",
     COMMAND_DISABLED: "Det kommandot inaktiverades för denna guild",
     NOT_NSFW: "Den här kanalen är inte en NSFW-kanal!",
     OWNER_ONLY: "Detta kommando kan bara användas av ägarna!",
@@ -715,5 +716,7 @@ export default {
     EXAMPLE: "Exempel:",
     SUPPORT: "Stöd",
     NEED_PERMS: "Du behöver: {perms} behörigheter",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };

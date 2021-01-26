@@ -10,7 +10,7 @@ export default class TranslateCommand extends Command {
       description: "Translate a sentence",
       usage: "<language> <sentence>",
       category: "util",
-      requiredArgs: ["language", "text"],
+      requiredArgs: [{ name: "language" }, { name: "text" }],
       aliases: ["tr"],
     });
   }

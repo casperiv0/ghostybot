@@ -15,22 +15,29 @@ export default class WebCommand extends Command {
       description: "Returns a screenshot of the requested website",
       category: "util",
       aliases: ["screenshot", "webscreenshot"],
-      requiredArgs: ["url"],
+      requiredArgs: [{ name: "url" }],
       usage: "<url EG: https://google.com >",
     });
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const url = args.join(" ");
+
+    if (!url.startsWith("http")) {
+      return message.channel.send(lang.UTIL.WEB_HTTP);
+    }
+
     const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
     try {
-      const url = args.join(" ");
-      const isNsfw = await this.isNsfw(url);
+      const available = await this.isAvailable(url);
 
-      if (!url.startsWith("http")) {
-        return message.channel.send(lang.UTIL.WEB_HTTP);
+      if (!available) {
+        return message.channel.send(lang.UTIL.WEB_UNAVAILABLE);
       }
+
+      const isNsfw = await this.isNsfw(url);
 
       if (!(message.channel as TextChannel).nsfw && isNsfw) {
         sendMsg.deletable && sendMsg.delete();
@@ -48,6 +55,19 @@ export default class WebCommand extends Command {
       sendMsg.deletable && sendMsg.delete();
       return message.channel.send(lang.GLOBAL.ERROR);
     }
+  }
+
+  async isAvailable(url: string) {
+    let available = false;
+    try {
+      await fetch(url);
+
+      return (available = true);
+    } catch {
+      available = false;
+    }
+
+    return available;
   }
 
   async isNsfw(url: string) {

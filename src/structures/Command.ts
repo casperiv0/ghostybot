@@ -1,6 +1,10 @@
 import { PermissionString, Message } from "discord.js";
 import Bot from "./Bot";
 
+export interface RequiredArg {
+  type?: "time" | "number";
+  name: string;
+}
 export interface CommandOptions {
   name: string;
   description?: string;
@@ -9,7 +13,7 @@ export interface CommandOptions {
   cooldown?: number;
 
   aliases?: string[];
-  requiredArgs?: string[];
+  requiredArgs?: RequiredArg[];
   options?: string[];
 
   memberPermissions?: PermissionString[];

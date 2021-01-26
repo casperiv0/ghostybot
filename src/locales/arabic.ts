@@ -196,7 +196,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** الغرض ليس موجود بالمتجر فضلك استخدمuse `{prefix}store` لتري جميع الاغراض المتوفرة بالمتجر",
     ALREADY_OWN_ITEM: "انت بالفعل تمتلك هذا الغرض ",
-    PROVIDE_VALID_AMOUNT: "من فضلك استخدم رقم صحيح ",
     DEPOSITED_ALL: "تم ادخار جميع اموالك بنجاح",
     DEPOSITED_AMOUNT: "تم ادخار **{amount} كوينز**",
     WITHDRAW_ALL: "لقد سحبت جميع اموالك بنجاح",
@@ -374,6 +373,7 @@ export default {
     TIMEZONES: "Timezones",
     WEB_HTTP: "URL must start with `http://` or `https://`",
     WEB_NSFW: "Cannot display this site in a non-NSFW channel",
+    WEB_UNAVAILABLE: "This site seems to be unavailable",
     IP_NOT_FOUND: "No results were found",
   },
   BOT: {
@@ -486,6 +486,7 @@ export default {
     NO_ACTIVE_REM: "User doesn't have any active reminders",
     MESSAGE: "Message:",
     TIME: "Time:",
+    ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
   },
   COVID: {
@@ -714,5 +715,7 @@ export default {
     EXAMPLE: "Example:",
     SUPPORT: "Support",
     NEED_PERMS: "You need: {perms} permissions",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };

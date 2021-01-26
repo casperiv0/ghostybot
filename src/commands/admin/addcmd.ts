@@ -10,7 +10,7 @@ export default class AddCmdCommand extends Command {
       description: "add guild custom commands",
       category: "admin",
       memberPermissions: ["ADMINISTRATOR"],
-      requiredArgs: ["command name", "command response"],
+      requiredArgs: [{ name: "command name" }, { name: "command response" }],
     });
   }
 

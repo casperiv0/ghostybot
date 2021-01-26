@@ -11,7 +11,7 @@ export default class RemoveRoleCommand extends Command {
       category: "admin",
       botPermissions: ["MANAGE_ROLES"],
       memberPermissions: ["MANAGE_ROLES"],
-      requiredArgs: ["member", "role"],
+      requiredArgs: [{ name: "member" }, { name: "role" }],
     });
   }
 
@@ -21,33 +21,33 @@ export default class RemoveRoleCommand extends Command {
     try {
       const needsRole = await bot.utils.findMember(message, args);
       const role = await bot.utils.findRole(message, args[1]);
-  
+
       if (!needsRole) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
-  
+
       if (!role) {
         return message.channel.send(lang.REACTIONS.NO_ROLE);
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
         return message.channel.send(
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{roleName}", role.name)
         );
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
         return message.channel.send(
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER2.replace("{needsRoleTag}", needsRole?.user?.tag)
         );
       }
-  
+
       if (!needsRole) {
         return message.channel.send(lang.ADMIN.USER_WAS_NOT_FOUND);
       }
-  
+
       needsRole.roles.remove(role.id);
-  
+
       message.channel.send(
         lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
           "{needsRole}",

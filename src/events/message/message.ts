@@ -1,4 +1,5 @@
 import { Message, TextChannel } from "discord.js";
+import ms from "ms";
 import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
 import BotModel from "../../models/Bot.model";
 import Bot from "../../structures/Bot";
@@ -49,18 +50,26 @@ export default class MessageEvent extends Event {
 
       // check if message has a bad word in it
       if (!message.content.includes(`${guild?.prefix}blacklistedwords`) && !message.author.bot) {
+        let hasBadWord = false;
+
         guild?.blacklistedwords.forEach((word) => {
-          if (message.content.toLowerCase().includes(word.toLowerCase())) {
-            message.deletable && message.delete();
-            return message.channel
-              .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
-              .then((msg) => {
-                setTimeout(() => {
-                  msg.deletable && msg.delete();
-                }, 5000);
-              });
-          }
+          message.content.split(" ").forEach((messageWord) => {
+            if (word.toLowerCase() === messageWord.toLowerCase()) {
+              return (hasBadWord = true);
+            }
+          });
         });
+
+        if (hasBadWord) {
+          message.deletable && message.delete();
+          return message.channel
+            .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
+            .then((msg) => {
+              setTimeout(() => {
+                msg.deletable && msg.delete();
+              }, 5000);
+            });
+        }
       }
 
       // check if mention user is afk
@@ -239,20 +248,46 @@ export default class MessageEvent extends Event {
         }
       }
 
-      if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
-        const cmdArgs = command.options.requiredArgs.map((a) => `\`${a}\``).join(", ");
-        const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
-          .map((a) => `<${a}>`)
-          .join(" ")}`;
+      if (command.options.requiredArgs) {
+        if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
+          const cmdArgs = command.options.requiredArgs.map((a) => `\`${a.name}\``).join(", ");
+          const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
+            .map((a) => `<${a.name}>`)
+            .join(" ")}`;
 
-        const embed = bot.utils
-          .baseEmbed(message)
-          .setTitle(lang.MESSAGE.INCORRECT_ARGS)
-          .setColor("RED")
-          .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
-          .addField(lang.MESSAGE.EXAMPLE, cmdExample);
+          const embed = bot.utils
+            .baseEmbed(message)
+            .setTitle(lang.MESSAGE.INCORRECT_ARGS)
+            .setColor("RED")
+            .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
+            .addField(lang.MESSAGE.EXAMPLE, cmdExample);
 
-        return message.channel.send(embed);
+          return message.channel.send(embed);
+        }
+
+        let incorrectArg = false;
+        command.options.requiredArgs.map((arg, i) => {
+          switch (arg?.type) {
+            case "number": {
+              if (!Number(args[i])) {
+                message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
+                return (incorrectArg = true);
+              }
+              break;
+            }
+            case "time": {
+              if (!ms(args[i])) {
+                message.channel.send(lang.MESSAGE.MUST_BE_DATE);
+                return (incorrectArg = true);
+              }
+              break;
+            }
+            default:
+              break;
+          }
+        });
+
+        if (incorrectArg) return;
       }
 
       if (timestamps?.has(userId)) {

@@ -11,7 +11,7 @@ export default class RrRemoveCommand extends Command {
       category: "reactions",
       usage: "<message_id>",
       aliases: ["rrdel", "rrr", "rrdelete"],
-      requiredArgs: ["message_id"],
+      requiredArgs: [{ name: "message_id" }],
     });
   }
 

@@ -8,7 +8,7 @@ export default class PollCommand extends Command {
       name: "poll",
       description: "Create a poll",
       category: "util",
-      requiredArgs: ["question"],
+      requiredArgs: [{ name: "question" }],
     });
   }
 
@@ -16,14 +16,14 @@ export default class PollCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const question = args.join(" ");
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(question)
         .setDescription(lang.UTIL.CREATED_BY.replace("{member}", message.author.tag));
-  
+
       const sendMessage = await message.channel.send(embed);
-  
+
       sendMessage.react("👍");
       sendMessage.react("👎");
       sendMessage.react("🤷");

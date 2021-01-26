@@ -9,7 +9,7 @@ export default class PokemonCommand extends Command {
       name: "pokemon",
       description: "Returns a pokemon information",
       category: "util",
-      requiredArgs: ["query"],
+      requiredArgs: [{ name: "query" }],
     });
   }
 

@@ -8,7 +8,7 @@ export default class ImdbCommand extends Command {
       name: "imdb",
       description: "Get the information about series and movie",
       category: "util",
-      requiredArgs: ["query"],
+      requiredArgs: [{ name: "query" }],
     });
   }
 
@@ -37,7 +37,7 @@ export default class ImdbCommand extends Command {
       message.channel.send({ embed });
     } catch (e) {
       console.log(e);
-      
+
       return message.channel.send(lang.UTIL.DB_NOT_FOUND.replace("{search}", search));
     }
   }

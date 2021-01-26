@@ -12,7 +12,7 @@ export default class VoiceKickCommand extends Command {
       usage: "<user>",
       botPermissions: ["MOVE_MEMBERS"],
       memberPermissions: ["MOVE_MEMBERS"],
-      requiredArgs: ["user"],
+      requiredArgs: [{ name: "user" }],
     });
   }
 

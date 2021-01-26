@@ -9,7 +9,7 @@ export default class WeatherCommand extends Command {
       name: "weather",
       description: "See the weather in a country/city",
       category: "util",
-      requiredArgs: ["country/city"],
+      requiredArgs: [{ name: "country/city" }],
     });
   }
 
@@ -17,20 +17,20 @@ export default class WeatherCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const query = args.join(" ");
-  
+
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
         query
       )}&appid=${bot.config.openWeatherMapKey}&units=metric`;
       const data = await fetch(url).then((res) => res.json());
-  
+
       if (data.cod === 401) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       if (data.cod === "404") {
         return message.channel.send(lang.UTIL.C_NOT_FOUND.replace("{query}", query));
       }
-  
+
       const main = data.weather[0].main;
       const desc = data.weather[0].description;
       const icon = data.weather[0].icon;
@@ -39,7 +39,7 @@ export default class WeatherCommand extends Command {
       const windSpeed = data.wind.speed;
       const windDeg = data.wind.deg;
       const country = data.sys.country;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${data.name} ${lang.UTIL.WEATHER}`)
@@ -51,7 +51,7 @@ export default class WeatherCommand extends Command {
         .addField(`**${lang.UTIL.WIND_DEGREES}**`, windDeg, true)
         .addField(`**${lang.UTIL.COUNTRY}**`, country)
         .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
-  
+
       message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -12,7 +12,7 @@ export default class BlacklistedWordsCommand extends Command {
       options: ["get", "add", "remove"],
       memberPermissions: ["ADMINISTRATOR"],
       aliases: ["wordsfilter", "filterwords", "blacklistedword"],
-      requiredArgs: ["option"],
+      requiredArgs: [{ name: "option" }],
     });
   }
 

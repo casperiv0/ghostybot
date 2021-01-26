@@ -10,7 +10,7 @@ export default class WithdrawCommand extends Command {
       category: "economy",
       usage: "<all | amount>",
       aliases: ["with"],
-      requiredArgs: ["amount"],
+      requiredArgs: [{ name: "amount" }],
     });
   }
 
@@ -19,15 +19,15 @@ export default class WithdrawCommand extends Command {
     try {
       const member = message.author;
       const user = await bot.utils.getUserById(member.id, message.guild?.id);
-  
+
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
       const bank = user.bank;
       let amount: string | number = args[0];
-  
+
       if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
-  
+
       if (amount === "all") {
         bot.utils.updateUserById(member.id, message.guild?.id, {
           money: user.money + bank,
@@ -35,21 +35,21 @@ export default class WithdrawCommand extends Command {
         });
         return message.channel.send(lang.ECONOMY.WITHDRAW_ALL);
       }
-  
-      amount = Number(args[0]);
-  
-      if (typeof amount !== "number" || isNaN(amount)) {
-        return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
+
+      if (!Number(args[0])) {
+        return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
       }
-  
+
+      amount = Number(args[0]);
+
       if (amount < 0) {
         return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
       }
-  
+
       if (bank < amount) {
         return message.channel.send(lang.ECONOMY.NO_MONEY);
       }
-  
+
       await bot.utils.updateUserById(member.id, message.guild?.id, {
         money: user.money + Number(amount),
         bank: user.bank - Number(amount),

@@ -12,7 +12,7 @@ export default class TempMuteCommand extends Command {
       botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
       memberPermissions: ["MANAGE_ROLES"],
       usage: "<user> <time> <reason>",
-      requiredArgs: ["user", "time", "reason"],
+      requiredArgs: [{ name: "user" }, { name: "time", type: "time" }, { name: "reason" }],
     });
   }
 
@@ -21,19 +21,19 @@ export default class TempMuteCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const muteMember = await bot.utils.findMember(message, args);
-  
+
       const [, time, ...rest] = args;
       const reason = rest.join(" ") || "N/A";
-  
+
       const muteRole = await bot.utils.findOrCreateMutedRole(message.guild);
       if (!muteRole) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       if (!muteMember) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
-  
+
       if (muteMember?.roles.cache.find((r) => r.id === muteRole?.id)) {
         return message.channel.send(lang.ADMIN.ALREADY_MUTED);
       }
@@ -41,17 +41,13 @@ export default class TempMuteCommand extends Command {
       if (muteMember.permissions.has("MANAGE_ROLES")) {
         return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
       }
-  
-      if (!ms(time)) {
-        return message.channel.send(`${lang.ADMIN.PROVIDE_VALID_TIME} \`2d\`, \`1h\`, ...`);
-      }
-  
+
       bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
         SEND_MESSAGES: false,
         ADD_REACTIONS: false,
         CONNECT: false,
       });
-  
+
       muteMember.roles.add(muteRole);
       await bot.utils.updateUserById(muteMember.user.id, message.guild?.id, {
         mute: {
@@ -61,19 +57,19 @@ export default class TempMuteCommand extends Command {
           reason: reason,
         },
       });
-  
+
       muteMember.user.send(
         lang.ADMIN.TEMP_MUTED.replace("{guildName}", message.guild.name)
           .replace("{reason}", reason)
           .replace("{time}", time)
       );
-  
+
       message.channel.send(
         lang.ADMIN.SUCCES_MUTED.replace("{muteMemberTag}", muteMember.user.tag)
           .replace("{time}", time)
           .replace("{reason}", reason)
       );
-  
+
       bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
         executor: message.author,

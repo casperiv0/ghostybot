@@ -9,7 +9,7 @@ export default class AsciiCommand extends Command {
       name: "ascii",
       description: "Transform text to ascii",
       category: "games",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

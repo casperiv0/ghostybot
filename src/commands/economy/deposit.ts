@@ -10,7 +10,7 @@ export default class DepositCommand extends Command {
       category: "economy",
       usage: "<all | amount>",
       aliases: ["dep"],
-      requiredArgs: ["amount"],
+      requiredArgs: [{ name: "amount" }],
     });
   }
 
@@ -19,14 +19,14 @@ export default class DepositCommand extends Command {
     try {
       const member = message.author;
       const user = await bot.utils.getUserById(member.id, message.guild?.id);
-  
+
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       const money = user.money;
-      let amount: string | number = args[0];
-  
+      const amount: number | string = args[0];
+
       if (amount === "all") {
         await bot.utils.updateUserById(member.id, message.guild?.id, {
           bank: user.bank + money,
@@ -34,26 +34,24 @@ export default class DepositCommand extends Command {
         });
         return message.channel.send(lang.ECONOMY.DEPOSITED_ALL);
       }
-  
-      amount = Number(args[0]);
-  
-      if (typeof amount !== "number" || isNaN(amount)) {
-        return message.reply(lang.ECONOMY.PROVIDE_VALID_AMOUNT);
+
+      if (!Number(args[0])) {
+        return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
       }
-  
-      if (amount < 0) {
+
+        if (+amount <= 0) {
         return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
       }
-  
-      if (money < amount) {
+
+      if (money < +amount) {
         return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
       }
-  
+
       await bot.utils.updateUserById(member.id, message.guild?.id, {
         bank: user.bank + Number(amount),
         money: user.money - Number(amount),
       });
-  
+
       message.channel.send(lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", `${amount}`));
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

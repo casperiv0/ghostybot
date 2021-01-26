@@ -198,7 +198,6 @@ export default {
     NOT_FOUND_STORE:
       "**{query}** No fue encontrado en la tienda, Por favor usa `{prefix}store` Para ver todos los items en la tienda",
     ALREADY_OWN_ITEM: "Ya tienes ese item",
-    PROVIDE_VALID_AMOUNT: "Por favor proporciona una cantidad numerica valida",
     DEPOSITED_ALL: "Has depositado todo el dinero!",
     DEPOSITED_AMOUNT: "Has depositado **{amount} Monedas**",
     WITHDRAW_ALL: "Has retirado todo el dinero!",
@@ -378,6 +377,7 @@ export default {
     TIMEZONES: "Timezones",
     WEB_HTTP: "URL must start with `http://` or `https://`",
     WEB_NSFW: "Cannot display this site in a non-NSFW channel",
+    WEB_UNAVAILABLE: "This site seems to be unavailable",
     IP_NOT_FOUND: "No results were found",
   },
   BOT: {
@@ -492,6 +492,7 @@ export default {
     NO_ACTIVE_REM: "User doesn't have any active reminders",
     MESSAGE: "Message:",
     TIME: "Time:",
+    ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
   },
   COVID: {
@@ -720,5 +721,7 @@ export default {
     EXAMPLE: "Example:",
     SUPPORT: "Support",
     NEED_PERMS: "You need: {perms} permissions",
+    MUST_BE_DATE: "That arg type must be a **date**. E.G.: `1h`, `2days`, `5min`",
+    MUST_BE_NUMBER: "That arg type must be a **number**.",
   },
 };

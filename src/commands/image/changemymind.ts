@@ -9,7 +9,7 @@ export default class ChangeMyMindCommand extends Command {
       name: "changemymind",
       description: "Change my mind",
       category: "image",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

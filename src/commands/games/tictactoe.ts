@@ -9,7 +9,7 @@ export default class TicTacToeCommand extends Command {
       name: "tictactoe",
       description: "Play a game of tictactoe",
       category: "games",
-      requiredArgs: ["member"],
+      requiredArgs: [{ name: "member" }],
       aliases: ["ttt", "tttoe"],
     });
   }
@@ -19,7 +19,7 @@ export default class TicTacToeCommand extends Command {
     try {
       const member = await bot.utils.findMember(message, args);
       const ticTacToe = new TicTacToe(member, message);
-  
+
       ticTacToe.init(lang.EASY_GAMES);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -8,7 +8,7 @@ export default class EmojiInfoCommand extends Command {
       name: "emojiinfo",
       description: "Returns information about a custom emoji",
       category: "util",
-      requiredArgs: ["emoji"],
+      requiredArgs: [{ name: "emoji" }],
       aliases: ["emoji"],
     });
   }

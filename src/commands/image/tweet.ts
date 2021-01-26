@@ -9,7 +9,7 @@ export default class TweetCommand extends Command {
       name: "tweet",
       description: "Returns an image with your tweet",
       category: "image",
-      requiredArgs: ["text"],
+      requiredArgs: [{ name: "text" }],
     });
   }
 

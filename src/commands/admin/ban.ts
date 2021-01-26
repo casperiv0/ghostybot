@@ -11,7 +11,7 @@ export default class BanCommand extends Command {
       category: "admin",
       botPermissions: ["BAN_MEMBERS"],
       memberPermissions: ["BAN_MEMBERS"],
-      requiredArgs: ["user"],
+      requiredArgs: [{ name: "user" }],
     });
   }
 

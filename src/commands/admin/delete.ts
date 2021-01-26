@@ -12,7 +12,7 @@ export default class DeleteCommand extends Command {
       category: "admin",
       memberPermissions: ["MANAGE_MESSAGES"],
       botPermissions: ["MANAGE_MESSAGES"],
-      requiredArgs: ["amount"],
+      requiredArgs: [{ name: "amount", type: "number" }],
     });
   }
 

@@ -7,7 +7,7 @@ export default class SkipCommand extends Command {
     super(bot, {
       name: "skip",
       description: "Skip a song that is playing",
-      aliases: ["s"],
+      aliases: ["s", "sk"],
       category: "music",
     });
   }
