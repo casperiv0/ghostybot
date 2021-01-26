@@ -198,17 +198,17 @@ export default class Util {
   }
 
   async findMember(
-    message: Message,
+    message: Partial<Message>,
     args: string[],
     allowAuthor?: boolean
   ): Promise<GuildMember | undefined | null> {
     if (!message.guild) return;
     try {
-      let member: GuildMember | null;
+      let member: GuildMember | null | undefined;
       const mention = // Check if the first mention is not the bot prefix
-        message.mentions.users.first()?.id !== this.bot.user?.id
-          ? message.mentions.users.first()
-          : message.mentions.users.array()[1];
+        message.mentions?.users.first()?.id !== this.bot.user?.id
+          ? message.mentions?.users.first()
+          : message.mentions?.users.array()[1];
 
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||

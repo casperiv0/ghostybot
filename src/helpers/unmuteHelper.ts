@@ -22,8 +22,11 @@ export default class ReminderHelper extends Helper {
           if (!guild.available) return;
           if (!guild.me?.hasPermission(["MANAGE_CHANNELS"])) return;
 
-          const member =
-            guild.members.cache.get(user.user_id) || (await guild.members.fetch(user.user_id));
+          const message = {
+            guild: guild,
+          };
+
+          const member = await bot.utils.findMember(message as any, [user.user_id]);
 
           if (!member) {
             await bot.utils.updateUserById(user.user_id, user.guild_id, {

@@ -3173,7 +3173,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `s`
+**Aliases:** `s`,`sk`
 
 **Member Permissions:** None
 
