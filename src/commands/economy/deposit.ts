@@ -10,7 +10,7 @@ export default class DepositCommand extends Command {
       category: "economy",
       usage: "<all | amount>",
       aliases: ["dep"],
-      requiredArgs: [{ name: "amount", type: "number" }],
+      requiredArgs: [{ name: "amount" }],
     });
   }
 
@@ -35,7 +35,11 @@ export default class DepositCommand extends Command {
         return message.channel.send(lang.ECONOMY.DEPOSITED_ALL);
       }
 
-      if (+amount < 0) {
+      if (!Number(args[0])) {
+        return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
+      }
+
+        if (+amount <= 0) {
         return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
       }
 

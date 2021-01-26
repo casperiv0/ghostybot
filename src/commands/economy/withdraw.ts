@@ -10,7 +10,7 @@ export default class WithdrawCommand extends Command {
       category: "economy",
       usage: "<all | amount>",
       aliases: ["with"],
-      requiredArgs: [{ name: "amount", type: "number" }],
+      requiredArgs: [{ name: "amount" }],
     });
   }
 
@@ -34,6 +34,10 @@ export default class WithdrawCommand extends Command {
           bank: user.bank - bank,
         });
         return message.channel.send(lang.ECONOMY.WITHDRAW_ALL);
+      }
+
+      if (!Number(args[0])) {
+        return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
       }
 
       amount = Number(args[0]);

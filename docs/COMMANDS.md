@@ -1755,7 +1755,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `amount(number)`
+**Required Arguments:** `amount(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1971,7 +1971,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `amount(number)`
+**Required Arguments:** `amount(string)`
 
 [Back to top](#ghostybot-command-list)
 
