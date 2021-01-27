@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 213 commands.
+GhostyBot has a total of 216 commands.
 
 Click any of the command names for more information
 
@@ -229,7 +229,7 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 21**
+**Total commands: 23**
 
 [amazeme:](#amazeme) Shows interesting images or facts
 
@@ -253,6 +253,8 @@ Click any of the command names for more information
 
 [imgfy:](#imgfy) text to image converter xD
 
+[invert:](#invert) Invert your avatar
+
 [kiss:](#kiss) Shows a picture of people kissing
 
 [magik:](#magik) Just Magik
@@ -268,6 +270,8 @@ Click any of the command names for more information
 [smug:](#smug) Smug
 
 [supreme:](#supreme) Display custom text as the Supreme logo
+
+[trash:](#trash) Put someone in the trash bin someone
 
 [tweet:](#tweet) Returns an image with your tweet
 
@@ -2517,6 +2521,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## blurple
+
+**Category:** category
+
+**Description:** desc
+
+**Usage:** `N/A`
+
+**Aliases:** `blueify`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## changemymind
 
 **Category:** image
@@ -2661,6 +2683,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## invert
+
+**Category:** image
+
+**Description:** Invert your avatar
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## kiss
 
 **Category:** image
@@ -2802,6 +2842,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## trash
+
+**Category:** image
+
+**Description:** Put someone in the trash bin someone
+
+**Usage:** `N/A`
+
+**Aliases:** `delete`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
