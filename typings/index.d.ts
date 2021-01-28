@@ -1,7 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* Definitions created by Dev-CasperTheGhost */
-declare module "cowsay";
+
 declare module "easy-games-js";
+
+declare module "cowsay" {
+  export interface SayOptions {
+    text: string;
+    T?: string;
+    e?: string;
+  }
+
+  namespace CowSay {
+    export function say(options: SayOptions);
+  }
+
+  export = CowSay;
+}
 
 declare module "image-gen-discord" {
   import { Message } from "discord.js";

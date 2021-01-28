@@ -7,14 +7,14 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "format": "eslint --ext .js --fix",
+    "format": "eslint --ext .ts --fix",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "next build",
     "migrate": "node ./src/db/migrations"
   },
   "lint-staged": {
-    "./src/**/*.+(js)": [
+    "./src/**/*.+(ts)": [
       "eslint --fix",
       "git add"
     ]
