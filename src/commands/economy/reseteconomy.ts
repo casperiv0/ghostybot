@@ -17,9 +17,9 @@ export default class ResetEconomyCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const filter = (m: Message) => message.author.id === m.author.id;
-  
+
       message.channel.send(lang.ECONOMY.RESET_CONF);
-  
+
       message.channel
         .awaitMessages(filter, {
           time: 600000,
@@ -31,14 +31,15 @@ export default class ResetEconomyCommand extends Command {
           if (!msg) return;
           if (["y", "yes"].includes(msg.content.toLowerCase())) {
             const users = await message.guild?.members.fetch();
-  
-            users?.forEach(async (user) => {
-              await bot.utils.updateUserById(user.id, message.guild?.id, {
+            if (!users) return;
+
+            for (let i = 0; i < users?.size; i++) {
+              bot.utils.updateUserById(users[i]?.id, message.guild?.id, {
                 money: 0,
                 bank: 0,
               });
-            });
-  
+            }
+
             message.channel.send(lang.ECONOMY.RESET_SUCCESS);
           } else {
             message.channel.send(lang.ECONOMY.RESET_CANCEL);
