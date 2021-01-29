@@ -34,7 +34,7 @@ export default class ResetEconomyCommand extends Command {
             const users: UserData[] = await UserModel.find({ guild_id: message.guild?.id });
 
             users
-              .filter((u) => u.money === 0)
+              .filter((u) => u.money !== 0)
               .forEach((user) => {
                 bot.utils.updateUserById(user.user_id, message.guild?.id, {
                   money: 0,
