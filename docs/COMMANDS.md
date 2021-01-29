@@ -787,7 +787,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `option(string)`, `channel(string)`
 
 [Back to top](#ghostybot-command-list)
 
