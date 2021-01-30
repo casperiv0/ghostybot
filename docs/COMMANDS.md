@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 215 commands.
+GhostyBot has a total of 216 commands.
 
 Click any of the command names for more information
 
@@ -3472,6 +3472,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `message_id(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## edit-reminder
+
+**Category:** reminders
+
+**Description:** Edit an active reminder
+
+**Usage:** `edit-reminder <reminder-id> <new-time> <new message>`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `id(string)`, `time(time)`, `description(string)`
 
 [Back to top](#ghostybot-command-list)
 
