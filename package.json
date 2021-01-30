@@ -44,7 +44,7 @@
     "cowsay": "^1.4.0",
     "discord-giveaways": "^4.4.3",
     "discord-logs": "^1.9.0",
-    "discord-player": "^3.2.1",
+    "discord-player": "github:Snowflake107/discord-player#develop",
     "discord-starboards": "git+https://github.com/SimonLeclere/discord-starboards.git#develop",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
