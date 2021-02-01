@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import UserModel, { UserData } from "../../models/User.model";
+import UserModel, { IUser } from "../../models/User.model";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -31,16 +31,14 @@ export default class ResetEconomyCommand extends Command {
           const msg = msgs.first();
           if (!msg) return;
           if (["y", "yes"].includes(msg.content.toLowerCase())) {
-            const users: UserData[] = await UserModel.find({ guild_id: message.guild?.id });
+            const users: IUser[] = await UserModel.find({ guild_id: message.guild?.id });
 
-            users
-              .filter((u) => u.money !== 0)
-              .forEach((user) => {
-                bot.utils.updateUserById(user.user_id, message.guild?.id, {
-                  money: 0,
-                  bank: 0,
-                });
+            users.forEach(async (user) => {
+              await bot.utils.updateUserById(user.user_id, message.guild?.id, {
+                money: 0,
+                bank: 0,
               });
+            });
 
             message.channel.send(lang.ECONOMY.RESET_SUCCESS);
           } else {
