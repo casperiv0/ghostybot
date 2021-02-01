@@ -59,7 +59,7 @@
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "lyrics-finder": "^21.7.0",
-    "mathjs": "^9.0.0",
+    "mathjs": "^9.1.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.32",
