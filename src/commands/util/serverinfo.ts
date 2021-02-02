@@ -68,7 +68,7 @@ export default class ServerInfoCommand extends Command {
         embed.setImage(inviteBanner);
       }
 
-      if (guild.iconURL !== null) {
+      if (guild.icon !== null) {
         embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
       }
 
