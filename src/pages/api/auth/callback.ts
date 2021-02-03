@@ -11,7 +11,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const DISCORD_CLIENT_ID = process.env["DISCORD_CLIENT_ID"];
   const DISCORD_CLIENT_SECRET = process.env["DISCORD_CLIENT_SECRET"];
 
-  const code = query.code;
+  const { code, error, error_description } = query;
+
+  if (error) {
+    return res.redirect(`/error?error=${error_description}`);
+  }
 
   if (!code) {
     return res.json({ error: "No code was provided", status: "error" });

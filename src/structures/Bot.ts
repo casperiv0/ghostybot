@@ -50,9 +50,10 @@ class Bot extends Client {
       leaveOnEmpty: true,
       leaveOnEnd: true,
       leaveOnStop: true,
+      quality: "high",
     });
     this.starboardsManager = new MongStarboardsManager(this, {
-      storage: false
+      storage: false,
     });
     this.giveawayManager = new MongoGiveawayManager(this, {
       hasGuildMembersIntent: true,

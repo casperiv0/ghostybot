@@ -45,7 +45,6 @@ export default class ServerInfoCommand extends Command {
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(name)
-        .setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`)
         .setDescription(
           `
   **${lang.GUILD.OWNER}:** ${owner}
@@ -67,6 +66,10 @@ export default class ServerInfoCommand extends Command {
 
       if (inviteBanner !== null) {
         embed.setImage(inviteBanner);
+      }
+
+      if (guild.icon !== null) {
+        embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
       }
 
       message.channel.send(embed);

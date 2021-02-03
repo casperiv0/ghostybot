@@ -787,7 +787,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** N/A
+**Required Arguments:** `option(string)`, `channel(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2521,24 +2521,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## blurple
-
-**Category:** category
-
-**Description:** desc
-
-**Usage:** `N/A`
-
-**Aliases:** `blueify`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## changemymind
 
 **Category:** image
@@ -3490,6 +3472,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `message_id(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## edit-reminder
+
+**Category:** reminders
+
+**Description:** Edit an active reminder
+
+**Usage:** `edit-reminder <reminder-id> <new-time> <new message>`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `id(string)`, `time(time)`, `description(string)`
 
 [Back to top](#ghostybot-command-list)
 

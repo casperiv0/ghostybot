@@ -15,6 +15,8 @@ import Footer from "../dashboard/components/Footer";
 import { dashboard } from "../../config.json";
 import Loader from "../dashboard/components/Loader";
 
+const paths = ["/error", "/"];
+
 function GhostyBot({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -29,7 +31,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.pathname === "/" ? null : <Navbar />}
+      {paths.includes(router.pathname) ? null : <Navbar />}
       <div className="container">
         <Head>
           <title>{dashboard.botName}</title>
@@ -51,7 +53,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </div>
       </div>
-      {router.pathname === "/" ? null : <Footer />}
+      {paths.includes(router.pathname) ? null : <Footer />}
     </>
   );
 }
