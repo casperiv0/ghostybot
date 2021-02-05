@@ -1,6 +1,5 @@
 import { Client, Collection } from "discord.js";
 import NekoClient from "nekos.life";
-import TnaiClient from "tnai";
 import { Client as ImdbClient } from "imdb-api";
 import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
@@ -22,7 +21,6 @@ class Bot extends Client {
   utils: Util;
   config: typeof config;
   neko: NekoClient;
-  tnai: TnaiClient;
   imdb: ImdbClient;
   alexClient: AlexClient;
   player: Player;
@@ -43,7 +41,6 @@ class Bot extends Client {
     this.utils = new Util(this);
     this.config = config;
     this.neko = new NekoClient();
-    this.tnai = new TnaiClient();
     this.imdb = new ImdbClient({ apiKey: this.config.imdbKey });
     this.alexClient = new AlexClient(this.config.alexflipnoteKey);
     this.player = new Player(this, {
