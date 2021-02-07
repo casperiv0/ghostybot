@@ -206,7 +206,8 @@ export default class Util {
 
     try {
       let member: GuildMember | null | undefined;
-      const arg = args[0].replace(/<@>/, "");
+      const arg = args[0]?.replace?.(/[<@!>]/gi, "") || args[0];
+
       const mention = // Check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
           ? message.mentions?.users.first()
@@ -228,7 +229,7 @@ export default class Util {
 
       return member;
     } catch (e) {
-      if (e.includes("DiscordAPIError: Unknown Member")) {
+      if (e?.includes?.("DiscordAPIError: Unknown Member")) {
         return undefined;
       } else {
         this.sendErrorLog(e, "error");
