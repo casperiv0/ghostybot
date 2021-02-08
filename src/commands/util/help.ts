@@ -96,7 +96,9 @@ export default class HelpCommand extends Command {
 
           botPerms = !cmd.options.botPermissions
             ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
-            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()]);
+            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map(
+                (p) => lang.PERMISSIONS[p.toUpperCase()]
+              );
 
           const embed = bot.utils
             .baseEmbed(message)
@@ -123,10 +125,13 @@ export default class HelpCommand extends Command {
       }
 
       const cates: string[][] = [];
+      const filteredCategories = categories.filter((category: string) => {
+        return !guild?.disabled_categories.includes(category);
+      });
 
-      for (let i = 0; i < categories.length; i++) {
+      for (let i = 0; i < filteredCategories.length; i++) {
         const category = commands
-          .filter((cmd) => this.findCategory(cmd) === categories[i])
+          .filter((cmd) => this.findCategory(cmd) === filteredCategories[i])
           .map(({ name }) => name);
 
         cates.push(category);
@@ -135,9 +140,9 @@ export default class HelpCommand extends Command {
       const embed = bot.utils.baseEmbed(message);
 
       for (let i = 0; i < cates.length; i++) {
-        const name = lang.HELP.CATEGORIES[categories[i]];
+        const name = lang.HELP.CATEGORIES[filteredCategories[i]];
 
-        if (["nsfw", "hentainsfw"].includes(categories[i]) && !nsfw) {
+        if (["nsfw", "hentainsfw"].includes(filteredCategories[i]) && !nsfw) {
           embed.addField(name, lang.HELP.NSFW_ONLY);
         } else {
           embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
@@ -151,7 +156,13 @@ export default class HelpCommand extends Command {
           lang.HELP.FULL_CMD_LIST,
           `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
         )
-        .setTitle("Help");
+        .setTitle("Help")
+        .addField(
+          "Warning",
+          `Not showing **${
+            categories.length - filteredCategories.length
+          } category(ies)** because they were disabled`
+        );
 
       message.channel.send(embed);
     } catch (err) {
