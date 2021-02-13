@@ -26,7 +26,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const isAdminGuilds = guilds.filter((guild: Guild) => {
         return (
           guild.permissions === "8" /* ADMINISTRATOR */ ||
-          guild.permissions === "2147483647" /* ALL */
+          guild.permissions === "4294967295" /* ALL */
         );
       });
       const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
