@@ -50,10 +50,10 @@ export default {
     NICKNAME: "ডাকনাম",
     NOT_FOUND: "সদস্য খুঁজে পাওয়া যায়নি",
     CANNOT_BE_BANNED: "এই সদস্যকে ব্যান করা যাবে না",
-    DM_BAN_MESSAGE: "আপনাকে, **{guild_name}** গিল্ড থেকে **ব্যান** করা হয়েছে, কারন: **{ban_reason}**",
+    DM_BAN_MESSAGE: "আপনাকে, **{guild_name}** গিল্ড থেকে **ব্যান** করা হয়েছে । কারন: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
-      "{member} কে সার্ভার থেকে সফলভাবে ব্যান করা হয়েছে. কারন: **{ban_reason}**. ওই ব্যক্তিকে জানাতে, আমি তাকে ব্যক্তিগত ভাবে মেসেজও করেছি",
-    BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
+      "{member} কে সার্ভার থেকে সফলভাবে ব্যান করা হয়েছে । কারন: **{ban_reason}** । ওই ব্যক্তিকে জানাতে, আমি তাকে ব্যক্তিগত ভাবে মেসেজও করেছি",
+    BOT_DATA: "বোট ডেটা সংরক্ষণ হয়নি, তাই আমি তার ডেটা আনতে পারছি না",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "My role is not high enough than **{role}** role!",
