@@ -9,6 +9,7 @@ export default class XpCommand extends Command {
       description: "Get your current level",
       category: "levels",
       aliases: ["lvl", "rank"],
+      botPermissions: ["ATTACH_FILES"],
     });
   }
 

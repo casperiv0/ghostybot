@@ -56,7 +56,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#7289da" />
           <meta property="og:color" content="#7289da" />
-          <link rel="stylesheet" type="text/css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" />
+          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <div className="content">
           <Component {...pageProps} />

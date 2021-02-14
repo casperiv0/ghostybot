@@ -17,6 +17,7 @@ export default class WebCommand extends Command {
       aliases: ["screenshot", "webscreenshot"],
       requiredArgs: [{ name: "url" }],
       usage: "<url EG: https://google.com >",
+      botPermissions: ["ATTACH_FILES"],
     });
   }
 

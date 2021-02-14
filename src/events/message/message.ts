@@ -236,7 +236,7 @@ export default class MessageEvent extends Event {
       }
 
       if (command.options.botPermissions) {
-        const neededPerms: string[] = [];
+        const neededPerms: string[] = ["EMBED_LINKS"];
         command.options.botPermissions.forEach((perm) => {
           if (!(message.channel as TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
             neededPerms.push(perm);

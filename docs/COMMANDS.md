@@ -2821,7 +2821,7 @@ Click any of the command names for more information
 
 **Member Permissions:** None
 
-**Bot Permissions:** SEND_MESSAGES
+**Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
 
 **Required Arguments:** `text(string)`
 
@@ -2929,7 +2929,7 @@ Click any of the command names for more information
 
 **Member Permissions:** None
 
-**Bot Permissions:** SEND_MESSAGES
+**Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
 
 **Required Arguments:** N/A
 
@@ -4369,7 +4369,7 @@ Click any of the command names for more information
 
 **Member Permissions:** None
 
-**Bot Permissions:** SEND_MESSAGES
+**Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
 
 **Required Arguments:** `url(string)`
 

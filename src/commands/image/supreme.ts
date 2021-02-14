@@ -9,6 +9,7 @@ export default class SupremeCommand extends Command {
       description: "Display custom text as the Supreme logo",
       category: "image",
       requiredArgs: [{ name: "text" }],
+      botPermissions: ["ATTACH_FILES"],
     });
   }
 
