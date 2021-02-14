@@ -187,6 +187,13 @@ export default class MessageEvent extends Event {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
       if (!command) return;
 
+      if (
+        !message.channel.permissionsFor(message.guild.me)?.has("EMBED_LINKS") &&
+        bot.user.id !== message.author.id
+      ) {
+        return message.channel.send("Error: I need `EMBED_LINKS` to work!");
+      }
+
       const _bot =
         (await BotModel.findOne({ bot_id: bot.user.id })) ||
         (await BotModel.create({ bot_id: bot.user.id }));
