@@ -220,10 +220,6 @@ export default class MessageEvent extends Event {
         return message.reply(lang.MESSAGE.OWNER_ONLY);
       }
 
-      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
-        return message.channel.send(lang.MESSAGE.NOT_NSFW);
-      }
-
       if (command.options.memberPermissions) {
         const neededPerms: string[] = [];
         command.options.memberPermissions.forEach((perm) => {

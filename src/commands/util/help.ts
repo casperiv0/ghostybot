@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -21,7 +21,6 @@ export default class HelpCommand extends Command {
       const guild = await bot.utils.getGuildById(message.guild?.id);
       const prefix = guild?.prefix;
       const cmdArgs = args[0];
-      const nsfw = (message.channel as TextChannel).nsfw;
 
       const disabledCmds = !guild?.disabled_commands[0]
         ? [{ category: "disabled", name: lang.GLOBAL.NONE }]
@@ -48,16 +47,7 @@ export default class HelpCommand extends Command {
 
         const embed = bot.utils.baseEmbed(message).setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
-        if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
-          if (nsfw) {
-            embed.setDescription(`\`\`\`${cmds}\`\`\``);
-            embed.setDescription(`\`\`\`${cmds}\`\`\``);
-          } else {
-            embed.setDescription(lang.HELP.NSFW_ONLY);
-          }
-        } else {
-          embed.setDescription(`\`\`\`${cmds}\`\`\``);
-        }
+        embed.setDescription(`\`\`\`${cmds}\`\`\``);
         return message.channel.send({ embed });
       } else if (cmdArgs) {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
@@ -142,11 +132,7 @@ export default class HelpCommand extends Command {
       for (let i = 0; i < cates.length; i++) {
         const name = lang.HELP.CATEGORIES[filteredCategories[i]];
 
-        if (["nsfw", "hentainsfw"].includes(filteredCategories[i]) && !nsfw) {
-          embed.addField(name, lang.HELP.NSFW_ONLY);
-        } else {
-          embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
-        }
+        embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
       }
 
       embed

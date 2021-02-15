@@ -20,7 +20,6 @@ export interface CommandOptions {
   botPermissions?: PermissionString[];
 
   ownerOnly?: boolean;
-  nsfwOnly?: boolean;
 }
 
 export default class Command {

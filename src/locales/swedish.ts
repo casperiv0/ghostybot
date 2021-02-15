@@ -416,7 +416,6 @@ export default {
     CMD_DESC:
       "använda sig av `{prefix}help <command namn | alias>` för att se mer info om en command\n Mer information finns på `botinfo` command",
     OWNER_ONLY: "bara ägaren får se detta!",
-    NSFW_ONLY: "För att visa nsfw-kommandon, kolla in en nsfw-kanal!",
     CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
     BOT_PERMS: "Bot Permissions",
     MEMBER_PERMS: "Member Permissions",
@@ -424,8 +423,6 @@ export default {
       admin: "Administration commands",
       animal: "Djur Commands",
       botowner: "Botägare Commands",
-      nsfw: "NSFW Commands",
-      hentainsfw: "Hentai Commands",
       games: "Spel Commands",
       image: "Bild Commands",
       music: "musik Commands",
@@ -706,7 +703,6 @@ export default {
     CATEGORY_DISABLED:
       "Det kommandot är inaktiverat eftersom den här guilden inaktiverade {category} kategori",
     COMMAND_DISABLED: "Det kommandot inaktiverades för denna guild",
-    NOT_NSFW: "Den här kanalen är inte en NSFW-kanal!",
     OWNER_ONLY: "Detta kommando kan bara användas av ägarna!",
     INCORRECT_ARGS: "Felaktig användning av kommandon",
     REQUIRED_ARGS: "Du måste ge fler argument: {args}",
