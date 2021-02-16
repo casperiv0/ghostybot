@@ -12,7 +12,7 @@
   left: 0;
 
   width: 100%;
-  height: 2px;
+  height: 3px;
 }
 
 /* Remove these to get rid of the spinner */
@@ -25,8 +25,8 @@
 }
 
 #nprogress .spinner-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   box-sizing: border-box;
 
   border: solid 2px transparent;

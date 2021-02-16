@@ -142,13 +142,16 @@ export default class HelpCommand extends Command {
           lang.HELP.FULL_CMD_LIST,
           `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
         )
-        .setTitle("Help")
-        .addField(
+        .setTitle("Help");
+
+      if (categories.length - filteredCategories.length !== 0) {
+        embed.addField(
           "Warning",
           `Not showing **${
             categories.length - filteredCategories.length
           } category(ies)** because they were disabled`
         );
+      }
 
       message.channel.send(embed);
     } catch (err) {

@@ -3,6 +3,9 @@ import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
+export const saveCommands = ["help", "enable", "disable"];
+export const saveCategories = ["botowner", "exempt", "disabled", "custom"];
+
 export default class DisableCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -18,8 +21,7 @@ export default class DisableCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [option] = args;
-      const saveCommands = ["help", "enable", "disable"];
-      const saveCategories = ["botowner", "exempt", "disabled", "custom"];
+      
       const guild = await bot.utils.getGuildById(message.guild?.id);
 
       if (!guild) {

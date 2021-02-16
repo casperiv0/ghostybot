@@ -1,5 +1,6 @@
 import { Message, TextChannel } from "discord.js";
 import ms from "ms";
+import { saveCommands } from "../../commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
 import BotModel from "../../models/Bot.model";
 import Bot from "../../structures/Bot";
@@ -206,7 +207,10 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-      if (guild?.disabled_categories?.includes(command.options.category)) {
+      if (
+        !saveCommands.includes(command.name) &&
+        guild?.disabled_categories?.includes(command.options.category)
+      ) {
         return message.channel.send(
           lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category)
         );
