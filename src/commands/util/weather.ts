@@ -39,10 +39,11 @@ export default class WeatherCommand extends Command {
       const windSpeed = data.wind.speed;
       const windDeg = data.wind.deg;
       const country = data.sys.country;
+      const flag = `https://www.countryflags.io/${country}/flat/64.png` || "";
 
       const embed = bot.utils
         .baseEmbed(message)
-        .setTitle(`${data.name} ${lang.UTIL.WEATHER}`)
+        .setAuthor(`${data.name} ${lang.UTIL.WEATHER}`, flag)
         .addField(`**${lang.UTIL.MAIN}**`, main, true)
         .addField(`**${lang.UTIL.CURRENT}**`, desc, true)
         .addField(`**${lang.UTIL.CURRENT_TEMP}**`, `${temp}°C`, true)
