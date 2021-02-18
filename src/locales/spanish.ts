@@ -420,7 +420,6 @@ export default {
     CMD_DESC:
       "usa `{prefix}help <nombre del comando | alias>` para ver mas informacion del comando\n Mas informacion puede ser encontrada usando el comando `botinfo`",
     OWNER_ONLY: "Solo el dueño puede ver esto!",
-    NSFW_ONLY: "Para ver los comando NSFW debes estar en un canal NSFW!",
     CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
     BOT_PERMS: "Bot Permissions",
     MEMBER_PERMS: "Member Permissions",
@@ -428,8 +427,6 @@ export default {
       admin: "Comandos de admins",
       animal: "Comandos de animales",
       botowner: "Comandos del dueño del bot",
-      nsfw: "Comandos NSFW",
-      hentainsfw: "Comandos Hentai",
       games: "Comandos de juegos",
       image: "Comandos de imagenes",
       music: "Comandos de musica",
@@ -711,7 +708,6 @@ export default {
     CATEGORY_DISABLED:
       "That command is disabled because this guild disabled the {category} category",
     COMMAND_DISABLED: "That command was disabled for this guild",
-    NOT_NSFW: "This channel is not an NSFW channel!",
     OWNER_ONLY: "This command can only be used by the owners!",
     INCORRECT_ARGS: "Incorrect command usage",
     REQUIRED_ARGS: "You must provide more args: {args}",

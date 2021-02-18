@@ -203,8 +203,11 @@ export default class Util {
     allowAuthor?: boolean
   ): Promise<GuildMember | undefined | null> {
     if (!message.guild) return;
+
     try {
       let member: GuildMember | null | undefined;
+      const arg = args[0]?.replace?.(/[<@!>]/gi, "") || args[0];
+
       const mention = // Check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
           ? message.mentions?.users.first()
@@ -212,12 +215,12 @@ export default class Util {
 
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
-        message.guild.members.cache.get(args[0]) ||
+        message.guild.members.cache.get(arg) ||
         message.guild.members.cache.find((m) => m.user.id === args[0]) ||
         (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
 
       if (!member) {
-        member = await message.guild.members.fetch(args[0])[0];
+        member = await message.guild.members.fetch(arg)[0];
       }
 
       if (!member && allowAuthor) {
@@ -226,7 +229,7 @@ export default class Util {
 
       return member;
     } catch (e) {
-      if (e.includes("DiscordAPIError: Unknown Member")) {
+      if (e?.includes?.("DiscordAPIError: Unknown Member")) {
         return undefined;
       } else {
         this.sendErrorLog(e, "error");

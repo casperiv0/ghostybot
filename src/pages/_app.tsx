@@ -1,7 +1,8 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
+import NProgress from "nprogress";
 import "../dashboard/css/index.css";
 import "../dashboard/css/cards.css";
 import "../dashboard/css/buttons.css";
@@ -16,6 +17,13 @@ import { dashboard } from "../../config.json";
 import Loader from "../dashboard/components/Loader";
 
 const paths = ["/error", "/"];
+
+Router.events.on("routeChangeStart", () => {
+  NProgress.start();
+  
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 function GhostyBot({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
@@ -48,6 +56,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#7289da" />
           <meta property="og:color" content="#7289da" />
+          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <div className="content">
           <Component {...pageProps} />

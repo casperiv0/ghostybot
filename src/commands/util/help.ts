@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -21,7 +21,6 @@ export default class HelpCommand extends Command {
       const guild = await bot.utils.getGuildById(message.guild?.id);
       const prefix = guild?.prefix;
       const cmdArgs = args[0];
-      const nsfw = (message.channel as TextChannel).nsfw;
 
       const disabledCmds = !guild?.disabled_commands[0]
         ? [{ category: "disabled", name: lang.GLOBAL.NONE }]
@@ -48,16 +47,7 @@ export default class HelpCommand extends Command {
 
         const embed = bot.utils.baseEmbed(message).setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
-        if (["hentainsfw", "nsfw"].includes(cmdArgs.toLowerCase())) {
-          if (nsfw) {
-            embed.setDescription(`\`\`\`${cmds}\`\`\``);
-            embed.setDescription(`\`\`\`${cmds}\`\`\``);
-          } else {
-            embed.setDescription(lang.HELP.NSFW_ONLY);
-          }
-        } else {
-          embed.setDescription(`\`\`\`${cmds}\`\`\``);
-        }
+        embed.setDescription(`\`\`\`${cmds}\`\`\``);
         return message.channel.send({ embed });
       } else if (cmdArgs) {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
@@ -96,7 +86,9 @@ export default class HelpCommand extends Command {
 
           botPerms = !cmd.options.botPermissions
             ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
-            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()]);
+            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map(
+                (p) => lang.PERMISSIONS[p.toUpperCase()]
+              );
 
           const embed = bot.utils
             .baseEmbed(message)
@@ -123,10 +115,13 @@ export default class HelpCommand extends Command {
       }
 
       const cates: string[][] = [];
+      const filteredCategories = categories.filter((category: string) => {
+        return !guild?.disabled_categories.includes(category);
+      });
 
-      for (let i = 0; i < categories.length; i++) {
+      for (let i = 0; i < filteredCategories.length; i++) {
         const category = commands
-          .filter((cmd) => this.findCategory(cmd) === categories[i])
+          .filter((cmd) => this.findCategory(cmd) === filteredCategories[i])
           .map(({ name }) => name);
 
         cates.push(category);
@@ -135,13 +130,9 @@ export default class HelpCommand extends Command {
       const embed = bot.utils.baseEmbed(message);
 
       for (let i = 0; i < cates.length; i++) {
-        const name = lang.HELP.CATEGORIES[categories[i]];
+        const name = lang.HELP.CATEGORIES[filteredCategories[i]];
 
-        if (["nsfw", "hentainsfw"].includes(categories[i]) && !nsfw) {
-          embed.addField(name, lang.HELP.NSFW_ONLY);
-        } else {
-          embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
-        }
+        embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
       }
 
       embed
@@ -152,6 +143,15 @@ export default class HelpCommand extends Command {
           `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
         )
         .setTitle("Help");
+
+      if (categories.length - filteredCategories.length !== 0) {
+        embed.addField(
+          "Warning",
+          `Not showing **${
+            categories.length - filteredCategories.length
+          } category(ies)** because they were disabled`
+        );
+      }
 
       message.channel.send(embed);
     } catch (err) {

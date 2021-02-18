@@ -1,5 +1,6 @@
 import { Message, TextChannel } from "discord.js";
 import ms from "ms";
+import { saveCommands } from "../../commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
 import BotModel from "../../models/Bot.model";
 import Bot from "../../structures/Bot";
@@ -187,6 +188,13 @@ export default class MessageEvent extends Event {
       const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
       if (!command) return;
 
+      if (
+        !message.channel.permissionsFor(message.guild.me)?.has("EMBED_LINKS") &&
+        bot.user.id !== message.author.id
+      ) {
+        return message.channel.send("Error: I need `EMBED_LINKS` to work!");
+      }
+
       const _bot =
         (await BotModel.findOne({ bot_id: bot.user.id })) ||
         (await BotModel.create({ bot_id: bot.user.id }));
@@ -199,7 +207,10 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-      if (guild?.disabled_categories?.includes(command.options.category)) {
+      if (
+        !saveCommands.includes(command.name) &&
+        guild?.disabled_categories?.includes(command.options.category)
+      ) {
         return message.channel.send(
           lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category)
         );
@@ -211,10 +222,6 @@ export default class MessageEvent extends Event {
 
       if (command.options.ownerOnly && !bot.config.owners.includes(message.author.id)) {
         return message.reply(lang.MESSAGE.OWNER_ONLY);
-      }
-
-      if (command?.options.nsfwOnly === true && !message.channel.nsfw) {
-        return message.channel.send(lang.MESSAGE.NOT_NSFW);
       }
 
       if (command.options.memberPermissions) {

@@ -1,4 +1,5 @@
 import { NextApiResponse } from "next";
+import { Permissions } from "discord.js";
 import hiddenItems from "../../../data/hidden-items.json";
 import ApiRequest from "../../../interfaces/ApiRequest";
 import Guild from "../../../interfaces/Guild";
@@ -24,10 +25,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const isAdminGuilds = guilds.filter((guild: Guild) => {
-        return (
-          guild.permissions === "8" /* ADMINISTRATOR */ ||
-          guild.permissions === "2147483647" /* ALL */
-        );
+        const permissions = new Permissions(Number(guild.permissions));
+
+        return permissions.has("ADMINISTRATOR");
       });
       const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
         const g = req.bot.guilds.cache.get(guild.id);
