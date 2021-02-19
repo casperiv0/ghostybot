@@ -36,6 +36,7 @@
   "author": "Dev-CasperTheGhost",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/opus": "^0.4.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "alexflipnote.js": "^2.3.6",
     "chalk": "^4.1.0",
