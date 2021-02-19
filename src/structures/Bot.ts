@@ -1,4 +1,4 @@
-import { Client, Collection, Intents } from "discord.js";
+import { Client, Collection } from "discord.js";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import AlexClient from "alexflipnote.js";
@@ -29,7 +29,19 @@ class Bot extends Client {
 
   constructor() {
     super({
-      intents: Intents.ALL,
+      intents: [
+        "GUILDS",
+        "GUILD_BANS",
+        "GUILD_EMOJIS",
+        "GUILD_INTEGRATIONS",
+        "GUILD_INVITES",
+        "GUILD_MEMBERS",
+        "GUILD_MESSAGES",
+        "GUILD_MESSAGE_REACTIONS",
+        "GUILD_MESSAGE_TYPING",
+        "GUILD_VOICE_STATES",
+        "GUILD_WEBHOOKS",
+      ],
       partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION", "CHANNEL"],
       restRequestTimeout: 25000,
     });
