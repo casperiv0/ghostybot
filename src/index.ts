@@ -12,9 +12,9 @@ if (bot.config.dashboard.enabled) {
   import("./server").then((v) => v.default(bot));
 }
 
-// if (bot.config.debug === true) {
-bot.on("debug", console.log);
-// }
+if (bot.config.debug === true) {
+  bot.on("debug", console.log);
+}
 
 bot.login(process.env["DISCORD_BOT_TOKEN"]);
 
