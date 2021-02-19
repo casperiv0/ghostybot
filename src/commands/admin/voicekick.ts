@@ -27,7 +27,7 @@ export default class VoiceKickCommand extends Command {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
   
-      if (kickMember.hasPermission("MOVE_MEMBERS" || "ADMINISTRATOR")) {
+      if (kickMember.permissions.has("MOVE_MEMBERS" || "ADMINISTRATOR")) {
         return message.channel.send(lang.ADMIN.CAN_NOT_DISC);
       }
   

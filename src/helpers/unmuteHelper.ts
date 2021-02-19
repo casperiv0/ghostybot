@@ -20,7 +20,7 @@ export default class ReminderHelper extends Helper {
           const guild = bot.guilds.cache.get(user.guild_id);
           if (!guild) return;
           if (!guild.available) return;
-          if (!guild.me?.hasPermission(["MANAGE_CHANNELS"])) return;
+          if (!guild.me?.permissions.has(["MANAGE_CHANNELS"])) return;
 
           const message = {
             guild: guild,
@@ -64,7 +64,7 @@ export default class ReminderHelper extends Helper {
               },
             });
 
-            if (!guild.me.hasPermission("MANAGE_ROLES")) return;
+            if (!guild.me.permissions.has("MANAGE_ROLES")) return;
             if (!mutedRole) return;
             member.roles.remove(mutedRole);
 

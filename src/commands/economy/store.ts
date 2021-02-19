@@ -24,7 +24,7 @@ export default class StoreCommand extends Command {
       const [option, item, price] = args;
 
       if (option) {
-        if (!message.member?.hasPermission("MANAGE_GUILD")) {
+        if (!message.member?.permissions.has("MANAGE_GUILD")) {
           return message.channel.send("You need: `MANAGE_GUILD` permissions");
         }
 

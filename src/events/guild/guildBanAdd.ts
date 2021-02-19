@@ -10,7 +10,7 @@ export default class GuildBanAddEvent extends Event {
   async execute(bot: Bot, guild: Guild, user: User) {
     try {
       if (!guild) return;
-      if (!guild.me?.hasPermission(["MANAGE_WEBHOOKS", "VIEW_AUDIT_LOG"])) return;
+      if (!guild.me?.permissions.has(["MANAGE_WEBHOOKS", "VIEW_AUDIT_LOG"])) return;
       const webhook = await bot.utils.getWebhook(guild);
       if (!webhook) return;
   

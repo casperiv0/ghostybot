@@ -10,7 +10,7 @@ export default class EmojiDeleteEvent extends Event {
   async execute(bot: Bot, emoji: GuildEmoji) {
     try {
       if (!emoji.guild) return;
-      if (!emoji.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!emoji.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
   
       const webhook = await bot.utils.getWebhook(emoji.guild);
       if (!webhook) return;

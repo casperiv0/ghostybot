@@ -15,7 +15,7 @@ export default class MessageReactionAddEvent extends Event {
       const { guild } = react.message;
       if (!guild?.available) return;
 
-      if (!guild.me?.hasPermission(["MANAGE_MESSAGES", "MANAGE_ROLES"])) return;
+      if (!guild.me?.permissions.has(["MANAGE_MESSAGES", "MANAGE_ROLES"])) return;
       if (!guild) return;
 
       const member = guild.members.cache.get(user.id);

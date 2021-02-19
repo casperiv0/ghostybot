@@ -274,7 +274,7 @@ export default class Util {
 
   async getWebhook(guild: Guild): Promise<Webhook | undefined> {
     if (!guild.me) return;
-    if (!guild.me?.hasPermission(["MANAGE_WEBHOOKS"])) return;
+    if (!guild.me?.permissions.has(["MANAGE_WEBHOOKS"])) return;
 
     const w = await guild.fetchWebhooks();
     const g = await this.getGuildById(guild.id);
@@ -292,10 +292,8 @@ export default class Util {
       guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
       guild.roles.cache.find((r) => r.name === "muted") ||
       (await guild.roles.create({
-        data: {
-          name: "muted",
-          color: "GRAY",
-        },
+        name: "muted",
+        color: "GRAY",
         reason: "Mute a user",
       }))
     );

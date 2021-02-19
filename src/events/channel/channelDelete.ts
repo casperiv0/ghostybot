@@ -10,7 +10,7 @@ export default class ChannelDeleteEvent extends Event {
   async execute(bot: Bot, channel: GuildChannel) {
     try {
       if (!channel.guild?.available) return;
-      if (!channel.guild.me?.hasPermission("MANAGE_WEBHOOKS")) return;
+      if (!channel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(channel.guild.id);

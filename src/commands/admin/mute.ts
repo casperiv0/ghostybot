@@ -38,7 +38,7 @@ export default class MuteCommand extends Command {
         return message.channel.send(lang.ADMIN.MUTE_ALREADY_MUTED);
       }
   
-      if (muteMember.hasPermission("MANAGE_ROLES")) {
+      if (muteMember.permissions.has("MANAGE_ROLES")) {
         return message.channel.send(lang.ADMIN.MUTE_CANNOT_MUTE);
       }
   

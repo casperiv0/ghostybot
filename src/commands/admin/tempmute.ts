@@ -37,8 +37,8 @@ export default class TempMuteCommand extends Command {
       if (muteMember?.roles.cache.find((r) => r.id === muteRole?.id)) {
         return message.channel.send(lang.ADMIN.ALREADY_MUTED);
       }
-
-      if (muteMember.hasPermission("MANAGE_ROLES")) {
+  
+      if (muteMember.permissions.has("MANAGE_ROLES")) {
         return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
       }
 
