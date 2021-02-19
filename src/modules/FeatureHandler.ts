@@ -27,9 +27,9 @@ export default class FeatureHandler {
 
       feature.execute(this.bot);
 
-      // if (this.bot.config.debug) {
-      //   this.bot.logger.log("FEATURE", `Loaded ${feature.name}`);
-      // }
+      if (this.bot.config.debug) {
+        this.bot.logger.log("FEATURE", `Loaded ${feature.name}`);
+      }
     }
   }
 }
