@@ -10,6 +10,7 @@ export default class GuildMemberAddEvent extends Event {
   async execute(bot: Bot, member: GuildMember) {
     try {
       if (!member.guild) return;
+      if (member.pending) return;
       if (!member.guild.available) return;
       const guild = await bot.utils.getGuildById(member.guild.id);
       const welcomeData = guild?.welcome_data;
