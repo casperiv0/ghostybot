@@ -25,7 +25,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const isAdminGuilds = guilds.filter((guild: Guild) => {
-        const permissions = new Permissions(Number(guild.permissions));
+        const permissions = new Permissions(BigInt(guild.permissions));
 
         return permissions.has("ADMINISTRATOR");
       });
