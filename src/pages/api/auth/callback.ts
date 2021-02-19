@@ -18,7 +18,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   }
 
   if (!code) {
-    return res.json({ error: "No code was provided", status: "error" });
+    return res.redirect(`/error?error=${encodeURIComponent("No code was provided")}`);
   }
 
   const data = await (
@@ -38,6 +38,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
     )
   ).json();
+
+  if (!data.access_token) {
+    return res.redirect(
+      `/error?error=${encodeURIComponent(
+        "No access_token was provided from Discord. Please try again later"
+      )}`
+    );
+  }
 
   const token = jwt.sign(data.access_token, jwtSecret);
 

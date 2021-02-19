@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 201 commands.
+GhostyBot has a total of 202 commands.
 
 Click any of the command names for more information
 
@@ -214,7 +214,9 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 23**
+**Total commands: 24**
+
+[ad:](#ad) Shows an amazing advertisement
 
 [amazeme:](#amazeme) Shows interesting images or facts
 
@@ -2334,6 +2336,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `time(time)`, `winnerCount(number)`, `prize(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## ad
+
+**Category:** image
+
+**Description:** Shows an amazing advertisement
+
+**Usage:** `N/A`
+
+**Aliases:** `advertisement`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
