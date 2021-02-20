@@ -11,9 +11,20 @@
     "normalizer",
     "surrounding",
     "pulsator",
+    "subboost",
     "karaoke",
     "flanger",
     "gate",
     "haas",
-    "mcompand"
+    "mcompand",
+    "mono",
+    "mstlr",
+    "mstrr",
+    "compressor",
+    "expander",
+    "softlimiter",
+    "chorus",
+    "chorus2d",
+    "chorus3d",
+    "fadein"
 ]

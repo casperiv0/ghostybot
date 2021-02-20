@@ -9,7 +9,7 @@ export default class EditReminderCommand extends Command {
     super(bot, {
       name: "edit-reminder",
       description: "Edit an active reminder",
-      category: "reminders",
+      category: "reminder",
       requiredArgs: [{ name: "id" }, { name: "time", type: "time" }, { name: "description" }],
       usage: "edit-reminder <reminder-id> <new-time> <new message>",
     });

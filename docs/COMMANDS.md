@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 202 commands.
+GhostyBot has a total of 203 commands.
 
 Click any of the command names for more information
 
@@ -282,7 +282,7 @@ Click any of the command names for more information
   ##
 ### Category: music
 
-**Total commands: 16**
+**Total commands: 17**
 
 [back:](#back) Play back the previous song
 
@@ -307,6 +307,8 @@ Click any of the command names for more information
 [remove:](#remove) Remove a song from the queue
 
 [resume:](#resume) Resume a song that was playing
+
+[seek:](#seek) Seek thru a song
 
 [shuffle:](#shuffle) Shuffle the queue
 
@@ -462,7 +464,9 @@ Click any of the command names for more information
   ##
 ### Category: reminder
 
-**Total commands: 3**
+**Total commands: 4**
+
+[edit-reminder:](#edit-reminder) Edit an active reminder
 
 [reminders:](#reminders) All your active reminders
 
@@ -3077,6 +3081,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## seek
+
+**Category:** music
+
+**Description:** Seek thru a song
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `seconds/minutes(time)`
+
+[Back to top](#ghostybot-command-list)
+
 ## shuffle
 
 **Category:** music
@@ -3187,7 +3209,7 @@ Click any of the command names for more information
 
 ## edit-reminder
 
-**Category:** reminders
+**Category:** reminder
 
 **Description:** Edit an active reminder
 

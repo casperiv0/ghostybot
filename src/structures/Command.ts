@@ -1,6 +1,24 @@
 import { PermissionString, Message } from "discord.js";
 import Bot from "./Bot";
 
+export type CommandCategories =
+  | "admin"
+  | "animal"
+  | "economy"
+  | "games"
+  | "image"
+  | "levels"
+  | "music"
+  | "util"
+  | "exempt"
+  | "botowner"
+  | "giveaway"
+  | "reactions"
+  | "reminder"
+  | "ticket"
+  | "disabled"
+  | "custom";
+
 export interface RequiredArg {
   type?: "time" | "number";
   name: string;
@@ -8,7 +26,7 @@ export interface RequiredArg {
 export interface CommandOptions {
   name: string;
   description?: string;
-  category: string;
+  category: CommandCategories;
   usage?: string;
   cooldown?: number;
 

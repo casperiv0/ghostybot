@@ -10,8 +10,7 @@
     "format": "eslint --ext .ts --fix",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
-    "build": "next build",
-    "migrate": "node ./src/db/migrations"
+    "build": "next build"
   },
   "lint-staged": {
     "./src/**/*.+(ts)": [
@@ -44,7 +43,7 @@
     "cowsay": "^1.1.1",
     "discord-giveaways": "^4.4.3",
     "discord-logs": "^1.9.0",
-    "discord-player": "github:Androz2091/discord-player#develop",
+    "discord-player": "3.3.2",
     "discord-starboards": "2.2.1",
     "discord.js": "github:discordjs/discord.js#master",
     "dotenv": "^8.2.0",

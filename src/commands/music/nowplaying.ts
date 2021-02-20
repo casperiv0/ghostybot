@@ -19,22 +19,23 @@ export default class NowPlayingCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       const playing = bot.player.isPlaying(message);
       const queue = bot.player.getQueue(message);
       if (!playing) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       const song = bot.player.nowPlaying(message);
       const durBar = bot.player.createProgressBar(message, {
         timecodes: true,
+        queue: true,
       });
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(song.title)
@@ -47,7 +48,7 @@ export default class NowPlayingCommand extends Command {
           ${durBar}
   `
         );
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
