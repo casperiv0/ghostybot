@@ -53,5 +53,6 @@
     "publicUpdatesChannelID",
     "preferredLocale",
     "discoverySplash",
-    "region"
+    "region",
+    "permissions"
 ]

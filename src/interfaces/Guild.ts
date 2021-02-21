@@ -6,7 +6,7 @@ interface Guild extends GuildData {
   name: string;
   icon: string | null;
   owner_id: string;
-  permissions: string;
+  permissions: any;
   region: string;
   roles: Role[];
   channels: Channel[];

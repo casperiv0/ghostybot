@@ -63,15 +63,16 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
     </>
   );
 };
+
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
-  const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds`, {
-      headers: {
-        Auth: cookies?.token,
-      },
-    })
-  ).json();
+  const res = await fetch(`${dashboard.dashboardUrl}/api/guilds`, {
+    headers: {
+      Auth: cookies?.token,
+    },
+  });
+
+  const data = await res.json();
 
   return {
     props: {

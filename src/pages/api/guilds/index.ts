@@ -25,13 +25,19 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const isAdminGuilds = guilds.filter((guild: Guild) => {
-        const permissions = new Permissions(BigInt(guild.permissions));
+        const bits = BigInt(guild.permissions);
+        const permissions = new Permissions(bits);
 
         return permissions.has("ADMINISTRATOR");
       });
+
       const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
         const g = req.bot.guilds.cache.get(guild.id);
-        return { ...guild, ...g, inGuild: g ? true : false };
+        return {
+          ...guild,
+          ...g,
+          inGuild: g ? true : false,
+        };
       });
 
       filteredGuilds.forEach((guild: Guild) => {
@@ -40,7 +46,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       });
 
-      return res.json({ guilds: filteredGuilds });
+      return res.json(
+        JSON.stringify({ guilds: filteredGuilds }, (_, value) => {
+          return typeof value === "bigint" ? value.toString() : value;
+        })
+      );
     }
     default: {
       return res.status(405).json({ error: "Method not allowed", status: "error" });
