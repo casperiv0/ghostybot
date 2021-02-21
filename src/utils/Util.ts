@@ -163,6 +163,8 @@ export default class Util {
   }
 
   async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
+    if (error.stack?.includes("type: Value \"voice\" is not int.")) return;
+
     const channelId = this.bot.config.errorLogsChannelId;
     const channel = (this.bot.channels.cache.get(channelId) ||
       (await this.bot.channels.fetch(channelId))) as TextChannel;
