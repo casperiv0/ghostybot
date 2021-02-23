@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 176 commands.
+GhostyBot has a total of 203 commands.
 
 Click any of the command names for more information
 
@@ -356,7 +356,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 19**
+**Total commands: 46**
 
 [afk:](#afk) N/A
 
@@ -395,6 +395,60 @@ Click any of the command names for more information
 [feedback:](#feedback) Give feedback about the bot
 
 [github:](#github) Search someone on github
+
+[pastebin:](#pastebin) Get a link of pastebin for your text
+
+[help:](#help) Shows all commands Or shows more info about a command
+
+[randomimage:](#randomimage) Search any image you want from google
+
+[imdb:](#imdb) Get the information about series and movie
+
+[invite:](#invite) Creates an instant invite for the server
+
+[ip:](#ip) Search an IP
+
+[membercount:](#membercount) N/A
+
+[minecraft:](#minecraft) Get info about a minecraft server
+
+[morse:](#morse) Convert a string to morse code
+
+[npm:](#npm) Search packages on npm by their name
+
+[playstore:](#playstore) Show Playstore Application Information Of Your Given Name!
+
+[pokemon:](#pokemon) Returns a pokemon information
+
+[poll:](#poll) Create a poll
+
+[randomcolor:](#randomcolor) Get a random color
+
+[roleinfo:](#roleinfo) Shows info about a role
+
+[roles:](#roles) Shows all roles from the guild
+
+[servericon:](#servericon) Shows the server icon
+
+[serverinfo:](#serverinfo) Get info about the server
+
+[skin:](#skin) Search for skins from Minecraft
+
+[suggest:](#suggest) Create a suggestion
+
+[translate:](#translate) Translate a sentence
+
+[uptime:](#uptime) Returns the uptime of the bot
+
+[userinfo:](#userinfo) Get user info
+
+[weather:](#weather) See the weather in a country/city
+
+[web:](#web) Returns a screenshot of the requested website
+
+[wiki:](#wiki) Search something up on Wikipedia
+
+[worldclock:](#worldclock) Shows the time from other countries
 
   ##
 ### Category: exempt
@@ -3635,6 +3689,492 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `username(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## pastebin
+
+**Category:** util
+
+**Description:** Get a link of pastebin for your text
+
+**Usage:** `<extension (js, ts, ...)> <code>`
+
+**Aliases:** `paste`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `extension(string)`, `code(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## help
+
+**Category:** util
+
+**Description:** Shows all commands Or shows more info about a command
+
+**Usage:** `<category name | command name>`
+
+**Aliases:** `h`,`info`,`commands`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## randomimage
+
+**Category:** util
+
+**Description:** Search any image you want from google
+
+**Usage:** `N/A`
+
+**Aliases:** `imagesearch`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## imdb
+
+**Category:** util
+
+**Description:** Get the information about series and movie
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## invite
+
+**Category:** util
+
+**Description:** Creates an instant invite for the server
+
+**Usage:** `N/A`
+
+**Aliases:** `inv`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES, CREATE_INSTANT_INVITE
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ip
+
+**Category:** util
+
+**Description:** Search an IP
+
+**Usage:** `N/A`
+
+**Aliases:** `ip-lookup`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `ip(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## membercount
+
+**Category:** util
+
+**Description:** N/A
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## minecraft
+
+**Category:** util
+
+**Description:** Get info about a minecraft server
+
+**Usage:** `N/A`
+
+**Aliases:** `mc`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `server-ip(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## morse
+
+**Category:** util
+
+**Description:** Convert a string to morse code
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## npm
+
+**Category:** util
+
+**Description:** Search packages on npm by their name
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## playstore
+
+**Category:** util
+
+**Description:** Show Playstore Application Information Of Your Given Name!
+
+**Usage:** `<Application Name>`
+
+**Aliases:** `ps`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `app(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## pokemon
+
+**Category:** util
+
+**Description:** Returns a pokemon information
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## poll
+
+**Category:** util
+
+**Description:** Create a poll
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `question(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## randomcolor
+
+**Category:** util
+
+**Description:** Get a random color
+
+**Usage:** `N/A`
+
+**Aliases:** `color`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## roleinfo
+
+**Category:** util
+
+**Description:** Shows info about a role
+
+**Usage:** `N/A`
+
+**Aliases:** `role`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `role(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## roles
+
+**Category:** util
+
+**Description:** Shows all roles from the guild
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## servericon
+
+**Category:** util
+
+**Description:** Shows the server icon
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## serverinfo
+
+**Category:** util
+
+**Description:** Get info about the server
+
+**Usage:** `N/A`
+
+**Aliases:** `guild`,`server`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## skin
+
+**Category:** util
+
+**Description:** Search for skins from Minecraft
+
+**Usage:** `N/A`
+
+**Aliases:** `minecraftskin`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `username(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## suggest
+
+**Category:** util
+
+**Description:** Create a suggestion
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `suggestion(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## translate
+
+**Category:** util
+
+**Description:** Translate a sentence
+
+**Usage:** `<language> <sentence>`
+
+**Aliases:** `tr`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `language(string)`, `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## uptime
+
+**Category:** util
+
+**Description:** Returns the uptime of the bot
+
+**Usage:** `N/A`
+
+**Aliases:** `up`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## userinfo
+
+**Category:** util
+
+**Description:** Get user info
+
+**Usage:** `<user>`
+
+**Aliases:** `whois`,`user`,`u`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## weather
+
+**Category:** util
+
+**Description:** See the weather in a country/city
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `country/city(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## web
+
+**Category:** util
+
+**Description:** Returns a screenshot of the requested website
+
+**Usage:** `<url EG: https://google.com >`
+
+**Aliases:** `screenshot`,`webscreenshot`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
+
+**Required Arguments:** `url(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## wiki
+
+**Category:** util
+
+**Description:** Search something up on Wikipedia
+
+**Usage:** `N/A`
+
+**Aliases:** `wikipediasearch`,`wikipedia`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## worldclock
+
+**Category:** util
+
+**Description:** Shows the time from other countries
+
+**Usage:** `N/A`
+
+**Aliases:** `clock`,`timezones`,`time`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

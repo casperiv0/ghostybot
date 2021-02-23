@@ -23,6 +23,7 @@ These api keys are not required for the bot to function. Only required for their
 - [mongodbUri](https://www.mongodb.com/cloud/atlas)
 - [giphyApiKey](https://developers.giphy.com/)
 - [alexflipnoteKey](https://discord.gg/DpxkY3x)
+- [pastebin](https://pastebin.com/doc_api)
 
 ## config
 
@@ -47,6 +48,7 @@ These api keys are not required for the bot to function. Only required for their
 - `giphyApiKey`: your Giphy api key, used for the `giphy` command
 - `errorLogsChannelId`: the channel id for errors
 - `alexflipnoteKey`: required for the `supreme` command
+- `pasteClientKey`: required for the `pastebin` command
 
 ## Installation
 

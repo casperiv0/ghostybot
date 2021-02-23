@@ -1,14 +1,14 @@
 import { Message } from "discord.js";
-import hastebin from "hastebin-gen";
+import { ApiPasteFormat } from "pastebin-api/dist/interfaces";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class HastebinCommand extends Command {
+export default class PastebinCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      name: "hastebin",
-      aliases: ["haste"],
-      description: "Get a link of hastebin for your text",
+      name: "pastebin",
+      aliases: ["paste"],
+      description: "Get a link of pastebin for your text",
       category: "util",
       usage: "<extension (js, ts, ...)> <code>",
       requiredArgs: [{ name: "extension" }, { name: "code" }],
@@ -29,9 +29,14 @@ export default class HastebinCommand extends Command {
     }
 
     try {
-      const haste = await hastebin(`${code}`, { extension: `${extension}` });
+      const paste = await bot.pasteClient.createPaste({
+        code,
+        format: extension as ApiPasteFormat,
+        expireDate: "N",
+        publicity: "0",
+      });
 
-      message.channel.send(haste);
+      message.channel.send(paste);
     } catch (e) {
       return message.channel.send(lang.GLOBAL.ERROR);
     }

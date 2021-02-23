@@ -1,6 +1,7 @@
 import { Client, Collection } from "discord.js";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
+import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
 import CommandHandler from "../modules/CommandHandler";
@@ -26,6 +27,7 @@ class Bot extends Client {
   player: Player;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
+  pasteClient: PasteClient;
 
   constructor() {
     super({
@@ -55,6 +57,7 @@ class Bot extends Client {
     this.neko = new NekoClient();
     this.imdb = new ImdbClient({ apiKey: this.config.imdbKey });
     this.alexClient = new AlexClient(this.config.alexflipnoteKey);
+    this.pasteClient = new PasteClient(this.config.pasteClientKey);
     this.player = new Player(this, {
       autoSelfDeaf: true,
       leaveOnEmpty: true,
