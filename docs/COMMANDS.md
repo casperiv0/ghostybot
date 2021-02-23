@@ -396,8 +396,6 @@ Click any of the command names for more information
 
 [github:](#github) Search someone on github
 
-[pastebin:](#pastebin) Get a link of pastebin for your text
-
 [help:](#help) Shows all commands Or shows more info about a command
 
 [randomimage:](#randomimage) Search any image you want from google
@@ -415,6 +413,8 @@ Click any of the command names for more information
 [morse:](#morse) Convert a string to morse code
 
 [npm:](#npm) Search packages on npm by their name
+
+[pastebin:](#pastebin) Get a link of pastebin for your text
 
 [playstore:](#playstore) Show Playstore Application Information Of Your Given Name!
 
@@ -3692,24 +3692,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## pastebin
-
-**Category:** util
-
-**Description:** Get a link of pastebin for your text
-
-**Usage:** `<extension (js, ts, ...)> <code>`
-
-**Aliases:** `paste`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `extension(string)`, `code(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## help
 
 **Category:** util
@@ -3869,6 +3851,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## pastebin
+
+**Category:** util
+
+**Description:** Get a link of pastebin for your text
+
+**Usage:** `<extension (js, ts, ...)> <code>`
+
+**Aliases:** `paste`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `extension(string)`, `code(string)`
 
 [Back to top](#ghostybot-command-list)
 
