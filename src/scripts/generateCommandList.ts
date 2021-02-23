@@ -30,6 +30,15 @@ interface Category {
   description: string | undefined;
 }
 
+function createCategoryList() {
+  return categoriesData
+    .map(
+      (category) => `
+[${category}](#category-${category})`
+    )
+    .join("\n");
+}
+
 function mapNotDetailedCommand(cmds: Commands) {
   const categories: Category[][] = [];
   const filteredCategories = categoriesData.filter((c) => !["custom", "disabled"].includes(c));
@@ -108,6 +117,10 @@ This command list was automatically generated in [this file](https://github.com/
 ${dashboard.botName} has a total of ${length} commands.
 
 Click any of the command names for more information
+
+## Category list
+
+${createCategoryList()}
 
 ## Command list
 
