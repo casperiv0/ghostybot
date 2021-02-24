@@ -163,7 +163,8 @@ export default class Util {
   }
 
   async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
-    if (error.stack?.includes("type: Value \"voice\" is not int.")) return;
+    /* eslint-disable-next-line */
+    if (error.stack?.includes('type: Value "voice" is not int.')) return;
 
     const channelId = this.bot.config.errorLogsChannelId;
     const channel = (this.bot.channels.cache.get(channelId) ||
@@ -307,12 +308,10 @@ export default class Util {
     old: { channelID: string | undefined; emoji: string | undefined }
   ) {
     if (old) {
-      old.channelID &&
-        old.emoji &&
-        (this.bot.starboardsManager as any).delete(old.channelID, old.emoji);
+      old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
     }
 
-    (this.bot.starboardsManager as any).create(channel as any, {
+    this.bot.starboardsManager.create(channel as any, {
       ...options,
       selfStar: true,
       starEmbed: true,
@@ -484,7 +483,7 @@ export default class Util {
     return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
 
-  encode(obj) {
+  encode(obj: { [key: string]: unknown }) {
     let string = "";
 
     for (const [key, value] of Object.entries(obj)) {

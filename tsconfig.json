@@ -21,6 +21,9 @@
     "noUnusedLocals": true,
     "typeRoots": ["./node_modules/@types", "./typings"]
   },
+  "ts-node": {
+    "files": true
+  },
   "exclude": ["node_modules", ".next", ".vscode", ".github"],
-  "include": ["typings/next-env.d.ts", "typings/index.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
 }

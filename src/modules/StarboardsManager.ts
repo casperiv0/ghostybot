@@ -1,8 +1,4 @@
-import StarboardsManager, {
-  StarboardClientOptions,
-  Starboard as StarboardData,
-} from "discord-starboards";
-import { Client } from "discord.js";
+import StarboardsManager, { Starboard as StarboardData } from "discord-starboards";
 import StarboardModel from "../models/Starboard.model";
 
 export interface Starboard {
@@ -22,10 +18,6 @@ export interface Starboard {
 }
 
 class MongStarboardsManager extends StarboardsManager {
-  constructor(client: Client, options?: StarboardClientOptions) {
-    super(client, options);
-  }
-
   async getAllStarboards() {
     return await StarboardModel.find();
   }
