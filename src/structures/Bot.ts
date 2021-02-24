@@ -67,6 +67,7 @@ class Bot extends Client {
     });
     this.starboardsManager = new MongStarboardsManager(this, {
       storage: false,
+      translateClickHere: "Jump to message",
     });
     this.giveawayManager = new MongoGiveawayManager(this, {
       hasGuildMembersIntent: true,

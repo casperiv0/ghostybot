@@ -3,8 +3,11 @@ declare module "discord-starboards" {
   import { EventEmitter } from "events";
   import * as DJS from "discord.js";
 
+  export type TranslateClick = (msg: DJS.Message) => void;
+
   export interface StarboardOptions {
     storage?: string | boolean;
+    translateClickHere?: string | TranslateClick;
   }
 
   export interface Starboard {
@@ -30,7 +33,7 @@ declare module "discord-starboards" {
     starboardDelete: [Starboard];
     starboardReactionAdd: [string, DJS.Message, DJS.User];
     starboardReactionRemove: [string, DJS.Message, DJS.User];
-    starboardReactionRemoveAll: [Message];
+    starboardReactionRemoveAll: [DJS.Message];
     starboardReactionNsfw: [string, DJS.Message, DJS.User];
     starboardNoSelfStar: [string, DJS.Message, DJS.User];
     starboardNoStarBot: [string, DJS.Message, DJS.User];
@@ -44,20 +47,22 @@ declare module "discord-starboards" {
 
     public options: StarboardOptions;
     public defaultOptions: StarboardDefaultCreateOptions;
-    public client: Client;
+    public client: DJS.Client;
     public starboards: Starboard[];
 
     public create(
       channel: DJS.Channel,
       options?: Partial<StarboardDefaultCreateOptions>
-    ): Promise<boolean | void>;
+    ): Promise<boolean>;
+
     public edit(
       channelID: DJS.Snowflake,
       emoji: string,
       data: Partial<StarboardDefaultCreateOptions>
-    );
-    public delete(channelID: DJS.Snowflake, emoji: string): Promise<boolean | void>;
-    public async getAllStarboards(): Promise<Starboard[] | undefined>;
+    ): Promise<Starboard | undefined>;
+
+    public delete(channelID: DJS.Snowflake, emoji: string): Promise<boolean>;
+    public getAllStarboards(): Promise<Starboard[] | undefined>;
     public deleteStarboard(channelID: DJS.Snowflake, emoji: string): Promise<boolean | void>;
     public saveStarboard(data: Starboard): Promise<boolean | void>;
     public editStarboard(
@@ -70,13 +75,10 @@ declare module "discord-starboards" {
       event: E,
       listener: (...args: StarboardEvents[E]) => void
     ): this;
-    public once<K extends keyof StarboardEvents>(
+    public once<E extends keyof StarboardEvents>(
       event: E,
       listener: (...args: StarboardEvents[E]) => void
     ): this;
-    public emit<E extends keyof StarboardEvents>(
-      event: EventEmitter,
-      ...args: StarboardEvents[E]
-    ): boolean;
+    public emit<E extends keyof StarboardEvents>(event: E, ...args: StarboardEvents[E]): boolean;
   }
 }
