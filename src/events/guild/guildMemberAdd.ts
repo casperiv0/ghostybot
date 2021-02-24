@@ -42,6 +42,11 @@ export default class GuildMemberAddEvent extends Event {
         if (!ch) return;
         (ch as TextChannel).send(embed);
       }
+
+      if (!member.pending && welcomeData.role_id) {
+        if (!member.guild.me?.permissions.has("MANAGE_ROLES")) return;
+        member.roles.add(welcomeData.role_id);
+      }
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }
