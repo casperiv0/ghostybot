@@ -33,7 +33,7 @@ export default class NowPlayingCommand extends Command {
       const song = bot.player.nowPlaying(message);
       const durBar = bot.player.createProgressBar(message, {
         timecodes: true,
-        queue: true,
+        queue: false,
       });
 
       const embed = bot.utils
