@@ -165,6 +165,7 @@ export default class Util {
   async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
     /* eslint-disable-next-line */
     if (error.stack?.includes('type: Value "voice" is not int.')) return;
+    if (error.stack?.includes("DeprecationWarning: Listening to events on the Db class")) return;
 
     const channelId = this.bot.config.errorLogsChannelId;
     const channel = (this.bot.channels.cache.get(channelId) ||

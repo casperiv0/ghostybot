@@ -33,7 +33,7 @@ export default class PastebinCommand extends Command {
         code,
         format: extension as ApiPasteFormat,
         expireDate: "N",
-        publicity: "0",
+        publicity: 1,
       });
 
       if (paste.startsWith("Bad API request, invalid api_paste_format")) {

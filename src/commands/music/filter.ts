@@ -43,7 +43,6 @@ export default class FilterCommand extends Command {
             );
           }
 
-          // @ts-expect-error ignore below
           await bot.player.setFilters(message, {
             [filter]: true,
           });
@@ -54,7 +53,6 @@ export default class FilterCommand extends Command {
             return message.channel.send(lang.MUSIC.FILTER_NOT_ENABLED.replace("{filter}", filter));
           }
 
-          // @ts-expect-error ignore below
           await bot.player.setFilters(message, {
             [filter]: false,
           });
