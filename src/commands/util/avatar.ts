@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { AllowedImageFormat, GuildMember, Message } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -16,17 +16,18 @@ export default class AvatarCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const member = await bot.utils.findMember(message, args, true);
-  
+
       const png = this.avatar(member, "png");
       const webp = this.avatar(member, "webp");
       const jpg = this.avatar(member, "jpg");
-  
+      const gif = this.avatar(member, "gif");
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${member?.user.username} ${lang.UTIL.AVATAR}`)
-        .setDescription(`[png](${png}) | [webp](${webp}) | [jpg](${jpg})`)
+        .setDescription(`[png](${png}) | [webp](${webp}) | [jpg](${jpg}) | [gif](${gif})`)
         .setImage(`${webp}`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
@@ -34,8 +35,8 @@ export default class AvatarCommand extends Command {
     }
   }
 
-  avatar(member, format) {
-    return member.user.displayAvatarURL({
+  avatar(member: GuildMember | null | undefined, format: AllowedImageFormat) {
+    return member?.user.displayAvatarURL({
       dynamic: true,
       size: 1024,
       format,

@@ -1,6 +1,6 @@
-import * as Promise from "bluebird";
+import P from "bluebird";
 
-Promise.config({
+P.Promise.config({
   longStackTraces: true,
   warnings: true,
 });
