@@ -1,3 +1,10 @@
+import * as Promise from "bluebird";
+
+Promise.config({
+  longStackTraces: true,
+  warnings: true,
+});
+
 import "dotenv/config";
 import "./utils/checkValid";
 require("./utils/database");

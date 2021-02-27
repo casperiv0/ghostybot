@@ -38,6 +38,7 @@
     "@discordjs/opus": "^0.4.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "alexflipnote.js": "^2.3.6",
+    "bluebird": "^3.5.1",
     "chalk": "^4.1.0",
     "cows": "^2.1.1",
     "cowsay": "^1.4.0",
