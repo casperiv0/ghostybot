@@ -26,15 +26,15 @@ export default class CountryCommand extends Command {
         return message.channel.send(lang.COVID.NOT_FOUND);
       }
 
-      const name = country[0].name;
-      const nativeName = country[0].nativeName;
-      const domains = country[0].topLevelDomain;
-      const callingCodes = country[0].callingCodes;
-      const alphaCode = country[0].alpha2Code;
-      const capital = country[0].capital;
-      const timezones = country[0].timezones;
-      const region = country[0].region;
-      const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png` || "";
+      const name = country[0].name || "N/A";
+      const nativeName = country[0].nativeName || "N/A";
+      const domains = country[0].topLevelDomain || "N/A";
+      const callingCodes = country[0].callingCodes || "N/A";
+      const alphaCode = country[0].alpha2Code || "N/A";
+      const capital = country[0].capital || "N/A";
+      const timezones = country[0].timezones || "N/A";
+      const region = country[0].region || "N/A";
+      const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png`;
       const population = bot.utils.formatNumber(country[0].population);
       let languages = "";
 

@@ -18,11 +18,13 @@ export default class DeleteCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    const amount = Number(args[0]);
+    let amount = +args[0];
 
     if (isNaN(amount) || amount > 100) {
       return message.channel.send(lang.ADMIN.DELETE_PROVIDE_AMOUNT);
     }
+
+    amount = +args[0] === 100 ? +args[0] : +args[0] + 1;
 
     try {
       await (message.channel as TextChannel).bulkDelete(Number(amount)).then(() => {
@@ -30,7 +32,7 @@ export default class DeleteCommand extends Command {
           .send(lang.ADMIN.DELETE_DELETED.replace("{amount}", `${amount}`))
           .then((msg) => {
             setTimeout(() => {
-              msg.delete();
+              msg.deletable && msg.delete();
             }, 2000);
           });
       });

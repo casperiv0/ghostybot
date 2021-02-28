@@ -136,7 +136,10 @@ export default class MessageEvent extends Event {
               .addField(lang.LEVELS.NEW_LEVEL, newLevel)
               .addField(lang.LEVELS.TOTAL_XP, user.xp + xp);
 
-            const msg = await message.channel.send(embed);
+            const ch = message.channel;
+            if (!ch.permissionsFor(message.guild.me).has(["SEND_MESSAGES", "EMBED_LINKS"])) return;
+
+            const msg = await ch.send(embed);
             if (!msg) return;
 
             setTimeout(() => {

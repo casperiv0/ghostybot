@@ -24,7 +24,14 @@ export default class EmojiInfoCommand extends Command {
         return message.channel.send("Emoji can only be a custom emoji or the emoji was not found");
       }
 
-      const emojiAuthor = await foundEmoji.fetchAuthor();
+      let emojiAuthor: string | null = null;
+
+      try {
+        emojiAuthor = await foundEmoji.fetchAuthor().then((v) => v.tag);
+      } catch {
+        emojiAuthor = "Invalid Permissions";
+      }
+
       const { date: createdAt, tz } = await bot.utils.formatDate(
         foundEmoji.createdAt,
         message.guild?.id
@@ -37,7 +44,7 @@ export default class EmojiInfoCommand extends Command {
 **Name:** ${foundEmoji.name}
 **ID:** ${foundEmoji.id}
 **Created At:** ${createdAt} (${tz})
-**Created by:** ${emojiAuthor.tag}
+**Created by:** ${emojiAuthor}
 **Accessible By:** ${
         foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE
       }`);

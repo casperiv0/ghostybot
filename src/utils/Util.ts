@@ -277,14 +277,15 @@ export default class Util {
   }
 
   async getWebhook(guild: Guild): Promise<Webhook | undefined> {
+    if (!guild) return;
     if (!guild.me) return;
-    if (!guild.me?.permissions.has(["MANAGE_WEBHOOKS"])) return;
+    if (!guild.me.permissions.has("MANAGE_WEBHOOKS")) return undefined;
 
     const w = await guild.fetchWebhooks();
     const g = await this.getGuildById(guild.id);
-    if (!g) return;
+    if (!g) return undefined;
     const webhook = w.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
-    if (!webhook) return;
+    if (!webhook) return undefined;
 
     return webhook;
   }
