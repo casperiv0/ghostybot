@@ -10,6 +10,7 @@ import timezones from "../../../data/timezones.json";
 import { useRouter } from "next/router";
 import Switch from "../../../dashboard/components/Switch";
 import Guild from "../../../interfaces/Guild";
+import Link from "next/link";
 
 export interface FieldItem {
   type: "select" | "input" | "textarea";
@@ -40,6 +41,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
   const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
   const [leaveData, setLeaveData] = useState(guild?.leave_data || {});
   const [levelData, setLevelData] = useState(guild?.level_data || {});
+  const [verifyData, setVerifyData] = useState(guild?.verify_data || {});
   const [ticketData, setTicketData] = useState(guild?.ticket_data || {});
   const [starboardsData, setStarboardsData] = useState(guild?.starboards_data || {});
   const [suggestChannel, setSuggestChannel] = useState(guild.suggest_channel || "");
@@ -241,6 +243,43 @@ const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
         },
       ],
     },
+    {
+      enabled: verifyData?.enabled ?? false,
+      id: "verify_data",
+      title: "Verification",
+      onChecked: () => {
+        setVerifyData((prev) => ({
+          ...prev,
+          enabled: !verifyData?.enabled,
+        }));
+      },
+      fields: [
+        {
+          type: "select",
+          id: "verify_channel_id",
+          value: verifyData?.channel_id || "",
+          onChange: (e) =>
+            setVerifyData((prev) => ({
+              ...prev,
+              channel_id: e.target.value,
+            })),
+          label: "Verify Channel",
+          data: guild.channels,
+        },
+        {
+          type: "select",
+          id: "verify_role_id",
+          value: verifyData?.role_id || "",
+          onChange: (e) =>
+            setVerifyData((prev) => ({
+              ...prev,
+              role_id: e.target.value,
+            })),
+          label: "Verified Role",
+          data: guild.roles,
+        },
+      ],
+    },
   ];
   const mainFields = [
     {
@@ -334,6 +373,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
           timezone: tz,
           auto_delete_cmd: autoDelCmd === "true",
           muted_role_id: mutedRoleId,
+          verify_data: verifyData,
         }),
       });
       const data = await res.json();
@@ -357,9 +397,11 @@ const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
       </Head>
       <div className="page-title">
         <h4>{guild?.name} - Settings</h4>
-        <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
-          Return
-        </a>
+        <Link href={`/dashboard/${guild.id}`}>
+          <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+            Return
+          </a>
+        </Link>
       </div>
       {message ? <AlertMessage type="success" message={message} /> : null}
       {error ? <AlertMessage type="error" message={error} /> : null}

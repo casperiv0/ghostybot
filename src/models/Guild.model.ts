@@ -30,6 +30,7 @@ export interface GuildData {
   starboards_data: StarboardData;
   ban_data: BanData;
   ticket_data: TicketData;
+  verify_data: VerifyData;
 }
 
 export interface IGuild extends Document {
@@ -110,6 +111,12 @@ export interface BanData {
   message: string;
 }
 
+export interface VerifyData {
+  enabled: boolean;
+  role_id: string | null;
+  channel_id: string | null;
+}
+
 const guildSchema = new Schema({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
@@ -157,6 +164,10 @@ const guildSchema = new Schema({
   starboards_data: {
     type: Object,
     default: { enabled: false, channel_id: null, emoji: "⭐" },
+  },
+  verify_data: {
+    type: Object,
+    default: { enabled: false, channel_id: null, emoji: "✅", role_id: null },
   },
 });
 

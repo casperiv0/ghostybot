@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState, FC } from "react";
 import Head from "next/head";
 import fetch from "node-fetch";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { dashboard } from "../../../../config.json";
 import Logger from "../../../modules/Logger";
 import { openModal } from "../../../dashboard/components/modal";
 import CreateCommandModal from "../../../dashboard/components/modal/create-command";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Guild from "../../../interfaces/Guild";
-import { GetServerSideProps } from "next";
 
 interface Props {
   guild: Guild;
@@ -70,9 +71,11 @@ const CustomCommands: FC<Props> = ({ guild, isAuth }: Props) => {
         <h4>{guild?.name} - Custom commands</h4>
 
         <div>
-          <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
-            Return
-          </a>
+          <Link href={`/dashboard/${guild.id}`}>
+            <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+              Return
+            </a>
+          </Link>
           <button className="btn btn-primary  ml-5" onClick={addCmd}>
             Add command
           </button>

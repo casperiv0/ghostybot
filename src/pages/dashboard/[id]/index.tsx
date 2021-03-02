@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 import { parseCookies } from "nookies";
 import Link from "next/link";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 import GuildData from "../../../interfaces/Guild";
-import { GetServerSideProps } from "next";
 
 interface Props {
   guild: GuildData;
@@ -35,9 +35,11 @@ const Guild: FC<Props> = ({ guild, isAuth }: Props) => {
       </Head>
       <div className="page-title">
         <h4>Current guild: {guild.name}</h4>
-        <a className="btn btn-primary" href="/dashboard">
-          Return
-        </a>
+        <Link href={`/dashboard/${guild.id}`}>
+          <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+            Return
+          </a>
+        </Link>
       </div>
 
       <div className="grid">

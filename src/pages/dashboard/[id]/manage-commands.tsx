@@ -1,12 +1,13 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { useState, useEffect, useRef, useCallback, FC } from "react";
 import fetch from "node-fetch";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Guild from "../../../interfaces/Guild";
-import { GetServerSideProps } from "next";
 
 interface Props {
   guild: Guild;
@@ -27,7 +28,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth }: Props) => {
     }
   }, [router, isAuth]);
 
-  const observer = useRef<any>();
+  const observer = useRef<IntersectionObserver>();
   const lastRef = useCallback(
     (node) => {
       if (length > botCommands.length) return;
@@ -95,9 +96,11 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth }: Props) => {
         <h4>{guild?.name} - Enable/disable commands</h4>
 
         <div>
-          <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
-            Return
-          </a>
+          <Link href={`/dashboard/${guild.id}`}>
+            <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+              Return
+            </a>
+          </Link>
         </div>
       </div>
 

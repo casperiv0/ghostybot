@@ -2,13 +2,14 @@ import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useState, useEffect, FC } from "react";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { openModal } from "../../../dashboard/components/modal";
 import AddBlacklistedWord from "../../../dashboard/components/modal/add-blacklistedword";
 import Logger from "../../../modules/Logger";
 import Guild from "../../../interfaces/Guild";
-import { GetServerSideProps } from "next";
 
 interface Props {
   guild: Guild;
@@ -69,9 +70,11 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth }: Props) => {
         <h4>{guild?.name} - Blacklisted words</h4>
 
         <div>
-          <a className="btn btn-primary" href={`/dashboard/${guild.id}`}>
-            Return
-          </a>
+          <Link href={`/dashboard/${guild.id}`}>
+            <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+              Return
+            </a>
+          </Link>
           <button className="btn btn-primary ml-5" onClick={addWord}>
             Add word
           </button>

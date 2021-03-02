@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 203 commands.
+GhostyBot has a total of 204 commands.
 
 Click any of the command names for more information
 
@@ -356,7 +356,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 46**
+**Total commands: 47**
 
 [afk:](#afk) N/A
 
@@ -441,6 +441,8 @@ Click any of the command names for more information
 [uptime:](#uptime) Returns the uptime of the bot
 
 [userinfo:](#userinfo) Get user info
+
+[verify:](#verify) Verify yourself to get guild access
 
 [weather:](#weather) See the weather in a country/city
 
@@ -4097,6 +4099,24 @@ Click any of the command names for more information
 **Usage:** `<user>`
 
 **Aliases:** `whois`,`user`,`u`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## verify
+
+**Category:** util
+
+**Description:** Verify yourself to get guild access
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
 
 **Member Permissions:** None
 

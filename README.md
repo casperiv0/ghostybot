@@ -42,6 +42,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 - Get animal pictures/gifs
 - XP system
 - Economy system
+- verify system
 - And more!
 
 ## Commands
