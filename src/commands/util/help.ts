@@ -1,7 +1,8 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
+import paginate from "../../utils/paginate";
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -115,6 +116,7 @@ export default class HelpCommand extends Command {
       }
 
       const cates: string[][] = [];
+      const embeds: MessageEmbed[] = [];
       const filteredCategories = categories.filter((category: string) => {
         return !guild?.disabled_categories.includes(category);
       });
@@ -127,33 +129,23 @@ export default class HelpCommand extends Command {
         cates.push(category);
       }
 
-      const embed = bot.utils.baseEmbed(message);
-
       for (let i = 0; i < cates.length; i++) {
         const name = lang.HELP.CATEGORIES[filteredCategories[i]];
+        const categoryEmbed = bot.utils
+          .baseEmbed(message)
+          .setTitle("Help")
+          .addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``)
+          .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
+          .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
+          .addField(
+            lang.HELP.FULL_CMD_LIST,
+            `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
+          );
 
-        embed.addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``);
+        embeds.push(categoryEmbed);
       }
 
-      embed
-        .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
-        .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
-        .addField(
-          lang.HELP.FULL_CMD_LIST,
-          `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
-        )
-        .setTitle("Help");
-
-      if (categories.length - filteredCategories.length !== 0) {
-        embed.addField(
-          "Warning",
-          `Not showing **${
-            categories.length - filteredCategories.length
-          } category(ies)** because they were disabled`
-        );
-      }
-
-      message.channel.send(embed);
+      await paginate(message, embeds);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
