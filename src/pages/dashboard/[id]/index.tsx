@@ -35,8 +35,8 @@ const Guild: FC<Props> = ({ guild, isAuth }: Props) => {
       </Head>
       <div className="page-title">
         <h4>Current guild: {guild.name}</h4>
-        <Link href={`/dashboard/${guild.id}`}>
-          <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
+        <Link href="/dashboard">
+          <a href="/dashboard" className="btn btn-primary">
             Return
           </a>
         </Link>

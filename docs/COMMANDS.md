@@ -7,6 +7,7 @@ Click any of the command names for more information
 
 ## Category list
 
+
 [admin](#category-admin)
 
 [animal](#category-animal)
@@ -40,6 +41,7 @@ Click any of the command names for more information
 [custom](#category-custom)
 
 ## Command list
+
 
 ### Category: admin
 
@@ -115,8 +117,7 @@ Click any of the command names for more information
 
 [warnings:](#warnings) Returns how many warnings a user has
 
-##
-
+  ##
 ### Category: animal
 
 **Total commands: 21**
@@ -163,8 +164,7 @@ Click any of the command names for more information
 
 [whale:](#whale) Shows an image of a whale
 
-##
-
+  ##
 ### Category: economy
 
 **Total commands: 18**
@@ -205,8 +205,7 @@ Click any of the command names for more information
 
 [work:](#work) work
 
-##
-
+  ##
 ### Category: games
 
 **Total commands: 18**
@@ -247,8 +246,7 @@ Click any of the command names for more information
 
 [wyr:](#wyr) Would you rather
 
-##
-
+  ##
 ### Category: image
 
 **Total commands: 24**
@@ -301,8 +299,7 @@ Click any of the command names for more information
 
 [ytcomment:](#ytcomment) Returns an image with your YouTube comment
 
-##
-
+  ##
 ### Category: levels
 
 **Total commands: 5**
@@ -317,8 +314,7 @@ Click any of the command names for more information
 
 [xp:](#xp) Get xp from a user or yourself
 
-##
-
+  ##
 ### Category: music
 
 **Total commands: 17**
@@ -357,8 +353,7 @@ Click any of the command names for more information
 
 [volume:](#volume) Set the volume between 1 to 100
 
-##
-
+  ##
 ### Category: util
 
 **Total commands: 47**
@@ -457,8 +452,7 @@ Click any of the command names for more information
 
 [worldclock:](#worldclock) Shows the time from other countries
 
-##
-
+  ##
 ### Category: exempt
 
 **Total commands: 4**
@@ -471,8 +465,7 @@ Click any of the command names for more information
 
 [prefix:](#prefix) Set a prefix for your server
 
-##
-
+  ##
 ### Category: botowner
 
 **Total commands: 4**
@@ -485,8 +478,7 @@ Click any of the command names for more information
 
 [shutdown:](#shutdown) Shuts the bot down
 
-##
-
+  ##
 ### Category: giveaway
 
 **Total commands: 3**
@@ -497,8 +489,7 @@ Click any of the command names for more information
 
 [givstart:](#givstart) Starts a giveaway
 
-##
-
+  ##
 ### Category: reactions
 
 **Total commands: 2**
@@ -507,8 +498,7 @@ Click any of the command names for more information
 
 [rrremove:](#rrremove) Add a reaction role
 
-##
-
+  ##
 ### Category: reminder
 
 **Total commands: 4**
@@ -521,8 +511,7 @@ Click any of the command names for more information
 
 [setreminder:](#setreminder) Set a reminder, the bot will ping you when the timer runs out
 
-##
-
+  ##
 ### Category: ticket
 
 **Total commands: 2**
@@ -531,8 +520,10 @@ Click any of the command names for more information
 
 [createticket:](#createticket) Creates a ticket
 
-## Detailed command list
+  
 
+## Detailed command list
+  
 ## addcmd
 
 **Category:** admin
@@ -2339,7 +2330,8 @@ Click any of the command names for more information
 
 **Description:** Ends a giveaway
 
-**Usage:** `givend <messageId> **Example:** !giveaway end <messageId>`
+**Usage:** `givend <messageId> 
+ **Example:** !giveaway end <messageId>`
 
 **Aliases:** `gend`
 
@@ -2375,7 +2367,8 @@ Click any of the command names for more information
 
 **Description:** Starts a giveaway
 
-**Usage:** `<time> <winner count> <price> **Example:** !givstart 2d 10 Discord nitro`
+**Usage:** `<time> <winner count> <price>
+ **Example:** !givstart 2d 10 Discord nitro`
 
 **Aliases:** `gstart`
 
@@ -3097,7 +3090,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:**
+**Aliases:** 
 
 **Member Permissions:** None
 
@@ -4204,3 +4197,4 @@ Click any of the command names for more information
 **Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
+

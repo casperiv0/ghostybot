@@ -42,6 +42,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
       <div className="container">
         <Head>
           <title>{dashboard.botName} - A Discord bot</title>
+          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <div className="content">
           <Component {...pageProps} />
