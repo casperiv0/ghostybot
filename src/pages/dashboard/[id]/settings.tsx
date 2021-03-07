@@ -1,6 +1,7 @@
 import { useState, useEffect, FC, ChangeEventHandler, FormEvent } from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
+import { Channel, Role } from "discord.js";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import fs from "fs";
@@ -17,8 +18,8 @@ export interface FieldItem {
   id: string;
   label: string;
   onChange: ChangeEventHandler<any>;
-  value: any;
-  data?: any[];
+  value: string | number | readonly string[] | undefined;
+  data?: Channel[] | Role[];
 }
 
 export interface Field {

@@ -11,6 +11,7 @@ import "../dashboard/css/modal.css";
 import "../dashboard/css/landing.css";
 import "../dashboard/css/footer.css";
 import "../dashboard/css/switch.css";
+import "../dashboard/css/nprogress.css";
 import Navbar from "../dashboard/components/Navbar";
 import Footer from "../dashboard/components/Footer";
 import { dashboard } from "../../config.json";
@@ -42,7 +43,6 @@ function GhostyBot({ Component, pageProps }: AppProps) {
       <div className="container">
         <Head>
           <title>{dashboard.botName} - A Discord bot</title>
-          <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         </Head>
         <div className="content">
           <Component {...pageProps} />
