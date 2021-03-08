@@ -35,8 +35,8 @@ export default class BotInfoCommand extends Command {
         .addField(
           `${lang.HELP.COMMANDS}:`,
           `
-  **${lang.BOT.USED_SINCE_UP}:** ${used_since_up}
-  **${lang.BOT.TOTAL_USED_CMDS}:** ${total_used_cmds}`
+  **${lang.BOT.USED_SINCE_UP}:** ${bot.utils.formatNumber(used_since_up)}
+  **${lang.BOT.TOTAL_USED_CMDS}:** ${bot.utils.formatNumber(total_used_cmds)}`
         )
         .addField(
           `__**${lang.BOT.INFO}:**__`,
