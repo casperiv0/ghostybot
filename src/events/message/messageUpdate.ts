@@ -49,7 +49,9 @@ export default class MessageUpdateEvent extends Event {
         .baseEmbed(newMsg)
         .setTitle(`Message updated in **${(newMsg.channel as TextChannel).name}**`)
         .setDescription(
-          `Message send by **${newMsg.author.tag}** was edited [jump to message](${messageLink})`
+          `Message send by **${
+            newMsg.author?.tag || newMsg.author?.id || "Unknown"
+          }** was edited [jump to message](${messageLink})`
         )
         .addField("**Old Message**", `${pOldMsg}`)
         .addField("**New Message**", `${PNewMsg}`)
