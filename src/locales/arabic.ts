@@ -437,6 +437,9 @@ export default {
       ticket: "Ticket commands",
     },
   },
+  NASANEWS: {
+    NOT_FOUND: "لم يتم العثور علي {query}."
+  },
   POKEMON: {
     SPECIES: "النوع",
     ABILITIES: "القدرات",

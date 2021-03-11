@@ -441,6 +441,9 @@ export default {
       ticket: "Ticket commands",
     },
   },
+  NASANEWS: {
+    NOT_FOUND: "No fact was found with {query}."
+  },
   POKEMON: {
     SPECIES: "Species",
     ABILITIES: "Abilities",

@@ -438,6 +438,9 @@ export default {
       ticket: "Ticket commands",
     },
   },
+  NASANEWS: {
+    NOT_FOUND: "Ingen faktum hittades med {query}."
+  },
   POKEMON: {
     SPECIES: "Arter",
     ABILITIES: "Förmågor",
