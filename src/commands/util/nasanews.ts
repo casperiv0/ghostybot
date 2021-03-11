@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class NasanewsCommand extends Command {
+export default class NasaNews extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "nasanews",
@@ -20,14 +20,17 @@ export default class NasanewsCommand extends Command {
       `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}`
     ).then((res) => res.json());
 
-    if (!data.collection.items[0].data[0].description)
-    return message.channel.send(lang.NASANEWS.NOT_FOUND.replace("{query}", query));
+    const item = data.collection.items[0];
+
+    if (!item) {
+      return message.channel.send(lang.NASANEWS.NOT_FOUND.replace("{query}", query));
+    }
 
     const embed = bot.utils
       .baseEmbed(message)
       .setTitle(data.collection.items[0].data[0].title)
-      .setDescription(`${data.collection.items[0].data[0].description.substr(0, 2043)}.....`)
-      .setImage(data.collection.items[0].links[0].href.split(' ').join('%20'));
+      .setURL(encodeURI(item.href))
+      .setDescription(`${data.collection.items[0].data[0].description.substr(0, 2044)}...`);
 
     message.channel.send({ embed });
   }

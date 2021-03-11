@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-GhostyBot has a total of 204 commands.
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -356,7 +356,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 47**
+**Total commands: 48**
 
 [afk:](#afk) N/A
 
@@ -411,6 +411,8 @@ Click any of the command names for more information
 [minecraft:](#minecraft) Get info about a minecraft server
 
 [morse:](#morse) Convert a string to morse code
+
+[nasanews:](#nasanews) Looks up an astronomy-related term on NASA's Website
 
 [npm:](#npm) Search packages on npm by their name
 
@@ -3835,6 +3837,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## nasanews
+
+**Category:** util
+
+**Description:** Looks up an astronomy-related term on NASA's Website
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
