@@ -6,7 +6,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
-    await req.bot.utils.checkAuth(req);
+    await req.bot.utils.checkAuth(req, { guildId: `${query.id}` });
   } catch (e) {
     return res.json({ status: "error", error: e });
   }

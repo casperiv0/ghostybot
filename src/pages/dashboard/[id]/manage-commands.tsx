@@ -13,9 +13,10 @@ interface Props {
   guild: Guild;
   isAuth: boolean;
   botCommands: string[];
+  error: string | undefined
 }
 
-const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth }: Props) => {
+const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props) => {
   const router = useRouter();
   const [message, setMessage] = useState<string | null>(null);
   const [filtered, setFiltered] = useState(botCommands);
@@ -84,6 +85,10 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth }: Props) => {
         } command: ${cmdName}`
       );
     }
+  }
+
+  if (error) {
+    return <AlertMessage type="error" message={error} />;
   }
 
   return (
@@ -158,6 +163,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       isAuth: data.error !== "invalid_token",
       guild: data?.guild || {},
       botCommands: data.botCommands || [],
+      error: data?.error || null,
     },
   };
 };

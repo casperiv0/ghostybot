@@ -31,12 +31,13 @@ export interface Field {
 }
 
 interface Props {
+  error: string | undefined;
   guild: Guild;
   languages: string[];
   isAuth: boolean;
 }
 
-const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
+const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
@@ -389,6 +390,10 @@ const Settings: FC<Props> = ({ guild, languages, isAuth }: Props) => {
     }
   }
 
+  if (serverError) {
+    return <AlertMessage type="error" message={serverError} />;
+  }
+
   return (
     <>
       <Head>
@@ -527,10 +532,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     })
   ).json();
 
+  console.log(data.error);
+
   return {
     props: {
       guild: data?.guild || {},
       isAuth: data.error !== "invalid_token",
+      error: data?.error || null,
       languages: langs,
     },
   };

@@ -6,13 +6,15 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { dashboard } from "../../../../config.json";
 import GuildData from "../../../interfaces/Guild";
+import AlertMessage from "../../../dashboard/components/AlertMessage";
 
 interface Props {
   guild: GuildData;
   isAuth: boolean;
+  error: string | undefined;
 }
 
-const Guild: FC<Props> = ({ guild, isAuth }: Props) => {
+const Guild: FC<Props> = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -25,6 +27,10 @@ const Guild: FC<Props> = ({ guild, isAuth }: Props) => {
       return;
     }
   }, [guild, isAuth, router]);
+
+  if (error) {
+    return <AlertMessage type="error" message={error} />;
+  }
 
   return (
     <>
@@ -93,6 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       isAuth: data.error !== "invalid_token",
       guild: data?.guild || {},
+      error: data?.error || null,
     },
   };
 };

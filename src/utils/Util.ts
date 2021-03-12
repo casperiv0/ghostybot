@@ -403,16 +403,32 @@ export default class Util {
     }
   }
 
-  async checkAuth(req: ApiRequest) {
+  async checkAuth(
+    req: ApiRequest,
+    admin?: {
+      guildId: string;
+    }
+  ) {
     const token = req.cookies.token || req.headers.auth;
-    const data = await this.handleApiRequest("/users/@me", {
+    const data: { error: string } | { id: string } = await this.handleApiRequest("/users/@me", {
       type: "Bearer",
       data: `${token}`,
     });
 
-    if (data.error) {
+    if ("error" in data) {
       return Promise.reject(data.error);
     } else {
+      if (admin?.guildId) {
+        const guild = this.bot.guilds.cache.get(admin.guildId);
+        if (!guild) return Promise.reject("Guild was not found");
+
+        const member = await guild.members.fetch(data.id);
+        if (!member) return Promise.reject("Not in this guild");
+
+        if (!member.permissions.has("ADMINISTRATOR")) {
+          return Promise.reject("Not an administrator for this guild");
+        }
+      }
       return Promise.resolve("Authorized");
     }
   }

@@ -13,9 +13,10 @@ import Guild from "../../../interfaces/Guild";
 interface Props {
   guild: Guild;
   isAuth: boolean;
+  error: string | undefined;
 }
 
-const ManageCategories = ({ guild, isAuth }: Props) => {
+const ManageCategories = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
   const [message, setMessage] = useState<string | null>(null);
   const [filtered, setFiltered] = useState(categories);
@@ -68,6 +69,10 @@ const ManageCategories = ({ guild, isAuth }: Props) => {
         } category: ${category}`
       );
     }
+  }
+
+  if (error) {
+    return <AlertMessage type="error" message={error} />;
   }
 
   return (
@@ -140,6 +145,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       isAuth: data.error !== "invalid_token",
       guild: data?.guild || {},
+      error: data?.error || null,
     },
   };
 };

@@ -14,9 +14,10 @@ import Guild from "../../../interfaces/Guild";
 interface Props {
   guild: Guild;
   isAuth: boolean;
+  error: string | undefined;
 }
 
-const BlacklistedWords: FC<Props> = ({ guild, isAuth }: Props) => {
+const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
 
@@ -57,6 +58,10 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth }: Props) => {
 
   function addWord() {
     openModal("addBlacklistedWord");
+  }
+
+  if (error) {
+    return <AlertMessage type="error" message={error} />;
   }
 
   return (
@@ -126,6 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       isAuth: data.error !== "invalid_token",
       guild: data?.guild || {},
+      error: data?.error || null,
     },
   };
 };
