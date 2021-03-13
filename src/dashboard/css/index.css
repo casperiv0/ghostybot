@@ -184,7 +184,11 @@ td {
 }
 
 .table-actions {
-  width: 10%;
+  width: 20%;
+}
+
+.table-actions .btn:nth-child(n + 1) {
+  margin-right: 0.5rem;
 }
 
 .float-right {

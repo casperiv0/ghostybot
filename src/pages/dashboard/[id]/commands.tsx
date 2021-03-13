@@ -8,6 +8,7 @@ import Link from "next/link";
 import Logger from "../../../modules/Logger";
 import { openModal } from "../../../dashboard/components/modal";
 import CreateCommandModal from "../../../dashboard/components/modal/create-command";
+import EditCommandModal from "../../../dashboard/components/modal/edit-command";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Guild from "../../../interfaces/Guild";
 
@@ -37,9 +38,9 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
     try {
       const data = await (
         await fetch(
-          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands?name=${encodeURIComponent(
-            name
-          )}`,
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
+            guild.id
+          }/commands?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
           }
@@ -60,6 +61,15 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
     openModal("createCommandModal");
   }
 
+  function handleEdit(name: string) {
+    router.push({
+      pathname: `/dashboard/${guild.guild_id}/commands`,
+      query: {
+        edit: name,
+      },
+    });
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
   }
@@ -71,6 +81,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <CreateCommandModal guild={guild} />
+      <EditCommandModal guild={guild} />
       <div className="page-title">
         <h4>{guild?.name} - Custom commands</h4>
 
@@ -104,6 +115,9 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
                   <td className="table-actions">
                     <button onClick={() => deleteCommand(cmd.name)} className="btn btn-sm btn-red">
                       Delete
+                    </button>
+                    <button onClick={() => handleEdit(cmd.name)} className="btn btn-sm btn-green">
+                      Edit
                     </button>
                   </td>
                 </tr>

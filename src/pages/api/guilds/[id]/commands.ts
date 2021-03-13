@@ -19,6 +19,33 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   }
 
   switch (method) {
+    case "GET": {
+      const { name } = query;
+
+      if (!name) {
+        return res.json({
+          error: "`name` is required",
+          status: "error",
+        });
+      }
+
+      const command = guild.custom_commands.find(
+        (cmd) => cmd.name.toLowerCase() === `${name}`.toLowerCase()
+      );
+
+      if (!command) {
+        return res.json({
+          error: "Command not found",
+          status: "error",
+          command: null,
+        });
+      }
+
+      return res.json({
+        command,
+        status: "success",
+      });
+    }
     case "POST": {
       const body = JSON.parse(req.body);
 
@@ -58,7 +85,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "PUT": {
       const body = JSON.parse(req.body);
-      const { type, name } = body;
+      const { type, name, response } = body;
 
       if (!type || !name) {
         return res.status(400).json({ status: "error" });
@@ -74,6 +101,26 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       } else {
         return res.status(400).json({ status: "error", error: "invalid type" });
+      }
+
+      if (response) {
+        if (req.bot.commands.has(name)) {
+          return res.json({
+            error: "This command name is already in use by the bot!",
+            status: "error",
+          });
+        }
+
+        req.bot.utils.updateGuildById(`${query.id}`, {
+          custom_commands: guild.custom_commands.map((cmd) => {
+            if (cmd.name === name) {
+              cmd.name = name;
+              cmd.response = response;
+            }
+
+            return cmd;
+          }),
+        });
       }
 
       return res.json({ status: "success" });
