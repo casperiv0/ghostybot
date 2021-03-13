@@ -34,21 +34,7 @@ These api keys are not required for the bot to function. Only required for their
 - `DISCORD_BOT_TOKEN`: Your bot token
 - `MONGO_DB_URI`: your mongoDb uri
 
-### config.json
-
-- `dev`: development (`true`) or production (`false`)
-- `JwtSecret`: this value can be anything, make sure it's long
-- `owners`: An array of owner ids
-- `callbackUrl`: This is the url to authenticate with discord, this is required to be: `YOUR_URL + /api/auth/callback`
-  `dashboardUrl`: the URL to your dashboard
-- `reportsChannelId`: used for the `bugreport` command. All bug reports will be send to that channel
-- `openWeatherMapKey`: used for the `weather` command
-- `feedbackChannelId`: used for the `feedback` command. All feedback will be send to that channel
-- `imdbKey`: your imdb key for the `imdb` command
-- `giphyApiKey`: your Giphy api key, used for the `giphy` command
-- `errorLogsChannelId`: the channel id for errors
-- `alexflipnoteKey`: required for the `supreme` command
-- `pasteClientKey`: required for the `pastebin` command
+_The .env list is not fully updated atm._
 
 ## Installation
 

@@ -4,8 +4,7 @@ import { parse } from "url";
 import next from "next";
 
 export default (bot: Bot) => {
-  const config = bot.config;
-  const dev = config.dev;
+  const dev = process.env["DEV_MODE"];
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
@@ -16,7 +15,7 @@ export default (bot: Bot) => {
       (req as any).bot = bot;
 
       handle(req, res, parsedUrl);
-    }).listen(config.dashboard.port, () => {
+    }).listen(process.env["DASHBOARD_PORT"], () => {
       bot.logger.log("dashboard", "Dashboard was started");
     });
   });

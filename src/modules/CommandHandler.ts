@@ -41,7 +41,7 @@ export default class CommandHandler {
           this.bot.cooldowns.set(command.name, new Collection());
         }
 
-        if (this.bot.config.debug) {
+        if (process.env["DEBUG_MODE"] === true) {
           this.bot.logger.log("COMMAND", `Loaded ${command.name}`);
         }
       }

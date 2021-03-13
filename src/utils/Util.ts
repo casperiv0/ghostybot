@@ -167,7 +167,7 @@ export default class Util {
     if (error.stack?.includes('type: Value "voice" is not int.')) return;
     if (error.stack?.includes("DeprecationWarning: Listening to events on the Db class")) return;
 
-    const channelId = this.bot.config.errorLogsChannelId;
+    const channelId = process.env["ERRORLOGS_CHANNEL_ID"];
     const channel = (this.bot.channels.cache.get(channelId) ||
       (await this.bot.channels.fetch(channelId))) as TextChannel;
 
@@ -384,14 +384,14 @@ export default class Util {
     try {
       const bearer =
         tokenData.type === "Bearer"
-          ? jwt.verify(tokenData.data, this.bot.config.dashboard.jwtSecret)
+          ? jwt.verify(tokenData.data, process.env["DASHBOARD_JWT_SECRET"])
           : tokenData.data;
 
       if (!bearer) {
         return { error: "invalid_token" };
       }
 
-      const res = await fetch(`${this.bot.config.dashboard.discordApiUrl}${path}`, {
+      const res = await fetch(`${process.env["DASHBOARD_DISCORD_API_URL"]}${path}`, {
         method,
         headers: {
           Authorization: `${tokenData.type} ${bearer}`,

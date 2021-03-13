@@ -18,7 +18,7 @@ export default class BugReportCommand extends Command {
     try {
       const bug = args.join(" ");
 
-      if (!bot.config.reportsChannelId) {
+      if (!process.env["BUG_REPORTS_CHANNEL_ID"]) {
         return message.channel.send(
           lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId")
         );
@@ -33,7 +33,7 @@ export default class BugReportCommand extends Command {
         .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
         .setDescription(bug);
 
-      (bot.channels.cache.get(bot.config.reportsChannelId) as TextChannel)?.send(embed);
+      (bot.channels.cache.get(process.env["BUG_REPORTS_CHANNEL_ID"]) as TextChannel)?.send(embed);
 
       return message.channel.send(lang.UTIL.BUG_REPORTED);
     } catch (err) {

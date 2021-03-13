@@ -3,7 +3,6 @@ import { parseCookies } from "nookies";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { dashboard } from "../../../../config.json";
 import { openModal } from "../../../dashboard/components/modal";
 import AddStoreItem from "../../../dashboard/components/modal/add-store-item";
 import { FC, useEffect, useState } from "react";
@@ -38,7 +37,7 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
     try {
       const data = await (
         await fetch(
-          `${dashboard.dashboardUrl}/api/guilds/${guild.id}/store?name=${encodeURIComponent(name)}`,
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/store?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
           }
@@ -70,7 +69,7 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
       <AddStoreItem guild={guild} />
       <Head>
         <title>
-          {guild?.name} - Store / {dashboard.botName} Dashboard
+          {guild?.name} - Store / {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Dashboard
         </title>
       </Head>
       <div className="page-title">
@@ -123,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

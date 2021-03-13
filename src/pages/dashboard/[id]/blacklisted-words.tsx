@@ -4,7 +4,6 @@ import { useState, useEffect, FC } from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import { openModal } from "../../../dashboard/components/modal";
 import AddBlacklistedWord from "../../../dashboard/components/modal/add-blacklistedword";
@@ -37,7 +36,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
     try {
       const data = await (
         await fetch(
-          `${dashboard.dashboardUrl}/api/guilds/${
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
             guild.id
           }/blacklisted-words?word=${encodeURIComponent(word)}`,
           {
@@ -67,7 +66,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage blacklisted words - {dashboard.botName}</title>
+        <title>Manage blacklisted words - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <AddBlacklistedWord guild={guild} />
@@ -120,7 +119,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

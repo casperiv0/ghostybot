@@ -12,7 +12,6 @@ import MongoGiveawayManager from "../modules/GiveawayManager";
 import Command from "./Command";
 import Logger from "../modules/Logger";
 import Util from "../utils/Util";
-import config from "../../config.json";
 
 class Bot extends Client {
   commands: Collection<string, Command>;
@@ -20,7 +19,6 @@ class Bot extends Client {
   cooldowns: Collection<string, Collection<string, number>>;
   logger: typeof Logger;
   utils: Util;
-  config: typeof config;
   neko: NekoClient;
   imdb: ImdbClient;
   alexClient: AlexClient;
@@ -53,11 +51,10 @@ class Bot extends Client {
     this.cooldowns = new Collection();
     this.logger = Logger;
     this.utils = new Util(this);
-    this.config = config;
     this.neko = new NekoClient();
-    this.imdb = new ImdbClient({ apiKey: this.config.imdbKey });
-    this.alexClient = new AlexClient(this.config.alexflipnoteKey);
-    this.pasteClient = new PasteClient(this.config.pasteClientKey);
+    this.imdb = new ImdbClient({ apiKey: process.env["IMDB_KEY"] });
+    this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
+    this.pasteClient = new PasteClient(process.env["PASTE_CLIENT_KEY"]);
     this.player = new Player(this, {
       autoSelfDeaf: true,
       leaveOnEmpty: true,

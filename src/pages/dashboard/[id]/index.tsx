@@ -4,7 +4,6 @@ import { parseCookies } from "nookies";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { dashboard } from "../../../../config.json";
 import GuildData from "../../../interfaces/Guild";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 
@@ -36,7 +35,7 @@ const Guild: FC<Props> = ({ guild, isAuth, error }: Props) => {
     <>
       <Head>
         <title>
-          Viewing {guild?.name} - {dashboard.botName}
+          Viewing {guild?.name} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
         </title>
       </Head>
       <div className="page-title">
@@ -88,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

@@ -16,11 +16,11 @@ export default class GiphyCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      if (!bot.config.giphyApiKey) {
+      if (!process.env["GIPHY_API_KEY"]) {
         message.channel.send(lang.IMAGE.NO_GIPHY_KEY);
       }
 
-      const api_key = bot.config.giphyApiKey;
+      const api_key = process.env["GIPHY_API_KEY"];
       const q = encodeURIComponent(args.join(" "));
       const limit = 1;
       const rating = "pg-13";

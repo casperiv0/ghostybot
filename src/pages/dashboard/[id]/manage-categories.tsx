@@ -5,7 +5,6 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import categories from "../../../data/categories.json";
 import Guild from "../../../interfaces/Guild";
@@ -53,7 +52,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
   async function updateCategory(type: string, category: string) {
     const data = await (
-      await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/categories`, {
+      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/categories`, {
         method: "PUT",
         body: JSON.stringify({
           name: category,
@@ -78,7 +77,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage categories - {dashboard.botName}</title>
+        <title>Manage categories - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
@@ -134,7 +133,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

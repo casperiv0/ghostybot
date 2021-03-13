@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { dashboard } from "../../config.json";
 
 const Landing = () => {
   return (
@@ -7,7 +6,7 @@ const Landing = () => {
       <nav className="nav-bar">
         <div className="nav-content-landing">
           <a href="/" className="nav-icon">
-            {dashboard.botName}
+            {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
           </a>
           <div className="nav-links">
             <a href="/dashboard" className="nav-link">
@@ -24,7 +23,7 @@ const Landing = () => {
       </nav>
 
       <main className="main">
-        <h1>{dashboard.botName}</h1>
+        <h1>{process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</h1>
         <p>
           Custom Discord bot for your community needs! Moderation, music, games, economy and more!
         </p>

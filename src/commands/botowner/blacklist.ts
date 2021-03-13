@@ -32,34 +32,35 @@ export default class BlacklistCommand extends Command {
           tag: "N/A",
         },
       };
-  
+
       if (!type) {
         return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
       }
-  
+
       if (member?.user?.id === bot.user?.id) {
         return message.channel.send(lang.BOT_OWNER.CANNOT_BL_BOT);
       }
-  
-      if (bot.config.owners.includes(member?.user?.id)) {
+
+      const owners = process.env["OWNERS"];
+      if (owners.includes(member?.user?.id)) {
         return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
       }
-  
+
       const users = await BlacklistedModel.find();
-  
+
       switch (type) {
         case "view": {
           const usr = users.find((u: UserData) => u.user_id === member?.user?.id);
-  
+
           if (!usr) {
             return message.channel.send(lang.BOT_OWNER.NOT_BLD);
           }
-  
+
           const embed = bot.utils
             .baseEmbed(message)
             .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member?.user?.username}`)
             .addField(`${lang.LEVELS.LEVEL}`, "2");
-  
+
           return message.channel.send({ embed });
         }
         case "add": {
@@ -69,9 +70,9 @@ export default class BlacklistCommand extends Command {
               lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag)
             );
           }
-  
+
           const blUser = new BlacklistedModel({ user_id: member?.user?.id });
-  
+
           await blUser.save();
           break;
         }
@@ -83,7 +84,7 @@ export default class BlacklistCommand extends Command {
           if (!exists) {
             return message.channel.send(lang.BOT_OWNER.NOT_BLD);
           }
-  
+
           await BlacklistedModel.findOneAndDelete({ user_id: member?.user?.id });
           break;
         }

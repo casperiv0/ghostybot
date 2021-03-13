@@ -26,7 +26,7 @@ export default class CreateTicketCommand extends Command {
 
       if (!guild?.ticket_data.enabled) {
         return message.channel.send(
-          lang.TICKET.NOT_ENABLED.replace("{botName}", bot.config.dashboard.botName)
+          lang.TICKET.NOT_ENABLED.replace("{botName}", process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"])
         );
       }
 

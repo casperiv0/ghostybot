@@ -5,7 +5,6 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback, FC } from "react";
 import fetch from "node-fetch";
-import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import Guild from "../../../interfaces/Guild";
 
@@ -69,7 +68,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
 
   async function updateCommand(type: string, cmdName: string) {
     const data = await (
-      await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands`, {
+      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands`, {
         method: "PUT",
         body: JSON.stringify({
           name: cmdName,
@@ -94,7 +93,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
   return (
     <>
       <Head>
-        <title>Manage commands - {dashboard.botName}</title>
+        <title>Manage commands - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
@@ -151,7 +150,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

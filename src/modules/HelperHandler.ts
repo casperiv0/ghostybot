@@ -27,7 +27,7 @@ export default class HelperHandler {
 
       helper.execute(this.bot);
 
-      if (this.bot.config.debug) {
+      if (process.env["DEBUG_MODE"] === true) {
         this.bot.logger.log("HELPER", `Loaded ${helper.name}`);
       }
     }

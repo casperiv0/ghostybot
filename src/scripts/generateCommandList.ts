@@ -3,7 +3,6 @@ import fs from "fs";
 import { Collection } from "discord.js";
 import categoriesData from "../data/categories.json";
 import Bot from "../structures/Bot";
-import { dashboard } from "../../config.json";
 import Command from "../structures/Command";
 
 type Commands = Collection<string, Command>;
@@ -111,10 +110,10 @@ ${commands
 }
 
 function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
-  const DEFAULT = `# ${dashboard.botName} Command list
+  const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-${dashboard.botName} has a total of ${length} commands.
+${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} commands.
 
 Click any of the command names for more information
 

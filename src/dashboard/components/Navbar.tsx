@@ -3,7 +3,6 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { dashboard } from "../../../config.json";
 import Loader from "./Loader";
 
 export interface User {
@@ -20,7 +19,7 @@ const Navbar = () => {
   const fetchAuth = useCallback(async () => {
     const cookies = parseCookies();
     const data = await (
-      await fetch(`${dashboard.dashboardUrl}/api/auth`, {
+      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/auth`, {
         method: "POST",
         headers: {
           auth: cookies.token,
@@ -50,7 +49,7 @@ const Navbar = () => {
       <div className="nav-content">
         <Link href="/dashboard">
           <a href="/dashboard" className="nav-icon-link">
-            {dashboard.botName} <span className="nav-icon-extra">Dashboard</span>
+            {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} <span className="nav-icon-extra">Dashboard</span>
           </a>
         </Link>
         <div className="dropdown-container">
@@ -79,7 +78,7 @@ const Navbar = () => {
               </Link>
               <Link href="/add">
                 <a href="/add" className="dropdown-link">
-                  Invite {dashboard.botName}
+                  Invite {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
                 </a>
               </Link>
 

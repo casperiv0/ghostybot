@@ -5,7 +5,6 @@ import { Channel, Role } from "discord.js";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import fs from "fs";
-import { dashboard } from "../../../../config.json";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import timezones from "../../../data/timezones.json";
 import { useRouter } from "next/router";
@@ -358,7 +357,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     e.preventDefault();
 
     try {
-      const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}`, {
+      const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}`, {
         method: "POST",
         body: JSON.stringify({
           welcome_data: welcomeData,
@@ -398,7 +397,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     <>
       <Head>
         <title>
-          {guild?.name} - Settings / {dashboard.botName} Dashboard
+          {guild?.name} - Settings / {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Dashboard
         </title>
       </Head>
       <div className="page-title">
@@ -525,7 +524,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   });
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },

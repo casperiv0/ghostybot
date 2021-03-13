@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { dashboard } from "../../../config.json";
 import AlertMessage from "../../dashboard/components/AlertMessage";
 import Guild from "../../interfaces/Guild";
 
@@ -66,7 +65,7 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
-  const res = await fetch(`${dashboard.dashboardUrl}/api/guilds`, {
+  const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds`, {
     headers: {
       Auth: cookies?.token,
     },

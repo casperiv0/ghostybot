@@ -13,7 +13,7 @@ export default class ImdbCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    if (!bot.config.imdbKey) return;
+    if (!process.env["IMDB_KEY"]) return;
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     const search = args.join(" ");
 

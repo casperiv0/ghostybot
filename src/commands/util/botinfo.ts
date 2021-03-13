@@ -75,7 +75,7 @@ export default class BotInfoCommand extends Command {
         .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
         .addField(
           `${lang.BOT.DASHBOARD}`,
-          `[Click Here](${bot.config.dashboard.dashboardUrl})`,
+          `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`,
           true
         )
         .setImage(

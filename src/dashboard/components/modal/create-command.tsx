@@ -1,7 +1,6 @@
 import { FC, FormEvent, useState } from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "../../../modules/Logger";
-import { dashboard } from "../../../../config.json";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "../../../interfaces/Guild";
@@ -20,7 +19,7 @@ const CreateCommandModal: FC<Props> = ({ guild }: Props) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands`, {
+      const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands`, {
         method: "POST",
         body: JSON.stringify({
           name,

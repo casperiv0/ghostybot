@@ -14,7 +14,6 @@ import "../dashboard/css/switch.css";
 import "../dashboard/css/nprogress.css";
 import Navbar from "../dashboard/components/Navbar";
 import Footer from "../dashboard/components/Footer";
-import { dashboard } from "../../config.json";
 import Loader from "../dashboard/components/Loader";
 
 const paths = ["/error", "/"];
@@ -42,7 +41,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
       {paths.includes(router.pathname) ? null : <Navbar />}
       <div className="container">
         <Head>
-          <title>{dashboard.botName} - A Discord bot</title>
+          <title>{process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot</title>
         </Head>
         <div className="content">
           <Component {...pageProps} />

@@ -25,7 +25,7 @@ export default class ReadyEvent extends Event {
     new HelperHandler(bot).loadHelpers();
     new FeatureHandler(bot).loadFeatures();
 
-    if (bot.config.dev === true) {
+    if (process.env["DEV_MODE"] === true) {
       import("../../scripts/generateCommandList").then((v) => v.default(bot));
     }
 

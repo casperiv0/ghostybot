@@ -18,14 +18,14 @@ export default class FeedbackCommand extends Command {
       const feedback = args.join(" ");
 
       if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
-      if (!bot.config.feedBackChannelId || bot.config.feedBackChannelId === "") return;
+      if (!process.env["FEEDBACK_CHANNEL_ID"] || process.env["FEEDBACK_CHANNEL_ID"] === "") return;
 
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_FEEDBACK)
         .setDescription(feedback);
 
-      (bot.channels.cache.get(bot.config.feedBackChannelId) as TextChannel)?.send(embed);
+      (bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"]) as TextChannel)?.send(embed);
 
       message.channel.send(lang.UTIL.FEEDBACK_SEND);
     } catch (err) {

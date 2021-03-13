@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { dashboard } from "../../config.json";
 
 const ErrorPage: NextPage = () => {
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +18,7 @@ const ErrorPage: NextPage = () => {
       <nav className="nav-bar">
         <div className="nav-content-landing">
           <a href="/" className="nav-icon">
-            {dashboard.botName}
+            {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
           </a>
           <div className="nav-links">
             <a href="/dashboard" className="nav-link">

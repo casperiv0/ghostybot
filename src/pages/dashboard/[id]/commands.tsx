@@ -5,7 +5,6 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { dashboard } from "../../../../config.json";
 import Logger from "../../../modules/Logger";
 import { openModal } from "../../../dashboard/components/modal";
 import CreateCommandModal from "../../../dashboard/components/modal/create-command";
@@ -38,7 +37,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
     try {
       const data = await (
         await fetch(
-          `${dashboard.dashboardUrl}/api/guilds/${guild.id}/commands?name=${encodeURIComponent(
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands?name=${encodeURIComponent(
             name
           )}`,
           {
@@ -68,7 +67,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage custom commands - {dashboard.botName}</title>
+        <title>Manage custom commands - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <CreateCommandModal guild={guild} />
@@ -123,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
   const data = await (
-    await fetch(`${dashboard.dashboardUrl}/api/guilds/${ctx.query.id}`, {
+    await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
