@@ -17,7 +17,7 @@ export default class XpCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const [amount] = args;
+      const [, amount] = args;
       const member = await bot.utils.findMember(message, args);
 
       if (!member) {
@@ -28,9 +28,6 @@ export default class XpCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      if (isNaN(Number(amount))) {
-        return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
-      }
       const user = await bot.utils.getUserById(member.id, message.guild?.id);
       if (!user) return;
 

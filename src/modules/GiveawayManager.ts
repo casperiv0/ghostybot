@@ -2,6 +2,10 @@ import { GiveawayData, GiveawaysManager } from "discord-giveaways";
 import GiveawayModel from "../models/Giveaway.model";
 
 export default class MongoGiveawayManager extends GiveawaysManager {
+  async getAllGiveaways() {
+    return await GiveawayModel.find();
+  }
+
   async saveGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
     const giv = new GiveawayModel(giveawayData);
     await giv.save();
@@ -10,9 +14,8 @@ export default class MongoGiveawayManager extends GiveawaysManager {
   }
 
   async editGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
-    await this.deleteGiveaway(messageId);
+    await GiveawayModel.findOneAndUpdate({ messageId }, giveawayData).exec();
 
-    await this.saveGiveaway(messageId, giveawayData);
     return true;
   }
 

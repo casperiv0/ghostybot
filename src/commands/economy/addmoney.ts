@@ -31,6 +31,10 @@ export default class AddMoneyCommand extends Command {
         return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
       }
 
+      if (+amount < 1) {
+        return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+      }
+
       const user = await bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);

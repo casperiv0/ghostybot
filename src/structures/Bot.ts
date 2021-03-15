@@ -69,6 +69,7 @@ class Bot extends Client {
     this.giveawayManager = new MongoGiveawayManager(this, {
       hasGuildMembersIntent: true,
       updateCountdownEvery: 10000,
+
       default: {
         embedColor: "#7289DA",
         botsCanWin: false,

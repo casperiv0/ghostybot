@@ -26,7 +26,7 @@ export default class GivStartCommand extends Command {
       const [time, winnerCount, ...rest] = args;
       const prize = rest.join(" ");
 
-      bot.giveawayManager.start(message.channel as TextChannel, {
+      await bot.giveawayManager.start(message.channel as TextChannel, {
         time: ms(time),
         prize: prize,
         winnerCount: +winnerCount,
