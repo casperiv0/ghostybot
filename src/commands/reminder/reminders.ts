@@ -20,6 +20,7 @@ export default class RemindersCommand extends Command {
       if (!member) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
+
       const user = await bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) return;
 
