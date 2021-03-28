@@ -1,4 +1,4 @@
-import { PermissionString, Message } from "discord.js";
+import { Message } from "discord.js";
 import Bot from "./Bot";
 
 export type CommandCategories =
@@ -34,8 +34,8 @@ export interface CommandOptions {
   requiredArgs?: RequiredArg[];
   options?: string[];
 
-  memberPermissions?: PermissionString[];
-  botPermissions?: PermissionString[];
+  memberPermissions?: bigint[];
+  botPermissions?: bigint[];
 
   ownerOnly?: boolean;
 }

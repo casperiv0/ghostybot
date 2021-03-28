@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,8 +8,8 @@ export default class DeafenCommand extends Command {
       name: "deafen",
       description: "Deafen a user",
       category: "admin",
-      botPermissions: ["DEAFEN_MEMBERS"],
-      memberPermissions: ["DEAFEN_MEMBERS"],
+      botPermissions: [Permissions.FLAGS.DEAFEN_MEMBERS],
+      memberPermissions: [Permissions.FLAGS.DEAFEN_MEMBERS],
       requiredArgs: [{ name: "member" }, { name: "reason" }],
     });
   }

@@ -1,4 +1,4 @@
-import { Message, Util } from "discord.js";
+import { Message, Util, Permissions } from "discord.js";
 import { parse } from "twemoji-parser";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -11,8 +11,8 @@ export default class StealEmojiCommand extends Command {
       usage: "<emoji> [custom name]",
       description: "Steal an emoji from a different server",
       requiredArgs: [{ name: "emoji" }],
-      botPermissions: ["MANAGE_EMOJIS"],
-      memberPermissions: ["MANAGE_EMOJIS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_EMOJIS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_EMOJIS],
     });
   }
 

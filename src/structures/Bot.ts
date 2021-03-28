@@ -44,6 +44,7 @@ class Bot extends Client {
       ],
       partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION", "CHANNEL"],
       restRequestTimeout: 25000,
+      allowedMentions: { parse: ["roles", "users", "everyone"] },
     });
 
     this.commands = new Collection();

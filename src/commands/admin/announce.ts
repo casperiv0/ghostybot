@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, TextChannel, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,7 +9,7 @@ export default class AnnounceCommand extends Command {
       description: "Announce something in a channel",
       usage: "[channel] <text>",
       category: "admin",
-      memberPermissions: ["MANAGE_MESSAGES"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
     });
   }
 

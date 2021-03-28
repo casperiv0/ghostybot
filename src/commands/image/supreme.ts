@@ -1,4 +1,4 @@
-import { Message, MessageAttachment } from "discord.js";
+import { Message, MessageAttachment, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,7 +9,7 @@ export default class SupremeCommand extends Command {
       description: "Display custom text as the Supreme logo",
       category: "image",
       requiredArgs: [{ name: "text" }],
-      botPermissions: ["ATTACH_FILES"],
+      botPermissions: [Permissions.FLAGS.ATTACH_FILES],
     });
   }
 

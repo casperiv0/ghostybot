@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class SayCommand extends Command {
       name: "say",
       description: "Let the bot say something",
       category: "admin",
-      memberPermissions: ["MANAGE_MESSAGES"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
       requiredArgs: [{ name: "text | type(embed)" }],
     });
   }

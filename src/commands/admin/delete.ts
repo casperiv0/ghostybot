@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, TextChannel, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -10,8 +10,8 @@ export default class DeleteCommand extends Command {
       usage: "<1-100>",
       aliases: ["purge", "clear"],
       category: "admin",
-      memberPermissions: ["MANAGE_MESSAGES"],
-      botPermissions: ["MANAGE_MESSAGES"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
+      botPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
       requiredArgs: [{ name: "amount", type: "number" }],
     });
   }

@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class RemoveRoleAllCommand extends Command {
       aliases: ["rrall", "rroleall", "takeroleall"],
       description: "remove a role from all users of the current server",
       category: "admin",
-      botPermissions: ["MANAGE_ROLES"],
-      memberPermissions: ["MANAGE_ROLES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES],
       requiredArgs: [{ name: "role" }],
     });
   }

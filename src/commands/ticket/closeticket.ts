@@ -1,6 +1,6 @@
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message, TextChannel, User } from "discord.js";
+import { Message, Permissions, TextChannel, User } from "discord.js";
 
 export default class CloseTicketCommand extends Command {
   constructor(bot: Bot) {
@@ -8,7 +8,7 @@ export default class CloseTicketCommand extends Command {
       name: "closeticket",
       description: "Closes the active ticket, use --force to force close issue",
       category: "ticket",
-      botPermissions: ["MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
       cooldown: 10,
     });
   }

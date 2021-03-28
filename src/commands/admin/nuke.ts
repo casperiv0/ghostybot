@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, TextChannel, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class NukeCommand extends Command {
       description: "Nuke the current channel, delete all messages of the channel",
       aliases: ["channelnuke"],
       category: "admin",
-      botPermissions: ["MANAGE_CHANNELS"],
-      memberPermissions: ["MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     });
   }
 
@@ -18,25 +18,25 @@ export default class NukeCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const channel = message.channel as TextChannel;
-  
+
       if (!channel) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       const position = channel.position;
       const topic = channel.topic;
-  
+
       const filter = (m: Message) => m.author.id === message.author.id;
       const collector = message.channel.createMessageCollector(filter, {
         time: 15000,
       });
-  
+
       message.channel.send(lang.ADMIN.NUKE_CONFIRM);
-  
+
       collector.on("collect", async (m) => {
         if (m.content?.toLowerCase() === "y") {
           const channel2 = await channel.clone();
-  
+
           channel2.setPosition(position);
           channel2.setTopic(topic);
           channel.delete();

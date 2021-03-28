@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class UnStickyCommand extends Command {
       description: "Sticky a message to the bottom of the screen",
       aliases: ["removesticky"],
       category: "admin",
-      botPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
-      memberPermissions: ["MANAGE_MESSAGES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.ADMINISTRATOR],
+      memberPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
     });
   }
 

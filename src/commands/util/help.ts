@@ -1,4 +1,4 @@
-import { Message, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed, Permissions } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -81,15 +81,35 @@ export default class HelpCommand extends Command {
             ? cmd.options.options.map((option) => option)
             : lang.GLOBAL.NONE;
           cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
+
+          // @ts-expect-error this works
           memberPerms = !cmd.options.memberPermissions
-            ? lang.GLOBAL.NONE
-            : [...cmd.options.memberPermissions].map((p) => lang.PERMISSIONS[p.toUpperCase()]);
+            ? [lang.GLOBAL.NONE]
+            : [...cmd.options.memberPermissions].map((p) => {
+                const perms: string[] = [];
+
+                Object.keys(Permissions.FLAGS).map((key) => {
+                  if (Permissions.FLAGS[key] === p) {
+                    perms.push(lang.PERMISSIONS[key]);
+                  }
+                });
+
+                return perms;
+              });
 
           botPerms = !cmd.options.botPermissions
             ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
-            : [...cmd.options.botPermissions, "SEND_MESSAGES"].map(
-                (p) => lang.PERMISSIONS[p.toUpperCase()]
-              );
+            : [...cmd.options.botPermissions, Permissions.FLAGS.SEND_MESSAGES].map((p) => {
+                const perms: string[] = [];
+
+                Object.keys(Permissions.FLAGS).map((key) => {
+                  if (Permissions.FLAGS[key] === p) {
+                    perms.push(lang.PERMISSIONS[key]);
+                  }
+                });
+
+                return perms;
+              });
 
           const embed = bot.utils
             .baseEmbed(message)

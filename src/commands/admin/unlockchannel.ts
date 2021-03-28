@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Permissions, TextChannel } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class UnLockChannelCommand extends Command {
       description: "Unlock A channel",
       category: "admin",
       usage: "<channel mention | current channel>",
-      botPermissions: ["MANAGE_CHANNELS"],
-      memberPermissions: ["MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     });
   }
 

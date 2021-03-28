@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class BanCommand extends Command {
       description: "ban",
       usage: "<user>",
       category: "admin",
-      botPermissions: ["BAN_MEMBERS"],
-      memberPermissions: ["BAN_MEMBERS"],
+      botPermissions: [Permissions.FLAGS.BAN_MEMBERS],
+      memberPermissions: [Permissions.FLAGS.BAN_MEMBERS],
       requiredArgs: [{ name: "user" }],
     });
   }
@@ -28,7 +28,7 @@ export default class BanCommand extends Command {
 
       if (!banReason) banReason = lang.GLOBAL.NOT_SPECIFIED;
 
-      if (!banMember.bannable || banMember.permissions.has("BAN_MEMBERS")) {
+      if (!banMember.bannable || banMember.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
         return message.channel.send(lang.MEMBER.CANNOT_BE_BANNED);
       }
 

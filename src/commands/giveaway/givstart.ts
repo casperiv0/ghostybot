@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Permissions, TextChannel } from "discord.js";
 import ms from "ms";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -10,7 +10,7 @@ export default class GivStartCommand extends Command {
       description: "Starts a giveaway",
       category: "giveaway",
       usage: "<time> <winner count> <price>\n **Example:** !givstart 2d 10 Discord nitro",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       aliases: ["gstart"],
       requiredArgs: [
         { name: "time", type: "time" },

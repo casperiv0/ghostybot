@@ -10,6 +10,7 @@ import {
   Role,
   Snowflake,
   PermissionObject,
+  Permissions,
 } from "discord.js";
 import moment from "moment";
 import jwt from "jsonwebtoken";
@@ -433,10 +434,23 @@ export default class Util {
     }
   }
 
-  errorEmbed(permissions: string[], message: Message) {
+  errorEmbed(permissions: bigint[], message: Message, lang?: any) {
     return this.baseEmbed(message)
       .setTitle("Woah!")
-      .setDescription(`❌ I need ${permissions.map((p) => `\`${p}\``).join(", ")} permissions!`)
+      .setDescription(
+        `❌ I need ${permissions
+          .map((p) => {
+            const perms: string[] = [];
+            Object.keys(Permissions.FLAGS).map((key) => {
+              if (Permissions.FLAGS[key] === p) {
+                perms.push(`\`${lang?.PERMISSIONS?.[key]}\``);
+              }
+            });
+
+            return perms;
+          })
+          .join(", ")} permissions!`
+      )
       .setColor("ORANGE");
   }
 

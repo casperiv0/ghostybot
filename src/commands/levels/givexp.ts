@@ -1,6 +1,6 @@
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 
 export default class XpCommand extends Command {
   constructor(bot: Bot) {
@@ -9,7 +9,7 @@ export default class XpCommand extends Command {
       description: "Give someone Xp",
       category: "levels",
       usage: "<user> <amount>",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       requiredArgs: [{ name: "member" }, { name: "amount", type: "number" }],
     });
   }

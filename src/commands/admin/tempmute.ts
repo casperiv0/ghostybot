@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import ms from "ms";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -9,8 +9,8 @@ export default class TempMuteCommand extends Command {
       name: "tempmute",
       description: "Temporary mute someone",
       category: "admin",
-      botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
-      memberPermissions: ["MANAGE_ROLES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES, Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES],
       usage: "<user> <time> <reason>",
       requiredArgs: [{ name: "user" }, { name: "time", type: "time" }, { name: "reason" }],
     });
@@ -37,8 +37,8 @@ export default class TempMuteCommand extends Command {
       if (muteMember?.roles.cache.find((r) => r.id === muteRole?.id)) {
         return message.channel.send(lang.ADMIN.ALREADY_MUTED);
       }
-  
-      if (muteMember.permissions.has("MANAGE_ROLES")) {
+
+      if (muteMember.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
         return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
       }
 

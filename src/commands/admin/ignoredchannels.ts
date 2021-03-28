@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -10,7 +10,7 @@ export default class IgnoredChannelsCommand extends Command {
       category: "admin",
       usage: "<option> <channel>",
       options: ["add", "remove"],
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       aliases: ["igch", "ic"],
       requiredArgs: [{ name: "option" }, { name: "channel" }],
     });

@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,7 +9,7 @@ export default class AddCmdCommand extends Command {
       usage: "<cmd_name> <cmd_response>",
       description: "add guild custom commands",
       category: "admin",
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       requiredArgs: [{ name: "command name" }, { name: "command response" }],
     });
   }

@@ -1,6 +1,6 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
-import { Collection } from "discord.js";
+import { Collection, Permissions } from "discord.js";
 import categoriesData from "../data/categories.json";
 import Bot from "../structures/Bot";
 import Command from "../structures/Command";
@@ -75,13 +75,35 @@ function commandItem(command: Command) {
 **Member Permissions:** ${
     !command.options.memberPermissions
       ? "None"
-      : command.options.memberPermissions.map((p) => p).join(", ")
+      : command.options.memberPermissions
+          .map((p) => {
+            const perms: string[] = [];
+            Object.keys(Permissions.FLAGS).map((key) => {
+              if (Permissions.FLAGS[key] === p) {
+                perms.push(key);
+              }
+            });
+
+            return perms;
+          })
+          .join(", ")
   }
 
 **Bot Permissions:** ${
     !command.options.botPermissions
       ? "SEND_MESSAGES"
-      : ["SEND_MESSAGES", ...command.options.botPermissions].map((p) => p).join(", ")
+      : [Permissions.FLAGS.SEND_MESSAGES, ...command.options.botPermissions]
+          .map((p) => {
+            const perms: string[] = [];
+            Object.keys(Permissions.FLAGS).map((key) => {
+              if (Permissions.FLAGS[key] === p) {
+                perms.push(key);
+              }
+            });
+
+            return perms;
+          })
+          .join(", ")
   }
 
 **Required Arguments:** ${
@@ -112,7 +134,7 @@ ${commands
 function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
   const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
-This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
+This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} commands.
 
 Click any of the command names for more information

@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -10,8 +10,8 @@ export default class AddRoleAllCommand extends Command {
       description: "Add a role to all user of the current server",
       usage: "<role>",
       category: "admin",
-      memberPermissions: ["MANAGE_ROLES", "ADMINISTRATOR"],
-      botPermissions: ["MANAGE_ROLES"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES, Permissions.FLAGS.ADMINISTRATOR],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES],
       requiredArgs: [{ name: "role" }],
     });
   }
@@ -21,17 +21,19 @@ export default class AddRoleAllCommand extends Command {
     try {
       const role = await bot.utils.findRole(message, args[0]);
       if (!message.guild?.me) return;
-  
+
       if (!role) {
         return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-        return message.channel.send(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name));
+        return message.channel.send(
+          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name)
+        );
       }
-  
+
       message.guild.members.cache.forEach((member) => member.roles.add(role));
-  
+
       message.channel.send(
         lang.ROLES.ADDED_ROLE_TO.replace("{role}", role.name).replace(
           "{member}",

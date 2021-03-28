@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, TextChannel, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class CTopicCommand extends Command {
       description: "Update the channel topic",
       category: "admin",
       usage: "<channel> <topic>",
-      botPermissions: ["MANAGE_CHANNELS"],
-      memberPermissions: ["MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     });
   }
 

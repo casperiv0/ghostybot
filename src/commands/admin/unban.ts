@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,8 +8,8 @@ export default class UnBanCommand extends Command {
       name: "unban",
       description: "unban a user by their id",
       category: "admin",
-      botPermissions: ["BAN_MEMBERS"],
-      memberPermissions: ["BAN_MEMBERS"],
+      botPermissions: [Permissions.FLAGS.BAN_MEMBERS],
+      memberPermissions: [Permissions.FLAGS.BAN_MEMBERS],
       requiredArgs: [{ name: "member_id" }],
     });
   }

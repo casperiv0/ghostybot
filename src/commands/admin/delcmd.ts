@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -10,7 +10,7 @@ export default class DelCmdCommand extends Command {
       description: "Delete the custom commannd",
       category: "admin",
       aliases: ["removecmd"],
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       requiredArgs: [{ name: "command name" }],
     });
   }

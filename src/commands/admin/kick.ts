@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,8 +8,8 @@ export default class KickCommand extends Command {
       name: "kick",
       description: "Kick a user",
       category: "admin",
-      botPermissions: ["KICK_MEMBERS"],
-      memberPermissions: ["KICK_MEMBERS"],
+      botPermissions: [Permissions.FLAGS.KICK_MEMBERS],
+      memberPermissions: [Permissions.FLAGS.KICK_MEMBERS],
     });
   }
 
@@ -18,27 +18,27 @@ export default class KickCommand extends Command {
     try {
       const kickMember = await bot.utils.findMember(message, args);
       let kickReason = args.slice(1).join(" ");
-  
+
       if (!message.guild?.me) return;
-  
+
       if (!kickMember) {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
-  
+
       if (!kickReason) kickReason = lang.GLOBAL.NOT_SPECIFIED;
-  
-      if (!kickMember.kickable || kickMember.permissions.has("KICK_MEMBERS")) {
+
+      if (!kickMember.kickable || kickMember.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
         return message.channel.send(lang.ADMIN.KICK_CANNOT_KICK);
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(kickMember.roles.highest) < 0) {
         return message.channel.send(
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", kickMember.user.tag)
         );
       }
-  
+
       kickMember.kick(kickReason);
-  
+
       kickMember.user.send(
         lang.ADMIN.KICK_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
           "{reason}",
@@ -46,9 +46,12 @@ export default class KickCommand extends Command {
         )
       );
       message.channel.send(
-        lang.ADMIN.KICK_SUCCESS.replace("{tag}", kickMember.user.tag).replace("{reason}", kickReason)
+        lang.ADMIN.KICK_SUCCESS.replace("{tag}", kickMember.user.tag).replace(
+          "{reason}",
+          kickReason
+        )
       );
-  
+
       bot.emit("guildKickAdd", message.guild, {
         member: kickMember,
         executor: message.author,

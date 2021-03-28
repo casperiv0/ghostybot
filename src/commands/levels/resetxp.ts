@@ -1,6 +1,6 @@
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 
 export default class ResetXpCommand extends Command {
   constructor(bot: Bot) {
@@ -8,7 +8,7 @@ export default class ResetXpCommand extends Command {
       name: "resetxp",
       description: "reset all users xp for current server",
       category: "levels",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
     });
   }
 

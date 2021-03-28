@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,7 +9,7 @@ export default class GiveEndCommand extends Command {
       description: "Ends a giveaway",
       category: "giveaway",
       usage: "givend <messageId> \n **Example:** !giveaway end <messageId>",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       aliases: ["gend"],
       requiredArgs: [{ name: "messageId" }],
     });

@@ -1,6 +1,6 @@
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message, MessageAttachment } from "discord.js";
+import { Message, MessageAttachment, Permissions } from "discord.js";
 
 export default class XpCommand extends Command {
   constructor(bot: Bot) {
@@ -9,7 +9,7 @@ export default class XpCommand extends Command {
       description: "Get your current level",
       category: "levels",
       aliases: ["lvl", "rank"],
-      botPermissions: ["ATTACH_FILES"],
+      botPermissions: [Permissions.FLAGS.ATTACH_FILES],
     });
   }
 

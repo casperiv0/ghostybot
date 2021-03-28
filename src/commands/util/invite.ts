@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Permissions, TextChannel } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class InviteCommand extends Command {
       name: "invite",
       description: "Creates an instant invite for the server",
       category: "util",
-      botPermissions: ["CREATE_INSTANT_INVITE"],
+      botPermissions: [Permissions.FLAGS.CREATE_INSTANT_INVITE],
       aliases: ["inv"],
     });
   }

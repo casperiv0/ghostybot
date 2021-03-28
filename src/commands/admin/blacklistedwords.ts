@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -10,7 +10,7 @@ export default class BlacklistedWordsCommand extends Command {
       category: "admin",
       usage: "<option> [word]",
       options: ["get", "add", "remove"],
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       aliases: ["wordsfilter", "filterwords", "blacklistedword"],
       requiredArgs: [{ name: "option" }],
     });

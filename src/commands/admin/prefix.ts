@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class PrefixCommand extends Command {
       name: "prefix",
       description: "Set a prefix for your server",
       category: "exempt",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
     });
   }
 

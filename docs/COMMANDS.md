@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
-This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.js).
-Ghostybot has a total of 206 commands.
+This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
+Ghostybot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -356,7 +356,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 49**
+**Total commands: 48**
 
 [afk:](#afk) N/A
 
@@ -405,8 +405,6 @@ Click any of the command names for more information
 [invite:](#invite) Creates an instant invite for the server
 
 [ip:](#ip) Search an IP
-
-[mdn:](#mdn) Returns the request query from mozilla developer network
 
 [membercount:](#membercount) N/A
 
@@ -3785,24 +3783,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `ip(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## mdn
-
-**Category:** util
-
-**Description:** Returns the request query from mozilla developer network
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 

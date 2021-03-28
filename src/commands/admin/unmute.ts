@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class UnMuteCommand extends Command {
       description: "Unmute a user",
       category: "admin",
       usage: "<@user>",
-      botPermissions: ["MANAGE_ROLES"],
-      memberPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES, Permissions.FLAGS.MANAGE_CHANNELS],
       requiredArgs: [{ name: "user" }],
     });
   }

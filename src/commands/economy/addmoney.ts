@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class AddMoneyCommand extends Command {
       name: "addmoney",
       description: "Add money to a user",
       category: "economy",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       requiredArgs: [{ name: "member" }, { name: "amount", type: "number" }],
     });
   }

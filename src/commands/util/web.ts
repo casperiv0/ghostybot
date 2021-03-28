@@ -1,4 +1,4 @@
-import { Message, MessageAttachment, TextChannel } from "discord.js";
+import { Message, MessageAttachment, Permissions, TextChannel } from "discord.js";
 import fetch from "node-fetch";
 import URL from "url";
 import Command from "../../structures/Command";
@@ -17,7 +17,7 @@ export default class WebCommand extends Command {
       aliases: ["screenshot", "webscreenshot"],
       requiredArgs: [{ name: "url" }],
       usage: "<url EG: https://google.com >",
-      botPermissions: ["ATTACH_FILES"],
+      botPermissions: [Permissions.FLAGS.ATTACH_FILES],
     });
   }
 

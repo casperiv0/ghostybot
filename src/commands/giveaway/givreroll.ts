@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class GivReRollCommand extends Command {
       name: "givreroll",
       description: "Reroll a giveaway",
       category: "giveaway",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       aliases: ["greroll"],
       requiredArgs: [{ name: "messageId" }],
     });

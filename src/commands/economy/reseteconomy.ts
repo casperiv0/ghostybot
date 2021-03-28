@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import UserModel, { IUser } from "../../models/User.model";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -9,7 +9,7 @@ export default class ResetEconomyCommand extends Command {
       name: "reseteconomy",
       description: "Reset all money/bank in this guild",
       category: "economy",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       aliases: ["reset-economy"],
     });
   }

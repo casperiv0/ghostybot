@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -12,7 +12,7 @@ export default class DisableCommand extends Command {
       name: "disable",
       description: "Disables a command",
       category: "exempt",
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       requiredArgs: [{ name: "command name | category name" }],
     });
   }
@@ -21,7 +21,7 @@ export default class DisableCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const [option] = args;
-      
+
       const guild = await bot.utils.getGuildById(message.guild?.id);
 
       if (!guild) {

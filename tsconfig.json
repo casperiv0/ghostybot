@@ -19,7 +19,8 @@
     "noEmit": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    "typeRoots": ["./node_modules/@types", "./typings"]
+    "typeRoots": ["./node_modules/@types", "./typings"],
+    "traceResolution": true
   },
   "ts-node": {
     "files": true

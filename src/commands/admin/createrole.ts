@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class CreateRoleCommand extends Command {
       description: "This command creates a role with the name of what you say",
       category: "admin",
       usage: "<role_name>",
-      botPermissions: ["MANAGE_ROLES"],
-      memberPermissions: ["MANAGE_ROLES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES],
       requiredArgs: [{ name: "role name" }],
     });
   }

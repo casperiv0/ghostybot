@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,8 +8,8 @@ export default class StickyCommand extends Command {
       name: "sticky",
       description: "Sticky a message to the bottom of the screen",
       category: "admin",
-      botPermissions: ["MANAGE_MESSAGES"],
-      memberPermissions: ["MANAGE_MESSAGES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
+      memberPermissions: [Permissions.FLAGS.MANAGE_MESSAGES],
       requiredArgs: [{ name: "message" }],
     });
   }

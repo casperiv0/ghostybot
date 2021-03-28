@@ -1,4 +1,4 @@
-import { Message, Role, TextChannel } from "discord.js";
+import { Message, Permissions, Role, TextChannel } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 import ReactionsModel, { Reaction } from "../../models/Reactions.model";
@@ -10,8 +10,12 @@ export default class RrAddCommand extends Command {
       description: "Add a reaction role",
       category: "reactions",
       usage: "<channel_id>",
-      memberPermissions: ["ADMINISTRATOR"],
-      botPermissions: ["MANAGE_ROLES", "ADD_REACTIONS", "MANAGE_MESSAGES"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
+      botPermissions: [
+        Permissions.FLAGS.MANAGE_ROLES,
+        Permissions.FLAGS.ADD_REACTIONS,
+        Permissions.FLAGS.MANAGE_MESSAGES,
+      ],
       requiredArgs: [{ name: "channel_id" }],
     });
   }

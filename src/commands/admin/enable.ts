@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import categories from "../../data/categories.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -9,7 +9,7 @@ export default class EnableCommand extends Command {
       name: "enable",
       description: "Enables a command",
       category: "exempt",
-      memberPermissions: ["ADMINISTRATOR"],
+      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
       requiredArgs: [{ name: "command name | category name" }],
     });
   }

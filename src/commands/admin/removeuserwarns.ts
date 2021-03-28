@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -8,7 +8,7 @@ export default class RemoveUserWarnsCommand extends Command {
       name: "removeuserwarns",
       description: "Remove all warns from a user",
       category: "admin",
-      memberPermissions: ["MANAGE_GUILD"],
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       requiredArgs: [{ name: "member" }],
     });
   }

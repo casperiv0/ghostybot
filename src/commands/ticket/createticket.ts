@@ -1,6 +1,6 @@
+import { Message, OverwriteResolvable, TextChannel, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
-import { Message, OverwriteResolvable, TextChannel } from "discord.js";
 
 export default class CreateTicketCommand extends Command {
   constructor(bot: Bot) {
@@ -8,7 +8,7 @@ export default class CreateTicketCommand extends Command {
       name: "createticket",
       description: "Creates a ticket",
       category: "ticket",
-      botPermissions: ["MANAGE_CHANNELS"],
+      botPermissions: [Permissions.FLAGS.MANAGE_CHANNELS],
     });
   }
 

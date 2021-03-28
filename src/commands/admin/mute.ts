@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -9,8 +9,8 @@ export default class MuteCommand extends Command {
       description: "Mute a user",
       category: "admin",
       usage: "<@user>",
-      botPermissions: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
-      memberPermissions: ["MANAGE_ROLES"],
+      botPermissions: [Permissions.FLAGS.MANAGE_ROLES, Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [Permissions.FLAGS.MANAGE_ROLES],
     });
   }
 
@@ -20,40 +20,40 @@ export default class MuteCommand extends Command {
       const muteMember = await bot.utils.findMember(message, args);
       const guild = await bot.utils.getGuildById(message.guild?.id);
       let muteReason = args.slice(1).join(" ");
-  
+
       if (!muteReason) muteReason = lang.GLOBAL.NOT_SPECIFIED;
       if (!message.guild?.me) return;
-  
+
       const muted_role =
         !guild?.muted_role_id || guild?.muted_role_id === "Disabled"
           ? await bot.utils.findOrCreateMutedRole(message.guild)
           : message.guild.roles.cache.find((r) => r.id === guild?.muted_role_id) ||
             (await bot.utils.findOrCreateMutedRole(message.guild));
-  
+
       if (!muteMember) {
         return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
       }
-  
+
       if (muteMember?.roles.cache.find((r) => r.id === muted_role?.id)) {
         return message.channel.send(lang.ADMIN.MUTE_ALREADY_MUTED);
       }
-  
-      if (muteMember.permissions.has("MANAGE_ROLES")) {
+
+      if (muteMember.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
         return message.channel.send(lang.ADMIN.MUTE_CANNOT_MUTE);
       }
-  
+
       if (message.guild.me.roles.highest.comparePositionTo(muteMember.roles.highest) < 0)
         return message.channel.send(
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", muteMember.user.tag)
         );
-  
+
       const muteRole = await bot.utils.findOrCreateMutedRole(message.guild);
       bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
         SEND_MESSAGES: false,
         ADD_REACTIONS: false,
         CONNECT: false,
       });
-  
+
       // Add role & send msg
       muteMember.roles.add(muteRole!);
       muteMember.user.send(
@@ -63,9 +63,12 @@ export default class MuteCommand extends Command {
         )
       );
       message.channel.send(
-        lang.ADMIN.MUTE_SUCCESS.replace("{tag}", muteMember.user.tag).replace("{reason}", muteReason)
+        lang.ADMIN.MUTE_SUCCESS.replace("{tag}", muteMember.user.tag).replace(
+          "{reason}",
+          muteReason
+        )
       );
-  
+
       bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
         executor: message.author,
