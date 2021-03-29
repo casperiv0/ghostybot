@@ -21,7 +21,7 @@ export default class MoneyLeaderboardCommand extends Command {
       const guildId = message.guild?.id;
       const data = (await UserModel.find({ guild_id: guildId }))
         .map((v: IUser) => {
-          return { total: v.money + v.bank, ...v };
+          return { total: v.money + v.bank, ...v.toJSON() };
         })
         .sort((a, b) => b.total - a.total)
         .splice(0, 10);
@@ -32,7 +32,7 @@ export default class MoneyLeaderboardCommand extends Command {
         .setFooter(lang.ECONOMY.BOTH_COUNTED);
 
       data.forEach(async (item, idx) => {
-        const userId = (item as any)._doc.user_id;
+        const userId = item.user_id;
         const member = await bot.utils.findMember(message, [userId]);
         const isInPlace = [0, 1, 2].includes(idx);
 

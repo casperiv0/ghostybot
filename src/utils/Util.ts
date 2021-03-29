@@ -11,6 +11,7 @@ import {
   Snowflake,
   PermissionObject,
   Permissions,
+  Channel,
 } from "discord.js";
 import moment from "moment";
 import jwt from "jsonwebtoken";
@@ -114,7 +115,7 @@ export default class Util {
     }
   }
 
-  async getGuildById(guildId: string | undefined): Promise<GuildData | undefined> {
+  async getGuildById(guildId: string | undefined): Promise<IGuild | undefined> {
     try {
       let guild = await GuildModel.findOne({ guild_id: guildId });
 
@@ -314,7 +315,7 @@ export default class Util {
       old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
     }
 
-    this.bot.starboardsManager.create(channel as any, {
+    this.bot.starboardsManager.create((channel as unknown) as Channel, {
       ...options,
       selfStar: true,
       starEmbed: true,
@@ -328,7 +329,7 @@ export default class Util {
     const m = moment(date);
 
     return {
-      date: (m as any).tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
+      date: m.tz(tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a"),
       tz: tz,
     };
   }
@@ -434,7 +435,7 @@ export default class Util {
     }
   }
 
-  errorEmbed(permissions: bigint[], message: Message, lang?: any) {
+  errorEmbed(permissions: bigint[], message: Message, lang: Record<string, string>) {
     return this.baseEmbed(message)
       .setTitle("Woah!")
       .setDescription(
@@ -443,7 +444,7 @@ export default class Util {
             const perms: string[] = [];
             Object.keys(Permissions.FLAGS).map((key) => {
               if (Permissions.FLAGS[key] === p) {
-                perms.push(`\`${lang?.PERMISSIONS?.[key]}\``);
+                perms.push(`\`${lang?.[key]}\``);
               }
             });
 

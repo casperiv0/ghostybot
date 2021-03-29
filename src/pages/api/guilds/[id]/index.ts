@@ -1,7 +1,6 @@
 import { NextApiResponse } from "next";
 import hiddenItems from "../../../../data/hidden-items.json";
 import ApiRequest from "../../../../interfaces/ApiRequest";
-import { GuildData } from "../../../../models/Guild.model";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -37,7 +36,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      const g: GuildData | undefined = await req.bot.utils.getGuildById(guild.id);
+      const g = await req.bot.utils.getGuildById(guild.id);
+
       if (!g) {
         return res.json({
           error: "An unexpected error occurred",
@@ -67,7 +67,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       });
 
       return res.json({
-        guild: { ...guild, ...(g as any)._doc },
+        guild: { ...guild, ...g.toJSON() },
         botCommands: req.bot.commands.map((cmd) => cmd.name),
         status: "success",
       });

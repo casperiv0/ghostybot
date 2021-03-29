@@ -18,7 +18,7 @@ export default class BotInfoCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const uptime = (moment.duration(bot.uptime) as any).format(
+      const uptime = ((moment.duration(bot.uptime) as unknown) as moment.Moment).format(
         " D [days], H [hrs], m [mins], s [secs]"
       );
       const nodev = process.version;

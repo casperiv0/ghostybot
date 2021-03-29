@@ -273,7 +273,7 @@ export default class MessageEvent extends Event {
         });
 
         if (neededPerms.length > 0) {
-          return message.channel.send(bot.utils.errorEmbed(neededPerms, message, lang));
+          return message.channel.send(bot.utils.errorEmbed(neededPerms, message, lang.PERMISSIONS));
         }
       }
 

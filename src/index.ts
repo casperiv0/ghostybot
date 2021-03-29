@@ -13,7 +13,7 @@ if (env.error) throw env.error;
 env = parseDotenv(env.parsed);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-process.env = { ...process.env, ...env } as any;
+process.env = { ...process.env, ...env } as NodeJS.ProcessEnv;
 
 import "./utils/checkValid";
 require("./utils/database");

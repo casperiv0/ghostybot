@@ -16,7 +16,7 @@ export default class UptimeCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    const uptime = (moment.duration(bot.uptime) as any).format(
+    const uptime = ((moment.duration(bot.uptime) as unknown) as moment.Moment).format(
       " D [days], H [hrs], m [mins], s [secs]"
     );
 

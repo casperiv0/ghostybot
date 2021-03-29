@@ -29,9 +29,9 @@ export default class RemindersCommand extends Command {
       }
 
       const mappedReminders = user.reminder.reminders.map((reminder) => {
-        const endsAt = (moment.duration(reminder.ends_at - Date.now()) as any).format(
-          "D [days], H [hrs], m [mins], s [secs]"
-        );
+        const endsAt = ((moment.duration(
+          reminder.ends_at - Date.now()
+        ) as unknown) as moment.Moment).format("D [days], H [hrs], m [mins], s [secs]");
 
         return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
   **${lang.REMINDER.TIME}** ${reminder.time}

@@ -57,6 +57,7 @@ export interface IGuild extends Document {
   starboards_data: StarboardData;
   ban_data: BanData;
   ticket_data: TicketData;
+  verify_data: VerifyData;
 }
 
 export interface StoreItem {
