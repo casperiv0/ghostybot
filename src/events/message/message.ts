@@ -231,7 +231,8 @@ export default class MessageEvent extends Event {
       }
 
       const owners = process.env["OWNERS"];
-      if (command.options.ownerOnly && !owners.includes(message.author.id)) {
+
+      if (command.options.ownerOnly && !owners.includes(`${message.author.id}`)) {
         return message.reply(lang.MESSAGE.OWNER_ONLY);
       }
 
