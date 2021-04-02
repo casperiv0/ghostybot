@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-Ghostybot has a total of 205 commands.
+Ghostybot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -470,13 +470,15 @@ Click any of the command names for more information
   ##
 ### Category: botowner
 
-**Total commands: 4**
+**Total commands: 5**
 
 [blacklist:](#blacklist) Remove/add blacklist from a user
 
 [eval:](#eval) Eval
 
 [leaveguild:](#leaveguild) Leaves a guid by the provided Id
+
+[shell:](#shell) Execute shell commands
 
 [shutdown:](#shutdown) Shuts the bot down
 
@@ -1657,6 +1659,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## shell
+
+**Category:** botowner
+
+**Description:** Execute shell commands
+
+**Usage:** `N/A`
+
+**Aliases:** `cmd`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `code(string)`
 
 [Back to top](#ghostybot-command-list)
 
