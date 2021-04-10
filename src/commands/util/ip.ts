@@ -4,20 +4,35 @@ import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
 interface ReturnResponse {
-  status: string;
+  ip: string;
+  success: boolean;
+  message?: string;
+  type: string;
+  continent: string;
+  continent_code: string;
   country: string;
-  countryCode: string;
+  country_code: string;
+  country_capital: string;
+  country_phone: string;
+  country_neighbours: string;
   region: string;
-  regionName: string;
   city: string;
-  zip: string;
-  lat: number;
-  lon: number;
-  timezone: string;
-  isp: string;
-  org: string;
+  latitude: string;
+  longitude: string;
   as: string;
-  query: string;
+  org: string;
+  isp: string;
+  timezone: string;
+  timezone_name: string;
+  timezone_dstOffset: string;
+  timezone_gmtOffset: string;
+  timezone_gmt: string;
+  currency: string;
+  currency_code: string;
+  currency_symbol: string;
+  currency_rates: string;
+  currency_plural: string;
+  completed_requests: number;
 }
 
 export default class IpLookupCommand extends Command {
@@ -36,35 +51,37 @@ export default class IpLookupCommand extends Command {
 
     try {
       const [ip] = args;
-      const data: ReturnResponse = await fetch(`http://ip-api.com/json/${ip}`).then((res) =>
+      const data: ReturnResponse = await fetch(`https://ipwhois.app/json/${ip}?lang=${lang.UTIL.IP_LOC}`).then((res) =>
         res.json()
       );
 
-      if (data?.status === "success") {
+      if (data.success) {
         const {
+          ip,
+          type,
           country,
-          regionName,
+          country_code,
+          region,
           city,
-          zip,
-          lon,
-          lat,
-          isp = "N/A",
-          org = "N/A",
-          timezone,
-          countryCode,
+          latitude,
+          longitude,
+          org,
+          isp,
+          timezone
         } = data;
-        const flag = `https://www.countryflags.io/${countryCode}/flat/64.png` || "";
+        const flag = `https://www.countryflags.io/${country_code}/flat/64.png` || "";
 
         const embed = bot.utils
           .baseEmbed(message)
-          .setTitle(`${city}/${regionName} - ${country}`)
+          .setTitle(`${city}/${region} - ${country}`)
           .setDescription(
             `
-**ZIP:** ${zip}
-**Lon/Lat:** ${lon}/${lat}
-**ISP:** ${isp}
-**Org:** ${org}
-**Timezone:** ${timezone}
+**IP:** ${ip}
+**${lang.BOT_OWNER.EVAL_TYPE}:** ${type}
+**${lang.UTIL.IP_LON_LAT}:** ${latitude}/${longitude}
+**${lang.UTIL.IP_ISP}:** ${isp}
+**${lang.UTIL.IP_ORG}:** ${org}
+**${lang.UTIL.IP_TIMEZONE}:** ${timezone}
 `
           )
           .setThumbnail(flag);

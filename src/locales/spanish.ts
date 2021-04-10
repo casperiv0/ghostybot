@@ -379,6 +379,13 @@ export default {
     WEB_NSFW: "Cannot display this site in a non-NSFW channel",
     WEB_UNAVAILABLE: "This site seems to be unavailable",
     IP_NOT_FOUND: "No results were found",
+    IP_LON_LAT: "Lon/Lat",
+    IP_ISP: "ISP",
+    IP_ORG: "Org",
+    IP_TIMEZONE: "Timezone",
+    IP_LOC: "es", // https://ipwhois.io/documentation Localization
+    VERIFY_CHANNEL: "Verification channel is: {channel}",
+    VERIFY_NOT_ENABLED: "Verification is not enabled for this guild",
   },
   BOT: {
     GUILDS: "Gremios",
