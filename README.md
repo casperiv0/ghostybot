@@ -15,7 +15,6 @@ A Custom Discord bot written in TypeScript with a lot of commands for Discord co
 
 You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community. When self-hosting no support will be provided.
 
-
 ## Table of contents
 
 - [Features](#features)
