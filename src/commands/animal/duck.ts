@@ -15,7 +15,7 @@ export default class DuckCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const data = await fetch("https://random-d.uk/api/v1/random?type=gif").then((res) =>
+      const data = await fetch("https://random-d.uk/api/v1/random?type=gif,png").then((res) =>
         res.json()
       );
   
