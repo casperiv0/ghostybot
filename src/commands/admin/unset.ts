@@ -13,8 +13,6 @@ export default class UnSetCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-    return message.channel.send(
-      lang.ADMIN.SET_CMD.replace("{url}", process.env["NEXT_PUBLIC_DASHBOARD_URL"])
-    );
+    return message.channel.send(lang.ADMIN.SET_CMD.replace("{url}", `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`));
   }
 }

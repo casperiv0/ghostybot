@@ -21,10 +21,12 @@ class Bot extends Client {
   utils: Util;
   neko: NekoClient;
   imdb: ImdbClient;
-  alexClient: AlexClient;
   player: Player;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
+  // @ts-expect-error ignore
+  alexClient: AlexClient;
+  // @ts-expect-error ignore
   pasteClient: PasteClient;
 
   constructor() {
@@ -54,8 +56,15 @@ class Bot extends Client {
     this.utils = new Util(this);
     this.neko = new NekoClient();
     this.imdb = new ImdbClient({ apiKey: process.env["IMDB_KEY"] });
-    this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
-    this.pasteClient = new PasteClient(process.env["PASTE_CLIENT_KEY"]);
+
+    if (process.env["ALEXFLIPNOTE_API_KEY"]) {
+      this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
+    }
+
+    if (process.env["PASTE_CLIENT_KEY"]) {
+      this.pasteClient = new PasteClient(process.env["PASTE_CLIENT_KEY"]);
+    }
+
     this.player = new Player(this, {
       autoSelfDeaf: true,
       leaveOnEmpty: true,

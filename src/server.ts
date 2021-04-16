@@ -4,7 +4,7 @@ import { parse } from "url";
 import next from "next";
 
 export default (bot: Bot) => {
-  const dev = process.env["DEV_MODE"];
+  const dev = process.env["DEV_MODE"] === "true";
   const app = next({ dev });
   const handle = app.getRequestHandler();
 

@@ -47,7 +47,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     );
   }
 
-  const token = jwt.sign(data.access_token, jwtSecret);
+  const token = jwt.sign(data.access_token, `${jwtSecret}`);
 
   const expiresInMilliseconds = data.expires_in * 1000;
 

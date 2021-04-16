@@ -49,7 +49,7 @@ export default class EventHandler {
         this.bot.on(event.name, event.execute.bind(null, this.bot));
       }
 
-      if (process.env["DEBUG_MODE"] === true) {
+      if (process.env["DEBUG_MODE"] === "true") {
         this.bot.logger.log("EVENT", `${type}: Loaded ${event.name}`);
       }
     }

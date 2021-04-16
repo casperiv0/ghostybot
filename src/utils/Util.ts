@@ -72,11 +72,7 @@ export default class Util {
     }
   }
 
-  async addUser(
-    userId: string,
-    guildId: string | undefined,
-    data?: Partial<UserData>
-  ): Promise<IUser | undefined> {
+  async addUser(userId: string, guildId: string | undefined, data?: Partial<UserData>): Promise<IUser | undefined> {
     try {
       const user: IUser = new UserModel({ user_id: userId, guild_id: guildId, ...data });
 
@@ -88,11 +84,7 @@ export default class Util {
     }
   }
 
-  async updateUserById(
-    userId: string,
-    guildId: string | undefined,
-    data: Partial<UserData>
-  ): Promise<void> {
+  async updateUserById(userId: string, guildId: string | undefined, data: Partial<UserData>): Promise<void> {
     try {
       const user = await this.getUserById(userId, guildId);
 
@@ -170,8 +162,8 @@ export default class Util {
     if (error.stack?.includes("DeprecationWarning: Listening to events on the Db class")) return;
 
     const channelId = process.env["ERRORLOGS_CHANNEL_ID"];
-    const channel = (this.bot.channels.cache.get(channelId) ||
-      (await this.bot.channels.fetch(channelId))) as TextChannel;
+    const channel = (this.bot.channels.cache.get(channelId ?? "") ||
+      (await this.bot.channels.fetch(channelId ?? ""))) as TextChannel;
 
     if (!channel || !channelId || !channel.permissionsFor(this.bot.user!)?.has("SEND_MESSAGES")) {
       return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
@@ -254,9 +246,7 @@ export default class Util {
     );
   }
 
-  async getGuildLang(
-    guildId: string | undefined
-  ): Promise<typeof import("../locales/english").default> {
+  async getGuildLang(guildId: string | undefined): Promise<typeof import("../locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
     return import(`../locales/${guild?.locale}`).then((f) => f.default);
@@ -334,11 +324,7 @@ export default class Util {
     };
   }
 
-  async updateMuteChannelPerms(
-    guild: Guild,
-    memberId: Snowflake,
-    perms: Partial<PermissionObject>
-  ) {
+  async updateMuteChannelPerms(guild: Guild, memberId: Snowflake, perms: Partial<PermissionObject>) {
     guild.channels.cache.forEach((channel) => {
       channel.updateOverwrite(memberId, perms).catch((e) => {
         this.bot.logger.error("mute_user", e);
@@ -378,15 +364,11 @@ export default class Util {
     }
   }
 
-  async handleApiRequest(
-    path: string,
-    tokenData: { data: string; type: "Bot" | "Bearer" },
-    method?: string
-  ) {
+  async handleApiRequest(path: string, tokenData: { data: string; type: "Bot" | "Bearer" }, method?: string) {
     try {
       const bearer =
         tokenData.type === "Bearer"
-          ? jwt.verify(tokenData.data, process.env["DASHBOARD_JWT_SECRET"])
+          ? jwt.verify(tokenData.data, process.env["DASHBOARD_JWT_SECRET"] ?? "")
           : tokenData.data;
 
       if (!bearer) {
@@ -458,17 +440,10 @@ export default class Util {
   baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
 
-    return new MessageEmbed()
-      .setFooter(message.author?.username, avatar)
-      .setColor("#7289DA")
-      .setTimestamp();
+    return new MessageEmbed().setFooter(message.author?.username, avatar).setColor("#7289DA").setTimestamp();
   }
 
-  parseMessage(
-    message: string,
-    user: DiscordUser,
-    msg?: Message | { guild: Guild; author: DiscordUser }
-  ): string {
+  parseMessage(message: string, user: DiscordUser, msg?: Message | { guild: Guild; author: DiscordUser }): string {
     return message
       .split(" ")
       .map((word) => {

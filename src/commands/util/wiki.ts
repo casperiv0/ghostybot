@@ -1,14 +1,8 @@
 import { Message } from "discord.js";
-import wiki, { Page } from "wikijs";
+import wiki from "wikijs";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-interface IPage extends Page {
-  raw: {
-    title: string;
-    fullurl: string;
-  };
-}
 export default class WikiCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -32,8 +26,8 @@ export default class WikiCommand extends Command {
       const result = await wiki().page(search.results[0]);
       const description = await result.summary();
 
-      const title = (result as IPage).raw.title;
-      const url = (result as IPage).raw.fullurl;
+      const title = result.raw.title;
+      const url = result.raw.fullurl;
 
       const embed = bot.utils
         .baseEmbed(message)

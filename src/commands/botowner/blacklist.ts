@@ -42,7 +42,7 @@ export default class BlacklistCommand extends Command {
       }
 
       const owners = process.env["OWNERS"];
-      if (owners.includes(member?.user?.id)) {
+      if (owners?.includes(member?.user?.id)) {
         return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
       }
 
@@ -66,9 +66,7 @@ export default class BlacklistCommand extends Command {
         case "add": {
           const existing = users.filter((u: UserData) => u.user_id === member?.user?.id)[0];
           if (existing) {
-            return message.channel.send(
-              lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag)
-            );
+            return message.channel.send(lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag));
           }
 
           const blUser = new BlacklistedModel({ user_id: member?.user?.id });
