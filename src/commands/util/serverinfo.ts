@@ -19,8 +19,8 @@ export default class ServerInfoCommand extends Command {
     try {
       const { guild } = message;
 
-      if (!guild) return;
-      if (!message.member) return;
+      if (!guild) return message.channel.send(lang.GLOBAL.ERROR);
+      if (!message.member) return message.channel.send(lang.GLOBAL.ERROR);
 
       const { name, memberCount } = guild;
       const roles = bot.utils.formatNumber(guild.roles.cache.size);
@@ -28,11 +28,8 @@ export default class ServerInfoCommand extends Command {
       const emojis = bot.utils.formatNumber(guild.emojis.cache.size);
 
       const { date: createdAt } = await bot.utils.formatDate(guild.createdAt, message.guild?.id);
-      const { date: joined, tz } = await bot.utils.formatDate(
-        message.member?.joinedAt,
-        message.guild?.id
-      );
-      const owner = (guild.owner && guild.owner.user.tag) || "error";
+      const { date: joined, tz } = await bot.utils.formatDate(message.member?.joinedAt, message.guild?.id);
+      const owner = await guild.fetchOwner();
       const inviteBanner = guild.bannerURL({
         size: 2048,
         format: "png",
