@@ -7,7 +7,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "format": "eslint --ext .ts --fix",
+    "format": "eslint . --ext .ts,.tsx",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "next build"

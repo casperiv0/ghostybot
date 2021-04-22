@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import badges from "../../data/badges.json";
+import badges from "../../data/badges";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -19,22 +19,20 @@ export default class UserInfoCommand extends Command {
 
     try {
       const member = await bot.utils.findMember(message, args, true);
-  
+
       if (!member) {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
-  
+
       const { date: joinedAt, tz } = await bot.utils.formatDate(member?.joinedAt, message.guild?.id);
-      const { date: createdAt } = await bot.utils.formatDate(
-        member.user.createdAt,
-        message.guild?.id
-      );
+      const { date: createdAt } = await bot.utils.formatDate(member.user.createdAt, message.guild?.id);
       const nickname = member.nickname || "None";
-      const userFlags = (await member.user.fetchFlags())
+
+      const userFlags = (await member.user.fetchFlags(true))
         .toArray()
         .map((flag) => badges[flag])
         .join(" ");
-  
+
       const roles =
         member.roles.cache
           .filter((r) => r.id !== message.guild?.id)
@@ -42,9 +40,9 @@ export default class UserInfoCommand extends Command {
           .map((r) => r)
           .join(", ") || "None";
       const roleCount = member.roles.cache.filter((r) => r.id !== message.guild?.id).size;
-  
+
       const { username, id, tag } = member.user;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .addField(`**${lang.MEMBER.ID}**`, id, true)
@@ -57,7 +55,7 @@ export default class UserInfoCommand extends Command {
         .addField(`**${lang.MEMBER.ROLES} (${roleCount})**`, roles)
         .setTitle(`${username}'s info`)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

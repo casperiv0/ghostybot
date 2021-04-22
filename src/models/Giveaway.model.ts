@@ -1,5 +1,6 @@
 import { GiveawaysMessages } from "discord-giveaways";
 import Mongoose from "mongoose";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Mixed = require("mongoose").Mixed;
 
 export interface IGiveaway extends Mongoose.Document {

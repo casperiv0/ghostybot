@@ -165,7 +165,11 @@ export default class Util {
     const channel = (this.bot.channels.cache.get(channelId ?? "") ||
       (await this.bot.channels.fetch(channelId ?? ""))) as TextChannel;
 
-    if (!channel || !channelId || !channel.permissionsFor(this.bot.user!)?.has("SEND_MESSAGES")) {
+    if (
+      (process.env.NODE_ENV !== "production" && !channel) ||
+      !channelId ||
+      !channel.permissionsFor(this.bot.user!)?.has("SEND_MESSAGES")
+    ) {
       return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
     }
 
