@@ -22,7 +22,7 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
   };
 
   // Time out after 5minutes
-  const collector = currentPage.createReactionCollector(filter, { time: 60 * 60 * 5 });
+  const collector = currentPage.createReactionCollector(filter, { time: 60 * 60 * 5 * 1000 });
 
   collector.on("collect", (reaction) => {
     reaction.users.remove(message.author).catch(() => null);
