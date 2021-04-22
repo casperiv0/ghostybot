@@ -2,13 +2,13 @@ import { Message } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-const API_URL = "https://some-random-api.ml/canvas/invert?avatar=";
+const API_URL = "https://some-random-api.ml/canvas/threshold?avatar=";
 
-export default class InvertCommand extends Command {
+export default class ThresholdCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      name: "invert",
-      description: "Invert your avatar",
+      name: "threshold",
+      description: "threshold your avatar",
       category: "image",
     });
   }

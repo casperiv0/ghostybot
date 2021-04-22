@@ -1,14 +1,15 @@
-import fetch from "node-fetch";
 import { Message } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
-export default class LlamaCommand extends Command {
+const API_URL = "https://some-random-api.ml/img/pikachu";
+
+export default class KangarooCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      name: "llama",
-      description: "Shows a picture of a llama",
-      category: "animal",
+      name: "pikachu",
+      description: "An image of a pikachu",
+      category: "image",
     });
   }
 
@@ -16,12 +17,12 @@ export default class LlamaCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const res = await fetch("https://apis.duncte123.me/animal/llama").then((res) => res.json());
+      const data = await fetch(API_URL).then((res) => res.json());
 
       const embed = bot.utils
         .baseEmbed(message)
-        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${res?.data?.file})`)
-        .setImage(res?.data?.file);
+        .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
+        .setImage(data.link);
 
       message.channel.send(embed);
     } catch (err) {

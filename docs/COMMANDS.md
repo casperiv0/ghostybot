@@ -120,17 +120,11 @@ Click any of the command names for more information
   ##
 ### Category: animal
 
-**Total commands: 21**
-
-[alpaca:](#alpaca) Shows a picture of a alpaca
-
-[bear:](#bear) Shows a random picture of bear and fact
+**Total commands: 19**
 
 [bird:](#bird) Returns an image of a bird
 
 [bunny:](#bunny) Shows a picture of a bunny
-
-[camel:](#camel) Shows a picture of a camel
 
 [cat:](#cat) Shows a picture of a cat
 
@@ -148,17 +142,19 @@ Click any of the command names for more information
 
 [fox:](#fox) Shows a picture of a fox
 
+[kangaroo:](#kangaroo) An image of a kangaroo
+
 [koala:](#koala) Shows a random picture of koala
 
 [lizard:](#lizard) Shows a picture of a lizard
-
-[llama:](#llama) Shows a picture of a llama
 
 [owl:](#owl) Shows a picture of a owl
 
 [panda:](#panda) Shows a picture of a panda
 
 [racoon:](#racoon) Shows an image of a raccoon
+
+[red-panda:](#red-panda) An image of a red panda
 
 [shibe:](#shibe) Returns an image of a shibe
 
@@ -249,7 +245,7 @@ Click any of the command names for more information
   ##
 ### Category: image
 
-**Total commands: 24**
+**Total commands: 26**
 
 [ad:](#ad) Shows an amazing advertisement
 
@@ -285,6 +281,8 @@ Click any of the command names for more information
 
 [pat:](#pat) Pat somebody
 
+[pikachu:](#pikachu) An image of a pikachu
+
 [poke:](#poke) Poke somebody
 
 [slap:](#slap) Slap somebody
@@ -292,6 +290,8 @@ Click any of the command names for more information
 [smug:](#smug) Smug
 
 [supreme:](#supreme) Display custom text as the Supreme logo
+
+[threshold:](#threshold) threshold your avatar
 
 [trash:](#trash) Put someone in the trash bin someone
 
@@ -1230,42 +1230,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## alpaca
-
-**Category:** animal
-
-**Description:** Shows a picture of a alpaca
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## bear
-
-**Category:** animal
-
-**Description:** Shows a random picture of bear and fact
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## bird
 
 **Category:** animal
@@ -1289,24 +1253,6 @@ Click any of the command names for more information
 **Category:** animal
 
 **Description:** Shows a picture of a bunny
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## camel
-
-**Category:** animal
-
-**Description:** Shows a picture of a camel
 
 **Usage:** `N/A`
 
@@ -1464,6 +1410,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## kangaroo
+
+**Category:** animal
+
+**Description:** An image of a kangaroo
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## koala
 
 **Category:** animal
@@ -1487,24 +1451,6 @@ Click any of the command names for more information
 **Category:** animal
 
 **Description:** Shows a picture of a lizard
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## llama
-
-**Category:** animal
-
-**Description:** Shows a picture of a llama
 
 **Usage:** `N/A`
 
@@ -1563,6 +1509,24 @@ Click any of the command names for more information
 **Usage:** `N/A`
 
 **Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## red-panda
+
+**Category:** animal
+
+**Description:** An image of a red panda
+
+**Usage:** `N/A`
+
+**Aliases:** `redpanda`
 
 **Member Permissions:** None
 
@@ -2708,6 +2672,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## pikachu
+
+**Category:** image
+
+**Description:** An image of a pikachu
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## poke
 
 **Category:** image
@@ -2777,6 +2759,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
 
 **Required Arguments:** `text(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## threshold
+
+**Category:** image
+
+**Description:** threshold your avatar
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
