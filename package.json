@@ -1,5 +1,5 @@
 {
-  "name": "ghostybotv2",
+  "name": "ghostybot",
   "version": "1.0.0",
   "description": "A Custom Discord bot with a lot of commands for Discord communities.",
   "main": "src/index.ts",
