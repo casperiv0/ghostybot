@@ -36,9 +36,10 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
       <div className="grid">
         {guilds.map((guild) => {
           return (
-            <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "/dashboard"}>
+            <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "#"}>
               <a
-                href={`/dashboard/${guild.id}`}
+                aria-disabled={!guild.inGuild}
+                href={!guild.inGuild ? "#" : `/dashboard/${guild.id}`}
                 className={`card guild-card ${!guild.inGuild ? "disabled" : ""}`}
                 aria-label={!guild.inGuild ? "The bot must be in this guild!" : undefined}
               >
