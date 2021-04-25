@@ -1,5 +1,4 @@
 import { Message } from "discord.js";
-import regions from "../../data/regions.json";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -27,6 +26,9 @@ export default class ServerInfoCommand extends Command {
       const channels = bot.utils.formatNumber(guild.channels.cache.size);
       const emojis = bot.utils.formatNumber(guild.emojis.cache.size);
 
+      const regions = lang.OTHER.REGIONS
+      const verLevels = lang.OTHER.VERLEVELS
+
       const { date: createdAt } = await bot.utils.formatDate(guild.createdAt, message.guild?.id);
       const { date: joined, tz } = await bot.utils.formatDate(message.member?.joinedAt, message.guild?.id);
       const owner = await guild.fetchOwner();
@@ -36,7 +38,7 @@ export default class ServerInfoCommand extends Command {
       });
 
       const region = regions[guild.region];
-      const verLevel = guild.verificationLevel;
+      const verLevel = verLevels[guild.verificationLevel];
       const mfaLevel = guild.mfaLevel;
 
       const embed = bot.utils
