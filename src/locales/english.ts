@@ -600,7 +600,7 @@ export default {
     NO_WARNINGS: "There are no warnings",
     REMOVED_ALL_WARNINGS: "Successfully removed all warnings",
     ANNOUNCEMENT: "📢 Announcement 📢",
-    PROVIDE_VALID_MEMBER: "Please provide valid a member",
+    PROVIDE_VALID_MEMBER: "Please provide a valid member",
     PROVIDE_VALID_EMOJI: "Please provide a valid emoji",
     PROVIDE_VALID_OPTION: "Please provide an valid option",
     PROVIDE_VALID_CHANNEL_OR_ROLE: "Please provide a valid channel or role!",
