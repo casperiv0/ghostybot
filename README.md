@@ -9,7 +9,10 @@
 A Custom Discord bot written in TypeScript with a lot of commands for Discord communities. (+205 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
 
 [![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
-[![Ghostybot Support server](./.github/join-support-server.png)](https://discord.gg/XxHrtkA)
+
+<a href="https://discord.gg/XxHrtkA ">
+  <img src="http://invidget.switchblade.xyz/XxHrtkA" />
+</a>
 
 ### Disclaimer (if self-hosted)
 
