@@ -1,4 +1,3 @@
-import { PlayerEvents } from "discord-player";
 import { StarboardEvents } from "discord-starboards";
 import glob from "glob";
 import { parse } from "path";
@@ -42,7 +41,7 @@ export default class EventHandler {
       }
 
       if (isPlayer) {
-        this.bot.player.on(event.name as keyof PlayerEvents, event.execute.bind(null, this.bot));
+        this.bot.player.on(event.name, event.execute.bind(null, this.bot));
       } else if (isStarboard) {
         this.bot.starboardsManager.on(event.name as keyof StarboardEvents, event.execute.bind(null, this.bot));
       } else {

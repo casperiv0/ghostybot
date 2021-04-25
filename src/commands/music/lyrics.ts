@@ -1,5 +1,5 @@
+import { Lyrics } from "@discord-player/extractor";
 import { Message } from "discord.js";
-import fetch from "node-fetch";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -21,18 +21,16 @@ export default class LyricsCommand extends Command {
       const np = playing || queue ? bot.player.nowPlaying(message) : false;
       const title = (np && np.title) || args.join(" ");
 
-      const song = await (
-        await fetch(`https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`)
-      ).json();
+      const lyrics = await Lyrics(title).catch(() => null);
 
-      if (song.error) {
+      if (!lyrics) {
         return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
       }
 
-      const songTitle = (np && np.title) || song.title;
-      const songAuthor = (np && np.author) || song.author;
-      const songThumbnail = (np && np.thumbnail) || song.thumbnail.genius;
-      const songLyrics = song.lyrics;
+      const songTitle = (np && np.title) || lyrics.title;
+      const songAuthor = (np && np.author) || lyrics.artist.name;
+      const songThumbnail = (np && np.thumbnail) || lyrics.thumbnail;
+      const songLyrics = lyrics.lyrics;
 
       const lyricsEmbed = bot.utils
         .baseEmbed(message)

@@ -36,6 +36,8 @@ export default class PlayCommand extends Command {
     try {
       await bot.player.play(message, search, true);
     } catch (e) {
+      console.log(e);
+
       bot.logger.error("PLAY", e?.stack || e);
     }
   }
