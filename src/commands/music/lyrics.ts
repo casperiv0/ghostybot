@@ -23,7 +23,7 @@ export default class LyricsCommand extends Command {
 
       const lyrics = await Lyrics(title).catch(() => null);
 
-      if (!lyrics) {
+      if (!lyrics || lyrics?.length <= 0) {
         return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
       }
 
