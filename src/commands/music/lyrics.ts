@@ -28,9 +28,9 @@ export default class LyricsCommand extends Command {
       }
 
       const songTitle = (np && np.title) || lyrics.title;
-      const songAuthor = (np && np.author) || lyrics.artist.name;
+      const songAuthor = (np && np.author) || lyrics.artist?.name || "Unknown";
       const songThumbnail = (np && np.thumbnail) || lyrics.thumbnail;
-      const songLyrics = lyrics.lyrics;
+      const songLyrics = lyrics.lyrics as string;
 
       const lyricsEmbed = bot.utils
         .baseEmbed(message)
@@ -40,8 +40,9 @@ export default class LyricsCommand extends Command {
         .setThumbnail(songThumbnail);
 
       if (lyricsEmbed.description!.length >= 2048) {
-        lyricsEmbed.description = `${lyricsEmbed.description!.substr(0, 2045)}...`;
+        lyricsEmbed.setDescription(`${songLyrics.substr(0, 2045)}...`);
       }
+
       return message.channel.send(lyricsEmbed).catch((e) => bot.logger.error("Lyrics", e));
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
