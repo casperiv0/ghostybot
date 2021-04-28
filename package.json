@@ -43,7 +43,7 @@
     "chalk": "^4.1.0",
     "cows": "^2.1.1",
     "cowsay": "^1.4.0",
-    "discord-giveaways": "github:Androz2091/discord-giveaways#develop",
+    "discord-giveaways": "4.5.0",
     "discord-logs": "^1.9.0",
     "discord-player": "4.0.3",
     "discord-starboards": "2.2.3",
