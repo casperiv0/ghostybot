@@ -12,7 +12,6 @@ const badges: Record<UserFlagsString, string> = {
   TEAM_USER: " <:nitro:314068430611415041>",
   EARLY_SUPPORTER: " <:supporter:585763690868113455>",
   EARLY_VERIFIED_BOT_DEVELOPER: "<:botdeveloper:786916920245878796>",
-  SYSTEM: "<:settings:585767366743293952>",
   VERIFIED_BOT: "<:botTag:230105988211015680>",
 };
 

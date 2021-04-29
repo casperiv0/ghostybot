@@ -434,11 +434,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
               <div id={field.id} key={idx} className="form-group settings-group">
                 <header className="group-header">
                   <h1 className="group-title">{field.title}</h1>
-                  <Switch
-                    title="Enabled Or disable feature"
-                    checked={field.enabled}
-                    onChange={field.onChecked}
-                  />
+                  <Switch title="Enabled Or disable feature" checked={field.enabled} onChange={field.onChecked} />
                 </header>
                 {field.fields?.map((item, idx) => {
                   return (
@@ -488,26 +484,11 @@ function SelectField({ item }: Item) {
 }
 
 function TextareaField({ item }: Item) {
-  return (
-    <textarea
-      value={item.value}
-      onChange={item.onChange}
-      id={item.id}
-      className="form-input"
-    ></textarea>
-  );
+  return <textarea value={item.value} onChange={item.onChange} id={item.id} className="form-input"></textarea>;
 }
 
 function InputField({ item }: Item) {
-  return (
-    <input
-      className="form-input"
-      type="text"
-      id={item.id}
-      value={item.value}
-      onChange={item.onChange}
-    />
-  );
+  return <input className="form-input" type="text" id={item.id} value={item.value} onChange={item.onChange} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -530,8 +511,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     })
   ).json();
-
-  console.log(data.error);
 
   return {
     props: {

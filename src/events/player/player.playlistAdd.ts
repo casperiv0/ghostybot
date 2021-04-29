@@ -10,8 +10,6 @@ export default class PlayerPlaylistAddEvent extends Event {
 
   async execute(bot: Bot, message: Message, queue: Queue, playlist: any) {
     try {
-      console.log(playlist);
-
       if (!message.guild?.available) return;
       const lang = await bot.utils.getGuildLang(message.guild?.id);
       if (!playlist) return;

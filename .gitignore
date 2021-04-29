@@ -6,3 +6,7 @@ build/
 .DS_STORE
 .vscode/
 giveaways.json
+
+# remove service workers, will be present when running `npm run build`.
+public/*.js
+public/*.map
