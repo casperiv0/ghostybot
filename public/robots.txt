@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ghostbot.tk
+
+# Sitemaps
+Sitemap: https://ghostbot.tk/sitemap.xml
