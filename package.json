@@ -101,7 +101,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "erlpack": "^0.1.3",
-    "eslint": "^7.24.0",
+    "eslint": "^7.25.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
