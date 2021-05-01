@@ -18,6 +18,7 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
   currentPage.react(END_EMOJI);
 
   const filter = (reaction: MessageReaction, user: User) => {
+    if (!reaction.emoji.name) return false;
     return [...EMOJIS, END_EMOJI].includes(reaction.emoji.name) && !user.bot;
   };
 

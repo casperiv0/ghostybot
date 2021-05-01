@@ -24,10 +24,8 @@ class Bot extends Client {
   player: Player;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
-  // @ts-expect-error ignore
-  alexClient: AlexClient;
-  // @ts-expect-error ignore
-  pasteClient: PasteClient;
+  alexClient!: AlexClient;
+  pasteClient!: PasteClient;
 
   constructor() {
     super({
