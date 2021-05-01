@@ -38,7 +38,7 @@
     "@discord-player/extractor": "^2.0.2",
     "@discordjs/opus": "^0.5.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
-    "alexflipnote.js": "^2.4.1",
+    "alexflipnote.js": "^2.5.0",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
     "cows": "^2.1.1",
