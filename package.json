@@ -35,7 +35,7 @@
   "author": "Dev-CasperTheGhost",
   "license": "MIT",
   "dependencies": {
-    "@discord-player/extractor": "^2.0.0",
+    "@discord-player/extractor": "^2.0.2",
     "@discordjs/opus": "^0.5.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "alexflipnote.js": "^2.4.1",
