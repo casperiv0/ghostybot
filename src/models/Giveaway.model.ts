@@ -51,8 +51,9 @@ const GiveawaySchema = new Mongoose.Schema({
   embedColor: Mixed,
   embedColorEnd: Mixed,
   exemptPermissions: [],
+  exemptMembers: String,
   bonusEntries: String,
-  extraData: Object,
+  extraData: Mixed,
   lastChance: {
     enabled: Boolean,
     content: String,

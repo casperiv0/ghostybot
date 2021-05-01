@@ -7,19 +7,21 @@ export default class MongoGiveawayManager extends GiveawaysManager {
   }
 
   async saveGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
-    const giv = new GiveawayModel(giveawayData);
-    await giv.save();
+    await GiveawayModel.create(giveawayData);
 
     return true;
   }
 
   async editGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
-    await GiveawayModel.findOneAndUpdate({ messageId }, giveawayData).exec();
+    await GiveawayModel.findOneAndUpdate({ messageID: messageId }, giveawayData).exec();
 
     return true;
   }
 
-  async deleteGiveaway(messageId: string): Promise<void> {
-    await GiveawayModel.findOneAndDelete({ messageID: messageId });
+  // @ts-expect-error ignore
+  async deleteGiveaway(messageId: string): Promise<boolean> {
+    await GiveawayModel.findOneAndDelete({ messageID: messageId }).exec();
+
+    return true;
   }
 }
