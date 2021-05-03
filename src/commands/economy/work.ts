@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import moment from "moment";
+import dayJs from "dayjs";
 import Command from "../../structures/Command";
 import jobs from "../../data/jobs.json";
 import Bot from "../../structures/Bot";
@@ -18,22 +18,22 @@ export default class WorkCommand extends Command {
     try {
       const member = message.author;
       const timeout = 3600000;
-  
+
       const user = await bot.utils.getUserById(member.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
-  
+
       const work = user.work;
-  
+
       if (work !== null && timeout - (Date.now() - work) > 0) {
-        const timeUntilWork = moment(timeout - (Date.now() - work)).format(
+        const timeUntilWork = dayJs(timeout - (Date.now() - work)).format(
           "h [hrs], m [mins], s [secs]"
         );
         message.channel.send(lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork));
       } else {
         const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
-  
+
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle(lang.ECONOMY.WORK)
@@ -42,9 +42,9 @@ export default class WorkCommand extends Command {
               .replace("{job_name}", name)
               .replace("{amount}", `${amount}`)} 💰`
           );
-  
+
         message.channel.send(embed);
-  
+
         await bot.utils.updateUserById(member.id, message.guild?.id, {
           money: user.money + amount,
           work: Date.now(),

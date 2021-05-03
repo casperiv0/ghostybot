@@ -10,7 +10,6 @@ import "./utils/checkValid";
 require("./utils/database");
 import logs from "discord-logs";
 import Bot from "./structures/Bot";
-import "moment-duration-format";
 
 const bot = new Bot();
 logs(bot);

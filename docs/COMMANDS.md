@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-Ghostybot has a total of 206 commands.
+Ghostybot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -356,7 +356,7 @@ Click any of the command names for more information
   ##
 ### Category: util
 
-**Total commands: 48**
+**Total commands: 47**
 
 [afk:](#afk) N/A
 
@@ -451,8 +451,6 @@ Click any of the command names for more information
 [web:](#web) Returns a screenshot of the requested website
 
 [wiki:](#wiki) Search something up on Wikipedia
-
-[worldclock:](#worldclock) Shows the time from other countries
 
   ##
 ### Category: exempt
@@ -3308,7 +3306,7 @@ Click any of the command names for more information
 
 **Description:** Remove your current reminder
 
-**Usage:** `N/A`
+**Usage:** `removereminder <id, 'last', 'first'>`
 
 **Aliases:** `delreminder`
 
@@ -4217,24 +4215,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## worldclock
-
-**Category:** util
-
-**Description:** Shows the time from other countries
-
-**Usage:** `N/A`
-
-**Aliases:** `clock`,`timezones`,`time`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

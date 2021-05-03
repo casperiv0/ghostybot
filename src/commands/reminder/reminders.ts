@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import moment from "moment";
+import dayJs from "dayjs";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -29,9 +29,7 @@ export default class RemindersCommand extends Command {
       }
 
       const mappedReminders = user.reminder.reminders.map((reminder) => {
-        const endsAt = ((moment.duration(
-          reminder.ends_at - Date.now()
-        ) as unknown) as moment.Moment).format("D [days], H [hrs], m [mins], s [secs]");
+        const endsAt = dayJs(reminder.ends_at - Date.now()).format("D [days], H [hrs], m [mins], s [secs]");
 
         return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
   **${lang.REMINDER.TIME}** ${reminder.time}

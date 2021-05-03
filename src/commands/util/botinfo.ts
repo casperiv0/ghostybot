@@ -1,8 +1,10 @@
 import { Message, version } from "discord.js";
-import moment from "moment";
+import dayJs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 import BotModel from "../../models/Bot.model";
+dayJs.extend(duration);
 
 export default class BotInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -18,14 +20,11 @@ export default class BotInfoCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const uptime = ((moment.duration(bot.uptime) as unknown) as moment.Moment).format(
-        " D [days], H [hrs], m [mins], s [secs]"
-      );
+      const uptime = dayJs.duration(bot?.uptime ?? 0).format(" D [days], H [hrs], m [mins], s [secs]");
+
       const nodev = process.version;
       const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user?.id });
-      const userCount = bot.utils.formatNumber(
-        bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0)
-      );
+      const userCount = bot.utils.formatNumber(bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0));
 
       const embed = bot.utils
         .baseEmbed(message)
@@ -51,9 +50,7 @@ export default class BotInfoCommand extends Command {
         )
         .addField(
           `__**${lang.BOT.SYSTEM_INFO}**__`,
-          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
-            2
-          )}MB
+          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
   **${lang.BOT.UPTIME}:** ${uptime}
   **${lang.BOT.NODE_V}:** ${nodev}
   **${lang.BOT.DJS_V}:** ${version}`,
@@ -67,20 +64,10 @@ export default class BotInfoCommand extends Command {
   [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${bot.user?.id}&scope=bot&permissions=8)`,
           true
         )
-        .addField(
-          `${lang.BOT.REPO}`,
-          "[Click Here](https://github.com/dev-caspertheghost/ghostybot)",
-          true
-        )
+        .addField(`${lang.BOT.REPO}`, "[Click Here](https://github.com/dev-caspertheghost/ghostybot)", true)
         .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
-        .addField(
-          `${lang.BOT.DASHBOARD}`,
-          `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`,
-          true
-        )
-        .setImage(
-          "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png"
-        );
+        .addField(`${lang.BOT.DASHBOARD}`, `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`, true)
+        .setImage("https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png");
 
       message.channel.send(embed);
     } catch (err) {

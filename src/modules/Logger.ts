@@ -1,9 +1,9 @@
 import chalk from "chalk";
-import moment from "moment";
+import dayJs from "dayjs";
 
 class Logger {
   get now() {
-    return moment().format("DD-MM-YYYY, HH:mm:ss");
+    return dayJs().format("YYYY-MM-DD, HH:mm:ss");
   }
 
   error(type: string, error: string) {
@@ -11,15 +11,11 @@ class Logger {
   }
 
   warn(type: string, warning: string) {
-    return console.warn(
-      `${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`
-    );
+    return console.warn(`${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`);
   }
 
   log(type: string, message: string) {
-    return console.log(
-      `${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`
-    );
+    return console.log(`${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`);
   }
 }
 
