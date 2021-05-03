@@ -11,18 +11,17 @@ export default class HelperHandler {
   }
 
   async loadHelpers() {
-    const files = glob.sync("./src/helpers/**/*.ts");
+    const files = process.env.BUILD_PATH ? glob.sync("./dist/src/helpers/**/*.js") : glob.sync("./src/helpers/**/*.ts");
+    const path = process.env.BUILD_PATH ? "../../../" : "../../";
 
     for (const file of files) {
       delete require.cache[file];
-      const { name } = parse(`../../${file}`);
-      const File = await (await import(`../../${file}`)).default;
+      const { name } = parse(`${path}${file}`);
+      const File = await (await import(`${path}${file}`)).default;
       const helper = new File(this.bot, name) as Helper;
 
       if (!helper.execute) {
-        throw new TypeError(
-          `[ERROR][Helpers]: execute function is required for helpers! (${file})`
-        );
+        throw new TypeError(`[ERROR][Helpers]: execute function is required for helpers! (${file})`);
       }
 
       helper.execute(this.bot);

@@ -11,18 +11,19 @@ export default class FeatureHandler {
   }
 
   async loadFeatures() {
-    const files = glob.sync("./src/features/**/*.ts");
+    const files = process.env.BUILD_PATH
+      ? glob.sync("./dist/src/features/**/*.js")
+      : glob.sync("./src/features/**/*.ts");
+    const path = process.env.BUILD_PATH ? "../../../" : "../../";
 
     for (const file of files) {
       delete require.cache[file];
-      const { name } = parse(`../../${file}`);
-      const File = await (await import(`../../${file}`)).default;
+      const { name } = parse(`${path}${file}`);
+      const File = await (await import(`${path}${file}`)).default;
       const feature = new File(this.bot, name) as Feature;
 
       if (!feature.execute) {
-        throw new TypeError(
-          `[ERROR][FEATURES]: execute function is required for features! (${file})`
-        );
+        throw new TypeError(`[ERROR][FEATURES]: execute function is required for features! (${file})`);
       }
 
       feature.execute(this.bot);

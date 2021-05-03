@@ -15,17 +15,19 @@ export default class EventHandler {
 
   async loadEvents() {
     let type = "Bot";
-    const files = glob.sync("./src/events/**/*.ts");
+
+    const files = process.env.BUILD_PATH ? glob.sync("./dist/src/events/**/*.js") : glob.sync("./src/events/**/*.ts");
+    const path = process.env.BUILD_PATH ? "../../../" : "../../";
 
     for (const file of files) {
       delete require.cache[file];
-      const { name } = parse(`../../${file}`);
+      const { name } = parse(`${path}${file}`);
 
       if (!name) {
         throw Error(`[ERROR][EVENT]: event must have a name (${file})`);
       }
 
-      const File = await (await import(`../../${file}`)).default;
+      const File = await (await import(`${path}/${file}`)).default;
       const event = new File(this.bot, name) as Event;
       const isPlayer = file.includes("player.");
       const isStarboard = file.includes("sb.");
