@@ -5,6 +5,7 @@ import { Message } from "discord.js";
 export default class RemoveReminderCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
+      usage: "removereminder <id, 'last', 'first'>",
       name: "removereminder",
       description: "Remove your current reminder",
       category: "reminder",
@@ -14,14 +15,29 @@ export default class RemoveReminderCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const [id] = args;
+    let [id] = args;
     const lang = await bot.utils.getGuildLang(message.guild?.id);
+
     try {
       const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) return;
 
       if (user?.reminder.hasReminder === false) {
         return message.channel.send(lang.REMINDER.NO_REMINDER_SET);
+      }
+
+      switch (id) {
+        case "first": {
+          id = "1";
+          break;
+        }
+        case "last": {
+          id = `${user.reminder.reminders.find((v) => v.id === user.reminder.reminders.length)?.id}`;
+          break;
+        }
+        default: {
+          break;
+        }
       }
 
       await bot.utils.updateUserById(message.author.id, message.guild?.id, {
