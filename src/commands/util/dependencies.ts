@@ -9,7 +9,7 @@ export default class DependenciesCommand extends Command {
       name: "dependencies",
       description: "Shows a list of all bots dependencies",
       category: "util",
-      aliases: ["deps"]
+      aliases: ["deps"],
     });
   }
 
@@ -18,12 +18,12 @@ export default class DependenciesCommand extends Command {
 
     try {
       const dependencies = Object.entries(pkg.dependencies).join(",\n");
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.DEPENDENCIES)
         .setDescription(dependencies);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

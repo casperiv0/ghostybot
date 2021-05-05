@@ -17,7 +17,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const guild = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}`,
         { type: "Bot", data: `${process.env["DISCORD_BOT_TOKEN"]}` },
-        "GET"
+        "GET",
       );
       const gChannels = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}/channels`,
@@ -25,7 +25,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           type: "Bot",
           data: `${process.env["DISCORD_BOT_TOKEN"]}`,
         },
-        "GET"
+        "GET",
       );
 
       if (guild.error || guild.message) {
@@ -103,7 +103,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
             const starboard = req.bot.starboardsManager.starboards.find(
               (s) =>
                 s.channelID === g?.starboards_data?.channel_id &&
-                s.options.emoji === g?.starboards_data?.emoji
+                s.options.emoji === g?.starboards_data?.emoji,
             );
 
             await req.bot.utils.createStarboard(
@@ -117,7 +117,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               {
                 channelID: starboard?.channelID,
                 emoji: starboard?.options.emoji,
-              }
+              },
             );
           } catch (e) {
             req.bot.utils.sendErrorLog(e, "error");

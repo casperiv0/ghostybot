@@ -27,7 +27,9 @@ export default class MessageReactionAddEvent extends Event {
       });
       if (!dbReaction) return;
 
-      const reaction = dbReaction.reactions.find((r: Reaction) => r.emoji === react.emoji.toString());
+      const reaction = dbReaction.reactions.find(
+        (r: Reaction) => r.emoji === react.emoji.toString(),
+      );
       if (!reaction) return;
 
       if (!member.roles.cache.has(reaction.role_id)) {

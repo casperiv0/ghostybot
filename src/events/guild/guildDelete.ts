@@ -11,7 +11,7 @@ export default class GuildDeleteEvent extends Event {
     try {
       if (!guild) return;
       await bot.utils.removeGuild(guild.id);
-  
+
       guild.members.cache.forEach((member: GuildMember) => {
         bot.utils.removeUser(member.id, guild.id);
         bot.utils.removeUserWarnings(member.id, guild.id);

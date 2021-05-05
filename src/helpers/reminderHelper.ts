@@ -31,7 +31,7 @@ export default class ReminderHelper extends Helper {
                 reminder: {
                   hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                   reminders: user.reminder.reminders.filter(
-                    (rem: Reminder) => rem._id !== reminderId
+                    (rem: Reminder) => rem._id !== reminderId,
                   ),
                 },
               });
@@ -42,7 +42,7 @@ export default class ReminderHelper extends Helper {
               reminder: {
                 hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                 reminders: user.reminder.reminders.filter(
-                  (rem: Reminder) => rem._id !== reminderId
+                  (rem: Reminder) => rem._id !== reminderId,
                 ),
               },
             });

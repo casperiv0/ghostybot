@@ -43,7 +43,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
           }/commands?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
-          }
+          },
         )
       ).json();
 

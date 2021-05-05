@@ -15,7 +15,7 @@ export default class MagikCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args, true);
+      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
 
       let intensity = args[1] || Math.floor(Math.random() * 10);
       if (member?.user?.id === message.author.id) {
@@ -26,8 +26,8 @@ export default class MagikCommand extends Command {
         `https://nekobot.xyz/api/imagegen?type=magik&intensity=${intensity}&image=${member?.user?.displayAvatarURL(
           {
             format: "png",
-          }
-        )}`
+          },
+        )}`,
       ).then((res) => res.json());
 
       message.channel.send(data.message);

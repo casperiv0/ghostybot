@@ -34,7 +34,7 @@ export default class EmojiInfoCommand extends Command {
 
       const { date: createdAt, tz } = await bot.utils.formatDate(
         foundEmoji.createdAt,
-        message.guild?.id
+        message.guild?.id,
       );
 
       const embed = bot.utils

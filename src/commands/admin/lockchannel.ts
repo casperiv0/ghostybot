@@ -37,8 +37,8 @@ export default class LockChannelCommand extends Command {
       message.channel.send(
         lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
           "{lockReason}",
-          lockReason
-        )
+          lockReason,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

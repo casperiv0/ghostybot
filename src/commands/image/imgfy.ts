@@ -19,7 +19,7 @@ export default class ImgfyCommand extends Command {
       const text = args.join(" ");
 
       const image = `https://flamingtext.com/net-fu/proxy_form.cgi?script=3d-logo&text=${encodeURIComponent(
-        text
+        text,
       )}&_loc=generate&imageoutput=true`;
 
       const embed = bot.utils

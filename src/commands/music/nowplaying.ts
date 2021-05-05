@@ -46,7 +46,7 @@ export default class NowPlayingCommand extends Command {
           `
         **${lang.MUSIC.DURATION}:** ${song.duration}
           ${durBar}
-  `
+  `,
         );
 
       message.channel.send(embed);

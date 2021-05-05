@@ -46,7 +46,7 @@ export default class StealEmojiCommand extends Command {
           .setDescription(
             `${lang.ADMIN.EMOJI_ADDED_NAME} ${name || customEmoji.name} | ${lang.ADMIN.PREVIEW} [${
               lang.HELP.CLICK_ME
-            }](${link})`
+            }](${link})`,
           );
         return message.channel.send(embed);
       } else {

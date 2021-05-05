@@ -56,8 +56,8 @@ export default class PayCommand extends Command {
       return message.channel.send(
         lang.ECONOMY.PAY_SUCCESS.replace("{member}", member.user.tag).replace(
           "{amount}",
-          `${amount}`
-        )
+          `${amount}`,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

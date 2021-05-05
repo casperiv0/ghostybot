@@ -18,7 +18,7 @@ export default class JokeCommand extends Command {
 
     try {
       message.channel.send(
-        getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body
+        getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body,
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

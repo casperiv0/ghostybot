@@ -32,13 +32,13 @@ export default class RemoveRoleCommand extends Command {
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
         return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{roleName}", role.name)
+          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{roleName}", role.name),
         );
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
         return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER2.replace("{needsRoleTag}", needsRole?.user?.tag)
+          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER2.replace("{needsRoleTag}", needsRole?.user?.tag),
         );
       }
 
@@ -51,8 +51,8 @@ export default class RemoveRoleCommand extends Command {
       message.channel.send(
         lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
           "{needsRole}",
-          `${needsRole?.user?.tag}`
-        )
+          `${needsRole?.user?.tag}`,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

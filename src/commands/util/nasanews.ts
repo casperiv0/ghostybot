@@ -17,7 +17,7 @@ export default class NasaNews extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     const query = args.join(" ");
     const data = await fetch(
-      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}`
+      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}`,
     ).then((res) => res.json());
 
     const item = data.collection.items[0];

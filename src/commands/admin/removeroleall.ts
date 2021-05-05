@@ -27,7 +27,7 @@ export default class RemoveRoleAllCommand extends Command {
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
         return message.channel.send(
-          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name)
+          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
         );
       }
 

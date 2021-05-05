@@ -19,12 +19,12 @@ export default class DogFactCommand extends Command {
         .then((res) => res.json())
         .then((data) => {
           const fact = data.fact;
-  
+
           const embed = bot.utils
             .baseEmbed(message)
             .setTitle(lang.ANIMAL.DOG_FACT)
             .setDescription(fact);
-  
+
           message.channel.send(embed);
         });
     } catch (err) {

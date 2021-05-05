@@ -27,7 +27,7 @@ export default class YtCommentCommand extends Command {
 
       sendMsg.deletable && sendMsg.delete();
       const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(
-        username
+        username,
       )}&comment=${encodeURIComponent(comment)}&avatar=${encodeURIComponent(avatar)}`;
 
       const embed = bot.utils

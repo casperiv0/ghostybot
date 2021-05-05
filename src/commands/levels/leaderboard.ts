@@ -35,7 +35,7 @@ export default class XpCommand extends Command {
           embed.addField(
             member.user.username,
             `${isInPlace ? places[idx] : ""} ${data[idx].xp}xp`,
-            true
+            true,
           );
         }
       });

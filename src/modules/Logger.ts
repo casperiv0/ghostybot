@@ -11,11 +11,15 @@ class Logger {
   }
 
   warn(type: string, warning: string) {
-    return console.warn(`${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`);
+    return console.warn(
+      `${chalk.yellow("[WARNING]")}[${type.toUpperCase()}][${this.now}]: ${warning}`,
+    );
   }
 
   log(type: string, message: string) {
-    return console.log(`${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`);
+    return console.log(
+      `${chalk.blueBright("[INFO]")}[${type.toUpperCase()}][${this.now}]: ${message}`,
+    );
   }
 }
 

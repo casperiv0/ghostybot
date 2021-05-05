@@ -39,7 +39,7 @@ export default class DepositCommand extends Command {
         return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
       }
 
-        if (+amount <= 0) {
+      if (+amount <= 0) {
         return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
       }
 

@@ -27,8 +27,8 @@ export default class BetCommand extends Command {
         .setTitle(
           lang.GAMES.BETS_ON.replace("{member_1}", message.author.username).replace(
             "{member_2}",
-            member.user.username
-          )
+            member.user.username,
+          ),
         )
         .setDescription(
           number > 0.5
@@ -37,7 +37,7 @@ export default class BetCommand extends Command {
                 .replace("{member_1}", message.author.username)
             : lang.GAMES.LOST_BET.replace("{member_1}", message.author.username)
                 .replace("{member_2}", member.user.username)
-                .replace("{member_1}", message.author.username)
+                .replace("{member_1}", message.author.username),
         );
 
       return message.channel.send(embed);

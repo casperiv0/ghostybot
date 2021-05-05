@@ -25,7 +25,7 @@ const AddBlacklistedWord: FC<Props> = ({ guild }: Props) => {
           body: JSON.stringify({
             word,
           }),
-        }
+        },
       );
       const data = await res.json();
 
@@ -34,7 +34,7 @@ const AddBlacklistedWord: FC<Props> = ({ guild }: Props) => {
         setWord("");
         setResponse(null);
         router.push(
-          `/dashboard/${guild.id}/blacklisted-words?message=Successfully blacklisted word: ${word}`
+          `/dashboard/${guild.id}/blacklisted-words?message=Successfully blacklisted word: ${word}`,
         );
       }
 

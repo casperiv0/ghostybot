@@ -61,8 +61,8 @@ export default class RobCommand extends Command {
       return message.channel.send(
         lang.ECONOMY.ROB_SUCCESS.replace("{amount}", `${amount}`).replace(
           "{member}",
-          member.user.tag
-        )
+          member.user.tag,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

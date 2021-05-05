@@ -9,7 +9,7 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
   let page = 0;
 
   const currentPage = await message.channel.send(
-    embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`)
+    embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`),
   );
 
   EMOJIS.forEach((emoji) => {
@@ -55,7 +55,9 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     }
 
     if (page !== -1) {
-      currentPage.edit(embeds[page].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`));
+      currentPage.edit(
+        embeds[page].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`),
+      );
     }
   });
 

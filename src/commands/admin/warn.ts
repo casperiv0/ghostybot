@@ -39,7 +39,7 @@ export default class WarnCommand extends Command {
       return message.channel.send(
         lang.ADMIN.USER_WARNED.replace("{memberTag}", member.user.tag)
           .replace("{reason}", reason)
-          .replace("{warningsTotal}", warnings ? `${warnings.length}` : "0")
+          .replace("{warningsTotal}", warnings ? `${warnings.length}` : "0"),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

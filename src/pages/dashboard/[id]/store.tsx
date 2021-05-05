@@ -37,10 +37,12 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
     try {
       const data = await (
         await fetch(
-          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/store?name=${encodeURIComponent(name)}`,
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
+            guild.id
+          }/store?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
-          }
+          },
         )
       ).json();
 

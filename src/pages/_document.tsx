@@ -29,7 +29,10 @@ class Ghostybot extends Document {
           <meta property="og:color" content="#7289da" />
           <meta property="og:url" content="https://ghostybot.tk" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content={`${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot`} />
+          <meta
+            property="og:title"
+            content={`${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot`}
+          />
           <meta
             property="og:description"
             content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is an awesome Discord bot for Discord communities. (+200 commands) Economy, util, fun, music, admin, xp system and more`}
@@ -40,7 +43,10 @@ class Ghostybot extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta property="twitter:domain" content="ghostybot.tk" />
           <meta property="twitter:url" content="https://ghostybot.tk" />
-          <meta name="twitter:title" content={`${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot`} />
+          <meta
+            name="twitter:title"
+            content={`${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot`}
+          />
           <meta name="twitter:image" content="https://ghostybot.tk/banner.png" />
           <meta
             name="twitter:description"

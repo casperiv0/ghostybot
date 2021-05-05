@@ -19,16 +19,16 @@ export default class ShuffleCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       const queue = bot.player.getQueue(message);
       if (!bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       bot.player.shuffle(message);
       message.react("🔀");
     } catch (err) {

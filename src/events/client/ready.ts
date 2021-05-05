@@ -13,7 +13,7 @@ export default class ReadyEvent extends Event {
     const serverCount = bot.utils.formatNumber(bot.guilds.cache.size);
     const channelCount = bot.utils.formatNumber(bot.channels.cache.size);
     const userCount = bot.utils.formatNumber(
-      bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0)
+      bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
     );
     const statuses = [
       ` ${serverCount} servers.`,
@@ -40,7 +40,7 @@ export default class ReadyEvent extends Event {
 
     bot.logger.log(
       "bot",
-      `Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`
+      `Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`,
     );
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];

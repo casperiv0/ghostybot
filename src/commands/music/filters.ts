@@ -22,7 +22,7 @@ export default class FiltersCommand extends Command {
         .baseEmbed(message)
         .setTitle("Filters")
         .setDescription(
-          `${filters.map((f) => `${f}`).join("\n")}\n **Use:** ${guild?.prefix}filter set <filter>`
+          `${filters.map((f) => `${f}`).join("\n")}\n **Use:** ${guild?.prefix}filter set <filter>`,
         );
 
       return message.channel.send(embed);

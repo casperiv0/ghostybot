@@ -18,7 +18,7 @@ export default class AmazingEarthCommand extends Command {
 
     try {
       const data = await fetch("https://www.reddit.com/r/Earthporn/random/.json").then((res) =>
-        res.json()
+        res.json(),
       );
 
       const children = data[0].data.children[0];

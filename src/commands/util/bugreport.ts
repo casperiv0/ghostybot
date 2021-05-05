@@ -20,7 +20,7 @@ export default class BugReportCommand extends Command {
 
       if (!process.env["BUG_REPORTS_CHANNEL_ID"]) {
         return message.channel.send(
-          lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId")
+          lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId"),
         );
       }
 

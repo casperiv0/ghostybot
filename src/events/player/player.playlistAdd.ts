@@ -19,8 +19,8 @@ export default class PlayerPlaylistAddEvent extends Event {
         .setTitle(
           `${lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", `${playlist.tracks.length}`).replace(
             "{name}",
-            `${playlist.title}`
-          )}`
+            `${playlist.title}`,
+          )}`,
         );
 
       return message.channel.send(embed);

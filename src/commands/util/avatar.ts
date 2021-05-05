@@ -15,7 +15,7 @@ export default class AvatarCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args, true);
+      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
 
       const png = this.avatar(member, "png");
       const webp = this.avatar(member, "webp");

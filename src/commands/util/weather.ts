@@ -19,7 +19,7 @@ export default class WeatherCommand extends Command {
       const query = args.join(" ");
 
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-        query
+        query,
       )}&appid=${process.env["OPEN_WEATHER_MAP_API_KEY"]}&units=metric`;
       const data = await fetch(url).then((res) => res.json());
 

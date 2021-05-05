@@ -26,11 +26,14 @@ export default class ServerInfoCommand extends Command {
       const channels = bot.utils.formatNumber(guild.channels.cache.size);
       const emojis = bot.utils.formatNumber(guild.emojis.cache.size);
 
-      const regions = lang.OTHER.REGIONS
-      const verLevels = lang.OTHER.VERLEVELS
+      const regions = lang.OTHER.REGIONS;
+      const verLevels = lang.OTHER.VERLEVELS;
 
       const { date: createdAt } = await bot.utils.formatDate(guild.createdAt, message.guild?.id);
-      const { date: joined, tz } = await bot.utils.formatDate(message.member?.joinedAt, message.guild?.id);
+      const { date: joined, tz } = await bot.utils.formatDate(
+        message.member?.joinedAt,
+        message.guild?.id,
+      );
       const owner = await guild.fetchOwner();
       const inviteBanner = guild.bannerURL({
         size: 2048,
@@ -50,9 +53,9 @@ export default class ServerInfoCommand extends Command {
   **${lang.GUILD.REGION}:** ${region}
   **${lang.GUILD.MFA}:** ${mfaLevel}
   **${lang.GUILD.VERIFICATION}:** ${verLevel}
-  
+
   **${lang.MEMBER.JOINED_AT}:** ${joined} (${tz})
-  **${lang.MEMBER.CREATED_ON}:** ${createdAt} (${tz})`
+  **${lang.MEMBER.CREATED_ON}:** ${createdAt} (${tz})`,
         )
         .addField(
           "**📈 Stats**",
@@ -60,7 +63,7 @@ export default class ServerInfoCommand extends Command {
   **${lang.GUILD.ROLES_C}:** ${roles}
   **${lang.GUILD.CHANNEL_C}:** ${channels}
   **${lang.GUILD.EMOJI_C}:** ${emojis}
-  **${lang.GUILD.MEMBER_C}:** ${memberCount}`
+  **${lang.GUILD.MEMBER_C}:** ${memberCount}`,
         );
 
       if (inviteBanner !== null) {

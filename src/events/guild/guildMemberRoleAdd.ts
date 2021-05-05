@@ -11,17 +11,17 @@ export default class GuildMemberRoleAddEvent extends Event {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
-  
+
       const webhook = await bot.utils.getWebhook(member.guild);
       if (!webhook) return;
-  
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
         .setColor("GREEN")
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${member} was **given** the ${role} role.`);
-  
+
       webhook.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

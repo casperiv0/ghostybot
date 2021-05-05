@@ -20,11 +20,11 @@ export default class UnLockChannelCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const channel = (message.mentions.channels.first() || message.channel) as TextChannel;
-  
+
       if (channel.permissionsFor(message.guild?.id)?.has("SEND_MESSAGES") === true) {
         return message.channel.send(lang.ADMIN.CHAN_NOT_LOCK);
       }
-  
+
       channel.updateOverwrite(message.guild?.id, {
         SEND_MESSAGES: true,
       });

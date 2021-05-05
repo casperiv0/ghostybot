@@ -21,7 +21,7 @@ export default class ChannelCreateEvent extends Event {
       const type = channel.type === "category" ? "Category" : "Channel";
       msg = lang.EVENTS.CHANNEL_CREATED_MSG.replace("{channel_type}", type).replace(
         "{channel}",
-        channel.name
+        channel.name,
       );
 
       const embed = bot.utils

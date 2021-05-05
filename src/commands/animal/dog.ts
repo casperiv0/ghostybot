@@ -16,12 +16,12 @@ export default class DogCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("https://dog.ceo/api/breeds/image/random").then((res) => res.json());
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
         .setImage(data.message);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

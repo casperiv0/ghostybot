@@ -20,11 +20,15 @@ export default class BotInfoCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const uptime = dayJs.duration(bot?.uptime ?? 0).format(" D [days], H [hrs], m [mins], s [secs]");
+      const uptime = dayJs
+        .duration(bot?.uptime ?? 0)
+        .format(" D [days], H [hrs], m [mins], s [secs]");
 
       const nodev = process.version;
       const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user?.id });
-      const userCount = bot.utils.formatNumber(bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0));
+      const userCount = bot.utils.formatNumber(
+        bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
+      );
 
       const embed = bot.utils
         .baseEmbed(message)
@@ -35,7 +39,7 @@ export default class BotInfoCommand extends Command {
           `${lang.HELP.COMMANDS}:`,
           `
   **${lang.BOT.USED_SINCE_UP}:** ${bot.utils.formatNumber(used_since_up)}
-  **${lang.BOT.TOTAL_USED_CMDS}:** ${bot.utils.formatNumber(total_used_cmds)}`
+  **${lang.BOT.TOTAL_USED_CMDS}:** ${bot.utils.formatNumber(total_used_cmds)}`,
         )
         .addField(
           `__**${lang.BOT.INFO}:**__`,
@@ -46,15 +50,17 @@ export default class BotInfoCommand extends Command {
   **${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}
   **${lang.BOT.VC_CONNS}:** ${bot.voice?.connections.size}
               `,
-          true
+          true,
         )
         .addField(
           `__**${lang.BOT.SYSTEM_INFO}**__`,
-          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
+            2,
+          )}MB
   **${lang.BOT.UPTIME}:** ${uptime}
   **${lang.BOT.NODE_V}:** ${nodev}
   **${lang.BOT.DJS_V}:** ${version}`,
-          true
+          true,
         )
         .addField(
           "Links",
@@ -62,12 +68,22 @@ export default class BotInfoCommand extends Command {
   [${lang.BOT.DEVELOPER}](https://caspertheghost.me)
   [${lang.BOT.CONTRIBUTORS}](https://github.com/Dev-CasperTheGhost/ghostybot/contributors)
   [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${bot.user?.id}&scope=bot&permissions=8)`,
-          true
+          true,
         )
-        .addField(`${lang.BOT.REPO}`, "[Click Here](https://github.com/dev-caspertheghost/ghostybot)", true)
+        .addField(
+          `${lang.BOT.REPO}`,
+          "[Click Here](https://github.com/dev-caspertheghost/ghostybot)",
+          true,
+        )
         .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
-        .addField(`${lang.BOT.DASHBOARD}`, `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`, true)
-        .setImage("https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png");
+        .addField(
+          `${lang.BOT.DASHBOARD}`,
+          `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`,
+          true,
+        )
+        .setImage(
+          "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
+        );
 
       message.channel.send(embed);
     } catch (err) {

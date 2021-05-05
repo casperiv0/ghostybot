@@ -23,27 +23,29 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     return res.redirect(`/error?error=${encodeURIComponent("No code was provided")}`);
   }
 
-  const data = await (await fetch(
-    `${discordApiUrl}oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${callbackUrl}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: req.bot.utils.encode({
-        client_id: DISCORD_CLIENT_ID,
-        client_secret: DISCORD_CLIENT_SECRET,
-        grant_type: "authorization_code",
-        code: code,
-        redirect_uri: callbackUrl,
-        scope: "identify guilds",
-      }),
-    }
-  )).json();
+  const data = await (
+    await fetch(
+      `${discordApiUrl}oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${callbackUrl}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: req.bot.utils.encode({
+          client_id: DISCORD_CLIENT_ID,
+          client_secret: DISCORD_CLIENT_SECRET,
+          grant_type: "authorization_code",
+          code: code,
+          redirect_uri: callbackUrl,
+          scope: "identify guilds",
+        }),
+      },
+    )
+  ).json();
 
   if (!data.access_token) {
     return res.redirect(
       `/error?error=${encodeURIComponent(
-        "No access_token was provided from Discord. Please try again later"
-      )}`
+        "No access_token was provided from Discord. Please try again later",
+      )}`,
     );
   }
 

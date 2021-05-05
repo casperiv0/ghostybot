@@ -29,7 +29,7 @@ export default class EnlargeCommand extends Command {
 
       if (custom?.id) {
         embed.setImage(
-          `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`
+          `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`,
         );
         return message.channel.send(embed);
       } else {

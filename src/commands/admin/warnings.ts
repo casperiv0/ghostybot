@@ -42,7 +42,7 @@ export default class WarningsCommand extends Command {
 
         if (!warning) {
           return message.channel.send(
-            lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", member.user.tag)
+            lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", member.user.tag),
           );
         }
 

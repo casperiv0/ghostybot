@@ -12,7 +12,7 @@ interface Props {
   guild: Guild;
   isAuth: boolean;
   botCommands: string[];
-  error: string | undefined
+  error: string | undefined;
 }
 
 const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props) => {
@@ -40,7 +40,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
       });
       if (node) observer.current?.observe(node);
     },
-    [length, botCommands]
+    [length, botCommands],
   );
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
       router.push(
         `/dashboard/${guild.id}/manage-commands?message=Successfully ${
           type === "enable" ? "enabled" : "disabled"
-        } command: ${cmdName}`
+        } command: ${cmdName}`,
       );
     }
   }

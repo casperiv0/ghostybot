@@ -31,10 +31,10 @@ export default class VoiceUnMuteCommand extends Command {
       unmuteMember.voice.setMute(false, "unmuteReason");
 
       unmuteMember.user.send(
-        lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`)
+        lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`),
       );
       message.channel.send(
-        lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag)
+        lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

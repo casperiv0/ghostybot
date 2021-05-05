@@ -28,7 +28,7 @@ export default class AddRoleAllCommand extends Command {
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
         return message.channel.send(
-          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name)
+          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
         );
       }
 
@@ -37,8 +37,8 @@ export default class AddRoleAllCommand extends Command {
       message.channel.send(
         lang.ROLES.ADDED_ROLE_TO.replace("{role}", role.name).replace(
           "{member}",
-          lang.GLOBAL.EVERYONE
-        )
+          lang.GLOBAL.EVERYONE,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

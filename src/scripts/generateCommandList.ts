@@ -33,7 +33,7 @@ function createCategoryList() {
   return categoriesData
     .map(
       (category) => `
-[${category}](#category-${category})`
+[${category}](#category-${category})`,
     )
     .join("\n");
 }
@@ -148,7 +148,7 @@ ${createCategoryList()}
 ${notDetailedCommandList}
 
 ## Detailed command list
-  
+
 ${detailedCommandList}
 `;
 

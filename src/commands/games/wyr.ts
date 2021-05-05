@@ -17,12 +17,12 @@ export default class WouldYouRatherCommand extends Command {
 
     try {
       const reply = replies[Math.floor(Math.random() * replies.length)];
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.WYR)
         .setDescription(`**${reply}**`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

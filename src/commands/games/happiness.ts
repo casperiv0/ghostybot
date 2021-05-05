@@ -16,12 +16,12 @@ export default class HappinessCommand extends Command {
 
     try {
       const happiness = Math.floor(Math.random() * 100) + 1;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.HAPPINESS)
         .setDescription(`${happiness}%`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

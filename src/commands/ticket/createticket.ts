@@ -17,7 +17,7 @@ export default class CreateTicketCommand extends Command {
     try {
       const guild = await bot.utils.getGuildById(message.guild?.id);
       const tickets = message.guild?.channels.cache.filter((ch) =>
-        ch.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ""))
+        ch.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", "")),
       );
       if (!tickets) return;
 
@@ -26,7 +26,10 @@ export default class CreateTicketCommand extends Command {
 
       if (!guild?.ticket_data.enabled) {
         return message.channel.send(
-          lang.TICKET.NOT_ENABLED.replace("{botName}", `${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}`)
+          lang.TICKET.NOT_ENABLED.replace(
+            "{botName}",
+            `${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}`,
+          ),
         );
       }
 
@@ -56,12 +59,15 @@ export default class CreateTicketCommand extends Command {
         },
       ];
 
-      const channel = ((await message.guild?.channels.create(lang.TICKET.TICKET.replace("{Id}", `${ticketId}`), {
-        type: "text",
-        nsfw: false,
-        topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
-        permissionOverwrites: DEFAULT_PERMS,
-      })) as unknown) as TextChannel;
+      const channel = ((await message.guild?.channels.create(
+        lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
+        {
+          type: "text",
+          nsfw: false,
+          topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
+          permissionOverwrites: DEFAULT_PERMS,
+        },
+      )) as unknown) as TextChannel;
 
       if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
         channel?.setParent(guild.ticket_data.parent_id);

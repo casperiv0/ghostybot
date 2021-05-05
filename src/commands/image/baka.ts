@@ -15,12 +15,12 @@ export default class BakaCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await bot.neko.sfw.baka();
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
         .setImage(`${data.url}`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

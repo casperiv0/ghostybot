@@ -49,7 +49,8 @@ const Navbar = () => {
       <div className="nav-content">
         <Link href="/dashboard">
           <a href="/dashboard" className="nav-icon-link">
-            {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} <span className="nav-icon-extra">Dashboard</span>
+            {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}{" "}
+            <span className="nav-icon-extra">Dashboard</span>
           </a>
         </Link>
         <div className="dropdown-container">

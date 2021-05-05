@@ -24,8 +24,8 @@ export default class TweetCommand extends Command {
 
       const data = await fetch(
         `https://nekobot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(
-          text
-        )}&username=${username}`
+          text,
+        )}&username=${username}`,
       )
         .then((res) => res.json())
         .catch(() => {

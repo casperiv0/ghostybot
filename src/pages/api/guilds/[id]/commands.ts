@@ -30,7 +30,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const command = guild.custom_commands.find(
-        (cmd) => cmd.name.toLowerCase() === `${name}`.toLowerCase()
+        (cmd) => cmd.name.toLowerCase() === `${name}`.toLowerCase(),
       );
 
       if (!command) {
@@ -127,7 +127,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "DELETE": {
       const filtered = guild.custom_commands?.filter(
-        (cmd) => cmd.name.toLowerCase() !== (query.name as string).toLowerCase()
+        (cmd) => cmd.name.toLowerCase() !== (query.name as string).toLowerCase(),
       );
 
       await req.bot.utils.updateGuildById(`${query.id}`, { custom_commands: filtered });

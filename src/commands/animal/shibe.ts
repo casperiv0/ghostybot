@@ -16,12 +16,12 @@ export default class CatCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("http://shibe.online/api/shibes").then((res) => res.json());
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data[0]})`)
         .setImage(data[0]);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

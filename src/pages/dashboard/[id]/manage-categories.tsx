@@ -65,7 +65,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
       router.push(
         `/dashboard/${guild.id}/manage-categories?message=Successfully ${
           type === "enable" ? "enabled" : "disabled"
-        } category: ${category}`
+        } category: ${category}`,
       );
     }
   }

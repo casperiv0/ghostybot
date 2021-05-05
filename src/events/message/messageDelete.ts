@@ -29,7 +29,7 @@ export default class MessageDeleteEvent extends Event {
         embed.setDescription(
           `Message: \`an image attachment was deleted ${
             message.content ? `+ ${message.content}\`` : "`"
-          } was deleted in ${message.channel}`
+          } was deleted in ${message.channel}`,
         );
       }
 

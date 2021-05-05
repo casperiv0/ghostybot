@@ -56,7 +56,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "DELETE": {
       const filtered = guild.store?.filter(
-        (item: StoreItem) => item.name.toLowerCase() !== (query.name as string).toLowerCase()
+        (item: StoreItem) => item.name.toLowerCase() !== (query.name as string).toLowerCase(),
       );
 
       await req.bot.utils.updateGuildById(`${query.id}`, { store: filtered });

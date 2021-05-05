@@ -16,12 +16,12 @@ export default class CatCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("https://some-random-api.ml/img/racoon").then((res) => res.json());
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
         .setImage(data.link);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

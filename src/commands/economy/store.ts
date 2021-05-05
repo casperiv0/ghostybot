@@ -88,7 +88,7 @@ export default class StoreCommand extends Command {
         const items = guild.store
           ?.map(
             (item) =>
-              `**${lang.GLOBAL.NAME}:** ${item.name}, **${lang.ECONOMY.PRICE}:** ${item.price}`
+              `**${lang.GLOBAL.NAME}:** ${item.name}, **${lang.ECONOMY.PRICE}:** ${item.price}`,
           )
           ?.join(",\n ");
 

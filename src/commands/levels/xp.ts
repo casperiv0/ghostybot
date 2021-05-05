@@ -15,7 +15,7 @@ export default class XpCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args, true);
+      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (member?.user?.bot) {
         return message.channel.send(lang.MEMBER.BOT_DATA);

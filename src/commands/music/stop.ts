@@ -20,15 +20,15 @@ export default class StopCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       if (!bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       bot.player?.stop(message);
       message.react("👍");
     } catch (err) {

@@ -4,6 +4,12 @@ import Bot from "../../structures/Bot";
 import BlacklistedModel from "../../models/Blacklisted.model";
 import { UserData } from "../../models/User.model";
 
+type NullableDUser =
+  | { user: { username: string; id: string; tag: string } }
+  | GuildMember
+  | null
+  | undefined;
+
 export default class BlacklistCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -21,11 +27,7 @@ export default class BlacklistCommand extends Command {
 
     try {
       const type = args[0];
-      const member:
-        | { user: { username: string; id: string; tag: string } }
-        | GuildMember
-        | null
-        | undefined = (await bot.utils.findMember(message, args)) || {
+      const member: NullableDUser = (await bot.utils.findMember(message, args, { index: 1 })) || {
         user: {
           username: "N/A",
           id: args[1],
@@ -66,7 +68,9 @@ export default class BlacklistCommand extends Command {
         case "add": {
           const existing = users.filter((u: UserData) => u.user_id === member?.user?.id)[0];
           if (existing) {
-            return message.channel.send(lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag));
+            return message.channel.send(
+              lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag),
+            );
           }
 
           const blUser = new BlacklistedModel({ user_id: member?.user?.id });
@@ -93,8 +97,8 @@ export default class BlacklistCommand extends Command {
       return message.channel.send(
         lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", member?.user?.tag).replace(
           "{type}",
-          type === "add" ? lang.BOT_OWNER.BLACKLISTED : lang.BOT_OWNER.UNBLACKLISTED
-        )
+          type === "add" ? lang.BOT_OWNER.BLACKLISTED : lang.BOT_OWNER.UNBLACKLISTED,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

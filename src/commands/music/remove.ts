@@ -35,11 +35,15 @@ export default class RemoveCommand extends Command {
       }
 
       if (Number(songNo) < 1) {
-        return message.channel.send(lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`));
+        return message.channel.send(
+          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`),
+        );
       }
 
       if (Number(songNo) >= queue.tracks.length) {
-        return message.channel.send(lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`));
+        return message.channel.send(
+          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`),
+        );
       }
 
       const song = queue.tracks[Number(songNo)];

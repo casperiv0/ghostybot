@@ -32,7 +32,9 @@ export default class RemoveReminderCommand extends Command {
           break;
         }
         case "last": {
-          id = `${user.reminder.reminders.find((v) => v.id === user.reminder.reminders.length)?.id}`;
+          id = `${
+            user.reminder.reminders.find((v) => v.id === user.reminder.reminders.length)?.id
+          }`;
           break;
         }
         default: {

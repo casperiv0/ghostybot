@@ -21,7 +21,7 @@ export default class SkinCommand extends Command {
       const search = args[0];
 
       const uuid = await fetch(
-        `https://playerdb.co/api/player/minecraft/${encodeURIComponent(search)}`
+        `https://playerdb.co/api/player/minecraft/${encodeURIComponent(search)}`,
       ).then((res) => res.json());
 
       if (!uuid.success || uuid?.error) {
@@ -38,7 +38,7 @@ export default class SkinCommand extends Command {
           .baseEmbed(message)
           .setAuthor(lang.UTIL.SKIN_NAME.replace("{name}", player.username), face)
           .setDescription(`${lang.UTIL.DOWNLOAD_SKIN}(${skin})`)
-          .setImage(full)
+          .setImage(full),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

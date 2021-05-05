@@ -19,12 +19,12 @@ export default class RolesCommand extends Command {
           .filter((r) => r.id !== message.guild?.id)
           .map((r) => r)
           .join(",\n") || lang.GLOBAL.NONE;
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name} ${lang.UTIL.ROLES}`)
         .setDescription(`${roles.length > 2048 ? roles.substr(0, 2045) + "..." : roles}`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

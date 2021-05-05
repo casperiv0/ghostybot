@@ -35,15 +35,15 @@ export default class VoiceMuteCommand extends Command {
       muteUser.user.send(
         lang.ADMIN.YOU_MUTED.replace("{guildName}", `${message.guild?.name}`).replace(
           "{reason}",
-          muteReason
-        )
+          muteReason,
+        ),
       );
 
       message.channel.send(
         lang.ADMIN.USER_MUTED.replace("{muteUserTag}", muteUser.user.tag).replace(
           "{reason}",
-          muteReason
-        )
+          muteReason,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

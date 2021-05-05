@@ -11,13 +11,13 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
-  
+
       const webhook = await bot.utils.getWebhook(member.guild);
       if (!webhook) return;
-  
+
       const oldNickname = oldNick || "`None`";
       const newNickname = newNick || "`None`";
-  
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
@@ -25,7 +25,7 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
         .setTitle("Member Update: `Nickname`")
         .setDescription(`${member}'s **nickname** was changed.`)
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
-  
+
       webhook.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

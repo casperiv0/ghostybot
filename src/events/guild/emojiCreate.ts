@@ -16,14 +16,14 @@ export default class EmojiCreateEvent extends Event {
       const webhook = await bot.utils.getWebhook(emoji.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(emoji.guild.id);
-  
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.EMOJI_CREATED)
         .setDescription(lang.EVENTS.EMOJI_CREATED_MSG.replace("{emoji}", `${emoji}`))
         .setColor("GREEN")
         .setTimestamp();
-  
+
       webhook.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -35,7 +35,7 @@ export default class GuildMemberAddEvent extends Event {
             bot.utils.parseMessage(message, member.user, {
               author: member.user,
               guild: member.guild,
-            })
+            }),
           );
 
         const ch = bot.channels.cache.get(welcomeData.channel_id);

@@ -54,7 +54,7 @@ export default class ReminderHelper extends Helper {
               .setAuthor(guildUser.tag, guildUser.displayAvatarURL({ dynamic: true }))
               .setTitle("Unmute")
               .setDescription(
-                `**${guildUser.tag}** was successfully **unmuted** from their temp mute`
+                `**${guildUser.tag}** was successfully **unmuted** from their temp mute`,
               )
               .addField("Mute lasted", user.mute.time);
 

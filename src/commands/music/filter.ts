@@ -39,7 +39,7 @@ export default class FilterCommand extends Command {
         case "set": {
           if (currentFilters[filter] === true) {
             return message.channel.send(
-              lang.MUSIC.FILTER_ALREADY_ENABLED.replace("{filter}", filter)
+              lang.MUSIC.FILTER_ALREADY_ENABLED.replace("{filter}", filter),
             );
           }
 

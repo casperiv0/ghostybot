@@ -33,7 +33,7 @@ export default class RrAddCommand extends Command {
       const channel = guild.channels.cache.get(channelId);
       if (!channel) {
         return message.channel.send(
-          lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId)
+          lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId),
         );
       }
 

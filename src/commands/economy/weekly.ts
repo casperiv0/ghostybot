@@ -27,7 +27,9 @@ export default class WeeklyCommand extends Command {
       const weekly = user.weekly;
 
       if (weekly !== null && timeout - (Date.now() - weekly) > 0) {
-        const time = dayJs(timeout - (Date.now() - weekly)).format("D [days], H [hrs], m [mins], s [secs]");
+        const time = dayJs(timeout - (Date.now() - weekly)).format(
+          "D [days], H [hrs], m [mins], s [secs]",
+        );
         message.channel.send(`${lang.ECONOMY.WEEKLY_ERROR} ${time} remaining`);
       } else {
         await bot.utils.updateUserById(message.author.id, message.guild?.id, {

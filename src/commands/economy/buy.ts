@@ -42,7 +42,7 @@ export default class BuyCommand extends Command {
 
       if (!item)
         return message.channel.send(
-          lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", query).replace("{prefix}", `${prefix}`)
+          lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", query).replace("{prefix}", `${prefix}`),
         );
 
       if (inventory && inventory?.includes(item.name)) {
@@ -65,7 +65,7 @@ export default class BuyCommand extends Command {
       }
 
       message.channel.send(
-        lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace("{price}", `${item.price}`)
+        lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace("{price}", `${item.price}`),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

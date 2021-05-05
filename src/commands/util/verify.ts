@@ -40,7 +40,7 @@ export default class VerifyCommand extends Command {
           }
         } else {
           message.channel.send(
-            lang.UTIL.VERIFY_CHANNEL.replace("{channel}", `<#${guild.verify_data.channel_id}>`)
+            lang.UTIL.VERIFY_CHANNEL.replace("{channel}", `<#${guild.verify_data.channel_id}>`),
           );
         }
       } else {

@@ -25,7 +25,7 @@ export default class EvalCommand extends Command {
     classified.forEach((item) => {
       if (toEval.toLowerCase().includes(item)) {
         message.channel.send(
-          "That operation was canceled because it can include tokens or secrets."
+          "That operation was canceled because it can include tokens or secrets.",
         );
         return (wasCanceled = true);
       }

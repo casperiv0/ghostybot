@@ -16,14 +16,14 @@ export default class DuckCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("https://random-d.uk/api/v1/random?type=gif,png").then((res) =>
-        res.json()
+        res.json(),
       );
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
         .setImage(data.url);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

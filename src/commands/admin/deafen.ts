@@ -34,14 +34,14 @@ export default class DeafenCommand extends Command {
       deafenMember.user.send(
         lang.ADMIN.DEAFEN_SUCCESS_DM.replace("{guild}", `${message.guild?.name}`).replace(
           "{reason}",
-          deafenReason
-        )
+          deafenReason,
+        ),
       );
       message.channel.send(
         lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", `${deafenMember.user.tag}`).replace(
           "{reason}",
-          deafenReason
-        )
+          deafenReason,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -28,7 +28,7 @@ export default class WorkCommand extends Command {
 
       if (work !== null && timeout - (Date.now() - work) > 0) {
         const timeUntilWork = dayJs(timeout - (Date.now() - work)).format(
-          "h [hrs], m [mins], s [secs]"
+          "h [hrs], m [mins], s [secs]",
         );
         message.channel.send(lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork));
       } else {
@@ -40,7 +40,7 @@ export default class WorkCommand extends Command {
           .setDescription(
             `${lang.ECONOMY.WORKED.replace("{member}", member.username)
               .replace("{job_name}", name)
-              .replace("{amount}", `${amount}`)} 💰`
+              .replace("{amount}", `${amount}`)} 💰`,
           );
 
         message.channel.send(embed);

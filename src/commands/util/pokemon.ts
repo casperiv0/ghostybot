@@ -23,7 +23,7 @@ export default class PokemonCommand extends Command {
 
     try {
       const data = await fetch(
-        `https://some-random-api.ml/pokedex?pokemon=${encodeURIComponent(query)}`
+        `https://some-random-api.ml/pokedex?pokemon=${encodeURIComponent(query)}`,
       ).then((res) => res.json());
 
       const embed = bot.utils
@@ -41,18 +41,18 @@ export default class PokemonCommand extends Command {
         .addField(lang.POKEMON.EGG_GROUPS, data.egg_groups, true)
         .addField(
           `**${lang.POKEMON.FAMILY}:**`,
-          `**${lang.POKEMON.EVO_STAGE}:** ${data.family.evolutionStage} 
-          **${lang.POKEMON.EVO_LINE}:** ${data.family.evolutionLine}`
+          `**${lang.POKEMON.EVO_STAGE}:** ${data.family.evolutionStage}
+          **${lang.POKEMON.EVO_LINE}:** ${data.family.evolutionLine}`,
         )
         .addField(
           `**${lang.POKEMON.STATS}:**`,
-          `**${lang.POKEMON.HP}:** ${data.stats.hp} 
-          **${lang.POKEMON.ATTACK}:** ${data.stats.attack} 
-          **${lang.POKEMON.DEFENSE}:** ${data.stats.defense} 
-          **${lang.POKEMON.SP_ATK}:** ${data.stats.sp_atk} 
-          **${lang.POKEMON.SP_DEF}:** ${data.stats.sp_def} 
-          **${lang.POKEMON.SPEED}:** ${data.stats.speed} 
-          **${lang.POKEMON.TOTAL}:** ${data.stats.total}`
+          `**${lang.POKEMON.HP}:** ${data.stats.hp}
+          **${lang.POKEMON.ATTACK}:** ${data.stats.attack}
+          **${lang.POKEMON.DEFENSE}:** ${data.stats.defense}
+          **${lang.POKEMON.SP_ATK}:** ${data.stats.sp_atk}
+          **${lang.POKEMON.SP_DEF}:** ${data.stats.sp_def}
+          **${lang.POKEMON.SPEED}:** ${data.stats.speed}
+          **${lang.POKEMON.TOTAL}:** ${data.stats.total}`,
         )
         .setThumbnail(`${data.sprites.animated}`);
 

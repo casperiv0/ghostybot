@@ -18,14 +18,20 @@ export default class UserInfoCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const member = await bot.utils.findMember(message, args, true);
+      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
 
-      const { date: joinedAt, tz } = await bot.utils.formatDate(member?.joinedAt, message.guild?.id);
-      const { date: createdAt } = await bot.utils.formatDate(member.user.createdAt, message.guild?.id);
+      const { date: joinedAt, tz } = await bot.utils.formatDate(
+        member?.joinedAt,
+        message.guild?.id,
+      );
+      const { date: createdAt } = await bot.utils.formatDate(
+        member.user.createdAt,
+        message.guild?.id,
+      );
       const nickname = member.nickname || "None";
 
       const userFlags = (await member.user.fetchFlags(true))

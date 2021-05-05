@@ -17,14 +17,14 @@ export default class OwoCommand extends Command {
 
     try {
       const data = await fetch("https://rra.ram.moe/i/r?type=owo").then((res) => res.json());
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setDescription(
-          `${lang.IMAGE.CLICK_TO_VIEW}(https://cdn.ram.moe/${data.path.replace("/i/", "")})`
+          `${lang.IMAGE.CLICK_TO_VIEW}(https://cdn.ram.moe/${data.path.replace("/i/", "")})`,
         )
         .setImage(`https://cdn.ram.moe/${data.path.replace("/i/", "")}`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

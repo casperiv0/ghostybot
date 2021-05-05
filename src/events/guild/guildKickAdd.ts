@@ -20,9 +20,9 @@ export default class GuildKickAddEvent extends Event {
       const webhook = await bot.utils.getWebhook(guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(guild.id);
-  
+
       const { member, executor, reason } = kick;
-  
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.KICK_ADD)
@@ -30,7 +30,7 @@ export default class GuildKickAddEvent extends Event {
         .addField(lang.EVENTS.EXECUTED_BY, executor.tag, true)
         .addField(lang.EVENTS.REASON, reason)
         .setColor("ORANGE");
-  
+
       return webhook.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

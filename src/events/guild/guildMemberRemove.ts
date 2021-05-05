@@ -34,7 +34,7 @@ export default class GuildMemberRemoveEvent extends Event {
             bot.utils.parseMessage(message, member.user, {
               author: member.user,
               guild: member.guild,
-            })
+            }),
           )
           .setColor("RED");
 

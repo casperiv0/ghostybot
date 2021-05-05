@@ -55,7 +55,7 @@ declare module "word-definition" {
       word: string,
       language: string,
       options: Options | null,
-      callback: (data: ReturnData) => void
+      callback: (data: ReturnData) => void,
     ): ReturnData;
   }
 

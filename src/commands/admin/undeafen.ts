@@ -29,10 +29,10 @@ export default class UnDeafenCommand extends Command {
       undeafenUser.voice.setDeaf(false, "undeafenReason");
 
       undeafenUser.user.send(
-        lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${message.guild?.name}`)
+        lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${message.guild?.name}`),
       );
       message.channel.send(
-        lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag)
+        lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

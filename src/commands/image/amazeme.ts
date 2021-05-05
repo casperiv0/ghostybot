@@ -16,7 +16,7 @@ export default class AmazemeCommand extends Command {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch(
-        "https://www.reddit.com/r/interestingasfuck/random.json"
+        "https://www.reddit.com/r/interestingasfuck/random.json",
       ).then((res) => res.json());
 
       const children = data[0].data.children[0];

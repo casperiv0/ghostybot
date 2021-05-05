@@ -65,11 +65,13 @@ export default class MessageEvent extends Event {
 
         if (hasBadWord) {
           message.deletable && message.delete();
-          return message.channel.send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`)).then((msg) => {
-            setTimeout(() => {
-              msg.deletable && msg.delete();
-            }, 5000);
-          });
+          return message.channel
+            .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
+            .then((msg) => {
+              setTimeout(() => {
+                msg.deletable && msg.delete();
+              }, 5000);
+            });
         }
       }
 
@@ -84,8 +86,11 @@ export default class MessageEvent extends Event {
                 .baseEmbed(message)
                 .setTitle("AFK!")
                 .setDescription(
-                  lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace("{reason}", `${user?.afk.reason}`)
-                )
+                  lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace(
+                    "{reason}",
+                    `${user?.afk.reason}`,
+                  ),
+                ),
             );
           }
         });
@@ -107,7 +112,9 @@ export default class MessageEvent extends Event {
         });
 
         const msg = await message.channel.send(
-          bot.utils.baseEmbed(message).setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag))
+          bot.utils
+            .baseEmbed(message)
+            .setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag)),
         );
 
         setTimeout(() => {
@@ -133,7 +140,9 @@ export default class MessageEvent extends Event {
 
             const ch = message.channel;
             if (
-              !ch.permissionsFor(message.guild.me).has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.EMBED_LINKS])
+              !ch
+                .permissionsFor(message.guild.me)
+                .has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.EMBED_LINKS])
             )
               return;
 
@@ -197,7 +206,8 @@ export default class MessageEvent extends Event {
       }
 
       const _bot =
-        (await BotModel.findOne({ bot_id: bot.user.id })) || (await BotModel.create({ bot_id: bot.user.id }));
+        (await BotModel.findOne({ bot_id: bot.user.id })) ||
+        (await BotModel.create({ bot_id: bot.user.id }));
 
       _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
       _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
@@ -207,8 +217,13 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-      if (!saveCommands.includes(command.name) && guild?.disabled_categories?.includes(command.options.category)) {
-        return message.channel.send(lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category));
+      if (
+        !saveCommands.includes(command.name) &&
+        guild?.disabled_categories?.includes(command.options.category)
+      ) {
+        return message.channel.send(
+          lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
+        );
       }
 
       if (guild?.disabled_commands?.includes(command.name)) {
@@ -244,8 +259,8 @@ export default class MessageEvent extends Event {
 
                   return perms;
                 })
-                .join(", ")
-            )
+                .join(", "),
+            ),
           );
         }
       }
@@ -313,7 +328,10 @@ export default class MessageEvent extends Event {
           const timeLeft = (expireTime - now) / 1000;
 
           return message.reply(
-            lang.MESSAGE.COOLDOWN_AMOUNT.replace("{time}", `${timeLeft.toFixed(1)}`).replace("{command}", command.name)
+            lang.MESSAGE.COOLDOWN_AMOUNT.replace("{time}", `${timeLeft.toFixed(1)}`).replace(
+              "{command}",
+              command.name,
+            ),
           );
         }
       }

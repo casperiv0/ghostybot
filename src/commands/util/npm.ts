@@ -20,7 +20,7 @@ export default class NpmCommand extends Command {
       const query = args.join(" ");
 
       const data = await fetch(
-        `http://registry.npmjs.com/-/v1/search?text=${query}&size=5`
+        `http://registry.npmjs.com/-/v1/search?text=${query}&size=5`,
       ).then((res) => res.json());
 
       const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
@@ -63,7 +63,7 @@ export default class NpmCommand extends Command {
           **${lang.UTIL.VERSION}:** ${pkg.version}
           **${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
           [**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
-          `
+          `,
         );
       });
 

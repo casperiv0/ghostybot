@@ -41,7 +41,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
           }/blacklisted-words?word=${encodeURIComponent(word)}`,
           {
             method: "DELETE",
-          }
+          },
         )
       ).json();
 

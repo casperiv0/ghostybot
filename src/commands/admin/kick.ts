@@ -33,7 +33,7 @@ export default class KickCommand extends Command {
 
       if (message.guild.me.roles.highest.comparePositionTo(kickMember.roles.highest) < 0) {
         return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", kickMember.user.tag)
+          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", kickMember.user.tag),
         );
       }
 
@@ -42,14 +42,14 @@ export default class KickCommand extends Command {
       kickMember.user.send(
         lang.ADMIN.KICK_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
           "{reason}",
-          kickReason
-        )
+          kickReason,
+        ),
       );
       message.channel.send(
         lang.ADMIN.KICK_SUCCESS.replace("{tag}", kickMember.user.tag).replace(
           "{reason}",
-          kickReason
-        )
+          kickReason,
+        ),
       );
 
       bot.emit("guildKickAdd", message.guild, {

@@ -51,9 +51,9 @@ export default class IpLookupCommand extends Command {
 
     try {
       const [ip] = args;
-      const data: ReturnResponse = await fetch(`https://ipwhois.app/json/${ip}?lang=${lang.UTIL.IP_LOC}`).then((res) =>
-        res.json()
-      );
+      const data: ReturnResponse = await fetch(
+        `https://ipwhois.app/json/${ip}?lang=${lang.UTIL.IP_LOC}`,
+      ).then((res) => res.json());
 
       if (data.success) {
         const {
@@ -67,7 +67,7 @@ export default class IpLookupCommand extends Command {
           longitude,
           org,
           isp,
-          timezone
+          timezone,
         } = data;
         const flag = `https://www.countryflags.io/${country_code}/flat/64.png` || "";
 
@@ -82,7 +82,7 @@ export default class IpLookupCommand extends Command {
 **${lang.UTIL.IP_ISP}:** ${isp}
 **${lang.UTIL.IP_ORG}:** ${org}
 **${lang.UTIL.IP_TIMEZONE}:** ${timezone}
-`
+`,
           )
           .setThumbnail(flag);
 

@@ -77,7 +77,11 @@ export default class Util {
     }
   }
 
-  async addUser(userId: string, guildId: string | undefined, data?: Partial<UserData>): Promise<IUser | undefined> {
+  async addUser(
+    userId: string,
+    guildId: string | undefined,
+    data?: Partial<UserData>,
+  ): Promise<IUser | undefined> {
     try {
       const user: IUser = new UserModel({ user_id: userId, guild_id: guildId, ...data });
 
@@ -89,7 +93,11 @@ export default class Util {
     }
   }
 
-  async updateUserById(userId: string, guildId: string | undefined, data: Partial<UserData>): Promise<void> {
+  async updateUserById(
+    userId: string,
+    guildId: string | undefined,
+    data: Partial<UserData>,
+  ): Promise<void> {
     try {
       const user = await this.getUserById(userId, guildId);
 
@@ -207,13 +215,13 @@ export default class Util {
   async findMember(
     message: Partial<Message>,
     args: string[],
-    allowAuthor?: boolean
+    options?: { allowAuthor?: boolean; index?: number },
   ): Promise<GuildMember | undefined | null> {
     if (!message.guild) return;
 
     try {
       let member: GuildMember | null | undefined;
-      const arg = args[0]?.replace?.(/[<@!>]/gi, "") || args[0];
+      const arg = args[options?.index ?? 0]?.replace?.(/[<@!>]/gi, "") || args[options?.index ?? 0];
 
       const mention = // Check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
@@ -223,14 +231,16 @@ export default class Util {
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
         message.guild.members.cache.get(arg) ||
-        message.guild.members.cache.find((m) => m.user.id === args[0]) ||
-        (message.guild.members.cache.find((m) => m.user.tag === args[0]) as GuildMember);
+        message.guild.members.cache.find((m) => m.user.id === args[options?.index ?? 0]) ||
+        (message.guild.members.cache.find(
+          (m) => m.user.tag === args[options?.index ?? 0],
+        ) as GuildMember);
 
       if (!member) {
         member = await message.guild.members.fetch(arg)[0];
       }
 
-      if (!member && allowAuthor) {
+      if (!member && options?.allowAuthor) {
         member = message.member;
       }
 
@@ -255,7 +265,9 @@ export default class Util {
     );
   }
 
-  async getGuildLang(guildId: string | undefined): Promise<typeof import("../locales/english").default> {
+  async getGuildLang(
+    guildId: string | undefined,
+  ): Promise<typeof import("../locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
     return import(`../locales/${guild?.locale}`).then((f) => f.default);
@@ -308,7 +320,7 @@ export default class Util {
   async createStarboard(
     channel: { id: string | undefined; guild: { id: string | undefined } },
     options,
-    old: { channelID: string | undefined; emoji: string | undefined }
+    old: { channelID: string | undefined; emoji: string | undefined },
   ) {
     if (old) {
       old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
@@ -333,7 +345,11 @@ export default class Util {
     };
   }
 
-  async updateMuteChannelPerms(guild: Guild, memberId: Snowflake, perms: Partial<PermissionObject>) {
+  async updateMuteChannelPerms(
+    guild: Guild,
+    memberId: Snowflake,
+    perms: Partial<PermissionObject>,
+  ) {
     guild.channels.cache.forEach((channel) => {
       channel.updateOverwrite(memberId, perms).catch((e) => {
         this.bot.logger.error("mute_user", e);
@@ -373,7 +389,11 @@ export default class Util {
     }
   }
 
-  async handleApiRequest(path: string, tokenData: { data: string; type: "Bot" | "Bearer" }, method?: string) {
+  async handleApiRequest(
+    path: string,
+    tokenData: { data: string; type: "Bot" | "Bearer" },
+    method?: string,
+  ) {
     try {
       const bearer =
         tokenData.type === "Bearer"
@@ -400,7 +420,7 @@ export default class Util {
     req: ApiRequest,
     admin?: {
       guildId: string;
-    }
+    },
   ) {
     const token = req.cookies.token || req.headers.auth;
     const data: { error: string } | { id: string } = await this.handleApiRequest("/users/@me", {
@@ -441,7 +461,7 @@ export default class Util {
 
             return perms;
           })
-          .join(", ")} permissions!`
+          .join(", ")} permissions!`,
       )
       .setColor("ORANGE");
   }
@@ -449,10 +469,17 @@ export default class Util {
   baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
 
-    return new MessageEmbed().setFooter(message.author?.username, avatar).setColor("#7289DA").setTimestamp();
+    return new MessageEmbed()
+      .setFooter(message.author?.username, avatar)
+      .setColor("#7289DA")
+      .setTimestamp();
   }
 
-  parseMessage(message: string, user: DiscordUser, msg?: Message | { guild: Guild; author: DiscordUser }): string {
+  parseMessage(
+    message: string,
+    user: DiscordUser,
+    msg?: Message | { guild: Guild; author: DiscordUser },
+  ): string {
     return message
       .split(" ")
       .map((word) => {

@@ -61,13 +61,13 @@ export default class TempMuteCommand extends Command {
       muteMember.user.send(
         lang.ADMIN.TEMP_MUTED.replace("{guildName}", message.guild.name)
           .replace("{reason}", reason)
-          .replace("{time}", time)
+          .replace("{time}", time),
       );
 
       message.channel.send(
         lang.ADMIN.SUCCES_MUTED.replace("{muteMemberTag}", muteMember.user.tag)
           .replace("{time}", time)
-          .replace("{reason}", reason)
+          .replace("{reason}", reason),
       );
 
       bot.emit("guildMuteAdd", message.guild, {

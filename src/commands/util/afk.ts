@@ -18,31 +18,31 @@ export default class AfkCommand extends Command {
       const guildId = message.guild?.id;
       const userId = message.author.id;
       const user = await bot.utils.getUserById(userId, guildId);
-  
+
       if (user?.afk?.is_afk) {
         await bot.utils.updateUserById(userId, guildId, {
           afk: { is_afk: false, reason: null },
         });
-  
+
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle(lang.GLOBAL.SUCCESS)
           .setDescription(lang.UTIL.NOT_AFK);
-  
+
         return message.channel.send(embed);
       }
-  
+
       const reason = args.join(" ") || lang.GLOBAL.NOT_SPECIFIED;
-  
+
       await bot.utils.updateUserById(userId, guildId, {
         afk: { is_afk: true, reason: reason },
       });
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.SUCCESS)
         .setDescription(`${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${reason}`);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -17,13 +17,13 @@ export default class MemeCommand extends Command {
 
     try {
       const data = await fetch("https://meme-api.herokuapp.com/gimme").then((res) => res.json());
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(data.title)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
         .setImage(data.url);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

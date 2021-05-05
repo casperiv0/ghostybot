@@ -29,7 +29,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       if (type === "enable") {
         await req.bot.utils.updateGuildById(`${query.id}`, {
           disabled_categories: guild.disabled_categories.filter(
-            (c: string) => c !== name.toLowerCase()
+            (c: string) => c !== name.toLowerCase(),
           ),
         });
       } else if (type === "disable") {

@@ -23,7 +23,9 @@ export default class FeatureHandler {
       const feature = new File(this.bot, name) as Feature;
 
       if (!feature.execute) {
-        throw new TypeError(`[ERROR][FEATURES]: execute function is required for features! (${file})`);
+        throw new TypeError(
+          `[ERROR][FEATURES]: execute function is required for features! (${file})`,
+        );
       }
 
       feature.execute(this.bot);

@@ -19,7 +19,7 @@ export default class CountryCommand extends Command {
     try {
       const query = args.join(" ");
       const country = await fetch(
-        "https://restcountries.eu/rest/v2/name/" + encodeURIComponent(query)
+        "https://restcountries.eu/rest/v2/name/" + encodeURIComponent(query),
       ).then((r) => r.json());
 
       if (country.message) {

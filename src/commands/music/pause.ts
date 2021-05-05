@@ -18,11 +18,11 @@ export default class PauseCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       if (!bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       bot.player.pause(message);
       message.react("⏯️");
     } catch (err) {

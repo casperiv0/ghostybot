@@ -7,9 +7,9 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "format": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .gitignore",
     "start:ts": "ts-node src/index.ts",
-    "start": "BUILD_PATH=true DEV_MODE=false node ./dist/src/index.js",
+    "start": "tsc && BUILD_PATH=true DEV_MODE=false node ./dist/src/index.js",
     "dev": "nodemon src/index.ts",
     "build": "next build && next-sitemap"
   },
@@ -106,6 +106,7 @@
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "next-sitemap": "^1.6.34",
+    "prettier": "^2.2.1",
     "typescript": "^4.2.4",
     "zlib-sync": "^0.1.7"
   }

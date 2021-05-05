@@ -15,7 +15,7 @@ async function getCommand(guildId: string, name: string): Promise<CustomCommand 
     const res = await fetch(
       `${
         process.env["NEXT_PUBLIC_DASHBOARD_URL"]
-      }/api/guilds/${guildId}/commands?name=${encodeURIComponent(name)}`
+      }/api/guilds/${guildId}/commands?name=${encodeURIComponent(name)}`,
     );
     const data = await res.json();
 
@@ -60,7 +60,7 @@ const EditCommandModal: FC<Props> = ({ guild }: Props) => {
             name,
             response: cmdRes,
           }),
-        }
+        },
       );
       const data = await res.json();
 

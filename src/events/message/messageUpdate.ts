@@ -51,7 +51,7 @@ export default class MessageUpdateEvent extends Event {
         .setDescription(
           `Message send by **${
             newMsg.author?.tag || newMsg.author?.id || "Unknown"
-          }** was edited [jump to message](${messageLink})`
+          }** was edited [jump to message](${messageLink})`,
         )
         .addField("**Old Message**", `${pOldMsg}`)
         .addField("**New Message**", `${PNewMsg}`)

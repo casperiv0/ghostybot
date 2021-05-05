@@ -13,7 +13,7 @@ export default class RoleUpdateEvent extends Event {
       if (!newRole.guild.available) return;
       const webhook = await bot.utils.getWebhook(newRole.guild);
       if (!webhook) return;
-  
+
       let msg = "";
       if (oldRole.name !== newRole.name) {
         msg = `Role: **${oldRole.name}** was renamed to **${newRole.name}** (${newRole})`;
@@ -22,14 +22,14 @@ export default class RoleUpdateEvent extends Event {
       } else {
         return;
       }
-  
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle("Role Updated")
         .setDescription(msg)
         .setColor("ORANGE")
         .setTimestamp();
-  
+
       webhook.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

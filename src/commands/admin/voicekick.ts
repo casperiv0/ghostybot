@@ -29,7 +29,7 @@ export default class VoiceKickCommand extends Command {
 
       if (
         kickMember.permissions.has(
-          Permissions.FLAGS.MOVE_MEMBERS || Permissions.FLAGS.ADMINISTRATOR
+          Permissions.FLAGS.MOVE_MEMBERS || Permissions.FLAGS.ADMINISTRATOR,
         )
       ) {
         return message.channel.send(lang.ADMIN.CAN_NOT_DISC);
@@ -44,14 +44,14 @@ export default class VoiceKickCommand extends Command {
       kickMember.user.send(
         lang.ADMIN.YOU_DISC.replace("{guildName}", `${message.guild?.name}`).replace(
           "{reason}",
-          kickReason
-        )
+          kickReason,
+        ),
       );
 
       message.channel.send(
         lang.ADMIN.USER_DISC.replace("{kickUserTag}", kickMember.user.tag)
           .replace("{kickUserVoiceChannel}", `${kickMember?.voice?.channel}`)
-          .replace("{reason}", kickReason)
+          .replace("{reason}", kickReason),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

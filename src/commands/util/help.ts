@@ -54,7 +54,7 @@ export default class HelpCommand extends Command {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
         if (!cmd)
           cmd = commands.find(
-            (cmd) => cmd.name.toLowerCase() === bot.aliases.get(cmdArgs.toLowerCase())
+            (cmd) => cmd.name.toLowerCase() === bot.aliases.get(cmdArgs.toLowerCase()),
           );
         if (!cmd) return message.channel.send(lang.HELP.CMD_NOT_FOUND);
 
@@ -69,7 +69,7 @@ export default class HelpCommand extends Command {
             bot.utils
               .baseEmbed(message)
               .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
-              .setDescription(`${lang.HELP.CUSTOM_CMD}`)
+              .setDescription(`${lang.HELP.CUSTOM_CMD}`),
           );
         }
 
@@ -120,13 +120,13 @@ export default class HelpCommand extends Command {
               cmd.options.usage
                 ? `${prefix}${cmd.name} ${cmd.options.usage}`
                 : lang.GLOBAL.NOT_SPECIFIED,
-              true
+              true,
             )
             .addField(lang.UTIL.CATEGORY, cmd.options.category, true)
             .addField(
               lang.UTIL.DESCRIPTION,
               cmd.options.description ? cmd.options.description : lang.GLOBAL.NOT_SPECIFIED,
-              true
+              true,
             )
             .addField(lang.HELP.OPTIONS, options, true)
             .addField(lang.HELP.BOT_PERMS, botPerms, true)
@@ -159,7 +159,7 @@ export default class HelpCommand extends Command {
           .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
           .addField(
             lang.HELP.FULL_CMD_LIST,
-            `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`
+            `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`,
           );
 
         embeds.push(categoryEmbed);

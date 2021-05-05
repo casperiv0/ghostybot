@@ -20,31 +20,31 @@ export default class VolumeCommand extends Command {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
-  
+
       if (!bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
-  
+
       if (isNaN(Number(newVol))) {
         return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
-  
+
       if (Number(newVol) < 0) {
         return message.channel.send(lang.MUSIC.BETWEEN_0_100);
       }
-  
+
       if (Number(newVol) > 100) {
         return message.channel.send(lang.MUSIC.BETWEEN_0_100);
       }
-  
+
       if (!newVol) {
         return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
-  
+
       bot.player.setVolume(message, Number(newVol));
       await message.channel.send(lang.MUSIC.VOL_SUCCESS.replace("{vol}", newVol));
     } catch (err) {

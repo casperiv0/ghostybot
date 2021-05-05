@@ -23,13 +23,13 @@ export default class ChannelsCommand extends Command {
         ?.filter((channel) => channel.type === "text")
         .map((channel) => `<#${channel.id}>`)
         .join(", ");
-  
+
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name}'s channels`)
         .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
         .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels);
-  
+
       message.channel.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

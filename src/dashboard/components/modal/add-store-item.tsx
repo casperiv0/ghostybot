@@ -19,13 +19,16 @@ const AddStoreItem: FC<Props> = ({ guild }: Props) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/store`, {
-        method: "POST",
-        body: JSON.stringify({
-          name,
-          price,
-        }),
-      });
+      const res = await fetch(
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/store`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name,
+            price,
+          }),
+        },
+      );
       const data = await res.json();
 
       if (data.status === "success") {

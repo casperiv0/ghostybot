@@ -357,26 +357,29 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     e.preventDefault();
 
     try {
-      const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}`, {
-        method: "POST",
-        body: JSON.stringify({
-          welcome_data: welcomeData,
-          leave_data: leaveData,
-          ticket_data: ticketData,
-          level_data: levelData,
-          starboards_data: starboardsData,
+      const res = await fetch(
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            welcome_data: welcomeData,
+            leave_data: leaveData,
+            ticket_data: ticketData,
+            level_data: levelData,
+            starboards_data: starboardsData,
 
-          suggest_channel: suggestChannel,
-          announcement_channel: announceChannel,
-          locale: language,
-          audit_channel: auditChannel,
-          prefix: prefix,
-          timezone: tz,
-          auto_delete_cmd: autoDelCmd === "true",
-          muted_role_id: mutedRoleId,
-          verify_data: verifyData,
-        }),
-      });
+            suggest_channel: suggestChannel,
+            announcement_channel: announceChannel,
+            locale: language,
+            audit_channel: auditChannel,
+            prefix: prefix,
+            timezone: tz,
+            auto_delete_cmd: autoDelCmd === "true",
+            muted_role_id: mutedRoleId,
+            verify_data: verifyData,
+          }),
+        },
+      );
       const data = await res.json();
 
       if (data.status === "success") {
@@ -434,7 +437,11 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
               <div id={field.id} key={idx} className="form-group settings-group">
                 <header className="group-header">
                   <h1 className="group-title">{field.title}</h1>
-                  <Switch title="Enabled Or disable feature" checked={field.enabled} onChange={field.onChecked} />
+                  <Switch
+                    title="Enabled Or disable feature"
+                    checked={field.enabled}
+                    onChange={field.onChecked}
+                  />
                 </header>
                 {field.fields?.map((item, idx) => {
                   return (
@@ -484,11 +491,26 @@ function SelectField({ item }: Item) {
 }
 
 function TextareaField({ item }: Item) {
-  return <textarea value={item.value} onChange={item.onChange} id={item.id} className="form-input"></textarea>;
+  return (
+    <textarea
+      value={item.value}
+      onChange={item.onChange}
+      id={item.id}
+      className="form-input"
+    ></textarea>
+  );
 }
 
 function InputField({ item }: Item) {
-  return <input className="form-input" type="text" id={item.id} value={item.value} onChange={item.onChange} />;
+  return (
+    <input
+      className="form-input"
+      type="text"
+      id={item.id}
+      value={item.value}
+      onChange={item.onChange}
+    />
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

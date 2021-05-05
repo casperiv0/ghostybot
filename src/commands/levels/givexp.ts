@@ -36,7 +36,10 @@ export default class XpCommand extends Command {
       });
 
       message.channel.send(
-        lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace("{amount}", amount)
+        lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", member.user.tag).replace(
+          "{amount}",
+          amount,
+        ),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");

@@ -26,7 +26,7 @@ export default class UnBanCommand extends Command {
       const bannedUser = await message.guild?.members.unban(userId);
 
       message.channel.send(
-        lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`)
+        lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),
       );
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
