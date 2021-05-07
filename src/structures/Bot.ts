@@ -12,10 +12,12 @@ import MongoGiveawayManager from "../modules/GiveawayManager";
 import Command from "./Command";
 import Logger from "../modules/Logger";
 import Util from "../utils/Util";
+import Interaction from "./Interaction";
 
 class Bot extends Client {
   commands: Collection<string, Command>;
   aliases: Collection<string, string>;
+  interactions: Collection<string, Interaction>;
   cooldowns: Collection<string, Collection<string, number>>;
   logger: typeof Logger;
   utils: Util;
@@ -49,6 +51,7 @@ class Bot extends Client {
 
     this.commands = new Collection();
     this.aliases = new Collection();
+    this.interactions = new Collection();
     this.cooldowns = new Collection();
     this.logger = Logger;
     this.utils = new Util(this);

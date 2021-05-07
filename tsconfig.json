@@ -21,7 +21,6 @@
     "noUnusedLocals": true,
     "typeRoots": ["./node_modules/@types", "./typings"],
     "traceResolution": true,
-    "outDir": "./dist",
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true
