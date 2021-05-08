@@ -18,8 +18,12 @@ export default class HelpInteraction extends Interaction {
     });
   }
 
-  async execute(bot: Bot, interaction: CommandInteraction) {
-    const arg = `${interaction.options[0].value}`;
+  async execute(
+    bot: Bot,
+    interaction: CommandInteraction,
+    args: (string | number | boolean | undefined)[],
+  ) {
+    const arg = `${args[0]}`;
 
     const command = bot.commands.get(arg) ?? bot.commands.get(bot.aliases.get(arg)!);
 

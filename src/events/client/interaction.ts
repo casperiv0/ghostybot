@@ -14,7 +14,11 @@ export default class InteractionEvent extends Event {
     const command = bot.interactions.get(interaction.command.name);
 
     try {
-      await command?.execute(bot, interaction, interaction.options);
+      await command?.execute(
+        bot,
+        interaction,
+        interaction.options.map((v) => v.value),
+      );
     } catch (e) {
       bot.utils.sendErrorLog(e, "error");
     }

@@ -1,8 +1,4 @@
-import {
-  ApplicationCommandOptionData,
-  CommandInteractionOption,
-  Interaction as DiscordInteraction,
-} from "discord.js";
+import { ApplicationCommandOptionData, Interaction as DiscordInteraction } from "discord.js";
 import Bot from "./Bot";
 
 export interface InteractionOptions {
@@ -31,6 +27,6 @@ export default class Interaction {
   async execute(
     bot: Bot,
     message: DiscordInteraction,
-    interactionOptions: CommandInteractionOption[],
+    args: (string | number | boolean | undefined)[],
   ): Promise<any> {}
 }
