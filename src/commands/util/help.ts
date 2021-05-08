@@ -82,34 +82,8 @@ export default class HelpCommand extends Command {
             : lang.GLOBAL.NONE;
           cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
 
-          // @ts-expect-error this works
-          memberPerms = !cmd.options.memberPermissions
-            ? [lang.GLOBAL.NONE]
-            : [...cmd.options.memberPermissions].map((p) => {
-                const perms: string[] = [];
-
-                Object.keys(Permissions.FLAGS).map((key) => {
-                  if (Permissions.FLAGS[key] === p) {
-                    perms.push(lang.PERMISSIONS[key]);
-                  }
-                });
-
-                return perms;
-              });
-
-          botPerms = !cmd.options.botPermissions
-            ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
-            : [...cmd.options.botPermissions, Permissions.FLAGS.SEND_MESSAGES].map((p) => {
-                const perms: string[] = [];
-
-                Object.keys(Permissions.FLAGS).map((key) => {
-                  if (Permissions.FLAGS[key] === p) {
-                    perms.push(lang.PERMISSIONS[key]);
-                  }
-                });
-
-                return perms;
-              });
+          memberPerms = getMemberPermissions(cmd, lang);
+          botPerms = getBotPermissions(cmd, lang);
 
           const embed = bot.utils
             .baseEmbed(message)
@@ -175,4 +149,38 @@ export default class HelpCommand extends Command {
   findCategory(cmd: Command | { name: string; category: string }): string {
     return "options" in cmd ? cmd.options.category : cmd.category;
   }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getMemberPermissions(command: Command, lang: any) {
+  return !command.options.memberPermissions
+    ? [lang.GLOBAL.NONE]
+    : [...command.options.memberPermissions].map((p) => {
+        const perms: string[] = [];
+
+        Object.keys(Permissions.FLAGS).map((key) => {
+          if (Permissions.FLAGS[key] === p) {
+            perms.push(lang.PERMISSIONS[key]);
+          }
+        });
+
+        return perms;
+      });
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getBotPermissions(command: Command, lang: any) {
+  return !command.options.botPermissions
+    ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])
+    : [...command.options.botPermissions, Permissions.FLAGS.SEND_MESSAGES].map((p) => {
+        const perms: string[] = [];
+
+        Object.keys(Permissions.FLAGS).map((key) => {
+          if (Permissions.FLAGS[key] === p) {
+            perms.push(lang.PERMISSIONS[key]);
+          }
+        });
+
+        return perms;
+      });
 }
