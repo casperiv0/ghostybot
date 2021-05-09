@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import translate from "@k3rn31p4nic/google-translate-api";
+import translate from "@iamtraction/google-translate";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -18,7 +18,9 @@ export default class TranslateCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const result = await translate(args.slice(1).join(" "), { to: args[0] });
+      const [to, ...sentence] = args;
+
+      const result = await translate(sentence.join(" "), { to });
 
       const embed = bot.utils
         .baseEmbed(message)
