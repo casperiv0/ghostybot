@@ -25,10 +25,6 @@ export default class SuggestCommand extends Command {
         return message.channel.send(lang.UTIL.NO_SUGG_CHANNEL);
       }
 
-      if (!suggestion) {
-        return message.reply(lang.GLOBAL.PROVIDE_ARGS);
-      }
-
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_SUGGESTION)
