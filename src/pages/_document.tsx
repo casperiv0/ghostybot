@@ -26,7 +26,7 @@ class Ghostybot extends Document {
 
           {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
           {/* <!-- Facebook Meta Tags --> */}
-          <meta property="og:color" content="#7289da" />
+          <meta property="og:color" content="#5865f2" />
           <meta property="og:url" content="https://ghostybot.tk" />
           <meta property="og:type" content="website" />
           <meta
@@ -59,7 +59,7 @@ class Ghostybot extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#7289da" />
+          <meta name="theme-color" content="#5865f2" />
         </Head>
         <body>
           <Main />

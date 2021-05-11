@@ -81,10 +81,10 @@ class Bot extends Client {
       updateCountdownEvery: 10000,
 
       default: {
-        embedColor: "#7289DA",
+        embedColor: "#5865f2",
         botsCanWin: false,
         reaction: "🎉",
-        embedColorEnd: "#7289DA",
+        embedColorEnd: "#5865f2",
       },
     });
 

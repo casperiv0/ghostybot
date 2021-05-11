@@ -471,7 +471,7 @@ export default class Util {
 
     return new MessageEmbed()
       .setFooter(message.author?.username, avatar)
-      .setColor("#7289DA")
+      .setColor("#5865f2")
       .setTimestamp();
   }
 

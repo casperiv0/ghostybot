@@ -28,7 +28,7 @@ export default class DocsCommand extends Command {
       const embed = {
         ...data,
         author: {},
-        color: "#7289DA",
+        color: "#5865f2",
         footer: {
           text: message.author.username,
           icon_url: message.author.displayAvatarURL({ dynamic: true }),

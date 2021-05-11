@@ -525,7 +525,7 @@ Click any of the command names for more information
   
 
 ## Detailed command list
-  
+
 ## addcmd
 
 **Category:** admin
