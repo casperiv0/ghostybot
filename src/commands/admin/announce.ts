@@ -41,9 +41,9 @@ export default class AnnounceCommand extends Command {
         .setTitle(lang.ADMIN.ANNOUNCEMENT)
         .setDescription(text);
 
-      (bot.channels.cache.get(
-        announceChannel ? announceChannel : channel!.id,
-      ) as TextChannel)?.send(embed);
+      (
+        bot.channels.cache.get(announceChannel ? announceChannel : channel!.id) as TextChannel
+      )?.send(embed);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

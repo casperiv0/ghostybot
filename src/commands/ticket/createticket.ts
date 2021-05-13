@@ -59,7 +59,7 @@ export default class CreateTicketCommand extends Command {
         },
       ];
 
-      const channel = ((await message.guild?.channels.create(
+      const channel = (await message.guild?.channels.create(
         lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
         {
           type: "text",
@@ -67,7 +67,7 @@ export default class CreateTicketCommand extends Command {
           topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
           permissionOverwrites: DEFAULT_PERMS,
         },
-      )) as unknown) as TextChannel;
+      )) as unknown as TextChannel;
 
       if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
         channel?.setParent(guild.ticket_data.parent_id);

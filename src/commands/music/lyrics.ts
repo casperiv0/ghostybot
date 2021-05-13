@@ -1,4 +1,3 @@
-import { Lyrics } from "@discord-player/extractor";
 import { Message } from "discord.js";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
@@ -21,9 +20,9 @@ export default class LyricsCommand extends Command {
       const np = playing || queue ? bot.player.nowPlaying(message) : false;
       const title = (np && np.title) || args.join(" ");
 
-      const lyrics = await Lyrics(title).catch(() => null);
+      const lyrics = await bot.lyricsClient.search(title);
 
-      if (!lyrics || lyrics?.length <= 0) {
+      if (!lyrics) {
         return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
       }
 

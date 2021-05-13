@@ -326,7 +326,7 @@ export default class Util {
       old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
     }
 
-    this.bot.starboardsManager.create((channel as unknown) as Channel, {
+    this.bot.starboardsManager.create(channel as unknown as Channel, {
       ...options,
       selfStar: true,
       starEmbed: true,

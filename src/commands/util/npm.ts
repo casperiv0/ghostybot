@@ -19,9 +19,9 @@ export default class NpmCommand extends Command {
     try {
       const query = args.join(" ");
 
-      const data = await fetch(
-        `http://registry.npmjs.com/-/v1/search?text=${query}&size=5`,
-      ).then((res) => res.json());
+      const data = await fetch(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(
+        (res) => res.json(),
+      );
 
       const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
         return { ...pkg, searchScore };

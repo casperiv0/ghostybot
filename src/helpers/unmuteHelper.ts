@@ -27,9 +27,7 @@ export default class ReminderHelper extends Helper {
             guild: guild,
           };
 
-          const member = await bot.utils.findMember((message as unknown) as Message, [
-            user.user_id,
-          ]);
+          const member = await bot.utils.findMember(message as unknown as Message, [user.user_id]);
 
           if (!member) {
             await bot.utils.updateUserById(user.user_id, user.guild_id, {

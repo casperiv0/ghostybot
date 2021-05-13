@@ -18,9 +18,9 @@ export default class ClydeCommand extends Command {
     try {
       const text = args.join(" ");
 
-      const data = await fetch(
-        `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`,
-      ).then((res) => res.json());
+      const data = await fetch(`https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`).then(
+        (res) => res.json(),
+      );
 
       const embed = bot.utils
         .baseEmbed(message)

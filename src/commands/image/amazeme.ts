@@ -15,9 +15,9 @@ export default class AmazemeCommand extends Command {
   async execute(bot: Bot, message: Message) {
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     try {
-      const data = await fetch(
-        "https://www.reddit.com/r/interestingasfuck/random.json",
-      ).then((res) => res.json());
+      const data = await fetch("https://www.reddit.com/r/interestingasfuck/random.json").then(
+        (res) => res.json(),
+      );
 
       const children = data[0].data.children[0];
       const permaLink = children.data.permalink;

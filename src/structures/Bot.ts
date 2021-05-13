@@ -13,6 +13,7 @@ import Command from "./Command";
 import Logger from "../modules/Logger";
 import Util from "../utils/Util";
 import Interaction from "./Interaction";
+import { Lyrics } from "@discord-player/extractor";
 
 class Bot extends Client {
   commands: Collection<string, Command>;
@@ -28,6 +29,11 @@ class Bot extends Client {
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
+  lyricsClient: {
+    /* eslint-disable-next-line no-unused-vars */
+    search: (query: string) => Promise<Lyrics.LyricsData>;
+    client: unknown;
+  };
 
   constructor() {
     super({
@@ -72,6 +78,9 @@ class Bot extends Client {
       leaveOnEnd: true,
       leaveOnStop: true,
     });
+
+    this.lyricsClient = Lyrics.init();
+
     this.starboardsManager = new MongStarboardsManager(this, {
       storage: false,
       translateClickHere: "Jump to message",
