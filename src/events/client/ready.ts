@@ -29,10 +29,6 @@ export default class ReadyEvent extends Event {
     new InteractionHandler(bot).loadInteractions();
     new CommandHandler(bot).loadCommands();
 
-    if (process.env["DEV_MODE"] === "true") {
-      import("../../scripts/generateCommandList").then((v) => v.default(bot));
-    }
-
     const botData = await BotModel.findOne({ bot_id: bot?.user?.id });
 
     if (!botData) {

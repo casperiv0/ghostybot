@@ -49,6 +49,10 @@ export default class CommandHandler {
           this.bot.logger.log("COMMAND", `Loaded ${command.name}`);
         }
       }
+
+      if (process.env["DEV_MODE"] === "true") {
+        import("../scripts/generateCommandList").then((v) => v.default(this.bot));
+      }
     } catch (e) {
       console.log(e);
     }
