@@ -1,8 +1,8 @@
 import { NextApiResponse } from "next";
 import { Permissions } from "discord.js";
-import hiddenItems from "../../../data/hidden-items.json";
-import ApiRequest from "../../../interfaces/ApiRequest";
-import Guild from "../../../interfaces/Guild";
+import hiddenItems from "data/hidden-items.json";
+import ApiRequest from "types/ApiRequest";
+import Guild from "types/Guild";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, headers } = req;

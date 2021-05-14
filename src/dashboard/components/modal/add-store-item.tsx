@@ -1,9 +1,9 @@
 import { FC, FormEvent, useState } from "react";
 import Modal, { closeModal } from "./index";
-import Logger from "../../../modules/Logger";
+import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
-import Guild from "../../../interfaces/Guild";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

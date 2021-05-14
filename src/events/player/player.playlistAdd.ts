@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { Queue } from "discord-player";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 export default class PlayerPlaylistAddEvent extends Event {
   constructor(bot: Bot) {

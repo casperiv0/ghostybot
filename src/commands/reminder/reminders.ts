@@ -2,8 +2,8 @@ import { Message } from "discord.js";
 import dayJs from "dayjs";
 import duration from "dayjs/plugin/duration";
 dayJs.extend(duration);
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class RemindersCommand extends Command {
   constructor(bot: Bot) {

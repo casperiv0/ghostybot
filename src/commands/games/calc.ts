@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { create, all } from "mathjs";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 const math = create(all);
 
 export default class CalcCommand extends Command {

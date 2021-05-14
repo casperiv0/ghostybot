@@ -75,6 +75,7 @@ export interface LeaveData {
   enabled: boolean;
   channel_id: string | null;
   message: string | null;
+  ignore_bots: boolean;
 }
 
 export interface WelcomeData {
@@ -154,7 +155,7 @@ const guildSchema = new Schema({
   },
   leave_data: {
     type: Object,
-    default: { message: DEFAULT_MESSAGE, enabled: false, channel_id: null },
+    default: { message: DEFAULT_MESSAGE, enabled: false, channel_id: null, ignore_bots: false },
   },
   ban_data: {
     type: Object,

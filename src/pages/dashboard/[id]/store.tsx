@@ -3,13 +3,13 @@ import { parseCookies } from "nookies";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { openModal } from "../../../dashboard/components/modal";
-import AddStoreItem from "../../../dashboard/components/modal/add-store-item";
+import { openModal } from "@components/modal";
+import AddStoreItem from "@components/modal/add-store-item";
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import Logger from "../../../modules/Logger";
-import Guild from "../../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import Logger from "handlers/Logger";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

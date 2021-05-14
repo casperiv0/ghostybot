@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import replies from "../../data/wouldYouRather.json";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import replies from "data/wouldYouRather.json";
 
 export default class WouldYouRatherCommand extends Command {
   constructor(bot: Bot) {

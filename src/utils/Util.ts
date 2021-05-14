@@ -17,12 +17,12 @@ import dayJs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import jwt from "jsonwebtoken";
-import Bot from "../structures/Bot";
-import UserModel, { IUser, UserData } from "../models/User.model";
-import WarningModal, { IWarning } from "../models/Warning.model";
-import GuildModel, { GuildData, IGuild } from "../models/Guild.model";
-import ApiRequest from "../interfaces/ApiRequest";
-import StickyModel, { Sticky } from "../models/Sticky.model";
+import Bot from "structures/Bot";
+import UserModel, { IUser, UserData } from "models/User.model";
+import WarningModal, { IWarning } from "models/Warning.model";
+import GuildModel, { GuildData, IGuild } from "models/Guild.model";
+import ApiRequest from "types/ApiRequest";
+import StickyModel, { Sticky } from "models/Sticky.model";
 
 dayJs.extend(utc);
 dayJs.extend(timezone);

@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
 import dayJs from "dayjs";
-import Command from "../../structures/Command";
-import jobs from "../../data/jobs.json";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import jobs from "data/jobs.json";
+import Bot from "structures/Bot";
 
 export default class WorkCommand extends Command {
   constructor(bot: Bot) {

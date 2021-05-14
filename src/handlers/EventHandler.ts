@@ -1,8 +1,8 @@
 import { StarboardEvents } from "discord-starboards";
 import glob from "glob";
 import { parse } from "path";
-import Bot from "../structures/Bot";
-import Event from "../structures/Event";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 const types = ["channel", "client", "guild", "message", "player", "sb"];
 

@@ -1,8 +1,8 @@
 import { Message, MessageEmbed, Permissions } from "discord.js";
-import categories from "../../data/categories.json";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import paginate from "../../utils/paginate";
+import categories from "data/categories.json";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import paginate from "@utils/paginate";
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {

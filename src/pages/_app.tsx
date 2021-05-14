@@ -12,9 +12,9 @@ import "../dashboard/css/landing.css";
 import "../dashboard/css/footer.css";
 import "../dashboard/css/switch.css";
 import "../dashboard/css/nprogress.css";
-import Navbar from "../dashboard/components/Navbar";
-import Footer from "../dashboard/components/Footer";
-import Loader from "../dashboard/components/Loader";
+import Navbar from "@components/Navbar";
+import Footer from "@components/Footer";
+import Loader from "@components/Loader";
 
 const paths = ["/error", "/"];
 

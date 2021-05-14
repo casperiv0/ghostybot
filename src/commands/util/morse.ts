@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import morseCode from "../../data/morse";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import morseCode from "data/morse";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class MorseCommand extends Command {
   constructor(bot: Bot) {

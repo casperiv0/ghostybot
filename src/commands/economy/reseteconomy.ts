@@ -1,7 +1,7 @@
 import { Message, Permissions } from "discord.js";
-import UserModel, { IUser } from "../../models/User.model";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import UserModel, { IUser } from "models/User.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class ResetEconomyCommand extends Command {
   constructor(bot: Bot) {

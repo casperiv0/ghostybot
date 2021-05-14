@@ -1,7 +1,7 @@
 import { Message, Permissions } from "discord.js";
-import categories from "../../data/categories.json";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import categories from "data/categories.json";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export const saveCommands = ["help", "enable", "disable"];
 export const saveCategories = ["botowner", "exempt", "disabled", "custom"];

@@ -1,6 +1,6 @@
 import { NextApiResponse } from "next";
-import hiddenItems from "../../../../data/hidden-items.json";
-import ApiRequest from "../../../../interfaces/ApiRequest";
+import hiddenItems from "data/hidden-items.json";
+import ApiRequest from "types/ApiRequest";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;

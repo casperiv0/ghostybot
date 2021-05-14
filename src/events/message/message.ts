@@ -1,10 +1,10 @@
 import { Message, Permissions, TextChannel } from "discord.js";
 import ms from "ms";
-import { saveCommands } from "../../commands/admin/disable";
-import BlacklistedModel, { IBlacklist } from "../../models/Blacklisted.model";
-import BotModel from "../../models/Bot.model";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import { saveCommands } from "@commands/admin/disable";
+import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
+import BotModel from "models/Bot.model";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 export default class MessageEvent extends Event {
   async execute(bot: Bot, message: Message) {

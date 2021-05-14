@@ -5,9 +5,9 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import categories from "../../../data/categories.json";
-import Guild from "../../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import categories from "data/categories.json";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

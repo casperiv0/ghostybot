@@ -1,6 +1,6 @@
 import { Message, Permissions } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class AddRoleAllCommand extends Command {
   constructor(bot: Bot) {

@@ -1,6 +1,6 @@
 import { NextApiResponse } from "next";
-import ApiRequest from "../../../../interfaces/ApiRequest";
-import { CustomCommand, StoreItem } from "../../../../models/Guild.model";
+import ApiRequest from "types/ApiRequest";
+import { CustomCommand, StoreItem } from "models/Guild.model";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;

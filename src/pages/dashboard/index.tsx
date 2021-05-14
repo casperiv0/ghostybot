@@ -4,8 +4,8 @@ import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import AlertMessage from "../../dashboard/components/AlertMessage";
-import Guild from "../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import Guild from "types/Guild";
 
 interface Props {
   isAuth: boolean;

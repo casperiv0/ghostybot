@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class _8BallCommand extends Command {
   constructor(bot: Bot) {
@@ -15,7 +15,7 @@ export default class _8BallCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const answers = lang.OTHER.ANSWERS;
-    
+
     try {
       const question = args.join(" ");
 

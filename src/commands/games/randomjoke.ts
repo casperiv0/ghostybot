@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { getRandomJoke } from "one-liner-joke";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class JokeCommand extends Command {
   constructor(bot: Bot) {

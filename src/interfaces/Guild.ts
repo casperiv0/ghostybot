@@ -1,5 +1,5 @@
 import { CategoryChannel, Channel, Role } from "discord.js";
-import { GuildData } from "../models/Guild.model";
+import { GuildData } from "models/Guild.model";
 
 interface Guild extends GuildData {
   id: string;

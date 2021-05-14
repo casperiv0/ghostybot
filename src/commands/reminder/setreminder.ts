@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
 import ms from "ms";
 import { v4 } from "uuid";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class SetReminderCommand extends Command {
   constructor(bot: Bot) {

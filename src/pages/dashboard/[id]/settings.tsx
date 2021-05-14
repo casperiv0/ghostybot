@@ -7,10 +7,10 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import fs from "fs";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import timezones from "../../../data/timezones.json";
-import Switch from "../../../dashboard/components/Switch";
-import Guild from "../../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import timezones from "data/timezones.json";
+import Switch from "@components/Switch";
+import Guild from "types/Guild";
 
 export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
@@ -155,6 +155,17 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
               message: e.target.value,
             })),
           label: "Leave message",
+        },
+        {
+          type: "switch",
+          id: "leave_ignore_bots",
+          value: `${leaveData?.ignore_bots ?? false}`,
+          onChange: () =>
+            setLeaveData((prev) => ({
+              ...prev,
+              ignore_bots: !prev.ignore_bots,
+            })),
+          label: "Ignore bots (this will not show a welcome message when a bot joins)",
         },
       ],
     },

@@ -1,7 +1,7 @@
 import { NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { setCookie } from "nookies";
-import ApiRequest from "../../../interfaces/ApiRequest";
+import ApiRequest from "types/ApiRequest";
 
 export default async function (req: ApiRequest, res: NextApiResponse) {
   const token = req.cookies.token;

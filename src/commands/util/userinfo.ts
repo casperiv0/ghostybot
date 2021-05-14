@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import badges from "../../data/badges";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import badges from "data/badges";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class UserInfoCommand extends Command {
   constructor(bot: Bot) {

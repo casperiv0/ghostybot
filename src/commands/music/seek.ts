@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 import ms from "ms";
 
 export default class SeekCommand extends Command {

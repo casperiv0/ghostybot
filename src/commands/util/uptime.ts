@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
 import dayJs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 dayJs.extend(duration);
 
 export default class UptimeCommand extends Command {

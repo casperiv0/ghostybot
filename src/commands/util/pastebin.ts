@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { ApiPasteFormat } from "pastebin-api/dist/interfaces";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class PastebinCommand extends Command {
   constructor(bot: Bot) {

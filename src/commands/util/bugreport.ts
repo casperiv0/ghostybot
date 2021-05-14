@@ -1,6 +1,6 @@
 import { Message, TextChannel } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class BugReportCommand extends Command {
   constructor(bot: Bot) {

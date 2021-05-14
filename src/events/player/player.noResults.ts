@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 export default class PlayerNoResultsEvent extends Event {
   constructor(bot: Bot) {

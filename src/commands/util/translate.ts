@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import translate from "@iamtraction/google-translate";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class TranslateCommand extends Command {
   constructor(bot: Bot) {

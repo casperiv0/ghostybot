@@ -1,6 +1,6 @@
 import { GuildMember, TextChannel } from "discord.js";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 export default class GuildMemberRemoveEvent extends Event {
   constructor(bot: Bot) {
@@ -20,6 +20,8 @@ export default class GuildMemberRemoveEvent extends Event {
     **Tag:** {user.tag}
     **Id:** {user.id}
     `;
+
+      if (leaveData.ignore_bots === true && member.user.bot === true) return;
 
       if (leaveData.channel_id) {
         if (!member.guild.channels.cache.find((ch) => ch.id === leaveData.channel_id)) return;

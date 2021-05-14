@@ -1,6 +1,6 @@
-import Bot from "../structures/Bot";
-import Helper from "../structures/Helper";
-import UserModel, { IUser, Reminder } from "../models/User.model";
+import Bot from "structures/Bot";
+import Helper from "structures/Helper";
+import UserModel, { IUser, Reminder } from "models/User.model";
 import { TextChannel } from "discord.js";
 
 export default class ReminderHelper extends Helper {

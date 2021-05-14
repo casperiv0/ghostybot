@@ -1,10 +1,10 @@
 import { FC, FormEvent, useCallback, useEffect, useState } from "react";
 import Modal, { closeModal, openModal } from "./index";
-import Logger from "../../../modules/Logger";
+import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
-import Guild from "../../../interfaces/Guild";
-import { CustomCommand } from "../../../models/Guild.model";
+import Guild from "types/Guild";
+import { CustomCommand } from "models/Guild.model";
 
 interface Props {
   guild: Guild;

@@ -5,12 +5,12 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import Logger from "../../../modules/Logger";
-import { openModal } from "../../../dashboard/components/modal";
-import CreateCommandModal from "../../../dashboard/components/modal/create-command";
-import EditCommandModal from "../../../dashboard/components/modal/edit-command";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import Guild from "../../../interfaces/Guild";
+import Logger from "handlers/Logger";
+import { openModal } from "@components/modal";
+import CreateCommandModal from "@components/modal/create-command";
+import EditCommandModal from "@components/modal/edit-command";
+import AlertMessage from "@components/AlertMessage";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

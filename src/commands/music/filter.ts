@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import filters from "../../data/filters.json";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import filters from "data/filters.json";
 
 export default class FilterCommand extends Command {
   constructor(bot: Bot) {

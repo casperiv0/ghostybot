@@ -1,8 +1,8 @@
 import { GuildMember, Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import BlacklistedModel from "../../models/Blacklisted.model";
-import { UserData } from "../../models/User.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import BlacklistedModel from "models/Blacklisted.model";
+import { UserData } from "models/User.model";
 
 type NullableDUser =
   | { user: { username: string; id: string; tag: string } }

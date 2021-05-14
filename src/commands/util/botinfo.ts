@@ -1,9 +1,9 @@
 import { Message, version } from "discord.js";
 import dayJs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import BotModel from "../../models/Bot.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import BotModel from "models/Bot.model";
 dayJs.extend(duration);
 
 export default class BotInfoCommand extends Command {

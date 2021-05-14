@@ -1,7 +1,7 @@
 import ch from "child_process";
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class ShellCommand extends Command {
   constructor(bot: Bot) {

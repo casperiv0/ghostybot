@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 const API_URL = "https://api.no-api-key.com/api/v2/delete?image=";
 

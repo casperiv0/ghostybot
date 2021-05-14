@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
-import { getBotPermissions, getMemberPermissions } from "../commands/util/help";
-import Bot from "../structures/Bot";
-import Interaction from "../structures/Interaction";
+import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
+import Bot from "structures/Bot";
+import Interaction from "structures/Interaction";
 
 export default class HelpInteraction extends Interaction {
   constructor(bot: Bot) {

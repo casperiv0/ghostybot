@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import cowSay from "cowsay";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class CowSayCommand extends Command {
   constructor(bot: Bot) {

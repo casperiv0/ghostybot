@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import wiki from "wikijs";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class WikiCommand extends Command {
   constructor(bot: Bot) {

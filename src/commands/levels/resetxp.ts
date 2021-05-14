@@ -1,5 +1,5 @@
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 import { Message, Permissions } from "discord.js";
 
 export default class ResetXpCommand extends Command {

@@ -4,11 +4,11 @@ import { useState, useEffect, FC } from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import { openModal } from "../../../dashboard/components/modal";
-import AddBlacklistedWord from "../../../dashboard/components/modal/add-blacklistedword";
-import Logger from "../../../modules/Logger";
-import Guild from "../../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import { openModal } from "@components/modal";
+import AddBlacklistedWord from "@components/modal/add-blacklistedword";
+import Logger from "handlers/Logger";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

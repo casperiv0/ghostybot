@@ -4,8 +4,8 @@ import { parseCookies } from "nookies";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import GuildData from "../../../interfaces/Guild";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
+import GuildData from "types/Guild";
+import AlertMessage from "@components/AlertMessage";
 
 interface Props {
   guild: GuildData;

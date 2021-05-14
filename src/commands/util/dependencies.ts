@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import pkg from "../../../package.json";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import pkg from "@/package.json";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class DependenciesCommand extends Command {
   constructor(bot: Bot) {

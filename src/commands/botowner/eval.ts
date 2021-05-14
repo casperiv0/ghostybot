@@ -1,13 +1,13 @@
 import { Message } from "discord.js";
 import { inspect } from "util";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
-// eslint-disable-next-line quotes
 const classified = [
   "this.bot.config",
   "this.bot.token",
   "process.env",
+  // eslint-disable-next-line quotes
   'bot["token"]',
   "bot['token']",
 ];

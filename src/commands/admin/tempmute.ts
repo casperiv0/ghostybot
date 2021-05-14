@@ -1,7 +1,7 @@
 import { Message, Permissions } from "discord.js";
 import ms from "ms";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class TempMuteCommand extends Command {
   constructor(bot: Bot) {

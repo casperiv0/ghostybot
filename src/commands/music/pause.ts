@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class PauseCommand extends Command {
   constructor(bot: Bot) {

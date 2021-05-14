@@ -4,13 +4,13 @@ import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
-import EventHandler from "../modules/EventHandler";
+import EventHandler from "handlers/EventHandler";
 
-import MongStarboardsManager from "../modules/StarboardsManager";
-import MongoGiveawayManager from "../modules/GiveawayManager";
+import MongStarboardsManager from "handlers/StarboardsManager";
+import MongoGiveawayManager from "handlers/GiveawayManager";
 import Command from "./Command";
-import Logger from "../modules/Logger";
-import Util from "../utils/Util";
+import Logger from "handlers/Logger";
+import Util from "@utils/Util";
 import Interaction from "./Interaction";
 import { Lyrics } from "@discord-player/extractor";
 

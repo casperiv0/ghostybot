@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import places from "../../data/places.json";
-import UserModel, { IUser } from "../../models/User.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import places from "data/places.json";
+import UserModel, { IUser } from "models/User.model";
 
 export default class MoneyLeaderboardCommand extends Command {
   constructor(bot: Bot) {

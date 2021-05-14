@@ -23,7 +23,20 @@
     "traceResolution": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "structures/*": ["./src/structures/*"],
+      "handlers/*": ["./src/handlers/*"],
+      "data/*": ["./src/data/*"],
+      "models/*": ["./src/models/*"],
+      "types/*": ["./src/interfaces/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@components/*": ["./src/dashboard/components/*"],
+      "@commands/*": ["./src/commands/*"],
+      "@scripts/*": ["./src/scripts/*"]
+    }
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]

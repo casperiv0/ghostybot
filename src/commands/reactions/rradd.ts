@@ -1,7 +1,7 @@
 import { Message, Permissions, Role, TextChannel } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import ReactionsModel, { Reaction } from "../../models/Reactions.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import ReactionsModel, { Reaction } from "models/Reactions.model";
 
 export default class RrAddCommand extends Command {
   constructor(bot: Bot) {

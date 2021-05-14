@@ -1,6 +1,6 @@
 import { Guild } from "discord.js";
-import Bot from "../structures/Bot";
-import Feature from "../structures/Feature";
+import Bot from "structures/Bot";
+import Feature from "structures/Feature";
 
 export default class MemberCountFeature extends Feature {
   constructor(bot: Bot) {

@@ -5,8 +5,8 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback, FC } from "react";
 import fetch from "node-fetch";
-import AlertMessage from "../../../dashboard/components/AlertMessage";
-import Guild from "../../../interfaces/Guild";
+import AlertMessage from "@components/AlertMessage";
+import Guild from "types/Guild";
 
 interface Props {
   guild: Guild;

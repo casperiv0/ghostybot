@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { tictactoe as TicTacToe } from "easy-games-js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class TicTacToeCommand extends Command {
   constructor(bot: Bot) {

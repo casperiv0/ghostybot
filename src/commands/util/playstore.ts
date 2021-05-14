@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import PlayStore, { IAppItem } from "google-play-scraper";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 export default class PlaystoreCommand extends Command {
   constructor(bot: Bot) {

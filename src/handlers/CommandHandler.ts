@@ -1,8 +1,8 @@
 import glob from "glob";
 import { Collection } from "discord.js";
 import { parse } from "path";
-import Bot from "../structures/Bot";
-import Command from "../structures/Command";
+import Bot from "structures/Bot";
+import Command from "structures/Command";
 
 export default class CommandHandler {
   bot: Bot;
@@ -51,7 +51,7 @@ export default class CommandHandler {
       }
 
       if (process.env["DEV_MODE"] === "true") {
-        import("../scripts/generateCommandList").then((v) => v.default(this.bot));
+        import("@scripts/generateCommandList").then((v) => v.default(this.bot));
       }
     } catch (e) {
       console.log(e);

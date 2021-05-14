@@ -1,8 +1,8 @@
 import { Message } from "discord.js";
 import ms from "ms";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import { Reminder } from "../../models/User.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import { Reminder } from "models/User.model";
 
 export default class EditReminderCommand extends Command {
   constructor(bot: Bot) {

@@ -1,8 +1,8 @@
 import { Message, MessageAttachment, Permissions, TextChannel } from "discord.js";
 import fetch from "node-fetch";
 import URL from "url";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 
 const PORN_BLACKLIST_LIST_URL =
   "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt";

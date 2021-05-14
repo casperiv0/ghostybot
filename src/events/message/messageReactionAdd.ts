@@ -1,8 +1,8 @@
-import ReactionsModel, { Reaction } from "../../models/Reactions.model";
+import ReactionsModel, { Reaction } from "models/Reactions.model";
 
 import { Message, MessageReaction, TextChannel, User } from "discord.js";
-import Bot from "../../structures/Bot";
-import Event from "../../structures/Event";
+import Bot from "structures/Bot";
+import Event from "structures/Event";
 
 export default class MessageReactionAddEvent extends Event {
   constructor(bot: Bot) {

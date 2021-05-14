@@ -1,5 +1,5 @@
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
 import { Message } from "discord.js";
 
 export default class QueueCommand extends Command {

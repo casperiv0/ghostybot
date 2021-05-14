@@ -1,7 +1,7 @@
 import { Message, TextChannel } from "discord.js";
-import Command from "../../structures/Command";
-import Bot from "../../structures/Bot";
-import ReactionsModel from "../../models/Reactions.model";
+import Command from "structures/Command";
+import Bot from "structures/Bot";
+import ReactionsModel from "models/Reactions.model";
 
 export default class RrRemoveCommand extends Command {
   constructor(bot: Bot) {

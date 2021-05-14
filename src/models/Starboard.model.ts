@@ -1,5 +1,5 @@
 import { model, Schema, models, Document } from "mongoose";
-import { Starboard } from "../modules/StarboardsManager";
+import { Starboard } from "handlers/StarboardsManager";
 
 export interface IStarboard extends Document {
   guildID: string;

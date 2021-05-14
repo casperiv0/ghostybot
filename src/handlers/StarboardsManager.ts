@@ -1,5 +1,5 @@
 import StarboardsManager, { Starboard as StarboardData } from "discord-starboards";
-import StarboardModel from "../models/Starboard.model";
+import StarboardModel from "models/Starboard.model";
 
 export interface Starboard {
   channelID: string;
