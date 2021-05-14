@@ -35,6 +35,11 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
 
       <div className="grid">
         {guilds.map((guild) => {
+          // Take the first letter of all the letters
+          const firstLetter = guild.name.split("")[0];
+          // Take the second word, then the first character of that word
+          const secondLetter = guild.name.split(" ")[1]?.split("")[0];
+
           return (
             <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "#"}>
               <a
@@ -44,7 +49,10 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
                 aria-label={!guild.inGuild ? "The bot must be in this guild!" : undefined}
               >
                 {guild.icon === null ? (
-                  <div className="guild-card-img"></div>
+                  <div className="guild-card-img no-image">
+                    {firstLetter}
+                    {secondLetter}
+                  </div>
                 ) : (
                   <Image
                     alt={guild.name}
