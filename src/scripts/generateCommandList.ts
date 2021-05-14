@@ -54,7 +54,7 @@ function mapNotDetailedCommand(cmds: Commands) {
     .map((cmds, i) => {
       return categoryItem(cmds, filteredCategories[i]);
     })
-    .join("##");
+    .join("\n---\n");
 }
 
 function commandItem(command: Command) {
@@ -127,8 +127,7 @@ ${commands
   .map((cmd) => {
     return `[${cmd.name}:](#${cmd.name}) ${cmd.description || "N/A"}\n`;
   })
-  .join("\n")}
-  `;
+  .join("\n")}`;
 }
 
 function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
@@ -140,13 +139,10 @@ ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} command
 Click any of the command names for more information
 
 ## Category list
-
 ${createCategoryList()}
 
 ## Command list
-
 ${notDetailedCommandList}
-
 ## Detailed command list
 
 ${detailedCommandList}
