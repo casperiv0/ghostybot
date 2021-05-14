@@ -11,3 +11,4 @@ dist/
 # remove service workers, will be present when running `npm run build`.
 public/*.js
 public/*.map
+descriptions_data.json

@@ -3,6 +3,7 @@ import { Collection } from "discord.js";
 import { parse } from "path";
 import Bot from "structures/Bot";
 import Command from "structures/Command";
+import { generateCommandDescriptions } from "../scripts/generateCommandDescriptions";
 
 export default class CommandHandler {
   bot: Bot;
@@ -51,6 +52,7 @@ export default class CommandHandler {
       }
 
       if (process.env["DEV_MODE"] === "true") {
+        generateCommandDescriptions(this.bot.commands.array());
         import("@scripts/generateCommandList").then((v) => v.default(this.bot));
       }
     } catch (e) {
