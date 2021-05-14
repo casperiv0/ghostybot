@@ -12,8 +12,8 @@ export default class BlockCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const blocks = args
@@ -31,11 +31,11 @@ export default class BlockCommand extends Command {
         .replace(/9/g, ":nine:")
         .replace(/0/g, ":zero:");
 
-      const embed = bot.utils.baseEmbed(message).setDescription(blocks);
+      const embed = this.bot.utils.baseEmbed(message).setDescription(blocks);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

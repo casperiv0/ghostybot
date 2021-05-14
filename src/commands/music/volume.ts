@@ -12,16 +12,16 @@ export default class VolumeCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [newVol] = args;
-      const queue = bot.player.getQueue(message);
+      const queue = this.bot.player.getQueue(message);
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      if (!bot.player.isPlaying(message)) {
+      if (!this.bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
@@ -45,10 +45,10 @@ export default class VolumeCommand extends Command {
         return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
 
-      bot.player.setVolume(message, Number(newVol));
+      this.bot.player.setVolume(message, Number(newVol));
       await message.channel.send(lang.MUSIC.VOL_SUCCESS.replace("{vol}", newVol));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

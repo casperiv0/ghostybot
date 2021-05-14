@@ -15,12 +15,12 @@ export default class CalcCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const calculation = math?.evaluate?.(args.join(" "));
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.CALC)
         .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, `\`\`\`js\n${args.join(" ")}\`\`\``)

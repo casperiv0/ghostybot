@@ -22,12 +22,12 @@ export default class BlacklistCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const type = args[0];
-      const member: NullableDUser = (await bot.utils.findMember(message, args, { index: 1 })) || {
+      const member: NullableDUser = (await this.bot.utils.findMember(message, args, { index: 1 })) || {
         user: {
           username: "N/A",
           id: args[1],
@@ -39,7 +39,7 @@ export default class BlacklistCommand extends Command {
         return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
       }
 
-      if (member?.user?.id === bot.user?.id) {
+      if (member?.user?.id === this.bot.user?.id) {
         return message.channel.send(lang.BOT_OWNER.CANNOT_BL_BOT);
       }
 
@@ -58,7 +58,7 @@ export default class BlacklistCommand extends Command {
             return message.channel.send(lang.BOT_OWNER.NOT_BLD);
           }
 
-          const embed = bot.utils
+          const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member?.user?.username}`)
             .addField(`${lang.LEVELS.LEVEL}`, "2");
@@ -101,7 +101,7 @@ export default class BlacklistCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

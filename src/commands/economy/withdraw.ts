@@ -14,11 +14,11 @@ export default class WithdrawCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const member = message.author;
-      const user = await bot.utils.getUserById(member.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
 
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -29,7 +29,7 @@ export default class WithdrawCommand extends Command {
       if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
 
       if (amount === "all") {
-        bot.utils.updateUserById(member.id, message.guild?.id, {
+        this.bot.utils.updateUserById(member.id, message.guild?.id, {
           money: user.money + bank,
           bank: user.bank - bank,
         });
@@ -50,13 +50,13 @@ export default class WithdrawCommand extends Command {
         return message.channel.send(lang.ECONOMY.NO_MONEY);
       }
 
-      await bot.utils.updateUserById(member.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(member.id, message.guild?.id, {
         money: user.money + Number(amount),
         bank: user.bank - Number(amount),
       });
       message.channel.send(lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", `${amount}`));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

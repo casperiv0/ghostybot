@@ -12,24 +12,24 @@ export default class FeedbackCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const feedback = args.join(" ");
 
       if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
       if (!process.env["FEEDBACK_CHANNEL_ID"] || process.env["FEEDBACK_CHANNEL_ID"] === "") return;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_FEEDBACK)
         .setDescription(feedback);
 
-      (bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"]) as TextChannel)?.send(embed);
+      (this.bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"]) as TextChannel)?.send(embed);
 
       message.channel.send(lang.UTIL.FEEDBACK_SEND);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -15,12 +15,12 @@ export default class EditReminderCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [id, time, description] = args;
 
     try {
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
@@ -49,7 +49,7 @@ export default class EditReminderCommand extends Command {
         _id: reminder._id,
       };
 
-      bot.utils.updateUserById(message.author.id, message.guild?.id, {
+      this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         reminder: {
           hasReminder: true,
           reminders: [...updated, newReminder],
@@ -58,7 +58,7 @@ export default class EditReminderCommand extends Command {
 
       return message.channel.send("Updated reminder");
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

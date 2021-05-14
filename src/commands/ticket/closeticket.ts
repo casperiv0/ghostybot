@@ -13,16 +13,16 @@ export default class CloseTicketCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const channel = message.channel;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       if (!(channel as TextChannel).name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ""))) {
         return message.channel.send(lang.TICKET.CANNOT_DO_ACTION);
       }
 
       if (args[0] && args[0].toLowerCase() === "--force") {
-        await this.sendAuditLog(bot, channel as TextChannel, message.author);
+        await this.sendAuditLog(this.bot, channel as TextChannel, message.author);
         return channel.delete();
       }
 
@@ -44,17 +44,17 @@ export default class CloseTicketCommand extends Command {
 
       setTimeout(async () => {
         if (canceled === false) {
-          await this.sendAuditLog(bot, channel as TextChannel, message.author);
+          await this.sendAuditLog(this.bot, channel as TextChannel, message.author);
           channel.delete();
         }
       }, timeout);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
 
   async sendAuditLog(bot: Bot, channel: TextChannel, executor: User) {
-    bot.emit("guildTicketClose", channel, executor);
+    this.bot.emit("guildTicketClose", channel, executor);
   }
 }

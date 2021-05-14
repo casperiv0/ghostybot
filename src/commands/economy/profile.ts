@@ -12,10 +12,10 @@ export default class ProfileCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
+      const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (member?.user?.bot) {
         return message.channel.send(lang.MEMBER.BOT_DATA);
@@ -23,18 +23,18 @@ export default class ProfileCommand extends Command {
 
       const userId = member?.user?.id;
       const guildId = message.guild?.id;
-      const user = await bot.utils.getUserById(userId!, guildId);
+      const user = await this.bot.utils.getUserById(userId!, guildId);
 
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
 
-      const guild = await bot.utils.getGuildById(guildId);
+      const guild = await this.bot.utils.getGuildById(guildId);
 
       const { money, bank, inventory, xp } = user;
-      const level = bot.utils.calculateXp(xp);
+      const level = this.bot.utils.calculateXp(xp);
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${member?.user.username} ${lang.ECONOMY.PROFILE}`)
         .addField(`**${lang.LEVELS.XP}**`, xp, true)
@@ -46,7 +46,7 @@ export default class ProfileCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

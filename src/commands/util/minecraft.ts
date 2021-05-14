@@ -14,8 +14,8 @@ export default class MinecraftCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [server] = args;
 
@@ -33,7 +33,7 @@ export default class MinecraftCommand extends Command {
       const version = data.server.name;
       const protocol = data.server.protocol;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${server}`)
         .addField(lang.MEMBER.STATUS, status, true)
@@ -45,7 +45,7 @@ export default class MinecraftCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

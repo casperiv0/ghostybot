@@ -15,8 +15,8 @@ export default class ShellCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const stdout = ch.execSync(args.join(" "));
@@ -25,7 +25,7 @@ export default class ShellCommand extends Command {
         code: true,
       });
     } catch (err) {
-      const errorEmbed = bot.utils
+      const errorEmbed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.ERROR)
         .setDescription(`\`\`\`${err}\`\`\``);

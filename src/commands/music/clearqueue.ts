@@ -12,23 +12,23 @@ export default class ClearQueueCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const playing = bot.player.isPlaying(message);
+      const playing = this.bot.player.isPlaying(message);
 
       if (!playing) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
-      bot.player.clearQueue(message);
+      this.bot.player.clearQueue(message);
       message.channel.send(lang.MUSIC.QUEUE_CLEARED);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

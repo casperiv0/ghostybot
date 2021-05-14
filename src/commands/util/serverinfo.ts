@@ -12,8 +12,8 @@ export default class ServerInfoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const { guild } = message;
@@ -22,15 +22,15 @@ export default class ServerInfoCommand extends Command {
       if (!message.member) return message.channel.send(lang.GLOBAL.ERROR);
 
       const { name, memberCount } = guild;
-      const roles = bot.utils.formatNumber(guild.roles.cache.size);
-      const channels = bot.utils.formatNumber(guild.channels.cache.size);
-      const emojis = bot.utils.formatNumber(guild.emojis.cache.size);
+      const roles = this.bot.utils.formatNumber(guild.roles.cache.size);
+      const channels = this.bot.utils.formatNumber(guild.channels.cache.size);
+      const emojis = this.bot.utils.formatNumber(guild.emojis.cache.size);
 
       const regions = lang.OTHER.REGIONS;
       const verLevels = lang.OTHER.VERLEVELS;
 
-      const { date: createdAt } = await bot.utils.formatDate(guild.createdAt, message.guild?.id);
-      const { date: joined, tz } = await bot.utils.formatDate(
+      const { date: createdAt } = await this.bot.utils.formatDate(guild.createdAt, message.guild?.id);
+      const { date: joined, tz } = await this.bot.utils.formatDate(
         message.member?.joinedAt,
         message.guild?.id,
       );
@@ -44,7 +44,7 @@ export default class ServerInfoCommand extends Command {
       const verLevel = verLevels[guild.verificationLevel];
       const mfaLevel = guild.mfaLevel;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(name)
         .setDescription(
@@ -76,7 +76,7 @@ export default class ServerInfoCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -14,12 +14,12 @@ export default class RemoveReminderCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     let [id] = args;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) return;
 
       if (user?.reminder.hasReminder === false) {
@@ -42,7 +42,7 @@ export default class RemoveReminderCommand extends Command {
         }
       }
 
-      await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         reminder: {
           hasReminder: user.reminder.reminders?.length - 1 > 0,
           reminders: user.reminder.reminders.filter((reminder) => reminder.id !== +id),
@@ -51,7 +51,7 @@ export default class RemoveReminderCommand extends Command {
 
       return message.channel.send(lang.REMINDER.REMOVE_SUCCESS);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

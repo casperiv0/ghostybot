@@ -14,8 +14,8 @@ export default class FilterCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [option, filter] = args;
 
@@ -23,7 +23,7 @@ export default class FilterCommand extends Command {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const queue = bot.player.getQueue(message);
+      const queue = this.bot.player.getQueue(message);
 
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
@@ -43,7 +43,7 @@ export default class FilterCommand extends Command {
             );
           }
 
-          await bot.player.setFilters(message, {
+          await this.bot.player.setFilters(message, {
             [filter]: true,
           });
           return message.channel.send(lang.MUSIC.SUC_APPLIED_FILTER.replace("{filter}", filter));
@@ -53,7 +53,7 @@ export default class FilterCommand extends Command {
             return message.channel.send(lang.MUSIC.FILTER_NOT_ENABLED.replace("{filter}", filter));
           }
 
-          await bot.player.setFilters(message, {
+          await this.bot.player.setFilters(message, {
             [filter]: false,
           });
           return message.channel.send(lang.MUSIC.SUC_REM_FILTER.replace("{filter}", filter));
@@ -63,7 +63,7 @@ export default class FilterCommand extends Command {
         }
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

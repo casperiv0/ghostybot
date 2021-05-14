@@ -14,8 +14,8 @@ export default class GitHubCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const username = args[0];
 
@@ -41,7 +41,7 @@ export default class GitHubCommand extends Command {
       const location = user.location ? user.location : "N/A";
       const bio = user.bio ? user.bio : "N/A";
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
         .addField("**Twitter**", twitter, true)
@@ -59,7 +59,7 @@ export default class GitHubCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

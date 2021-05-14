@@ -12,10 +12,10 @@ export default class CreateTicketCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const tickets = message.guild?.channels.cache.filter((ch) =>
         ch.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", "")),
       );
@@ -50,7 +50,7 @@ export default class CreateTicketCommand extends Command {
           allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
         },
         {
-          id: `${bot.user?.id}`,
+          id: `${this.bot.user?.id}`,
           allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
         },
         {
@@ -85,7 +85,7 @@ export default class CreateTicketCommand extends Command {
 
       channel?.send(`${lang.TICKET.CREATED} <@${message.author.id}>`);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

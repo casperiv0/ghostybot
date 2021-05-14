@@ -14,8 +14,8 @@ export default class ResetEconomyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const filter = (m: Message) => message.author.id === m.author.id;
 
@@ -34,7 +34,7 @@ export default class ResetEconomyCommand extends Command {
             const users: IUser[] = await UserModel.find({ guild_id: message.guild?.id });
 
             users.forEach(async (user) => {
-              await bot.utils.updateUserById(user.user_id, message.guild?.id, {
+              await this.bot.utils.updateUserById(user.user_id, message.guild?.id, {
                 money: 0,
                 bank: 0,
               });
@@ -46,11 +46,11 @@ export default class ResetEconomyCommand extends Command {
           }
         })
         .catch((e) => {
-          bot.logger.error("reset-economy", e?.stack || e);
+          this.bot.logger.error("reset-economy", e?.stack || e);
           message.channel.send("An error occurred");
         });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

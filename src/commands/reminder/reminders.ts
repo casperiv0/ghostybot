@@ -14,16 +14,16 @@ export default class RemindersCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
+      const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
 
-      const user = await bot.utils.getUserById(member.user.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) return;
 
       if (!user.reminder.hasReminder === true) {
@@ -41,14 +41,14 @@ export default class RemindersCommand extends Command {
   **${lang.REMINDER.ENDS_IN}** ${endsAt}`;
       });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.REMINDER.USER_REMINDERS.replace("{memberUsername}", member.user.username))
         .setDescription(mappedReminders.join("\n\n"));
 
       return message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

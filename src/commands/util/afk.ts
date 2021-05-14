@@ -11,20 +11,20 @@ export default class AfkCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const guildId = message.guild?.id;
       const userId = message.author.id;
-      const user = await bot.utils.getUserById(userId, guildId);
+      const user = await this.bot.utils.getUserById(userId, guildId);
 
       if (user?.afk?.is_afk) {
-        await bot.utils.updateUserById(userId, guildId, {
+        await this.bot.utils.updateUserById(userId, guildId, {
           afk: { is_afk: false, reason: null },
         });
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.GLOBAL.SUCCESS)
           .setDescription(lang.UTIL.NOT_AFK);
@@ -34,18 +34,18 @@ export default class AfkCommand extends Command {
 
       const reason = args.join(" ") || lang.GLOBAL.NOT_SPECIFIED;
 
-      await bot.utils.updateUserById(userId, guildId, {
+      await this.bot.utils.updateUserById(userId, guildId, {
         afk: { is_afk: true, reason: reason },
       });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.SUCCESS)
         .setDescription(`${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${reason}`);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

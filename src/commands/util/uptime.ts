@@ -15,15 +15,15 @@ export default class UptimeCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     const uptime = dayJs
-      .duration(bot?.uptime ?? 0)
+      .duration(this.bot?.uptime ?? 0)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
     return message.channel.send(
-      lang.UTIL.UPTIME.replace("{member}", `${bot.user?.username}`).replace("{time}", uptime),
+      lang.UTIL.UPTIME.replace("{member}", `${this.bot.user?.username}`).replace("{time}", uptime),
     );
   }
 }

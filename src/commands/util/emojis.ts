@@ -11,8 +11,8 @@ export default class EmojisCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const nonAnimated: string[] = [];
     const animated: string[] = [];
 
@@ -32,7 +32,7 @@ export default class EmojisCommand extends Command {
           ? `${nonAnimated.join(" ").slice(1010)}...`
           : nonAnimated.join(" ");
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .addField(`${lang.UTIL.ANIMATED}:`, animated.length === 0 ? lang.GLOBAL.NONE : animatedV)
         .addField(
@@ -42,7 +42,7 @@ export default class EmojisCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

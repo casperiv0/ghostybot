@@ -16,39 +16,39 @@ export default class BotInfoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const uptime = dayJs
-        .duration(bot?.uptime ?? 0)
+        .duration(this.bot?.uptime ?? 0)
         .format(" D [days], H [hrs], m [mins], s [secs]");
 
       const nodev = process.version;
-      const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: bot.user?.id });
-      const userCount = bot.utils.formatNumber(
-        bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
+      const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: this.bot.user?.id });
+      const userCount = this.bot.utils.formatNumber(
+        this.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
       );
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.BOT.INFO_2}`)
-        .addField(`${lang.MEMBER.USERNAME}:`, bot.user?.username)
-        .addField(`${lang.BOT.LATENCY}:`, Math.round(bot.ws.ping), true)
+        .addField(`${lang.MEMBER.USERNAME}:`, this.bot.user?.username)
+        .addField(`${lang.BOT.LATENCY}:`, Math.round(this.bot.ws.ping), true)
         .addField(
           `${lang.HELP.COMMANDS}:`,
           `
-  **${lang.BOT.USED_SINCE_UP}:** ${bot.utils.formatNumber(used_since_up)}
-  **${lang.BOT.TOTAL_USED_CMDS}:** ${bot.utils.formatNumber(total_used_cmds)}`,
+  **${lang.BOT.USED_SINCE_UP}:** ${this.bot.utils.formatNumber(used_since_up)}
+  **${lang.BOT.TOTAL_USED_CMDS}:** ${this.bot.utils.formatNumber(total_used_cmds)}`,
         )
         .addField(
           `__**${lang.BOT.INFO}:**__`,
           `
   **${lang.BOT.USERS}:** ${userCount}
-  **${lang.BOT.GUILDS}:** ${bot.utils.formatNumber(bot.guilds.cache.size)}
-  **${lang.BOT.CHANNELS}:** ${bot.utils.formatNumber(bot.channels.cache.size)}
-  **${lang.BOT.COMMAND_COUNT}:** ${bot.commands.size}
-  **${lang.BOT.VC_CONNS}:** ${bot.voice?.connections.size}
+  **${lang.BOT.GUILDS}:** ${this.bot.utils.formatNumber(this.bot.guilds.cache.size)}
+  **${lang.BOT.CHANNELS}:** ${this.bot.utils.formatNumber(this.bot.channels.cache.size)}
+  **${lang.BOT.COMMAND_COUNT}:** ${this.bot.commands.size}
+  **${lang.BOT.VC_CONNS}:** ${this.bot.voice?.connections.size}
               `,
           true,
         )
@@ -67,7 +67,7 @@ export default class BotInfoCommand extends Command {
           `
   [${lang.BOT.DEVELOPER}](https://caspertheghost.me)
   [${lang.BOT.CONTRIBUTORS}](https://github.com/Dev-CasperTheGhost/ghostybot/contributors)
-  [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${bot.user?.id}&scope=bot&permissions=8)`,
+  [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=bot&permissions=8)`,
           true,
         )
         .addField(
@@ -87,7 +87,7 @@ export default class BotInfoCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -12,8 +12,8 @@ export default class LeaveGuildCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     const guildId = args[0];
 
@@ -21,7 +21,7 @@ export default class LeaveGuildCommand extends Command {
       return message.channel.send("Please provide an id");
     }
 
-    const guild = bot.guilds.cache.find((g) => g.id === guildId);
+    const guild = this.bot.guilds.cache.find((g) => g.id === guildId);
 
     if (!guild) {
       return message.channel.send(lang.GUILD.NOT_FOUND);
@@ -31,7 +31,7 @@ export default class LeaveGuildCommand extends Command {
       await guild.leave();
       message.channel.send(lang.GUILD.LEFT.replace("{guild_name}", guild.name));
     } catch (e) {
-      bot.utils.sendErrorLog(e, "error");
+      this.bot.utils.sendErrorLog(e, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -11,19 +11,19 @@ export default class FlipCoinCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const replies = [`**${lang.GAMES.LANDED_HEADS}**`, `**${lang.GAMES.LANDED_TAILS}**`];
 
       const reply = replies[Math.floor(Math.random() * replies.length)];
 
-      const embed = bot.utils.baseEmbed(message).setTitle("FlipCoin").setDescription(`${reply}`);
+      const embed = this.bot.utils.baseEmbed(message).setTitle("FlipCoin").setDescription(`${reply}`);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

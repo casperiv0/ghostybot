@@ -14,8 +14,8 @@ export default class CountryCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const query = args.join(" ");
       const country = await fetch(
@@ -35,14 +35,14 @@ export default class CountryCommand extends Command {
       const timezones = country[0].timezones || "N/A";
       const region = country[0].region || "N/A";
       const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png`;
-      const population = bot.utils.formatNumber(country[0].population);
+      const population = this.bot.utils.formatNumber(country[0].population);
       let languages = "";
 
       country[0].languages.forEach((lang) => {
         languages += `${lang.name}\n`;
       });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setAuthor(name)
         .setTitle(nativeName)
@@ -58,7 +58,7 @@ export default class CountryCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

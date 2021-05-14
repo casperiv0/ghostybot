@@ -13,8 +13,8 @@ export default class ImgfyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const text = args.join(" ");
 
@@ -22,14 +22,14 @@ export default class ImgfyCommand extends Command {
         text,
       )}&_loc=generate&imageoutput=true`;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${image})`)
         .setImage(image);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

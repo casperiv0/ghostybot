@@ -11,8 +11,8 @@ export default class ServerIconCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const icon = message.guild?.iconURL({ dynamic: true, size: 2048 });
@@ -20,12 +20,12 @@ export default class ServerIconCommand extends Command {
       if (!icon) {
         message.channel.send(lang.UTIL.NO_GUILD_ICON);
       } else {
-        const embed = bot.utils.baseEmbed(message).setImage(icon);
+        const embed = this.bot.utils.baseEmbed(message).setImage(icon);
 
         message.channel.send(embed);
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

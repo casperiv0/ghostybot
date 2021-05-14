@@ -13,8 +13,8 @@ export default class NasaNews extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const query = args.join(" ");
     const data = await fetch(
       `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}`,
@@ -26,7 +26,7 @@ export default class NasaNews extends Command {
       return message.channel.send(lang.NASANEWS.NOT_FOUND.replace("{query}", query));
     }
 
-    const embed = bot.utils
+    const embed = this.bot.utils
       .baseEmbed(message)
       .setTitle(data.collection.items[0].data[0].title)
       .setURL(encodeURI(item.href))

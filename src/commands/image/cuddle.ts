@@ -11,15 +11,15 @@ export default class CuddleCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const data = await bot.neko.sfw.cuddle();
+      const data = await this.bot.neko.sfw.cuddle();
 
       const user = message.mentions.users.first() || message.author;
       const cuddled = message.author.id === user.id ? "themselfs" : user.username;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.author.username} ${lang.IMAGE.CUDDLES} ${cuddled}`)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
@@ -27,7 +27,7 @@ export default class CuddleCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

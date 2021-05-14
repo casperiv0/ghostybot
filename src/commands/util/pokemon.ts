@@ -13,8 +13,8 @@ export default class PokemonCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const query = args.join(" ");
 
     if (!query) {
@@ -26,7 +26,7 @@ export default class PokemonCommand extends Command {
         `https://some-random-api.ml/pokedex?pokemon=${encodeURIComponent(query)}`,
       ).then((res) => res.json());
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(data.name)
         .setDescription(data.description)

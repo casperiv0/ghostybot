@@ -13,8 +13,8 @@ export default class SeekCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const time = ms(args[0]);
@@ -23,8 +23,8 @@ export default class SeekCommand extends Command {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const queue = bot.player.getQueue(message);
-      if (!bot.player.isPlaying(message)) {
+      const queue = this.bot.player.getQueue(message);
+      if (!this.bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
@@ -32,7 +32,7 @@ export default class SeekCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
-      const song = bot.player.nowPlaying(message);
+      const song = this.bot.player.nowPlaying(message);
 
       if (!song) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
@@ -42,9 +42,9 @@ export default class SeekCommand extends Command {
         return message.channel.send("Time cannot be longer than song duration");
       }
 
-      bot.player.seek(message, time);
+      this.bot.player.seek(message, time);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

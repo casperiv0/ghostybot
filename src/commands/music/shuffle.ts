@@ -12,16 +12,16 @@ export default class ShuffleCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const queue = bot.player.getQueue(message);
-      if (!bot.player.isPlaying(message)) {
+      const queue = this.bot.player.getQueue(message);
+      if (!this.bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
@@ -29,10 +29,10 @@ export default class ShuffleCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
-      bot.player.shuffle(message);
+      this.bot.player.shuffle(message);
       message.react("🔀");
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

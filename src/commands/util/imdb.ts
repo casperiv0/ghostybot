@@ -12,16 +12,16 @@ export default class ImdbCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     if (!process.env["IMDB_KEY"]) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const search = args.join(" ");
 
     try {
-      const movie = await bot.imdb.get({ name: search });
+      const movie = await this.bot.imdb.get({ name: search });
       const released = new Date(Number(movie.released)).toLocaleDateString();
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(movie.title)
         .setThumbnail(movie.poster)

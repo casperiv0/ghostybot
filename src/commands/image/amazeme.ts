@@ -12,8 +12,8 @@ export default class AmazemeCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("https://www.reddit.com/r/interestingasfuck/random.json").then(
         (res) => res.json(),
@@ -27,7 +27,7 @@ export default class AmazemeCommand extends Command {
       const upvotes = children.data.ups;
       const comments = children.data.num_comments;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${title}`)
         .setURL(url)
@@ -36,7 +36,7 @@ export default class AmazemeCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

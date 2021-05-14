@@ -49,6 +49,6 @@ _The .env list is not fully updated atm._
 9. Run the bot: `npm start`
    - Using pm2: `pm2 start src/index.js --name ghostybot`
 
-##
+---
 
 [Return to index](README.md)

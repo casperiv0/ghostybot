@@ -14,11 +14,11 @@ export default class XpCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [, amount] = args;
-      const member = await bot.utils.findMember(message, args);
+      const member = await this.bot.utils.findMember(message, args);
 
       if (!member) {
         return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
@@ -28,10 +28,10 @@ export default class XpCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      const user = await bot.utils.getUserById(member.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
       if (!user) return;
 
-      await bot.utils.updateUserById(member.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(member.id, message.guild?.id, {
         xp: user?.xp + Number(amount),
       });
 
@@ -42,7 +42,7 @@ export default class XpCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

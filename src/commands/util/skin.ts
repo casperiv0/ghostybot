@@ -14,8 +14,8 @@ export default class SkinCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const search = args[0];
@@ -34,14 +34,14 @@ export default class SkinCommand extends Command {
       const face = `https://visage.surgeplay.com/face/2048/${uuid.id}.png`;
 
       message.channel.send(
-        bot.utils
+        this.bot.utils
           .baseEmbed(message)
           .setAuthor(lang.UTIL.SKIN_NAME.replace("{name}", player.username), face)
           .setDescription(`${lang.UTIL.DOWNLOAD_SKIN}(${skin})`)
           .setImage(full),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

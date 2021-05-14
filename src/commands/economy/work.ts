@@ -13,13 +13,13 @@ export default class WorkCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const member = message.author;
       const timeout = 3600000;
 
-      const user = await bot.utils.getUserById(member.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
@@ -34,7 +34,7 @@ export default class WorkCommand extends Command {
       } else {
         const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.ECONOMY.WORK)
           .setDescription(
@@ -45,13 +45,13 @@ export default class WorkCommand extends Command {
 
         message.channel.send(embed);
 
-        await bot.utils.updateUserById(member.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(member.id, message.guild?.id, {
           money: user.money + amount,
           work: Date.now(),
         });
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

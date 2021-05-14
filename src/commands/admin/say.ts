@@ -13,7 +13,7 @@ export default class SayCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const [type] = args;
     let msg = args.join(" ");
 

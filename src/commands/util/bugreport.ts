@@ -13,8 +13,8 @@ export default class BugReportCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const bug = args.join(" ");
 
@@ -28,16 +28,18 @@ export default class BugReportCommand extends Command {
         return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
         .setDescription(bug);
 
-      (bot.channels.cache.get(process.env["BUG_REPORTS_CHANNEL_ID"]) as TextChannel)?.send(embed);
+      (this.bot.channels.cache.get(process.env["BUG_REPORTS_CHANNEL_ID"]) as TextChannel)?.send(
+        embed,
+      );
 
       return message.channel.send(lang.UTIL.BUG_REPORTED);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -14,12 +14,12 @@ export default class StoreCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const guildId = message.guild?.id;
-      const guild = await bot.utils.getGuildById(guildId);
+      const guild = await this.bot.utils.getGuildById(guildId);
       const prefix = guild?.prefix;
       const [option, item, price] = args;
 
@@ -49,11 +49,11 @@ export default class StoreCommand extends Command {
             }
 
             if (!guild?.store) {
-              await bot.utils.updateGuildById(guildId, {
+              await this.bot.utils.updateGuildById(guildId, {
                 store: [{ name: item, price: Number(price) }],
               });
             } else {
-              await bot.utils.updateGuildById(guildId, {
+              await this.bot.utils.updateGuildById(guildId, {
                 store: [...guild?.store, { name: item, price: Number(price) }],
               });
             }
@@ -71,7 +71,7 @@ export default class StoreCommand extends Command {
 
             const updatedItems = guild?.store.filter((storeItem) => storeItem.name !== item);
 
-            bot.utils.updateGuildById(guildId, { store: updatedItems });
+            this.bot.utils.updateGuildById(guildId, { store: updatedItems });
 
             message.channel.send(lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", item));
             break;
@@ -92,7 +92,7 @@ export default class StoreCommand extends Command {
           )
           ?.join(",\n ");
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(`${message.guild?.name} ${lang.ECONOMY.STORE}`)
           .setDescription(`${items}`);
@@ -100,7 +100,7 @@ export default class StoreCommand extends Command {
         message.channel.send({ embed });
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

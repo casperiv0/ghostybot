@@ -10,7 +10,7 @@ export default class UnSetCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(message: Message) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     return message.channel.send(

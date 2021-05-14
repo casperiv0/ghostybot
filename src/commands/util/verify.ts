@@ -11,12 +11,12 @@ export default class VerifyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const guild = await bot.utils.getGuildById(message.guild?.id);
-      const member = await bot.utils.findMember(message, [message.author.id]);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
+      const member = await this.bot.utils.findMember(message, [message.author.id]);
 
       if (guild?.verify_data.enabled) {
         const isCorrectChannel = message.channel.id === guild.verify_data.channel_id;
@@ -47,7 +47,7 @@ export default class VerifyCommand extends Command {
         return message.channel.send(lang.UTIL.VERIFY_NOT_ENABLED);
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

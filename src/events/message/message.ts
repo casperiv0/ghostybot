@@ -339,7 +339,7 @@ export default class MessageEvent extends Event {
       timestamps?.set(userId, now);
       setTimeout(() => timestamps?.delete(userId), cooldown);
 
-      command.execute(bot, message, args);
+      command.execute(message, args);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

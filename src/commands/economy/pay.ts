@@ -13,10 +13,10 @@ export default class PayCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args);
+      const member = await this.bot.utils.findMember(message, args);
       const amount = Number(args[1]);
 
       if (!member) {
@@ -27,8 +27,8 @@ export default class PayCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      const receiver = await bot.utils.getUserById(member.id, message.guild?.id);
-      const sender = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const receiver = await this.bot.utils.getUserById(member.id, message.guild?.id);
+      const sender = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!receiver || !sender) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -46,10 +46,10 @@ export default class PayCommand extends Command {
         return message.channel.send(lang.ECONOMY.CANNOT_PAY_SELF);
       }
 
-      await bot.utils.updateUserById(member.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(member.id, message.guild?.id, {
         money: receiver.money + amount,
       });
-      await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         money: sender.money - amount,
       });
 
@@ -60,7 +60,7 @@ export default class PayCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

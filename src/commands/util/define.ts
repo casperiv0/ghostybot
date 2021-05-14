@@ -13,8 +13,8 @@ export default class DefineCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const word = args[0];
@@ -22,7 +22,7 @@ export default class DefineCommand extends Command {
         if (data.err) {
           message.channel.send(lang.UTIL.NO_DEF_FOUND.replace("{word}", word));
         } else {
-          const embed = bot.utils
+          const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(lang.UTIL.DEF_FOR_WORD.replace("{word}", word))
             .addField(lang.UTIL.CATEGORY, data.category)
@@ -32,7 +32,7 @@ export default class DefineCommand extends Command {
         }
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

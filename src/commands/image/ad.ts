@@ -12,18 +12,18 @@ export default class AmazingEarthCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const image = message.author.displayAvatarURL({ format: "png" });
       const url = `https://bot.andoi.tk/api/ad?image=${image}`;
 
-      const embed = bot.utils.baseEmbed(message).setImage(url);
+      const embed = this.bot.utils.baseEmbed(message).setImage(url);
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

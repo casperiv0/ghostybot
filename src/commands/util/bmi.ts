@@ -16,14 +16,14 @@ export default class BmiCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [weight, height] = args;
 
       const bmi = (+weight / ((+height * +height) / 10000)).toFixed(2);
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.author.username} ${lang.UTIL.BMI}`)
         .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`)
@@ -32,7 +32,7 @@ export default class BmiCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

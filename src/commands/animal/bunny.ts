@@ -12,21 +12,21 @@ export default class BunnyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const data = await fetch("https://api.bunnies.io/v2/loop/random/?media=gif,png").then((res) =>
         res.json(),
       );
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.media.gif})`)
         .setImage(data.media.gif);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -15,7 +15,7 @@ export default class BanCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const banMember = await this.bot.utils.findMember(message, args);

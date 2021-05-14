@@ -13,8 +13,8 @@ export default class WeatherCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const query = args.join(" ");
 
@@ -41,7 +41,7 @@ export default class WeatherCommand extends Command {
       const country = data.sys.country;
       const flag = `https://www.countryflags.io/${country}/flat/64.png` || "";
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setAuthor(`${data.name} ${lang.UTIL.WEATHER}`, flag)
         .addField(`**${lang.UTIL.MAIN}**`, main, true)
@@ -55,7 +55,7 @@ export default class WeatherCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

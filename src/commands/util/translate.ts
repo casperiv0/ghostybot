@@ -15,14 +15,14 @@ export default class TranslateCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [to, ...sentence] = args;
 
       const result = await translate(sentence.join(" "), { to });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(result.text)
         .setTitle(lang.UTIL.G_TRANSLATE);

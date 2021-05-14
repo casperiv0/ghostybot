@@ -20,13 +20,13 @@ export default class GivStartCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [time, winnerCount, ...rest] = args;
       const prize = rest.join(" ");
 
-      await bot.giveawayManager.start(message.channel as TextChannel, {
+      await this.bot.giveawayManager.start(message.channel as TextChannel, {
         time: ms(time),
         prize: prize,
         winnerCount: +winnerCount,
@@ -36,7 +36,7 @@ export default class GivStartCommand extends Command {
         },
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

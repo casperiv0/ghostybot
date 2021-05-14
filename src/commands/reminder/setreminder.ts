@@ -16,8 +16,8 @@ export default class SetReminderCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [time, ...rest] = args;
       const msg = rest.join(" ");
@@ -27,11 +27,11 @@ export default class SetReminderCommand extends Command {
         return message.channel.send(lang.REMINDER.INVALID_DATE);
       }
 
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) return;
       const reminders = typeof user.reminder.reminders === "object" ? user.reminder.reminders : [];
 
-      await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         reminder: {
           hasReminder: true,
           reminders: [
@@ -50,7 +50,7 @@ export default class SetReminderCommand extends Command {
 
       return message.channel.send(lang.REMINDER.SUCCESS.replace("{time}", time));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

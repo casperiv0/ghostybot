@@ -12,13 +12,13 @@ export default class OwoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const data = await fetch("https://rra.ram.moe/i/r?type=owo").then((res) => res.json());
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(
           `${lang.IMAGE.CLICK_TO_VIEW}(https://cdn.ram.moe/${data.path.replace("/i/", "")})`,
@@ -27,7 +27,7 @@ export default class OwoCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -20,8 +20,8 @@ export default class RrAddCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       let emojis: string[] | null = null;
       let roles: Role[] | null = null;
@@ -46,7 +46,7 @@ export default class RrAddCommand extends Command {
       });
       const roleMsg = roleMsgs.first();
       if (!roleMsg) return;
-      roles = await this.parseRoles(roleMsg, bot);
+      roles = await this.parseRoles(roleMsg);
 
       if (!roles?.[0]) {
         return message.channel.send(lang.REACTIONS.NO_ROLE);
@@ -67,7 +67,7 @@ export default class RrAddCommand extends Command {
         return message.channel.send(lang.REACTIONS.VALID_EMOJI);
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.REACTIONS.TITLE)
         .setDescription(`${lang.REACTIONS.DESC}\n ${this.createDescription(roles, emojis)}`);
@@ -95,7 +95,7 @@ export default class RrAddCommand extends Command {
 
       return message.channel.send(lang.REACTIONS.SUCCESS);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
@@ -114,7 +114,7 @@ export default class RrAddCommand extends Command {
     return [...new Set(content)];
   }
 
-  async parseRoles(msg: Message, bot: Bot): Promise<Role[]> {
+  async parseRoles(msg: Message): Promise<Role[]> {
     const content = msg.content.trim().split(/ +/g);
 
     // Remove any duplicates
@@ -123,7 +123,7 @@ export default class RrAddCommand extends Command {
     const roles: Role[] = [];
 
     filtered.forEach(async (r) => {
-      const role = await bot.utils.findRole(msg, r);
+      const role = await this.bot.utils.findRole(msg, r);
       if (!role) return;
 
       roles.push(role);

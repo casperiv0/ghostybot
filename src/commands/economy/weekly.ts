@@ -12,11 +12,11 @@ export default class WeeklyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -32,7 +32,7 @@ export default class WeeklyCommand extends Command {
         );
         message.channel.send(`${lang.ECONOMY.WEEKLY_ERROR} ${time} remaining`);
       } else {
-        await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + amount,
           weekly: Date.now(),
         });
@@ -40,7 +40,7 @@ export default class WeeklyCommand extends Command {
         message.channel.send(lang.ECONOMY.WEEKLY_SUCCESS.replace("{amount}", `${amount}`));
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

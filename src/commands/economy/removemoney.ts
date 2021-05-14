@@ -13,10 +13,10 @@ export default class RemoveMoneyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args);
+      const member = await this.bot.utils.findMember(message, args);
       const amount = args[1];
 
       if (!member) {
@@ -27,18 +27,18 @@ export default class RemoveMoneyCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      const user = await bot.utils.getUserById(member.user.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
 
-      await bot.utils.updateUserById(member.user.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(member.user.id, message.guild?.id, {
         bank: user.bank - Number(amount),
       });
 
       return message.channel.send(lang.ECONOMY.REMOVED_MONEY.replace("{amount}", amount));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

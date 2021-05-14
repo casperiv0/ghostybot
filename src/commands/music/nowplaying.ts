@@ -12,16 +12,16 @@ export default class NowPlayingCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const playing = bot.player.isPlaying(message);
-      const queue = bot.player.getQueue(message);
+      const playing = this.bot.player.isPlaying(message);
+      const queue = this.bot.player.getQueue(message);
       if (!playing) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
@@ -30,13 +30,13 @@ export default class NowPlayingCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
-      const song = bot.player.nowPlaying(message);
-      const durBar = bot.player.createProgressBar(message, {
+      const song = this.bot.player.nowPlaying(message);
+      const durBar = this.bot.player.createProgressBar(message, {
         timecodes: true,
         queue: false,
       });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(song.title)
         .setURL(song.url)
@@ -51,7 +51,7 @@ export default class NowPlayingCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

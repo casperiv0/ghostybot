@@ -16,10 +16,10 @@ export default class HelpCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const prefix = guild?.prefix;
       const cmdArgs = args[0];
 
@@ -34,7 +34,7 @@ export default class HelpCommand extends Command {
             return { name: cmd.name, category: "custom" };
           });
 
-      const commands = [...bot.commands.array(), ...disabledCmds, ...customCmds];
+      const commands = [...this.bot.commands.array(), ...disabledCmds, ...customCmds];
 
       if (cmdArgs && categories.includes(cmdArgs.toLowerCase())) {
         const cmds = commands
@@ -46,7 +46,9 @@ export default class HelpCommand extends Command {
           return message.channel.send(lang.HELP.CAT_NOT_EXIST);
         }
 
-        const embed = bot.utils.baseEmbed(message).setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
+        const embed = this.bot.utils
+          .baseEmbed(message)
+          .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
         embed.setDescription(`\`\`\`${cmds}\`\`\``);
         return message.channel.send({ embed });
@@ -54,7 +56,7 @@ export default class HelpCommand extends Command {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
         if (!cmd)
           cmd = commands.find(
-            (cmd) => cmd.name.toLowerCase() === bot.aliases.get(cmdArgs.toLowerCase()),
+            (cmd) => cmd.name.toLowerCase() === this.bot.aliases.get(cmdArgs.toLowerCase()),
           );
         if (!cmd) return message.channel.send(lang.HELP.CMD_NOT_FOUND);
 
@@ -66,7 +68,7 @@ export default class HelpCommand extends Command {
 
         if ("category" in cmd && cmd.category === "custom") {
           return message.channel.send(
-            bot.utils
+            this.bot.utils
               .baseEmbed(message)
               .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
               .setDescription(`${lang.HELP.CUSTOM_CMD}`),
@@ -85,7 +87,7 @@ export default class HelpCommand extends Command {
           memberPerms = getMemberPermissions(cmd, lang);
           botPerms = getBotPermissions(cmd, lang);
 
-          const embed = bot.utils
+          const embed = this.bot.utils
             .baseEmbed(message)
             .addField(lang.HELP.ALIASES, aliases, true)
             .addField(lang.HELP.COOLDOWN, `${cooldown}`, true)
@@ -125,7 +127,7 @@ export default class HelpCommand extends Command {
 
       for (let i = 0; i < cates.length; i++) {
         const name = lang.HELP.CATEGORIES[filteredCategories[i]];
-        const categoryEmbed = bot.utils
+        const categoryEmbed = this.bot.utils
           .baseEmbed(message)
           .setTitle("Help")
           .addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``)
@@ -141,7 +143,7 @@ export default class HelpCommand extends Command {
 
       await paginate(message, embeds);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

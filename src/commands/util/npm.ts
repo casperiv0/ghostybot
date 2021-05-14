@@ -13,8 +13,8 @@ export default class NpmCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const query = args.join(" ");
@@ -36,10 +36,10 @@ export default class NpmCommand extends Command {
 
       // if it was found, show more info about the package, otherwise return a list of the top 5
       if (foundPackage) {
-        const { tz, date } = await bot.utils.formatDate(foundPackage.date, message.guild?.id);
+        const { tz, date } = await this.bot.utils.formatDate(foundPackage.date, message.guild?.id);
         const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setURL(foundPackage.links.npm)
           .setTitle(foundPackage.name)
@@ -51,7 +51,7 @@ export default class NpmCommand extends Command {
         return message.channel.send(embed);
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NPM_SEARCH)
         .setDescription(lang.UTIL.NPM_TOP_5.replace("{query}", query));
@@ -69,7 +69,7 @@ export default class NpmCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

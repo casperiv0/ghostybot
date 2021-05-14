@@ -15,6 +15,6 @@
 - I found a bug, how can I report this to you?
   - You can join the discord server and go to the `#bot-support` channel, or open an [issue](https://github.com/Dev-CasperTheGhost/ghostybot/issues) and I will check it out.
 
-##
+---
 
 [Return to index](README.md)

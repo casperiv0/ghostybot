@@ -11,8 +11,8 @@ export default class RolesCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const roles =
         message.guild?.roles.cache
@@ -20,14 +20,14 @@ export default class RolesCommand extends Command {
           .map((r) => r)
           .join(",\n") || lang.GLOBAL.NONE;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name} ${lang.UTIL.ROLES}`)
         .setDescription(`${roles.length > 2048 ? roles.substr(0, 2045) + "..." : roles}`);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

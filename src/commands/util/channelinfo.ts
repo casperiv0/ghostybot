@@ -12,8 +12,8 @@ export default class ChannelInfoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const channel = (message.mentions.channels.first() ||
@@ -22,10 +22,10 @@ export default class ChannelInfoCommand extends Command {
 
       const topic = channel?.topic ? channel.topic : "N/A";
       const channelId = channel?.id;
-      const { date, tz } = await bot.utils.formatDate(channel.createdAt, message.guild?.id);
+      const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
       const type = channel?.type === "text" ? lang.UTIL.TEXT_CHANNEL : lang.UTIL.VOICE_CHANNEL;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${channel?.name}`)
         .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
@@ -35,7 +35,7 @@ export default class ChannelInfoCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

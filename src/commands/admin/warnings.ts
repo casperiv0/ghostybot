@@ -13,7 +13,7 @@ export default class WarningsCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);

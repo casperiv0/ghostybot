@@ -10,15 +10,15 @@ export default class SlotsCommand extends Command {
       name: "slots",
       description: "Slots machine",
       category: "economy",
-      // cooldown: 20,
+      cooldown: 20,
       usage: "<amount>",
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       const numbers: number[] = [];
       let amount = Number(args[0]);
       let hasWon = false;
@@ -60,26 +60,26 @@ export default class SlotsCommand extends Command {
         hasWon = true;
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(`${items[numbers[0]]} ${items[numbers[1]]} ${items[numbers[2]]}`);
 
       if (hasWon) {
         embed.setTitle(lang.ECONOMY.WON_SLOTS.replace("{amount}", `${amount}`));
-        await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + amount,
         });
       } else {
         const removalCount = amount ? amount : 0;
         embed.setTitle(lang.ECONOMY.LOST_SLOTS);
-        await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money - removalCount,
         });
       }
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

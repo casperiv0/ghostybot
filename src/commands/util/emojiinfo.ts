@@ -13,8 +13,8 @@ export default class EmojiInfoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const [emoji] = args;
@@ -32,12 +32,12 @@ export default class EmojiInfoCommand extends Command {
         emojiAuthor = "Invalid Permissions";
       }
 
-      const { date: createdAt, tz } = await bot.utils.formatDate(
+      const { date: createdAt, tz } = await this.bot.utils.formatDate(
         foundEmoji.createdAt,
         message.guild?.id,
       );
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`Emoji info: ${foundEmoji}`)
         .setThumbnail(foundEmoji.url).setDescription(`
@@ -51,7 +51,7 @@ export default class EmojiInfoCommand extends Command {
 
       return message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

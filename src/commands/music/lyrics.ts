@@ -12,15 +12,15 @@ export default class LyricsCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const playing = bot.player.isPlaying(message);
-      const queue = bot.player.getQueue(message);
-      const np = playing || queue ? bot.player.nowPlaying(message) : false;
+      const playing = this.bot.player.isPlaying(message);
+      const queue = this.bot.player.getQueue(message);
+      const np = playing || queue ? this.bot.player.nowPlaying(message) : false;
       const title = (np && np.title) || args.join(" ");
 
-      const lyrics = await bot.lyricsClient.search(title);
+      const lyrics = await this.bot.lyricsClient.search(title);
 
       if (!lyrics) {
         return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
@@ -31,7 +31,7 @@ export default class LyricsCommand extends Command {
       const songThumbnail = (np && np.thumbnail) || lyrics.thumbnail;
       const songLyrics = lyrics.lyrics as string;
 
-      const lyricsEmbed = bot.utils
+      const lyricsEmbed = this.bot.utils
         .baseEmbed(message)
         .setAuthor(songAuthor)
         .setTitle(songTitle)
@@ -42,9 +42,9 @@ export default class LyricsCommand extends Command {
         lyricsEmbed.setDescription(`${songLyrics.substr(0, 2045)}...`);
       }
 
-      return message.channel.send(lyricsEmbed).catch((e) => bot.logger.error("Lyrics", e));
+      return message.channel.send(lyricsEmbed).catch((e) => this.bot.logger.error("Lyrics", e));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -14,21 +14,21 @@ export default class UserInfoCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const member = await bot.utils.findMember(message, args, { allowAuthor: true });
+      const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
         return message.channel.send(lang.MEMBER.NOT_FOUND);
       }
 
-      const { date: joinedAt, tz } = await bot.utils.formatDate(
+      const { date: joinedAt, tz } = await this.bot.utils.formatDate(
         member?.joinedAt,
         message.guild?.id,
       );
-      const { date: createdAt } = await bot.utils.formatDate(
+      const { date: createdAt } = await this.bot.utils.formatDate(
         member.user.createdAt,
         message.guild?.id,
       );
@@ -49,7 +49,7 @@ export default class UserInfoCommand extends Command {
 
       const { username, id, tag } = member.user;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .addField(`**${lang.MEMBER.ID}**`, id, true)
         .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
@@ -64,7 +64,7 @@ export default class UserInfoCommand extends Command {
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

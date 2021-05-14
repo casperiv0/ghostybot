@@ -15,7 +15,7 @@ export default class RemoveRoleCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     if (!message.guild?.me) return;
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {

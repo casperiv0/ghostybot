@@ -14,7 +14,7 @@ export default class UnLockChannelCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(message: Message) {
     if (!message.guild?.me) return;
 
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);

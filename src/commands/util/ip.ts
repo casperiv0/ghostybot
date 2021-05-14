@@ -46,8 +46,8 @@ export default class IpLookupCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const [ip] = args;
@@ -71,7 +71,7 @@ export default class IpLookupCommand extends Command {
         } = data;
         const flag = `https://www.countryflags.io/${country_code}/flat/64.png` || "";
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(`${city}/${region} - ${country}`)
           .setDescription(
@@ -91,7 +91,7 @@ export default class IpLookupCommand extends Command {
         return message.channel.send(lang.UTIL.IP_NOT_FOUND);
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

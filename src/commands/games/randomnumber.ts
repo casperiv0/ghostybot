@@ -12,7 +12,7 @@ export default class NumberCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(message: Message) {
     const n = Math.floor(Math.random() * 1000000) + 1;
 
     message.channel.send(n);

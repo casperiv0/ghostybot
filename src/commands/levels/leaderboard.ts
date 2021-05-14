@@ -14,21 +14,21 @@ export default class XpCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const guildId = message.guild?.id;
       const data = (await UserModel.find({ guild_id: guildId }))
         .sort((a: IUser, b: IUser) => b.xp - a.xp)
         .splice(0, 10);
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name} ${lang.LEVELS.LEADERBOARD}`);
 
       data.forEach(async (item: IUser, idx: number) => {
         const userId = item.user_id;
-        const member = await bot.utils.findMember(message, [userId]);
+        const member = await this.bot.utils.findMember(message, [userId]);
         const isInPlace = [0, 1, 2].includes(idx);
 
         if (member) {
@@ -44,7 +44,7 @@ export default class XpCommand extends Command {
         message.channel.send({ embed });
       }, 300);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

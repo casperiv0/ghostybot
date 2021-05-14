@@ -14,8 +14,8 @@ export default class RockPaperScissorsCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const input = args.join("").toLowerCase();
 
@@ -30,11 +30,11 @@ export default class RockPaperScissorsCommand extends Command {
 
       const hasWon = this.checkWon(inp.toLowerCase(), reply.toLowerCase());
       if (hasWon === true) {
-        const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+        const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
         if (!user) {
           return message.channel.send(lang.GLOBAL.ERROR);
         }
-        await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + 50,
         });
       }
@@ -46,16 +46,16 @@ export default class RockPaperScissorsCommand extends Command {
           ? lang.GAMES.BOTH_WON
           : lang.GAMES.BOT_WON;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.RPS)
         .setDescription(`**${lang.GAMES.WINNER}:** ${winner}`)
-        .addField(lang.GAMES.YOUR_CHOICE, bot.utils.toCapitalize(input))
+        .addField(lang.GAMES.YOUR_CHOICE, this.bot.utils.toCapitalize(input))
         .addField(lang.GAMES.OPPONENTS_CHOICE, reply);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

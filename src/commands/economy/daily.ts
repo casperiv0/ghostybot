@@ -12,10 +12,10 @@ export default class DailyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
@@ -29,7 +29,7 @@ export default class DailyCommand extends Command {
         const time = dayJs(timeout - (Date.now() - daily)).format("h [hrs], m [mins], s [secs]");
         message.channel.send(`${lang.ECONOMY.DAILY_ERROR} ${time} remaining`);
       } else {
-        bot.utils.updateUserById(message.author.id, message.guild?.id, {
+        this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           daily: Date.now(),
           money: currentMoney + amount,
         });
@@ -37,7 +37,7 @@ export default class DailyCommand extends Command {
         message.channel.send(lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", `${amount}`));
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

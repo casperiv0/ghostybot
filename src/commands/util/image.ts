@@ -15,8 +15,8 @@ export default class ImageCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const text = args.join(" ");
@@ -30,7 +30,7 @@ export default class ImageCommand extends Command {
         },
       };
 
-      request(options, function (error, _response, responseBody) {
+      request(options, (error, _response, responseBody) => {
         if (error) {
           return;
         }
@@ -50,11 +50,11 @@ export default class ImageCommand extends Command {
 
         const randomIndex = Math.floor(Math.random() * urls.length);
         const image = urls[randomIndex];
-        const embed = bot.utils.baseEmbed(message).setImage(image);
+        const embed = this.bot.utils.baseEmbed(message).setImage(image);
         message.channel.send(embed);
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

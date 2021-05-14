@@ -12,11 +12,11 @@
 - [API's used](APIS_USED.md)
 - [FAQ](./FAQ.md)
 
-# Links
+## Links
 
 [![Add ghostybot](../.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 [![Ghostybot Support server](../.github/join-support-server.png)](https://discord.gg/XxHrtkA)
 
-##
+---
 
-[Return to Readme](https://github.com/dev-caspertheghost/ghostybot)
+[Return to index](../README.md)

@@ -13,10 +13,10 @@ export default class RobCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const member = await bot.utils.findMember(message, args);
+      const member = await this.bot.utils.findMember(message, args);
       const amount = Number(args[1]);
 
       if (!member) {
@@ -40,8 +40,8 @@ export default class RobCommand extends Command {
       }
 
       const userId = member.user.id;
-      const user = await bot.utils.getUserById(userId, message.guild?.id);
-      const robber = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(userId, message.guild?.id);
+      const robber = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!user || !robber) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -51,10 +51,10 @@ export default class RobCommand extends Command {
         return message.channel.send(lang.ECONOMY.MEMBER_NO_MONEY);
       }
 
-      await bot.utils.updateUserById(userId, message.guild?.id, {
+      await this.bot.utils.updateUserById(userId, message.guild?.id, {
         money: user.money - amount,
       });
-      await bot.utils.updateUserById(message.author.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         money: robber.money + Number(amount),
       });
 
@@ -65,7 +65,7 @@ export default class RobCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

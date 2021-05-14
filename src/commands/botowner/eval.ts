@@ -4,7 +4,7 @@ import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
 // eslint-disable-next-line quotes
-const classified = ["bot.config", "bot.token", "process.env", 'bot["token"]', "bot['token']"];
+const classified = ["this.bot.config", "this.bot.token", "process.env", 'bot["token"]', "bot['token']"];
 
 export default class EvalCommand extends Command {
   constructor(bot: Bot) {
@@ -18,8 +18,8 @@ export default class EvalCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const toEval = args.join(" ");
     let wasCanceled = false;
 
@@ -45,14 +45,14 @@ export default class EvalCommand extends Command {
 
       const type = typeOf[0].toUpperCase() + typeOf.slice(1);
 
-      const embed = bot.utils.baseEmbed(message).setTitle(lang.BOT_OWNER.EVAL)
+      const embed = this.bot.utils.baseEmbed(message).setTitle(lang.BOT_OWNER.EVAL)
         .setDescription(`\`${lang.BOT_OWNER.EVAL_TYPE}:\` ${type}
 \`${lang.BOT_OWNER.EVAL_INPUT}:\` \`\`\`js\n${toEval} \`\`\`
 \`${lang.BOT_OWNER.EVAL_OUTPUT}:\` \`\`\`js\n${evaluatedCode}\`\`\``);
 
       message.channel.send(embed);
     } catch (error) {
-      const errorEmbed = bot.utils
+      const errorEmbed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.ERROR)
         .setDescription(`\`\`\`${error}\`\`\``);

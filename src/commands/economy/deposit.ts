@@ -14,11 +14,11 @@ export default class DepositCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const member = message.author;
-      const user = await bot.utils.getUserById(member.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
 
       if (!user) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -28,7 +28,7 @@ export default class DepositCommand extends Command {
       const amount: number | string = args[0];
 
       if (amount === "all") {
-        await bot.utils.updateUserById(member.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(member.id, message.guild?.id, {
           bank: user.bank + money,
           money: user.money - money,
         });
@@ -47,14 +47,14 @@ export default class DepositCommand extends Command {
         return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
       }
 
-      await bot.utils.updateUserById(member.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(member.id, message.guild?.id, {
         bank: user.bank + Number(amount),
         money: user.money - Number(amount),
       });
 
       message.channel.send(lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", `${amount}`));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

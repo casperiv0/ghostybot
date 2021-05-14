@@ -14,7 +14,7 @@ export default class MuteCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const muteMember = await this.bot.utils.findMember(message, args);

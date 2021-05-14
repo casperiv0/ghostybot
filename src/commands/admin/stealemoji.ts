@@ -16,7 +16,7 @@ export default class StealEmojiCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
+  async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [emoji] = args;
     const name = args.slice(1).join(" ");

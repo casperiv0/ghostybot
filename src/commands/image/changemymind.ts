@@ -13,26 +13,26 @@ export default class ChangeMyMindCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const text = args.join(" ");
 
       const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
       const data = await fetch(
-        `https://nekobot.xyz/api/imagegen?type=changemymind&text=${text}`,
+        `https://nekothis.bot.xyz/api/imagegen?type=changemymind&text=${text}`,
       ).then((res) => res.json());
 
       sendMsg.deletable && sendMsg.delete();
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`)
         .setImage(data.message);
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

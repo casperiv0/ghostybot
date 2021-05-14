@@ -14,12 +14,12 @@ export default class BuyCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const guildId = message.guild?.id;
-      const guild = await bot.utils.getGuildById(guildId);
-      const user = await bot.utils.getUserById(message.author.id, message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(guildId);
+      const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       const inventory = user?.inventory;
       const prefix = guild?.prefix;
       let query = args[0];
@@ -53,12 +53,12 @@ export default class BuyCommand extends Command {
         return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
 
       if (!inventory) {
-        bot.utils.updateUserById(message.author.id, guildId, {
+        this.bot.utils.updateUserById(message.author.id, guildId, {
           inventory: [item.name],
           money: user.money - item.price,
         });
       } else {
-        bot.utils.updateUserById(message.author.id, guildId, {
+        this.bot.utils.updateUserById(message.author.id, guildId, {
           inventory: [...inventory, item.name],
           money: user.money - item.price,
         });
@@ -68,7 +68,7 @@ export default class BuyCommand extends Command {
         lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace("{price}", `${item.price}`),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -13,25 +13,25 @@ export default class SuggestCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const suggestion = args.join(" ");
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const suggestChannel = guild?.suggest_channel;
 
       if (!suggestChannel) {
         return message.channel.send(lang.UTIL.NO_SUGG_CHANNEL);
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_SUGGESTION)
         .setDescription(suggestion)
         .setAuthor(lang.UTIL.CREATED_BY.replace("{member}", message.author.username));
 
-      const channel = bot.channels.cache.get(suggestChannel);
+      const channel = this.bot.channels.cache.get(suggestChannel);
       if (!channel) return;
       const sendMessage = await (channel as TextChannel).send(embed);
 
@@ -40,7 +40,7 @@ export default class SuggestCommand extends Command {
 
       return message.channel.send("Send suggestion 👍");
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

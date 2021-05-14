@@ -57,5 +57,5 @@ export default class Command {
    * @param {string[]} args message args
    * @returns {any}
    */
-  async execute(bot: Bot, message: Message, args: string[]): Promise<any> {}
+  async execute(message: Message, args: string[]): Promise<any> {}
 }

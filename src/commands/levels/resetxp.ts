@@ -12,9 +12,9 @@ export default class ResetXpCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(message: Message) {
     if (!message.guild) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const filter = (m: Message) => message.author.id === m.author.id;
 
@@ -33,7 +33,7 @@ export default class ResetXpCommand extends Command {
             const users = await message.guild?.members.fetch();
 
             users?.forEach(async (user) => {
-              await bot.utils.updateUserById(user.id, message.guild?.id, {
+              await this.bot.utils.updateUserById(user.id, message.guild?.id, {
                 xp: 0,
               });
             });
@@ -44,11 +44,11 @@ export default class ResetXpCommand extends Command {
           }
         })
         .catch((e) => {
-          bot.logger.error("resetxp", e?.stack || e);
+          this.bot.logger.error("resetxp", e?.stack || e);
           message.channel.send(lang.GLOBAL.ERROR);
         });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

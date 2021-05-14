@@ -15,8 +15,8 @@ export default class PastebinCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [extension, ...rest] = args;
     const code = rest.join(" ");
 
@@ -29,7 +29,7 @@ export default class PastebinCommand extends Command {
     }
 
     try {
-      const paste = await bot.pasteClient.createPaste({
+      const paste = await this.bot.pasteClient.createPaste({
         code,
         format: extension as ApiPasteFormat,
         expireDate: "N",

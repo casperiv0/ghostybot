@@ -15,8 +15,8 @@ export default class PlaystoreCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const search = args.join(" ");
 
@@ -36,7 +36,7 @@ export default class PlaystoreCommand extends Command {
           return message.channel.send(lang.UTIL.PS_NOT_FOUND);
         }
 
-        const Embed = bot.utils
+        const Embed = this.bot.utils
           .baseEmbed(message)
           .setThumbnail(app.icon)
           .setURL(app.url)
@@ -49,7 +49,7 @@ export default class PlaystoreCommand extends Command {
         return message.channel.send(Embed);
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

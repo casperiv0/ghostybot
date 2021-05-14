@@ -12,15 +12,15 @@ export default class QueueCommand extends Command {
     });
   }
 
-  async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+  async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       if (!message.member?.voice.channel) {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const queue = bot.player.getQueue(message);
+      const queue = this.bot.player.getQueue(message);
 
       if (!queue) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
@@ -33,14 +33,14 @@ export default class QueueCommand extends Command {
         .slice(0, 20)
         .join("\n");
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name} ${lang.MUSIC.QUEUE}`)
         .setDescription(tracks);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
