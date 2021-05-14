@@ -25,7 +25,9 @@ export default class BotInfoCommand extends Command {
         .format(" D [days], H [hrs], m [mins], s [secs]");
 
       const nodev = process.version;
-      const { total_used_cmds, used_since_up } = await BotModel.findOne({ bot_id: this.bot.user?.id });
+      const { total_used_cmds, used_since_up } = await BotModel.findOne({
+        bot_id: this.bot.user?.id,
+      });
       const userCount = this.bot.utils.formatNumber(
         this.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
       );

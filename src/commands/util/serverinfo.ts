@@ -29,7 +29,10 @@ export default class ServerInfoCommand extends Command {
       const regions = lang.OTHER.REGIONS;
       const verLevels = lang.OTHER.VERLEVELS;
 
-      const { date: createdAt } = await this.bot.utils.formatDate(guild.createdAt, message.guild?.id);
+      const { date: createdAt } = await this.bot.utils.formatDate(
+        guild.createdAt,
+        message.guild?.id,
+      );
       const { date: joined, tz } = await this.bot.utils.formatDate(
         message.member?.joinedAt,
         message.guild?.id,

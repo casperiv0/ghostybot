@@ -27,7 +27,9 @@ export default class BlacklistCommand extends Command {
 
     try {
       const type = args[0];
-      const member: NullableDUser = (await this.bot.utils.findMember(message, args, { index: 1 })) || {
+      const member: NullableDUser = (await this.bot.utils.findMember(message, args, {
+        index: 1,
+      })) || {
         user: {
           username: "N/A",
           id: args[1],

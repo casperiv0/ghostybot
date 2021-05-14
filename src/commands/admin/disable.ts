@@ -37,7 +37,8 @@ export default class DisableCommand extends Command {
       }
 
       const command =
-        this.bot.commands.get(option.toLowerCase()) || this.bot.commands.get(this.bot.aliases.get(option)!);
+        this.bot.commands.get(option.toLowerCase()) ||
+        this.bot.commands.get(this.bot.aliases.get(option)!);
 
       if (!command) {
         // Disable category

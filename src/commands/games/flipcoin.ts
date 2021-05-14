@@ -19,7 +19,10 @@ export default class FlipCoinCommand extends Command {
 
       const reply = replies[Math.floor(Math.random() * replies.length)];
 
-      const embed = this.bot.utils.baseEmbed(message).setTitle("FlipCoin").setDescription(`${reply}`);
+      const embed = this.bot.utils
+        .baseEmbed(message)
+        .setTitle("FlipCoin")
+        .setDescription(`${reply}`);
 
       message.channel.send(embed);
     } catch (err) {

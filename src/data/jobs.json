@@ -1,74 +1,74 @@
 [
-    {
-        "name": "Developer",
-        "amount": 500
-    },
-    {
-        "name": "Designer",
-        "amount": 400
-    },
-    {
-        "name": "Construction Worker",
-        "amount": 250
-    },
-    {
-        "name": "Chief",
-        "amount": 200
-    },
-    {
-        "name": "Mechanic",
-        "amount": 250
-    },
-    {
-        "name": "Content Creator",
-        "amount": 450
-    },
-    {
-        "name": "Artist",
-        "amount": 450
-    },
-    {
-        "name": "Painter",
-        "amount": 300
-    },
-    {
-        "name": "Truck Driver",
-        "amount": 350
-    },
-    {
-        "name": "Uber Driver",
-        "amount": 150
-    },
-    {
-        "name": "Project manager",
-        "amount": 400
-    },
-    {
-        "name": "Dentist",
-        "amount": 450
-    },
-    {
-        "name": "IT Manager",
-        "amount": 350
-    },
-    {
-        "name": "Nurse",
-        "amount": 350
-    },
-    {
-        "name": "Accountant",
-        "amount": 400
-    },
-    {
-        "name": "Lawyer",
-        "amount": 450
-    },
-    {
-        "name": "Game Developer",
-        "amount": 500
-    },
-    {
-        "name": "Data Scientist",
-        "amount": 650
-    }
+  {
+    "name": "Developer",
+    "amount": 500
+  },
+  {
+    "name": "Designer",
+    "amount": 400
+  },
+  {
+    "name": "Construction Worker",
+    "amount": 250
+  },
+  {
+    "name": "Chief",
+    "amount": 200
+  },
+  {
+    "name": "Mechanic",
+    "amount": 250
+  },
+  {
+    "name": "Content Creator",
+    "amount": 450
+  },
+  {
+    "name": "Artist",
+    "amount": 450
+  },
+  {
+    "name": "Painter",
+    "amount": 300
+  },
+  {
+    "name": "Truck Driver",
+    "amount": 350
+  },
+  {
+    "name": "Uber Driver",
+    "amount": 150
+  },
+  {
+    "name": "Project manager",
+    "amount": 400
+  },
+  {
+    "name": "Dentist",
+    "amount": 450
+  },
+  {
+    "name": "IT Manager",
+    "amount": 350
+  },
+  {
+    "name": "Nurse",
+    "amount": 350
+  },
+  {
+    "name": "Accountant",
+    "amount": 400
+  },
+  {
+    "name": "Lawyer",
+    "amount": 450
+  },
+  {
+    "name": "Game Developer",
+    "amount": 500
+  },
+  {
+    "name": "Data Scientist",
+    "amount": 650
+  }
 ]

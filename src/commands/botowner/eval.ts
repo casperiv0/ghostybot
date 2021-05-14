@@ -4,7 +4,13 @@ import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
 // eslint-disable-next-line quotes
-const classified = ["this.bot.config", "this.bot.token", "process.env", 'bot["token"]', "bot['token']"];
+const classified = [
+  "this.bot.config",
+  "this.bot.token",
+  "process.env",
+  'bot["token"]',
+  "bot['token']",
+];
 
 export default class EvalCommand extends Command {
   constructor(bot: Bot) {
