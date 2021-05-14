@@ -7,7 +7,7 @@ export default class StarboardNoEmptyMsgEvent extends Event {
     super(bot, "starboardNoEmptyMsg");
   }
 
-  async execute(bot: Bot, emoji: string, message: Message, user: User) {
+  async execute(bot: Bot, _: string, message: Message, user: User) {
     if (!message.guild?.available) return;
     if (!(message.channel as TextChannel).permissionsFor(message.guild.me!)?.has("SEND_MESSAGES"))
       return;

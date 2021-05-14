@@ -1,18 +1,4 @@
-import {
-  Guild,
-  GuildMember,
-  Message,
-  MessageEmbed,
-  TextChannel,
-  User as DiscordUser,
-  Webhook,
-  Util as DiscordUtil,
-  Role,
-  Snowflake,
-  PermissionObject,
-  Permissions,
-  Channel,
-} from "discord.js";
+import * as DJS from "discord.js";
 import dayJs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -176,7 +162,7 @@ export default class Util {
 
     const channelId = process.env["ERRORLOGS_CHANNEL_ID"];
     const channel = (this.bot.channels.cache.get(channelId ?? "") ||
-      (await this.bot.channels.fetch(channelId ?? ""))) as TextChannel;
+      (await this.bot.channels.fetch(channelId ?? ""))) as DJS.TextChannel;
 
     if (
       (process.env.NODE_ENV !== "production" && !channel) ||
@@ -213,14 +199,14 @@ export default class Util {
   }
 
   async findMember(
-    message: Partial<Message>,
+    message: Partial<DJS.Message>,
     args: string[],
     options?: { allowAuthor?: boolean; index?: number },
-  ): Promise<GuildMember | undefined | null> {
+  ): Promise<DJS.GuildMember | undefined | null> {
     if (!message.guild) return;
 
     try {
-      let member: GuildMember | null | undefined;
+      let member: DJS.GuildMember | null | undefined;
       const arg = args[options?.index ?? 0]?.replace?.(/[<@!>]/gi, "") || args[options?.index ?? 0];
 
       const mention = // Check if the first mention is not the bot prefix
@@ -234,7 +220,7 @@ export default class Util {
         message.guild.members.cache.find((m) => m.user.id === args[options?.index ?? 0]) ||
         (message.guild.members.cache.find(
           (m) => m.user.tag === args[options?.index ?? 0],
-        ) as GuildMember);
+        ) as DJS.GuildMember);
 
       if (!member) {
         member = await message.guild.members.fetch(arg)[0];
@@ -254,7 +240,7 @@ export default class Util {
     }
   }
 
-  async findRole(message: Message, arg: string): Promise<Role | null> {
+  async findRole(message: DJS.Message, arg: string): Promise<DJS.Role | null> {
     if (!message.guild) return null;
     return (
       message.mentions.roles.first() ||
@@ -277,19 +263,20 @@ export default class Util {
     const channel = this.bot.channels.cache.get(channelId);
     if (!channel) return;
     if (!this.bot.user) return;
-    if (!(channel as TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS")) return;
+    if (!(channel as DJS.TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS"))
+      return;
 
     if (oldChannelId) {
-      const webhooks = await (channel as TextChannel).fetchWebhooks();
+      const webhooks = await (channel as DJS.TextChannel).fetchWebhooks();
       webhooks.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
     }
 
-    await (channel as TextChannel).createWebhook(`audit-logs-${channelId}`, {
+    await (channel as DJS.TextChannel).createWebhook(`audit-logs-${channelId}`, {
       avatar: this.bot.user.displayAvatarURL({ format: "png" }),
     });
   }
 
-  async getWebhook(guild: Guild): Promise<Webhook | undefined> {
+  async getWebhook(guild: DJS.Guild): Promise<DJS.Webhook | undefined> {
     if (!guild) return;
     if (!guild.me) return;
     if (!guild.me.permissions.has("MANAGE_WEBHOOKS")) return undefined;
@@ -303,7 +290,7 @@ export default class Util {
     return webhook;
   }
 
-  async findOrCreateMutedRole(guild: Guild): Promise<Role | undefined> {
+  async findOrCreateMutedRole(guild: DJS.Guild): Promise<DJS.Role | undefined> {
     const dbGuild = await this.getGuildById(guild.id);
 
     return (
@@ -326,7 +313,7 @@ export default class Util {
       old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
     }
 
-    this.bot.starboardsManager.create(channel as unknown as Channel, {
+    this.bot.starboardsManager.create(channel as unknown as DJS.Channel, {
       ...options,
       selfStar: true,
       starEmbed: true,
@@ -346,9 +333,9 @@ export default class Util {
   }
 
   async updateMuteChannelPerms(
-    guild: Guild,
-    memberId: Snowflake,
-    perms: Partial<PermissionObject>,
+    guild: DJS.Guild,
+    memberId: DJS.Snowflake,
+    perms: Partial<DJS.PermissionObject>,
   ) {
     guild.channels.cache.forEach((channel) => {
       channel.updateOverwrite(memberId, perms).catch((e) => {
@@ -446,15 +433,15 @@ export default class Util {
     }
   }
 
-  errorEmbed(permissions: bigint[], message: Message, lang: Record<string, string>) {
+  errorEmbed(permissions: bigint[], message: DJS.Message, lang: Record<string, string>) {
     return this.baseEmbed(message)
       .setTitle("Woah!")
       .setDescription(
         `❌ I need ${permissions
           .map((p) => {
             const perms: string[] = [];
-            Object.keys(Permissions.FLAGS).map((key) => {
-              if (Permissions.FLAGS[key] === p) {
+            Object.keys(DJS.Permissions.FLAGS).map((key) => {
+              if (DJS.Permissions.FLAGS[key] === p) {
                 perms.push(`\`${lang?.[key]}\``);
               }
             });
@@ -466,10 +453,10 @@ export default class Util {
       .setColor("ORANGE");
   }
 
-  baseEmbed(message: Message | { author: DiscordUser | null }): MessageEmbed {
+  baseEmbed(message: DJS.Message | { author: DJS.User | null }): DJS.MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
 
-    return new MessageEmbed()
+    return new DJS.MessageEmbed()
       .setFooter(message.author?.username, avatar)
       .setColor("#5865f2")
       .setTimestamp();
@@ -477,8 +464,8 @@ export default class Util {
 
   parseMessage(
     message: string,
-    user: DiscordUser,
-    msg?: Message | { guild: Guild; author: DiscordUser },
+    user: DJS.User,
+    msg?: DJS.Message | { guild: DJS.Guild; author: DJS.User },
   ): string {
     return message
       .split(" ")
@@ -510,7 +497,7 @@ export default class Util {
   }
 
   escapeMarkdown(message: string): string {
-    return DiscordUtil.escapeMarkdown(message, {
+    return DJS.Util.escapeMarkdown(message, {
       codeBlock: true,
       spoiler: true,
       inlineCode: true,

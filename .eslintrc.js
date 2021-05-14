@@ -10,6 +10,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
+    "prettier",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -19,7 +20,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["@typescript-eslint", "jsx-a11y"],
+  plugins: ["@typescript-eslint", "jsx-a11y", "prettier", "react"],
   rules: {
     quotes: ["error", "double"],
     semi: ["error", "always"],
@@ -36,6 +37,8 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/no-onchange": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
   },
   settings: {
     react: {
