@@ -4,16 +4,16 @@ import Head from "next/head";
 import { Channel, Role } from "discord.js";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import fs from "fs";
 import AlertMessage from "../../../dashboard/components/AlertMessage";
 import timezones from "../../../data/timezones.json";
-import { useRouter } from "next/router";
 import Switch from "../../../dashboard/components/Switch";
 import Guild from "../../../interfaces/Guild";
-import Link from "next/link";
 
 export interface FieldItem {
-  type: "select" | "input" | "textarea";
+  type: "select" | "input" | "textarea" | "switch";
   id: string;
   label: string;
   onChange: ChangeEventHandler<any>;
@@ -108,6 +108,17 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
               message: e.target.value,
             })),
           label: "Welcome message",
+        },
+        {
+          type: "switch",
+          id: "welcome_ignore_bots",
+          value: `${welcomeData?.ignore_bots ?? false}`,
+          onChange: () =>
+            setWelcomeData((prev) => ({
+              ...prev,
+              ignore_bots: !prev.ignore_bots,
+            })),
+          label: "Ignore bots (this will not show a welcome message when a bot joins)",
         },
       ],
     },
@@ -282,6 +293,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
       ],
     },
   ];
+
   const mainFields = [
     {
       type: "select",
@@ -446,15 +458,19 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
                 {field.fields?.map((item, idx) => {
                   return (
                     <div className="form-group" key={`field-${idx}`}>
-                      <label htmlFor={item.id} className="form-label">
-                        {item.label}
-                      </label>
+                      {item.type !== "switch" ? (
+                        <label htmlFor={item.id} className="form-label">
+                          {item.label}
+                        </label>
+                      ) : null}
                       {item.type === "select" ? (
                         <SelectField item={item} />
                       ) : item.type === "textarea" ? (
                         <TextareaField item={item} />
-                      ) : (
+                      ) : item.type === "input" ? (
                         <InputField item={item} />
+                      ) : (
+                        <SwitchField item={item} />
                       )}
                     </div>
                   );
@@ -487,6 +503,16 @@ function SelectField({ item }: Item) {
         );
       })}
     </select>
+  );
+}
+
+function SwitchField({ item }: Item) {
+  return (
+    <div className="form-switch-container">
+      <label htmlFor={item.id}>{item.label}</label>
+
+      <Switch title="" checked={item.value === "true"} onChange={item.onChange} />
+    </div>
   );
 }
 

@@ -94,6 +94,13 @@ select:focus {
   border-color: var(--blue);
 }
 
+.form-switch-container label:first-child {
+  display: inline-block;
+  font-size: 1rem;
+  max-width: 85%;
+  margin-right: 1rem;
+}
+
 .alert-message {
   padding: 1rem;
   border-radius: var(--main-br);

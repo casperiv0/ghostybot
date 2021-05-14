@@ -82,6 +82,7 @@ export interface WelcomeData {
   channel_id: string | null;
   role_id: string | null;
   message: string | null;
+  ignore_bots: boolean;
 }
 
 export interface LevelData {
@@ -148,6 +149,7 @@ const guildSchema = new Schema({
       enabled: false,
       channel_id: null,
       role_id: null,
+      ignore_bots: false,
     },
   },
   leave_data: {

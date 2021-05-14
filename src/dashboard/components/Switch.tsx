@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FC } from "react";
 
 interface Props {
-  title: string;
+  title?: string;
   checked?: boolean;
   onChange?: ChangeEventHandler;
 }

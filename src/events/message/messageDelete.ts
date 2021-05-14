@@ -31,7 +31,7 @@ export default class MessageDeleteEvent extends Event {
             message.content ? `+ ${message.content}\`` : "`"
           } was deleted in ${message.channel}`,
         );
-      }
+      } else if (!message.content) return;
 
       webhook.send(embed);
     } catch (err) {
