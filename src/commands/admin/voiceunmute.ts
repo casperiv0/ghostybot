@@ -16,9 +16,9 @@ export default class VoiceUnMuteCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const unmuteMember = await bot.utils.findMember(message, args);
+      const unmuteMember = await this.bot.utils.findMember(message, args);
 
       if (!unmuteMember) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
@@ -37,7 +37,7 @@ export default class VoiceUnMuteCommand extends Command {
         lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -17,9 +17,9 @@ export default class RemoveRoleAllCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     if (!message.guild?.me) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const role = await bot.utils.findRole(message, args.join(" "));
+      const role = await this.bot.utils.findRole(message, args.join(" "));
 
       if (!role) {
         return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);
@@ -35,7 +35,7 @@ export default class RemoveRoleAllCommand extends Command {
 
       message.channel.send(lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

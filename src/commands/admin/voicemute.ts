@@ -16,10 +16,10 @@ export default class VoiceMuteCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const muteUser = await bot.utils.findMember(message, args);
+      const muteUser = await this.bot.utils.findMember(message, args);
       const muteReason = args.join(" ").slice(23);
 
       if (!muteUser) {
@@ -46,7 +46,7 @@ export default class VoiceMuteCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

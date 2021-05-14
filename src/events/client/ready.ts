@@ -4,6 +4,7 @@ import BotModel from "../../models/Bot.model";
 import HelperHandler from "../../modules/HelperHandler";
 import FeatureHandler from "../../modules/FeatureHandler";
 import InteractionHandler from "../../modules/InteractionHandler";
+import CommandHandler from "../../modules/CommandHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
@@ -26,6 +27,7 @@ export default class ReadyEvent extends Event {
     new HelperHandler(bot).loadHelpers();
     new FeatureHandler(bot).loadFeatures();
     new InteractionHandler(bot).loadInteractions();
+    new CommandHandler(bot).loadCommands();
 
     if (process.env["DEV_MODE"] === "true") {
       import("../../scripts/generateCommandList").then((v) => v.default(bot));

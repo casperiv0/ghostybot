@@ -18,10 +18,10 @@ export default class UnMuteCommand extends Command {
   async execute(bot: Bot, message: Message, args: string[]) {
     if (!message.guild?.me) return;
 
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const mutedMember = await bot.utils.findMember(message, args);
-      const mutedRole = await bot.utils.findOrCreateMutedRole(message.guild);
+      const mutedMember = await this.bot.utils.findMember(message, args);
+      const mutedRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
 
       if (!mutedRole) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -39,9 +39,9 @@ export default class UnMuteCommand extends Command {
         channel.permissionOverwrites.get(mutedMember.id)?.delete();
       });
 
-      const user = await bot.utils.getUserById(mutedMember.user.id, message.guild?.id);
+      const user = await this.bot.utils.getUserById(mutedMember.user.id, message.guild?.id);
       if (user?.mute?.muted) {
-        await bot.utils.updateUserById(mutedMember.user.id, message.guild?.id, {
+        await this.bot.utils.updateUserById(mutedMember.user.id, message.guild?.id, {
           mute: {
             reason: null,
             muted: false,
@@ -54,12 +54,12 @@ export default class UnMuteCommand extends Command {
       mutedMember.roles.remove(mutedRole);
       message.channel.send(lang.ADMIN.SUC_UNMUTE.replace("{mutedMemberTag}", mutedMember.user.tag));
 
-      bot.emit("guildMuteRemove", message.guild, {
+      this.bot.emit("guildMuteRemove", message.guild, {
         member: mutedMember,
         executor: message.author,
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

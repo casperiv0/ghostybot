@@ -4,7 +4,6 @@ import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
-import CommandHandler from "../modules/CommandHandler";
 import EventHandler from "../modules/EventHandler";
 
 import MongStarboardsManager from "../modules/StarboardsManager";
@@ -97,7 +96,7 @@ class Bot extends Client {
       },
     });
 
-    new CommandHandler(this).loadCommands();
+    // new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();
   }
 }

@@ -11,7 +11,7 @@ export default class SetCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     return message.channel.send(
       lang.ADMIN.SET_CMD.replace("{url}", `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`),

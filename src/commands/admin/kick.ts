@@ -14,9 +14,9 @@ export default class KickCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const kickMember = await bot.utils.findMember(message, args);
+      const kickMember = await this.bot.utils.findMember(message, args);
       let kickReason = args.slice(1).join(" ");
 
       if (!message.guild?.me) return;
@@ -52,13 +52,13 @@ export default class KickCommand extends Command {
         ),
       );
 
-      bot.emit("guildKickAdd", message.guild, {
+      this.bot.emit("guildKickAdd", message.guild, {
         member: kickMember,
         executor: message.author,
         reason: kickReason,
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

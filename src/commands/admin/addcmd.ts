@@ -15,20 +15,20 @@ export default class AddCmdCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const [cmdName, ...rest] = args;
       const cmdResponse = rest.join(" ");
 
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const commands = guild?.custom_commands;
 
       if (commands && commands.find((x) => x.name === cmdName.toLowerCase())) {
         return message.channel.send(lang.ADMIN.ADD_CMD_ALREADY_EXISTS);
       }
 
-      if (bot.commands.has(cmdName)) {
+      if (this.bot.commands.has(cmdName)) {
         return message.channel.send(lang.ADMIN.ADD_CMD_USED_BY_BOT);
       }
 
@@ -38,9 +38,9 @@ export default class AddCmdCommand extends Command {
       };
 
       if (!commands) {
-        await bot.utils.updateGuildById(message.guild?.id, { custom_commands: [data] });
+        await this.bot.utils.updateGuildById(message.guild?.id, { custom_commands: [data] });
       } else {
-        await bot.utils.updateGuildById(message.guild?.id, {
+        await this.bot.utils.updateGuildById(message.guild?.id, {
           custom_commands: [...commands, data],
         });
       }
@@ -49,7 +49,7 @@ export default class AddCmdCommand extends Command {
         lang.ADMIN.ADD_CMD_ADDED.replace("{name}", cmdName.toLowerCase()),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

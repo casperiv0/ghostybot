@@ -14,7 +14,7 @@ export default class AnnounceCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       if (!args[0])
@@ -22,7 +22,7 @@ export default class AnnounceCommand extends Command {
           lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL,
         );
 
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const announceChannel = guild?.announcement_channel;
       let channel = message.mentions.channels.first();
       let text: string;
@@ -36,16 +36,16 @@ export default class AnnounceCommand extends Command {
         return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
       }
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.ADMIN.ANNOUNCEMENT)
         .setDescription(text);
 
       (
-        bot.channels.cache.get(announceChannel ? announceChannel : channel!.id) as TextChannel
+        this.bot.channels.cache.get(announceChannel ? announceChannel : channel!.id) as TextChannel
       )?.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

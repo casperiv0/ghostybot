@@ -3,7 +3,7 @@ import { Message, MessageEmbed, MessageReaction, User } from "discord.js";
 
 // if a user reacts with this emoji, the pagination will end
 const END_EMOJI = "🛑";
-const EMOJIS = ["⏪", "◀", "▶", "⏩"];
+const EMOJIS = ["⏪", "◀️", "▶️", "⏩"];
 
 async function paginate(message: Message, embeds: MessageEmbed[]) {
   let page = 0;
@@ -12,20 +12,24 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`),
   );
 
-  EMOJIS.forEach((emoji) => {
-    currentPage.react(emoji);
-  });
-  currentPage.react(END_EMOJI);
+  await currentPage.react(EMOJIS[0]);
+  await currentPage.react(EMOJIS[1]);
+  await currentPage.react(END_EMOJI);
+  await currentPage.react(EMOJIS[2]);
+  await currentPage.react(EMOJIS[3]);
 
   const filter = (reaction: MessageReaction, user: User) => {
-    if (!reaction.emoji.name) return false;
-    return [...EMOJIS, END_EMOJI].includes(reaction.emoji.name) && !user.bot;
+    console.log(reaction.emoji);
+
+    return (
+      (EMOJIS.includes(reaction.emoji.name!) || reaction.emoji.name === END_EMOJI) && !user.bot
+    );
   };
 
   // Time out after 5minutes
-  const collector = currentPage.createReactionCollector(filter, { time: 60 * 60 * 5 * 1000 });
+  const collector = currentPage.createReactionCollector(filter, { time: 120000 });
 
-  collector.on("collect", (reaction) => {
+  collector.on("collect", async (reaction) => {
     reaction.users.remove(message.author).catch(() => null);
 
     switch (reaction.emoji.name) {

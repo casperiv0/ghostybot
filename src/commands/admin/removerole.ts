@@ -17,10 +17,10 @@ export default class RemoveRoleCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     if (!message.guild?.me) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const needsRole = await bot.utils.findMember(message, args);
-      const role = await bot.utils.findRole(message, args[1]);
+      const needsRole = await this.bot.utils.findMember(message, args);
+      const role = await this.bot.utils.findRole(message, args[1]);
 
       if (!needsRole) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
@@ -55,7 +55,7 @@ export default class RemoveRoleCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

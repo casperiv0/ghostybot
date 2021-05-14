@@ -18,14 +18,14 @@ export default class TempMuteCommand extends Command {
 
   async execute(bot: Bot, message: Message, args: string[]) {
     if (!message.guild?.me) return;
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const muteMember = await bot.utils.findMember(message, args);
+      const muteMember = await this.bot.utils.findMember(message, args);
 
       const [, time, ...rest] = args;
       const reason = rest.join(" ") || "N/A";
 
-      const muteRole = await bot.utils.findOrCreateMutedRole(message.guild);
+      const muteRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
       if (!muteRole) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
@@ -42,14 +42,14 @@ export default class TempMuteCommand extends Command {
         return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
       }
 
-      bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
+      this.bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
         SEND_MESSAGES: false,
         ADD_REACTIONS: false,
         CONNECT: false,
       });
 
       muteMember.roles.add(muteRole);
-      await bot.utils.updateUserById(muteMember.user.id, message.guild?.id, {
+      await this.bot.utils.updateUserById(muteMember.user.id, message.guild?.id, {
         mute: {
           muted: true,
           ends_at: Date.now() + ms(time),
@@ -70,7 +70,7 @@ export default class TempMuteCommand extends Command {
           .replace("{reason}", reason),
       );
 
-      bot.emit("guildMuteAdd", message.guild, {
+      this.bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
         executor: message.author,
         tempMute: true,
@@ -78,7 +78,7 @@ export default class TempMuteCommand extends Command {
         time,
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

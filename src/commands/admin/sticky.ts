@@ -15,7 +15,7 @@ export default class StickyCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const stickyMsg = args.join(" ");
 
@@ -29,9 +29,9 @@ export default class StickyCommand extends Command {
 
       const stickyMessage = await message.channel.send(msg);
 
-      await bot.utils.addSticky(stickyMessage.id, message.channel.id, msg);
+      await this.bot.utils.addSticky(stickyMessage.id, message.channel.id, msg);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

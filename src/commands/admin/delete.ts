@@ -17,7 +17,7 @@ export default class DeleteCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     let amount = +args[0];
 
     if (isNaN(amount) || amount > 100) {

@@ -13,10 +13,10 @@ export default class PrefixCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [prefix] = args;
     try {
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
 
       if (!prefix)
         return message.channel.send(
@@ -26,11 +26,11 @@ export default class PrefixCommand extends Command {
           ),
         );
 
-      await bot.utils.updateGuildById(message.guild?.id, { prefix });
+      await this.bot.utils.updateGuildById(message.guild?.id, { prefix });
 
       message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -18,11 +18,11 @@ export default class DisableCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [option] = args;
 
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
 
       if (!guild) {
         return message.channel.send(lang.GLOBAL.ERROR);
@@ -37,7 +37,7 @@ export default class DisableCommand extends Command {
       }
 
       const command =
-        bot.commands.get(option.toLowerCase()) || bot.commands.get(bot.aliases.get(option)!);
+        this.bot.commands.get(option.toLowerCase()) || this.bot.commands.get(this.bot.aliases.get(option)!);
 
       if (!command) {
         // Disable category
@@ -54,11 +54,11 @@ export default class DisableCommand extends Command {
           return message.channel.send(lang.ADMIN.CATEGORY_ALREADY_DISABLED);
         }
 
-        await bot.utils.updateGuildById(message.guild?.id, {
+        await this.bot.utils.updateGuildById(message.guild?.id, {
           disabled_categories: [...guild.disabled_categories, category],
         });
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.ADMIN.DISABLED_CATEGORY)
           .setDescription(lang.ADMIN.CATEGORY_DISABLED.replace("{category}", category));
@@ -74,11 +74,11 @@ export default class DisableCommand extends Command {
           return message.channel.send(lang.ADMIN.COMMAND_ALREADY_DISABLED);
         }
 
-        await bot.utils.updateGuildById(message.guild?.id, {
+        await this.bot.utils.updateGuildById(message.guild?.id, {
           disabled_commands: [...guild.disabled_commands, command.name],
         });
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.ADMIN.DISABLED_COMMAND)
           .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
@@ -86,7 +86,7 @@ export default class DisableCommand extends Command {
         return message.channel.send(embed);
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

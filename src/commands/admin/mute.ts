@@ -15,10 +15,10 @@ export default class MuteCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const muteMember = await bot.utils.findMember(message, args);
-      const guild = await bot.utils.getGuildById(message.guild?.id);
+      const muteMember = await this.bot.utils.findMember(message, args);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
       let muteReason = args.slice(1).join(" ");
 
       if (!muteReason) muteReason = lang.GLOBAL.NOT_SPECIFIED;
@@ -26,9 +26,9 @@ export default class MuteCommand extends Command {
 
       const muted_role =
         !guild?.muted_role_id || guild?.muted_role_id === "Disabled"
-          ? await bot.utils.findOrCreateMutedRole(message.guild)
+          ? await this.bot.utils.findOrCreateMutedRole(message.guild)
           : message.guild.roles.cache.find((r) => r.id === guild?.muted_role_id) ||
-            (await bot.utils.findOrCreateMutedRole(message.guild));
+            (await this.bot.utils.findOrCreateMutedRole(message.guild));
 
       if (!muteMember) {
         return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
@@ -47,8 +47,8 @@ export default class MuteCommand extends Command {
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", muteMember.user.tag),
         );
 
-      const muteRole = await bot.utils.findOrCreateMutedRole(message.guild);
-      bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
+      const muteRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
+      this.bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
         SEND_MESSAGES: false,
         ADD_REACTIONS: false,
         CONNECT: false,
@@ -69,14 +69,14 @@ export default class MuteCommand extends Command {
         ),
       );
 
-      bot.emit("guildMuteAdd", message.guild, {
+      this.bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
         executor: message.author,
         tempMute: false,
         reason: muteReason,
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

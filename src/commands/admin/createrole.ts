@@ -16,7 +16,7 @@ export default class CreateRoleCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [roleName] = args;
 
@@ -25,14 +25,14 @@ export default class CreateRoleCommand extends Command {
         color: "BLUE",
       });
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${roleName}`)
         .setDescription(lang.ADMIN.CREATED_ROLE_ADDED);
 
       message.channel.send(embed);
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

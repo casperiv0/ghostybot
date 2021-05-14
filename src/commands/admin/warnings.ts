@@ -14,16 +14,16 @@ export default class WarningsCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const guild = await bot.utils.getGuildById(message.guild?.id);
-      const member = await bot.utils.findMember(message, args);
+      const guild = await this.bot.utils.getGuildById(message.guild?.id);
+      const member = await this.bot.utils.findMember(message, args);
 
       if (!member) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
       }
 
-      const warnings = await bot.utils.getUserWarnings(member!.user.id, message.guild?.id);
+      const warnings = await this.bot.utils.getUserWarnings(member!.user.id, message.guild?.id);
       const prefix = guild?.prefix;
       const warningNr = Number(args[1]);
 
@@ -35,10 +35,10 @@ export default class WarningsCommand extends Command {
         return message.channel.send(lang.MEMBER.BOT_DATA);
       }
 
-      const embed = bot.utils.baseEmbed(message);
+      const embed = this.bot.utils.baseEmbed(message);
 
       if (warningNr) {
-        const warning = warnings?.filter((w, idx) => idx === warningNr - 1)[0];
+        const warning = warnings?.filter((_, idx) => idx === warningNr - 1)[0];
 
         if (!warning) {
           return message.channel.send(
@@ -63,7 +63,7 @@ export default class WarningsCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

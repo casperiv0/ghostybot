@@ -13,12 +13,12 @@ export default class ConfigCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       if (!message.guild) return;
 
       const { name, id: guildId } = message.guild;
-      const guild = await bot.utils.getGuildById(guildId);
+      const guild = await this.bot.utils.getGuildById(guildId);
 
       const prefix = guild?.prefix;
       const announceCh = guild?.announcement_channel;
@@ -27,7 +27,7 @@ export default class ConfigCommand extends Command {
       const leaveCh = guild?.leave_data?.channel_id;
       const levelMsgs = guild?.level_data?.enabled;
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.ADMIN.GUILD_CONFIG.replace("{guildName}", name))
         .addField(lang.GUILD.PREFIX, prefix)
@@ -39,7 +39,7 @@ export default class ConfigCommand extends Command {
 
       message.channel.send({ embed });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

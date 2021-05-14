@@ -15,7 +15,7 @@ export default class NukeCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const channel = message.channel as TextChannel;
 
@@ -47,7 +47,7 @@ export default class NukeCommand extends Command {
         }
       });
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

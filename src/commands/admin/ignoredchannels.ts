@@ -17,14 +17,14 @@ export default class IgnoredChannelsCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       const guildId = message.guild?.id;
       const option = args[0];
       const item = message.mentions.channels.first() || message.channel;
 
-      const guild = await bot.utils.getGuildById(guildId);
+      const guild = await this.bot.utils.getGuildById(guildId);
       if (!guild) {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
@@ -41,7 +41,7 @@ export default class IgnoredChannelsCommand extends Command {
             return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_IGNORED);
           }
 
-          await bot.utils.updateGuildById(guildId, {
+          await this.bot.utils.updateGuildById(guildId, {
             ignored_channels: [...ignoredChannels, item.id],
           });
 
@@ -52,7 +52,7 @@ export default class IgnoredChannelsCommand extends Command {
             return message.channel.send(lang.ADMIN.CHANNEL_NOT_IGNORED);
           }
 
-          await bot.utils.updateGuildById(guildId, {
+          await this.bot.utils.updateGuildById(guildId, {
             ignored_channels: ignoredChannels?.filter((ci) => ci !== item.id),
           });
 
@@ -61,7 +61,7 @@ export default class IgnoredChannelsCommand extends Command {
           return message.channel.send(lang.ADMIN.NOT_A_OPTION.replace("{option}", option));
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

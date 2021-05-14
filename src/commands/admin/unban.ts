@@ -15,7 +15,7 @@ export default class UnBanCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [userId] = args;
 
@@ -29,7 +29,7 @@ export default class UnBanCommand extends Command {
         lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

@@ -17,7 +17,7 @@ export default class StealEmojiCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [emoji] = args;
     const name = args.slice(1).join(" ");
 
@@ -25,7 +25,7 @@ export default class StealEmojiCommand extends Command {
       if (emoji.startsWith("https://cdn.discordapp.com")) {
         await message.guild?.emojis.create(emoji, name || lang.ADMIN.GIVE_NAME);
 
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(`${lang.ADMIN.EMOJI_ADDED_NAME} ${name || lang.ADMIN.GIVE_NAME}`);
@@ -40,7 +40,7 @@ export default class StealEmojiCommand extends Command {
         }`;
 
         await message.guild?.emojis.create(`${link}`, `${name || `${customEmoji.name}`}`);
-        const embed = bot.utils
+        const embed = this.bot.utils
           .baseEmbed(message)
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(

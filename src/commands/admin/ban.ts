@@ -16,9 +16,9 @@ export default class BanCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const banMember = await bot.utils.findMember(message, args);
+      const banMember = await this.bot.utils.findMember(message, args);
       let banReason = args.slice(1).join(" ");
       if (!message.guild?.me) return;
 
@@ -60,7 +60,7 @@ export default class BanCommand extends Command {
         ),
       );
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

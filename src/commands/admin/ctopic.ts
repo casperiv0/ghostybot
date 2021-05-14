@@ -15,7 +15,7 @@ export default class CTopicCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
       let channel: TextChannel = message.mentions.channels.first() as TextChannel;
@@ -35,7 +35,7 @@ export default class CTopicCommand extends Command {
       await channel.setTopic(topic);
       await message.channel.send(lang.ADMIN.C_TOPIC_ADDED.replace("{topic}", topic));
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }

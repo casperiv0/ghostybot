@@ -17,11 +17,11 @@ export default class BlacklistedWordsCommand extends Command {
   }
 
   async execute(bot: Bot, message: Message, args: string[]) {
-    const lang = await bot.utils.getGuildLang(message.guild?.id);
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [option, item] = args;
       const guildId = message.guild?.id;
-      const guild = await bot.utils.getGuildById(guildId);
+      const guild = await this.bot.utils.getGuildById(guildId);
       const blacklistWords = guild?.blacklistedwords;
 
       if (!guild) {
@@ -36,11 +36,11 @@ export default class BlacklistedWordsCommand extends Command {
             );
           }
           if (blacklistWords === null || !blacklistWords) {
-            bot.utils.updateGuildById(guildId, {
+            this.bot.utils.updateGuildById(guildId, {
               blacklistedwords: [...guild.blacklistedwords, item],
             });
           } else {
-            bot.utils.updateGuildById(guildId, {
+            this.bot.utils.updateGuildById(guildId, {
               blacklistedwords: [item],
             });
           }
@@ -57,7 +57,7 @@ export default class BlacklistedWordsCommand extends Command {
 
             const words = blacklistWords?.filter((w) => w.toLowerCase() !== item.toLowerCase());
 
-            bot.utils.updateGuildById(guildId, { blacklistedwords: words });
+            this.bot.utils.updateGuildById(guildId, { blacklistedwords: words });
 
             return message.channel.send(lang.ADMIN.BLACKLISTED_REMOVED.replace("{item}", item));
           } else {
@@ -74,7 +74,7 @@ export default class BlacklistedWordsCommand extends Command {
         }
       }
     } catch (err) {
-      bot.utils.sendErrorLog(err, "error");
+      this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
