@@ -8,7 +8,7 @@
   },
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
-    "start:ts": "ts-node src/index.ts",
+    "start:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "start": "tsc && BUILD_PATH=true DEV_MODE=false node ./dist/src/index.js",
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "build": "next build && next-sitemap",
