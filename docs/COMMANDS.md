@@ -2321,8 +2321,7 @@ Click any of the command names for more information
 
 **Description:** Ends a giveaway
 
-**Usage:** `givend <messageId> 
- **Example:** !giveaway end <messageId>`
+**Usage:** `givend <messageId> **Example:** !giveaway end <messageId>`
 
 **Aliases:** `gend`
 
@@ -2358,8 +2357,7 @@ Click any of the command names for more information
 
 **Description:** Starts a giveaway
 
-**Usage:** `<time> <winner count> <price>
- **Example:** !givstart 2d 10 Discord nitro`
+**Usage:** `<time> <winner count> <price> **Example:** !givstart 2d 10 Discord nitro`
 
 **Aliases:** `gstart`
 
@@ -3117,7 +3115,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** 
+**Aliases:**
 
 **Member Permissions:** None
 
@@ -4206,4 +4204,3 @@ Click any of the command names for more information
 **Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
-
