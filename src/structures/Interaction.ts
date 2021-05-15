@@ -25,7 +25,6 @@ export default class Interaction {
    * @returns {any}
    */
   async execute(
-    bot: Bot,
     message: DiscordInteraction,
     args: (string | number | boolean | undefined)[],
   ): Promise<any> {}

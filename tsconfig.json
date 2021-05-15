@@ -38,6 +38,6 @@
       "@scripts/*": ["./src/scripts/*"]
     }
   },
-  "exclude": ["node_modules", ".next", ".vscode", ".github"],
+  "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
 }

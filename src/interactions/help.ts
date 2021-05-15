@@ -19,14 +19,10 @@ export default class HelpInteraction extends Interaction {
     });
   }
 
-  async execute(
-    bot: Bot,
-    interaction: CommandInteraction,
-    args: (string | number | boolean | undefined)[],
-  ) {
+  async execute(interaction: CommandInteraction, args: (string | number | boolean | undefined)[]) {
     const arg = `${args[0]}`;
-    const command = bot.commands.get(arg) ?? bot.commands.get(bot.aliases.get(arg)!);
-    const lang = await bot.utils.getGuildLang(interaction.guild?.id);
+    const command = this.bot.commands.get(arg) ?? this.bot.commands.get(this.bot.aliases.get(arg)!);
+    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (!command) {
       return interaction.reply(lang.HELP.CMD_NOT_FOUND);
@@ -38,12 +34,12 @@ export default class HelpInteraction extends Interaction {
         ? command.options.options.map((option) => option)
         : lang.GLOBAL.NONE;
       const cooldown = command.options.cooldown ? `${command.options.cooldown}s` : "3s";
-      const guild = await bot.utils.getGuildById(interaction.guild?.id);
+      const guild = await this.bot.utils.getGuildById(interaction.guild?.id);
       const prefix = guild?.prefix;
       const memberPerms = getMemberPermissions(command, lang);
       const botPerms = getBotPermissions(command, lang);
 
-      const embed = bot.utils
+      const embed = this.bot.utils
         .baseEmbed({
           author: interaction.user,
         })

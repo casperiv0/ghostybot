@@ -10,7 +10,7 @@ export default class PingInteraction extends Interaction {
     });
   }
 
-  async execute(bot: Bot, interaction: CommandInteraction) {
-    interaction.reply(`My ping is ${Math.round(bot.ws.ping)}`);
+  async execute(interaction: CommandInteraction) {
+    interaction.reply(`My ping is ${Math.round(this.bot.ws.ping)} ms`);
   }
 }
