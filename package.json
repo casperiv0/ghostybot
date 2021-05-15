@@ -11,7 +11,8 @@
     "start:ts": "ts-node src/index.ts",
     "start": "tsc && BUILD_PATH=true DEV_MODE=false node ./dist/src/index.js",
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
-    "build": "next build && next-sitemap"
+    "build": "next build && next-sitemap",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -106,13 +107,5 @@
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.4",
     "zlib-sync": "^0.1.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.*": "npm run format"
   }
 }

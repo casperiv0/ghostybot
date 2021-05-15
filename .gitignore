@@ -12,3 +12,5 @@ dist/
 public/*.js
 public/*.map
 descriptions_data.json
+
+.husky/_
