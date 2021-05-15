@@ -26,7 +26,8 @@ module.exports = {
     semi: ["error", "always"],
     "no-multi-spaces": ["error"],
     eqeqeq: ["warn", "always"],
-    "no-unused-vars": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "no-duplicate-case": ["error"],
     "no-extra-semi": ["error"],
     "no-unreachable": ["error"],
@@ -39,6 +40,7 @@ module.exports = {
     "jsx-a11y/no-onchange": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
   },
   settings: {
     react: {

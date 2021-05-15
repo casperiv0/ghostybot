@@ -1,6 +1,4 @@
-import { FC } from "react";
-
-export const XIcon: FC = () => {
+export const XIcon: React.FC = () => {
   return (
     <svg
       width="1em"
@@ -18,7 +16,7 @@ export const XIcon: FC = () => {
   );
 };
 
-export const Warning: FC = () => {
+export const Warning: React.FC = () => {
   return (
     <svg
       width="1em"
@@ -37,7 +35,7 @@ export const Warning: FC = () => {
   );
 };
 
-export const Check: FC = () => {
+export const Check: React.FC = () => {
   return (
     <svg
       width="1em"

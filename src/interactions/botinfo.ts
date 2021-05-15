@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { CommandInteraction, ApplicationCommandOptionChoice } from "discord.js";
+import { CommandInteraction, ApplicationCommandOptionChoice, version } from "discord.js";
 import Bot from "structures/Bot";
 import Interaction from "structures/Interaction";
 
 interface Choices extends ApplicationCommandOptionChoice {
-  // eslint-disable-next-line no-unused-vars
-  return: (bot: Bot, lang: any) => string;
+  return: (bot: Bot, lang: typeof import("@locales/english").default) => string;
 }
 
 const choices: Choices[] = [
@@ -35,8 +33,8 @@ const choices: Choices[] = [
   {
     name: "Command count",
     value: "command-count",
-    return: (bot, lang) => {
-      return `${bot.utils.formatNumber(bot.commands.size)} ${lang.BOT.CHANNELS}`;
+    return: (bot) => {
+      return `${bot.utils.formatNumber(bot.commands.size)} Commands`;
     },
   },
   {
@@ -50,6 +48,11 @@ const choices: Choices[] = [
     name: "Nodejs version",
     value: "uptime",
     return: () => process.version,
+  },
+  {
+    name: "Discord.js version",
+    value: "djs-version",
+    return: () => version,
   },
 ];
 

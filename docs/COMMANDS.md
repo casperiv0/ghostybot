@@ -559,7 +559,7 @@ Click any of the command names for more information
 
 **Usage:** `<member> <role>`
 
-**Aliases:** `ar`,`arole`,`giverole`
+**Aliases:** `ar`, `arole`, `giverole`
 
 **Member Permissions:** SEND_MESSAGES, MANAGE_ROLES, ADMINISTRATOR
 
@@ -577,7 +577,7 @@ Click any of the command names for more information
 
 **Usage:** `<role>`
 
-**Aliases:** `arall`,`aroleall`,`giveroleall`
+**Aliases:** `arall`, `aroleall`, `giveroleall`
 
 **Member Permissions:** MANAGE_ROLES, ADMINISTRATOR
 
@@ -631,7 +631,7 @@ Click any of the command names for more information
 
 **Usage:** `<option> [word]`
 
-**Aliases:** `wordsfilter`,`filterwords`,`blacklistedword`
+**Aliases:** `wordsfilter`, `filterwords`, `blacklistedword`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -649,7 +649,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `conf`,`cfg`
+**Aliases:** `conf`, `cfg`
 
 **Member Permissions:** None
 
@@ -739,7 +739,7 @@ Click any of the command names for more information
 
 **Usage:** `<1-100>`
 
-**Aliases:** `purge`,`clear`
+**Aliases:** `purge`, `clear`
 
 **Member Permissions:** MANAGE_MESSAGES
 
@@ -793,7 +793,7 @@ Click any of the command names for more information
 
 **Usage:** `<option> <channel>`
 
-**Aliases:** `igch`,`ic`
+**Aliases:** `igch`, `ic`
 
 **Member Permissions:** ADMINISTRATOR
 
@@ -901,7 +901,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `rr`,`rrole`,`takerole`
+**Aliases:** `rr`, `rrole`, `takerole`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -919,7 +919,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `rrall`,`rroleall`,`takeroleall`
+**Aliases:** `rrall`, `rroleall`, `takeroleall`
 
 **Member Permissions:** MANAGE_ROLES
 
@@ -2287,7 +2287,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `ttt`,`tttoe`
+**Aliases:** `ttt`, `tttoe`
 
 **Member Permissions:** None
 
@@ -2881,7 +2881,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `lvl`,`rank`
+**Aliases:** `lvl`, `rank`
 
 **Member Permissions:** None
 
@@ -3043,7 +3043,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `np`,`currentsong`
+**Aliases:** `np`, `currentsong`
 
 **Member Permissions:** None
 
@@ -3115,7 +3115,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:**
+**Aliases:** N/A
 
 **Member Permissions:** None
 
@@ -3187,7 +3187,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `s`,`sk`
+**Aliases:** `s`, `sk`
 
 **Member Permissions:** None
 
@@ -3259,7 +3259,7 @@ Click any of the command names for more information
 
 **Usage:** `<message_id>`
 
-**Aliases:** `rrdel`,`rrr`,`rrdelete`
+**Aliases:** `rrdel`, `rrr`, `rrdelete`
 
 **Member Permissions:** None
 
@@ -3331,7 +3331,7 @@ Click any of the command names for more information
 
 **Usage:** `<time> <message>`
 
-**Aliases:** `addreminder`,`remind`,`remindme`
+**Aliases:** `addreminder`, `remind`, `remindme`
 
 **Member Permissions:** None
 
@@ -3385,7 +3385,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `setafk`,`makemeafk`
+**Aliases:** `setafk`, `makemeafk`
 
 **Member Permissions:** None
 
@@ -3439,7 +3439,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `bot`,`ping`
+**Aliases:** `bot`, `ping`
 
 **Member Permissions:** None
 
@@ -3709,7 +3709,7 @@ Click any of the command names for more information
 
 **Usage:** `<category name | command name>`
 
-**Aliases:** `h`,`info`,`commands`
+**Aliases:** `h`, `info`, `commands`
 
 **Member Permissions:** None
 
@@ -4033,7 +4033,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `guild`,`server`
+**Aliases:** `guild`, `server`
 
 **Member Permissions:** None
 
@@ -4123,7 +4123,7 @@ Click any of the command names for more information
 
 **Usage:** `<user>`
 
-**Aliases:** `whois`,`user`,`u`
+**Aliases:** `whois`, `user`, `u`
 
 **Member Permissions:** None
 
@@ -4177,7 +4177,7 @@ Click any of the command names for more information
 
 **Usage:** `<url EG: https://google.com >`
 
-**Aliases:** `screenshot`,`webscreenshot`
+**Aliases:** `screenshot`, `webscreenshot`
 
 **Member Permissions:** None
 
@@ -4195,7 +4195,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `wikipediasearch`,`wikipedia`
+**Aliases:** `wikipediasearch`, `wikipedia`
 
 **Member Permissions:** None
 

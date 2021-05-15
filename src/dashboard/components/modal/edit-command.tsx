@@ -1,4 +1,4 @@
-import { FC, FormEvent, useCallback, useEffect, useState } from "react";
+import * as React from "react";
 import Modal, { closeModal, openModal } from "./index";
 import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
@@ -28,13 +28,13 @@ async function getCommand(guildId: string, name: string): Promise<CustomCommand 
   }
 }
 
-const EditCommandModal: FC<Props> = ({ guild }: Props) => {
-  const [name, setName] = useState("");
-  const [cmdRes, setCmdRes] = useState("");
-  const [response, setResponse] = useState<{ error: string } | null>(null);
+const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
+  const [name, setName] = React.useState("");
+  const [cmdRes, setCmdRes] = React.useState("");
+  const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  const setCommandData = useCallback(async () => {
+  const setCommandData = React.useCallback(async () => {
     const command = await getCommand(`${router.query?.id}`, `${router.query.edit}`);
     if (!command) return;
 
@@ -43,11 +43,11 @@ const EditCommandModal: FC<Props> = ({ guild }: Props) => {
     setCmdRes(command.response);
   }, [router.query]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setCommandData();
   }, [setCommandData]);
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {

@@ -1,10 +1,8 @@
-import { FC } from "react";
-
 interface Props {
   full: boolean;
 }
 
-const Loader: FC<Props> = ({ full }: Props) => {
+const Loader: React.FC<Props> = ({ full }: Props) => {
   return (
     <div className={full ? "full" : ""}>
       <div className="loader"></div>

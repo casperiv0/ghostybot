@@ -1,14 +1,13 @@
-import { FC, ReactNode, useEffect } from "react";
+import * as React from "react";
 import { XIcon } from "../icons";
 
 interface Props {
   title: string;
   id: string;
-  children: ReactNode;
 }
 
-const Modal: FC<Props> = ({ title, id, children }: Props) => {
-  useEffect(() => {
+const Modal: React.FC<Props> = ({ title, id, children }) => {
+  React.useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeModal(id);

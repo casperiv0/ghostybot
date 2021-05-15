@@ -6,10 +6,10 @@ P.Promise.config({
   warnings: true,
 });
 
-import "./utils/checkValid";
-require("./utils/database");
+import "@utils/checkValid";
+import "@utils/database";
 import logs from "discord-logs";
-import Bot from "./structures/Bot";
+import Bot from "structures/Bot";
 
 const bot = new Bot();
 logs(bot);

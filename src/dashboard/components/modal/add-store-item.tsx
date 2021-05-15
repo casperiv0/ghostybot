@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import * as React from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
@@ -9,13 +9,13 @@ interface Props {
   guild: Guild;
 }
 
-const AddStoreItem: FC<Props> = ({ guild }: Props) => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [response, setResponse] = useState<{ error: string } | null>(null);
+const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
+  const [name, setName] = React.useState("");
+  const [price, setPrice] = React.useState("");
+  const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {

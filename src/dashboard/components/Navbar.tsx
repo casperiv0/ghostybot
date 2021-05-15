@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import * as React from "react";
 import { parseCookies } from "nookies";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,10 +13,10 @@ export interface User {
 
 const Navbar = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = React.useState<User | null>(null);
 
-  const fetchAuth = useCallback(async () => {
+  const fetchAuth = React.useCallback(async () => {
     const cookies = parseCookies();
     const data = await (
       await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/auth`, {
@@ -36,7 +36,7 @@ const Navbar = () => {
     setUser(data.user);
   }, [router]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchAuth();
   }, [fetchAuth]);
 

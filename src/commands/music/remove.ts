@@ -8,7 +8,6 @@ export default class RemoveCommand extends Command {
       name: "remove",
       description: "Remove a song from the queue",
       category: "music",
-      aliases: [],
       requiredArgs: [{ name: "track-number", type: "number" }],
     });
   }

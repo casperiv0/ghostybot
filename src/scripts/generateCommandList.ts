@@ -67,9 +67,11 @@ function commandItem(command: Command) {
 **Usage:** ${`\`${command.options.usage || "N/A"}\``}
 
 **Aliases:** ${
-    command.options.aliases?.map((value) => {
-      return `\`${value}\``;
-    }) || "N/A"
+    command.options.aliases
+      ?.map((value) => {
+        return `\`${value}\``;
+      })
+      .join(", ") || "N/A"
   }
 
 **Member Permissions:** ${
@@ -145,8 +147,7 @@ ${createCategoryList()}
 ${notDetailedCommandList}
 ## Detailed command list
 
-${detailedCommandList}
-`;
+${detailedCommandList}`;
 
   fs.writeFileSync(TARGET_FILE, DEFAULT);
 }

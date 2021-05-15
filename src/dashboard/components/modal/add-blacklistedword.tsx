@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import * as React from "react";
 import Modal, { closeModal } from "./index";
 import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
@@ -9,12 +9,12 @@ interface Props {
   guild: Guild;
 }
 
-const AddBlacklistedWord: FC<Props> = ({ guild }: Props) => {
-  const [word, setWord] = useState("");
-  const [response, setResponse] = useState<{ error: string } | null>(null);
+const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
+  const [word, setWord] = React.useState("");
+  const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {
