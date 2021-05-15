@@ -11,6 +11,7 @@ import AlertMessage from "@components/AlertMessage";
 import timezones from "data/timezones.json";
 import Switch from "@components/Switch";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
@@ -415,6 +416,10 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     }
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (serverError) {
     return <AlertMessage type="error" message={serverError} />;
   }
@@ -573,9 +578,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      guild: data?.guild || {},
+      guild: data?.guild ?? {},
       isAuth: data.error !== "invalid_token",
-      error: data?.error || null,
+      error: data?.error ?? null,
       languages: langs,
     },
   };

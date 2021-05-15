@@ -1,3 +1,4 @@
+import * as React from "react";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { useEffect, useState, FC } from "react";
@@ -11,15 +12,18 @@ import CreateCommandModal from "@components/modal/create-command";
 import EditCommandModal from "@components/modal/edit-command";
 import AlertMessage from "@components/AlertMessage";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
+import { CustomCommand } from "@/src/models/Guild.model";
 
 interface Props {
-  guild: Guild;
+  guild: Guild | null;
   isAuth: boolean;
   error: string | undefined;
 }
 
 const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = useState<string | null>(null);
+  const [commands, setCommands] = React.useState<CustomCommand[]>(guild?.custom_commands ?? []);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,16 +34,15 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
   }, [router, isAuth]);
 
   useEffect(() => {
-    const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
-  }, [router]);
+    setCommands(guild?.custom_commands ?? []);
+  }, [guild?.custom_commands]);
 
   async function deleteCommand(name: string) {
     try {
       const data = await (
         await fetch(
           `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
-            guild.id
+            guild?.id
           }/commands?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
@@ -48,7 +51,9 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
       ).json();
 
       if (data.status === "success") {
-        router.push(`/dashboard/${guild.id}/commands?message=${data.message}`);
+        setMessage(data.message);
+        setCommands((prev) => prev.filter((v) => v.name.toLowerCase() !== name.toLowerCase()));
+        return;
       }
 
       setMessage(data?.error);
@@ -63,15 +68,23 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
 
   function handleEdit(name: string) {
     router.push({
-      pathname: `/dashboard/${guild.guild_id}/commands`,
+      pathname: `/dashboard/${guild?.guild_id}/commands`,
       query: {
         edit: name,
       },
     });
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -97,7 +110,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
         </div>
       </div>
 
-      {guild?.custom_commands?.length > 0 ? (
+      {commands?.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -107,7 +120,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {guild?.custom_commands?.map((cmd, idx) => {
+            {commands?.map((cmd, idx) => {
               return (
                 <tr key={idx}>
                   <td>{cmd.name}</td>
@@ -126,7 +139,7 @@ const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
           </tbody>
         </table>
       ) : (
-        <p>This guid does not have any custom commands yet</p>
+        <p>This guild does not have any custom commands yet</p>
       )}
     </>
   );
@@ -146,8 +159,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      error: data?.error || null,
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };

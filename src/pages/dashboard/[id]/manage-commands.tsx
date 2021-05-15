@@ -7,9 +7,10 @@ import { useState, useEffect, useRef, useCallback, FC } from "react";
 import fetch from "node-fetch";
 import AlertMessage from "@components/AlertMessage";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 interface Props {
-  guild: Guild;
+  guild: Guild | null;
   isAuth: boolean;
   botCommands: string[];
   error: string | undefined;
@@ -53,11 +54,11 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
 
     if (value === "@enabled") {
       filter = botCommands.filter((cmd) => {
-        return !guild.disabled_commands.find((c) => c === cmd);
+        return !guild?.disabled_commands.find((c) => c === cmd);
       });
     } else if (value === "@disabled") {
       filter = botCommands.filter((cmd) => {
-        return !!guild.disabled_commands.find((c) => c === cmd);
+        return !!guild?.disabled_commands.find((c) => c === cmd);
       });
     } else {
       filter = botCommands.filter((cmd) => cmd.toLowerCase().includes(value.toLowerCase()));
@@ -68,7 +69,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
 
   async function updateCommand(type: string, cmdName: string) {
     const data = await (
-      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands`, {
+      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/commands`, {
         method: "PUT",
         body: JSON.stringify({
           name: cmdName,
@@ -79,15 +80,23 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
 
     if (data.status === "success") {
       router.push(
-        `/dashboard/${guild.id}/manage-commands?message=Successfully ${
+        `/dashboard/${guild?.id}/manage-commands?message=Successfully ${
           type === "enable" ? "enabled" : "disabled"
         } command: ${cmdName}`,
       );
     }
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -160,9 +169,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      botCommands: data.botCommands || [],
-      error: data?.error || null,
+      botCommands: data.botCommands ?? [],
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };

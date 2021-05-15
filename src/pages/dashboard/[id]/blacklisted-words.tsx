@@ -9,9 +9,10 @@ import { openModal } from "@components/modal";
 import AddBlacklistedWord from "@components/modal/add-blacklistedword";
 import Logger from "handlers/Logger";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 interface Props {
-  guild: Guild;
+  guild: Guild | null;
   isAuth: boolean;
   error: string | undefined;
 }
@@ -37,7 +38,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
       const data = await (
         await fetch(
           `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
-            guild.id
+            guild?.id
           }/blacklisted-words?word=${encodeURIComponent(word)}`,
           {
             method: "DELETE",
@@ -46,7 +47,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
       ).json();
 
       if (data.status === "success") {
-        router.push(`/dashboard/${guild.id}/blacklisted-words?message=${data.message}`);
+        router.push(`/dashboard/${guild?.id}/blacklisted-words?message=${data.message}`);
       }
 
       setMessage(data?.error);
@@ -59,8 +60,16 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
     openModal("addBlacklistedWord");
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -109,7 +118,7 @@ const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
           </tbody>
         </table>
       ) : (
-        <p>This guid does not have any blacklisted words yet</p>
+        <p>This guild does not have any blacklisted words yet</p>
       )}
     </>
   );
@@ -129,8 +138,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      error: data?.error || null,
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };

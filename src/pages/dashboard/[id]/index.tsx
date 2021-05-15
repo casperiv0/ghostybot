@@ -6,9 +6,10 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import GuildData from "types/Guild";
 import AlertMessage from "@components/AlertMessage";
+import Loader from "@components/Loader";
 
 interface Props {
-  guild: GuildData;
+  guild: GuildData | null;
   isAuth: boolean;
   error: string | undefined;
 }
@@ -21,14 +22,22 @@ const Guild: FC<Props> = ({ guild, isAuth, error }: Props) => {
       router.push("/login");
       return;
     }
-    if (!guild.id) {
+    if (!guild?.id) {
       router.push("/dashboard?message=Guild was not found");
       return;
     }
   }, [guild, isAuth, router]);
 
-  if (error) {
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
+  if (error && isAuth) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -97,8 +106,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      error: data?.error || null,
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };

@@ -6,7 +6,7 @@ export default class LeaveGuildCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "leaveguild",
-      description: "Leaves a guid by the provided Id",
+      description: "Leaves a guild by the provided Id",
       category: "botowner",
       ownerOnly: true,
     });

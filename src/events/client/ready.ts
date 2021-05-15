@@ -19,7 +19,7 @@ export default class ReadyEvent extends Event {
     );
     const statuses = [
       ` ${serverCount} servers.`,
-      `!help || ${channelCount} channels`,
+      `!help | ${channelCount} channels`,
       `${userCount} users`,
       "!help | https://ghostybot.tk",
     ];

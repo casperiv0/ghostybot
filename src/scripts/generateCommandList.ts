@@ -31,6 +31,7 @@ interface Category {
 
 function createCategoryList() {
   return categoriesData
+    .filter((v) => !["disabled", "custom"].includes(v))
     .map(
       (category) => `
 [${category}](#category-${category})`,

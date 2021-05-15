@@ -16,10 +16,8 @@ export default class ChannelCreateEvent extends Event {
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(channel.guild.id);
 
-      let msg = "";
-
       const type = channel.type === "category" ? "Category" : "Channel";
-      msg = lang.EVENTS.CHANNEL_CREATED_MSG.replace("{channel_type}", type).replace(
+      const msg = lang.EVENTS.CHANNEL_CREATED_MSG.replace("{channel_type}", type).replace(
         "{channel}",
         channel.name,
       );

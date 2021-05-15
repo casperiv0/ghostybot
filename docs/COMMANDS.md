@@ -35,10 +35,6 @@ Click any of the command names for more information
 
 [ticket](#category-ticket)
 
-[disabled](#category-disabled)
-
-[custom](#category-custom)
-
 ## Command list
 
 ### Category: admin
@@ -479,7 +475,7 @@ Click any of the command names for more information
 
 [eval:](#eval) Eval
 
-[leaveguild:](#leaveguild) Leaves a guid by the provided Id
+[leaveguild:](#leaveguild) Leaves a guild by the provided Id
 
 [shell:](#shell) Execute shell commands
 
@@ -1617,7 +1613,7 @@ Click any of the command names for more information
 
 **Category:** botowner
 
-**Description:** Leaves a guid by the provided Id
+**Description:** Leaves a guild by the provided Id
 
 **Usage:** `N/A`
 

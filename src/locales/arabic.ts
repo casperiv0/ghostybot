@@ -533,7 +533,7 @@ export default {
     BLACKLISTED_NOT_EXISTS: "**{item}** does not exist in blacklisted words",
     BLACKLISTED_REMOVED: "Successfully removed **{item}** from blacklisted words",
     BLACKLISTED_NONE_YET: "There are no blacklisted words yet.",
-    BLACKLISTED_NO_WORDS: "This guid does not have any blacklisted words yet",
+    BLACKLISTED_NO_WORDS: "This guild does not have any blacklisted words yet",
     CREATED_ROLE_CREATED: "Created Role",
     CREATED_ROLE_ADDED: "Successfully created the `{roleName}` role",
     C_TOPIC_PROVIDE_TOPIC: "Please provide a new topic",

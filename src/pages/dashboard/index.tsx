@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AlertMessage from "@components/AlertMessage";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 interface Props {
   isAuth: boolean;
@@ -24,6 +25,10 @@ const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
       return;
     }
   }, [isAuth, router]);
+
+  if (!isAuth) {
+    return <Loader full />;
+  }
 
   return (
     <>
@@ -85,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guilds: data?.guilds || [],
+      guilds: data?.guilds ?? [],
     },
   };
 };

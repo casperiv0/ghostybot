@@ -8,9 +8,10 @@ import Link from "next/link";
 import AlertMessage from "@components/AlertMessage";
 import categories from "data/categories.json";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 interface Props {
-  guild: Guild;
+  guild: Guild | null;
   isAuth: boolean;
   error: string | undefined;
 }
@@ -37,11 +38,11 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
     if (value === "@enabled") {
       filter = categories.filter((cat) => {
-        return !guild.disabled_categories.find((c) => c === cat);
+        return !guild?.disabled_categories.find((c) => c === cat);
       });
     } else if (value === "@disabled") {
       filter = categories.filter((cat) => {
-        return !!guild.disabled_categories.find((c) => c === cat);
+        return !!guild?.disabled_categories.find((c) => c === cat);
       });
     } else {
       filter = categories.filter((cate) => cate.toLowerCase().includes(value.toLowerCase()));
@@ -52,26 +53,37 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
   async function updateCategory(type: string, category: string) {
     const data = await (
-      await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/categories`, {
-        method: "PUT",
-        body: JSON.stringify({
-          name: category,
-          type: type,
-        }),
-      })
+      await fetch(
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/categories`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            name: category,
+            type: type,
+          }),
+        },
+      )
     ).json();
 
     if (data.status === "success") {
       router.push(
-        `/dashboard/${guild.id}/manage-categories?message=Successfully ${
+        `/dashboard/${guild?.id}/manage-categories?message=Successfully ${
           type === "enable" ? "enabled" : "disabled"
         } category: ${category}`,
       );
     }
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -143,8 +155,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      error: data?.error || null,
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };

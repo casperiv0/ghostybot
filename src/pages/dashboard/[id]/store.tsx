@@ -10,9 +10,10 @@ import { useRouter } from "next/router";
 import AlertMessage from "@components/AlertMessage";
 import Logger from "handlers/Logger";
 import Guild from "types/Guild";
+import Loader from "@components/Loader";
 
 interface Props {
-  guild: Guild;
+  guild: Guild | null;
   isAuth: boolean;
   error: string | undefined;
 }
@@ -38,7 +39,7 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
       const data = await (
         await fetch(
           `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
-            guild.id
+            guild?.id
           }/store?name=${encodeURIComponent(name)}`,
           {
             method: "DELETE",
@@ -47,7 +48,7 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
       ).json();
 
       if (data.status === "success") {
-        router.push(`/dashboard/${guild.id}/store?message=${data.message}`);
+        router.push(`/dashboard/${guild?.id}/store?message=${data.message}`);
       }
 
       setMessage(data?.error);
@@ -60,8 +61,16 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
     openModal("addStoreItem");
   }
 
+  if (!isAuth) {
+    return <Loader full />;
+  }
+
   if (error) {
     return <AlertMessage type="error" message={error} />;
+  }
+
+  if (!guild) {
+    return null;
   }
 
   return (
@@ -115,7 +124,7 @@ const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
           </tbody>
         </table>
       ) : (
-        <p>This guid does not have any items in the store yet</p>
+        <p>This guild does not have any items in the store yet</p>
       )}
     </>
   );
@@ -134,8 +143,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       isAuth: data.error !== "invalid_token",
-      guild: data?.guild || {},
-      error: data?.error || null,
+      guild: data?.guild ?? null,
+      error: data?.error ?? null,
     },
   };
 };
