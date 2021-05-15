@@ -34,6 +34,9 @@ module.exports = withPWA({
     webpack5: true,
   },
   webpack: (config, { dev, isServer }) => {
+    // fixes 'cannot resolve 'erlpack' in discord.js/src'
+    config.externals.push("erlpack");
+
     if (!dev && !isServer) {
       config.resolve.alias = {
         ...config.resolve.alias,
@@ -46,6 +49,7 @@ module.exports = withPWA({
     return config;
   },
   pwa: {
+    disable: process.env.NODE_ENV !== "production",
     dest: "public",
   },
 });

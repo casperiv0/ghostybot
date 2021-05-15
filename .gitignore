@@ -14,3 +14,4 @@ public/*.map
 descriptions_data.json
 
 .husky/_
+.husky/.gitignore

@@ -33,32 +33,7 @@ export interface GuildData {
   verify_data: VerifyData;
 }
 
-export interface IGuild extends Document {
-  guild_id: string;
-  prefix: string;
-  locale: string;
-  store: StoreItem[];
-  blacklistedwords: string[];
-  announcement_channel: string | null;
-  suggest_channel: string | null;
-  audit_channel: string | null;
-  custom_commands: CustomCommand[];
-  disabled_commands: string[];
-  disabled_categories: string[];
-  ignored_channels: string[];
-  sticky_data: StickyData;
-  timezone: string;
-  auto_delete_cmd: boolean;
-  member_count_channel_id: string;
-  muted_role_id: string;
-  level_data: LevelData;
-  welcome_data: WelcomeData;
-  leave_data: LeaveData;
-  starboards_data: StarboardData;
-  ban_data: BanData;
-  ticket_data: TicketData;
-  verify_data: VerifyData;
-}
+export type IGuild = Document & GuildData;
 
 export interface StoreItem {
   name: string;
@@ -120,7 +95,7 @@ export interface VerifyData {
   channel_id: string | null;
 }
 
-const guildSchema = new Schema({
+const guildSchema = new Schema<IGuild>({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
   store: { type: Array, default: null },
