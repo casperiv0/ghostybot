@@ -1,6 +1,7 @@
+import fetch from "node-fetch";
+import { Message, Permissions } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import { Message, MessageAttachment, Permissions } from "discord.js";
 
 export default class XpCommand extends Command {
   constructor(bot: Bot) {
@@ -30,18 +31,27 @@ export default class XpCommand extends Command {
       if (!user) return;
 
       const level = this.bot.utils.calculateXp(user.xp);
-      const avatar = encodeURIComponent(member.user.displayAvatarURL());
 
-      const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
+      const url = `https://rank-card.sujalgoel.repl.co/?rank=${encodeURIComponent(
+        level,
+      )}&level=${encodeURIComponent(level)}&username=${encodeURIComponent(
         member.user.username,
-      )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${user.xp}&nextlevelxp=${
-        user.xp + 1200
-      }&previouslevelxp=${user.xp}&custombg=2F3136&xpcolor=fff`;
+      )}&avatar=${encodeURIComponent(
+        member.user.displayAvatarURL({ format: "png" }),
+      )}&tag=${encodeURIComponent(member.user.tag)}&status=${encodeURIComponent(
+        "online",
+      )}&color=${encodeURIComponent("5865f2")}&currentxp=${encodeURIComponent(
+        user.xp,
+      )}&neededxp=${encodeURIComponent(user.xp + 1200)}`;
 
-      const attach = new MessageAttachment(url, "rank.png");
+      const data = await fetch(`${url}`)
+        .then((res) => res.json())
+        .catch(console.error);
 
-      message.channel.send(attach);
+      message.channel.send(data.data.image);
     } catch (err) {
+      console.log(err);
+
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
