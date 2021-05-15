@@ -15,7 +15,6 @@ export default class InteractionEvent extends Event {
 
     try {
       await command?.execute(
-        bot,
         interaction,
         interaction.options.map((v) => v.value),
       );
