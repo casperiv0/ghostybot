@@ -20,7 +20,7 @@ const choices: Choices[] = [
         bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
       );
 
-      return `${bot.utils.formatNumber(userCount)} ${lang.BOT.USERS}`;
+      return `${userCount} ${lang.BOT.USERS}`;
     },
   },
   {
