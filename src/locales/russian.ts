@@ -149,6 +149,7 @@ export default {
     MANAGE_WEBHOOKS: "Управлять вебхуками",
     MANAGE_EMOJIS: "Управлять эмодзи",
     REQUEST_TO_SPEAK: "Request to speak",
+    USE_APPLICATION_COMMANDS: "Use application commands",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Вам нужно быть в голосовом канале.",

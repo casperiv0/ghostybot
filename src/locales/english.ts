@@ -148,6 +148,7 @@ export default {
     MANAGE_WEBHOOKS: "Manage webhooks",
     MANAGE_EMOJIS: "Manage emojis",
     REQUEST_TO_SPEAK: "Request to speak",
+    USE_APPLICATION_COMMANDS: "Use application commands",
   },
   MUSIC: {
     MUST_BE_IN_VC: "You need to be in a voice channel",
