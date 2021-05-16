@@ -17,7 +17,7 @@ export default class CuddleCommand extends Command {
       const data = await this.bot.neko.sfw.cuddle();
 
       const user = message.mentions.users.first() || message.author;
-      const cuddled = message.author.id === user.id ? "themselfs" : user.username;
+      const cuddled = message.author.id === user.id ? "themselves" : user.username;
 
       const embed = this.bot.utils
         .baseEmbed(message)

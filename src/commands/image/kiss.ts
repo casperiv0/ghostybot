@@ -18,7 +18,7 @@ export default class KissCommand extends Command {
     try {
       const data = await fetch("https://nekos.life/api/kiss").then((res) => res.json());
       const user = message.mentions.users.first() || message.author;
-      const kissed = message.author.id === user.id ? "themselfs" : user.username;
+      const kissed = message.author.id === user.id ? "themselves" : user.username;
 
       const embed = this.bot.utils
         .baseEmbed(message)

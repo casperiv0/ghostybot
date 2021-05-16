@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-Ghostybot has a total of 204 commands.
+Ghostybot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -357,7 +357,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 46**
+**Total commands: 47**
 
 [afk:](#afk) N/A
 
@@ -378,6 +378,8 @@ Click any of the command names for more information
 [country:](#country) Get information about a country
 
 [covid:](#covid) Get covid 19 information
+
+[ctgs:](#ctgs) Create a shortened URL
 
 [define:](#define) Define a word
 
@@ -3550,6 +3552,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## ctgs
+
+**Category:** util
+
+**Description:** Create a shortened URL
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `slug(string)`, `url(string)`
 
 [Back to top](#ghostybot-command-list)
 

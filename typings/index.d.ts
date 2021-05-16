@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* Definitions created by Dev-CasperTheGhost */
 
 declare module "easy-games-js";

@@ -17,7 +17,7 @@ export default class PatCommand extends Command {
     try {
       const data = await fetch("https://nekos.life/api/v2/img/pat").then((res) => res.json());
       const user = message.mentions.users.first() || message.author;
-      const patted = message.author.id === user.id ? "themselfs" : user.username;
+      const patted = message.author.id === user.id ? "themselves" : user.username;
 
       const embed = this.bot.utils
         .baseEmbed(message)

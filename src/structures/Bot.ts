@@ -4,6 +4,7 @@ import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
 import { Player } from "discord-player";
+import { CtgsClient } from "ctgs.js";
 import EventHandler from "handlers/EventHandler";
 
 import MongStarboardsManager from "handlers/StarboardsManager";
@@ -28,8 +29,9 @@ class Bot extends Client {
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
+  ctgs: CtgsClient;
+
   lyricsClient: {
-    /* eslint-disable-next-line no-unused-vars */
     search: (query: string) => Promise<Lyrics.LyricsData>;
     client: unknown;
   };
@@ -78,6 +80,7 @@ class Bot extends Client {
       leaveOnStop: true,
     });
 
+    this.ctgs = new CtgsClient();
     this.lyricsClient = Lyrics.init();
 
     this.starboardsManager = new MongStarboardsManager(this, {

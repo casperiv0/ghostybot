@@ -17,7 +17,7 @@ export default class HugCommand extends Command {
     try {
       const data = await fetch("https://nekos.life/api/hug").then((res) => res.json());
       const user = message.mentions.users.first() || message.author;
-      const hugged = message.author.id === user.id ? "themselfs" : user.username;
+      const hugged = message.author.id === user.id ? "themselves" : user.username;
 
       const embed = this.bot.utils
         .baseEmbed(message)

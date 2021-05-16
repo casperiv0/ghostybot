@@ -17,7 +17,7 @@ export default class FeedCommand extends Command {
       const data = await this.bot.neko.sfw.feed();
 
       const user = message.mentions.users.first() || message.author;
-      const feeding = message.author.id === user.id ? "themselfs" : user.username;
+      const feeding = message.author.id === user.id ? "themselves" : user.username;
 
       const embed = this.bot.utils
         .baseEmbed(message)
