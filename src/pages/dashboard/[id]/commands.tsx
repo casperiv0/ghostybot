@@ -1,7 +1,6 @@
 import * as React from "react";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
-import { useEffect, useState, FC } from "react";
 import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
@@ -21,21 +20,26 @@ interface Props {
   error: string | undefined;
 }
 
-const CustomCommands: FC<Props> = ({ guild, isAuth, error }: Props) => {
-  const [message, setMessage] = useState<string | null>(null);
+const CustomCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
+  const [message, setMessage] = React.useState<string | null>(null);
   const [commands, setCommands] = React.useState<CustomCommand[]>(guild?.custom_commands ?? []);
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
     }
   }, [router, isAuth]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setCommands(guild?.custom_commands ?? []);
   }, [guild?.custom_commands]);
+
+  React.useEffect(() => {
+    const { query } = router;
+    setMessage((query?.message && `${query.message}`) || null);
+  }, [router]);
 
   async function deleteCommand(name: string) {
     try {

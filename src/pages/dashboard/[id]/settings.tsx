@@ -1,4 +1,4 @@
-import { useState, useEffect, FC, ChangeEventHandler, FormEvent } from "react";
+import * as React from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import { Channel, Role } from "discord.js";
@@ -17,7 +17,7 @@ export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
   id: string;
   label: string;
-  onChange: ChangeEventHandler<any>;
+  onChange: React.ChangeEventHandler<any>;
   value: string | number | readonly string[] | undefined;
   data?: Channel[] | Role[];
 }
@@ -37,26 +37,26 @@ interface Props {
   isAuth: boolean;
 }
 
-const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [welcomeData, setWelcomeData] = useState(guild?.welcome_data || {});
-  const [leaveData, setLeaveData] = useState(guild?.leave_data || {});
-  const [levelData, setLevelData] = useState(guild?.level_data || {});
-  const [verifyData, setVerifyData] = useState(guild?.verify_data || {});
-  const [ticketData, setTicketData] = useState(guild?.ticket_data || {});
-  const [starboardsData, setStarboardsData] = useState(guild?.starboards_data || {});
-  const [suggestChannel, setSuggestChannel] = useState(guild.suggest_channel || "");
-  const [announceChannel, setAnnounceChannel] = useState(guild.announcement_channel || "");
-  const [language, setLanguage] = useState(guild.locale || "");
-  const [auditChannel, setAuditChannel] = useState(guild.audit_channel || "");
-  const [prefix, setPrefix] = useState(guild.prefix || "");
-  const [tz, setTz] = useState(guild.timezone || "");
-  const [autoDelCmd, setAutoDelCmd] = useState(guild.auto_delete_cmd || "");
-  const [mutedRoleId, setMutedRoleId] = useState(guild.muted_role_id || "");
+const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
+  const [message, setMessage] = React.useState<string | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+  const [welcomeData, setWelcomeData] = React.useState(guild?.welcome_data || {});
+  const [leaveData, setLeaveData] = React.useState(guild?.leave_data || {});
+  const [levelData, setLevelData] = React.useState(guild?.level_data || {});
+  const [verifyData, setVerifyData] = React.useState(guild?.verify_data || {});
+  const [ticketData, setTicketData] = React.useState(guild?.ticket_data || {});
+  const [starboardsData, setStarboardsData] = React.useState(guild?.starboards_data || {});
+  const [suggestChannel, setSuggestChannel] = React.useState(guild.suggest_channel || "");
+  const [announceChannel, setAnnounceChannel] = React.useState(guild.announcement_channel || "");
+  const [language, setLanguage] = React.useState(guild.locale || "");
+  const [auditChannel, setAuditChannel] = React.useState(guild.audit_channel || "");
+  const [prefix, setPrefix] = React.useState(guild.prefix || "");
+  const [tz, setTz] = React.useState(guild.timezone || "");
+  const [autoDelCmd, setAutoDelCmd] = React.useState(guild.auto_delete_cmd || "");
+  const [mutedRoleId, setMutedRoleId] = React.useState(guild.muted_role_id || "");
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
@@ -357,7 +357,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     {
       type: "select",
       id: "auto_delete_cmd",
-      value: autoDelCmd,
+      value: `${autoDelCmd}`,
       onChange: (e) => setAutoDelCmd(e.target.value),
       data: [
         { id: "false", name: "Off" },
@@ -375,7 +375,7 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
     },
   ];
 
-  async function onSubmit(e: FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     setMessage(null);
     setError(null);
     e.preventDefault();
@@ -408,6 +408,10 @@ const Settings: FC<Props> = ({ guild, languages, isAuth, error: serverError }: P
 
       if (data.status === "success") {
         setMessage(data.message);
+        window.scroll({
+          top: 0,
+          behavior: "smooth",
+        });
       } else {
         setError(data.error);
       }

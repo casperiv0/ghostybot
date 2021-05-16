@@ -1,6 +1,6 @@
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import * as React from "react";
 import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
@@ -18,17 +18,17 @@ interface Props {
 
 const ManageCategories = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
-  const [message, setMessage] = useState<string | null>(null);
-  const [filtered, setFiltered] = useState(categories);
+  const [message, setMessage] = React.useState<string | null>(null);
+  const [filtered, setFiltered] = React.useState(categories);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
     }
   }, [router, isAuth]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
   }, [router]);

@@ -1,6 +1,6 @@
 import { parseCookies } from "nookies";
 import { GetServerSideProps } from "next";
-import { FC, useEffect, useState } from "react";
+import * as React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,11 +13,11 @@ interface Props {
   guilds: Guild[];
 }
 
-const Dashboard: FC<Props> = ({ isAuth, guilds }: Props) => {
+const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
   const router = useRouter();
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
     if (!isAuth) {

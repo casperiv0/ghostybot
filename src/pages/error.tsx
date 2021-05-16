@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import * as React from "react";
 
 const ErrorPage: NextPage = () => {
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const err = router.query.error as string;
 
     setError(err);

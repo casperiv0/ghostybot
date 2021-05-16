@@ -1,9 +1,9 @@
+import * as React from "react";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { useState, useEffect, useRef, useCallback, FC } from "react";
 import fetch from "node-fetch";
 import AlertMessage from "@components/AlertMessage";
 import Guild from "types/Guild";
@@ -16,21 +16,21 @@ interface Props {
   error: string | undefined;
 }
 
-const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props) => {
+const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: Props) => {
   const router = useRouter();
-  const [message, setMessage] = useState<string | null>(null);
-  const [filtered, setFiltered] = useState(botCommands);
-  const [length, setLength] = useState(20);
+  const [message, setMessage] = React.useState<string | null>(null);
+  const [filtered, setFiltered] = React.useState(botCommands);
+  const [length, setLength] = React.useState(20);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
     }
   }, [router, isAuth]);
 
-  const observer = useRef<IntersectionObserver>();
-  const lastRef = useCallback(
+  const observer = React.useRef<IntersectionObserver>();
+  const lastRef = React.useCallback(
     (node) => {
       if (length > botCommands.length) return;
       if (observer.current) observer.current?.disconnect();
@@ -44,7 +44,7 @@ const ManageCommands: FC<Props> = ({ botCommands, guild, isAuth, error }: Props)
     [length, botCommands],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
   }, [router]);

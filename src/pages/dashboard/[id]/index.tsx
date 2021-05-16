@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import * as React from "react";
 import { parseCookies } from "nookies";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
@@ -14,10 +14,10 @@ interface Props {
   error: string | undefined;
 }
 
-const Guild: FC<Props> = ({ guild, isAuth, error }: Props) => {
+const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
-import { useState, useEffect, FC } from "react";
+import * as React from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -17,18 +17,18 @@ interface Props {
   error: string | undefined;
 }
 
-const BlacklistedWords: FC<Props> = ({ guild, isAuth, error }: Props) => {
-  const [message, setMessage] = useState<string | null>(null);
+const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
+  const [message, setMessage] = React.useState<string | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
     }
   }, [router, isAuth]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
   }, [router]);

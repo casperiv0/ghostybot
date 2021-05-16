@@ -1,3 +1,4 @@
+import * as React from "react";
 import fetch from "node-fetch";
 import { parseCookies } from "nookies";
 import Head from "next/head";
@@ -5,7 +6,6 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { openModal } from "@components/modal";
 import AddStoreItem from "@components/modal/add-store-item";
-import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AlertMessage from "@components/AlertMessage";
 import Logger from "handlers/Logger";
@@ -18,18 +18,18 @@ interface Props {
   error: string | undefined;
 }
 
-const Store: FC<Props> = ({ guild, isAuth, error }: Props) => {
-  const [message, setMessage] = useState<string | null>(null);
+const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
+  const [message, setMessage] = React.useState<string | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
       return;
     }
   }, [router, isAuth]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
   }, [router]);
