@@ -54,7 +54,7 @@ export default {
     GUILD_BAN_MESSAGE:
       "{member} был успешно забанен на сервере по причине: **{ban_reason}**. Я также отправил сообщение, сообщив об этом человеку.",
     BOT_DATA: "Информация о ботах не сохраняется, следовательно, я не могу извлечь информацию.",
-    PERMISSIONS: "Permissions",
+    PERMISSIONS: "Права доступа",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Моя роль недостаточно высока, чем роль **{role}**!",
@@ -148,8 +148,8 @@ export default {
     MANAGE_ROLES: "Управлять ролями",
     MANAGE_WEBHOOKS: "Управлять вебхуками",
     MANAGE_EMOJIS: "Управлять эмодзи",
-    REQUEST_TO_SPEAK: "Request to speak",
     USE_APPLICATION_COMMANDS: "Use application commands",
+    REQUEST_TO_SPEAK: "Попросить выступить",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Вам нужно быть в голосовом канале.",
