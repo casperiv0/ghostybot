@@ -32,7 +32,15 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
 
   return (
     <>
-      <AlertMessage message="This dashboard is still in beta! It could be that some thing will not work, if you found an issue please report this at: https://discord.gg/XxHrtkA" />
+      <AlertMessage
+        message={
+          <>
+            This dashboard is still in beta! It could be that some thing will not work, if you found
+            an issue please report this at:{" "}
+            <a href="https://discord.gg/XxHrtkA">https://discord.gg/XxHrtkA</a>
+          </>
+        }
+      />
       {message ? <AlertMessage message={message} /> : null}
       <div className="page-title">
         <h4>Please select a server</h4>

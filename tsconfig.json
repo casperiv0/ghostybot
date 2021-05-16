@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2019" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
-    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
-    "jsx": "preserve" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */, // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
-    "removeComments": true /* Do not emit comments to output. */, // "noEmit": true,                        /* Do not emit outputs. */
-    "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */,
-    "strictNullChecks": true /* Enable strict null checks. */,
+    "target": "es2020",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
     "alwaysStrict": true,
-    // "moduleResolution": "Node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true /* Skip type checking of declaration files. */,
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+    "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "dom.iterable", "esnext", "ES2020.BigInt"],
     "allowJs": true,
     "noEmit": false,
     "isolatedModules": true,
     "noUnusedLocals": true,
     "typeRoots": ["./node_modules/@types", "./typings"],
-    "traceResolution": true,
+
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
@@ -37,7 +35,8 @@
       "@scripts/*": ["./src/scripts/*"],
       "@locales/*": ["./src/locales/*"]
     },
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]

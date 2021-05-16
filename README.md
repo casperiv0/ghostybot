@@ -1,4 +1,4 @@
-<a href="https://ghostybot.tk" align="center">
+<a href="https://ghostybot.tk">
      <img src=".github/Ghostybot-banner.png" alt="banner" />
 </a>
 
@@ -11,7 +11,7 @@ A Custom Discord bot written in TypeScript with a lot of commands for Discord co
 [![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
 
 <a href="https://discord.gg/XxHrtkA ">
-  <img src="http://invidget.switchblade.xyz/XxHrtkA" />
+  <img src="https://invidget.switchblade.xyz/XxHrtkA" />
 </a>
 
 ### Disclaimer (if self-hosted)

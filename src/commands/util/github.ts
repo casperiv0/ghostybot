@@ -24,7 +24,7 @@ export default class GitHubCommand extends Command {
       }
 
       const msg = await message.channel.send(`${lang.UTIL.SEARCHING}..`);
-      const url = `https://api.github.com/users/${username}`;
+      const url = `https://api.github.com/users/${encodeURIComponent(username)}`;
       const result = await fetch(url).then((res) => res.json());
       const user = result;
 

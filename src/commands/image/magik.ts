@@ -23,11 +23,11 @@ export default class MagikCommand extends Command {
       }
 
       const data = await fetch(
-        `https://nekothis.bot.xyz/api/imagegen?type=magik&intensity=${intensity}&image=${member?.user?.displayAvatarURL(
-          {
-            format: "png",
-          },
-        )}`,
+        `https://nekothis.bot.xyz/api/imagegen?type=magik&intensity=${encodeURIComponent(
+          intensity,
+        )}&image=${member?.user?.displayAvatarURL({
+          format: "png",
+        })}`,
       ).then((res) => res.json());
 
       message.channel.send(data.message);

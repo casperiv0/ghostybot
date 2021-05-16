@@ -2,7 +2,7 @@ import { Check, Warning } from "./icons";
 
 interface Props {
   type?: "warning" | "error" | "success";
-  message: string;
+  message: string | React.ReactFragment;
 }
 
 const AlertMessage: React.FC<Props> = ({ type = "warning", message }: Props) => {
@@ -11,7 +11,7 @@ const AlertMessage: React.FC<Props> = ({ type = "warning", message }: Props) => 
       {type === "warning" ? <Warning /> : null}
       {type === "error" ? <Warning /> : null}
       {type === "success" ? <Check /> : null}
-      {message}
+      <p>{message}</p>
     </div>
   );
 };

@@ -1,6 +1,12 @@
+import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
+import { parseCookies } from "nookies";
 
-const Landing = () => {
+interface Props {
+  isAuth: boolean;
+}
+
+const Landing: NextPage<Props> = ({ isAuth }) => {
   return (
     <>
       <nav className="nav-bar">
@@ -31,15 +37,40 @@ const Landing = () => {
           <a target="_blank" rel="noreferrer opener" className="main-btn" href="/add">
             Add To discord
           </a>
-          <Link href="/dashboard">
-            <a href="/dashboard" className="main-btn">
+
+          {isAuth ? (
+            <Link href="/dashboard">
+              <a href="/dashboard" className="main-btn">
+                Open Dashboard
+              </a>
+            </Link>
+          ) : (
+            <a href="/api/auth/login" className="main-btn">
               Open Dashboard
             </a>
-          </Link>
+          )}
         </div>
       </main>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = parseCookies(ctx);
+  const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/auth`, {
+    method: "POST",
+    headers: {
+      Auth: cookies?.token,
+    },
+  });
+
+  const data = await res.json();
+
+  return {
+    props: {
+      isAuth: data.error !== "invalid_token",
+    },
+  };
 };
 
 export default Landing;

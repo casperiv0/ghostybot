@@ -19,7 +19,7 @@ export default class MinecraftCommand extends Command {
     try {
       const [server] = args;
 
-      const url = `https://mcapi.us/server/status?ip=${server}`;
+      const url = `https://mcapi.us/server/status?ip=${encodeURIComponent(server)}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (!data.server.name) {

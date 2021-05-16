@@ -18,7 +18,7 @@ export default class LmgtfyCommand extends Command {
 
     try {
       const query = encodeURIComponent(args.join(" "));
-      const url = `https://lmgtfy.com/?q=${query}&s=g`;
+      const url = `https://lmgtfy.com/?q=${encodeURIComponent(query)}&s=g`;
 
       message.channel.send(url);
     } catch (err) {

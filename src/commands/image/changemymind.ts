@@ -21,7 +21,7 @@ export default class ChangeMyMindCommand extends Command {
       const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
 
       const data = await fetch(
-        `https://nekothis.bot.xyz/api/imagegen?type=changemymind&text=${text}`,
+        `https://nekothis.bot.xyz/api/imagegen?type=changemymind&text=${encodeURIComponent(text)}`,
       ).then((res) => res.json());
 
       sendMsg.deletable && sendMsg.delete();
