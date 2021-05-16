@@ -61,6 +61,7 @@ export default {
     GUILD_BAN_MESSAGE:
       "{member} förbjöds framgångsrikt från servern. Anledning: **{ban_reason}**. Jag har också skickat en DM som meddelar personen.",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
+    PERMISSIONS: "Permissions",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Min roll är inte tillräckligt hög än **{role}** roll!",
@@ -147,6 +148,7 @@ export default {
     MANAGE_ROLES: "Manage roles",
     MANAGE_WEBHOOKS: "Manage webhooks",
     MANAGE_EMOJIS: "Manage emojis",
+    REQUEST_TO_SPEAK: "Request to speak",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Du måste vara i en röstkanal",

@@ -24,6 +24,13 @@ export default class RoleInfoCommand extends Command {
         return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
       }
 
+      const permissions =
+        role.permissions.toArray().length <= 0
+          ? lang.GLOBAL.NONE
+          : `\`\`\`${role.permissions
+              .toArray()
+              .map((p) => lang.PERMISSIONS[p])
+              .join(", ")}\`\`\``;
       const { date, tz } = await this.bot.utils.formatDate(role.createdAt, message.guild?.id);
       const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
       const name = role.name;
@@ -38,7 +45,8 @@ export default class RoleInfoCommand extends Command {
         .addField(`**${lang.MEMBER.CREATED_ON}**`, `${date} (${tz})`, true)
         .addField(`**${lang.UTIL.MENTIONABLE}**`, mentionable, true)
         .addField(`**${lang.UTIL.POSITION}**`, position, true)
-        .addField(`**${lang.MEMBER.ID}**`, id, true);
+        .addField(`**${lang.MEMBER.ID}**`, id, true)
+        .addField(lang.MEMBER.PERMISSIONS, permissions);
 
       message.channel.send(embed);
     } catch (err) {

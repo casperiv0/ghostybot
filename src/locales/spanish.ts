@@ -59,6 +59,7 @@ export default {
     GUILD_BAN_MESSAGE:
       "{member} Ha sido baneado de este servidor. Razón: **{ban_reason}**. Tambien le he enviado un DM al usuario para hacerle saber.",
     BOT_DATA: "Datos del bot no guardados, por lo tanto no puedo buscar esa informacion",
+    PERMISSIONS: "Permissions",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Mi rol no es mas alto que el rol **{role}**!",
@@ -150,6 +151,7 @@ export default {
     MANAGE_ROLES: "Manage roles",
     MANAGE_WEBHOOKS: "Manage webhooks",
     MANAGE_EMOJIS: "Manage emojis",
+    REQUEST_TO_SPEAK: "Request to speak",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Necesitas estar en un canal de voz",

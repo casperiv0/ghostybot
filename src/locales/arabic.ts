@@ -59,6 +59,7 @@ export default {
     GUILD_BAN_MESSAGE:
       "{member} لقد تم تبنيده بنجاح . السبب: **{ban_reason}**. لقد قمت بارسال رسالة اليه .",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
+    PERMISSIONS: "Permissions",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "رتبتي ليست اعلي من رول  **{role}** ",
@@ -148,6 +149,7 @@ export default {
     MANAGE_ROLES: "Manage roles",
     MANAGE_WEBHOOKS: "Manage webhooks",
     MANAGE_EMOJIS: "Manage emojis",
+    REQUEST_TO_SPEAK: "Request to speak",
   },
   MUSIC: {
     MUST_BE_IN_VC: "يجب ان تكون بقناة صوتية",
