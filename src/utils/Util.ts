@@ -496,6 +496,13 @@ export default class Util {
       .join(" ");
   }
 
+  resolveCommand(nameOrAlias: string) {
+    return (
+      this.bot.commands.get(nameOrAlias) ??
+      this.bot.commands.get(this.bot.aliases.get(nameOrAlias)!)
+    );
+  }
+
   escapeMarkdown(message: string): string {
     return DJS.Util.escapeMarkdown(message, {
       codeBlock: true,

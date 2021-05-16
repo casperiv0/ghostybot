@@ -195,7 +195,7 @@ export default class MessageEvent extends Event {
         }
       }
 
-      const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd)!);
+      const command = bot.utils.resolveCommand(cmd);
       if (!command) return;
 
       if (

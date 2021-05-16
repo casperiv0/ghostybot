@@ -1,7 +1,7 @@
 # Ghostybot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-Ghostybot has a total of 204 commands.
+Ghostybot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -395,7 +395,7 @@ Click any of the command names for more information
 
 [github:](#github) Search someone on github
 
-[help:](#help) Shows all commands Or shows more info about a command
+[help:](#help) this is a test
 
 [randomimage:](#randomimage) Search any image you want from google
 
@@ -469,13 +469,15 @@ Click any of the command names for more information
 
 ### Category: botowner
 
-**Total commands: 5**
+**Total commands: 6**
 
 [blacklist:](#blacklist) Remove/add blacklist from a user
 
 [eval:](#eval) Eval
 
 [leaveguild:](#leaveguild) Leaves a guild by the provided Id
+
+[reload:](#reload) Reload a command
 
 [shell:](#shell) Execute shell commands
 
@@ -1614,6 +1616,24 @@ Click any of the command names for more information
 **Category:** botowner
 
 **Description:** Leaves a guild by the provided Id
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## reload
+
+**Category:** botowner
+
+**Description:** Reload a command
 
 **Usage:** `N/A`
 
@@ -3701,7 +3721,7 @@ Click any of the command names for more information
 
 **Category:** util
 
-**Description:** Shows all commands Or shows more info about a command
+**Description:** this is a test
 
 **Usage:** `<category name | command name>`
 

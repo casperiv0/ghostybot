@@ -21,7 +21,7 @@ export default class HelpInteraction extends Interaction {
 
   async execute(interaction: CommandInteraction, args: (string | number | boolean | undefined)[]) {
     const arg = `${args[0]}`;
-    const command = this.bot.commands.get(arg) ?? this.bot.commands.get(this.bot.aliases.get(arg)!);
+    const command = this.bot.utils.resolveCommand(arg);
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (!command) {

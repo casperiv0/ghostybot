@@ -28,9 +28,7 @@ export default class EnableCommand extends Command {
         return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);
       }
 
-      const command =
-        this.bot.commands.get(option.toLowerCase()) ||
-        this.bot.commands.get(this.bot.aliases.get(option)!);
+      const command = this.bot.utils.resolveCommand(option.toLowerCase());
 
       if (!command) {
         // enable category

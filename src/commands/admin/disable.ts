@@ -36,9 +36,7 @@ export default class DisableCommand extends Command {
         return message.channel.send(lang.ADMIN.COMMAND_CANNOT_DISABLED);
       }
 
-      const command =
-        this.bot.commands.get(option.toLowerCase()) ||
-        this.bot.commands.get(this.bot.aliases.get(option)!);
+      const command = this.bot.utils.resolveCommand(option.toLowerCase());
 
       if (!command) {
         // Disable category
