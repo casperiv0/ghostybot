@@ -1,10 +1,10 @@
-import { Interaction } from "discord.js";
+import { Constants, Interaction } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "interaction");
+    super(bot, Constants.Events.INTERACTION_CREATE);
   }
 
   async execute(bot: Bot, interaction: Interaction) {

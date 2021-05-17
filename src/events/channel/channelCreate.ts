@@ -1,10 +1,10 @@
-import { GuildChannel } from "discord.js";
+import { GuildChannel, Constants } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class ChannelCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "channelCreate");
+    super(bot, Constants.Events.CHANNEL_CREATE);
   }
 
   async execute(bot: Bot, channel: GuildChannel) {

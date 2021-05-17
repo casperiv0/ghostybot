@@ -1,10 +1,10 @@
-import { GuildChannel } from "discord.js";
+import { GuildChannel, Constants } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class ChannelUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "channelUpdate");
+    super(bot, Constants.Events.CHANNEL_UPDATE);
   }
 
   async execute(bot: Bot, oldChannel: GuildChannel, newChannel: GuildChannel) {

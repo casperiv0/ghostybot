@@ -1,4 +1,4 @@
-import { Message, Permissions, TextChannel } from "discord.js";
+import { Constants, Message, Permissions, TextChannel } from "discord.js";
 import ms from "ms";
 import { saveCommands } from "@commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
@@ -7,6 +7,10 @@ import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageEvent extends Event {
+  constructor(bot: Bot) {
+    super(bot, Constants.Events.MESSAGE_CREATE);
+  }
+
   async execute(bot: Bot, message: Message) {
     try {
       if (!message?.guild?.available || !message.guild) return;

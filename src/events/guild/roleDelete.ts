@@ -1,10 +1,10 @@
-import { Role } from "discord.js";
+import { Constants, Role } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class RoleDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "roleDelete");
+    super(bot, Constants.Events.GUILD_ROLE_DELETE);
   }
 
   async execute(bot: Bot, role: Role) {

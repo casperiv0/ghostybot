@@ -31,7 +31,7 @@ export default class FeatureHandler {
       try {
         feature.execute();
       } catch (e) {
-        feature.execute();
+        this.bot.utils.sendErrorLog(e, "error");
       }
 
       if (process.env["DEBUG_MODE"] === "true") {

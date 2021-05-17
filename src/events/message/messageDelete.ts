@@ -1,10 +1,10 @@
-import { Message } from "discord.js";
+import { Constants, Message } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "messageDelete");
+    super(bot, Constants.Events.MESSAGE_DELETE);
   }
 
   async execute(bot: Bot, message: Message) {

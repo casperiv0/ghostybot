@@ -1,12 +1,12 @@
 import ReactionsModel, { Reaction } from "models/Reactions.model";
 
-import { Message, MessageReaction, TextChannel, User } from "discord.js";
+import { Constants, Message, MessageReaction, TextChannel, User } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageReactionAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "messageReactionAdd");
+    super(bot, Constants.Events.MESSAGE_REACTION_ADD);
   }
 
   async execute(bot: Bot, react: MessageReaction, user: User) {

@@ -1,10 +1,10 @@
-import { GuildChannel } from "discord.js";
+import { GuildChannel, Constants } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class ChannelDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "channelDelete");
+    super(bot, Constants.Events.CHANNEL_DELETE);
   }
 
   async execute(bot: Bot, channel: GuildChannel) {

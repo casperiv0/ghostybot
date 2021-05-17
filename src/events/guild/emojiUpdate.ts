@@ -1,10 +1,10 @@
-import { GuildEmoji } from "discord.js";
+import { Constants, GuildEmoji } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class EmojiUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "emojiUpdate");
+    super(bot, Constants.Events.GUILD_EMOJI_UPDATE);
   }
 
   async execute(bot: Bot, oldEm: GuildEmoji, newEm: GuildEmoji) {

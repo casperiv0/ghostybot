@@ -1,10 +1,10 @@
-import { Message, TextChannel } from "discord.js";
+import { Constants, Message, TextChannel } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "messageUpdate");
+    super(bot, Constants.Events.MESSAGE_UPDATE);
   }
 
   async execute(bot: Bot, oldMsg: Message, newMsg: Message) {

@@ -1,10 +1,10 @@
-import { GuildMember } from "discord.js";
+import { Constants, GuildMember } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class GuildMemberUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "guildMemberUpdate");
+    super(bot, Constants.Events.GUILD_MEMBER_UPDATE);
   }
 
   async execute(bot: Bot, oldMember: GuildMember, newMember: GuildMember) {

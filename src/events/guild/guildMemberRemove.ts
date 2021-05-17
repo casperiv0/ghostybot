@@ -1,10 +1,10 @@
-import { GuildMember, TextChannel } from "discord.js";
+import { Constants, GuildMember, TextChannel } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class GuildMemberRemoveEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "guildMemberRemove");
+    super(bot, Constants.Events.GUILD_MEMBER_REMOVE);
   }
 
   async execute(bot: Bot, member: GuildMember) {
