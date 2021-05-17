@@ -148,7 +148,7 @@ export default {
     MANAGE_ROLES: "Управлять ролями",
     MANAGE_WEBHOOKS: "Управлять вебхуками",
     MANAGE_EMOJIS: "Управлять эмодзи",
-    USE_APPLICATION_COMMANDS: "Use application commands",
+    USE_APPLICATION_COMMANDS: "Использовать слэш-команды",
     REQUEST_TO_SPEAK: "Попросить выступить",
   },
   MUSIC: {
