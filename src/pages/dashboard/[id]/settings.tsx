@@ -17,6 +17,7 @@ export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
   id: string;
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: React.ChangeEventHandler<any>;
   value: string | number | readonly string[] | undefined;
   data?: Channel[] | Role[];

@@ -12,6 +12,7 @@ export default (bot: Bot) => {
     createServer((req, res) => {
       const parsedUrl = parse(req.url!, true);
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (req as any).bot = bot;
 
       handle(req, res, parsedUrl);

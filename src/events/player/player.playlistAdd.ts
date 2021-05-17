@@ -1,14 +1,19 @@
 import { Message } from "discord.js";
-import { Queue, Constants } from "discord-player";
+import { Queue, Constants, Track } from "discord-player";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
+
+interface Playlist {
+  tracks: Track[];
+  title: string;
+}
 
 export default class PlayerPlaylistAddEvent extends Event {
   constructor(bot: Bot) {
     super(bot, Constants.PlayerEvents.PLAYLIST_ADD);
   }
 
-  async execute(bot: Bot, message: Message, queue: Queue, playlist: any) {
+  async execute(bot: Bot, message: Message, _: Queue, playlist: Playlist) {
     try {
       if (!message.guild?.available) return;
       const lang = await bot.utils.getGuildLang(message.guild?.id);
