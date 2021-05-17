@@ -1,11 +1,6 @@
 import { model, Schema, models, Document } from "mongoose";
 
-export interface IWarning extends Document {
-  user_id: string;
-  guild_id: string;
-  reason: string | null;
-  date: number;
-}
+export type IWarning = Document & UserWarnings;
 
 export interface UserWarnings {
   user_id: string;

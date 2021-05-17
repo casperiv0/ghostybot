@@ -9,9 +9,8 @@ export default class Helper {
     this.name = name;
   }
 
-  /**
-   *
-   * @param {Bot} bot bot
-   */
-  async execute(bot: Bot, ...args: any): Promise<any> {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async execute(): Promise<any> {
+    undefined;
+  }
 }

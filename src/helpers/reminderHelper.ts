@@ -8,7 +8,7 @@ export default class ReminderHelper extends Helper {
     super(bot, "reminderHelper");
   }
 
-  async execute(bot: Bot) {
+  async execute() {
     const TEN_SECOND_INTERVAL = 10000;
 
     setInterval(async () => {
@@ -19,15 +19,16 @@ export default class ReminderHelper extends Helper {
         user.reminder.reminders
           .filter((r) => r.ends_at <= Date.now())
           .forEach(async (reminder: Reminder) => {
-            const guild = bot.guilds.cache.get(user.guild_id);
+            const guild = this.bot.guilds.cache.get(user.guild_id);
             if (!guild) return;
 
             const { channel_id, msg, time, _id: reminderId } = reminder;
-            const usr = bot.users.cache.get(user.user_id) || (await bot.users.fetch(user.user_id));
+            const usr =
+              this.bot.users.cache.get(user.user_id) || (await this.bot.users.fetch(user.user_id));
             const channel = guild.channels.cache.get(channel_id);
 
             if (!channel) {
-              bot.utils.updateUserById(user.user_id, user.guild_id, {
+              this.bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
                   hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                   reminders: user.reminder.reminders.filter(
@@ -38,7 +39,7 @@ export default class ReminderHelper extends Helper {
               return;
             }
 
-            await bot.utils.updateUserById(user.user_id, user.guild_id, {
+            await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
                 hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                 reminders: user.reminder.reminders.filter(
@@ -47,7 +48,7 @@ export default class ReminderHelper extends Helper {
               },
             });
 
-            const embed = bot.utils
+            const embed = this.bot.utils
               .baseEmbed({ author: usr })
               .setTitle("Reminder finished")
               .setDescription(`Your timer of **${time}** has ended`)

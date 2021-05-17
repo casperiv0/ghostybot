@@ -27,5 +27,9 @@ export default class Interaction {
   async execute(
     message: DiscordInteraction,
     args: (string | number | boolean | undefined)[],
-  ): Promise<any> {}
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): Promise<any> {
+    message;
+    args;
+  }
 }

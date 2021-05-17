@@ -13,5 +13,9 @@ export default class Event {
    *
    * @param {Bot} bot bot
    */
-  async execute(bot: Bot, ...args: any): Promise<any> {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async execute(bot: Bot, ...args: any): Promise<any> {
+    bot;
+    args;
+  }
 }

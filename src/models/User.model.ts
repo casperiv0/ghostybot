@@ -1,20 +1,5 @@
 import { model, Schema, models, Document, ObjectId } from "mongoose";
 
-export interface IUser extends Document {
-  user_id: string;
-  guild_id: string;
-  inventory: string[];
-  money: number;
-  bank: number;
-  daily: number;
-  weekly: number;
-  work: number;
-  xp: number;
-  afk: AfkObj;
-  mute: Mute;
-  reminder: Reminders;
-}
-
 const userSchema = new Schema({
   user_id: { type: String, required: true },
   guild_id: { type: String, required: true },
@@ -49,6 +34,8 @@ const userSchema = new Schema({
     },
   },
 });
+
+export type IUser = Document & UserData;
 
 export interface UserData {
   _id: ObjectId;

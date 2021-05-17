@@ -1,11 +1,11 @@
 import { Message } from "discord.js";
-import { Track } from "discord-player";
+import { Track, Constants } from "discord-player";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class PlayerTrackAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "trackAdd");
+    super(bot, Constants.PlayerEvents.TRACK_ADD);
   }
 
   async execute(bot: Bot, message: Message, _, track: Track) {

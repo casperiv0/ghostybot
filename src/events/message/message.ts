@@ -336,12 +336,18 @@ export default class MessageEvent extends Event {
         }
       }
 
+      if (command.options.typing === true) {
+        message.channel.startTyping();
+      }
+
       timestamps?.set(userId, now);
       setTimeout(() => timestamps?.delete(userId), cooldown);
 
       command.execute(message, args);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
+    } finally {
+      message.channel.stopTyping(true);
     }
   }
 }

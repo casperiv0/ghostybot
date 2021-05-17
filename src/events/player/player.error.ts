@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { Constants } from "discord-player";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -6,7 +7,7 @@ type ErrorType = "UnableToJoin" | "NotConnected" | "NotPlaying" | "LiveVideo";
 
 export default class PlayerErrorEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "error");
+    super(bot, Constants.PlayerEvents.ERROR);
   }
 
   async execute(bot: Bot, error: ErrorType, message: Message) {

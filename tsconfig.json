@@ -33,7 +33,8 @@
       "@components/*": ["./src/dashboard/components/*"],
       "@commands/*": ["./src/commands/*"],
       "@scripts/*": ["./src/scripts/*"],
-      "@locales/*": ["./src/locales/*"]
+      "@locales/*": ["./src/locales/*"],
+      "@config/*": ["./src/config/*"]
     },
     "moduleResolution": "node",
     "skipLibCheck": true

@@ -28,7 +28,11 @@ export default class FeatureHandler {
         );
       }
 
-      feature.execute(this.bot);
+      try {
+        feature.execute();
+      } catch (e) {
+        feature.execute();
+      }
 
       if (process.env["DEBUG_MODE"] === "true") {
         this.bot.logger.log("FEATURE", `Loaded ${feature.name}`);

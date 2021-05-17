@@ -1,4 +1,5 @@
-import { Client, Collection, Intents } from "discord.js";
+import { Client, Collection } from "discord.js";
+import { Lyrics } from "@discord-player/extractor";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
@@ -13,7 +14,7 @@ import Command from "./Command";
 import Logger from "handlers/Logger";
 import Util from "@utils/Util";
 import Interaction from "./Interaction";
-import { Lyrics } from "@discord-player/extractor";
+import { discordConfig } from "@config/discord-config";
 
 class Bot extends Client {
   commands: Collection<string, Command>;
@@ -23,7 +24,7 @@ class Bot extends Client {
   logger: typeof Logger;
   utils: Util;
   neko: NekoClient;
-  imdb: ImdbClient;
+  imdb!: ImdbClient;
   player: Player;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
@@ -37,24 +38,7 @@ class Bot extends Client {
   };
 
   constructor() {
-    super({
-      intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_EMOJIS,
-        Intents.FLAGS.GUILD_INTEGRATIONS,
-        Intents.FLAGS.GUILD_INVITES,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-        Intents.FLAGS.GUILD_MESSAGE_TYPING,
-        Intents.FLAGS.GUILD_VOICE_STATES,
-        Intents.FLAGS.GUILD_WEBHOOKS,
-      ],
-      partials: ["GUILD_MEMBER", "MESSAGE", "USER", "REACTION", "CHANNEL"],
-      restRequestTimeout: 25000,
-      allowedMentions: { parse: ["roles", "users"] },
-    });
+    super(discordConfig);
 
     this.commands = new Collection();
     this.aliases = new Collection();
@@ -63,7 +47,6 @@ class Bot extends Client {
     this.logger = Logger;
     this.utils = new Util(this);
     this.neko = new NekoClient();
-    this.imdb = new ImdbClient({ apiKey: process.env["IMDB_KEY"] });
 
     if (process.env["ALEXFLIPNOTE_API_KEY"]) {
       this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
@@ -71,6 +54,10 @@ class Bot extends Client {
 
     if (process.env["PASTE_CLIENT_KEY"]) {
       this.pasteClient = new PasteClient(process.env["PASTE_CLIENT_KEY"]);
+    }
+
+    if (process.env["IMDB_KEY"]) {
+      this.imdb = new ImdbClient({ apiKey: process.env["IMDB_KEY"] });
     }
 
     this.player = new Player(this, {
@@ -87,6 +74,7 @@ class Bot extends Client {
       storage: false,
       translateClickHere: "Jump to message",
     });
+
     this.giveawayManager = new MongoGiveawayManager(this, {
       hasGuildMembersIntent: true,
       updateCountdownEvery: 10000,
@@ -99,7 +87,6 @@ class Bot extends Client {
       },
     });
 
-    // new CommandHandler(this).loadCommands();
     new EventHandler(this).loadEvents();
   }
 }

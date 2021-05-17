@@ -1,10 +1,11 @@
 import { Message } from "discord.js";
+import { Constants } from "discord-player";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class PlayerNoResultsEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "noResults");
+    super(bot, Constants.PlayerEvents.NO_RESULTS);
   }
 
   async execute(bot: Bot, message: Message) {

@@ -8,10 +8,12 @@
   },
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "start:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "start": "tsc && BUILD_PATH=true DEV_MODE=false node ./dist/src/index.js",
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "build": "next build && next-sitemap",
+    "test:tsc": "tsc --noEmit",
     "prepare": "husky install"
   },
   "repository": {
