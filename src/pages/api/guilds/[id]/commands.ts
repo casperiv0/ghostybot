@@ -64,11 +64,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (guild.custom_commands?.find((x) => x.name === commandName))
+      if (guild.custom_commands?.find((x) => x.name === commandName)) {
         return res.json({
           error: "This command name already exists for this guild",
           status: "error",
         });
+      }
 
       if (req.bot.commands.has(commandName)) {
         return res.json({

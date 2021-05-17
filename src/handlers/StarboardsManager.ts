@@ -19,7 +19,7 @@ export interface Starboard {
 
 class MongStarboardsManager extends StarboardsManager {
   async getAllStarboards() {
-    return await StarboardModel.find();
+    return StarboardModel.find();
   }
 
   async saveStarboard(data: StarboardData) {

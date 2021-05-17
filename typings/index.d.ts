@@ -1,4 +1,4 @@
-/* Definitions created by Dev-CasperTheGhost */
+/* definitions created by Dev-CasperTheGhost */
 
 declare module "easy-games-js";
 

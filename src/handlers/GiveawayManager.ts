@@ -3,7 +3,7 @@ import GiveawayModel from "models/Giveaway.model";
 
 export default class MongoGiveawayManager extends GiveawaysManager {
   async getAllGiveaways() {
-    return await GiveawayModel.find();
+    return GiveawayModel.find();
   }
 
   async saveGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {

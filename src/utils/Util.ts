@@ -209,7 +209,7 @@ export default class Util {
       let member: DJS.GuildMember | null | undefined;
       const arg = args[options?.index ?? 0]?.replace?.(/[<@!>]/gi, "") || args[options?.index ?? 0];
 
-      const mention = // Check if the first mention is not the bot prefix
+      const mention = // check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
           ? message.mentions?.users.first()
           : message.mentions?.users.array()[1];
@@ -247,7 +247,7 @@ export default class Util {
       message.guild.roles.cache.get(arg) ||
       message.guild.roles.cache.find((r) => r.name === arg) ||
       message.guild.roles.cache.find((r) => r.name.startsWith(arg)) ||
-      (await message.guild.roles.fetch(arg))
+      message.guild.roles.fetch(arg)
     );
   }
 
@@ -263,8 +263,9 @@ export default class Util {
     const channel = this.bot.channels.cache.get(channelId);
     if (!channel) return;
     if (!this.bot.user) return;
-    if (!(channel as DJS.TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS"))
+    if (!(channel as DJS.TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS")) {
       return;
+    }
 
     if (oldChannelId) {
       const webhooks = await (channel as DJS.TextChannel).fetchWebhooks();
@@ -296,11 +297,11 @@ export default class Util {
     return (
       guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
       guild.roles.cache.find((r) => r.name === "muted") ||
-      (await guild.roles.create({
+      guild.roles.create({
         name: "muted",
         color: "GRAY",
         reason: "Mute a user",
-      }))
+      })
     );
   }
 

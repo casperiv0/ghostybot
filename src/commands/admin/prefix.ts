@@ -18,13 +18,14 @@ export default class PrefixCommand extends Command {
     try {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
 
-      if (!prefix)
+      if (!prefix) {
         return message.channel.send(
           lang.ADMIN.CURRENT_PREFIX.replace("{guildPrefix}", `${guild?.prefix}`).replace(
             "{guildPrefix}",
             `${guild?.prefix}`,
           ),
         );
+      }
 
       await this.bot.utils.updateGuildById(message.guild?.id, { prefix });
 

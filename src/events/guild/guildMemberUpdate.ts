@@ -16,7 +16,7 @@ export default class GuildMemberUpdateEvent extends Event {
       if (!guild.welcome_data.enabled) return;
       const welcomeData = guild.welcome_data;
 
-      // Member passed membership screening
+      // member passed membership screening
       if (oldMember.pending && !newMember.pending) {
         if (welcomeData.role_id) {
           if (!newMember.guild.me?.permissions.has("MANAGE_ROLES")) return;

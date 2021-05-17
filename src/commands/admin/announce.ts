@@ -17,10 +17,11 @@ export default class AnnounceCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      if (!args[0])
+      if (!args[0]) {
         return message.channel.send(
           lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL,
         );
+      }
 
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const announceChannel = guild?.announcement_channel;

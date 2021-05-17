@@ -42,10 +42,11 @@ export default class MuteCommand extends Command {
         return message.channel.send(lang.ADMIN.MUTE_CANNOT_MUTE);
       }
 
-      if (message.guild.me.roles.highest.comparePositionTo(muteMember.roles.highest) < 0)
+      if (message.guild.me.roles.highest.comparePositionTo(muteMember.roles.highest) < 0) {
         return message.channel.send(
           lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", muteMember.user.tag),
         );
+      }
 
       const muteRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
       this.bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
@@ -54,7 +55,7 @@ export default class MuteCommand extends Command {
         CONNECT: false,
       });
 
-      // Add role & send msg
+      // add role & send msg
       muteMember.roles.add(muteRole!);
       muteMember.user.send(
         lang.ADMIN.MUTE_SUCCESS_DM.replace("{guild}", message.guild.name).replace(

@@ -46,8 +46,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
       guild.channels = gChannels.filter((c: { type: number }) => {
         /* remove category 'channels' & voice channels */
-        if (c.type === 4) return false; /* Category */
-        if (c.type === 2) return false; /* Voice chat */
+        if (c.type === 4) return false; /* category */
+        if (c.type === 2) return false; /* voice chat */
         if (c.type === 3) return false; /* group DM */
         if (c.type === 6) return false; /* store page */
 

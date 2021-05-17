@@ -42,11 +42,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (guild.custom_commands?.find((x: CustomCommand) => x.name === name))
+      if (guild.custom_commands?.find((x: CustomCommand) => x.name === name)) {
         return res.status(400).json({
           error: lang.ECONOMY.ALREADY_EXISTS.replace("{item}", name),
           status: "error",
         });
+      }
 
       await req.bot.utils.updateGuildById(`${query.id}`, {
         store: [...guild.store, { name: name, price: price }],

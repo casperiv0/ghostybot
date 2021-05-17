@@ -104,8 +104,8 @@ export default class RrAddCommand extends Command {
     let content = message.content.trim().split(/ +/g);
 
     content = content.filter((s) => {
-      // Remove custom emojis
-      if (s.split(":").length === 1 ? false : true) {
+      // remove custom emojis
+      if (s.split(":").length !== 1) {
         return false;
       }
       return true;
@@ -117,7 +117,7 @@ export default class RrAddCommand extends Command {
   async parseRoles(msg: Message): Promise<Role[]> {
     const content = msg.content.trim().split(/ +/g);
 
-    // Remove any duplicates
+    // remove any duplicates
     const filtered = [...new Set(content)];
 
     const roles: Role[] = [];

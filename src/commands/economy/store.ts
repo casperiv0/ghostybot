@@ -54,7 +54,7 @@ export default class StoreCommand extends Command {
               });
             } else {
               await this.bot.utils.updateGuildById(guildId, {
-                store: [...guild?.store, { name: item, price: Number(price) }],
+                store: [...(guild?.store ?? []), { name: item, price: Number(price) }],
               });
             }
 

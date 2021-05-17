@@ -24,7 +24,7 @@ if (process.env["DEBUG_MODE"] === "true") {
 
 bot.login(process.env["DISCORD_BOT_TOKEN"]);
 
-// Unhandled errors
+// unhandled errors
 process.on("unhandledRejection", (error: Error) => bot.utils.sendErrorLog(error, "error"));
 
 process.on("uncaughtExceptionMonitor", (error) => bot.utils.sendErrorLog(error, "error"));

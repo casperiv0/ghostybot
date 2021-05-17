@@ -126,7 +126,7 @@ export default class MessageEvent extends Event {
         }, 5000);
       }
 
-      // LEVEL
+      // level
       if (!message.author.bot) {
         const user = await bot.utils.getUserById(userId, guildId);
         if (!user) return;
@@ -147,8 +147,9 @@ export default class MessageEvent extends Event {
               !ch
                 .permissionsFor(message.guild.me)
                 .has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.EMBED_LINKS])
-            )
+            ) {
               return;
+            }
 
             const msg = await ch.send(embed);
             if (!msg) return;
@@ -176,7 +177,7 @@ export default class MessageEvent extends Event {
         }
       }
 
-      // Bot mention
+      // bot mention
       if (mentions?.has(bot.user.id) && !cmd) {
         const embed = bot.utils
           .baseEmbed(message)

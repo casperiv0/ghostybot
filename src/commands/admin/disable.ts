@@ -39,7 +39,7 @@ export default class DisableCommand extends Command {
       const command = this.bot.utils.resolveCommand(option.toLowerCase());
 
       if (!command) {
-        // Disable category
+        // disable category
         const category = option.toLowerCase();
         if (!categories.includes(category)) {
           return message.channel.send(lang.ADMIN.COMMAND_OR_CATEGORY_NOT_FOUND);

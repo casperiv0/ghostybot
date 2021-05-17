@@ -9,8 +9,9 @@ export default class StarboardAlreadyStarredEvent extends Event {
 
   async execute(bot: Bot, _: string, message: Message, user: User) {
     if (!message.guild?.available) return;
-    if (!(message.channel as TextChannel).permissionsFor(message.guild.me!)?.has("SEND_MESSAGES"))
+    if (!(message.channel as TextChannel).permissionsFor(message.guild.me!)?.has("SEND_MESSAGES")) {
       return;
+    }
 
     const lang = await bot.utils.getGuildLang(message.guild?.id);
     return message.channel.send(lang.EVENTS.STARBOARD_MESSAGE.replace("{userTag}", user.tag));

@@ -60,7 +60,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
   React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
-      return;
     }
   }, [router, isAuth]);
 

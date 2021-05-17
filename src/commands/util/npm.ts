@@ -31,7 +31,7 @@ export default class NpmCommand extends Command {
         return message.channel.send(lang.UTIL.NPM_NOT_FOUND.replace("{query}", query));
       }
 
-      // Most accurate package
+      // most accurate package
       const foundPackage = foundPackages.find((d) => d.searchScore > 10000);
 
       // if it was found, show more info about the package, otherwise return a list of the top 5

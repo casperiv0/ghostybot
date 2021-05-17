@@ -1,4 +1,4 @@
-/* Thanks to Tovade! https://github.com/tovade/Andoi/blob/HEAD/src/modules/paginate.js#L3 */
+/* thanks to Tovade! https://github.com/tovade/Andoi/blob/HEAD/src/modules/paginate.js#L3 */
 import { Message, MessageEmbed, MessageReaction, User } from "discord.js";
 
 // if a user reacts with this emoji, the pagination will end

@@ -1,18 +1,13 @@
-import { CategoryChannel, Channel, Role } from "discord.js";
+import { CategoryChannel, Channel, Guild as DiscordGuild, Role } from "discord.js";
 import { GuildData } from "models/Guild.model";
 
-interface Guild extends GuildData {
-  id: string;
-  name: string;
-  icon: string | null;
-  owner_id: string;
-  permissions: unknown;
-  region: string;
-  roles: Role[];
-  channels: Channel[];
+// @ts-expect-error ignore
+interface Guild extends GuildData, DiscordGuild {
   inGuild: boolean;
-
+  channels: Channel[];
+  roles: Role[];
   categories: CategoryChannel[];
+  permissions: unknown;
 }
 
 export default Guild;

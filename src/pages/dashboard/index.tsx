@@ -20,9 +20,9 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
   React.useEffect(() => {
     const { query } = router;
     setMessage((query?.message && `${query.message}`) || null);
+
     if (!isAuth) {
       router.push("/api/auth/login");
-      return;
     }
   }, [isAuth, router]);
 
@@ -48,9 +48,10 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
 
       <div className="grid">
         {guilds.map((guild) => {
-          // Take the first letter of all the letters
+          // take the first letter of all the letters
           const firstLetter = guild.name.split("")[0];
-          // Take the second word, then the first character of that word
+
+          // take the second word, then the first character of that word
           const secondLetter = guild.name.split(" ")[1]?.split("")[0];
 
           return (

@@ -25,7 +25,6 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
   React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
-      return;
     }
   }, [router, isAuth]);
 

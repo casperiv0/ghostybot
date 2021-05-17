@@ -40,17 +40,19 @@ export default class BuyCommand extends Command {
 
       const item = guild?.store?.filter((storeItem) => storeItem.name === query)[0];
 
-      if (!item)
+      if (!item) {
         return message.channel.send(
           lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", query).replace("{prefix}", `${prefix}`),
         );
+      }
 
       if (inventory && inventory?.includes(item.name)) {
         return message.channel.send(lang.ECONOMY.ALREADY_OWN_ITEM);
       }
 
-      if (!user?.money !== null && user?.money < item.price)
+      if (!user?.money !== null && user?.money < item.price) {
         return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
+      }
 
       if (!inventory) {
         this.bot.utils.updateUserById(message.author.id, guildId, {

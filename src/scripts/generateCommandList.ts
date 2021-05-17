@@ -17,11 +17,7 @@ export default (bot: Bot) => {
 };
 
 function mapDetailedCommands(cmds: Commands) {
-  return cmds
-    .map((cmd) => {
-      return commandItem(cmd);
-    })
-    .join("\n");
+  return cmds.map((cmd) => commandItem(cmd)).join("\n");
 }
 
 interface Category {
@@ -51,11 +47,7 @@ function mapNotDetailedCommand(cmds: Commands) {
     categories.push(category);
   }
 
-  return categories
-    .map((cmds, i) => {
-      return categoryItem(cmds, filteredCategories[i]);
-    })
-    .join("\n---\n");
+  return categories.map((cmds, i) => categoryItem(cmds, filteredCategories[i])).join("\n---\n");
 }
 
 function commandItem(command: Command) {
@@ -67,13 +59,7 @@ function commandItem(command: Command) {
 
 **Usage:** ${`\`${command.options.usage || "N/A"}\``}
 
-**Aliases:** ${
-    command.options.aliases
-      ?.map((value) => {
-        return `\`${value}\``;
-      })
-      .join(", ") || "N/A"
-  }
+**Aliases:** ${command.options.aliases?.map((value) => `\`${value}\``).join(", ") || "N/A"}
 
 **Member Permissions:** ${
     !command.options.memberPermissions
@@ -126,11 +112,7 @@ function categoryItem(commands: Category[], categoryName: string) {
 
 **Total commands: ${commands.length}**
 
-${commands
-  .map((cmd) => {
-    return `[${cmd.name}:](#${cmd.name}) ${cmd.description || "N/A"}\n`;
-  })
-  .join("\n")}`;
+${commands.map((cmd) => `[${cmd.name}:](#${cmd.name}) ${cmd.description || "N/A"}\n`).join("\n")}`;
 }
 
 function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {

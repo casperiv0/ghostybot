@@ -36,7 +36,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         return {
           ...guild,
           ...g,
-          inGuild: g ? true : false,
+          inGuild: !!g,
         };
       });
 

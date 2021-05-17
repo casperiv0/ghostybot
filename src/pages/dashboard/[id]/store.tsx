@@ -25,7 +25,6 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   React.useEffect(() => {
     if (!isAuth) {
       router.push("/login");
-      return;
     }
   }, [router, isAuth]);
 

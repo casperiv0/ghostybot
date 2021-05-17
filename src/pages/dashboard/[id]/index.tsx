@@ -22,9 +22,9 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
       router.push("/login");
       return;
     }
+
     if (!guild?.id) {
       router.push("/dashboard?message=Guild was not found");
-      return;
     }
   }, [guild, isAuth, router]);
 
