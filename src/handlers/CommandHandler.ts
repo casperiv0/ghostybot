@@ -28,6 +28,7 @@ export default class CommandHandler {
         // import("@scripts/generateCommandDescriptions").then((v) =>
         //   v.generateCommandDescriptions(this.bot.commands.array()),
         // );
+        // eslint-disable-next-line promise/catch-or-return
         import("@scripts/generateCommandList").then((v) => v.default(this.bot));
       }
     } catch (e) {

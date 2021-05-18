@@ -40,10 +40,10 @@ export default class ResetEconomyCommand extends Command {
               });
             });
 
-            message.channel.send(lang.ECONOMY.RESET_SUCCESS);
-          } else {
-            message.channel.send(lang.ECONOMY.RESET_CANCEL);
+            return message.channel.send(lang.ECONOMY.RESET_SUCCESS);
           }
+
+          return message.channel.send(lang.ECONOMY.RESET_CANCEL);
         })
         .catch((e) => {
           this.bot.logger.error("reset-economy", e?.stack || e);

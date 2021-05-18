@@ -26,16 +26,16 @@ export default class MessageUpdateEvent extends Event {
       if (oldMsg.content === newMsg.content) return;
 
       if (blacklistedWords !== null && blacklistedWords[0]) {
-        blacklistedWords.forEach((word) => {
+        blacklistedWords.forEach(async (word) => {
           if (newMsg.content.toLowerCase().includes(word.toLowerCase())) {
             newMsg.deletable && newMsg.delete();
-            return newMsg
-              .reply("You used a bad word the admin has set, therefore your message was deleted!")
-              .then((msg) => {
-                setTimeout(() => {
-                  msg.deletable && msg.delete();
-                }, 5000);
-              });
+            const sentMsg = await newMsg.reply(
+              "You used a bad word the admin has set, therefore your message was deleted!",
+            );
+
+            setTimeout(() => {
+              sentMsg.deletable && sentMsg.delete();
+            }, 5000);
           }
         });
       }

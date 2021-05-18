@@ -8,8 +8,9 @@ export default (bot: Bot) => {
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
+  // eslint-disable-next-line promise/catch-or-return
   app.prepare().then(() => {
-    createServer((req, res) => {
+    return createServer((req, res) => {
       const parsedUrl = parse(req.url!, true);
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

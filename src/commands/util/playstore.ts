@@ -27,27 +27,32 @@ export default class PlaystoreCommand extends Command {
       PlayStore.search({
         term: args.join(" "),
         num: 1,
-      }).then((Data) => {
-        let app: IAppItem;
+      })
+        .then((Data) => {
+          let app: IAppItem;
 
-        try {
-          app = JSON.parse(JSON.stringify(Data[0]));
-        } catch (error) {
-          return message.channel.send(lang.UTIL.PS_NOT_FOUND);
-        }
+          try {
+            app = JSON.parse(JSON.stringify(Data[0]));
+          } catch (error) {
+            return message.channel.send(lang.UTIL.PS_NOT_FOUND);
+          }
 
-        const Embed = this.bot.utils
-          .baseEmbed(message)
-          .setThumbnail(app.icon)
-          .setURL(app.url)
-          .setTitle(`${app.title}`)
-          .setDescription(app.summary)
-          .addField(lang.ECONOMY.PRICE, app.priceText, true)
-          .addField(lang.UTIL.DEVELOPER, app.developer, true)
-          .addField(lang.UTIL.SCORE, app.scoreText, true);
+          const Embed = this.bot.utils
+            .baseEmbed(message)
+            .setThumbnail(app.icon)
+            .setURL(app.url)
+            .setTitle(`${app.title}`)
+            .setDescription(app.summary)
+            .addField(lang.ECONOMY.PRICE, app.priceText, true)
+            .addField(lang.UTIL.DEVELOPER, app.developer, true)
+            .addField(lang.UTIL.SCORE, app.scoreText, true);
 
-        return message.channel.send(Embed);
-      });
+          return message.channel.send(Embed);
+        })
+        .catch((err) => {
+          this.bot.utils.sendErrorLog(err, "error");
+          return message.channel.send(lang.GLOBAL.ERROR);
+        });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

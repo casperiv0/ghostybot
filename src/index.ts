@@ -15,6 +15,7 @@ const bot = new Bot();
 logs(bot);
 
 if (process.env["DASHBOARD_ENABLED"] === "true") {
+  // eslint-disable-next-line promise/catch-or-return
   import("./server").then((v) => v.default(bot));
 }
 

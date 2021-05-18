@@ -25,7 +25,11 @@ export default class DogFactCommand extends Command {
             .setTitle(lang.ANIMAL.DOG_FACT)
             .setDescription(fact);
 
-          message.channel.send(embed);
+          return message.channel.send(embed);
+        })
+        .catch((err) => {
+          this.bot.utils.sendErrorLog(err, "error");
+          return message.channel.send(lang.GLOBAL.ERROR);
         });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

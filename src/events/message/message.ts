@@ -69,13 +69,13 @@ export default class MessageEvent extends Event {
 
         if (hasBadWord) {
           message.deletable && message.delete();
-          return message.channel
-            .send(lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`))
-            .then((msg) => {
-              setTimeout(() => {
-                msg.deletable && msg.delete();
-              }, 5000);
-            });
+          const sentMsg = await message.channel.send(
+            lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`),
+          );
+
+          setTimeout(() => {
+            sentMsg.deletable && sentMsg.delete();
+          }, 5000);
         }
       }
 

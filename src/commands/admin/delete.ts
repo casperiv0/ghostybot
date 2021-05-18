@@ -27,14 +27,14 @@ export default class DeleteCommand extends Command {
     amount = +args[0] === 100 ? +args[0] : +args[0] + 1;
 
     try {
-      await (message.channel as TextChannel).bulkDelete(Number(amount)).then(() => {
-        message.channel
-          .send(lang.ADMIN.DELETE_DELETED.replace("{amount}", `${amount}`))
-          .then((msg) => {
-            setTimeout(() => {
-              msg.deletable && msg.delete();
-            }, 2000);
-          });
+      await (message.channel as TextChannel).bulkDelete(Number(amount));
+
+      const sentMsg = await message.channel.send(
+        lang.ADMIN.DELETE_DELETED.replace("{amount}", `${amount}`),
+      );
+
+      setTimeout(() => {
+        sentMsg.deletable && sentMsg.delete();
       });
     } catch {
       return message.channel.send(lang.ADMIN.DELETE_ERROR);

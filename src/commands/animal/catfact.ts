@@ -25,7 +25,11 @@ export default class CatFactCommand extends Command {
             .setTitle(lang.ANIMAL.CAT_FACT)
             .setDescription(fact);
 
-          message.channel.send(embed);
+          return message.channel.send(embed);
+        })
+        .catch((err) => {
+          this.bot.utils.sendErrorLog(err, "error");
+          return message.channel.send(lang.GLOBAL.ERROR);
         });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

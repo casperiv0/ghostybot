@@ -38,10 +38,10 @@ export default class ResetXpCommand extends Command {
               });
             });
 
-            message.channel.send(lang.LEVELS.RESET_SUCCESS);
-          } else {
-            message.channel.send(lang.LEVELS.RESET_CANCEL);
+            return message.channel.send(lang.LEVELS.RESET_SUCCESS);
           }
+
+          return message.channel.send(lang.LEVELS.RESET_CANCEL);
         })
         .catch((e) => {
           this.bot.logger.error("resetxp", e?.stack || e);
