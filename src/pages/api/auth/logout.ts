@@ -12,7 +12,7 @@ export default async function (req: ApiRequest, res: NextApiResponse) {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: req.bot.utils.encode({
-      token: token,
+      token,
       client_id: DISCORD_CLIENT_ID,
       client_secret: DISCORD_CLIENT_SECRET,
     }),

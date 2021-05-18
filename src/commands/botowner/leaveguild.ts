@@ -15,7 +15,7 @@ export default class LeaveGuildCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
-    const guildId = args[0];
+    const [guildId] = args;
 
     if (!guildId) {
       return message.channel.send("Please provide an id");

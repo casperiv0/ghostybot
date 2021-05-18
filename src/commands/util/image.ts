@@ -22,7 +22,7 @@ export default class ImageCommand extends Command {
       const text = args.join(" ");
 
       const options = {
-        url: "http://results.dogpile.com/serp?qc=images&q=" + text,
+        url: `http://results.dogpile.com/serp?qc=images&q=${text}`,
         method: "GET",
         headers: {
           Accept: "text/html",

@@ -33,7 +33,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           client_id: DISCORD_CLIENT_ID,
           client_secret: DISCORD_CLIENT_SECRET,
           grant_type: "authorization_code",
-          code: code,
+          code,
           redirect_uri: callbackUrl,
           scope: "identify guilds",
         }),

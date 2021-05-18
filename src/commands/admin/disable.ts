@@ -63,27 +63,27 @@ export default class DisableCommand extends Command {
           .setDescription(lang.ADMIN.CATEGORY_DISABLED.replace("{category}", category));
 
         return message.channel.send(embed);
-      } else {
-        // disable command
-        if (saveCommands.includes(command.name)) {
-          return message.channel.send(lang.ADMIN.COMMAND_CANNOT_DISABLED);
-        }
-
-        if (guild.disabled_commands.includes(command.name)) {
-          return message.channel.send(lang.ADMIN.COMMAND_ALREADY_DISABLED);
-        }
-
-        await this.bot.utils.updateGuildById(message.guild?.id, {
-          disabled_commands: [...guild.disabled_commands, command.name],
-        });
-
-        const embed = this.bot.utils
-          .baseEmbed(message)
-          .setTitle(lang.ADMIN.DISABLED_COMMAND)
-          .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
-
-        return message.channel.send(embed);
       }
+
+      // disable command
+      if (saveCommands.includes(command.name)) {
+        return message.channel.send(lang.ADMIN.COMMAND_CANNOT_DISABLED);
+      }
+
+      if (guild.disabled_commands.includes(command.name)) {
+        return message.channel.send(lang.ADMIN.COMMAND_ALREADY_DISABLED);
+      }
+
+      await this.bot.utils.updateGuildById(message.guild?.id, {
+        disabled_commands: [...guild.disabled_commands, command.name],
+      });
+
+      const embed = this.bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.ADMIN.DISABLED_COMMAND)
+        .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
+
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

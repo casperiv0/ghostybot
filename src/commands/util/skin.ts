@@ -18,7 +18,7 @@ export default class SkinCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const search = args[0];
+      const [search] = args;
 
       const uuid = await fetch(
         `https://playerdb.co/api/player/minecraft/${encodeURIComponent(search)}`,

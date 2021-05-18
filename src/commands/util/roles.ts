@@ -23,7 +23,7 @@ export default class RolesCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name} ${lang.UTIL.ROLES}`)
-        .setDescription(`${roles.length > 2048 ? roles.substr(0, 2045) + "..." : roles}`);
+        .setDescription(`${roles.length > 2048 ? `${roles.substr(0, 2045)}...` : roles}`);
 
       message.channel.send(embed);
     } catch (err) {

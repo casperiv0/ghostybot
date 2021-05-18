@@ -36,11 +36,11 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
         break;
       }
       case EMOJIS[1]: {
-        page = page > 0 ? --page : embeds.length - 1;
+        page = page > 0 ? (page -= 1) : embeds.length - 1;
         break;
       }
       case EMOJIS[2]: {
-        page = page + 1 < embeds.length ? ++page : 0;
+        page = page + 1 < embeds.length ? (page += 1) : 0;
         break;
       }
       case EMOJIS[3]: {

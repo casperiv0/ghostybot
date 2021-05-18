@@ -27,7 +27,7 @@ export default class GiphyCommand extends Command {
       const randomInt = Math.floor(Math.random() * 100);
       const url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${q}&lang=en&rating=${rating}&limit=${limit}&offset=${randomInt}`;
       const res = await (await fetch(url)).json();
-      const data = res.data[0];
+      const [data] = res.data;
 
       if (!data) {
         return message.channel.send(lang.IMAGE.NO_GPIHY_FOUND);

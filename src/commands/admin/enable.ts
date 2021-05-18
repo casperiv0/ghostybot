@@ -51,27 +51,27 @@ export default class EnableCommand extends Command {
           .setDescription(lang.ADMIN.CATEGORY_ENABLED.replace("{category}", category));
 
         return message.channel.send(embed);
-      } else {
-        // enable command
-        if (!command?.name) {
-          return message.channel.send(lang.ADMIN.COMMAND_NOT_FOUND);
-        }
-
-        if (!guild.disabled_commands.includes(command.name)) {
-          return message.channel.send(lang.ADMIN.COMMAND_NOT_DISABLED);
-        }
-
-        await this.bot.utils.updateGuildById(message.guild?.id, {
-          disabled_commands: guild.disabled_commands.filter((c) => c !== command.name),
-        });
-
-        const embed = this.bot.utils
-          .baseEmbed(message)
-          .setTitle(lang.ADMIN.ENABLED_COMMAND)
-          .setDescription(lang.ADMIN.COMMAND_ENABLED.replace("{commandName}", command.name));
-
-        return message.channel.send(embed);
       }
+
+      // enable command
+      if (!command?.name) {
+        return message.channel.send(lang.ADMIN.COMMAND_NOT_FOUND);
+      }
+
+      if (!guild.disabled_commands.includes(command.name)) {
+        return message.channel.send(lang.ADMIN.COMMAND_NOT_DISABLED);
+      }
+
+      await this.bot.utils.updateGuildById(message.guild?.id, {
+        disabled_commands: guild.disabled_commands.filter((c) => c !== command.name),
+      });
+
+      const embed = this.bot.utils
+        .baseEmbed(message)
+        .setTitle(lang.ADMIN.ENABLED_COMMAND)
+        .setDescription(lang.ADMIN.COMMAND_ENABLED.replace("{commandName}", command.name));
+
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

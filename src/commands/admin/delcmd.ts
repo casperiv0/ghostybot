@@ -35,9 +35,9 @@ export default class DelCmdCommand extends Command {
           custom_commands: filtered,
         });
         return message.channel.send(lang.ADMIN.DEL_CMD_DELETED.replace("{cmd}", cmdName));
-      } else {
-        return message.channel.send(lang.ADMIN.DEL_CMD_NO_COMMANDS);
       }
+
+      return message.channel.send(lang.ADMIN.DEL_CMD_NO_COMMANDS);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

@@ -17,7 +17,7 @@ export default class GitHubCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const username = args[0];
+      const [username] = args;
 
       if (!username) {
         return message.channel.send(lang.UTIL.GH_PROVIDE_USERNAME);

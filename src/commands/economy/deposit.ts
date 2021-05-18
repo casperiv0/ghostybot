@@ -25,7 +25,7 @@ export default class DepositCommand extends Command {
       }
 
       const money = user.money;
-      const amount: number | string = args[0];
+      const [amount] = args;
 
       if (amount === "all") {
         await this.bot.utils.updateUserById(member.id, message.guild?.id, {

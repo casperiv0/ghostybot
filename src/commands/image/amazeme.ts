@@ -19,7 +19,7 @@ export default class AmazemeCommand extends Command {
         (res) => res.json(),
       );
 
-      const children = data[0].data.children[0];
+      const [children] = data[0].data.children;
       const permaLink = children.data.permalink;
       const url = `https://reddit.com${permaLink}`;
       const image = children.data.url;

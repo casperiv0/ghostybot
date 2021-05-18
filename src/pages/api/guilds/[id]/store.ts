@@ -50,7 +50,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       await req.bot.utils.updateGuildById(`${query.id}`, {
-        store: [...guild.store, { name: name, price: price }],
+        store: [...guild.store, { name, price }],
       });
 
       return res.json({ status: "success" });

@@ -72,7 +72,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
         method: "PUT",
         body: JSON.stringify({
           name: cmdName,
-          type: type,
+          type,
         }),
       })
     ).json();

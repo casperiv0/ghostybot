@@ -17,7 +17,7 @@ export default class AddMoneyCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const member = await this.bot.utils.findMember(message, args);
-      const amount = args[1];
+      const [, amount] = args;
 
       if (!member) {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);

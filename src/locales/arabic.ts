@@ -181,7 +181,7 @@ export default {
     FILTER_NOT_ENABLED: "Filter `{filter}` is not enabled?",
     NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
     NO_LIRYCS: "No lyrics found for {songTitle}.",
-    NOW: "Now", //🎵 lang.MUSIC.NOW ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}
+    NOW: "Now",
   },
   ECONOMY: {
     MONEY: "المال",

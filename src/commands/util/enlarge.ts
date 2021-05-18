@@ -16,7 +16,8 @@ export default class EnlargeCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const emoji = args[0];
+      const [emoji] = args;
+
       if (!emoji) {
         return message.channel.send(lang.UTIL.PROVIDE_EMOJI);
       }
@@ -32,15 +33,15 @@ export default class EnlargeCommand extends Command {
           `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`,
         );
         return message.channel.send(embed);
-      } else {
-        const parsed = parse(emoji, { assetType: "png" });
-        if (!parsed[0]) {
-          return message.channel.send(lang.UTIL.INVALID_EMOJI);
-        }
-
-        embed.setImage(parsed[0].url);
-        return message.channel.send(embed);
       }
+
+      const parsed = parse(emoji, { assetType: "png" });
+      if (!parsed[0]) {
+        return message.channel.send(lang.UTIL.INVALID_EMOJI);
+      }
+
+      embed.setImage(parsed[0].url);
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

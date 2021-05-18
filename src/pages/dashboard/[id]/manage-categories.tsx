@@ -58,7 +58,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
           method: "PUT",
           body: JSON.stringify({
             name: category,
-            type: type,
+            type,
           }),
         },
       )

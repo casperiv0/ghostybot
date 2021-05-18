@@ -54,7 +54,7 @@ export default class TempMuteCommand extends Command {
           muted: true,
           ends_at: Date.now() + ms(time),
           time,
-          reason: reason,
+          reason,
         },
       });
 
@@ -74,7 +74,7 @@ export default class TempMuteCommand extends Command {
         member: muteMember,
         executor: message.author,
         tempMute: true,
-        reason: reason,
+        reason,
         time,
       });
     } catch (err) {

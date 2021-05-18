@@ -22,7 +22,7 @@ export default class BuyCommand extends Command {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       const inventory = user?.inventory;
       const prefix = guild?.prefix;
-      let query = args[0];
+      let [query] = args;
 
       if (!guild?.store) {
         return message.channel.send(lang.ECONOMY.STORE_EMPTY);

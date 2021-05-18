@@ -87,7 +87,7 @@ export default class RrAddCommand extends Command {
       const newRR = new ReactionsModel({
         guild_id: guild.id,
         message_id: msg.id,
-        reactions: reactions,
+        reactions,
         channel_id: channelId,
       });
 

@@ -74,8 +74,8 @@ export default class RockPaperScissorsCommand extends Command {
       return true;
     } else if (input === reply) {
       return 0;
-    } else {
-      return false;
     }
+
+    return false;
   }
 }

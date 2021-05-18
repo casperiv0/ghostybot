@@ -26,7 +26,7 @@ export default class BlacklistCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const type = args[0];
+      const [type] = args;
       const member: NullableDUser = (await this.bot.utils.findMember(message, args, {
         index: 1,
       })) || {
@@ -68,7 +68,7 @@ export default class BlacklistCommand extends Command {
           return message.channel.send({ embed });
         }
         case "add": {
-          const existing = users.filter((u: UserData) => u.user_id === member?.user?.id)[0];
+          const [existing] = users.filter((u: UserData) => u.user_id === member?.user?.id);
           if (existing) {
             return message.channel.send(
               lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag),

@@ -20,7 +20,7 @@ export default class NasaNews extends Command {
       `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}`,
     ).then((res) => res.json());
 
-    const item = data.collection.items[0];
+    const [item] = data.collection.items;
 
     if (!item) {
       return message.channel.send(lang.NASANEWS.NOT_FOUND.replace("{query}", query));

@@ -28,7 +28,7 @@ export default class GivStartCommand extends Command {
 
       await this.bot.giveawayManager.start(message.channel as TextChannel, {
         time: ms(time),
-        prize: prize,
+        prize,
         winnerCount: +winnerCount,
         messages: {
           giveaway: "**🎉🎉 New Giveaway 🎉🎉**",

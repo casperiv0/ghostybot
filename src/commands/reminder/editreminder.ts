@@ -41,7 +41,7 @@ export default class EditReminderCommand extends Command {
       reminder.msg = description;
 
       const newReminder: Reminder = {
-        time: time,
+        time,
         ends_at: Date.now() + ms(time),
         msg: description,
         channel_id: reminder.channel_id,

@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "jsx-a11y", "prettier", "react"],
   rules: {
+    "no-undef": "off",
     "no-template-curly-in-string": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",

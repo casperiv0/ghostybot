@@ -396,7 +396,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             announcement_channel: announceChannel,
             locale: language,
             audit_channel: auditChannel,
-            prefix: prefix,
+            prefix,
             timezone: tz,
             auto_delete_cmd: autoDelCmd === "true",
             muted_role_id: mutedRoleId,

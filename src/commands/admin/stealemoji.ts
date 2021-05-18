@@ -49,20 +49,20 @@ export default class StealEmojiCommand extends Command {
             }](${link})`,
           );
         return message.channel.send(embed);
-      } else {
-        const foundEmoji = parse(emoji, { assetType: "png" });
-        if (!foundEmoji[0]) {
-          return message.channel.send(lang.ADMIN.PROVIDE_VALID_EMOJI);
-        }
-
-        message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
       }
+
+      const foundEmoji = parse(emoji, { assetType: "png" });
+      if (!foundEmoji[0]) {
+        return message.channel.send(lang.ADMIN.PROVIDE_VALID_EMOJI);
+      }
+
+      message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
     } catch (e) {
       if (String(e).includes("DiscordAPIError: Maximum number of emojis reached")) {
         return message.channel.send(lang.ADMIN.MAX_EMOJI);
-      } else {
-        return message.channel.send(lang.GLOBAL.ERROR);
       }
+
+      return message.channel.send(lang.GLOBAL.ERROR);
     }
   }
 }

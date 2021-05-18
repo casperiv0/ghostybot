@@ -35,7 +35,7 @@ export default class AfkCommand extends Command {
       const reason = args.join(" ") || lang.GLOBAL.NOT_SPECIFIED;
 
       await this.bot.utils.updateUserById(userId, guildId, {
-        afk: { is_afk: true, reason: reason },
+        afk: { is_afk: true, reason },
       });
 
       const embed = this.bot.utils

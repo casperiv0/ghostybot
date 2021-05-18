@@ -180,7 +180,7 @@ export default {
     FILTER_NOT_ENABLED: "Фильтр `{filter}` не включен.",
     NOT_VALID_OPTION: "{option} не является правильной опцией (`set`, `remove`)",
     NO_LIRYCS: "Текст для песни {songTitle} не найден.",
-    NOW: "Сейчас", //🎵 lang.MUSIC.NOW ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}
+    NOW: "Сейчас",
   },
   ECONOMY: {
     MONEY: "Деньги",

@@ -24,7 +24,7 @@ export default class WithdrawCommand extends Command {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
       const bank = user.bank;
-      let amount: string | number = args[0];
+      let [amount] = args as (string | number)[];
 
       if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
 

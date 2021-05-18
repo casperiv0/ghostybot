@@ -60,9 +60,9 @@ export default class BlacklistedWordsCommand extends Command {
             this.bot.utils.updateGuildById(guildId, { blacklistedwords: words });
 
             return message.channel.send(lang.ADMIN.BLACKLISTED_REMOVED.replace("{item}", item));
-          } else {
-            return message.channel.send(lang.ADMIN.BLACKLISTED_NONE_YET);
           }
+
+          return message.channel.send(lang.ADMIN.BLACKLISTED_NONE_YET);
         }
         case "get": {
           const words =

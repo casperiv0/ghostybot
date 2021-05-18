@@ -17,7 +17,8 @@ export default class DefineCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const word = args[0];
+      const [word] = args;
+
       wd.getDef(word.toLowerCase(), "en", null, (data) => {
         if (data.err) {
           message.channel.send(lang.UTIL.NO_DEF_FOUND.replace("{word}", word));

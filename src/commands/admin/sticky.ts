@@ -23,7 +23,7 @@ export default class StickyCommand extends Command {
         return message.channel.send(lang.ADMIN.STICKY_LONG);
       }
 
-      const msg = lang.ADMIN.STICKY_READ + "\n\n" + stickyMsg;
+      const msg = `${lang.ADMIN.STICKY_READ}\n\n${stickyMsg}`;
 
       message.deletable && message.delete();
 

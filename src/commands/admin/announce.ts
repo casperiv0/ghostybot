@@ -19,7 +19,7 @@ export default class AnnounceCommand extends Command {
     try {
       if (!args[0]) {
         return message.channel.send(
-          lang.ADMIN.TEXT_OR_VALID_CHANNEL + "\n" + lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL,
+          `${lang.ADMIN.TEXT_OR_VALID_CHANNEL}\n${lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL}`,
         );
       }
 

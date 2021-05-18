@@ -18,7 +18,7 @@ export default class CovidCommand extends Command {
     try {
       const query = args.join("");
       let country = await (
-        await fetch("https://disease.sh/v3/covid-19/countries/" + encodeURIComponent(query))
+        await fetch(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)
       ).json();
       if (!query) country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 

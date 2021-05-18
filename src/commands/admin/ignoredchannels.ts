@@ -20,8 +20,8 @@ export default class IgnoredChannelsCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
+      const [option] = args;
       const guildId = message.guild?.id;
-      const option = args[0];
       const item = message.mentions.channels.first() || message.channel;
 
       const guild = await this.bot.utils.getGuildById(guildId);

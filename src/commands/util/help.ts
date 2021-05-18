@@ -21,7 +21,7 @@ export default class HelpCommand extends Command {
     try {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const prefix = guild?.prefix;
-      const cmdArgs = args[0];
+      const [cmdArgs] = args;
 
       const disabledCmds = !guild?.disabled_commands[0]
         ? [{ category: "disabled", name: lang.GLOBAL.NONE }]
