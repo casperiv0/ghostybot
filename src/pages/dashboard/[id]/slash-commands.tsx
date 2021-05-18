@@ -95,8 +95,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
         <title>Manage custom slash commands - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
-      <CreateCommandModal slash guild={guild} />
-      <EditCommandModal slash guild={guild} />
+
       <div className="page-title">
         <h4>{guild?.name} - Custom slash commands</h4>
 
@@ -106,42 +105,69 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
               Return
             </a>
           </Link>
-          <button className="btn btn-primary  ml-5" onClick={addCmd}>
-            Add slash command
-          </button>
+          {guild.slash_commands !== null ? (
+            <button className="btn btn-primary  ml-5" onClick={addCmd}>
+              Add slash command
+            </button>
+          ) : null}
         </div>
       </div>
 
-      {commands?.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Response</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {commands?.map((cmd, idx) => {
-              return (
-                <tr key={idx}>
-                  <td>{cmd.name}</td>
-                  <td className="cmd-response">{cmd.response}</td>
-                  <td className="table-actions">
-                    <button onClick={() => deleteCommand(cmd.name)} className="btn btn-sm btn-red">
-                      Delete
-                    </button>
-                    <button onClick={() => handleEdit(cmd.name)} className="btn btn-sm btn-green">
-                      Edit
-                    </button>
-                  </td>
+      {guild.slash_commands !== null ? (
+        <>
+          <CreateCommandModal slash guild={guild} />
+          <EditCommandModal slash guild={guild} />
+
+          {commands?.length > 0 ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Response</th>
+                  <th>Actions</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {commands?.map((cmd, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{cmd.name}</td>
+                      <td className="cmd-response">{cmd.response}</td>
+                      <td className="table-actions">
+                        <button
+                          onClick={() => deleteCommand(cmd.name)}
+                          className="btn btn-sm btn-red"
+                        >
+                          Delete
+                        </button>
+                        <button
+                          onClick={() => handleEdit(cmd.name)}
+                          className="btn btn-sm btn-green"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p>This guild does not have any custom slash commands yet</p>
+          )}
+        </>
       ) : (
-        <p>This guild does not have any custom slash commands yet</p>
+        <AlertMessage
+          message={
+            <>
+              <a
+                href={`https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot%20applications.commands&permissions=8`}
+              >
+                Please re-authorize the bot with the application.commands scope.{" "}
+              </a>
+            </>
+          }
+        />
       )}
     </>
   );

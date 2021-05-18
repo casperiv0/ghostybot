@@ -101,19 +101,33 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      const command = await discordGuild?.commands.create({
-        name: commandName,
-        description: body.description,
-      });
+      try {
+        const command = await discordGuild?.commands.create({
+          name: commandName,
+          description: body.description,
+        });
 
-      await req.bot.utils.updateGuildById(`${query.id}`, {
-        slash_commands: [
-          ...guild.slash_commands,
-          { name: commandName, response: body.response, slash_cmd_id: command.id },
-        ],
-      });
+        await req.bot.utils.updateGuildById(`${query.id}`, {
+          slash_commands: [
+            ...guild.slash_commands,
+            { name: commandName, response: body.response, slash_cmd_id: command.id },
+          ],
+        });
 
-      return res.json({ status: "success" });
+        return res.json({ status: "success" });
+      } catch (e) {
+        if (e.httpStatus === 403) {
+          return res.json({
+            error: "Missing permissions",
+            status: "error",
+          });
+        }
+
+        return res.json({
+          error: "An error occurred",
+          status: "error",
+        });
+      }
     }
     case "PUT": {
       const body = JSON.parse(req.body);
