@@ -9,9 +9,22 @@ export default class InteractionEvent extends Event {
 
   async execute(bot: Bot, interaction: Interaction) {
     if (!interaction.isCommand()) return;
-    if (!interaction.command) return;
+    if (!interaction.commandID) return;
+    if (!interaction.guildID) return;
 
-    const command = bot.interactions.get(interaction.command.name);
+    const command = bot.interactions.get(interaction.command?.name ?? "");
+
+    if (!command) {
+      const guild = await bot.utils.getGuildById(interaction.guildID);
+
+      const command = guild?.slash_commands.find((c) => c.slash_cmd_id === interaction.commandID);
+
+      if (!command) {
+        return interaction.reply("An error has occurred");
+      }
+
+      return interaction.reply(command.response);
+    }
 
     try {
       await command?.execute(

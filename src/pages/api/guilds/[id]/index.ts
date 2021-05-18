@@ -14,11 +14,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   switch (method) {
     case "GET": {
+      const discordGuild = await req.bot.guilds.fetch(`${query.id}`);
       const guild = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}`,
         { type: "Bot", data: `${process.env["DISCORD_BOT_TOKEN"]}` },
         "GET",
       );
+
+      const gSlashCommands = await discordGuild.commands.fetch();
       const gChannels = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}/channels`,
         {
@@ -61,13 +64,22 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       guild.roles.unshift({ id: null, name: "Disabled" });
       guild.voice_channels.unshift({ id: null, name: "Disabled" });
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
+      guild.slash_commands = gSlashCommands.array().map((command) => {
+        const cmd = g.slash_commands.find((c) => c.slash_cmd_id === command.id);
+
+        return {
+          ...cmd,
+          description: command.description,
+          id: command.id,
+        };
+      });
 
       hiddenItems.forEach((item) => {
         guild[item] = undefined;
       });
 
       return res.json({
-        guild: { ...guild, ...g.toJSON() },
+        guild: { ...g.toJSON(), ...guild },
         botCommands: req.bot.commands.map((cmd) => cmd.name),
         status: "success",
       });

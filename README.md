@@ -35,6 +35,7 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## Features
 
+- Custom commands + custom slash commands (Max 50 per guild.)
 - Easy to use
 - A dashboard where you can easily manage the bot's settings
 - Reaction Roles

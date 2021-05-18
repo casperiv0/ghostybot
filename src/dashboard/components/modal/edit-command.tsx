@@ -4,18 +4,23 @@ import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
-import { CustomCommand } from "models/Guild.model";
+import { CustomCommand, SlashCommand } from "models/Guild.model";
 
 interface Props {
   guild: Guild;
+  slash?: boolean;
 }
 
-async function getCommand(guildId: string, name: string): Promise<CustomCommand | null> {
+async function getCommand(
+  guildId: string,
+  name: string,
+  slash: boolean,
+): Promise<CustomCommand | SlashCommand | null> {
   try {
     const res = await fetch(
-      `${
-        process.env["NEXT_PUBLIC_DASHBOARD_URL"]
-      }/api/guilds/${guildId}/commands?name=${encodeURIComponent(name)}`,
+      `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guildId}/${
+        slash ? "slash-" : ""
+      }commands?name=${encodeURIComponent(name)}`,
     );
     const data = await res.json();
 
@@ -28,20 +33,30 @@ async function getCommand(guildId: string, name: string): Promise<CustomCommand 
   }
 }
 
-const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
+const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
+  const [commandId, setCommandId] = React.useState(null);
   const router = useRouter();
 
   const setCommandData = React.useCallback(async () => {
-    const command = await getCommand(`${router.query?.id}`, `${router.query.edit}`);
+    const command = await getCommand(`${router.query?.id}`, `${router.query.edit}`, slash ?? false);
     if (!command) return;
 
     openModal("edit-command");
     setName(command.name);
     setCmdRes(command.response);
-  }, [router.query]);
+
+    if (slash) {
+      // @ts-expect-error ignore
+      setDescription(command.description);
+
+      // @ts-expect-error ignore
+      setCommandId(command.slash_cmd_id);
+    }
+  }, [router.query, slash]);
 
   React.useEffect(() => {
     setCommandData();
@@ -50,16 +65,32 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    let commandData = {};
+
+    if (slash) {
+      commandData = {
+        name,
+        response: cmdRes,
+        description,
+        commandId,
+      };
+    } else {
+      commandData = {
+        type: "enable",
+        name,
+        response: cmdRes,
+        description,
+      };
+    }
+
     try {
       const res = await fetch(
-        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/commands`,
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/${
+          slash ? "slash-" : ""
+        }commands`,
         {
           method: "PUT",
-          body: JSON.stringify({
-            type: "enable",
-            name,
-            response: cmdRes,
-          }),
+          body: JSON.stringify(commandData),
         },
       );
       const data = await res.json();
@@ -68,8 +99,13 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
         closeModal("edit-command");
         setName("");
         setCmdRes("");
+        setDescription("");
         setResponse(null);
-        router.push(`/dashboard/${guild.id}/commands?message=Successfully Updated command`);
+        router.push(
+          `/dashboard/${guild.id}/${
+            slash ? "slash-" : ""
+          }commands?message=Successfully Updated command`,
+        );
       }
 
       setResponse(data);
@@ -83,7 +119,9 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Command name</label>
+          <label className="form-label" htmlFor="name">
+            Command name
+          </label>
           <input
             id="name"
             value={name}
@@ -91,8 +129,23 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
             className="form-input"
           />
         </div>
+        {slash ? (
+          <div className="form-group">
+            <label className="form-label" htmlFor="name">
+              Command Description
+            </label>
+            <input
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="form-input"
+            />
+          </div>
+        ) : null}
         <div className="form-group">
-          <label htmlFor="response">Command response</label>
+          <label className="form-label" htmlFor="response">
+            Command response
+          </label>
           <textarea
             id="response"
             value={cmdRes}

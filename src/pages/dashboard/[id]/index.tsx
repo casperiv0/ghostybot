@@ -62,6 +62,11 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
             Custom commands
           </a>
         </Link>
+        <Link href={`/dashboard/${guild.id}/slash-commands`}>
+          <a href={`/dashboard/${guild.id}/slash-commands`} className="btn btn-primary">
+            Custom Slash commands
+          </a>
+        </Link>
         <Link href={`/dashboard/${guild.id}/manage-commands`}>
           <a href={`/dashboard/${guild.id}/manage-commands`} className="btn btn-primary">
             Enable/disable commands

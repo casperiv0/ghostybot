@@ -31,6 +31,7 @@ export interface GuildData {
   ban_data: BanData;
   ticket_data: TicketData;
   verify_data: VerifyData;
+  slash_commands: SlashCommand[];
 }
 
 export type IGuild = Document & GuildData;
@@ -69,6 +70,10 @@ export interface LevelData {
 export interface CustomCommand {
   response: string;
   name: string;
+}
+
+export interface SlashCommand extends CustomCommand {
+  slash_cmd_id: string;
 }
 
 export interface StarboardData {
@@ -113,6 +118,7 @@ const guildSchema = new Schema<IGuild>({
   auto_delete_cmd: { type: Boolean, default: false },
   member_count_channel_id: { type: String, default: null },
   muted_role_id: { type: String, default: null },
+  slash_commands: { type: Array, default: [] },
 
   level_data: {
     type: Object,
