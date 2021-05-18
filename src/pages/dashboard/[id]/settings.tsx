@@ -538,12 +538,7 @@ function SwitchField({ item }: Item) {
 
 function TextareaField({ item }: Item) {
   return (
-    <textarea
-      value={item.value}
-      onChange={item.onChange}
-      id={item.id}
-      className="form-input"
-    ></textarea>
+    <textarea value={item.value} onChange={item.onChange} id={item.id} className="form-input" />
   );
 }
 

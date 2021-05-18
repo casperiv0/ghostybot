@@ -93,7 +93,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
             onChange={(e) => setCmdRes(e.target.value)}
             className="form-input"
             maxLength={1800}
-          ></textarea>
+          />
         </div>
         <div className="float-right">
           <button className="btn btn-primary" type="submit">
