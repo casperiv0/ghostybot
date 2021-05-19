@@ -38,6 +38,11 @@ export default class NpmCommand extends Command {
       if (foundPackage) {
         const { tz, date } = await this.bot.utils.formatDate(foundPackage.date, message.guild?.id);
         const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
+        const downloads = await fetch(
+          `https://api.npmjs.org/downloads/point/last-week/${foundPackage.name}`,
+        )
+          .then((res) => res.json())
+          .catch(() => null);
 
         const embed = this.bot.utils
           .baseEmbed(message)
@@ -47,6 +52,14 @@ export default class NpmCommand extends Command {
           .addField(lang.UTIL.VERSION, foundPackage.version, true)
           .addField(lang.UTIL.LAST_MODIFIED, `${date} (${tz})`, true)
           .addField(lang.UTIL.MAINTAINERS, maintainers);
+
+        if (downloads?.downloads) {
+          embed.addField(
+            lang.UTIL.DOWNLOADS,
+            `${this.bot.utils.formatNumber(downloads.downloads)}/week`,
+            true,
+          );
+        }
 
         return message.channel.send(embed);
       }

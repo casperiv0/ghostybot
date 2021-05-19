@@ -368,6 +368,7 @@ export default {
     NO_W_FOUND: "inga resultat hittades",
     DOC_NOT_FOUND: "Det hittades inte i dokumenten",
     MAINTAINERS: "Maintainers",
+    DOWNLOADS: "Downloads",
     LAST_MODIFIED: "Last modified",
     ALPHA_CODE: "Alpha-2 code",
     CALLING_CODES: "Calling Codes",

@@ -369,6 +369,7 @@ export default {
     NO_W_FOUND: "No results were found",
     DOC_NOT_FOUND: "That was not found on the docs",
     MAINTAINERS: "Maintainers",
+    DOWNLOADS: "Downloads",
     LAST_MODIFIED: "Last modified",
     ALPHA_CODE: "Alpha-2 code",
     CALLING_CODES: "Calling Codes",

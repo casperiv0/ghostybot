@@ -360,6 +360,7 @@ export default {
     NO_W_FOUND: "Результаты не найдены",
     DOC_NOT_FOUND: "Этого нет в документации",
     MAINTAINERS: "Создатели",
+    DOWNLOADS: "Downloads",
     LAST_MODIFIED: "Последнее изменение",
     ALPHA_CODE: "Код Alpha-2",
     CALLING_CODES: "Код номера телефона",
