@@ -80,7 +80,7 @@
     "word-definition": "^2.1.6"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^0.0.6",
+    "@casper124578/eslint-config": "^0.0.8",
     "@casper124578/eslint-config-react": "^0.0.2",
     "@types/bluebird": "^3.5.34",
     "@types/cheerio": "^0.22.28",
