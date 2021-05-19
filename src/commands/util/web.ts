@@ -18,6 +18,7 @@ export default class WebCommand extends Command {
       requiredArgs: [{ name: "url" }],
       usage: "<url EG: https://google.com >",
       botPermissions: [Permissions.FLAGS.ATTACH_FILES],
+      typing: true,
     });
   }
 
@@ -84,7 +85,11 @@ export default class WebCommand extends Command {
     ].join("\n");
 
     const includes = list.includes(parsed.host!);
-    const includesPorn = await (await fetch(url).then((res) => res.text())).includes("porn");
+    const includesPorn = await (
+      await fetch(url, {
+        timeout: 2500,
+      }).then((res) => res.text())
+    ).includes("porn");
 
     if (!includes && !includesPorn) return false;
     if (includes && includesPorn) return true;
