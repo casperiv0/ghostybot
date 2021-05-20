@@ -1,3 +1,4 @@
+import { Constants } from "@/src/utils/constants";
 import { NextApiResponse } from "next";
 import ApiRequest from "types/ApiRequest";
 
@@ -57,10 +58,10 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const commandName = body.name.toLowerCase();
-      if (body.response.length > 1800) {
+      if (body.response.length > Constants.MaxCommandLength) {
         return res.json({
           status: "error",
-          error: "Command response cannot be longer than 1800 characters",
+          error: `Command response cannot be longer than ${Constants.MaxCommandLength} characters`,
         });
       }
 

@@ -1,5 +1,6 @@
 import { NextApiResponse } from "next";
 import ApiRequest from "types/ApiRequest";
+import { Constants } from "@utils/constants";
 
 const botSlashCommands = ["help", "botinfo", "ping"];
 
@@ -73,16 +74,16 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const commandName = body.name.toLowerCase();
-      if (body.response.length > 1800) {
+      if (body.response.length > Constants.MaxCommandLength) {
         return res.json({
           status: "error",
-          error: "Command response cannot be longer than 1800 characters",
+          error: `Command response cannot be longer than ${Constants.MaxCommandLength} characters`,
         });
       }
 
-      if (guild.slash_commands.length >= 50) {
+      if (guild.slash_commands.length >= Constants.MaxSlashCommands) {
         return res.json({
-          error: "Guild cannot have more than 50 slash commands",
+          error: `Guild cannot have more than ${Constants.MaxSlashCommands} slash commands`,
           status: "error",
         });
       }
