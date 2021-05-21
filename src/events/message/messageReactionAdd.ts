@@ -1,6 +1,6 @@
 import ReactionsModel, { Reaction } from "models/Reactions.model";
 
-import { Constants, Message, MessageReaction, TextChannel, User } from "discord.js";
+import { Constants, Message, MessageReaction, Permissions, TextChannel, User } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -15,7 +15,13 @@ export default class MessageReactionAddEvent extends Event {
       const { guild } = react.message;
       if (!guild?.available) return;
 
-      if (!guild.me?.permissions.has(["MANAGE_MESSAGES", "MANAGE_ROLES"])) return;
+      if (
+        !guild.me?.permissions.has([
+          Permissions.FLAGS.MANAGE_MESSAGES,
+          Permissions.FLAGS.MANAGE_ROLES,
+        ])
+      )
+        return;
       if (!guild) return;
 
       const member = guild.members.cache.get(user.id);
@@ -40,6 +46,13 @@ export default class MessageReactionAddEvent extends Event {
 
       const channel = guild.channels.cache.get(dbReaction.channel_id) as TextChannel;
       if (!channel) return;
+
+      if (
+        !channel
+          .permissionsFor(guild.me)
+          .has([Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.MANAGE_ROLES])
+      )
+        return;
 
       let msg: Message | undefined;
       try {

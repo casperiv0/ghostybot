@@ -181,6 +181,9 @@ export default {
     NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
     NO_LIRYCS: "No lyrics found for {songTitle}.",
     NOW: "Now",
+    PARSE_ERROR: "An error occurred when parsing the video/playlist",
+    VIDEO_UNAVAILABLE: "That video/playlist seems to be unavailable",
+    MUSIC_STARTING: "The music is starting. Please wait a few seconds..",
   },
   ECONOMY: {
     MONEY: "Pengar",
@@ -564,6 +567,7 @@ export default {
     NUKE_NUKED: "Channel was successfully nuked",
     NUKE_CANCELED: "Nuke command was canceled",
     NUKE_CONFIRM: "Are you sure you want to nuke this channel? y/n",
+    CHANNEL_CANNOT_BE_DELETED: "That channel cannot be deleted",
     TEXT_OR_VALID_CHANNEL: "Please provide text or a valid channel!",
     DEFAULT_ANNOUNCE_CHANNEL:
       "You can also set a default channel using `set announce-channel <channel mention>`",

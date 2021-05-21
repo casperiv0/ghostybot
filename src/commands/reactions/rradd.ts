@@ -37,6 +37,20 @@ export default class RrAddCommand extends Command {
         );
       }
 
+      if (
+        !channel
+          .permissionsFor(guild.me!)
+          .has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.ADD_REACTIONS])
+      ) {
+        const embed = this.bot.utils.errorEmbed(
+          [Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.ADD_REACTIONS],
+          message,
+          lang.PERMISSIONS,
+        );
+
+        return message.channel.send(embed);
+      }
+
       message.channel.send(lang.REACTIONS.ROLES);
 
       const roleMsgs = await message.channel.awaitMessages(filter, {
@@ -44,8 +58,10 @@ export default class RrAddCommand extends Command {
         max: 1,
         errors: ["time"],
       });
+
       const roleMsg = roleMsgs.first();
       if (!roleMsg) return;
+
       roles = await this.parseRoles(roleMsg);
 
       if (!roles?.[0]) {
@@ -59,6 +75,7 @@ export default class RrAddCommand extends Command {
         max: 1,
         errors: ["time"],
       });
+
       const emojiMsg = emojiMsgs.first();
       if (!emojiMsg) return;
       emojis = this.parseEmojis(emojiMsg);
@@ -81,7 +98,7 @@ export default class RrAddCommand extends Command {
       const reactions: Reaction[] = [];
 
       for (let i = 0; i < roles.length; i++) {
-        reactions.push({ role_id: roles[i].id, emoji: emojis[i].toString() });
+        reactions.push({ role_id: roles[i].id, emoji: emojis[i]?.toString() });
       }
 
       const newRR = new ReactionsModel({

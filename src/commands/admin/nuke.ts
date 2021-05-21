@@ -23,6 +23,10 @@ export default class NukeCommand extends Command {
         return message.channel.send(lang.GLOBAL.ERROR);
       }
 
+      if (!channel.deletable) {
+        return message.channel.send(lang.ADMIN.CHANNEL_CANNOT_BE_DELETED);
+      }
+
       const position = channel.position;
       const topic = channel.topic;
 

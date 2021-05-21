@@ -157,17 +157,17 @@ export default class Util {
 
   async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
     /* eslint-disable-next-line */
-    if (error.stack?.includes('type: Value "voice" is not int.')) return;
-    if (error.stack?.includes("DeprecationWarning: Listening to events on the Db class")) return;
+    if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
+    if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) return;
 
     const channelId = process.env["ERRORLOGS_CHANNEL_ID"];
     const channel = (this.bot.channels.cache.get(channelId ?? "") ||
       (await this.bot.channels.fetch(channelId ?? ""))) as DJS.TextChannel;
 
     if (
-      (process.env.NODE_ENV !== "production" && !channel) ||
       !channelId ||
-      !channel.permissionsFor(this.bot.user!)?.has("SEND_MESSAGES")
+      !channel ||
+      !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
     ) {
       return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
     }
@@ -204,10 +204,11 @@ export default class Util {
     options?: { allowAuthor?: boolean; index?: number },
   ): Promise<DJS.GuildMember | undefined | null> {
     if (!message.guild) return;
+    const index = options?.index ?? 0;
 
     try {
       let member: DJS.GuildMember | null | undefined;
-      const arg = args[options?.index ?? 0]?.replace?.(/[<@!>]/gi, "") || args[options?.index ?? 0];
+      const arg = args[index]?.replace?.(/[<@!>]/gi, "") || args[index];
 
       const mention = // check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
@@ -217,10 +218,8 @@ export default class Util {
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
         message.guild.members.cache.get(arg) ||
-        message.guild.members.cache.find((m) => m.user.id === args[options?.index ?? 0]) ||
-        (message.guild.members.cache.find(
-          (m) => m.user.tag === args[options?.index ?? 0],
-        ) as DJS.GuildMember);
+        message.guild.members.cache.find((m) => m.user.id === args[index]) ||
+        (message.guild.members.cache.find((m) => m.user.tag === args[index]) as DJS.GuildMember);
 
       if (!member) {
         member = await message.guild.members.fetch(arg)[0];
@@ -232,9 +231,8 @@ export default class Util {
 
       return member;
     } catch (e) {
-      if (e?.includes?.("DiscordAPIError: Unknown Member")) {
-        return undefined;
-      }
+      if (e?.includes?.("DiscordAPIError: Unknown Member")) return undefined;
+      if (e?.includes?.("is not a snowflake.")) return undefined;
 
       this.sendErrorLog(e, "error");
     }
@@ -263,7 +261,11 @@ export default class Util {
     const channel = this.bot.channels.cache.get(channelId);
     if (!channel) return;
     if (!this.bot.user) return;
-    if (!(channel as DJS.TextChannel).permissionsFor(this.bot.user?.id)?.has("MANAGE_WEBHOOKS")) {
+    if (
+      !(channel as DJS.TextChannel)
+        .permissionsFor(this.bot.user?.id)
+        ?.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)
+    ) {
       return;
     }
 
@@ -280,12 +282,15 @@ export default class Util {
   async getWebhook(guild: DJS.Guild): Promise<DJS.Webhook | undefined> {
     if (!guild) return;
     if (!guild.me) return;
-    if (!guild.me.permissions.has("MANAGE_WEBHOOKS")) return undefined;
+    if (!guild.me.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return undefined;
 
-    const w = await guild.fetchWebhooks();
+    const webhooks = await guild.fetchWebhooks().catch(() => null);
+    if (!webhooks) return undefined;
+
     const g = await this.getGuildById(guild.id);
     if (!g) return undefined;
-    const webhook = w.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
+
+    const webhook = webhooks.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
     if (!webhook) return undefined;
 
     return webhook;

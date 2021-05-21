@@ -181,6 +181,9 @@ export default {
     NOT_VALID_OPTION: "{option} не является правильной опцией (`set`, `remove`)",
     NO_LIRYCS: "Текст для песни {songTitle} не найден.",
     NOW: "Сейчас",
+    PARSE_ERROR: "An error occurred when parsing the video/playlist",
+    VIDEO_UNAVAILABLE: "That video/playlist seems to be unavailable",
+    MUSIC_STARTING: "The music is starting. Please wait a few seconds..",
   },
   ECONOMY: {
     MONEY: "Деньги",
@@ -554,6 +557,7 @@ export default {
     NUKE_NUKED: "Канал успешно очищен",
     NUKE_CANCELED: "Nuke команда отменена",
     NUKE_CONFIRM: "Вы точно хотите очистить этот канал? y/n",
+    CHANNEL_CANNOT_BE_DELETED: "That channel cannot be deleted",
     TEXT_OR_VALID_CHANNEL: "Пожалуйста, укажите текст или правильный канал!",
     DEFAULT_ANNOUNCE_CHANNEL:
       "Вы также можете установить канал по умолчанию используя `set announce-channel <канал>`",

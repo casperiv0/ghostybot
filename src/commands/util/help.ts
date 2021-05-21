@@ -13,6 +13,7 @@ export default class HelpCommand extends Command {
       cooldown: 2,
       usage: "<category name | command name>",
       aliases: ["h", "info", "commands"],
+      botPermissions: [Permissions.FLAGS.ADD_REACTIONS],
     });
   }
 

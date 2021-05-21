@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -30,7 +30,12 @@ export default class ShuffleCommand extends Command {
       }
 
       this.bot.player.shuffle(message);
-      message.react("🔀");
+
+      if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {
+        message.react("🔀");
+      } else {
+        message.reply("🔀");
+      }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
