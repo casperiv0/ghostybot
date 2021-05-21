@@ -1,6 +1,5 @@
+import { Constants, MessageReaction, Permissions, TextChannel, User } from "discord.js";
 import ReactionsModel, { Reaction } from "models/Reactions.model";
-
-import { Constants, Message, MessageReaction, Permissions, TextChannel, User } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -50,16 +49,15 @@ export default class MessageReactionAddEvent extends Event {
       if (
         !channel
           .permissionsFor(guild.me)
-          .has([Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.MANAGE_ROLES])
+          .has([
+            Permissions.FLAGS.MANAGE_MESSAGES,
+            Permissions.FLAGS.MANAGE_ROLES,
+            Permissions.FLAGS.READ_MESSAGE_HISTORY,
+          ])
       )
         return;
 
-      let msg: Message | undefined;
-      try {
-        msg = await channel.messages.fetch(dbReaction.message_id);
-      } catch {
-        return;
-      }
+      const msg = await channel.messages.fetch(dbReaction.message_id).catch(() => null);
       if (!msg) return;
 
       msg.reactions.resolve(react.emoji.toString())?.users.remove(user.id);
