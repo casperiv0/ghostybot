@@ -7,6 +7,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
+    "format:quick": "pretty-quick --staged --pattern \"**/*.{js,jsx,ts,tsx,md,css,json}\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "start:ts": "ts-node -r tsconfig-paths/register src/index.ts",
@@ -22,7 +23,7 @@
   },
   "bugs": {
     "url": "https://github.com/Dev-CasperTheGhost/ghostybot/issues",
-    "email": "casper.iversen2@gmail.com"
+    "email": "hello@caspertheghost.me"
   },
   "homepage": "https://github.com/Dev-CasperTheGhost/ghostybot#readme",
   "keywords": [
@@ -109,6 +110,7 @@
     "lint-staged": "^11.0.0",
     "next-sitemap": "^1.6.57",
     "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.4",
     "zlib-sync": "^0.1.7"
