@@ -1,7 +1,7 @@
-# Ghostybot Command list
+# GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-Ghostybot has a total of 205 commands.
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -3729,7 +3729,7 @@ Click any of the command names for more information
 
 **Member Permissions:** None
 
-**Bot Permissions:** SEND_MESSAGES
+**Bot Permissions:** SEND_MESSAGES, ADD_REACTIONS
 
 **Required Arguments:** N/A
 

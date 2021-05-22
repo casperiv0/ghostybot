@@ -69,7 +69,7 @@ export default class BotInfoCommand extends Command {
           `
   [${lang.BOT.DEVELOPER}](https://caspertheghost.me)
   [${lang.BOT.CONTRIBUTORS}](https://github.com/Dev-CasperTheGhost/ghostybot/contributors)
-  [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=bot&permissions=8)`,
+  [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=bot%20application.commands&permissions=8)`,
           true,
         )
         .addField(

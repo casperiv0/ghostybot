@@ -1,22 +1,18 @@
-<a href="https://ghostybot.tk">
-     <img src=".github/Ghostybot-banner.png" alt="banner" />
-</a>
+[![banner](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/.github/Ghostybot-banner.png?raw=true)](https://ghostybot.tk)
 
 ![license](https://img.shields.io/github/license/dev-caspertheghost/ghostybot?color=gr)
 ![contr](https://img.shields.io/github/contributors/dev-caspertheghost/ghostybot)
 ![stars](https://img.shields.io/github/stars/dev-caspertheghost/ghostybot?color=gr)
 
-A Custom Discord bot written in TypeScript with a lot of commands for Discord communities. (+205 commands) Economy, util, fun, music, admin, xp system, welcome messages, audit-logs and more!
+A feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js
 
-[![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot&permissions=8)
+[![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot%20applications.commands&permissions=8)
 
-<a href="https://discord.gg/XxHrtkA ">
-  <img src="https://invidget.switchblade.xyz/XxHrtkA" />
-</a>
+[![banner](https://invidget.switchblade.xyz/XxHrtkA)](https://discord.gg/XxHrtkA)
 
 ### Disclaimer (if self-hosted)
 
-You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community. When self-hosting no support will be provided.
+You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community. **When self-hosting no support will be provided.**
 
 ## Table of contents
 
@@ -35,18 +31,18 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## Features
 
-- Custom commands + custom slash commands (Max 50 per guild.)
-- Easy to use
+- Custom commands + custom slash commands (Max 100 per guild.)
 - A dashboard where you can easily manage the bot's settings
 - Reaction Roles
-- Enable/disable welcome messages
+- Welcome/leave messages
 - Play games
 - Use util commands to get your avatar, botinfo, channelinfo and more
 - Play music
 - Get animal pictures/gifs
 - XP system
 - Economy system
-- verify system
+- Verify system
+- Easy to use
 - And more!
 
 ## Commands

@@ -31,7 +31,8 @@ const Landing: NextPage<Props> = ({ isAuth }) => {
       <main className="main">
         <h1>{process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</h1>
         <p>
-          Custom Discord bot for your community needs! Moderation, music, games, economy and more!
+          A feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun,
+          music, admin and more! Built with Next.js and Discord.js
         </p>
         <div className="btn-container">
           <a target="_blank" rel="noreferrer opener" className="main-btn" href="/add">
