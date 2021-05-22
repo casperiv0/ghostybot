@@ -19,8 +19,10 @@ export default class PollCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(question)
-        .setDescription(lang.UTIL.CREATED_BY.replace("{member}", message.author.tag));
+        .setAuthor(lang.UTIL.CREATED_BY.replace("{member}", message.author.tag))
+        .setDescription(question);
+
+      embed.footer = null;
 
       const sendMessage = await message.channel.send(embed);
 
