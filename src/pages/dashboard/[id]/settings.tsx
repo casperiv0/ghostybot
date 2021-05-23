@@ -119,7 +119,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
               ...prev,
               ignore_bots: !prev.ignore_bots,
             })),
-          label: "Ignore bots (this will not show a welcome message when a bot joins)",
+          label: "Ignore bots",
         },
       ],
     },
@@ -166,7 +166,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
               ...prev,
               ignore_bots: !prev.ignore_bots,
             })),
-          label: "Ignore bots (this will not show a welcome message when a bot joins)",
+          label: "Ignore bots",
         },
       ],
     },
@@ -531,7 +531,7 @@ function SwitchField({ item }: Item) {
     <div className="form-switch-container">
       <label htmlFor={item.id}>{item.label}</label>
 
-      <Switch title="" checked={item.value === "true"} onChange={item.onChange} />
+      <Switch title={item.id} checked={item.value === "true"} onChange={item.onChange} />
     </div>
   );
 }

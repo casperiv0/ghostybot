@@ -53,6 +53,7 @@
   text-align: center;
   color: #bbbbbb;
   font-size: 1.3rem;
+  max-width: 75ch;
 }
 
 .btn-container {
@@ -107,7 +108,7 @@
   }
 
   .main-btn:nth-child(1):hover {
-    box-shadow: 0 4px 16px 0 var(--blue);
+    box-shadow: 0 2px 10px 0 var(--blue);
   }
 
   .main-btn:hover {

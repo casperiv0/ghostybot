@@ -40,6 +40,8 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
     return null;
   }
 
+  console.log(guild);
+
   return (
     <>
       <Head>

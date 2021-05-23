@@ -19,9 +19,10 @@ class Ghostybot extends Document {
             href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600;700;800&display=swap"
             rel="stylesheet"
           />
+
           <meta
             name="description"
-            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is an awesome Discord bot for Discord communities. (+200 commands) Economy, util, fun, music, admin, xp system and more`}
+            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is a feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js`}
           />
 
           {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
@@ -35,7 +36,7 @@ class Ghostybot extends Document {
           />
           <meta
             property="og:description"
-            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is an awesome Discord bot for Discord communities. (+200 commands) Economy, util, fun, music, admin, xp system and more`}
+            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is a feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js`}
           />
           <meta property="og:image" content="https://ghostybot.tk/banner.png" />
 
@@ -50,7 +51,7 @@ class Ghostybot extends Document {
           <meta name="twitter:image" content="https://ghostybot.tk/banner.png" />
           <meta
             name="twitter:description"
-            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is an awesome Discord bot for Discord communities. (+200 commands) Economy, util, fun, music, admin, xp system and more`}
+            content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is a feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js`}
           />
 
           <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon.png" />

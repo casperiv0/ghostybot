@@ -84,7 +84,7 @@ select:focus {
   font-size: 1.1rem;
   color: #fff;
   background: var(--secondary);
-  border: 1px solid var(--dark);
+  border: 1.5px solid var(--dark);
   border-radius: var(--main-br);
   resize: vertical;
   transition: border 200ms;
@@ -94,11 +94,18 @@ select:focus {
   border-color: var(--blue);
 }
 
+.form-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .form-switch-container label:first-child {
-  display: inline-block;
-  font-size: 1rem;
-  max-width: 85%;
-  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.form-switch-container label:last-child {
+  min-width: 3rem;
 }
 
 .alert-message {
@@ -257,6 +264,7 @@ td {
     align-items: center;
     justify-content: space-between;
   }
+
   .page-title h4 {
     margin-bottom: 0;
   }
@@ -273,12 +281,12 @@ td {
 
 @media (min-width: 1200px) {
   :root {
-    --content-width: 65%;
+    --content-width: 75%;
   }
 }
 
 @media (min-width: 1800px) {
   :root {
-    --content-width: 1200px;
+    --content-width: 1300px;
   }
 }
