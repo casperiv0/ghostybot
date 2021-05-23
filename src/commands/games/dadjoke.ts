@@ -18,7 +18,7 @@ export default class DadJokeCommand extends Command {
     try {
       const data = await fetch("https://icanhazdadjoke.com/slack").then((res) => res.json());
 
-      message.channel.send(data.attachments[0].fallback);
+      return message.channel.send(data.attachments[0].fallback);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

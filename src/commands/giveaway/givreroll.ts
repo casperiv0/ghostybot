@@ -19,9 +19,13 @@ export default class GivReRollCommand extends Command {
     try {
       const [messageId] = args;
 
-      this.bot.giveawayManager
-        .reroll(messageId)
-        .catch(() => message.channel.send(`No giveaway found with id: ${messageId}`));
+      const success = await this.bot.giveawayManager.reroll(messageId).catch(() => null);
+
+      if (success === null) {
+        return message.channel.send(`No giveaway found with id: ${messageId}`);
+      }
+
+      return message.react("👍");
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

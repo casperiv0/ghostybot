@@ -26,7 +26,7 @@ export default class CalcCommand extends Command {
         .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, `\`\`\`js\n${args.join(" ")}\`\`\``)
         .addField(`${lang.BOT_OWNER.EVAL_OUTPUT}:`, `\`\`\`js\n${calculation}\`\`\``);
 
-      message.channel.send(embed);
+      return message.channel.send(embed);
     } catch (e) {
       return message.channel.send(lang.GAMES.INVALID_CALC);
     }

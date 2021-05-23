@@ -25,7 +25,7 @@ export default class SlapCommand extends Command {
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
         .setImage(`${data.url}`);
 
-      message.channel.send({ embed });
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

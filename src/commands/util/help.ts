@@ -52,7 +52,7 @@ export default class HelpCommand extends Command {
           .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
         embed.setDescription(`\`\`\`${cmds}\`\`\``);
-        return message.channel.send({ embed });
+        return message.channel.send(embed);
       } else if (cmdArgs) {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
 

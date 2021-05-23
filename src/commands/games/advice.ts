@@ -18,7 +18,7 @@ export default class AdviceCommand extends Command {
     try {
       const data = await fetch("https://api.adviceslip.com/advice").then((res) => res.json());
 
-      message.channel.send(data.slip.advice);
+      return message.channel.send(data.slip.advice);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

@@ -35,7 +35,7 @@ export default class DocsCommand extends Command {
         },
       };
 
-      return message.channel.send({ embed });
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

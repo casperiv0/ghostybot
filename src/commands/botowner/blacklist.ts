@@ -65,7 +65,7 @@ export default class BlacklistCommand extends Command {
             .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member?.user?.username}`)
             .addField(`${lang.LEVELS.LEVEL}`, "2");
 
-          return message.channel.send({ embed });
+          return message.channel.send(embed);
         }
         case "add": {
           const [existing] = users.filter((u: UserData) => u.user_id === member?.user?.id);

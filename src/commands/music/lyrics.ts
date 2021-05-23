@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { Track } from "discord-player";
 
 export default class LyricsCommand extends Command {
   constructor(bot: Bot) {
@@ -9,6 +10,7 @@ export default class LyricsCommand extends Command {
       aliases: ["ly"],
       description: "Get lyrics for the song",
       category: "music",
+      typing: true,
     });
   }
 
@@ -18,7 +20,7 @@ export default class LyricsCommand extends Command {
       const playing = this.bot.player.isPlaying(message);
       const queue = this.bot.player.getQueue(message);
       const np = playing || queue ? this.bot.player.nowPlaying(message) : false;
-      const title = (np && np.title) || args.join(" ");
+      const title = args.join(" ") || (np as Track)?.title;
 
       const lyrics = await this.bot.lyricsClient.search(title);
 
@@ -26,9 +28,9 @@ export default class LyricsCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
       }
 
-      const songTitle = (np && np.title) || lyrics.title;
-      const songAuthor = (np && np.author) || lyrics.artist?.name || "Unknown";
-      const songThumbnail = (np && np.thumbnail) || lyrics.thumbnail;
+      const songTitle = lyrics.title || (np && np.title);
+      const songAuthor = (lyrics.artist?.name ?? "Unknown") || (np && np.author);
+      const songThumbnail = lyrics.thumbnail || (np as Track).thumbnail;
       const songLyrics = lyrics.lyrics as string;
 
       const lyricsEmbed = this.bot.utils

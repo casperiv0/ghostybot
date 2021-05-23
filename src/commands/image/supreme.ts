@@ -25,7 +25,7 @@ export default class SupremeCommand extends Command {
 
       const att = new MessageAttachment(image, "supreme.png");
 
-      message.channel.send(att);
+      return message.channel.send(att);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

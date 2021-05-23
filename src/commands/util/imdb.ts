@@ -34,7 +34,7 @@ export default class ImdbCommand extends Command {
         .addField(`${lang.UTIL.DB_RELEASED}`, released, true)
         .addField(`${lang.BOT_OWNER.EVAL_TYPE}`, movie.type, true);
 
-      message.channel.send({ embed });
+      message.channel.send(embed);
     } catch (e) {
       console.log(e);
 

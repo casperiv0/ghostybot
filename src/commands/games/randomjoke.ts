@@ -17,7 +17,7 @@ export default class JokeCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      message.channel.send(
+      return message.channel.send(
         getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body,
       );
     } catch (err) {

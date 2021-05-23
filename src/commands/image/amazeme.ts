@@ -34,7 +34,7 @@ export default class AmazemeCommand extends Command {
         .setImage(image)
         .setFooter(`👍 ${upvotes} - 💬 ${comments}`);
 
-      message.channel.send({ embed });
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

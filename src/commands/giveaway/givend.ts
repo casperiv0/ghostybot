@@ -20,10 +20,13 @@ export default class GiveEndCommand extends Command {
     try {
       const [messageId] = args;
 
-      this.bot.giveawayManager
-        .delete(messageId)
-        .then(() => message.channel.send("Successfully ended giveaway"))
-        .catch(() => message.channel.send("Giveaway not ended yet or was not found"));
+      const deleted = await this.bot.giveawayManager.delete(messageId).catch(() => null);
+
+      if (deleted === null) {
+        return message.channel.send("Giveaway not ended yet or was not found");
+      }
+
+      return message.channel.send("Successfully ended giveaway");
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

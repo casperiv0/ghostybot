@@ -28,7 +28,7 @@ export default class ClydeCommand extends Command {
         .setImage(data.message)
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.message})`);
 
-      message.channel.send(embed);
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

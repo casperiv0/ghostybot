@@ -30,7 +30,7 @@ export default class MagikCommand extends Command {
         })}`,
       ).then((res) => res.json());
 
-      message.channel.send(data.message);
+      return message.channel.send(data.message);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

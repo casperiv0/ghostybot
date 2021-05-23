@@ -21,7 +21,7 @@ export default class IqCommand extends Command {
         .setTitle(lang.GAMES.IQ_TEST)
         .setDescription(lang.GAMES.IQ_IS.replace("{iq}", `${iq}`));
 
-      message.channel.send(embed);
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

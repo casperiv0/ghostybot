@@ -9,10 +9,11 @@ export default class AmazingEarthCommand extends Command {
       aliases: ["advertisement"],
       description: "Shows an amazing advertisement",
       category: "image",
+      typing: true,
     });
   }
 
-  async execute(message: Message) {
+  async execute(message: Message): Promise<Message> {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
@@ -21,7 +22,7 @@ export default class AmazingEarthCommand extends Command {
 
       const embed = this.bot.utils.baseEmbed(message).setImage(url);
 
-      message.channel.send({ embed });
+      return message.channel.send(embed);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

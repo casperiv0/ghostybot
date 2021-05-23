@@ -140,7 +140,7 @@ export default class MessageEvent extends Event {
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
               .addField(lang.LEVELS.NEW_LEVEL, newLevel)
-              .addField(lang.LEVELS.TOTAL_XP, user.xp + xp);
+              .addField(lang.LEVELS.TOTAL_XP, bot.utils.formatNumber(user.xp + xp));
 
             const ch = message.channel;
             if (
@@ -186,7 +186,7 @@ export default class MessageEvent extends Event {
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
           .addField(lang.BOT.DASHBOARD, process.env["NEXT_PUBLIC_DASHBOARD_URL"]);
 
-        return message.channel.send({ embed });
+        return message.channel.send(embed);
       }
 
       if (customCommands) {
