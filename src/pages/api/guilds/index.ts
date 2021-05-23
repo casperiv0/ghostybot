@@ -1,6 +1,6 @@
 import { NextApiResponse } from "next";
 import { Permissions } from "discord.js";
-import hiddenItems from "data/hidden-items.json";
+import { hiddenGuildItems } from "data/hidden-items";
 import ApiRequest from "types/ApiRequest";
 import Guild from "types/Guild";
 
@@ -41,7 +41,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       });
 
       filteredGuilds.forEach((guild: Guild) => {
-        hiddenItems.forEach((item) => {
+        hiddenGuildItems.forEach((item) => {
           return (guild[item] = undefined);
         });
       });

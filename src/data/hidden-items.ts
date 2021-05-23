@@ -1,4 +1,4 @@
-[
+export const hiddenGuildItems = [
   "features",
   "members",
   "presences",
@@ -54,5 +54,16 @@
   "preferredLocale",
   "discoverySplash",
   "region",
-  "permissions"
-]
+  "permissions",
+];
+
+export const hiddenBotItems = [
+  "giveawayManager",
+  "lyricsClient",
+  "ctgs",
+  "player",
+  "imdb",
+  "pasteClient",
+  "neko",
+  "cooldowns",
+];
