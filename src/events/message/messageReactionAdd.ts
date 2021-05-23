@@ -3,6 +3,12 @@ import ReactionsModel, { Reaction } from "models/Reactions.model";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
+const neededPerms = [
+  Permissions.FLAGS.MANAGE_MESSAGES,
+  Permissions.FLAGS.MANAGE_ROLES,
+  Permissions.FLAGS.READ_MESSAGE_HISTORY,
+];
+
 export default class MessageReactionAddEvent extends Event {
   constructor(bot: Bot) {
     super(bot, Constants.Events.MESSAGE_REACTION_ADD);
@@ -14,13 +20,10 @@ export default class MessageReactionAddEvent extends Event {
       const { guild } = react.message;
       if (!guild?.available) return;
 
-      if (
-        !guild.me?.permissions.has([
-          Permissions.FLAGS.MANAGE_MESSAGES,
-          Permissions.FLAGS.MANAGE_ROLES,
-        ])
-      )
+      if (!guild.me?.permissions.has(neededPerms)) {
         return;
+      }
+
       if (!guild) return;
 
       const member = guild.members.cache.get(user.id);
@@ -45,17 +48,7 @@ export default class MessageReactionAddEvent extends Event {
 
       const channel = guild.channels.cache.get(dbReaction.channel_id) as TextChannel;
       if (!channel) return;
-
-      if (
-        !channel
-          .permissionsFor(guild.me)
-          .has([
-            Permissions.FLAGS.MANAGE_MESSAGES,
-            Permissions.FLAGS.MANAGE_ROLES,
-            Permissions.FLAGS.READ_MESSAGE_HISTORY,
-          ])
-      )
-        return;
+      if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
       const msg = await channel.messages.fetch(dbReaction.message_id).catch(() => null);
       if (!msg) return;
