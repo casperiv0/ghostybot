@@ -2,7 +2,6 @@ import Bot from "./structures/Bot";
 import { createServer } from "http";
 import { parse } from "url";
 import next from "next";
-import { hiddenBotItems } from "./data/hidden-items";
 import ApiRequest from "./interfaces/ApiRequest";
 
 export default (bot: Bot) => {
@@ -16,11 +15,6 @@ export default (bot: Bot) => {
       const parsedUrl = parse(req.url!, true);
 
       (req as ApiRequest).bot = bot;
-
-      // remove unused items from the bot for dashboard
-      hiddenBotItems.forEach((item) => {
-        (req as ApiRequest).bot[item] = undefined;
-      });
 
       handle(req, res, parsedUrl);
     }).listen(process.env["DASHBOARD_PORT"], () => {
