@@ -4,7 +4,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["@casper124578/eslint-config", "@casper124578/eslint-config-react"],
+  extends: [
+    "@casper124578/eslint-config",
+    "@casper124578/eslint-config-react",
+    "@casper124578/eslint-config-next",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
@@ -14,9 +18,6 @@ module.exports = {
     },
   },
   rules: {
-    "no-undef": "off",
     "no-template-curly-in-string": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };
