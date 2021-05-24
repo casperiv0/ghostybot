@@ -393,6 +393,14 @@ export default {
     IP_LOC: "es", // https://ipwhois.io/documentation Localization
     VERIFY_CHANNEL: "Verification channel is: {channel}",
     VERIFY_NOT_ENABLED: "Verification is not enabled for this guild",
+    CHANNEL_TYPES: {
+      TEXT: "Text channel",
+      VOICE: "Voice channel",
+      STAGE: "Stage channel",
+      NEWS: "News channel",
+      STORE: "Store channel",
+      CATEGORY: "Category channel",
+    },
   },
   BOT: {
     GUILDS: "Gremios",

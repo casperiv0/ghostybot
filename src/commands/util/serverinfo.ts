@@ -26,7 +26,6 @@ export default class ServerInfoCommand extends Command {
       const channels = this.bot.utils.formatNumber(guild.channels.cache.size);
       const emojis = this.bot.utils.formatNumber(guild.emojis.cache.size);
 
-      const regions = lang.OTHER.REGIONS;
       const verLevels = lang.OTHER.VERLEVELS;
 
       const { date: createdAt } = await this.bot.utils.formatDate(
@@ -43,7 +42,6 @@ export default class ServerInfoCommand extends Command {
         format: "png",
       });
 
-      const region = regions[guild.region];
       const verLevel = verLevels[guild.verificationLevel];
       const mfaLevel = guild.mfaLevel;
 
@@ -53,7 +51,6 @@ export default class ServerInfoCommand extends Command {
         .setDescription(
           `
   **${lang.GUILD.OWNER}:** ${owner}
-  **${lang.GUILD.REGION}:** ${region}
   **${lang.GUILD.MFA}:** ${mfaLevel}
   **${lang.GUILD.VERIFICATION}:** ${verLevel}
 

@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, TextChannel, VoiceChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -16,22 +16,30 @@ export default class ChannelInfoCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const channel = (message.mentions.channels.first() ||
+      const channel =
+        message.mentions.channels.first() ||
         message.guild?.channels.cache.get(args[0]) ||
-        message.channel) as TextChannel;
+        message.channel;
 
-      const topic = channel?.topic ? channel.topic : "N/A";
+      const topic = (channel as TextChannel)?.topic ? (channel as TextChannel)?.topic : "N/A";
       const channelId = channel?.id;
       const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
-      const type = channel?.type === "text" ? lang.UTIL.TEXT_CHANNEL : lang.UTIL.VOICE_CHANNEL;
+      const type = lang.UTIL.CHANNEL_TYPES[channel?.type.toUpperCase()];
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(`${channel?.name}`)
+        .setTitle(`${(channel as TextChannel)?.name}`)
         .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
         .addField(lang.UTIL.CHANNEL_TOPIC, topic, true)
         .addField(lang.MEMBER.ID, channelId, true)
         .addField(lang.MEMBER.CREATED_ON, `${date} (${tz})`, true);
+
+      if (["voice", "stage"].includes(channel.type)) {
+        const regions = lang.OTHER.REGIONS;
+        const region = regions[(channel as VoiceChannel)?.rtcRegion ?? "us-central"];
+
+        embed.addField(lang.GUILD.REGION, region);
+      }
 
       message.channel.send(embed);
     } catch (err) {

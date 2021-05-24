@@ -381,6 +381,14 @@ export default {
     IP_LOC: "ru", // https://ipwhois.io/documentation Localization
     VERIFY_CHANNEL: "Канал верификации: {channel}",
     VERIFY_NOT_ENABLED: "Канал верификации не установлен",
+    CHANNEL_TYPES: {
+      TEXT: "Text channel",
+      VOICE: "Voice channel",
+      STAGE: "Stage channel",
+      NEWS: "News channel",
+      STORE: "Store channel",
+      CATEGORY: "Category channel",
+    },
   },
   BOT: {
     GUILDS: "Серверов",
