@@ -1,9 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 const Footer: React.FC = () => {
+  const { t } = useTranslation("footer");
+
   return (
     <footer className="footer">
       <p>
-        Created & Designed by <a href="https://caspertheghost.me/">CasperTheGhost</a> | Not
-        affiliated with Discord
+        {t("created")} <a href="https://caspertheghost.me/">CasperTheGhost</a> |{" "}
+        {t("not_affiliated")}
       </p>
     </footer>
   );

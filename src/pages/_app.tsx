@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
+import { appWithTranslation } from "next-i18next";
 import NProgress from "nprogress";
 import "../dashboard/css/index.css";
 import "../dashboard/css/cards.css";
@@ -52,4 +53,4 @@ function GhostyBot({ Component, pageProps }: AppProps) {
   );
 }
 
-export default GhostyBot;
+export default appWithTranslation(GhostyBot);

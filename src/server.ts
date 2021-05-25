@@ -9,16 +9,18 @@ export default (bot: Bot) => {
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
-  // eslint-disable-next-line promise/catch-or-return
-  app.prepare().then(() => {
-    return createServer((req, res) => {
-      const parsedUrl = parse(req.url!, true);
+  app
+    .prepare()
+    .then(() => {
+      return createServer((req, res) => {
+        const parsedUrl = parse(req.url!, true);
 
-      (req as ApiRequest).bot = bot;
+        (req as ApiRequest).bot = bot;
 
-      handle(req, res, parsedUrl);
-    }).listen(process.env["DASHBOARD_PORT"], () => {
-      bot.logger.log("dashboard", "Dashboard was started");
-    });
-  });
+        handle(req, res, parsedUrl);
+      }).listen(process.env["DASHBOARD_PORT"], () => {
+        bot.logger.log("dashboard", "Dashboard was started");
+      });
+    })
+    .catch(console.error);
 };

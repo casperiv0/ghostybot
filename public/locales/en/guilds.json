@@ -1,0 +1,5 @@
+{
+  "beta": "This dashboard is still in beta! It could be that some things will not work, if you have found an issue please report this at: ",
+  "select_a_server": "Please select a server",
+  "bot_in_guild": "The bot must be in this guild!"
+}
