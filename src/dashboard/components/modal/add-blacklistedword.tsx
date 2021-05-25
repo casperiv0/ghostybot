@@ -53,7 +53,9 @@ const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="word">{t("enter_word")}</label>
+          <label className="form-label" htmlFor="word">
+            {t("enter_word")}
+          </label>
           <input
             id="word"
             value={word}

@@ -9,6 +9,8 @@ import AlertMessage from "@components/AlertMessage";
 import categories from "data/categories.json";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   guild: Guild | null;
@@ -20,6 +22,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
   const [message, setMessage] = React.useState<string | null>(null);
   const [filtered, setFiltered] = React.useState(categories);
+  const { t } = useTranslation(["guilds", "common"]);
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -88,16 +91,20 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage categories - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
+        <title>
+          {t("manage_categories")} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+        </title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
-        <h4>{guild?.name} - Enable/disable categories</h4>
+        <h4>
+          {guild?.name} - {t("manage_categories")}
+        </h4>
 
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              Return
+              {t("return")}
             </a>
           </Link>
         </div>
@@ -105,7 +112,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
       <div className="form-group">
         <label className="sr-only" htmlFor="search">
-          Search for categories
+          {t("search_for_categories")}
         </label>
         <input
           id="search"
@@ -129,7 +136,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
                     onClick={() => updateCategory(isDisabled ? "enable" : "disable", category)}
                     className="btn btn-secondary"
                   >
-                    {isDisabled ? "Enable" : "Disable"}
+                    {isDisabled ? t("enable") : t("disable")}
                   </button>
                 </div>
               </div>
@@ -153,6 +160,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
       isAuth: data.error !== "invalid_token",
       guild: data?.guild ?? null,
       error: data?.error ?? null,

@@ -8,6 +8,8 @@ import fetch from "node-fetch";
 import AlertMessage from "@components/AlertMessage";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   guild: Guild | null;
@@ -21,6 +23,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
   const [message, setMessage] = React.useState<string | null>(null);
   const [filtered, setFiltered] = React.useState(botCommands);
   const [length, setLength] = React.useState(20);
+  const { t } = useTranslation(["guilds", "common"]);
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -101,11 +104,15 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
   return (
     <>
       <Head>
-        <title>Manage commands - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
+        <title>
+          {t("manage_commands")} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+        </title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
-        <h4>{guild?.name} - Enable/disable commands</h4>
+        <h4>
+          {guild?.name} - {t("manage_commands")}
+        </h4>
 
         <div>
           <Link href={`/dashboard/${guild.id}`}>
@@ -118,7 +125,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
 
       <div className="form-group">
         <label className="sr-only" htmlFor="search">
-          Search for commands
+          {t("search_for_commands")}
         </label>
         <input
           id="search"
@@ -143,7 +150,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
                     onClick={() => updateCommand(isDisabled ? "enable" : "disable", cmd)}
                     className="btn btn-secondary"
                   >
-                    {isDisabled ? "Enable" : "Disable"}
+                    {isDisabled ? t("enable") : t("disable")}
                   </button>
                 </div>
               </div>
@@ -167,6 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
       isAuth: data.error !== "invalid_token",
       botCommands: data.botCommands ?? [],
       guild: data?.guild ?? null,
