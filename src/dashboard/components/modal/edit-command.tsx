@@ -5,6 +5,7 @@ import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
 import { CustomCommand, SlashCommand } from "models/Guild.model";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
@@ -40,6 +41,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const [commandId, setCommandId] = React.useState(null);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
 
   const setCommandData = React.useCallback(async () => {
     const command = await getCommand(`${router.query?.id}`, `${router.query.edit}`, slash ?? false);
@@ -102,9 +104,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         setDescription("");
         setResponse(null);
         router.push(
-          `/dashboard/${guild.id}/${
-            slash ? "slash-" : ""
-          }commands?message=Successfully Updated command`,
+          `/dashboard/${guild.id}/${slash ? "slash-" : ""}commands?message=${t("updated_command")}`,
         );
       }
 
@@ -115,12 +115,12 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   }
 
   return (
-    <Modal id="edit-command" title="Edit command">
+    <Modal id="edit-command" title={t("update_command")}>
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">
-            Command name
+            {t("command_name")}
           </label>
           <input
             id="name"
@@ -132,7 +132,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         {slash ? (
           <div className="form-group">
             <label className="form-label" htmlFor="name">
-              Command Description
+              {t("command_desc")}
             </label>
             <input
               id="description"
@@ -144,7 +144,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         ) : null}
         <div className="form-group">
           <label className="form-label" htmlFor="response">
-            Command response
+            {t("command_response")}
           </label>
           <textarea
             id="response"
@@ -156,7 +156,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         </div>
         <div className="float-right">
           <button className="btn btn-primary" type="submit">
-            Update command
+            {t("update_command")}
           </button>
         </div>
       </form>

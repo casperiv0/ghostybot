@@ -4,6 +4,7 @@ import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
@@ -13,6 +14,7 @@ const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
   const [word, setWord] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,7 +36,9 @@ const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
         setWord("");
         setResponse(null);
         router.push(
-          `/dashboard/${guild.id}/blacklisted-words?message=Successfully blacklisted word: ${word}`,
+          `/dashboard/${guild.id}/blacklisted-words?message=${t(
+            "added_blacklisted_word",
+          )}: ${word}`,
         );
       }
 
@@ -49,7 +53,7 @@ const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="word">Enter word</label>
+          <label htmlFor="word">{t("enter_word")}</label>
           <input
             id="word"
             value={word}
@@ -59,7 +63,7 @@ const AddBlacklistedWord: React.FC<Props> = ({ guild }: Props) => {
         </div>
         <div className="float-right">
           <button className="btn btn-primary" type="submit">
-            Add word
+            {t("add_word")}
           </button>
         </div>
       </form>
