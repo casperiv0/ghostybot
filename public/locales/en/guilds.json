@@ -10,6 +10,7 @@
   "words": "Words",
   "no_words": "This guild does not have any blacklisted words yet.",
 
+  "manage_store": "Manage store",
   "store": "Store",
   "add_store_item": "Add store item",
   "added_to_store": "was added to the store",
@@ -42,5 +43,42 @@
   "manage_slash_commands": "Manage slash commands",
   "add_slash_command": "Add slash command",
   "no_slash_commands": "This guild does not have any custom slash commands yet.",
-  "re_authorize": "Please re-authorize the bot with the application.commands scope."
+  "re_authorize": "Please re-authorize the bot with the application.commands scope.",
+
+  "settings": "Guild Settings",
+  "save_settings": "Save settings",
+  "enable_or_disable_feature": "Enable or disable feature",
+
+  "welcome": "Welcome",
+  "welcome_channel": "Welcome channel",
+  "welcome_role": "Welcome role",
+  "welcome_message": "Welcome message",
+  "ignore_bots": "Ignore bots",
+
+  "leave_message": "Leave message",
+  "leave_channel": "Leave channel",
+
+  "levels": "Levels",
+  "level_message": "Level message",
+
+  "tickets": "Tickets",
+  "ticket_role": "Ticket role",
+  "ticket_parent": "Parent",
+
+  "starboard": "Starboard",
+  "starboard_channel": "Starboards channel",
+  "starboards_emoji": "Starboards emoji",
+
+  "verification": "Verification",
+  "verify_channel": "Verify channel",
+  "verified_role": "Verified role",
+
+  "audit_logs_chn": "Audit logs channel",
+  "suggestion_channel": "Suggestion channel",
+  "announcement_channel": "Announcement channel",
+  "bot_language": "Bot language",
+  "timezone": "Timezone",
+  "bot_prefix": "Bot Prefix",
+  "auto_delete_commands": "Auto delete commands",
+  "muted_role": "Muted Role"
 }
