@@ -17,4 +17,7 @@ module.exports = {
       jsx: true,
     },
   },
+  rules: {
+    "no-template-curly-in-string": "off",
+  },
 };
