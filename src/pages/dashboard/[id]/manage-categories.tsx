@@ -22,7 +22,8 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
   const [message, setMessage] = React.useState<string | null>(null);
   const [filtered, setFiltered] = React.useState(categories);
-  const { t } = useTranslation(["guilds", "common"]);
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -104,7 +105,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              {t("return")}
+              {commonT("return")}
             </a>
           </Link>
         </div>

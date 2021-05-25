@@ -10,11 +10,14 @@
   "words": "Words",
   "no_words": "This guild does not have any blacklisted words yet.",
 
+  "store": "Store",
   "add_store_item": "Add store item",
   "added_to_store": "was added to the store",
   "enter_name": "Enter name",
   "enter_price": "Enter price",
   "add_item": "Add item",
+  "price": "Price",
+  "no_store_items": "This guild does not have any items in the store yet.",
 
   "manage_custom_commands": "Manage custom commands",
   "create_command": "Create command",

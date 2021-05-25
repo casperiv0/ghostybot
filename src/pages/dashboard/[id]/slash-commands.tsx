@@ -25,7 +25,8 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
   const [message, setMessage] = React.useState<string | null>(null);
   const [commands, setCommands] = React.useState(guild?.slash_commands ?? []);
   const router = useRouter();
-  const { t } = useTranslation(["guilds", "common"]);
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -109,7 +110,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              {t("return")}
+              {commonT("return")}
             </a>
           </Link>
           {guild.slash_commands !== null ? (

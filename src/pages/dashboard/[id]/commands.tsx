@@ -26,7 +26,8 @@ const CustomCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = React.useState<string | null>(null);
   const [commands, setCommands] = React.useState<CustomCommand[]>(guild?.custom_commands ?? []);
   const router = useRouter();
-  const { t } = useTranslation(["guilds", "common"]);
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -111,7 +112,7 @@ const CustomCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              {t("return")}
+              {commonT("return")}
             </a>
           </Link>
           <button className="btn btn-primary  ml-5" onClick={addCmd}>
