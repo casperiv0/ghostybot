@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -25,15 +25,14 @@ export default class DocsCommand extends Command {
         return message.channel.send(lang.UTIL.DOC_NOT_FOUND);
       }
 
-      const embed = {
+      const embed = new MessageEmbed({
         ...data,
-        author: {},
         color: "#5865f2",
         footer: {
           text: message.author.username,
-          icon_url: message.author.displayAvatarURL({ dynamic: true }),
+          icon_url: message.author?.displayAvatarURL({ dynamic: true }),
         },
-      };
+      });
 
       return message.channel.send(embed);
     } catch (err) {

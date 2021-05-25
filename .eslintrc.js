@@ -19,5 +19,9 @@ module.exports = {
   },
   rules: {
     "no-template-curly-in-string": "off",
+    "no-lone-blocks": "error",
+    yoda: "error",
+    "no-unreachable-loop": "error",
+    "no-useless-backreference": "error",
   },
 };
