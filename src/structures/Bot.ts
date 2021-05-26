@@ -65,6 +65,9 @@ class Bot extends Client {
       leaveOnEmpty: true,
       leaveOnEnd: true,
       leaveOnStop: true,
+      ytdlDownloadOptions: {
+        filter: "audioonly",
+      },
     });
 
     this.ctgs = new CtgsClient();

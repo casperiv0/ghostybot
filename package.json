@@ -46,7 +46,7 @@
     "dayjs": "^1.10.4",
     "discord-giveaways": "4.5.1",
     "discord-logs": "^1.9.0",
-    "discord-player": "4.0.8",
+    "discord-player": "4.1.0",
     "discord-starboards": "2.2.3",
     "discord.js": "github:discordjs/discord.js#master",
     "dotenv": "^9.0.2",
