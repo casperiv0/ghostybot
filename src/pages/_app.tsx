@@ -34,8 +34,6 @@ function GhostyBot({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    console.log("here");
-
     if (typeof window !== "undefined") {
       const locale = window.localStorage.getItem("bot_locale");
       if (locale === router.locale) return;

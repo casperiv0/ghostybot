@@ -23,6 +23,7 @@ const Footer: React.FC = () => {
       <select onChange={handleChange} className="select-language">
         <option value="en">English</option>
         <option value="ru">Russian</option>
+        <option value="nl">Dutch</option>
       </select>
     </footer>
   );
