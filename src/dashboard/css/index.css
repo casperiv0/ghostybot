@@ -40,6 +40,10 @@ select:focus {
   justify-content: center;
 }
 
+.footer-content {
+  min-height: calc(100vh - 7rem);
+}
+
 .content {
   width: var(--content-width);
 }

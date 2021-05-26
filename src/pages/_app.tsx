@@ -44,11 +44,11 @@ function GhostyBot({ Component, pageProps }: AppProps) {
         <Head>
           <title>{process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot</title>
         </Head>
-        <div className="content">
+        <div className={`content ${router.pathname === "/" && "footer-content"}`}>
           <Component {...pageProps} />
         </div>
       </div>
-      {paths.includes(router.pathname) ? null : <Footer />}
+      <Footer />
     </>
   );
 }

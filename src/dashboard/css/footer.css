@@ -15,3 +15,20 @@
 .footer p {
   text-align: center;
 }
+
+.select-language {
+  margin-left: 2rem;
+  padding: 0;
+  background: transparent;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--secondary);
+  color: white;
+
+  transition: border 200ms;
+}
+
+.select-language:focus,
+.select-language:hover {
+  border-color: var(--dark);
+}

@@ -1,6 +1,8 @@
 module.exports = {
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "ru"],
+    // todo: add russian & dutch language
+    // locales: ["en", "ru", "nl"],
+    locales: ["en"],
   },
 };
