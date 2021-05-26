@@ -4,6 +4,7 @@ import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
@@ -14,6 +15,7 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
   const [price, setPrice] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,7 +38,7 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
         setName("");
         setPrice("");
         setResponse(null);
-        router.push(`/dashboard/${guild.id}/store?message=${name} was added to the store`);
+        router.push(`/dashboard/${guild.id}/store?message=${name} ${t("added_to_store")}`);
       }
 
       setResponse(data);
@@ -46,12 +48,12 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
   }
 
   return (
-    <Modal id="addStoreItem" title="Add store item">
+    <Modal id="addStoreItem" title={t("add_store_item")}>
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">
-            Enter Name
+            {t("enter_name")}
           </label>
           <input
             id="name"
@@ -62,7 +64,7 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="price">
-            Enter Price
+            {t("enter_price")}
           </label>
           <input
             id="price"
@@ -73,7 +75,7 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
         </div>
         <div className="float-right">
           <button className="btn btn-primary" type="submit">
-            Add item
+            {t("add_item")}
           </button>
         </div>
       </form>

@@ -1,12 +1,16 @@
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { parseCookies } from "nookies";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   isAuth: boolean;
 }
 
 const Landing: NextPage<Props> = ({ isAuth }) => {
+  const { t } = useTranslation("landing");
+
   return (
     <>
       <nav className="nav-bar">
@@ -16,13 +20,13 @@ const Landing: NextPage<Props> = ({ isAuth }) => {
           </a>
           <div className="nav-links">
             <a href="/dashboard" className="nav-link">
-              Dashboard
+              {t("dashboard")}
             </a>
             <a href="/add" className="nav-link invite-btn">
-              Invite
+              {t("invite")}
             </a>
             <a className="nav-link" href="/support">
-              Support server
+              {t("support_server")}
             </a>
           </div>
         </div>
@@ -36,18 +40,18 @@ const Landing: NextPage<Props> = ({ isAuth }) => {
         </p>
         <div className="btn-container">
           <a target="_blank" rel="noreferrer opener" className="main-btn" href="/add">
-            Add To discord
+            {t("add_to_discord")}
           </a>
 
           {isAuth ? (
             <Link href="/dashboard">
               <a href="/dashboard" className="main-btn">
-                Open Dashboard
+                {t("open_dashboard")}
               </a>
             </Link>
           ) : (
             <a href="/api/auth/login" className="main-btn">
-              Open Dashboard
+              {t("open_dashboard")}
             </a>
           )}
         </div>
@@ -69,6 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["landing", "footer", "profile"])),
       isAuth: data.error !== "invalid_token",
     },
   };

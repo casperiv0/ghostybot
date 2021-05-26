@@ -5,6 +5,8 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Logger from "handlers/Logger";
 import { openModal } from "@components/modal";
 import CreateCommandModal from "@components/modal/create-command";
@@ -23,6 +25,8 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
   const [message, setMessage] = React.useState<string | null>(null);
   const [commands, setCommands] = React.useState(guild?.slash_commands ?? []);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -92,22 +96,26 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
   return (
     <>
       <Head>
-        <title>Manage custom slash commands - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
+        <title>
+          {t("manage_slash_commands")} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+        </title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
 
       <div className="page-title">
-        <h4>{guild?.name} - Custom slash commands</h4>
+        <h4>
+          {guild?.name} - {t("manage_slash_commands")}
+        </h4>
 
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              Return
+              {commonT("return")}
             </a>
           </Link>
           {guild.slash_commands !== null ? (
             <button className="btn btn-primary  ml-5" onClick={addCmd}>
-              Add slash command
+              {t("add_slash_command")}
             </button>
           ) : null}
         </div>
@@ -122,9 +130,9 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
             <table>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Response</th>
-                  <th>Actions</th>
+                  <th>{t("name")}</th>
+                  <th>{t("response")}</th>
+                  <th>{t("actions")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -138,13 +146,13 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
                           onClick={() => deleteCommand(cmd.name)}
                           className="btn btn-sm btn-red"
                         >
-                          Delete
+                          {t("delete")}
                         </button>
                         <button
                           onClick={() => handleEdit(cmd.name)}
                           className="btn btn-sm btn-green"
                         >
-                          Edit
+                          {t("edit")}
                         </button>
                       </td>
                     </tr>
@@ -153,7 +161,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
               </tbody>
             </table>
           ) : (
-            <p>This guild does not have any custom slash commands yet</p>
+            <p>{t("no_slash_commands")}</p>
           )}
         </>
       ) : (
@@ -165,7 +173,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
                   "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot%20applications.commands&permissions=8"
                 }
               >
-                Please re-authorize the bot with the application.commands scope.{" "}
+                {t("re_authorize")}
               </a>
             </>
           }
@@ -188,6 +196,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
       isAuth: data.error !== "invalid_token",
       guild: data?.guild ?? null,
       error: data?.error ?? null,

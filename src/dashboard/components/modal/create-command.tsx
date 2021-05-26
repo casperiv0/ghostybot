@@ -4,6 +4,7 @@ import Logger from "handlers/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
@@ -16,6 +17,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   const [description, setDescription] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -43,9 +45,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         setDescription("");
         setResponse(null);
         router.push(
-          `/dashboard/${guild.id}/${
-            slash ? "slash-" : ""
-          }commands?message=Successfully Added command`,
+          `/dashboard/${guild.id}/${slash ? "slash-" : ""}commands?message=${t("added_command")}`,
         );
       }
 
@@ -56,12 +56,12 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   }
 
   return (
-    <Modal id="createCommandModal" title="Create command">
+    <Modal id="createCommandModal" title={t("create_command")}>
       {response?.error ? <AlertMessage message={response?.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">
-            Command name
+            {t("command_name")}
           </label>
           <input
             id="name"
@@ -73,7 +73,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         {slash ? (
           <div className="form-group">
             <label className="form-label" htmlFor="name">
-              Command Description
+              {t("command_desc")}
             </label>
             <input
               id="description"
@@ -85,7 +85,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         ) : null}
         <div className="form-group">
           <label className="form-label" htmlFor="response">
-            Command response
+            {t("command_response")}
           </label>
           <textarea
             id="response"
@@ -97,7 +97,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         </div>
         <div className="float-right">
           <button className="btn btn-primary" type="submit">
-            Add command
+            {t("create_command")}
           </button>
         </div>
       </form>

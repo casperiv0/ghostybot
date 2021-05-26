@@ -10,6 +10,8 @@ import AddBlacklistedWord from "@components/modal/add-blacklistedword";
 import Logger from "handlers/Logger";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild | null;
@@ -20,6 +22,8 @@ interface Props {
 const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = React.useState<string | null>(null);
   const router = useRouter();
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -74,17 +78,21 @@ const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage blacklisted words - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}</title>
+        <title>
+          {t("manage_blacklisted_words")} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+        </title>
       </Head>
       {message ? <AlertMessage type="success" message={message} /> : null}
       <AddBlacklistedWord guild={guild} />
       <div className="page-title">
-        <h4>{guild?.name} - Blacklisted words</h4>
+        <h4>
+          {guild?.name} - {t("manage_blacklisted_words")}
+        </h4>
 
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              Return
+              {commonT("return")}
             </a>
           </Link>
           <button className="btn btn-primary ml-5" onClick={addWord}>
@@ -97,8 +105,8 @@ const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
         <table>
           <thead>
             <tr>
-              <th>Word</th>
-              <th>Actions</th>
+              <th>{t("words")}</th>
+              <th>{t("actions")}</th>
             </tr>
           </thead>
           <tbody>
@@ -108,7 +116,7 @@ const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
                   <td className="cmd-response">{word}</td>
                   <td className="table-actions">
                     <button onClick={() => deleteWord(word)} className="btn btn-sm btn-red">
-                      Delete
+                      {t("delete")}
                     </button>
                   </td>
                 </tr>
@@ -117,7 +125,7 @@ const BlacklistedWords: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
           </tbody>
         </table>
       ) : (
-        <p>This guild does not have any blacklisted words yet</p>
+        <p>{t("no_words")}</p>
       )}
     </>
   );
@@ -136,6 +144,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
       isAuth: data.error !== "invalid_token",
       guild: data?.guild ?? null,
       error: data?.error ?? null,

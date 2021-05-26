@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Loader from "./Loader";
+import { useTranslation } from "react-i18next";
 
 export interface User {
   username: string;
@@ -15,6 +16,7 @@ const Navbar = () => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
   const [user, setUser] = React.useState<User | null>(null);
+  const { t } = useTranslation("profile");
 
   const fetchAuth = React.useCallback(async () => {
     const cookies = parseCookies();
@@ -74,18 +76,18 @@ const Navbar = () => {
             <div className="dropdown-content">
               <Link href="/dashboard">
                 <a href="/dashboard" className="dropdown-link">
-                  My servers
+                  {t("my_servers")}
                 </a>
               </Link>
               <Link href="/add">
                 <a href="/add" className="dropdown-link">
-                  Invite {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+                  {t("invite")} {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
                 </a>
               </Link>
 
               <Link href="/logout">
                 <a href="/logout" className="dropdown-link logout">
-                  Logout
+                  {t("logout")}
                 </a>
               </Link>
             </div>

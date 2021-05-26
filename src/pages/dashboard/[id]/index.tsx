@@ -7,6 +7,8 @@ import Head from "next/head";
 import GuildData from "types/Guild";
 import AlertMessage from "@components/AlertMessage";
 import Loader from "@components/Loader";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   guild: GuildData | null;
@@ -16,6 +18,8 @@ interface Props {
 
 const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const router = useRouter();
+  const { t } = useTranslation("guilds");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -40,8 +44,6 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
     return null;
   }
 
-  console.log(guild);
-
   return (
     <>
       <Head>
@@ -50,10 +52,12 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
         </title>
       </Head>
       <div className="page-title">
-        <h4>Current guild: {guild.name}</h4>
+        <h4>
+          {commonT("current_guild")}: {guild.name}
+        </h4>
         <Link href="/dashboard">
           <a href="/dashboard" className="btn btn-primary">
-            Return
+            {commonT("return")}
           </a>
         </Link>
       </div>
@@ -61,37 +65,37 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
       <div className="grid">
         <Link href={`/dashboard/${guild.id}/commands`}>
           <a href={`/dashboard/${guild.id}/commands`} className="btn btn-primary">
-            Custom commands
+            {t("manage_custom_commands")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/slash-commands`}>
           <a href={`/dashboard/${guild.id}/slash-commands`} className="btn btn-primary">
-            Custom Slash commands
+            {t("manage_slash_commands")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/manage-commands`}>
           <a href={`/dashboard/${guild.id}/manage-commands`} className="btn btn-primary">
-            Enable/disable commands
+            {t("manage_commands")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/manage-categories`}>
           <a href={`/dashboard/${guild.id}/manage-categories`} className="btn btn-primary">
-            Enable/disable categories
+            {t("manage_categories")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/settings`}>
           <a href={`/dashboard/${guild.id}/settings`} className="btn btn-primary">
-            Guild Settings
+            {t("settings")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/blacklisted-words`}>
           <a href={`/dashboard/${guild.id}/blacklisted-words`} className="btn btn-primary">
-            Manage blacklisted words
+            {t("manage_blacklisted_words")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/store`}>
           <a href={`/dashboard/${guild.id}/store`} className="btn btn-primary">
-            Manage Store
+            {t("manage_store")}
           </a>
         </Link>
       </div>
@@ -112,6 +116,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
       isAuth: data.error !== "invalid_token",
       guild: data?.guild ?? null,
       error: data?.error ?? null,

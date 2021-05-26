@@ -1,11 +1,15 @@
 import { NextPage } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 
 const ErrorPage: NextPage = () => {
   const [error, setError] = React.useState<string | null>(null);
   const router = useRouter();
+  const { t: errorT } = useTranslation("common");
+  const { t } = useTranslation("landing");
 
   React.useEffect(() => {
     const err = router.query.error as string;
@@ -22,13 +26,13 @@ const ErrorPage: NextPage = () => {
           </a>
           <div className="nav-links">
             <a href="/dashboard" className="nav-link">
-              Dashboard
+              {t("dashboard")}
             </a>
             <a href="/add" className="nav-link invite-btn">
-              Invite
+              {t("invite")}
             </a>
             <a className="nav-link" href="/support">
-              Support server
+              {t("support_server")}
             </a>
           </div>
         </div>
@@ -42,12 +46,18 @@ const ErrorPage: NextPage = () => {
             style={{ display: "block", marginTop: "10px", textDecoration: "underline" }}
             className="nav-link"
           >
-            Back home
+            {errorT("back_home")}
           </a>
         </Link>
       </main>
     </>
   );
 };
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common", "landing"])),
+  },
+});
 
 export default ErrorPage;

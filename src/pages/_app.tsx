@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
+import { appWithTranslation } from "next-i18next";
 import NProgress from "nprogress";
 import "../dashboard/css/index.css";
 import "../dashboard/css/cards.css";
@@ -43,13 +44,13 @@ function GhostyBot({ Component, pageProps }: AppProps) {
         <Head>
           <title>{process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot</title>
         </Head>
-        <div className="content">
+        <div className={`content ${router.pathname === "/" && "footer-content"}`}>
           <Component {...pageProps} />
         </div>
       </div>
-      {paths.includes(router.pathname) ? null : <Footer />}
+      <Footer />
     </>
   );
 }
 
-export default GhostyBot;
+export default appWithTranslation(GhostyBot);
