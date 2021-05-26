@@ -33,6 +33,18 @@ function GhostyBot({ Component, pageProps }: AppProps) {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    console.log("here");
+
+    if (typeof window !== "undefined") {
+      const locale = window.localStorage.getItem("bot_locale");
+      if (locale === router.locale) return;
+      if (!locale) return;
+
+      router.push(locale);
+    }
+  }, [router]);
+
   if (loading === true) {
     return <Loader full />;
   }

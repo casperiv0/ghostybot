@@ -6,6 +6,10 @@ const Footer: React.FC = () => {
   const { t } = useTranslation("footer");
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const locale = e.target.value;
+    if (router.locale === locale) return;
+    window.localStorage.setItem("bot_locale", locale);
+
     router.push(router.pathname, router.pathname, { locale: e.target.value });
   }
 
@@ -18,7 +22,7 @@ const Footer: React.FC = () => {
 
       <select onChange={handleChange} className="select-language">
         <option value="en">English</option>
-        {/* <option value="ru">Russian</option> */}
+        <option value="ru">Russian</option>
       </select>
     </footer>
   );
