@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
     if (router.locale === locale) return;
     window.localStorage.setItem("bot_locale", locale);
 
-    router.push(router.pathname, router.pathname, { locale: e.target.value });
+    router.push(router.pathname, router.asPath, { locale: e.target.value });
   }
 
   return (
