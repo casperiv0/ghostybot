@@ -1,10 +1,10 @@
 {
-  "back_home": "Back home",
-  "return": "Return",
-  "delete": "Delete",
-  "actions": "Actions",
-  "edit": "Edit",
-  "enable": "Enable",
-  "disable": "Disable",
-  "current_guild": "Current guild"
+  "back_home": "На главную",
+  "return": "Вернуться",
+  "delete": "Удалить",
+  "actions": "Действия",
+  "edit": "Изменить",
+  "enable": "Включить",
+  "disable": "Выключить",
+  "current_guild": "Текущий сервер"
 }
