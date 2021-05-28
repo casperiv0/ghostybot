@@ -62,8 +62,8 @@ class Bot extends Client {
 
     this.player = new Player(this, {
       autoSelfDeaf: true,
-      leaveOnEmpty: true,
-      leaveOnEnd: true,
+      // leaveOnEmpty: true,
+      // leaveOnEnd: true,
       leaveOnStop: true,
       ytdlDownloadOptions: {
         filter: "audioonly",

@@ -18,6 +18,8 @@ export default class PlayCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const voiceChannel = message.member?.voice.channel;
     const search = args.join(" ");
+    const queue = this.bot.player.getQueue(message);
+
     if (!this.bot.user) return;
 
     if (!search) {
@@ -26,6 +28,10 @@ export default class PlayCommand extends Command {
 
     if (!voiceChannel) {
       return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+    }
+
+    if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+      return message.channel.send("Bot is not in this voice channel!");
     }
 
     try {

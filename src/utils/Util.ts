@@ -502,6 +502,14 @@ export default class Util {
       .join(" ");
   }
 
+  isBotInSameChannel(message: DJS.Message) {
+    const voiceChannel = message.member?.voice.channel;
+
+    if (!voiceChannel) return false;
+    if (!this.bot.user?.id) return false;
+    return voiceChannel?.members.has(this.bot.user?.id!);
+  }
+
   resolveCommand(nameOrAlias: string) {
     return (
       this.bot.commands.get(nameOrAlias) ??
