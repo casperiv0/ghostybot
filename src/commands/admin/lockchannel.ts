@@ -30,8 +30,9 @@ export default class LockChannelCommand extends Command {
         return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_LOCKED);
       }
 
+      // @ts-expect-error ignore
       channel.updateOverwrite(message.guild!.id, {
-        SEND_MESSAGES: false,
+        SEND_MESSAGES: true,
       });
 
       message.channel.send(

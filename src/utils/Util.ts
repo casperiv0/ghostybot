@@ -341,10 +341,10 @@ export default class Util {
   async updateMuteChannelPerms(
     guild: DJS.Guild,
     memberId: DJS.Snowflake,
-    perms: Partial<DJS.PermissionObject>,
+    perms: Partial<DJS.PermissionOverwriteOptions>,
   ) {
     guild.channels.cache.forEach((channel) => {
-      channel.updateOverwrite(memberId, perms).catch((e) => {
+      channel.updateOverwrite(memberId, perms as DJS.PermissionOverwriteOptions).catch((e) => {
         this.bot.logger.error("mute_user", e);
       });
     });
@@ -503,11 +503,12 @@ export default class Util {
   }
 
   isBotInSameChannel(message: DJS.Message) {
-    const voiceChannel = message.member?.voice.channel;
+    const voiceChannelId = message.member?.voice.channelID;
 
-    if (!voiceChannel) return false;
-    if (!this.bot.user?.id) return false;
-    return voiceChannel?.members.has(this.bot.user?.id!);
+    if (!voiceChannelId) return false;
+    if (!message.guild?.me) return false;
+
+    return message.guild.me.voice.channelID === voiceChannelId;
   }
 
   resolveCommand(nameOrAlias: string) {
