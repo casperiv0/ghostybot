@@ -1,10 +1,10 @@
 {
-  "back_home": "Back home",
-  "return": "Return",
-  "delete": "Delete",
-  "actions": "Actions",
-  "edit": "Edit",
-  "enable": "Enable",
-  "disable": "Disable",
-  "current_guild": "Current guild"
+  "back_home": "Start pagina",
+  "return": "Terug",
+  "delete": "Verwijderen",
+  "actions": "Acties",
+  "edit": "Wijzigen",
+  "enable": "Inschakelen",
+  "disable": "Uitschakelen",
+  "current_guild": "Huidige server"
 }
