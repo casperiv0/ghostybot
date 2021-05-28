@@ -32,7 +32,7 @@ export default class LockChannelCommand extends Command {
 
       // @ts-expect-error ignore
       channel.updateOverwrite(message.guild!.id, {
-        SEND_MESSAGES: true,
+        SEND_MESSAGES: false,
       });
 
       message.channel.send(
