@@ -7,7 +7,7 @@ export interface InteractionOptions {
   options?: ApplicationCommandOptionData[];
 }
 
-export default class Interaction {
+export default abstract class Interaction {
   bot: Bot;
   name: string;
   options: InteractionOptions;
@@ -24,11 +24,8 @@ export default class Interaction {
    * @param {string[]} args message args
    * @returns {any}
    */
-  async execute(
+  abstract execute(
     message: DiscordInteraction,
     args: (string | number | boolean | undefined)[],
-  ): Promise<any> {
-    message;
-    args;
-  }
+  ): Promise<any>;
 }

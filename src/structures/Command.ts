@@ -41,7 +41,7 @@ export interface CommandOptions {
   ownerOnly?: boolean;
 }
 
-export default class Command {
+export default abstract class Command {
   bot: Bot;
   name: string;
   options: CommandOptions;
@@ -57,10 +57,5 @@ export default class Command {
    * @param {string[]} args message args
    * @returns {any}
    */
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async execute(message: Message, args: string[]): Promise<any> {
-    message;
-    args;
-  }
+  abstract execute(message: Message, args: string[]): Promise<any>;
 }

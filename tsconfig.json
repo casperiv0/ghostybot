@@ -17,6 +17,7 @@
     "isolatedModules": true,
     "noUnusedLocals": true,
     "typeRoots": ["./node_modules/@types", "./typings"],
+    "noImplicitOverride": false,
 
     "strictBindCallApply": true,
     "strictFunctionTypes": true,

@@ -1,6 +1,6 @@
 import Bot from "./Bot";
 
-export default class Event {
+export default abstract class Event {
   bot: Bot;
   name: string;
 
@@ -13,9 +13,5 @@ export default class Event {
    *
    * @param {Bot} bot bot
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async execute(bot: Bot, ...args: any): Promise<any> {
-    bot;
-    args;
-  }
+  abstract execute(bot: Bot, ...args: any): Promise<any>;
 }
