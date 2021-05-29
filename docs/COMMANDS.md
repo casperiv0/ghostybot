@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 205 commands.
+GhostyBot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -39,7 +39,7 @@ Click any of the command names for more information
 
 ### Category: admin
 
-**Total commands: 35**
+**Total commands: 36**
 
 [addcmd:](#addcmd) add guild custom commands
 
@@ -88,6 +88,8 @@ Click any of the command names for more information
 [sticky:](#sticky) Sticky a message to the bottom of the screen
 
 [tempmute:](#tempmute) Temporary mute someone
+
+[temprole:](#temprole) Give someone a role temporary
 
 [unban:](#unban) unban a user by their id
 
@@ -1032,6 +1034,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES, MANAGE_CHANNELS
 
 **Required Arguments:** `user(string)`, `time(time)`, `reason(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## temprole
+
+**Category:** admin
+
+**Description:** Give someone a role temporary
+
+**Usage:** `<member> <role> <time>`
+
+**Aliases:** N/A
+
+**Member Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Bot Permissions:** SEND_MESSAGES, MANAGE_ROLES
+
+**Required Arguments:** `member(string)`, `role(string)`, `time(time)`
 
 [Back to top](#ghostybot-command-list)
 

@@ -10,11 +10,17 @@ async function database() {
       useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      connectTimeoutMS: 300000,
+      socketTimeoutMS: 75000,
+      keepAlive: true,
+      keepAliveInitialDelay: 300000,
     });
 
     Logger.log("database", "Connected to mongodb");
   } catch (e) {
     console.error(e);
+    console.log(e.reason);
+
     Logger.error("database", e?.stack || e);
   }
 }
