@@ -34,6 +34,9 @@ module.exports = withPWA({
   future: {
     webpack5: true,
   },
+  experimental: {
+    turboMode: true,
+  },
   webpack: (config, { dev, isServer }) => {
     // fixes 'cannot resolve 'erlpack' in discord.js/src'
     config.externals.push("erlpack");

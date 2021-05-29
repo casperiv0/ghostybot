@@ -239,7 +239,7 @@ Click any of the command names for more information
 
 [tictactoe:](#tictactoe) Play a game of tictactoe
 
-[wyr:](#wyr) Would you rather
+[wyr:](#wyr) Would you rather ...
 
 ---
 
@@ -2319,7 +2319,7 @@ Click any of the command names for more information
 
 **Category:** games
 
-**Description:** Would you rather
+**Description:** Would you rather ...
 
 **Usage:** `N/A`
 

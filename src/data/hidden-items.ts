@@ -56,14 +56,3 @@ export const hiddenGuildItems = [
   "region",
   "permissions",
 ];
-
-export const hiddenBotItems = [
-  "giveawayManager",
-  "lyricsClient",
-  "ctgs",
-  "player",
-  "imdb",
-  "pasteClient",
-  "neko",
-  "cooldowns",
-];
