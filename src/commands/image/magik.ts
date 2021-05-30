@@ -23,7 +23,7 @@ export default class MagikCommand extends Command {
       }
 
       const data = await fetch(
-        `https://nekothis.bot.xyz/api/imagegen?type=magik&intensity=${encodeURIComponent(
+        `https://nekobot.xyz/api/imagegen?type=magik&intensity=${encodeURIComponent(
           intensity,
         )}&image=${member?.user?.displayAvatarURL({
           format: "png",
