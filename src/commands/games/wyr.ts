@@ -22,7 +22,7 @@ export default class WouldYouRatherCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(lang.GAMES.WYR)
+        .setTitle(data.data.title)
         .setDescription(`${reply1} **OR** ${reply2}`)
         .addField("Votes", data.data.votes, true)
         .addField("Author", data.data.author, true);
