@@ -33,6 +33,10 @@ export default class BackCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_PREV_QUEUE);
       }
 
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
       this.bot.player.back(message);
 
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {

@@ -28,6 +28,10 @@ export default class ResumeCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
       this.bot.player.resume(message);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

@@ -19,10 +19,17 @@ export default class ClearQueueCommand extends Command {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
-      const playing = this.bot.player.isPlaying(message);
-
-      if (!playing) {
+      const queue = this.bot.player.getQueue(message);
+      if (!this.bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+
+      if (!queue) {
+        return message.channel.send(lang.MUSIC.NO_QUEUE);
+      }
+
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
       }
 
       this.bot.player.clearQueue(message);

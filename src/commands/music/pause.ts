@@ -23,6 +23,11 @@ export default class PauseCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
+      const queue = this.bot.player.getQueue(message);
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
       this.bot.player.pause(message);
 
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {

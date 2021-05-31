@@ -18,15 +18,20 @@ export default class LoopCommand extends Command {
         return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
       }
 
+      const queue = this.bot.player.getQueue(message);
       if (!this.bot.player.isPlaying(message)) {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
-      if (this.bot.player.getQueue(message).tracks.length > 1) {
-        const modeloop = !this.bot.player.getQueue(message).loopMode;
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
+      if (queue.tracks.length > 1) {
+        const modeloop = !queue.loopMode;
         this.bot.player.setLoopMode(message, modeloop);
       } else {
-        const moderepeat = !this.bot.player.getQueue(message).repeatMode;
+        const moderepeat = !queue.repeatMode;
         this.bot.player.setRepeatMode(message, moderepeat);
       }
 

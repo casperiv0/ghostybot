@@ -32,6 +32,10 @@ export default class SeekCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
       const song = this.bot.player.nowPlaying(message);
 
       if (!song) {

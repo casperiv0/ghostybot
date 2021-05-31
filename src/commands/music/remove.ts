@@ -29,6 +29,10 @@ export default class RemoveCommand extends Command {
         return message.channel.send(lang.MUSIC.NO_QUEUE);
       }
 
+      if (queue && !this.bot.utils.isBotInSameChannel(message)) {
+        return message.channel.send("Bot is not in this voice channel!");
+      }
+
       if (isNaN(Number(songNo))) {
         return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
       }
