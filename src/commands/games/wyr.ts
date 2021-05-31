@@ -18,12 +18,14 @@ export default class WouldYouRatherCommand extends Command {
 
     try {
       const data = await fetch("http://api.xaliks.xyz/random/wyr").then((res) => res.json());
-      const [reply1, reply2] = data.data;
+      const [reply1, reply2] = data.data.questions;
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.WYR)
-        .setDescription(`${reply1} **OR** ${reply2}`);
+        .setDescription(`${reply1} **OR** ${reply2}`)
+        .addField("Votes", data.data.votes, true)
+        .addField("Author", data.data.author, true);
 
       return message.channel.send(embed);
     } catch (err) {
