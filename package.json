@@ -48,7 +48,7 @@
     "discord-logs": "^1.9.0",
     "discord-player": "4.1.0",
     "discord-starboards": "2.2.3",
-    "discord.js": "^13.0.0-dev.652c683da7032a147313b4a8db043be5385e0656",
+    "discord.js": "^13.0.0-dev.6567ba821a54d3dc97d07ce8ac55335fef2f346b",
     "dotenv": "^9.0.2",
     "easy-games-js": "^1.2.1",
     "eslint-plugin-react": "^7.23.2",
