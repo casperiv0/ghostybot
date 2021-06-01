@@ -401,6 +401,9 @@ export default {
       STORE: "Store channel",
       CATEGORY: "Category channel",
     },
+
+    TOTAL_TRACKS: "Total tracks",
+    RELEASE_DATE: "Release date",
   },
   BOT: {
     GUILDS: "Gremios",
