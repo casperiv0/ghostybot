@@ -49,7 +49,7 @@
     "discord-player": "4.1.0",
     "discord-starboards": "2.2.3",
     "discord.js": "^13.0.0-dev.6567ba821a54d3dc97d07ce8ac55335fef2f346b",
-    "dotenv": "^9.0.2",
+    "dotenv": "^10.0.0",
     "easy-games-js": "^1.2.1",
     "eslint-plugin-react": "^7.23.2",
     "ffmpeg": "0.0.4",
