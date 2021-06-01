@@ -101,7 +101,7 @@
     "@types/twemoji-parser": "^12.1.0",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.23.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "discord-api-types": "^0.18.1",
     "eslint": "^7.26.0",
     "husky": "^6.0.0",
