@@ -4107,7 +4107,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** N/A
+**Aliases:** `spot`
 
 **Member Permissions:** None
 
