@@ -43,7 +43,7 @@ export default class SpotifyCommand extends Command {
               "Album",
               `
 **Name:** [${data.album.name}](${data.album.url})
-**${lang.UTIL.RELEASE_DATE}:** ${data.album.releaseDate}
+**${lang.UTIL.RELEASE_DATE}:** ${data.album.release_date}
 **Artists:** ${artists}`,
             );
 
@@ -51,7 +51,7 @@ export default class SpotifyCommand extends Command {
         }
         case "artist": {
           const topTracks = data.top10tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
-          const genres = data.genres.join("\n");
+          const genres = data.genres.join("\n") || lang.GLOBAL.NONE;
 
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -59,14 +59,15 @@ export default class SpotifyCommand extends Command {
             .setURL(data.url)
             .addField(lang.UTIL.GH_FOLLOWERS, this.bot.utils.formatNumber(data.followers), true)
             .addField("Genres", genres, true)
-            .addField("Top 10 tracks", topTracks, true)
+            .addField("Top 10 tracks", topTracks)
             .setImage(data.images[0].url);
 
           return message.channel.send(embed);
         }
         case "album": {
           const tracks = data.tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
-          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
+          const artists =
+            data.artists.map((art) => `[${art.name}](${art.url})`).join(", ") || lang.GLOBAL.NONE;
 
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -74,7 +75,7 @@ export default class SpotifyCommand extends Command {
             .setURL(data.url)
             .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.total_tracks), true)
             .addField("Tracks", tracks, true)
-            .addField(lang.UTIL.RELEASE_DATE, data.releaseDate, true)
+            .addField(lang.UTIL.RELEASE_DATE, data.release_date, true)
             .addField("Artists", artists, true)
             .setImage(data.images[0].url);
 
