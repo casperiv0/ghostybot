@@ -21,8 +21,9 @@ export default class ChannelsCommand extends Command {
 
       const voiceChannels = channels
         ?.filter((channel) => channel.type === "voice")
-        .map((channel) => channel.name)
+        .map((channel) => `<#${channel.id}>`)
         .join(", ");
+
       const textChannels = channels
         ?.filter((channel) => channel.type === "text")
         .map((channel) => `<#${channel.id}>`)

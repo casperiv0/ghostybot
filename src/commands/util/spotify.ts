@@ -29,9 +29,15 @@ export default class SpotifyCommand extends Command {
       const url = `http://api.xaliks.xyz/info/spotify/${type}/${search}`;
       const data = await fetch(url).then((res) => res.json());
 
+      if (data.error) {
+        return message.channel.send(data.error);
+      }
+
       switch (type.toLowerCase()) {
         case "track": {
-          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
+          const artists =
+            data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ") ||
+            lang.GLOBAL.NONE;
 
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -50,7 +56,8 @@ export default class SpotifyCommand extends Command {
           return message.channel.send(embed);
         }
         case "artist": {
-          const topTracks = data.top10tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
+          const topTracks =
+            data.top10tracks.map((v) => `[${v.name}](${v.url})`).join("\n") || lang.GLOBAL.NONE;
           const genres = data.genres.join("\n") || lang.GLOBAL.NONE;
 
           const embed = this.bot.utils
@@ -59,13 +66,17 @@ export default class SpotifyCommand extends Command {
             .setURL(data.url)
             .addField(lang.UTIL.GH_FOLLOWERS, this.bot.utils.formatNumber(data.followers), true)
             .addField("Genres", genres, true)
-            .addField("Top 10 tracks", topTracks)
-            .setImage(data.images[0].url);
+            .addField("Top 10 tracks", topTracks);
+
+          if (data.images.length > 0) {
+            embed.setImage(data.images[0].url);
+          }
 
           return message.channel.send(embed);
         }
         case "album": {
-          const tracks = data.tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
+          const tracks =
+            data.tracks.map((v) => `[${v.name}](${v.url})`).join("\n") || lang.GLOBAL.NONE;
           const artists =
             data.artists.map((art) => `[${art.name}](${art.url})`).join(", ") || lang.GLOBAL.NONE;
 
