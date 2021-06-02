@@ -31,7 +31,7 @@ export default class SpotifyCommand extends Command {
 
       switch (type.toLowerCase()) {
         case "track": {
-          const artists = data.album.artists.map(art => `[${art.name}](${art.url})`).join(", ");
+          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
 
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -40,12 +40,12 @@ export default class SpotifyCommand extends Command {
             .setThumbnail(data.album.images[0].url)
             .addField(lang.MUSIC.DURATION, `about ${ms(data.duration, { long: true })}`)
             .addField(
-                "Album",
-                `
+              "Album",
+              `
 **Name:** [${data.album.name}](${data.album.url})
 **${lang.UTIL.RELEASE_DATE}:** ${data.album.releaseDate}
 **Artists:** ${artists}`,
-              );
+            );
 
           return message.channel.send(embed);
         }
@@ -66,7 +66,7 @@ export default class SpotifyCommand extends Command {
         }
         case "album": {
           const tracks = data.tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
-          const artists = data.album.artists.map(art => `[${art.name}](${art.url})`).join(", ");
+          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
 
           const embed = this.bot.utils
             .baseEmbed(message)
