@@ -31,43 +31,51 @@ export default class SpotifyCommand extends Command {
 
       switch (type.toLowerCase()) {
         case "track": {
+          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
+
           const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(data.name)
             .setURL(data.url)
-            .addField(lang.MUSIC.DURATION, `about ${ms(data.duration, { long: true })}`);
-
-          if (data.album?.found === true) {
-            embed.addField(
+            .setThumbnail(data.album.images[0].url)
+            .addField(lang.MUSIC.DURATION, `about ${ms(data.duration, { long: true })}`)
+            .addField(
               "Album",
               `
 **Name:** [${data.album.name}](${data.album.url})
-**${lang.UTIL.RELEASE_DATE}:** ${data.album.releaseDate}`,
+**${lang.UTIL.RELEASE_DATE}:** ${data.album.releaseDate}
+**Artists:** ${artists}`,
             );
-          }
 
           return message.channel.send(embed);
         }
         case "artist": {
           const topTracks = data.top10tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
+          const genres = data.genres.join("\n");
 
           const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(data.name)
             .setURL(data.url)
-            .addField(lang.UTIL.GH_FOLLOWERS, this.bot.utils.formatNumber(data.followers))
-            .addField("Top 10 tracks", topTracks)
+            .addField(lang.UTIL.GH_FOLLOWERS, this.bot.utils.formatNumber(data.followers), true)
+            .addField("Genres", genres, true)
+            .addField("Top 10 tracks", topTracks, true)
             .setImage(data.images[0].url);
 
           return message.channel.send(embed);
         }
         case "album": {
+          const tracks = data.tracks.map((v) => `[${v.name}](${v.url})`).join("\n");
+          const artists = data.album.artists.map((art) => `[${art.name}](${art.url})`).join(", ");
+
           const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(data.name)
             .setURL(data.url)
-            .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.totalTracks), true)
+            .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.total_tracks), true)
+            .addField("Tracks", tracks, true)
             .addField(lang.UTIL.RELEASE_DATE, data.releaseDate, true)
+            .addField("Artists", artists, true)
             .setImage(data.images[0].url);
 
           return message.channel.send(embed);
