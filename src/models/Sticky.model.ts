@@ -1,8 +1,9 @@
+import { Snowflake } from "discord.js";
 import { model, Schema, models, Document } from "mongoose";
 
 export interface Sticky extends Document {
-  channel_id: string;
-  message_id: string;
+  channel_id: Snowflake;
+  message_id: Snowflake;
   message: string;
 }
 

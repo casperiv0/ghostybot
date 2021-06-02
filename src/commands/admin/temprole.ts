@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import ms from "ms";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -22,7 +22,7 @@ export default class TempRoleCommand extends Command {
 
     try {
       const needsRole = await this.bot.utils.findMember(message, args);
-      const role = await this.bot.utils.findRole(message, args[1]);
+      const role = await this.bot.utils.findRole(message, args[1] as Snowflake);
       const [, , time] = args;
 
       if (!needsRole) {

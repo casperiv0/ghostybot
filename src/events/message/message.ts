@@ -24,6 +24,8 @@ export default class MessageEvent extends Event {
       const guildId = message?.guild?.id;
       const userId = message?.author?.id;
       const guild = await bot.utils.getGuildById(guildId);
+      // an error occurred
+      if (!guild) return;
       const lang = await bot.utils.getGuildLang(guildId);
       const mentions = message.mentions.members;
       const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
@@ -139,7 +141,7 @@ export default class MessageEvent extends Event {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
-              .addField(lang.LEVELS.NEW_LEVEL, newLevel)
+              .addField(lang.LEVELS.NEW_LEVEL, newLevel.toString())
               .addField(lang.LEVELS.TOTAL_XP, bot.utils.formatNumber(user.xp + xp));
 
             const ch = message.channel;
@@ -184,7 +186,10 @@ export default class MessageEvent extends Event {
           .setTitle("Quick Info")
           .addField(lang.GUILD.PREFIX, guild?.prefix)
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
-          .addField(lang.BOT.DASHBOARD, process.env["NEXT_PUBLIC_DASHBOARD_URL"]);
+          .addField(
+            lang.BOT.DASHBOARD,
+            process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.tk",
+          );
 
         return message.channel.send(embed);
       }

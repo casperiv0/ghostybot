@@ -20,7 +20,7 @@ export default class ConfigCommand extends Command {
       const { name, id: guildId } = message.guild;
       const guild = await this.bot.utils.getGuildById(guildId);
 
-      const prefix = guild?.prefix;
+      const prefix = guild?.prefix ?? "!";
       const announceCh = guild?.announcement_channel;
       const suggestCh = guild?.suggest_channel;
       const welcomeCh = guild?.welcome_data?.channel_id;
@@ -35,7 +35,7 @@ export default class ConfigCommand extends Command {
         .addField(lang.GUILD.SUGGEST_CHANNEL, !suggestCh ? lang.GLOBAL.NONE : `<#${suggestCh}>`)
         .addField(lang.GUILD.WELCOME_CHANNEL, !welcomeCh ? lang.GLOBAL.NONE : `<#${welcomeCh}>`)
         .addField(lang.GUILD.LEAVE_CHANNEL, !leaveCh ? lang.GLOBAL.NONE : `<#${leaveCh}>`)
-        .addField(lang.GUILD.LEVEL_UP_MESSAGES, levelMsgs);
+        .addField(lang.GUILD.LEVEL_UP_MESSAGES, `${levelMsgs}`);
 
       message.channel.send(embed);
     } catch (err) {

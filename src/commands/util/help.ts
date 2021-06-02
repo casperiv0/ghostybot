@@ -21,7 +21,7 @@ export default class HelpCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
-      const prefix = guild?.prefix;
+      const prefix = guild?.prefix ?? "!";
       const [cmdArgs] = args;
 
       const disabledCmds = !guild?.disabled_commands[0]
@@ -81,15 +81,15 @@ export default class HelpCommand extends Command {
 
         if ("options" in cmd && cmd.options.category !== "custom") {
           aliases = cmd.options.aliases
-            ? cmd.options.aliases.map((alias) => alias)
+            ? cmd.options.aliases.map((alias) => alias).join(", ")
             : lang.GLOBAL.NONE;
           options = cmd.options.options
-            ? cmd.options.options.map((option) => option)
+            ? cmd.options.options.map((option) => option).join(", ")
             : lang.GLOBAL.NONE;
           cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
 
-          memberPerms = getMemberPermissions(cmd, lang);
-          botPerms = getBotPermissions(cmd, lang);
+          memberPerms = getMemberPermissions(cmd, lang).join(", ");
+          botPerms = getBotPermissions(cmd, lang).join(", ");
 
           const embed = this.bot.utils
             .baseEmbed(message)

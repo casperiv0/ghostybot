@@ -1,3 +1,4 @@
+import DJS from "discord.js";
 import { NextApiResponse } from "next";
 import { hiddenGuildItems } from "data/hidden-items";
 import ApiRequest from "types/ApiRequest";
@@ -14,7 +15,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   switch (method) {
     case "GET": {
-      const discordGuild = await req.bot.guilds.fetch(`${query.id}`);
+      const discordGuild = await req.bot.guilds.fetch(query.id as DJS.Snowflake);
       const guild = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}`,
         { type: "Bot", data: `${process.env["DISCORD_BOT_TOKEN"]}` },
@@ -132,7 +133,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
                 emoji: body?.starboards_data?.emoji || "⭐",
               },
               {
-                channelID: starboard?.channelID,
+                channelID: starboard?.channelID as DJS.Snowflake,
                 emoji: starboard?.options.emoji,
               },
             );

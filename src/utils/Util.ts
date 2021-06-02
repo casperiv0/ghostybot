@@ -160,12 +160,15 @@ export default class Util {
     if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
     if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) return;
 
-    const channelId = process.env["ERRORLOGS_CHANNEL_ID"];
-    const channel = (this.bot.channels.cache.get(channelId ?? "") ||
-      (await this.bot.channels.fetch(channelId ?? ""))) as DJS.TextChannel;
+    const channelId = process.env["ERRORLOGS_CHANNEL_ID"] as DJS.Snowflake | undefined;
+    if (!channelId) {
+      return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
+    }
+
+    const channel = (this.bot.channels.cache.get(channelId) ||
+      (await this.bot.channels.fetch(channelId))) as DJS.TextChannel;
 
     if (
-      !channelId ||
       !channel ||
       !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
     ) {
@@ -189,8 +192,8 @@ export default class Util {
     const embed = this.baseEmbed(message)
       .setTitle("An error occurred")
       .addField("Name", name, true)
-      .addField("Code", code, true)
-      .addField("httpStatus", httpStatus, true)
+      .addField("Code", code.toString(), true)
+      .addField("httpStatus", httpStatus.toString(), true)
       .addField("Timestamp", this.bot.logger.now, true)
       .setDescription(`\`\`\`${stack}\`\`\` `)
       .setColor(type === "error" ? "RED" : "ORANGE");
@@ -208,7 +211,7 @@ export default class Util {
 
     try {
       let member: DJS.GuildMember | null | undefined;
-      const arg = args[index]?.replace?.(/[<@!>]/gi, "") || args[index];
+      const arg = (args[index]?.replace?.(/[<@!>]/gi, "") || args[index]) as DJS.Snowflake;
 
       const mention = // check if the first mention is not the bot prefix
         message.mentions?.users.first()?.id !== this.bot.user?.id
@@ -238,7 +241,7 @@ export default class Util {
     }
   }
 
-  async findRole(message: DJS.Message, arg: string): Promise<DJS.Role | null> {
+  async findRole(message: DJS.Message, arg: DJS.Snowflake): Promise<DJS.Role | null> {
     if (!message.guild) return null;
     return (
       message.mentions.roles.first() ||
@@ -257,7 +260,7 @@ export default class Util {
     return import(`../locales/${guild?.locale}`).then((f) => f.default);
   }
 
-  async createWebhook(channelId: string, oldChannelId?: string) {
+  async createWebhook(channelId: DJS.Snowflake, oldChannelId?: string) {
     const channel = this.bot.channels.cache.get(channelId);
     if (!channel) return;
     if (!this.bot.user) return;
@@ -313,7 +316,7 @@ export default class Util {
   async createStarboard(
     channel: { id: string | undefined; guild: { id: string | undefined } },
     options,
-    old: { channelID: string | undefined; emoji: string | undefined },
+    old: { channelID: DJS.Snowflake | undefined; emoji: string | undefined },
   ) {
     if (old) {
       old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
@@ -416,17 +419,20 @@ export default class Util {
     },
   ) {
     const token = req.cookies.token || req.headers.auth;
-    const data: { error: string } | { id: string } = await this.handleApiRequest("/users/@me", {
-      type: "Bearer",
-      data: `${token}`,
-    });
+    const data: { error: string } | { id: DJS.Snowflake } = await this.handleApiRequest(
+      "/users/@me",
+      {
+        type: "Bearer",
+        data: `${token}`,
+      },
+    );
 
     if ("error" in data) {
       return Promise.reject(data.error);
     }
 
     if (admin?.guildId) {
-      const guild = this.bot.guilds.cache.get(admin.guildId);
+      const guild = this.bot.guilds.cache.get(admin.guildId as DJS.Snowflake);
       if (!guild) return Promise.reject("Guild was not found");
 
       const member = await guild.members.fetch(data.id);
@@ -461,11 +467,9 @@ export default class Util {
 
   baseEmbed(message: DJS.Message | { author: DJS.User | null }): DJS.MessageEmbed {
     const avatar = message.author?.displayAvatarURL({ dynamic: true });
+    const username = message.author?.username ?? this.bot.user?.username ?? "Unknown";
 
-    return new DJS.MessageEmbed()
-      .setFooter(message.author?.username, avatar)
-      .setColor("#5865f2")
-      .setTimestamp();
+    return new DJS.MessageEmbed().setFooter(username, avatar).setColor("#5865f2").setTimestamp();
   }
 
   parseMessage(

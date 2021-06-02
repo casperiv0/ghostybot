@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -19,7 +19,9 @@ export default class GivReRollCommand extends Command {
     try {
       const [messageId] = args;
 
-      const success = await this.bot.giveawayManager.reroll(messageId).catch(() => null);
+      const success = await this.bot.giveawayManager
+        .reroll(messageId as Snowflake)
+        .catch(() => null);
 
       if (success === null) {
         return message.channel.send(`No giveaway found with id: ${messageId}`);

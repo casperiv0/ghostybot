@@ -34,9 +34,9 @@ export default class BalanceCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${member.user.username} ${lang.ECONOMY.BALANCE}`)
-        .addField(lang.ECONOMY.MONEY, user.money, true)
-        .addField(lang.ECONOMY.BANK, user.bank, true)
-        .addField(lang.COVID.TOTAL, user.bank + user.money, true);
+        .addField(lang.ECONOMY.MONEY, user.money.toString(), true)
+        .addField(lang.ECONOMY.BANK, user.bank.toString(), true)
+        .addField(lang.COVID.TOTAL, (user.bank + user.money).toString(), true);
 
       message.channel.send(embed);
     } catch (err) {

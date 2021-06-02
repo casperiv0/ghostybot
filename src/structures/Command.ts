@@ -54,8 +54,8 @@ export default abstract class Command {
 
   /**
    * @param {Message} message discord.js message
-   * @param {string[]} args message args
+   * @param {string[]} args message args. A string, numbers, Snowflakes, etc can be parsed.
    * @returns {any}
    */
-  abstract execute(message: Message, args: string[]): Promise<any>;
+  abstract execute(message: Message, args: any[]): Promise<any>;
 }

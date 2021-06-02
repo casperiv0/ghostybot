@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -23,7 +23,7 @@ export default class UnBanCommand extends Command {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_USERID);
       }
 
-      const bannedUser = await message.guild?.members.unban(userId);
+      const bannedUser = await message.guild?.members.unban(userId as Snowflake);
 
       message.channel.send(
         lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),

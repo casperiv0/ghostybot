@@ -15,6 +15,10 @@ export default class ChannelsCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const channels = message.guild?.channels.cache;
+      if (!channels) {
+        return message.channel.send(lang.GLOBAL.ERROR);
+      }
+
       const voiceChannels = channels
         ?.filter((channel) => channel.type === "voice")
         .map((channel) => channel.name)

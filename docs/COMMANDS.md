@@ -4113,7 +4113,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `track/artist/albmum(string)`, `search query(string)`
+**Required Arguments:** `track/artist/album(string)`, `search query(string)`
 
 [Back to top](#ghostybot-command-list)
 

@@ -1,4 +1,4 @@
-import { Message, OverwriteResolvable, TextChannel, Permissions } from "discord.js";
+import { Message, OverwriteResolvable, TextChannel, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -70,7 +70,7 @@ export default class CreateTicketCommand extends Command {
       )) as unknown as TextChannel;
 
       if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
-        channel?.setParent(guild.ticket_data.parent_id);
+        channel?.setParent(guild.ticket_data.parent_id as Snowflake);
       }
 
       if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {

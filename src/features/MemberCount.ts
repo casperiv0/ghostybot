@@ -1,4 +1,4 @@
-import { Guild } from "discord.js";
+import { Guild, Snowflake } from "discord.js";
 import Bot from "structures/Bot";
 import Feature from "structures/Feature";
 
@@ -15,7 +15,7 @@ export default class MemberCountFeature extends Feature {
       if (!this.bot.user) return;
       if (!g.member_count_channel_id || g.member_count_channel_id === "Disabled") return;
 
-      const channel = guild.channels.cache.get(g.member_count_channel_id);
+      const channel = guild.channels.cache.get(g.member_count_channel_id as Snowflake);
 
       if (!channel) return;
       if (!channel.permissionsFor(this.bot.user.id)?.has("MANAGE_CHANNELS")) return;

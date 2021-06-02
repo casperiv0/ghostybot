@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -20,7 +20,9 @@ export default class GiveEndCommand extends Command {
     try {
       const [messageId] = args;
 
-      const deleted = await this.bot.giveawayManager.delete(messageId).catch(() => null);
+      const deleted = await this.bot.giveawayManager
+        .delete(messageId as Snowflake)
+        .catch(() => null);
 
       if (deleted === null) {
         return message.channel.send("Giveaway not ended yet or was not found");

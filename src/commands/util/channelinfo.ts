@@ -1,4 +1,4 @@
-import { Message, TextChannel, VoiceChannel } from "discord.js";
+import { Message, Snowflake, TextChannel, VoiceChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -18,10 +18,10 @@ export default class ChannelInfoCommand extends Command {
     try {
       const channel =
         message.mentions.channels.first() ||
-        message.guild?.channels.cache.get(args[0]) ||
+        message.guild?.channels.cache.get(args[0] as Snowflake) ||
         message.channel;
 
-      const topic = (channel as TextChannel)?.topic ? (channel as TextChannel)?.topic : "N/A";
+      const topic = (channel as TextChannel)?.topic ?? "N/A";
       const channelId = channel?.id;
       const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
       const type = lang.UTIL.CHANNEL_TYPES[channel?.type.toUpperCase()];

@@ -1,3 +1,4 @@
+import DJS from "discord.js";
 import { NextApiResponse } from "next";
 import ApiRequest from "types/ApiRequest";
 import { Constants } from "@utils/constants";
@@ -21,7 +22,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     });
   }
 
-  const discordGuild = await req.bot.guilds.fetch(`${query.id}`);
+  const discordGuild = await req.bot.guilds.fetch(query.id as DJS.Snowflake);
   if (!discordGuild) {
     return res.json({
       status: "error",

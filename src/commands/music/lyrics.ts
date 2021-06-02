@@ -35,8 +35,8 @@ export default class LyricsCommand extends Command {
 
       const lyricsEmbed = this.bot.utils
         .baseEmbed(message)
-        .setAuthor(songAuthor)
-        .setTitle(songTitle)
+        .setAuthor(songAuthor.toString())
+        .setTitle(songTitle.toString())
         .setDescription(songLyrics)
         .setThumbnail(songThumbnail);
 

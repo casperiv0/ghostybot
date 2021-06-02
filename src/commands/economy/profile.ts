@@ -37,11 +37,11 @@ export default class ProfileCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${member?.user.username} ${lang.ECONOMY.PROFILE}`)
-        .addField(`**${lang.LEVELS.XP}**`, xp, true)
-        .addField(`**${lang.LEVELS.LEVEL}**`, level, true)
-        .addField(`**${lang.ECONOMY.MONEY}**`, money, true)
-        .addField(`**${lang.ECONOMY.BANK}**`, bank, true)
-        .addField(`**${lang.ECONOMY.INV_ITEMS}**`, inventory.length, true)
+        .addField(`**${lang.LEVELS.XP}**`, xp.toString(), true)
+        .addField(`**${lang.LEVELS.LEVEL}**`, level.toString(), true)
+        .addField(`**${lang.ECONOMY.MONEY}**`, money.toString(), true)
+        .addField(`**${lang.ECONOMY.BANK}**`, bank.toString(), true)
+        .addField(`**${lang.ECONOMY.INV_ITEMS}**`, inventory.length.toString(), true)
         .setDescription(lang.ECONOMY.VIEW_INVENTORY.replace("{prefix}", `${guild?.prefix}`));
 
       message.channel.send(embed);

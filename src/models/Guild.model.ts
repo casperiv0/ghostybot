@@ -1,3 +1,4 @@
+import { Snowflake } from "discord.js";
 import { model, Schema, models, Document, ObjectId } from "mongoose";
 
 const DEFAULT_MESSAGE = `**Username:** {user.username}
@@ -7,14 +8,14 @@ const DEFAULT_MESSAGE = `**Username:** {user.username}
 
 export interface GuildData {
   _id: ObjectId;
-  guild_id: string;
+  guild_id: Snowflake;
   prefix: string;
   locale: string;
   store: StoreItem[];
   blacklistedwords: string[];
-  announcement_channel: string | null;
-  suggest_channel: string | null;
-  audit_channel: string | null;
+  announcement_channel: Snowflake | null;
+  suggest_channel: Snowflake | null;
+  audit_channel: Snowflake | null;
   custom_commands: CustomCommand[];
   disabled_commands: string[];
   disabled_categories: string[];
@@ -22,8 +23,8 @@ export interface GuildData {
   sticky_data: StickyData;
   timezone: string;
   auto_delete_cmd: boolean;
-  member_count_channel_id: string;
-  muted_role_id: string;
+  member_count_channel_id: Snowflake | string;
+  muted_role_id: Snowflake | string;
   level_data: LevelData;
   welcome_data: WelcomeData;
   leave_data: LeaveData;
@@ -42,22 +43,22 @@ export interface StoreItem {
 }
 
 export interface StickyData {
-  channel_id: string;
+  channel_id: Snowflake;
   message: string;
-  message_id: string;
+  message_id: Snowflake;
 }
 
 export interface LeaveData {
   enabled: boolean;
-  channel_id: string | null;
+  channel_id: Snowflake | null;
   message: string | null;
   ignore_bots: boolean;
 }
 
 export interface WelcomeData {
   enabled: boolean;
-  channel_id: string | null;
-  role_id: string | null;
+  channel_id: Snowflake | null;
+  role_id: Snowflake | null;
   message: string | null;
   ignore_bots: boolean;
 }
@@ -73,20 +74,20 @@ export interface CustomCommand {
 }
 
 export interface SlashCommand extends CustomCommand {
-  slash_cmd_id: string;
+  slash_cmd_id: Snowflake;
 }
 
 export interface StarboardData {
   enabled: boolean;
-  channel_id: string;
+  channel_id: Snowflake;
   emoji: string;
 }
 
 export interface TicketData {
   enabled: boolean;
-  channel_id: string | null;
-  parent_id: string | null;
-  role_id: string | null;
+  channel_id: Snowflake | null;
+  parent_id: Snowflake | string | null;
+  role_id: Snowflake | string | null;
 }
 
 export interface BanData {
@@ -96,8 +97,8 @@ export interface BanData {
 
 export interface VerifyData {
   enabled: boolean;
-  role_id: string | null;
-  channel_id: string | null;
+  role_id: Snowflake | null;
+  channel_id: Snowflake | null;
 }
 
 const guildSchema = new Schema<IGuild>({

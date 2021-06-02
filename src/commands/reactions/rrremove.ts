@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Snowflake, TextChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import ReactionsModel from "models/Reactions.model";
@@ -34,8 +34,8 @@ export default class RrRemoveCommand extends Command {
       let msg: Message | undefined;
       try {
         msg =
-          (channel as TextChannel).messages.cache.get(messageId) ||
-          (await (channel as TextChannel).messages.fetch(messageId));
+          (channel as TextChannel).messages.cache.get(messageId as Snowflake) ||
+          (await (channel as TextChannel).messages.fetch(messageId as Snowflake));
       } catch {
         return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
       }

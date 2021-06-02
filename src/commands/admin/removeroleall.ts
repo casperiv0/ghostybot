@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -18,8 +18,9 @@ export default class RemoveRoleAllCommand extends Command {
   async execute(message: Message, args: string[]) {
     if (!message.guild?.me) return;
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
+
     try {
-      const role = await this.bot.utils.findRole(message, args.join(" "));
+      const role = await this.bot.utils.findRole(message, args.join(" ") as Snowflake);
 
       if (!role) {
         return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);

@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Snowflake, TextChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -17,8 +17,9 @@ export default class BugReportCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const bug = args.join(" ");
+      const channelId = process.env["BUG_REPORTS_CHANNEL_ID"];
 
-      if (!process.env["BUG_REPORTS_CHANNEL_ID"]) {
+      if (!channelId) {
         return message.channel.send(
           lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId"),
         );
@@ -33,9 +34,7 @@ export default class BugReportCommand extends Command {
         .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
         .setDescription(bug);
 
-      (this.bot.channels.cache.get(process.env["BUG_REPORTS_CHANNEL_ID"]) as TextChannel)?.send(
-        embed,
-      );
+      (this.bot.channels.cache.get(channelId as Snowflake) as TextChannel)?.send(embed);
 
       return message.channel.send(lang.UTIL.BUG_REPORTED);
     } catch (err) {

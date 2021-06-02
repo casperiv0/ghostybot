@@ -29,16 +29,18 @@ export default class HelpInteraction extends Interaction {
     }
 
     const aliases = command.options.aliases
-      ? command.options.aliases.map((alias) => alias)
+      ? command.options.aliases.map((alias) => alias).join(", ")
       : lang.GLOBAL.NONE;
+
     const options = command.options.options
-      ? command.options.options.map((option) => option)
+      ? command.options.options.map((option) => option).join(", ")
       : lang.GLOBAL.NONE;
+
     const cooldown = command.options.cooldown ? `${command.options.cooldown}s` : "3s";
     const guild = await this.bot.utils.getGuildById(interaction.guild?.id);
     const prefix = guild?.prefix;
-    const memberPerms = getMemberPermissions(command, lang);
-    const botPerms = getBotPermissions(command, lang);
+    const memberPerms = getMemberPermissions(command, lang).join(", ");
+    const botPerms = getBotPermissions(command, lang).join(", ");
 
     const embed = this.bot.utils
       .baseEmbed({

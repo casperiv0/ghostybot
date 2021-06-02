@@ -32,7 +32,7 @@ export default class GuildMemberMuteAddEvent extends Event {
         .addField("Reason", reason)
         .setColor("ORANGE");
 
-      if (tempMute) {
+      if (tempMute && time) {
         embed.addField("Muted for", time);
       }
 

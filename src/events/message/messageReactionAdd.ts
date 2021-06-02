@@ -16,7 +16,10 @@ export default class MessageReactionAddEvent extends Event {
 
   async execute(bot: Bot, react: MessageReaction, user: User) {
     try {
+      // ignore bots
       if (user.bot) return;
+      if (!react.emoji) return;
+
       const { guild } = react.message;
       if (!guild?.available) return;
 
@@ -53,7 +56,8 @@ export default class MessageReactionAddEvent extends Event {
       const msg = await channel.messages.fetch(dbReaction.message_id).catch(() => null);
       if (!msg) return;
 
-      msg.reactions.resolve(react.emoji.toString())?.users.remove(user.id);
+      // @ts-expect-error ignore for now
+      msg.reactions.resolve(react.emoji.id)?.users.remove(user.id);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

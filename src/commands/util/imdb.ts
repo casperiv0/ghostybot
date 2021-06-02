@@ -26,7 +26,7 @@ export default class ImdbCommand extends Command {
         .setTitle(movie.title)
         .setThumbnail(movie.poster)
         .setDescription(movie.plot)
-        .addField(`${lang.UTIL.DB_RATINGS}`, movie.rating, true)
+        .addField(`${lang.UTIL.DB_RATINGS}`, movie.rating.toString(), true)
         .addField(`${lang.UTIL.DB_COUNTRY}`, movie.country, true)
         .addField(`${lang.UTIL.DB_GENRES}`, movie.genres, true)
         .addField(`${lang.UTIL.DB_AWARDS}`, movie.awards, true)

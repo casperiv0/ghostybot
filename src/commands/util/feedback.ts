@@ -1,4 +1,4 @@
-import { Message, TextChannel } from "discord.js";
+import { Message, Snowflake, TextChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -18,14 +18,16 @@ export default class FeedbackCommand extends Command {
       const feedback = args.join(" ");
 
       if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
-      if (!process.env["FEEDBACK_CHANNEL_ID"] || process.env["FEEDBACK_CHANNEL_ID"] === "") return;
+      if (!process.env["FEEDBACK_CHANNEL_ID"]) return;
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.UTIL.NEW_FEEDBACK)
         .setDescription(feedback);
 
-      (this.bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"]) as TextChannel)?.send(embed);
+      (
+        this.bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"] as Snowflake) as TextChannel
+      )?.send(embed);
 
       message.channel.send(lang.UTIL.FEEDBACK_SEND);
     } catch (err) {

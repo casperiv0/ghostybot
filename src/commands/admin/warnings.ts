@@ -57,7 +57,7 @@ export default class WarningsCommand extends Command {
 
       embed
         .setTitle(lang.ADMIN.MEMBER_WARNS.replace("{memberTag}", member.user.tag))
-        .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, warnings?.length || 0)
+        .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings?.length || 0).toString())
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
         .setDescription(lang.ADMIN.USE_WARNS.replace("{prefix}", `${prefix}`));
 

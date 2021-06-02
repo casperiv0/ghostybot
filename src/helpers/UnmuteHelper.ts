@@ -56,7 +56,7 @@ export default class ReminderHelper extends Helper {
               .setDescription(
                 `**${guildUser.tag}** was successfully **unmuted** from their temp mute`,
               )
-              .addField("Mute lasted", user.mute.time);
+              .addField("Mute lasted", user.mute.time ?? "Unknown");
 
             this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               mute: {

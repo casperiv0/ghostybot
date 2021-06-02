@@ -1,4 +1,4 @@
-import { Message, Permissions, Role, TextChannel } from "discord.js";
+import { Message, Permissions, Role, Snowflake, TextChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import ReactionsModel, { Reaction } from "models/Reactions.model";
@@ -30,7 +30,7 @@ export default class RrAddCommand extends Command {
       if (!guild) return;
       const filter = (m: Message) => message.author.id === m.author.id;
 
-      const channel = guild.channels.cache.get(channelId);
+      const channel = guild.channels.cache.get(channelId as Snowflake);
       if (!channel) {
         return message.channel.send(
           lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId),
@@ -140,7 +140,7 @@ export default class RrAddCommand extends Command {
     const roles: Role[] = [];
 
     filtered.forEach(async (r) => {
-      const role = await this.bot.utils.findRole(msg, r);
+      const role = await this.bot.utils.findRole(msg, r as Snowflake);
       if (!role) return;
 
       roles.push(role);

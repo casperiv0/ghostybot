@@ -47,8 +47,8 @@ export type IUser = Document & UserData;
 
 export interface UserData {
   _id: ObjectId;
-  user_id: string;
-  guild_id: string;
+  user_id: Snowflake;
+  guild_id: Snowflake;
   inventory: string[];
   money: number;
   bank: number;
@@ -85,7 +85,7 @@ export interface Reminders {
 export interface Reminder {
   _id: string;
   id: number;
-  channel_id: string;
+  channel_id: Snowflake;
   msg: string;
   time: string;
   ends_at: number;

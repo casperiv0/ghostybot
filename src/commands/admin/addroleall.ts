@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -19,7 +19,7 @@ export default class AddRoleAllCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const role = await this.bot.utils.findRole(message, args[0]);
+      const role = await this.bot.utils.findRole(message, args[0] as Snowflake);
       if (!message.guild?.me) return;
 
       if (!role) {
@@ -31,7 +31,6 @@ export default class AddRoleAllCommand extends Command {
           lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
         );
       }
-
       message.guild.members.cache.forEach((member) => member.roles.add(role));
 
       message.channel.send(

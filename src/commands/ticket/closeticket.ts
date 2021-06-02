@@ -38,7 +38,7 @@ export default class CloseTicketCommand extends Command {
           canceled = true;
 
           collector.stop();
-          return message.channel.send(lang.TICKET.WILL_NOT_CLOSE);
+          message.channel.send(lang.TICKET.WILL_NOT_CLOSE);
         }
       });
 

@@ -35,8 +35,8 @@ export default class BotInfoCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.BOT.INFO_2}`)
-        .addField(`${lang.MEMBER.USERNAME}:`, this.bot.user?.username)
-        .addField(`${lang.BOT.LATENCY}:`, Math.round(this.bot.ws.ping), true)
+        .addField(`${lang.MEMBER.USERNAME}:`, this.bot.user?.username ?? "GhostyBot")
+        .addField(`${lang.BOT.LATENCY}:`, Math.round(this.bot.ws.ping).toString(), true)
         .addField(
           `${lang.HELP.COMMANDS}:`,
           `

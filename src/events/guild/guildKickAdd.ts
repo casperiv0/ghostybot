@@ -28,7 +28,7 @@ export default class GuildKickAddEvent extends Event {
         .setTitle(lang.EVENTS.KICK_ADD)
         .addField(lang.MEMBER.TAG, member.user.tag, true)
         .addField(lang.EVENTS.EXECUTED_BY, executor.tag, true)
-        .addField(lang.EVENTS.REASON, reason)
+        .addField(lang.EVENTS.REASON, reason ?? lang.GLOBAL.NOT_SPECIFIED)
         .setColor("ORANGE");
 
       return webhook.send(embed);
