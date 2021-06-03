@@ -183,6 +183,11 @@ export default class Util {
     const code = error.code || "N/A";
     const httpStatus = error.httpStatus || "N/A";
     let stack = error.stack || error;
+    const requestData = (error as any).requestData ?? {};
+
+    const jsonString = Object.keys(requestData.json).reduce((acc, curr) => {
+      return (acc += `**${curr}:** ${requestData.json[curr]},\n`);
+    }, "");
 
     if (typeof stack === "string" && stack.length >= 2048) {
       console.error(stack);
@@ -195,6 +200,7 @@ export default class Util {
       .addField("Code", code.toString(), true)
       .addField("httpStatus", httpStatus.toString(), true)
       .addField("Timestamp", this.bot.logger.now, true)
+      .addField("Request data", jsonString)
       .setDescription(`\`\`\`${stack}\`\`\` `)
       .setColor(type === "error" ? "RED" : "ORANGE");
 
