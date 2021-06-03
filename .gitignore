@@ -17,3 +17,4 @@ descriptions_data.json
 .husky/.gitignore
 
 test.html
+tsconfig.tsbuildinfo

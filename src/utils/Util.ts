@@ -13,13 +13,6 @@ import StickyModel, { Sticky } from "models/Sticky.model";
 dayJs.extend(utc);
 dayJs.extend(timezone);
 
-export interface ErrorLog {
-  name?: string;
-  stack?: string;
-  code?: string | number;
-  httpStatus?: string | number;
-}
-
 export default class Util {
   bot: Bot;
 
@@ -155,7 +148,10 @@ export default class Util {
     }
   }
 
-  async sendErrorLog(error: ErrorLog, type: "warning" | "error"): Promise<void> {
+  async sendErrorLog(
+    error: DJS.DiscordAPIError | DJS.HTTPError | Error,
+    type: "warning" | "error",
+  ): Promise<void> {
     /* eslint-disable-next-line */
     if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
     if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) return;
@@ -179,11 +175,12 @@ export default class Util {
       author: this.bot.user,
     };
 
+    const code = "code" in error ? error.code : "N/A";
+    const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
+    const requestData: any = "requestData" in error ? error.requestData : {};
+
     const name = error.name || "N/A";
-    const code = error.code || "N/A";
-    const httpStatus = error.httpStatus || "N/A";
     let stack = error.stack || error;
-    const requestData = (error as any).requestData ?? {};
 
     const jsonString = Object.keys(requestData.json).reduce((acc, curr) => {
       return (acc += `**${curr}:** ${requestData.json[curr]},\n`);

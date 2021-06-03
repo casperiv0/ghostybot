@@ -36,7 +36,10 @@ export default class PlayerErrorEvent extends Event {
         return message.channel.send(lang.MUSIC.MUSIC_STARTING);
       }
       default: {
-        bot.utils.sendErrorLog({ stack: error, name: "discord-player" }, "error");
+        bot.utils.sendErrorLog(
+          { message: "discord-player error", stack: error, name: "discord-player" },
+          "error",
+        );
         return message.channel.send(lang.GLOBAL.ERROR);
       }
     }
