@@ -30,6 +30,9 @@ export default class SuggestCommand extends Command {
         .setTitle(lang.UTIL.NEW_SUGGESTION)
         .setDescription(suggestion)
         .setAuthor(lang.UTIL.CREATED_BY.replace("{member}", message.author.username));
+      if(message.attachments.first()?.url) {
+      embed.setImage(message.attachments.first()?.url!)
+      }
 
       const channel = this.bot.channels.cache.get(suggestChannel);
       if (!channel) return;
