@@ -1,6 +1,7 @@
 /* definitions created by Dev-CasperTheGhost */
 
 declare module "easy-games-js";
+
 declare module "cowsay" {
   export interface SayOptions {
     text: string;
