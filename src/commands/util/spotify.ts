@@ -26,7 +26,7 @@ export default class SpotifyCommand extends Command {
         return message.channel.send("Invalid type");
       }
 
-      const url = `http://api.xaliks.xyz/info/spotify/${type}/${search}`;
+      const url = `http://api.xaliks.xyz/info/spotify?type=${type}&query=${search}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (data.error) {
@@ -57,8 +57,8 @@ export default class SpotifyCommand extends Command {
         }
         case "artist": {
           const topTracks =
-            data.top10tracks.map((v) => `[${v.name}](${v.url})`).join("\n") || lang.GLOBAL.NONE;
-          const genres = data.genres.join("\n") || lang.GLOBAL.NONE;
+            data.top10tracks?.map((v) => `[${v.name}](${v.url})`)?.join("\n") || lang.GLOBAL.NONE;
+          const genres = data.genres?.join("\n") || lang.GLOBAL.NONE;
 
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -97,6 +97,8 @@ export default class SpotifyCommand extends Command {
         }
       }
     } catch (err) {
+      console.log(err);
+
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
     }
