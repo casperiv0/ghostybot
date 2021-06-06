@@ -25,7 +25,7 @@ export default class HelpInteraction extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (!command) {
-      return interaction.reply(lang.HELP.CMD_NOT_FOUND);
+      return interaction.reply({ content: lang.HELP.CMD_NOT_FOUND });
     }
 
     const aliases = command.options.aliases
@@ -65,6 +65,6 @@ export default class HelpInteraction extends Interaction {
       .addField(lang.HELP.BOT_PERMS, botPerms, true)
       .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
 
-    interaction.reply(embed);
+    interaction.reply({ embeds: [embed] });
   }
 }

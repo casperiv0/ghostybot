@@ -36,12 +36,13 @@ export default class DocsInteraction extends Interaction {
 
   async execute(interaction: CommandInteraction, args: string[]) {
     const [query, branch = "stable"] = args;
+    const lang = await this.bot.utils.getGuildLang(interaction.guildID!);
 
     const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${encodeURIComponent(query)}`;
     const data = await fetch(url).then((res) => res.json());
 
-    if (data?.message) {
-      return interaction.reply("An error occurred");
+    if (!data?.message) {
+      return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND });
     }
 
     const embed = new MessageEmbed({
@@ -53,6 +54,6 @@ export default class DocsInteraction extends Interaction {
       },
     });
 
-    return interaction.reply(embed);
+    return interaction.reply({ embeds: [embed] });
   }
 }

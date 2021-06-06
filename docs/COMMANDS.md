@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 207 commands.
+GhostyBot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -117,7 +117,7 @@ Click any of the command names for more information
 
 ### Category: animal
 
-**Total commands: 19**
+**Total commands: 18**
 
 [bird:](#bird) Returns an image of a bird
 
@@ -144,8 +144,6 @@ Click any of the command names for more information
 [koala:](#koala) Shows a random picture of koala
 
 [lizard:](#lizard) Shows a picture of a lizard
-
-[owl:](#owl) Shows a picture of a owl
 
 [panda:](#panda) Shows a picture of a panda
 
@@ -1476,24 +1474,6 @@ Click any of the command names for more information
 **Category:** animal
 
 **Description:** Shows a picture of a lizard
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## owl
-
-**Category:** animal
-
-**Description:** Shows a picture of a owl
 
 **Usage:** `N/A`
 

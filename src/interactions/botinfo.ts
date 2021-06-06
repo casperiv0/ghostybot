@@ -90,14 +90,14 @@ export default class BotInfoInteraction extends Interaction {
     const choice = choices.find((ch) => ch.value === value);
 
     if (!choice) {
-      interaction.reply("Invalid option!");
+      interaction.reply({ content: "Invalid option!" });
     }
 
     const message = choice?.return(this.bot, lang);
     if (!message) {
-      return interaction.reply(lang.GLOBAL.ERROR);
+      return interaction.reply({ content: lang.GLOBAL.ERROR });
     }
 
-    return interaction.reply(message);
+    return interaction.reply({ content: message });
   }
 }
