@@ -227,6 +227,12 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
+      if (command.options.category === "music") {
+        return message.channel.send(
+          "Due to high loads when playing music, music has been temporary disabled",
+        );
+      }
+
       if (
         !saveCommands.includes(command.name) &&
         guild?.disabled_categories?.includes(command.options.category)
