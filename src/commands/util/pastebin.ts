@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { ApiPasteFormat } from "pastebin-api/dist/interfaces";
+import { ApiPasteFormat } from "pastebin-api";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
