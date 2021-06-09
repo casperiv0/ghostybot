@@ -50,7 +50,6 @@ export default class BotInfoCommand extends Command {
   **${lang.BOT.GUILDS}:** ${this.bot.utils.formatNumber(this.bot.guilds.cache.size)}
   **${lang.BOT.CHANNELS}:** ${this.bot.utils.formatNumber(this.bot.channels.cache.size)}
   **${lang.BOT.COMMAND_COUNT}:** ${this.bot.commands.size}
-  **${lang.BOT.VC_CONNS}:** ${this.bot.voice?.connections.size}
               `,
           true,
         )

@@ -38,13 +38,6 @@ const choices: Choices[] = [
     },
   },
   {
-    name: "Voice connections",
-    value: "voice-connections",
-    return: (bot) => {
-      return `${bot.utils.formatNumber(bot.voice?.connections.size ?? 0)} voice connections`;
-    },
-  },
-  {
     name: "Memory Usage",
     value: "memory",
     return: (_, lang) => {
