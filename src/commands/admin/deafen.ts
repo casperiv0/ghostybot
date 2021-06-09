@@ -37,7 +37,8 @@ export default class DeafenCommand extends Command {
           deafenReason,
         ),
       );
-      message.channel.send(
+
+      return message.channel.send(
         lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", `${deafenMember.user.tag}`).replace(
           "{reason}",
           deafenReason,

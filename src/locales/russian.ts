@@ -1,4 +1,4 @@
-export default {
+const LANG: typeof import("./english").default = {
   GLOBAL: {
     EVERYONE: "Все",
     NOT_SPECIFIED: "Не указано",
@@ -615,9 +615,6 @@ export default {
     PROVIDE_VALID_EMOJI: "Пожалуйста, предоставьте корректный эмодзи",
     PROVIDE_VALID_OPTION: "Пожалуйста, предоставьте корректную опцию.",
     PROVIDE_VALID_CHANNEL_OR_ROLE: "Пожалуйста, укажите корректный канал или роль!",
-    WEL_CHAN_NOW: "Приветственные сообщения включены. Канал для приветстсвенных сообщений теперь: ",
-    LEAV_CHAN_NOW: "Сообщения о выходе включены. Прощальный канал сейчас:",
-    AUD_CHAN_NOW: "Аудит включен. Канал аудита сейчас:",
     GIVE_NAME: "give_name",
     EMOJI_ADDED: "Эмоджи добавлен",
     EMOJI_ADDED_NAME: "Эмоджи был добавлен! | Имя:",
@@ -778,3 +775,5 @@ export default {
     ],
   },
 };
+
+export default LANG;

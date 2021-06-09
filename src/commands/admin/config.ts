@@ -37,7 +37,7 @@ export default class ConfigCommand extends Command {
         .addField(lang.GUILD.LEAVE_CHANNEL, !leaveCh ? lang.GLOBAL.NONE : `<#${leaveCh}>`)
         .addField(lang.GUILD.LEVEL_UP_MESSAGES, `${levelMsgs}`);
 
-      message.channel.send({ embed });
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

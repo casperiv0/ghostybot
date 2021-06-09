@@ -17,10 +17,6 @@ export default class PokemonCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const query = args.join(" ");
 
-    if (!query) {
-      return message.channel.send(lang.POKEMON.PROVIDE_NAME);
-    }
-
     try {
       const data = await fetch(
         `https://some-random-api.ml/pokedex?pokemon=${encodeURIComponent(query)}`,

@@ -29,6 +29,7 @@ export default class StealEmojiCommand extends Command {
           .baseEmbed(message)
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(`${lang.ADMIN.EMOJI_ADDED_NAME} ${name || lang.ADMIN.GIVE_NAME}`);
+
         return message.channel.send({ embed });
       }
 
@@ -48,6 +49,7 @@ export default class StealEmojiCommand extends Command {
               lang.HELP.CLICK_ME
             }](${link})`,
           );
+
         return message.channel.send({ embed });
       }
 
@@ -56,7 +58,7 @@ export default class StealEmojiCommand extends Command {
         return message.channel.send(lang.ADMIN.PROVIDE_VALID_EMOJI);
       }
 
-      message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
+      return message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
     } catch (e) {
       if (String(e).includes("DiscordAPIError: Maximum number of emojis reached")) {
         return message.channel.send(lang.ADMIN.MAX_EMOJI);

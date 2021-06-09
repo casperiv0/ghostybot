@@ -30,7 +30,7 @@ export default class CreateRoleCommand extends Command {
         .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${roleName}`)
         .setDescription(lang.ADMIN.CREATED_ROLE_ADDED);
 
-      message.channel.send({ embed });
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

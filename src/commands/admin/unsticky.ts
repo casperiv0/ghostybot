@@ -21,7 +21,9 @@ export default class UnStickyCommand extends Command {
 
       await this.bot.utils.removeSticky(message.channel.id);
 
-      message.channel.send(lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${message.channel}`));
+      return message.channel.send(
+        lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${message.channel}`),
+      );
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

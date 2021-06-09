@@ -18,10 +18,6 @@ export default class EnlargeCommand extends Command {
     try {
       const [emoji] = args;
 
-      if (!emoji) {
-        return message.channel.send(lang.UTIL.PROVIDE_EMOJI);
-      }
-
       const custom = Util.parseEmoji(emoji);
 
       const embed = this.bot.utils

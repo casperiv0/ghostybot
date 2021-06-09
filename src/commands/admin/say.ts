@@ -25,6 +25,6 @@ export default class SayCommand extends Command {
       return message.channel.send({ embed });
     }
 
-    message.channel.send(msg);
+    return message.channel.send(msg);
   }
 }

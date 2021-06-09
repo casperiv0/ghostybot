@@ -31,7 +31,8 @@ export default class UnDeafenCommand extends Command {
       undeafenUser.user.send(
         lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${message.guild?.name}`),
       );
-      message.channel.send(
+
+      return message.channel.send(
         lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag),
       );
     } catch (err) {

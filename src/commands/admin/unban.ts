@@ -25,7 +25,7 @@ export default class UnBanCommand extends Command {
 
       const bannedUser = await message.guild?.members.unban(userId as Snowflake);
 
-      message.channel.send(
+      return message.channel.send(
         lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),
       );
     } catch (err) {

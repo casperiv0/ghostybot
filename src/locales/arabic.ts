@@ -1,4 +1,4 @@
-export default {
+const LANG: typeof import("./english").default = {
   GLOBAL: {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "غير محدد",
@@ -22,10 +22,6 @@ export default {
     WELCOME_CHANNEL: "قناة الترحيب",
     LEAVE_CHANNEL: "قناة المغادرة",
     PREFIX: "Prefix",
-    IS_VERIFIED: "نعم ، هذا السرفر تم تأكيده",
-    IS_PARTNERED: "نعم هذا السرفر شريك",
-    NOT_VERIFIED: "لا هذا السرفر لم يتم تأكيده",
-    NOT_PARTNERED: "لا هذا السرفر ليس شريك",
     OWNER: "اونر السرفر",
     CHANNEL_C: "عدد القنوات",
     EMOJI_C: "عدد الايموجيات",
@@ -41,7 +37,6 @@ export default {
   },
   MEMBER: {
     TAG: "علامة",
-    BOT: "هل هو بوت؟",
     ROLES: "الرولات",
     BADGES: "شارات",
     ONLINE: "متصل",
@@ -116,6 +111,9 @@ export default {
     PROVIDE_AMOUNT: "من فضلك قم بادخال العدد",
     PROVIDE_VALID_NR: "من فضلك قم بكتابة رقم صحيح",
     GIVE_XP_SUCCESS: "تم اعطاء  **{member}** **{amount}**خبرة بنجاح",
+    TOTAL_XP: "Total XP",
+    NEW_LEVEL: "New level",
+    LEVEL_UP: "Level Up!",
   },
   PERMISSIONS: {
     CREATE_INSTANT_INVITE: "Create invites",
@@ -207,7 +205,6 @@ export default {
     WITHDRAW_ALL: "لقد سحبت جميع اموالك بنجاح",
     WITHDRAW_AMOUNT: "لقد قمت بسحب  **{amount}كوينز **",
     PROFILE: "الملف الشخصي",
-    INV_EMP: "مخزن المستخدم فارغ",
     INVENTORY: "المخزن",
     INV_ITEMS: "اغراض  بالمخزن",
     VIEW_INVENTORY: "استخدم `{prefix}inventory <user>` لعرض جميع ممتلكاته",
@@ -247,6 +244,8 @@ export default {
     PROVIDE_AMOUNT: "Please provide an amount to withdraw",
     NO_MONEY: "You don't have that much money in your bank!",
     WORK: "Work!",
+    INV_EMPTY: "User's inventory is empty",
+    REMOVED_MONEY: "Successfully removed {amount} from user balance",
   },
   GAMES: {
     BETS_ON: "{member_1} يراهن علي {member_2}",
@@ -284,8 +283,6 @@ export default {
     BMI_WEIGHT: "الوزن",
     BMI_HEIGHT: "الطول",
     BMI: "التناسق",
-    BMI_CM: "من فضلك ادخل طولك بالسنتيميتر",
-    BMI_KG: "من فضلك ادخل وزنك بالكيلو جرام",
     SUPPORT_SERVER: "سرفر الدعم الفني",
     BUG_REPORT: "{member} has reported a bug",
     BUG_REPORTED: "Bug report was send!",
@@ -309,12 +306,8 @@ export default {
     GH_WEBSITE: "الموقع الالكتروني",
     GH_LOCATION: "الموقع",
     GH_BIO: "Bio",
-    GH_PROVIDE_USERNAME: "من فضلك ادخل اسم المستخدم",
     SEARCHING: "جاري البحث",
-    PROVIDE_EXT: "من فضلك ادخل الملحقات كمثال: `ts`, `js`, `html`, ...",
-    PROVIDE_CODE: "من فضلك ادخل الكود",
     NO_IMG_FOUND: "لم يتم العثور علي صور",
-    PROVIDE_M_S: "من فضلك ادخل اسم او فيلم او مسلسل",
     DB_RATINGS: "التقييمات",
     DB_COUNTRY: "البلد",
     DB_GENRES: "الانواع",
@@ -332,7 +325,6 @@ export default {
     DESCRIPTION: "الوصف",
     NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "السرفر غير موجود",
-    MC_PROVIDE_IP: "من فضلك ادخل اي بي السرفى",
     NPM_SEARCH: "NPM بحث",
     NPM_TOP_5: "تم العثور علي اعلي 5 تقييمات**{query}**",
     AUTHOR: "المؤلف",
@@ -347,10 +339,8 @@ export default {
     ROLE_NOT_FOUND: "لم يتم العثور علي الرول",
     ROLES: "الرولات",
     NO_GUILD_ICON: "هذا السرفر لا يملك صورة",
-    PROVIDE_EMOJI: "من فضلك اختر ايموجي",
     ENLARGED_EMOJI: "النسخة المكبرة من  {emoji}",
     INVALID_EMOJI: "ايموجي غير صالح",
-    PROVIDE_SKIN: " من فضلك ادخل اسم الاسكين",
     SKIN_NOT_FOUND: "للاعب `{search}` لا يوجد",
     SKIN_NAME: " سكين اللاعب {name}",
     DOWNLOAD_SKIN: "[تحميل الاسكين]",
@@ -359,8 +349,6 @@ export default {
     NO_SUGG_CHANNEL: "لا يمتلك سرفرك قناة للاقتراحات من فضلك قم بتعيين القناة اولا",
     UPTIME: "{member} يعمل منذ  {time}",
     WEATHER: "الطقس",
-    PROVIDE_COUNTRY: "من فضلك ادخل اسم المدينة",
-    C_NOT_FOUNCit: "**{query}** لم يتم العثور علي المدينة",
     MAIN: "الرئسية",
     CURRENT: "الحالي",
     CURRENT_TEMP: "درجة الحرارة الحالية",
@@ -400,6 +388,7 @@ export default {
 
     TOTAL_TRACKS: "Total tracks",
     RELEASE_DATE: "Release date",
+    C_NOT_FOUND: "City: **{query}** was not found!",
   },
   BOT: {
     GUILDS: "السرفرات",
@@ -484,7 +473,6 @@ export default {
     SP_DEF: "SP DEF",
     SPEED: "السرعة",
     TOTAL: "الاجمالي",
-    PROVIDE_NAME: "من فضلك ادخل اسم بوكيمون",
     NOT_FOUND: "لم يتم العثور علي {query}. من فضلك تحقق من التهجئة الصحيحة وحاول مرة اخري",
   },
   REACTIONS: {
@@ -613,7 +601,6 @@ export default {
     UPDATE_PREFIX: "Successfully updated prefix to `{prefix}`",
     MY_ROLE_MUST_BE_HIGHER: "My role must be higher than **{roleName}** role!",
     MY_ROLE_MUST_BE_HIGHER2: "My role must be higher than **{needsRoleTag}** highest role!",
-    YOUR_ROLE_NOT_HIGHT: "Your role is not high enough than **{roleName}** role!",
     USER_WAS_NOT_FOUND: "User wasn't found",
     REMOVED_ROLE: "Successfully removed **{roleName}** from {needsRole}",
     REMOVED_ROLE_EVERYONE: "Successfully Removed **{roleName}** from Everyone",
@@ -621,26 +608,10 @@ export default {
     NO_WARNINGS: "There are no warnings",
     REMOVED_ALL_WARNINGS: "Successfully removed all warnings",
     ANNOUNCEMENT: "📢 Announcement 📢",
-    PROVIDE_VALID_TIME: "Please provide a valid time: E.G.:",
     PROVIDE_VALID_MEMBER: "Please provide valid a member",
     PROVIDE_VALID_EMOJI: "Please provide a valid emoji",
     PROVIDE_VALID_OPTION: "Please provide an valid option",
     PROVIDE_VALID_CHANNEL_OR_ROLE: "Please provide a valid channel or role!",
-    SUG_CHAN_NOW: "Suggest channel is now:",
-    AN_CHAN_NOW: "Announcement channel is now:",
-    WEL_CHAN_NOW: "Enabled welcome messages. Welcome channel is now:",
-    LEAV_CHAN_NOW: "Enabled user leave messages. User Leave channel is now:",
-    AUD_CHAN_NOW: "Enabled audit logs. Audit logs channel is now:",
-    PERM_NEED: "I need `MANAGE_WEBHOOKS`, permissions for audit-logs",
-    WEL_ROLE: "Enabled welcome roles. Welcome role:",
-    EN_LVL_UP: "Successfully Enabled level up messages!",
-    PROVIDE_LANG: "Please provide a language",
-    LANG_NOT_AVAILABLE: "Language is not available. Available languages:",
-    LANG_UPDATE: "Successfully updated language to",
-    SET_STARBOARD_CHAN: "Successfully set {channel} as starboards channel",
-    SET_MEM_COUNT_CHAN: "Successfully set as member count channel",
-    UPDATE_WEL_MES:
-      "Successfully updated welcome message (please use dashboard for better experience)",
     GIVE_NAME: "give_name",
     EMOJI_ADDED: "Emoji Added",
     EMOJI_ADDED_NAME: "Emoji Has Been Added! | Name:",
@@ -691,6 +662,7 @@ export default {
       "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
+    ADD_TO_IGNORE: "Successfully added {item} to ignored channels",
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",
@@ -723,6 +695,10 @@ export default {
     REASON: "Reason",
     STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
     STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
+    CHANNEL_TOPIC_UPDATED: "Channel Topic Updated",
+    CHANNEL_TOPIC_UPDATED_MSG: "Channel topic in channel: **{channel}** was updated",
+    CHANNEL_OLD_TOPIC: "Old Topic",
+    CHANNEL_NEW_TOPIC: "New Topic",
   },
   MESSAGE: {
     USER_IS_AFK: "{tag} is AFK!\n **Reason**: {reason}",
@@ -796,3 +772,5 @@ export default {
     ],
   },
 };
+
+export default LANG;

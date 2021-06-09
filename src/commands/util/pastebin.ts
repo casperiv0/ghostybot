@@ -20,14 +20,6 @@ export default class PastebinCommand extends Command {
     const [extension, ...rest] = args;
     const code = rest.join(" ");
 
-    if (!extension) {
-      return message.channel.send(lang.UTIL.PROVIDE_EXT);
-    }
-
-    if (!code) {
-      return message.channel.send(lang.UTIL.PROVIDE_CODE);
-    }
-
     try {
       const paste = await this.bot.pasteClient.createPaste({
         code,

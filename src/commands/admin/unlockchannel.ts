@@ -29,7 +29,8 @@ export default class UnLockChannelCommand extends Command {
       channel.updateOverwrite(message.guild?.id, {
         SEND_MESSAGES: true,
       });
-      message.channel.send(lang.ADMIN.SUC_UNLOCK.replace("{channel}", `${channel}`));
+
+      return message.channel.send(lang.ADMIN.SUC_UNLOCK.replace("{channel}", `${channel}`));
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

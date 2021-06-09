@@ -34,7 +34,9 @@ export default class RemoveRoleAllCommand extends Command {
 
       message.guild.members.cache.forEach((member) => member.roles.remove(role));
 
-      message.channel.send(lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name));
+      return message.channel.send(
+        lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name),
+      );
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

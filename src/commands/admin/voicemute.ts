@@ -39,7 +39,7 @@ export default class VoiceMuteCommand extends Command {
         ),
       );
 
-      message.channel.send(
+      return message.channel.send(
         lang.ADMIN.USER_MUTED.replace("{muteUserTag}", muteUser.user.tag).replace(
           "{reason}",
           muteReason,

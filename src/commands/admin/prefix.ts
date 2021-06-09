@@ -29,7 +29,7 @@ export default class PrefixCommand extends Command {
 
       await this.bot.utils.updateGuildById(message.guild?.id, { prefix });
 
-      message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
+      return message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

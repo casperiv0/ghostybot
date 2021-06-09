@@ -48,7 +48,7 @@ export default class VoiceKickCommand extends Command {
         ),
       );
 
-      message.channel.send(
+      return message.channel.send(
         lang.ADMIN.USER_DISC.replace("{kickUserTag}", kickMember.user.tag)
           .replace("{kickUserVoiceChannel}", `${kickMember?.voice?.channel}`)
           .replace("{reason}", kickReason),

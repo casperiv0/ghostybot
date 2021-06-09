@@ -65,7 +65,7 @@ export default class TempRoleCommand extends Command {
         },
       });
 
-      message.channel.send(
+      return message.channel.send(
         `Successfully added the **${role.name}** role for **${time}** to ${needsRole.user.tag}`,
       );
     } catch (err) {

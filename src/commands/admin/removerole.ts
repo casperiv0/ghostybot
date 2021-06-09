@@ -48,7 +48,7 @@ export default class RemoveRoleCommand extends Command {
 
       needsRole.roles.remove(role.id);
 
-      message.channel.send(
+      return message.channel.send(
         lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
           "{needsRole}",
           `${needsRole?.user?.tag}`,
