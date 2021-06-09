@@ -41,7 +41,7 @@ export default class SuggestCommand extends Command {
       sendMessage.react("👍");
       sendMessage.react("👎");
 
-      return message.channel.send("Send suggestion 👍");
+      return message.channel.send("Sent suggestion 👍");
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

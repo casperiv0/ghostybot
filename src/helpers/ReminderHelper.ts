@@ -55,7 +55,7 @@ export default class ReminderHelper extends Helper {
               .addField("Reminder message", msg);
 
             if (!channel.permissionsFor(guild.me!)?.has("SEND_MESSAGES")) return;
-            (channel as TextChannel).send(`<@${user.user_id}>`, embed);
+            (channel as TextChannel).send({ content: `<@${user.user_id}>`, embed });
           });
       });
     }, TEN_SECOND_INTERVAL);
