@@ -10,9 +10,9 @@ const TIMEOUT = 60 * 60 * 1000 * 5; // 5minutes
 async function paginate(message: Message, embeds: MessageEmbed[]) {
   let page = 0;
 
-  const currentPage = await message.channel.send(
-    embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`),
-  );
+  const currentPage = await message.channel.send({
+    embed: embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`),
+  });
 
   ALL_EMOJIS.forEach((em) => {
     currentPage.react(em);
@@ -57,9 +57,11 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     }
 
     if (page !== -1) {
-      currentPage.edit(
-        embeds[page].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5 minutes)`),
-      );
+      currentPage.edit({
+        embed: embeds[page].setFooter(
+          `Page: ${page + 1} / ${embeds.length} (Times out in 5 minutes)`,
+        ),
+      });
     }
   });
 
@@ -67,7 +69,7 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     currentPage.reactions.removeAll().catch(() => null);
 
     if (currentPage.embeds[0]) {
-      currentPage.edit(currentPage.embeds[0].setFooter("Timed out")).catch(() => null);
+      currentPage.edit({ embed: currentPage.embeds[0].setFooter("Timed out") }).catch(() => null);
     }
   });
 
