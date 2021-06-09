@@ -49,7 +49,7 @@ export default class EmojiInfoCommand extends Command {
         foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE
       }`);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

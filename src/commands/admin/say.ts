@@ -22,7 +22,7 @@ export default class SayCommand extends Command {
     if (type === "embed") {
       msg = args.slice(1).join(" ");
       const embed = this.bot.utils.baseEmbed(message).setDescription(msg);
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     }
 
     message.channel.send(msg);

@@ -33,7 +33,7 @@ export default class MessageDeleteEvent extends Event {
         );
       } else if (!message.content) return;
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

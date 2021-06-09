@@ -37,7 +37,7 @@ export default class PlaystoreCommand extends Command {
             return message.channel.send(lang.UTIL.PS_NOT_FOUND);
           }
 
-          const Embed = this.bot.utils
+          const embed = this.bot.utils
             .baseEmbed(message)
             .setThumbnail(app.icon)
             .setURL(app.url)
@@ -47,7 +47,7 @@ export default class PlaystoreCommand extends Command {
             .addField(lang.UTIL.DEVELOPER, app.developer, true)
             .addField(lang.UTIL.SCORE, app.scoreText, true);
 
-          return message.channel.send(Embed);
+          return message.channel.send({ embed });
         })
         .catch((err) => {
           this.bot.utils.sendErrorLog(err, "error");

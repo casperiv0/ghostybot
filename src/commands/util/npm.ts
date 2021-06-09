@@ -62,7 +62,7 @@ export default class NpmCommand extends Command {
           );
         }
 
-        return message.channel.send(embed);
+        return message.channel.send({ embed });
       }
 
       const embed = this.bot.utils
@@ -81,7 +81,7 @@ export default class NpmCommand extends Command {
         );
       });
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

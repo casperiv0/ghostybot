@@ -25,7 +25,7 @@ export default class RolesCommand extends Command {
         .setTitle(`${message.guild?.name} ${lang.UTIL.ROLES}`)
         .setDescription(`${roles.length > 2048 ? `${roles.substr(0, 2045)}...` : roles}`);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

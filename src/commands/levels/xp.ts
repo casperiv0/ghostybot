@@ -32,7 +32,7 @@ export default class XpCommand extends Command {
         .setTitle(`${member.user.username} ${lang.LEVELS.XP}`)
         .setDescription(`${lang.LEVELS.XP}: ${this.bot.utils.formatNumber(user?.xp!)}`);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send("lang.GLOBAL.ERROR");

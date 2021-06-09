@@ -22,6 +22,6 @@ export default class RandomColorCommand extends Command {
       .setColor(`#${color}`)
       .setTitle(`#${color}`);
 
-    message.channel.send(embed);
+    message.channel.send({ embed });
   }
 }

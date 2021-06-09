@@ -56,7 +56,7 @@ export default class PokemonCommand extends Command {
         )
         .setThumbnail(`${data.sprites.animated}`);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (e) {
       return message.channel.send(lang.POKEMON.NOT_FOUND.replace("{query}", query));
     }

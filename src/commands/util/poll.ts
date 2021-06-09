@@ -24,7 +24,7 @@ export default class PollCommand extends Command {
 
       embed.footer = null;
 
-      const sendMessage = await message.channel.send(embed);
+      const sendMessage = await message.channel.send({ embed });
 
       sendMessage.react("👍");
       sendMessage.react("👎");

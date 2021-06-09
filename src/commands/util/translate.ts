@@ -27,7 +27,7 @@ export default class TranslateCommand extends Command {
         .setDescription(result.text)
         .setTitle(lang.UTIL.G_TRANSLATE);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch {
       return message.channel.send(lang.GLOBAL.ERROR);
     }

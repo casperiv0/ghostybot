@@ -56,7 +56,7 @@ export default class EvalCommand extends Command {
 \`${lang.BOT_OWNER.EVAL_INPUT}:\` \`\`\`js\n${toEval} \`\`\`
 \`${lang.BOT_OWNER.EVAL_OUTPUT}:\` \`\`\`js\n${evaluatedCode}\`\`\``);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (error) {
       const errorEmbed = this.bot.utils
         .baseEmbed(message)

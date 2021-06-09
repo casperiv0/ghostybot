@@ -22,7 +22,7 @@ export default class PandaCommand extends Command {
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.link})`)
         .setImage(data.link);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

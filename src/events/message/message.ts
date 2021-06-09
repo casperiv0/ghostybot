@@ -153,7 +153,7 @@ export default class MessageEvent extends Event {
               return;
             }
 
-            const msg = await ch.send(embed);
+            const msg = await ch.send({ embed });
             if (!msg) return;
 
             setTimeout(() => {
@@ -191,7 +191,7 @@ export default class MessageEvent extends Event {
             process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.tk",
           );
 
-        return message.channel.send(embed);
+        return message.channel.send({ embed });
       }
 
       if (customCommands) {
@@ -308,7 +308,7 @@ export default class MessageEvent extends Event {
             .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
             .addField(lang.MESSAGE.EXAMPLE, cmdExample);
 
-          return message.channel.send(embed);
+          return message.channel.send({ embed });
         }
 
         let incorrectArg = false;

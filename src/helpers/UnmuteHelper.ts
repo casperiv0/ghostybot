@@ -73,7 +73,7 @@ export default class ReminderHelper extends Helper {
 
             const webhook = await this.bot.utils.getWebhook(guild);
             if (!webhook) return;
-            webhook.send(embed);
+            webhook.send({ embeds: [embed] });
           }
         });
     }, TEN_SECOND_INTERVAL);

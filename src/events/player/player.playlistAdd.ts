@@ -28,7 +28,7 @@ export default class PlayerPlaylistAddEvent extends Event {
           )}`,
         );
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

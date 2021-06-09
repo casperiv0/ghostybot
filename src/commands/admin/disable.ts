@@ -62,7 +62,7 @@ export default class DisableCommand extends Command {
           .setTitle(lang.ADMIN.DISABLED_CATEGORY)
           .setDescription(lang.ADMIN.CATEGORY_DISABLED.replace("{category}", category));
 
-        return message.channel.send(embed);
+        return message.channel.send({ embed });
       }
 
       // disable command
@@ -83,7 +83,7 @@ export default class DisableCommand extends Command {
         .setTitle(lang.ADMIN.DISABLED_COMMAND)
         .setDescription(lang.ADMIN.COMMAND_DISABLED.replace("{commandName}", command.name));
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

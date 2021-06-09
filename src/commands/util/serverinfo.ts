@@ -74,7 +74,7 @@ export default class ServerInfoCommand extends Command {
         embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
       }
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

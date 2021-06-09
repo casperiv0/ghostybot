@@ -30,7 +30,7 @@ export default class BmiCommand extends Command {
         .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`)
         .addField(`${lang.UTIL.BMI}`, bmi);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

@@ -22,7 +22,7 @@ export default class ServerIconCommand extends Command {
       } else {
         const embed = this.bot.utils.baseEmbed(message).setImage(icon);
 
-        message.channel.send(embed);
+        message.channel.send({ embed });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

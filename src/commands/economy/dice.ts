@@ -37,7 +37,7 @@ export default class DiceCommand extends Command {
         embed.setDescription(`❌ ${lang.ECONOMY.DICE_LOST.replace("{price}", `${price}`)}`);
       }
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

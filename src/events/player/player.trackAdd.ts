@@ -19,7 +19,7 @@ export default class PlayerTrackAddEvent extends Event {
         .setAuthor(`${lang.MUSIC.REQUESTED_BY} ${track.requestedBy.username}`)
         .setImage(track.thumbnail);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

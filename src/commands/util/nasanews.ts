@@ -32,6 +32,6 @@ export default class NasaNews extends Command {
       .setURL(encodeURI(item.href))
       .setDescription(`${data.collection.items[0].data[0].description.substr(0, 2044)}...`);
 
-    message.channel.send(embed);
+    message.channel.send({ embed });
   }
 }

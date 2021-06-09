@@ -29,7 +29,7 @@ export default class AfkCommand extends Command {
           .setTitle(lang.GLOBAL.SUCCESS)
           .setDescription(lang.UTIL.NOT_AFK);
 
-        return message.channel.send(embed);
+        return message.channel.send({ embed });
       }
 
       const reason = args.join(" ") || lang.GLOBAL.NOT_SPECIFIED;
@@ -43,7 +43,7 @@ export default class AfkCommand extends Command {
         .setTitle(lang.GLOBAL.SUCCESS)
         .setDescription(`${lang.UTIL.AFK}\n**${lang.GLOBAL.REASON}:** ${reason}`);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

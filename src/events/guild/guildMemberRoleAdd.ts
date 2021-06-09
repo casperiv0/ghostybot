@@ -22,7 +22,7 @@ export default class GuildMemberRoleAddEvent extends Event {
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${member} was **given** the ${role} role.`);
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

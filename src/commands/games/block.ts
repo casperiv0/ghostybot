@@ -33,7 +33,7 @@ export default class BlockCommand extends Command {
 
       const embed = this.bot.utils.baseEmbed(message).setDescription(blocks);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

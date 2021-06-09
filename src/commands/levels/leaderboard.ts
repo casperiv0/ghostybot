@@ -41,7 +41,7 @@ export default class XpCommand extends Command {
       });
 
       setTimeout(() => {
-        message.channel.send(embed);
+        message.channel.send({ embed });
       }, 300);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

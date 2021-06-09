@@ -23,7 +23,7 @@ export default class GuildChannelTopicUpdateEvent extends Event {
         .addField(lang.EVENTS.CHANNEL_NEW_TOPIC, newTopic)
         .setTimestamp();
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

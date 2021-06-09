@@ -42,7 +42,7 @@ export default class GuildMemberRemoveEvent extends Event {
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch) return;
-        (ch as TextChannel).send(embed);
+        (ch as TextChannel).send({ embed });
 
         await bot.utils.removeUser(member.user.id, member.guild.id);
         await bot.utils.removeUserWarnings(member.user.id, member.guild.id);

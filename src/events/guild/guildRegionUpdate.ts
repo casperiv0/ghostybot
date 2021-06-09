@@ -27,7 +27,7 @@ export default class GuildRegionUpdateEvent extends Event {
         .addField("Old Region", oldR)
         .addField("New Region", newR);
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

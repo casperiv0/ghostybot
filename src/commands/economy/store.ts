@@ -97,7 +97,7 @@ export default class StoreCommand extends Command {
           .setTitle(`${message.guild?.name} ${lang.ECONOMY.STORE}`)
           .setDescription(`${items}`);
 
-        message.channel.send(embed);
+        message.channel.send({ embed });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

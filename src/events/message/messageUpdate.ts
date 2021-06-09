@@ -58,7 +58,7 @@ export default class MessageUpdateEvent extends Event {
         .setColor("ORANGE")
         .setTimestamp();
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

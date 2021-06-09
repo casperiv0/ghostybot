@@ -39,7 +39,7 @@ export default class InventoryCommand extends Command {
         .setTitle(`${member.user.username} ${lang.ECONOMY.INVENTORY}`)
         .setDescription(`${mapped}`);
 
-      message.channel.send(embed);
+      message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

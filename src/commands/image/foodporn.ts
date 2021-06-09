@@ -35,7 +35,7 @@ export default class FoodPornCommand extends Command {
         .setImage(image)
         .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

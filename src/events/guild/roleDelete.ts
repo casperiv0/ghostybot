@@ -21,7 +21,7 @@ export default class RoleDeleteEvent extends Event {
         .setColor("RED")
         .setTimestamp();
 
-      webhook.send(embed);
+      webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

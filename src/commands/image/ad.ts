@@ -18,11 +18,11 @@ export default class AmazingEarthCommand extends Command {
 
     try {
       const image = message.author.displayAvatarURL({ format: "png" });
-      const url = `https://bot.andoi.tk/api/ad?image=${image}`;
+      const url = `https://api.tovade.xyz/v1/ad?image=${image}`;
 
       const embed = this.bot.utils.baseEmbed(message).setImage(url);
 
-      return message.channel.send(embed);
+      return message.channel.send({ embed });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);
