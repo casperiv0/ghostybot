@@ -18,7 +18,7 @@ export default class AmazingEarthCommand extends Command {
 
     try {
       const image = message.author.displayAvatarURL({ format: "png" });
-      const url = `https://api.tovade.xyz/v1/ad?image=${image}`;
+      const url = `https://api.tovade.xyz/v1/canvas/ad?image=${image}`;
 
       const embed = this.bot.utils.baseEmbed(message).setImage(url);
 
