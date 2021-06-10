@@ -181,10 +181,11 @@ export default class Util {
 
     const name = error.name || "N/A";
     let stack = error.stack || error;
+    let jsonString = JSON.stringify(requestData.json, null, 2);
 
-    const jsonString = Object.keys(requestData.json).reduce((acc, curr) => {
-      return (acc += `**${curr}:** ${requestData.json[curr]},\n`);
-    }, "");
+    if (jsonString.length >= 2048) {
+      jsonString = `${jsonString.substr(0, 2045)}...`;
+    }
 
     if (typeof stack === "string" && stack.length >= 2048) {
       console.error(stack);
@@ -197,8 +198,8 @@ export default class Util {
       .addField("Code", code.toString(), true)
       .addField("httpStatus", httpStatus.toString(), true)
       .addField("Timestamp", this.bot.logger.now, true)
-      .addField("Request data", jsonString)
-      .setDescription(`\`\`\`${stack}\`\`\` `)
+      .addField("Request data", `\`\`\`${jsonString.substr(0, 2045)}\`\`\``)
+      .setDescription(`\`\`\`${stack}\`\`\``)
       .setColor(type === "error" ? "RED" : "ORANGE");
 
     channel.send({ embed });
