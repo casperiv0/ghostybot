@@ -13,11 +13,12 @@ export default class AmazingEarthCommand extends Command {
     });
   }
 
-  async execute(message: Message): Promise<Message> {
+  async execute(message: Message, args: string[]): Promise<Message> {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const image = message.author.displayAvatarURL({ format: "png" });
+      const member = await this.bot.utils.findMember(message, args);
+      const image = member?.user.displayAvatarURL({ format: "png" });
       const url = `https://api.tovade.xyz/v1/canvas/ad?image=${image}`;
 
       const embed = this.bot.utils.baseEmbed(message).setImage(url);
