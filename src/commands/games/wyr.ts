@@ -23,7 +23,9 @@ export default class WouldYouRatherCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(data.title)
-        .setDescription(`${reply1.question} **OR** ${reply2.question}\n\n\n${data.description}`)
+        .setDescription(
+          `${reply1.question} **OR** ${reply2.question}\n\n\n${data.description || ""}`,
+        )
         .addField("Votes", data.total_votes.toString(), true);
 
       if (data.author) {
