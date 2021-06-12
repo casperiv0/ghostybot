@@ -53,7 +53,7 @@ export default class SpotifyCommand extends Command {
 **Artists:** ${artists}`,
             );
 
-          return message.channel.send({ embed });
+          return message.channel.send({ embeds: [embed] });
         }
         case "artist": {
           const topTracks =
@@ -72,7 +72,7 @@ export default class SpotifyCommand extends Command {
             embed.setImage(data.images[0].url);
           }
 
-          return message.channel.send({ embed });
+          return message.channel.send({ embeds: [embed] });
         }
         case "album": {
           const tracks =
@@ -90,7 +90,7 @@ export default class SpotifyCommand extends Command {
             .addField("Artists", artists, true)
             .setImage(data.images[0].url);
 
-          return message.channel.send({ embed });
+          return message.channel.send({ embeds: [embed] });
         }
         default: {
           return message.channel.send("Invalid type");

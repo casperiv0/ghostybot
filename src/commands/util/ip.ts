@@ -86,7 +86,7 @@ export default class IpLookupCommand extends Command {
           )
           .setThumbnail(flag);
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       return message.channel.send(lang.UTIL.IP_NOT_FOUND);

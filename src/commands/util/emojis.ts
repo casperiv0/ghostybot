@@ -40,7 +40,7 @@ export default class EmojisCommand extends Command {
           nonAnimated.length === 0 ? lang.GLOBAL.NONE : nonAnimatedV,
         );
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

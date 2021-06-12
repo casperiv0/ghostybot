@@ -51,7 +51,7 @@ export default class ImageCommand extends Command {
         const randomIndex = Math.floor(Math.random() * urls.length);
         const image = urls[randomIndex];
         const embed = this.bot.utils.baseEmbed(message).setImage(image);
-        message.channel.send({ embed });
+        message.channel.send({ embeds: [embed] });
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

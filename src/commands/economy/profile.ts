@@ -44,7 +44,7 @@ export default class ProfileCommand extends Command {
         .addField(`**${lang.ECONOMY.INV_ITEMS}**`, inventory.length.toString(), true)
         .setDescription(lang.ECONOMY.VIEW_INVENTORY.replace("{prefix}", `${guild?.prefix}`));
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

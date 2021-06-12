@@ -35,7 +35,7 @@ export default class ChannelsCommand extends Command {
         .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
         .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

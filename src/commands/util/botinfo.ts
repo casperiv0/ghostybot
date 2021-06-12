@@ -86,7 +86,7 @@ export default class BotInfoCommand extends Command {
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
         );
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

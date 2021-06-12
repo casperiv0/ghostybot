@@ -25,9 +25,10 @@ export default class UnLockChannelCommand extends Command {
         return message.channel.send(lang.ADMIN.CHAN_NOT_LOCK);
       }
 
-      // @ts-expect-error ignore
       channel.updateOverwrite(message.guild?.id, {
-        SEND_MESSAGES: true,
+        allow: ["SEND_MESSAGES"],
+        deny: [],
+        id: message.guild!.id,
       });
 
       return message.channel.send(lang.ADMIN.SUC_UNLOCK.replace("{channel}", `${channel}`));

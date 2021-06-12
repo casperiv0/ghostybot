@@ -26,7 +26,7 @@ export default class MemberCountCommand extends Command {
         .addField(`**${lang.UTIL.HUMANS}**`, this.bot.utils.formatNumber(humans), true)
         .addField(`**${lang.UTIL.BOTS}**`, this.bot.utils.formatNumber(bots), true);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

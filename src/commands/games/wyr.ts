@@ -30,7 +30,7 @@ export default class WouldYouRatherCommand extends Command {
         embed.addField(lang.UTIL.AUTHOR, data.author, true);
       }
 
-      return message.channel.send({ embed });
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       console.log(err);
 

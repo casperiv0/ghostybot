@@ -53,7 +53,7 @@ export default class GitHubCommand extends Command {
         embed.setAuthor(user.name);
       }
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

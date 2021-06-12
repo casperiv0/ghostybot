@@ -46,7 +46,7 @@ export default class MoneyLeaderboardCommand extends Command {
       });
 
       setTimeout(() => {
-        message.channel.send({ embed });
+        message.channel.send({ embeds: [embed] });
       }, 400);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

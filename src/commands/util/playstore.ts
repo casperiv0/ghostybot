@@ -47,7 +47,7 @@ export default class PlaystoreCommand extends Command {
             .addField(lang.UTIL.DEVELOPER, app.developer, true)
             .addField(lang.UTIL.SCORE, app.scoreText, true);
 
-          return message.channel.send({ embed });
+          return message.channel.send({ embeds: [embed] });
         })
         .catch((err) => {
           this.bot.utils.sendErrorLog(err, "error");

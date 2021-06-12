@@ -52,7 +52,7 @@ export default class HelpCommand extends Command {
           .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
         embed.setDescription(`\`\`\`${cmds}\`\`\``);
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       } else if (cmdArgs) {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
 
@@ -111,7 +111,7 @@ export default class HelpCommand extends Command {
             .addField(lang.HELP.OPTIONS, options, true)
             .addField(lang.HELP.BOT_PERMS, botPerms, true)
             .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
-          return message.channel.send({ embed });
+          return message.channel.send({ embeds: [embed] });
         }
       }
 

@@ -38,7 +38,7 @@ export default class BalanceCommand extends Command {
         .addField(lang.ECONOMY.BANK, user.bank.toString(), true)
         .addField(lang.COVID.TOTAL, (user.bank + user.money).toString(), true);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

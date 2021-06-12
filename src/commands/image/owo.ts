@@ -25,7 +25,7 @@ export default class OwoCommand extends Command {
         )
         .setImage(`https://cdn.ram.moe/${data.path.replace("/i/", "")}`);
 
-      return message.channel.send({ embed });
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

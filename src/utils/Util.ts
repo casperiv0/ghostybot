@@ -202,7 +202,7 @@ export default class Util {
       .setDescription(`\`\`\`${stack}\`\`\``)
       .setColor(type === "error" ? "RED" : "ORANGE");
 
-    channel.send({ embed });
+    channel.send({ embeds: [embed] });
   }
 
   async findMember(

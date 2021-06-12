@@ -48,7 +48,7 @@ export default class RrAddCommand extends Command {
           lang.PERMISSIONS,
         );
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       message.channel.send(lang.REACTIONS.ROLES);
@@ -89,7 +89,7 @@ export default class RrAddCommand extends Command {
         .setTitle(lang.REACTIONS.TITLE)
         .setDescription(`${lang.REACTIONS.DESC}\n ${this.createDescription(roles, emojis)}`);
 
-      const msg = await (channel as TextChannel).send({ embed });
+      const msg = await (channel as TextChannel).send({ embeds: [embed] });
 
       emojis.forEach((em: string) => {
         msg.react(em);

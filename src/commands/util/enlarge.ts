@@ -28,7 +28,7 @@ export default class EnlargeCommand extends Command {
         embed.setImage(
           `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`,
         );
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       const parsed = parse(emoji, { assetType: "png" });
@@ -37,7 +37,7 @@ export default class EnlargeCommand extends Command {
       }
 
       embed.setImage(parsed[0].url);
-      return message.channel.send({ embed });
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

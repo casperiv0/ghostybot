@@ -30,7 +30,7 @@ export default class StealEmojiCommand extends Command {
           .setTitle(lang.ADMIN.EMOJI_ADDED)
           .setDescription(`${lang.ADMIN.EMOJI_ADDED_NAME} ${name || lang.ADMIN.GIVE_NAME}`);
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       const customEmoji = Util.parseEmoji(emoji);
@@ -50,7 +50,7 @@ export default class StealEmojiCommand extends Command {
             }](${link})`,
           );
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       const foundEmoji = parse(emoji, { assetType: "png" });

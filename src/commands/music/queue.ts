@@ -38,7 +38,7 @@ export default class QueueCommand extends Command {
         .setTitle(`${message.guild?.name} ${lang.MUSIC.QUEUE}`)
         .setDescription(tracks);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

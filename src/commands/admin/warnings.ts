@@ -52,7 +52,7 @@ export default class WarningsCommand extends Command {
           .addField(`**${lang.EVENTS.REASON}**`, warning?.reason || lang.GLOBAL.NOT_SPECIFIED)
           .addField(`**${lang.ADMIN.WARNED_ON}**`, warnedOn);
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       embed
@@ -61,7 +61,7 @@ export default class WarningsCommand extends Command {
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
         .setDescription(lang.ADMIN.USE_WARNS.replace("{prefix}", `${prefix}`));
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

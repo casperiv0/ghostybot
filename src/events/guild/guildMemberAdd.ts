@@ -42,7 +42,7 @@ export default class GuildMemberAddEvent extends Event {
 
         const ch = bot.channels.cache.get(welcomeData.channel_id);
         if (!ch) return;
-        (ch as TextChannel).send({ embed });
+        (ch as TextChannel).send({ embeds: [embed] });
       }
 
       if (!member.pending && welcomeData.role_id) {

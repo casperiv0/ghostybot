@@ -24,7 +24,7 @@ export default class BunnyCommand extends Command {
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.media.gif})`)
         .setImage(data.media.gif);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

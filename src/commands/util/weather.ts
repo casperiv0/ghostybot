@@ -53,7 +53,7 @@ export default class WeatherCommand extends Command {
         .addField(`**${lang.UTIL.COUNTRY}**`, country)
         .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

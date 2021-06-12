@@ -35,7 +35,7 @@ export default class WikiCommand extends Command {
         .setURL(url)
         .setDescription(`${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

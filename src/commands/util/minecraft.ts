@@ -43,7 +43,7 @@ export default class MinecraftCommand extends Command {
         .addField(lang.UTIL.PROTOCOL, protocol, true)
         .addField(lang.UTIL.DESCRIPTION, description ? description : lang.GLOBAL.NONE);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

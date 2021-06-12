@@ -50,7 +50,7 @@ export default class EnableCommand extends Command {
           .setTitle(lang.ADMIN.ENABLED_CATEGORY)
           .setDescription(lang.ADMIN.CATEGORY_ENABLED.replace("{category}", category));
 
-        return message.channel.send({ embed });
+        return message.channel.send({ embeds: [embed] });
       }
 
       // enable command
@@ -71,7 +71,7 @@ export default class EnableCommand extends Command {
         .setTitle(lang.ADMIN.ENABLED_COMMAND)
         .setDescription(lang.ADMIN.COMMAND_ENABLED.replace("{commandName}", command.name));
 
-      return message.channel.send({ embed });
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

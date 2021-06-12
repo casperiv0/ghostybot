@@ -56,7 +56,7 @@ export default class CountryCommand extends Command {
         .addField(lang.UTIL.TIMEZONES, timezones, false)
         .setThumbnail(flag);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

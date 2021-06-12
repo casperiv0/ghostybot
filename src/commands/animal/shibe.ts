@@ -22,7 +22,7 @@ export default class CatCommand extends Command {
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data[0]})`)
         .setImage(data[0]);
 
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

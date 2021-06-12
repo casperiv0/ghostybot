@@ -36,7 +36,7 @@ export default class SuggestCommand extends Command {
 
       const channel = this.bot.channels.cache.get(suggestChannel);
       if (!channel) return;
-      const sendMessage = await (channel as TextChannel).send({ embed });
+      const sendMessage = await (channel as TextChannel).send({ embeds: [embed] });
 
       sendMessage.react("👍");
       sendMessage.react("👎");

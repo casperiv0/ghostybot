@@ -35,7 +35,7 @@ export default class YtCommentCommand extends Command {
         .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${url})`)
         .setImage(url);
 
-      return message.channel.send({ embed });
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send(lang.GLOBAL.ERROR);

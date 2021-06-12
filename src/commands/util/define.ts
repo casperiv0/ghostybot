@@ -29,7 +29,7 @@ export default class DefineCommand extends Command {
             .addField(lang.UTIL.CATEGORY, data.category)
             .addField(lang.UTIL.DEFINITION, data.definition);
 
-          message.channel.send({ embed });
+          message.channel.send({ embeds: [embed] });
         }
       });
     } catch (err) {

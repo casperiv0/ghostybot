@@ -43,7 +43,7 @@ export default class WorkCommand extends Command {
               .replace("{amount}", `${amount}`)} 💰`,
           );
 
-        message.channel.send({ embed });
+        message.channel.send({ embeds: [embed] });
 
         await this.bot.utils.updateUserById(member.id, message.guild?.id, {
           money: user.money + amount,

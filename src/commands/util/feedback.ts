@@ -27,7 +27,7 @@ export default class FeedbackCommand extends Command {
 
       (
         this.bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"] as Snowflake) as TextChannel
-      )?.send({ embed });
+      )?.send({ embeds: [embed] });
 
       message.channel.send(lang.UTIL.FEEDBACK_SEND);
     } catch (err) {
