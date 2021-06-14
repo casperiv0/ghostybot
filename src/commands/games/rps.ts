@@ -23,7 +23,9 @@ export default class RockPaperScissorsCommand extends Command {
       const inp = replies.find((r) => r.toLowerCase() === input);
 
       if (!inp) {
-        return message.channel.send(`${lang.GAMES.INVALID_INPUT} <rock | paper | scissors>`);
+        return message.channel.send({
+          content: `${lang.GAMES.INVALID_INPUT} <rock | paper | scissors>`,
+        });
       }
 
       const reply = replies[Math.floor(Math.random() * replies.length)];
@@ -32,7 +34,7 @@ export default class RockPaperScissorsCommand extends Command {
       if (hasWon === true) {
         const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
         if (!user) {
-          return message.channel.send(lang.GLOBAL.ERROR);
+          return message.channel.send({ content: lang.GLOBAL.ERROR });
         }
         await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + 50,
@@ -56,7 +58,7 @@ export default class RockPaperScissorsCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 

@@ -20,14 +20,14 @@ export default class RemindersCommand extends Command {
       const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({ content: lang.ADMIN.PROVIDE_VALID_MEMBER });
       }
 
       const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) return;
 
       if (!user.reminder.hasReminder === true) {
-        return message.channel.send(lang.REMINDER.NO_ACTIVE_REM);
+        return message.channel.send({ content: lang.REMINDER.NO_ACTIVE_REM });
       }
 
       const mappedReminders = user.reminder.reminders.map((reminder) => {
@@ -36,9 +36,9 @@ export default class RemindersCommand extends Command {
           .format("YY [years], D [days], H [hrs], m [mins], s [secs]");
 
         return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
-  **${lang.REMINDER.TIME}** ${reminder.time}
-  **${lang.MEMBER.ID}:** ${reminder.id}
-  **${lang.REMINDER.ENDS_IN}** ${endsAt}`;
+**${lang.REMINDER.TIME}** ${reminder.time}
+**${lang.MEMBER.ID}:** ${reminder.id}
+**${lang.REMINDER.ENDS_IN}** ${endsAt}`;
       });
 
       const embed = this.bot.utils
@@ -49,7 +49,7 @@ export default class RemindersCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

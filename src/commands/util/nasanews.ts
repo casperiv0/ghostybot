@@ -23,7 +23,7 @@ export default class NasaNews extends Command {
     const [item] = data.collection.items;
 
     if (!item) {
-      return message.channel.send(lang.NASANEWS.NOT_FOUND.replace("{query}", query));
+      return message.channel.send({ content: lang.NASANEWS.NOT_FOUND.replace("{query}", query) });
     }
 
     const embed = this.bot.utils

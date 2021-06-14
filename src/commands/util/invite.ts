@@ -16,6 +16,6 @@ export default class InviteCommand extends Command {
   async execute(message: Message) {
     const invite = await (message.channel as TextChannel).createInvite();
 
-    return message.channel.send(`https://discord.gg/${invite.code}`);
+    return message.channel.send({ content: `https://discord.gg/${invite.code}` });
   }
 }

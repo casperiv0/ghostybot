@@ -20,34 +20,46 @@ export default class AddMoneyCommand extends Command {
       const [, amount] = args;
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (member.user.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({
+          content: lang.MEMBER.BOT_DATA,
+        });
       }
 
       if (!amount) {
-        return message.channel.send(lang.LEVELS.PROVIDE_AMOUNT);
+        return message.channel.send({
+          content: lang.LEVELS.PROVIDE_AMOUNT,
+        });
       }
 
       if (+amount < 1) {
-        return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+        return message.channel.send({
+          content: lang.ECONOMY.MIN_AMOUNT,
+        });
       }
 
       const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       await this.bot.utils.updateUserById(member.user.id, message.guild?.id, {
         bank: user.bank + Number(amount),
       });
 
-      return message.channel.send(lang.ECONOMY.ADDED_MONEY.replace("{amount}", amount));
+      return message.channel.send({
+        content: lang.ECONOMY.ADDED_MONEY.replace("{amount}", amount),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

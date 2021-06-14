@@ -13,8 +13,8 @@ export default class SetCommand extends Command {
   async execute(message: Message) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
-    return message.channel.send(
-      lang.ADMIN.SET_CMD.replace("{url}", `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`),
-    );
+    return message.channel.send({
+      content: lang.ADMIN.SET_CMD.replace("{url}", `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`),
+    });
   }
 }

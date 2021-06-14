@@ -26,7 +26,7 @@ export default class RrRemoveCommand extends Command {
       });
 
       if (!reaction) {
-        return message.channel.send(lang.REACTIONS.NOT_FOUND);
+        return message.channel.send({ content: lang.REACTIONS.NOT_FOUND });
       }
 
       const channel = message.guild?.channels.cache.get(reaction.channel_id);
@@ -37,20 +37,20 @@ export default class RrRemoveCommand extends Command {
           (channel as TextChannel).messages.cache.get(messageId as Snowflake) ||
           (await (channel as TextChannel).messages.fetch(messageId as Snowflake));
       } catch {
-        return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+        return message.channel.send({ content: lang.REACTIONS.FOUND_NO_MSG });
       }
 
       if (!msg) {
-        return message.channel.send(lang.REACTIONS.FOUND_NO_MSG);
+        return message.channel.send({ content: lang.REACTIONS.FOUND_NO_MSG });
       }
 
       msg.deletable && msg.delete();
       await ReactionsModel.findOneAndDelete({ message_id: messageId });
 
-      return message.channel.send(lang.REACTIONS.DELETE_SUCCESS);
+      return message.channel.send({ content: lang.REACTIONS.DELETE_SUCCESS });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

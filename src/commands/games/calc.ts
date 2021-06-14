@@ -28,7 +28,9 @@ export default class CalcCommand extends Command {
 
       return message.channel.send({ embeds: [embed] });
     } catch (e) {
-      return message.channel.send(lang.GAMES.INVALID_CALC);
+      return message.channel.send({
+        content: lang.GAMES.INVALID_CALC,
+      });
     }
   }
 }

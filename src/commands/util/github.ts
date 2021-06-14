@@ -19,13 +19,15 @@ export default class GitHubCommand extends Command {
     try {
       const [username] = args;
 
-      const msg = await message.channel.send(`${lang.UTIL.SEARCHING}..`);
+      const msg = await message.channel.send({
+        content: `${lang.UTIL.SEARCHING}..`,
+      });
       const url = `https://api.github.com/users/${encodeURIComponent(username)}`;
       const result = await fetch(url).then((res) => res.json());
       const user = result;
 
       if (user?.message === "Not Found") {
-        return message.channel.send(lang.UTIL.GH_NOT_FOUND).then(() => msg.delete());
+        return message.channel.send({ content: lang.UTIL.GH_NOT_FOUND }).then(() => msg.delete());
       }
 
       msg.deletable && msg.delete();
@@ -56,7 +58,7 @@ export default class GitHubCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

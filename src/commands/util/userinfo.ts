@@ -21,7 +21,7 @@ export default class UserInfoCommand extends Command {
       const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
-        return message.channel.send(lang.MEMBER.NOT_FOUND);
+        return message.channel.send({ content: lang.MEMBER.NOT_FOUND });
       }
 
       const { date: joinedAt, tz } = await this.bot.utils.formatDate(
@@ -65,7 +65,7 @@ export default class UserInfoCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

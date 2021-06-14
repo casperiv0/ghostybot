@@ -23,7 +23,9 @@ export default class YtCommentCommand extends Command {
         format: "png",
       });
 
-      const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
+      const sendMsg = await message.channel.send({
+        content: lang.UTIL.PROCESSING_IMAGE,
+      });
 
       sendMsg.deletable && sendMsg.delete();
       const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(
@@ -38,7 +40,7 @@ export default class YtCommentCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

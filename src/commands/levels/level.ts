@@ -19,11 +19,13 @@ export default class XpCommand extends Command {
       const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (member.user.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 
       const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
@@ -40,10 +42,10 @@ export default class XpCommand extends Command {
 
       const attach = new MessageAttachment(url, "rank.png");
 
-      message.channel.send(attach);
+      message.channel.send({ files: [attach] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

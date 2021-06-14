@@ -33,10 +33,12 @@ export default class CTopicCommand extends Command {
       }
 
       await channel.setTopic(topic);
-      return message.channel.send(lang.ADMIN.C_TOPIC_ADDED.replace("{topic}", topic));
+      return message.channel.send({
+        content: lang.ADMIN.C_TOPIC_ADDED.replace("{topic}", topic),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

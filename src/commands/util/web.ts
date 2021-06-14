@@ -27,23 +27,23 @@ export default class WebCommand extends Command {
     const url = args.join(" ");
 
     if (!url.startsWith("http")) {
-      return message.channel.send(lang.UTIL.WEB_HTTP);
+      return message.channel.send({ content: lang.UTIL.WEB_HTTP });
     }
 
-    const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
+    const sendMsg = await message.channel.send({ content: lang.UTIL.PROCESSING_IMAGE });
 
     try {
       const available = await this.isAvailable(url);
 
       if (!available) {
-        return message.channel.send(lang.UTIL.WEB_UNAVAILABLE);
+        return message.channel.send({ content: lang.UTIL.WEB_UNAVAILABLE });
       }
 
       const isNsfw = await this.isNsfw(url);
 
       if (!(message.channel as TextChannel).nsfw && isNsfw) {
         sendMsg.deletable && sendMsg.delete();
-        return message.channel.send(lang.UTIL.WEB_NSFW);
+        return message.channel.send({ content: lang.UTIL.WEB_NSFW });
       }
 
       const result = `${CAPTURE_URL}${url}`;
@@ -51,11 +51,11 @@ export default class WebCommand extends Command {
 
       sendMsg.deletable && sendMsg.delete();
 
-      message.channel.send(attachment);
+      message.channel.send({ files: [attachment] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       sendMsg.deletable && sendMsg.delete();
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 

@@ -23,40 +23,49 @@ export default class RemoveRoleCommand extends Command {
       const role = await this.bot.utils.findRole(message, args[1] as Snowflake);
 
       if (!needsRole) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (!role) {
-        return message.channel.send(lang.REACTIONS.NO_ROLE);
+        return message.channel.send({
+          content: lang.REACTIONS.NO_ROLE,
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-        return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{roleName}", role.name),
-        );
+        return message.channel.send({
+          content: lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{roleName}", role.name),
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
-        return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER2.replace("{needsRoleTag}", needsRole?.user?.tag),
-        );
+        return message.channel.send({
+          content: lang.ADMIN.MY_ROLE_MUST_BE_HIGHER2.replace(
+            "{needsRoleTag}",
+            needsRole?.user?.tag,
+          ),
+        });
       }
 
       if (!needsRole) {
-        return message.channel.send(lang.ADMIN.USER_WAS_NOT_FOUND);
+        return message.channel.send({
+          content: lang.ADMIN.USER_WAS_NOT_FOUND,
+        });
       }
 
       needsRole.roles.remove(role.id);
 
-      return message.channel.send(
-        lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
+      return message.channel.send({
+        content: lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
           "{needsRole}",
           `${needsRole?.user?.tag}`,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

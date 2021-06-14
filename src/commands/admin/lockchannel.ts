@@ -27,7 +27,9 @@ export default class LockChannelCommand extends Command {
       }
 
       if (channel.permissionsFor(message.guild!.id)?.has("SEND_MESSAGES") === false) {
-        return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_LOCKED);
+        return message.channel.send({
+          content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,
+        });
       }
 
       channel.updateOverwrite(message.guild!.id, {
@@ -36,15 +38,15 @@ export default class LockChannelCommand extends Command {
         id: message.guild!.id,
       });
 
-      message.channel.send(
-        lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
+      message.channel.send({
+        content: lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
           "{lockReason}",
           lockReason,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -19,7 +19,7 @@ export default class WeeklyCommand extends Command {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const timeout = 60 * 60 * 1000 * 24 * 7; /* 1 week timeout */
@@ -30,18 +30,20 @@ export default class WeeklyCommand extends Command {
         const time = dayJs(timeout - (Date.now() - weekly)).format(
           "D [days], H [hrs], m [mins], s [secs]",
         );
-        message.channel.send(`${lang.ECONOMY.WEEKLY_ERROR} ${time} remaining`);
+        message.channel.send({ content: `${lang.ECONOMY.WEEKLY_ERROR} ${time} remaining` });
       } else {
         await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + amount,
           weekly: Date.now(),
         });
 
-        message.channel.send(lang.ECONOMY.WEEKLY_SUCCESS.replace("{amount}", `${amount}`));
+        message.channel.send({
+          content: lang.ECONOMY.WEEKLY_SUCCESS.replace("{amount}", `${amount}`),
+        });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

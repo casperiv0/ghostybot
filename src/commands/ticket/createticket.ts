@@ -25,12 +25,12 @@ export default class CreateTicketCommand extends Command {
       let hasActiveTicket = false;
 
       if (!guild?.ticket_data.enabled) {
-        return message.channel.send(
-          lang.TICKET.NOT_ENABLED.replace(
+        return message.channel.send({
+          content: lang.TICKET.NOT_ENABLED.replace(
             "{botName}",
             `${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}`,
           ),
-        );
+        });
       }
 
       tickets.forEach((ch) => {
@@ -41,7 +41,7 @@ export default class CreateTicketCommand extends Command {
       });
 
       if (hasActiveTicket) {
-        return message.channel.send(lang.TICKET.ALREADY_ACTIVE_TICKET);
+        return message.channel.send({ content: lang.TICKET.ALREADY_ACTIVE_TICKET });
       }
 
       const DEFAULT_PERMS: OverwriteResolvable[] = [
@@ -83,10 +83,10 @@ export default class CreateTicketCommand extends Command {
         ]);
       }
 
-      channel?.send(`${lang.TICKET.CREATED} <@${message.author.id}>`);
+      channel?.send({ content: `${lang.TICKET.CREATED} <@${message.author.id}>` });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

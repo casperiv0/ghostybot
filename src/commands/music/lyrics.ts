@@ -25,7 +25,9 @@ export default class LyricsCommand extends Command {
       const lyrics = await this.bot.lyricsClient.search(title);
 
       if (!lyrics) {
-        return message.channel.send(lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title));
+        return message.channel.send({
+          content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
+        });
       }
 
       const songTitle = lyrics.title || (np && np.title);
@@ -44,10 +46,10 @@ export default class LyricsCommand extends Command {
         lyricsEmbed.setDescription(`${songLyrics.substr(0, 2045)}...`);
       }
 
-      return message.channel.send(lyricsEmbed).catch((e) => this.bot.logger.error("Lyrics", e));
+      return message.channel.send({ embeds: [lyricsEmbed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

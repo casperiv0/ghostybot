@@ -20,10 +20,10 @@ export default class CowSayCommand extends Command {
     try {
       const text = args.join(" ");
 
-      message.channel.send(`\`\`\` ${cowSay.say({ text, T: "U", e: "oO" })} \`\`\``);
+      message.channel.send({ content: cowSay.say({ text, T: "U", e: "oO" }), code: true });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

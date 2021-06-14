@@ -17,7 +17,6 @@ export default class FeedbackCommand extends Command {
     try {
       const feedback = args.join(" ");
 
-      if (!feedback) return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
       if (!process.env["FEEDBACK_CHANNEL_ID"]) return;
 
       const embed = this.bot.utils
@@ -29,10 +28,10 @@ export default class FeedbackCommand extends Command {
         this.bot.channels.cache.get(process.env["FEEDBACK_CHANNEL_ID"] as Snowflake) as TextChannel
       )?.send({ embeds: [embed] });
 
-      message.channel.send(lang.UTIL.FEEDBACK_SEND);
+      message.channel.send({ content: lang.UTIL.FEEDBACK_SEND });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

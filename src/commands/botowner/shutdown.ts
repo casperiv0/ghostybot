@@ -15,7 +15,7 @@ export default class ShutdownCommand extends Command {
   async execute(message: Message) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
-    await message.channel.send(lang.BOT_OWNER.SHUTDOWN);
+    await message.channel.send({ content: lang.BOT_OWNER.SHUTDOWN });
     process.exit(1);
   }
 }

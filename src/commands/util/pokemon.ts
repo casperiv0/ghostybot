@@ -54,7 +54,7 @@ export default class PokemonCommand extends Command {
 
       message.channel.send({ embeds: [embed] });
     } catch (e) {
-      return message.channel.send(lang.POKEMON.NOT_FOUND.replace("{query}", query));
+      return message.channel.send({ content: lang.POKEMON.NOT_FOUND.replace("{query}", query) });
     }
   }
 }

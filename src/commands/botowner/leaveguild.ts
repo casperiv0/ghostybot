@@ -18,21 +18,27 @@ export default class LeaveGuildCommand extends Command {
     const [guildId] = args;
 
     if (!guildId) {
-      return message.channel.send("Please provide an id");
+      return message.channel.send({
+        content: "Please provide an id",
+      });
     }
 
     const guild = this.bot.guilds.cache.find((g) => g.id === guildId);
 
     if (!guild) {
-      return message.channel.send(lang.GUILD.NOT_FOUND);
+      return message.channel.send({
+        content: lang.GUILD.NOT_FOUND,
+      });
     }
 
     try {
       await guild.leave();
-      message.channel.send(lang.GUILD.LEFT.replace("{guild_name}", guild.name));
+      message.channel.send({
+        content: lang.GUILD.LEFT.replace("{guild_name}", guild.name),
+      });
     } catch (e) {
       this.bot.utils.sendErrorLog(e, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

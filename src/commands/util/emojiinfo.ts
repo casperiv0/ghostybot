@@ -21,7 +21,9 @@ export default class EmojiInfoCommand extends Command {
       const foundEmoji = this.findEmoji(message.guild!, emoji);
 
       if (!foundEmoji) {
-        return message.channel.send("Emoji can only be a custom emoji or the emoji was not found");
+        return message.channel.send({
+          content: "Emoji can only be a custom emoji or the emoji was not found",
+        });
       }
 
       let emojiAuthor: string | null = null;
@@ -52,7 +54,7 @@ export default class EmojiInfoCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 

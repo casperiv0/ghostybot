@@ -23,7 +23,7 @@ export default class CountryCommand extends Command {
       ).then((r) => r.json());
 
       if (country.message) {
-        return message.channel.send(lang.COVID.NOT_FOUND);
+        return message.channel.send({ content: lang.COVID.NOT_FOUND });
       }
 
       const name = country[0].name || "N/A";
@@ -59,7 +59,7 @@ export default class CountryCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

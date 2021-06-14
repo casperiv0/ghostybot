@@ -21,7 +21,7 @@ export default class RoleInfoCommand extends Command {
       if (!message.guild) return;
 
       if (!role) {
-        return message.channel.send(lang.UTIL.ROLE_NOT_FOUND);
+        return message.channel.send({ content: lang.UTIL.ROLE_NOT_FOUND });
       }
 
       const permissions =
@@ -51,7 +51,7 @@ export default class RoleInfoCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

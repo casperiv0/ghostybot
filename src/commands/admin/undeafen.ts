@@ -19,25 +19,29 @@ export default class UnDeafenCommand extends Command {
       const undeafenUser = await this.bot.utils.findMember(message, args);
 
       if (!undeafenUser) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (!undeafenUser?.voice.serverDeaf) {
-        return message.channel.send(lang.ADMIN.NOT_IN_VOICE_OR_NOT_DEAF);
+        return message.channel.send({
+          content: lang.ADMIN.NOT_IN_VOICE_OR_NOT_DEAF,
+        });
       }
 
       undeafenUser.voice.setDeaf(false, "undeafenReason");
 
-      undeafenUser.user.send(
-        lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${message.guild?.name}`),
-      );
+      undeafenUser.user.send({
+        content: lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${message.guild?.name}`),
+      });
 
-      return message.channel.send(
-        lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag),
-      );
+      return message.channel.send({
+        content: lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", undeafenUser.user.tag),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -20,11 +20,13 @@ export default class NukeCommand extends Command {
       const channel = message.channel as TextChannel;
 
       if (!channel) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (!channel.deletable) {
-        return message.channel.send(lang.ADMIN.CHANNEL_CANNOT_BE_DELETED);
+        return message.channel.send({
+          content: lang.ADMIN.CHANNEL_CANNOT_BE_DELETED,
+        });
       }
 
       const position = channel.position;
@@ -35,7 +37,9 @@ export default class NukeCommand extends Command {
         time: 15000,
       });
 
-      message.channel.send(lang.ADMIN.NUKE_CONFIRM);
+      message.channel.send({
+        content: lang.ADMIN.NUKE_CONFIRM,
+      });
 
       collector.on("collect", async (m) => {
         if (m.content?.toLowerCase() === "y") {
@@ -44,15 +48,19 @@ export default class NukeCommand extends Command {
           channel2.setPosition(position);
           channel2.setTopic(topic);
           channel.delete();
-          channel2.send(lang.ADMIN.NUKE_NUKED);
+          channel2.send({
+            content: lang.ADMIN.NUKE_NUKED,
+          });
         } else {
           collector.stop();
-          message.channel.send(lang.ADMIN.NUKE_CANCELED);
+          message.channel.send({
+            content: lang.ADMIN.NUKE_CANCELED,
+          });
         }
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

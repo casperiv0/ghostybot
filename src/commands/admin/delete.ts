@@ -21,7 +21,9 @@ export default class DeleteCommand extends Command {
     let amount = +args[0];
 
     if (isNaN(amount) || amount > 100) {
-      return message.channel.send(lang.ADMIN.DELETE_PROVIDE_AMOUNT);
+      return message.channel.send({
+        content: lang.ADMIN.DELETE_PROVIDE_AMOUNT,
+      });
     }
 
     amount = +args[0] === 100 ? +args[0] : +args[0] + 1;
@@ -29,15 +31,17 @@ export default class DeleteCommand extends Command {
     try {
       await (message.channel as TextChannel).bulkDelete(Number(amount));
 
-      const sentMsg = await message.channel.send(
-        lang.ADMIN.DELETE_DELETED.replace("{amount}", `${amount}`),
-      );
+      const sentMsg = await message.channel.send({
+        content: lang.ADMIN.DELETE_DELETED.replace("{amount}", `${amount}`),
+      });
 
       setTimeout(() => {
         sentMsg.deletable && sentMsg.delete();
       });
     } catch {
-      return message.channel.send(lang.ADMIN.DELETE_ERROR);
+      return message.channel.send({
+        content: lang.ADMIN.DELETE_ERROR,
+      });
     }
   }
 }

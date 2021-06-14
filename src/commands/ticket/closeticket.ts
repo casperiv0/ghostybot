@@ -18,11 +18,11 @@ export default class CloseTicketCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       if (!(channel as TextChannel).name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ""))) {
-        return message.channel.send(lang.TICKET.CANNOT_DO_ACTION);
+        return message.channel.send({ content: lang.TICKET.CANNOT_DO_ACTION });
       }
 
       if (args[0] && args[0].toLowerCase() === "--force") {
-        await this.sendAuditLog(this.bot, channel as TextChannel, message.author);
+        await this.sendAuditLog(channel as TextChannel, message.author);
         return channel.delete();
       }
 
@@ -31,30 +31,30 @@ export default class CloseTicketCommand extends Command {
       const collector = message.channel.createMessageCollector(filter, { time: timeout });
       let canceled = false;
 
-      message.channel.send(lang.TICKET.CLOSING);
+      message.channel.send({ content: lang.TICKET.CLOSING });
 
       collector.on("collect", (msg) => {
         if (msg.content.toLowerCase() === "cancel") {
           canceled = true;
 
           collector.stop();
-          message.channel.send(lang.TICKET.WILL_NOT_CLOSE);
+          message.channel.send({ content: lang.TICKET.WILL_NOT_CLOSE });
         }
       });
 
       setTimeout(async () => {
         if (canceled === false) {
-          await this.sendAuditLog(this.bot, channel as TextChannel, message.author);
+          await this.sendAuditLog(channel as TextChannel, message.author);
           channel.delete();
         }
       }, timeout);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 
-  async sendAuditLog(bot: Bot, channel: TextChannel, executor: User) {
+  async sendAuditLog(channel: TextChannel, executor: User) {
     this.bot.emit("guildTicketClose", channel, executor);
   }
 }

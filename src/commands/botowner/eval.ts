@@ -31,9 +31,9 @@ export default class EvalCommand extends Command {
 
     classified.forEach((item) => {
       if (toEval.toLowerCase().includes(item)) {
-        message.channel.send(
-          "That operation was canceled because it can include tokens or secrets.",
-        );
+        message.channel.send({
+          content: "That operation was canceled because it can include tokens or secrets.",
+        });
         return (wasCanceled = true);
       }
     });
@@ -63,7 +63,7 @@ export default class EvalCommand extends Command {
         .setTitle(lang.GLOBAL.ERROR)
         .setDescription(`\`\`\`${error}\`\`\``);
 
-      message.channel.send(errorEmbed);
+      message.channel.send({ embeds: [errorEmbed] });
     }
   }
 }

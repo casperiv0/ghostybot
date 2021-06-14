@@ -23,19 +23,23 @@ export default class BanCommand extends Command {
       if (!message.guild?.me) return;
 
       if (!banMember) {
-        return message.channel.send(lang.MEMBER.NOT_FOUND);
+        return message.channel.send({
+          content: lang.MEMBER.NOT_FOUND,
+        });
       }
 
       if (!banReason) banReason = lang.GLOBAL.NOT_SPECIFIED;
 
       if (!banMember.bannable || banMember.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-        return message.channel.send(lang.MEMBER.CANNOT_BE_BANNED);
+        return message.channel.send({
+          content: lang.MEMBER.CANNOT_BE_BANNED,
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(banMember.roles.highest) < 0) {
-        return message.channel.send(
-          lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", banMember.user?.tag),
-        );
+        return message.channel.send({
+          content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", banMember.user?.tag),
+        });
       }
 
       banMember.ban({
@@ -44,24 +48,24 @@ export default class BanCommand extends Command {
       });
 
       try {
-        banMember.user.send(
-          lang.MEMBER.DM_BAN_MESSAGE.replace("{guild_name}", message.guild.name).replace(
+        banMember.user.send({
+          content: lang.MEMBER.DM_BAN_MESSAGE.replace("{guild_name}", message.guild.name).replace(
             "{ban_reason}",
             banReason,
           ),
-        );
+        });
         // eslint-disable-next-line no-empty
       } catch {}
 
-      message.channel.send(
-        lang.MEMBER.GUILD_BAN_MESSAGE.replace("{member}", banMember.user.username).replace(
+      message.channel.send({
+        content: lang.MEMBER.GUILD_BAN_MESSAGE.replace("{member}", banMember.user.username).replace(
           "{ban_reason}",
           banReason,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

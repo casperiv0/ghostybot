@@ -18,7 +18,9 @@ export default class ResetXpCommand extends Command {
     try {
       const filter = (m: Message) => message.author.id === m.author.id;
 
-      message.channel.send(lang.LEVELS.RESET_CONF);
+      message.channel.send({
+        content: lang.LEVELS.RESET_CONF,
+      });
 
       message.channel
         .awaitMessages(filter, {
@@ -38,18 +40,22 @@ export default class ResetXpCommand extends Command {
               });
             });
 
-            return message.channel.send(lang.LEVELS.RESET_SUCCESS);
+            return message.channel.send({
+              content: lang.LEVELS.RESET_SUCCESS,
+            });
           }
 
-          return message.channel.send(lang.LEVELS.RESET_CANCEL);
+          return message.channel.send({
+            content: lang.LEVELS.RESET_CANCEL,
+          });
         })
         .catch((e) => {
           this.bot.logger.error("resetxp", e?.stack || e);
-          message.channel.send(lang.GLOBAL.ERROR);
+          message.channel.send({ content: lang.GLOBAL.ERROR });
         });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

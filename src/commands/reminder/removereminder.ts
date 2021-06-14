@@ -23,7 +23,7 @@ export default class RemoveReminderCommand extends Command {
       if (!user) return;
 
       if (user?.reminder.hasReminder === false) {
-        return message.channel.send(lang.REMINDER.NO_REMINDER_SET);
+        return message.channel.send({ content: lang.REMINDER.NO_REMINDER_SET });
       }
 
       switch (id) {
@@ -49,10 +49,10 @@ export default class RemoveReminderCommand extends Command {
         },
       });
 
-      return message.channel.send(lang.REMINDER.REMOVE_SUCCESS);
+      return message.channel.send({ content: lang.REMINDER.REMOVE_SUCCESS });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

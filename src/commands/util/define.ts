@@ -21,7 +21,7 @@ export default class DefineCommand extends Command {
 
       wd.getDef(word.toLowerCase(), "en", null, (data) => {
         if (data.err) {
-          message.channel.send(lang.UTIL.NO_DEF_FOUND.replace("{word}", word));
+          message.channel.send({ content: lang.UTIL.NO_DEF_FOUND.replace("{word}", word) });
         } else {
           const embed = this.bot.utils
             .baseEmbed(message)
@@ -34,7 +34,7 @@ export default class DefineCommand extends Command {
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

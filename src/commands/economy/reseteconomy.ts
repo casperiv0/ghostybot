@@ -19,7 +19,7 @@ export default class ResetEconomyCommand extends Command {
     try {
       const filter = (m: Message) => message.author.id === m.author.id;
 
-      message.channel.send(lang.ECONOMY.RESET_CONF);
+      message.channel.send({ content: lang.ECONOMY.RESET_CONF });
 
       message.channel
         .awaitMessages(filter, {
@@ -40,18 +40,18 @@ export default class ResetEconomyCommand extends Command {
               });
             });
 
-            return message.channel.send(lang.ECONOMY.RESET_SUCCESS);
+            return message.channel.send({ content: lang.ECONOMY.RESET_SUCCESS });
           }
 
-          return message.channel.send(lang.ECONOMY.RESET_CANCEL);
+          return message.channel.send({ content: lang.ECONOMY.RESET_CANCEL });
         })
         .catch((e) => {
           this.bot.logger.error("reset-economy", e?.stack || e);
-          message.channel.send("An error occurred");
+          message.channel.send({ content: lang.GLOBAL.ERROR });
         });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

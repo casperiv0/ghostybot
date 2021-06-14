@@ -17,12 +17,13 @@ export default class JokeCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      return message.channel.send(
-        getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] }).body,
-      );
+      return message.channel.send({
+        content: getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] })
+          .body,
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

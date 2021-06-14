@@ -15,6 +15,6 @@ export default class NumberCommand extends Command {
   async execute(message: Message) {
     const n = Math.floor(Math.random() * 1000000) + 1;
 
-    return message.channel.send(n);
+    return message.channel.send({ content: n.toString() });
   }
 }

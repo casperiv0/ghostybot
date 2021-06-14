@@ -24,11 +24,13 @@ export default class WeatherCommand extends Command {
       const data = await fetch(url).then((res) => res.json());
 
       if (data.cod === 401) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (data.cod === "404") {
-        return message.channel.send(lang.UTIL.C_NOT_FOUND.replace("{query}", query));
+        return message.channel.send({
+          content: lang.UTIL.C_NOT_FOUND.replace("{query}", query),
+        });
       }
 
       const main = data.weather[0].main;
@@ -56,7 +58,7 @@ export default class WeatherCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

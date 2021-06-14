@@ -21,7 +21,7 @@ export default class WithdrawCommand extends Command {
       const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
 
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
       const bank = user.bank;
       let [amount] = args as (string | number)[];
@@ -33,31 +33,41 @@ export default class WithdrawCommand extends Command {
           money: user.money + bank,
           bank: user.bank - bank,
         });
-        return message.channel.send(lang.ECONOMY.WITHDRAW_ALL);
+        return message.channel.send({
+          content: lang.ECONOMY.WITHDRAW_ALL,
+        });
       }
 
       if (!Number(args[0])) {
-        return message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
+        return message.channel.send({
+          content: lang.MESSAGE.MUST_BE_NUMBER,
+        });
       }
 
       amount = Number(args[0]);
 
       if (amount < 0) {
-        return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+        return message.channel.send({
+          content: lang.ECONOMY.MIN_AMOUNT,
+        });
       }
 
       if (bank < amount) {
-        return message.channel.send(lang.ECONOMY.NO_MONEY);
+        return message.channel.send({
+          content: lang.ECONOMY.NO_MONEY,
+        });
       }
 
       await this.bot.utils.updateUserById(member.id, message.guild?.id, {
         money: user.money + Number(amount),
         bank: user.bank - Number(amount),
       });
-      message.channel.send(lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", `${amount}`));
+      message.channel.send({
+        content: lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", `${amount}`),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

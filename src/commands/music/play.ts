@@ -23,21 +23,21 @@ export default class PlayCommand extends Command {
     if (!this.bot.user) return;
 
     if (!search) {
-      return message.channel.send(lang.MUSIC.PROVIDE_SEARCH);
+      return message.channel.send({ content: lang.MUSIC.PROVIDE_SEARCH });
     }
 
     if (!voiceChannel) {
-      return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+      return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
     }
 
     if (queue && !this.bot.utils.isBotInSameChannel(message)) {
-      return message.channel.send("Bot is not in this voice channel!");
+      return message.channel.send({ content: "Bot is not in this voice channel!" });
     }
 
     try {
       const perms = voiceChannel.permissionsFor(this.bot.user);
       if (!perms?.has("CONNECT") || !perms.has("SPEAK")) {
-        return message.channel.send(lang.MUSIC.NO_PERMS);
+        return message.channel.send({ content: lang.MUSIC.NO_PERMS });
       }
 
       await this.bot.player.play(message, search, true);

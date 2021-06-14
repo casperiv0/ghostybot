@@ -45,7 +45,7 @@ export default class ImageCommand extends Command {
         });
 
         if (!urls.length) {
-          return message.channel.send(lang.UTIL.NO_IMG_FOUND);
+          return message.channel.send({ content: lang.UTIL.NO_IMG_FOUND });
         }
 
         const randomIndex = Math.floor(Math.random() * urls.length);
@@ -55,7 +55,7 @@ export default class ImageCommand extends Command {
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

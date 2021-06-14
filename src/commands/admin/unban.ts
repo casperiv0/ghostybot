@@ -20,17 +20,19 @@ export default class UnBanCommand extends Command {
       const [userId] = args;
 
       if (!userId) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_USERID);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_USERID,
+        });
       }
 
       const bannedUser = await message.guild?.members.unban(userId as Snowflake);
 
-      return message.channel.send(
-        lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),
-      );
+      return message.channel.send({
+        content: lang.ADMIN.SUC_UNBAN.replace("{bannedUsername}", `${bannedUser?.username}`),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -27,19 +27,25 @@ export default class TempMuteCommand extends Command {
 
       const muteRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
       if (!muteRole) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (!muteMember) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (muteMember?.roles.cache.find((r) => r.id === muteRole?.id)) {
-        return message.channel.send(lang.ADMIN.ALREADY_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.ALREADY_MUTED,
+        });
       }
 
       if (muteMember.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
-        return message.channel.send(lang.ADMIN.CAN_NOT_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.CAN_NOT_MUTED,
+        });
       }
 
       this.bot.utils.updateMuteChannelPerms(message.guild, muteMember.user.id, {
@@ -58,17 +64,17 @@ export default class TempMuteCommand extends Command {
         },
       });
 
-      muteMember.user.send(
-        lang.ADMIN.TEMP_MUTED.replace("{guildName}", message.guild.name)
+      muteMember.user.send({
+        content: lang.ADMIN.TEMP_MUTED.replace("{guildName}", message.guild.name)
           .replace("{reason}", reason)
           .replace("{time}", time),
-      );
+      });
 
-      message.channel.send(
-        lang.ADMIN.SUCCES_MUTED.replace("{muteMemberTag}", muteMember.user.tag)
+      message.channel.send({
+        content: lang.ADMIN.SUCCES_MUTED.replace("{muteMemberTag}", muteMember.user.tag)
           .replace("{time}", time)
           .replace("{reason}", reason),
-      );
+      });
 
       this.bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
@@ -79,7 +85,7 @@ export default class TempMuteCommand extends Command {
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

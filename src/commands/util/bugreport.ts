@@ -20,13 +20,9 @@ export default class BugReportCommand extends Command {
       const channelId = process.env["BUG_REPORTS_CHANNEL_ID"];
 
       if (!channelId) {
-        return message.channel.send(
-          lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId"),
-        );
-      }
-
-      if (!bug) {
-        return message.channel.send(lang.GLOBAL.PROVIDE_ARGS);
+        return message.channel.send({
+          content: lang.CONFIG.OPTION_CMD_WORK.replace("{option}", "reportsChannelId"),
+        });
       }
 
       const embed = this.bot.utils
@@ -38,10 +34,10 @@ export default class BugReportCommand extends Command {
         embeds: [embed],
       });
 
-      return message.channel.send(lang.UTIL.BUG_REPORTED);
+      return message.channel.send({ content: lang.UTIL.BUG_REPORTED });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

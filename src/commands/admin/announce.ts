@@ -18,9 +18,9 @@ export default class AnnounceCommand extends Command {
 
     try {
       if (!args[0]) {
-        return message.channel.send(
-          `${lang.ADMIN.TEXT_OR_VALID_CHANNEL}\n${lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL}`,
-        );
+        return message.channel.send({
+          content: `${lang.ADMIN.TEXT_OR_VALID_CHANNEL}\n${lang.ADMIN.DEFAULT_ANNOUNCE_CHANNEL}`,
+        });
       }
 
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
@@ -34,7 +34,9 @@ export default class AnnounceCommand extends Command {
         channel = message.channel as TextChannel;
         text = args.join(" ");
       } else {
-        return message.channel.send(lang.ADMIN.TEXT_OR_VALID_CHANNEL);
+        return message.channel.send({
+          content: lang.ADMIN.TEXT_OR_VALID_CHANNEL,
+        });
       }
 
       const embed = this.bot.utils
@@ -47,7 +49,7 @@ export default class AnnounceCommand extends Command {
       )?.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

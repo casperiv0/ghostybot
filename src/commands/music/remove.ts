@@ -18,43 +18,49 @@ export default class RemoveCommand extends Command {
       const [songNo] = args;
       const queue = this.bot.player.getQueue(message);
       if (!message.member?.voice.channel) {
-        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+        return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
       if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send(lang.MUSIC.NO_QUEUE);
+        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
       if (!queue) {
-        return message.channel.send(lang.MUSIC.NO_QUEUE);
+        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
       if (queue && !this.bot.utils.isBotInSameChannel(message)) {
-        return message.channel.send("Bot is not in this voice channel!");
+        return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
       if (isNaN(Number(songNo))) {
-        return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
+        return message.channel.send({ content: lang.LEVELS.PROVIDE_VALID_NR });
       }
 
       if (Number(songNo) < 1) {
-        return message.channel.send(
-          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`),
-        );
+        return message.channel.send({
+          content: lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace(
+            "{totalQueue}",
+            `${queue.tracks.length - 1}`,
+          ),
+        });
       }
 
       if (Number(songNo) >= queue.tracks.length) {
-        return message.channel.send(
-          lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace("{totalQueue}", `${queue.tracks.length - 1}`),
-        );
+        return message.channel.send({
+          content: lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace(
+            "{totalQueue}",
+            `${queue.tracks.length - 1}`,
+          ),
+        });
       }
 
       const song = queue.tracks[Number(songNo)];
       this.bot.player.remove(message, Number(songNo));
-      await message.channel.send(`**${song.title}** ${lang.MUSIC.REMOVE_SUCCESS}`);
+      await message.channel.send({ content: `**${song.title}** ${lang.MUSIC.REMOVE_SUCCESS}` });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -22,18 +22,18 @@ export default class EditReminderCommand extends Command {
     try {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (!user.reminder.hasReminder) {
-        return message.channel.send("You don't have any active reminders");
+        return message.channel.send({ content: "You don't have any active reminders" });
       }
 
       const reminder = user.reminder.reminders.find((r) => r.id === +id);
       const updated = user.reminder.reminders.filter((r) => r.id !== +id);
 
       if (!reminder) {
-        return message.channel.send("That reminder was not found");
+        return message.channel.send({ content: "That reminder was not found" });
       }
 
       reminder.time = time;
@@ -56,10 +56,10 @@ export default class EditReminderCommand extends Command {
         },
       });
 
-      return message.channel.send("Updated reminder");
+      return message.channel.send({ content: "Updated reminder" });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

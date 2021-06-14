@@ -52,7 +52,9 @@ export default class MessageEvent extends Event {
           msg.deletable && msg?.delete();
         }
 
-        const stickyMessage = await message.channel.send(sticky?.message);
+        const stickyMessage = await message.channel.send({
+          content: sticky.message,
+        });
         sticky.message_id = stickyMessage.id;
         await sticky?.save();
       }
@@ -71,9 +73,9 @@ export default class MessageEvent extends Event {
 
         if (hasBadWord) {
           message.deletable && message.delete();
-          const sentMsg = await message.channel.send(
-            lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`),
-          );
+          const sentMsg = await message.channel.send({
+            content: lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`),
+          });
 
           setTimeout(() => {
             sentMsg.deletable && sentMsg.delete();
@@ -87,17 +89,17 @@ export default class MessageEvent extends Event {
           const user = await bot.utils.getUserById(member.user.id, guildId);
 
           if (user?.afk?.is_afk) {
-            message.channel.send(
-              bot.utils
-                .baseEmbed(message)
-                .setTitle("AFK!")
-                .setDescription(
-                  lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace(
-                    "{reason}",
-                    `${user?.afk.reason}`,
-                  ),
+            const embed = bot.utils
+              .baseEmbed(message)
+              .setTitle("AFK!")
+              .setDescription(
+                lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace(
+                  "{reason}",
+                  `${user?.afk.reason}`,
                 ),
-            );
+              );
+
+            message.channel.send({ embeds: [embed] });
           }
         });
       }
@@ -117,11 +119,11 @@ export default class MessageEvent extends Event {
           },
         });
 
-        const msg = await message.channel.send(
-          bot.utils
-            .baseEmbed(message)
-            .setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag)),
-        );
+        const embed = bot.utils
+          .baseEmbed(message)
+          .setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag));
+
+        const msg = await message.channel.send({ embeds: [embed] });
 
         setTimeout(() => {
           msg.deletable && msg.delete();
@@ -201,7 +203,7 @@ export default class MessageEvent extends Event {
 
         const command = customCommands.find((c) => c.name === cmd);
         if (command) {
-          return message.channel.send(command.response);
+          return message.channel.send({ content: command.response });
         }
       }
 
@@ -212,7 +214,9 @@ export default class MessageEvent extends Event {
         !message.channel.permissionsFor(message.guild.me)?.has(Permissions.FLAGS.EMBED_LINKS) &&
         bot.user.id !== message.author.id
       ) {
-        return message.channel.send(`Error: I need \`${Permissions.FLAGS.EMBED_LINKS}\` to work!`);
+        return message.channel.send({
+          content: `Error: I need \`${Permissions.FLAGS.EMBED_LINKS}\` to work!`,
+        });
       }
 
       const _bot =
@@ -227,23 +231,17 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-      if (command.options.category === "music") {
-        return message.channel.send(
-          "Due to high loads when playing music, music has been temporary disabled",
-        );
-      }
-
       if (
         !saveCommands.includes(command.name) &&
         guild?.disabled_categories?.includes(command.options.category)
       ) {
-        return message.channel.send(
-          lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
-        );
+        return message.channel.send({
+          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
+        });
       }
 
       if (guild?.disabled_commands?.includes(command.name)) {
-        return message.channel.send(lang.MESSAGE.COMMAND_DISABLED);
+        return message.channel.send({ content: lang.MESSAGE.COMMAND_DISABLED });
       }
 
       const owners = process.env["OWNERS"];
@@ -261,8 +259,8 @@ export default class MessageEvent extends Event {
         });
 
         if (neededPerms.length > 0) {
-          return message.channel.send(
-            lang.MESSAGE.NEED_PERMS.replace(
+          return message.channel.send({
+            content: lang.MESSAGE.NEED_PERMS.replace(
               "{perms}",
               neededPerms
                 .map((p) => {
@@ -277,7 +275,7 @@ export default class MessageEvent extends Event {
                 })
                 .join(", "),
             ),
-          );
+          });
         }
       }
 
@@ -290,7 +288,9 @@ export default class MessageEvent extends Event {
         });
 
         if (neededPerms.length > 0) {
-          return message.channel.send(bot.utils.errorEmbed(neededPerms, message, lang.PERMISSIONS));
+          return message.channel.send({
+            embeds: [bot.utils.errorEmbed(neededPerms, message, lang.PERMISSIONS)],
+          });
         }
       }
 
@@ -316,14 +316,14 @@ export default class MessageEvent extends Event {
           switch (arg?.type) {
             case "number": {
               if (!Number(args[i])) {
-                message.channel.send(lang.MESSAGE.MUST_BE_NUMBER);
+                message.channel.send({ content: lang.MESSAGE.MUST_BE_NUMBER });
                 return (incorrectArg = true);
               }
               break;
             }
             case "time": {
               if (!ms(args[i])) {
-                message.channel.send(lang.MESSAGE.MUST_BE_DATE);
+                message.channel.send({ content: lang.MESSAGE.MUST_BE_DATE });
                 return (incorrectArg = true);
               }
               break;

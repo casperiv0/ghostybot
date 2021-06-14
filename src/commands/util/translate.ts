@@ -29,7 +29,7 @@ export default class TranslateCommand extends Command {
 
       message.channel.send({ embeds: [embed] });
     } catch {
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

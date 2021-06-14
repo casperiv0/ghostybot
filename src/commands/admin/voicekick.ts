@@ -24,7 +24,9 @@ export default class VoiceKickCommand extends Command {
       const kickReason = args.join(" ").slice(23);
 
       if (!kickMember) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (
@@ -32,30 +34,34 @@ export default class VoiceKickCommand extends Command {
           Permissions.FLAGS.MOVE_MEMBERS || Permissions.FLAGS.ADMINISTRATOR,
         )
       ) {
-        return message.channel.send(lang.ADMIN.CAN_NOT_DISC);
+        return message.channel.send({
+          content: lang.ADMIN.CAN_NOT_DISC,
+        });
       }
 
       if (!kickMember.voice.channel) {
-        return message.channel.send(lang.ADMIN.NOT_IN_VOICE);
+        return message.channel.send({
+          content: lang.ADMIN.NOT_IN_VOICE,
+        });
       }
 
       kickMember.voice.kick(kickReason);
 
-      kickMember.user.send(
-        lang.ADMIN.YOU_DISC.replace("{guildName}", `${message.guild?.name}`).replace(
+      kickMember.user.send({
+        content: lang.ADMIN.YOU_DISC.replace("{guildName}", `${message.guild?.name}`).replace(
           "{reason}",
           kickReason,
         ),
-      );
+      });
 
-      return message.channel.send(
-        lang.ADMIN.USER_DISC.replace("{kickUserTag}", kickMember.user.tag)
+      return message.channel.send({
+        content: lang.ADMIN.USER_DISC.replace("{kickUserTag}", kickMember.user.tag)
           .replace("{kickUserVoiceChannel}", `${kickMember?.voice?.channel}`)
           .replace("{reason}", kickReason),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

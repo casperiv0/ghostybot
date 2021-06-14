@@ -38,7 +38,7 @@ export default class ImdbCommand extends Command {
     } catch (e) {
       console.log(e);
 
-      return message.channel.send(lang.UTIL.DB_NOT_FOUND.replace("{search}", search));
+      return message.channel.send({ content: lang.UTIL.DB_NOT_FOUND.replace("{search}", search) });
     }
   }
 }

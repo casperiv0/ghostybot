@@ -89,10 +89,10 @@ export default class IpLookupCommand extends Command {
         return message.channel.send({ embeds: [embed] });
       }
 
-      return message.channel.send(lang.UTIL.IP_NOT_FOUND);
+      return message.channel.send({ content: lang.UTIL.IP_NOT_FOUND });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

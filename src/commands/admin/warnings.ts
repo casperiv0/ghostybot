@@ -20,7 +20,9 @@ export default class WarningsCommand extends Command {
       const member = await this.bot.utils.findMember(message, args);
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       const warnings = await this.bot.utils.getUserWarnings(member!.user.id, message.guild?.id);
@@ -28,11 +30,15 @@ export default class WarningsCommand extends Command {
       const warningNr = Number(args[1]);
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (member.user.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({
+          content: lang.MEMBER.BOT_DATA,
+        });
       }
 
       const embed = this.bot.utils.baseEmbed(message);
@@ -41,9 +47,9 @@ export default class WarningsCommand extends Command {
         const warning = warnings?.filter((_, idx) => idx === warningNr - 1)[0];
 
         if (!warning) {
-          return message.channel.send(
-            lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", member.user.tag),
-          );
+          return message.channel.send({
+            content: lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", member.user.tag),
+          });
         }
 
         const warnedOn = warning?.date ? new Date(warning?.date)?.toLocaleString() : "N/A";
@@ -64,7 +70,7 @@ export default class WarningsCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

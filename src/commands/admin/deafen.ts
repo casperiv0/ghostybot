@@ -22,31 +22,35 @@ export default class DeafenCommand extends Command {
       const deafenReason = args.slice(1).join(" ");
 
       if (!deafenMember) {
-        return message.channel.send(lang.MEMBER.NOT_FOUND);
+        return message.channel.send({
+          content: lang.MEMBER.NOT_FOUND,
+        });
       }
 
       if (deafenMember?.voice?.serverDeaf) {
-        return message.channel.send(lang.ADMIN.DEAFEN_ALREADY_DEAFENED);
+        return message.channel.send({
+          content: lang.ADMIN.DEAFEN_ALREADY_DEAFENED,
+        });
       }
 
       deafenMember.voice.setDeaf(true, "deafenReason");
 
-      deafenMember.user.send(
-        lang.ADMIN.DEAFEN_SUCCESS_DM.replace("{guild}", `${message.guild?.name}`).replace(
+      deafenMember.user.send({
+        content: lang.ADMIN.DEAFEN_SUCCESS_DM.replace("{guild}", `${message.guild?.name}`).replace(
           "{reason}",
           deafenReason,
         ),
-      );
+      });
 
-      return message.channel.send(
-        lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", `${deafenMember.user.tag}`).replace(
+      return message.channel.send({
+        content: lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", `${deafenMember.user.tag}`).replace(
           "{reason}",
           deafenReason,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

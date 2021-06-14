@@ -17,7 +17,9 @@ export default class GiphyCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       if (!process.env["GIPHY_API_KEY"]) {
-        message.channel.send(lang.IMAGE.NO_GIPHY_KEY);
+        message.channel.send({
+          content: lang.IMAGE.NO_GIPHY_KEY,
+        });
       }
 
       const api_key = process.env["GIPHY_API_KEY"];
@@ -30,7 +32,9 @@ export default class GiphyCommand extends Command {
       const [data] = res.data;
 
       if (!data) {
-        return message.channel.send(lang.IMAGE.NO_GPIHY_FOUND);
+        return message.channel.send({
+          content: lang.IMAGE.NO_GPIHY_FOUND,
+        });
       }
 
       const image = data.images.original.url;
@@ -44,7 +48,7 @@ export default class GiphyCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

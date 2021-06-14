@@ -44,7 +44,7 @@ export default class HelpCommand extends Command {
           .join(", ");
 
         if (cmds.length < 0) {
-          return message.channel.send(lang.HELP.CAT_NOT_EXIST);
+          return message.channel.send({ content: lang.HELP.CAT_NOT_EXIST });
         }
 
         const embed = this.bot.utils
@@ -62,7 +62,7 @@ export default class HelpCommand extends Command {
           );
         }
 
-        if (!cmd) return message.channel.send(lang.HELP.CMD_NOT_FOUND);
+        if (!cmd) return message.channel.send({ content: lang.HELP.CMD_NOT_FOUND });
 
         let aliases: string[] | string;
         let options: string[] | string;
@@ -71,12 +71,14 @@ export default class HelpCommand extends Command {
         let botPerms: string[] | string;
 
         if ("category" in cmd && cmd.category === "custom") {
-          return message.channel.send(
-            this.bot.utils
-              .baseEmbed(message)
-              .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
-              .setDescription(`${lang.HELP.CUSTOM_CMD}`),
-          );
+          const embed = this.bot.utils
+            .baseEmbed(message)
+            .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
+            .setDescription(`${lang.HELP.CUSTOM_CMD}`);
+
+          return message.channel.send({
+            embeds: [embed],
+          });
         }
 
         if ("options" in cmd && cmd.options.category !== "custom") {
@@ -148,7 +150,7 @@ export default class HelpCommand extends Command {
       await paginate(message, embeds);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 
@@ -157,7 +159,6 @@ export default class HelpCommand extends Command {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getMemberPermissions(command: Command, lang: any) {
   return !command.options.memberPermissions
     ? [lang.GLOBAL.NONE]
@@ -174,7 +175,6 @@ export function getMemberPermissions(command: Command, lang: any) {
       });
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getBotPermissions(command: Command, lang: any) {
   return !command.options.botPermissions
     ? ["SEND_MESSAGES"].map((p) => lang.PERMISSIONS[p.toUpperCase()])

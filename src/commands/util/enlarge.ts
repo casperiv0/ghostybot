@@ -33,14 +33,14 @@ export default class EnlargeCommand extends Command {
 
       const parsed = parse(emoji, { assetType: "png" });
       if (!parsed[0]) {
-        return message.channel.send(lang.UTIL.INVALID_EMOJI);
+        return message.channel.send({ content: lang.UTIL.INVALID_EMOJI });
       }
 
       embed.setImage(parsed[0].url);
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

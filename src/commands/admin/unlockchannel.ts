@@ -22,7 +22,7 @@ export default class UnLockChannelCommand extends Command {
       const channel = (message.mentions.channels.first() || message.channel) as TextChannel;
 
       if (channel.permissionsFor(message.guild?.id)?.has("SEND_MESSAGES") === true) {
-        return message.channel.send(lang.ADMIN.CHAN_NOT_LOCK);
+        return message.channel.send({ content: lang.ADMIN.CHAN_NOT_LOCK });
       }
 
       channel.updateOverwrite(message.guild?.id, {
@@ -31,10 +31,12 @@ export default class UnLockChannelCommand extends Command {
         id: message.guild!.id,
       });
 
-      return message.channel.send(lang.ADMIN.SUC_UNLOCK.replace("{channel}", `${channel}`));
+      return message.channel.send({
+        content: lang.ADMIN.SUC_UNLOCK.replace("{channel}", `${channel}`),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

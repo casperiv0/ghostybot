@@ -17,9 +17,9 @@ export default class CtgsCommand extends Command {
       const [slug, url] = args;
       const data = await this.bot.ctgs.new(slug, url);
 
-      return message.channel.send(data);
+      return message.channel.send({ content: data });
     } catch (err) {
-      return message.channel.send(err?.message ?? "an error occurred");
+      return message.channel.send({ content: err?.message || "an error occurred" });
     }
   }
 }

@@ -21,16 +21,14 @@ export default class ShellCommand extends Command {
     try {
       const stdout = ch.execSync(args.join(" "));
 
-      return message.channel.send(stdout, {
-        code: true,
-      });
+      return message.channel.send({ content: stdout }, { code: true });
     } catch (err) {
       const errorEmbed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.ERROR)
         .setDescription(`\`\`\`${err}\`\`\``);
 
-      message.channel.send(errorEmbed);
+      message.channel.send({ embeds: [errorEmbed] });
     }
   }
 }

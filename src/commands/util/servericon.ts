@@ -18,7 +18,7 @@ export default class ServerIconCommand extends Command {
       const icon = message.guild?.iconURL({ dynamic: true, size: 2048 });
 
       if (!icon) {
-        message.channel.send(lang.UTIL.NO_GUILD_ICON);
+        message.channel.send({ content: lang.UTIL.NO_GUILD_ICON });
       } else {
         const embed = this.bot.utils.baseEmbed(message).setImage(icon);
 
@@ -26,7 +26,7 @@ export default class ServerIconCommand extends Command {
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

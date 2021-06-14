@@ -21,7 +21,9 @@ export default class TrashCommand extends Command {
       const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       const image = `${API_URL}${member.user.displayAvatarURL({ format: "png" })}`;
@@ -34,7 +36,7 @@ export default class TrashCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

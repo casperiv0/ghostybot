@@ -23,13 +23,13 @@ export default class MorseCommand extends Command {
         .trim();
 
       if (morse.includes("undefined")) {
-        return message.channel.send(lang.UTIL.TEXT_NOT_SUP);
+        return message.channel.send({ content: lang.UTIL.TEXT_NOT_SUP });
       }
 
-      message.channel.send(morse);
+      message.channel.send({ content: morse });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

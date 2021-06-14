@@ -24,13 +24,13 @@ export default class GivReRollCommand extends Command {
         .catch(() => null);
 
       if (success === null) {
-        return message.channel.send(`No giveaway found with id: ${messageId}`);
+        return message.channel.send({ content: `No giveaway found with id: ${messageId}` });
       }
 
       return message.react("👍");
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

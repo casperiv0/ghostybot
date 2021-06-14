@@ -22,7 +22,7 @@ export default class DocsCommand extends Command {
       const data = await fetch(url).then((res) => res.json());
 
       if (!data) {
-        return message.channel.send(lang.UTIL.DOC_NOT_FOUND);
+        return message.channel.send({ content: lang.UTIL.DOC_NOT_FOUND });
       }
 
       const embed = new MessageEmbed({
@@ -37,7 +37,7 @@ export default class DocsCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

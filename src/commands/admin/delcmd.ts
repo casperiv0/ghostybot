@@ -26,7 +26,9 @@ export default class DelCmdCommand extends Command {
         const data = commands.find((cmd) => cmd.name === cmdName.toLowerCase());
 
         if (!data) {
-          return message.channel.send(lang.ADMIN.DEL_CMD_NOT_FOUND);
+          return message.channel.send({
+            content: lang.ADMIN.DEL_CMD_NOT_FOUND,
+          });
         }
 
         const filtered = commands.filter((cmd) => cmd.name !== cmdName.toLowerCase());
@@ -34,13 +36,18 @@ export default class DelCmdCommand extends Command {
         await this.bot.utils.updateGuildById(message.guild?.id, {
           custom_commands: filtered,
         });
-        return message.channel.send(lang.ADMIN.DEL_CMD_DELETED.replace("{cmd}", cmdName));
+
+        return message.channel.send({
+          content: lang.ADMIN.DEL_CMD_DELETED.replace("{cmd}", cmdName),
+        });
       }
 
-      return message.channel.send(lang.ADMIN.DEL_CMD_NO_COMMANDS);
+      return message.channel.send({
+        content: lang.ADMIN.DEL_CMD_NO_COMMANDS,
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

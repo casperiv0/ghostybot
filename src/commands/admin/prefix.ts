@@ -19,20 +19,22 @@ export default class PrefixCommand extends Command {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
 
       if (!prefix) {
-        return message.channel.send(
-          lang.ADMIN.CURRENT_PREFIX.replace("{guildPrefix}", `${guild?.prefix}`).replace(
+        return message.channel.send({
+          content: lang.ADMIN.CURRENT_PREFIX.replace("{guildPrefix}", `${guild?.prefix}`).replace(
             "{guildPrefix}",
             `${guild?.prefix}`,
           ),
-        );
+        });
       }
 
       await this.bot.utils.updateGuildById(message.guild?.id, { prefix });
 
-      return message.channel.send(lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix));
+      return message.channel.send({
+        content: lang.ADMIN.UPDATE_PREFIX.replace("{prefix}", prefix),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

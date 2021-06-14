@@ -16,16 +16,16 @@ export default class PauseCommand extends Command {
 
     try {
       if (!message.member?.voice.channel) {
-        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+        return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
       if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send(lang.MUSIC.NO_QUEUE);
+        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
       const queue = this.bot.player.getQueue(message);
       if (queue && !this.bot.utils.isBotInSameChannel(message)) {
-        return message.channel.send("Bot is not in this voice channel!");
+        return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
       this.bot.player.pause(message);
@@ -37,7 +37,7 @@ export default class PauseCommand extends Command {
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

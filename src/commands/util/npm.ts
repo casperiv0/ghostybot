@@ -29,7 +29,9 @@ export default class NpmCommand extends Command {
       });
 
       if (foundPackages.length <= 0) {
-        return message.channel.send(lang.UTIL.NPM_NOT_FOUND.replace("{query}", query));
+        return message.channel.send({
+          content: lang.UTIL.NPM_NOT_FOUND.replace("{query}", query),
+        });
       }
 
       // most accurate package
@@ -84,7 +86,7 @@ export default class NpmCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

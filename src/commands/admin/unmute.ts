@@ -24,15 +24,19 @@ export default class UnMuteCommand extends Command {
       const mutedRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
 
       if (!mutedRole) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (!mutedMember) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (!mutedMember.roles.cache.some((r) => r.id === mutedRole?.id)) {
-        return message.channel.send(lang.ADMIN.NOT_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.NOT_MUTED,
+        });
       }
 
       message.guild.channels.cache.forEach((channel) => {
@@ -52,7 +56,9 @@ export default class UnMuteCommand extends Command {
       }
 
       mutedMember.roles.remove(mutedRole);
-      message.channel.send(lang.ADMIN.SUC_UNMUTE.replace("{mutedMemberTag}", mutedMember.user.tag));
+      message.channel.send({
+        content: lang.ADMIN.SUC_UNMUTE.replace("{mutedMemberTag}", mutedMember.user.tag),
+      });
 
       this.bot.emit("guildMuteRemove", message.guild, {
         member: mutedMember,
@@ -60,7 +66,7 @@ export default class UnMuteCommand extends Command {
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

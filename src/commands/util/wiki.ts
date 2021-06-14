@@ -20,7 +20,7 @@ export default class WikiCommand extends Command {
       const search = await wiki().search(args.join(" "));
 
       if (!search.results[0]) {
-        return message.channel.send(lang.UTIL.NO_W_FOUND);
+        return message.channel.send({ content: lang.UTIL.NO_W_FOUND });
       }
 
       const result = await wiki().page(search.results[0]);
@@ -38,7 +38,7 @@ export default class WikiCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

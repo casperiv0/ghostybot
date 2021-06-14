@@ -18,7 +18,7 @@ export default class ProfileCommand extends Command {
       const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
 
       if (member?.user?.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 
       const userId = member?.user?.id;
@@ -26,7 +26,7 @@ export default class ProfileCommand extends Command {
       const user = await this.bot.utils.getUserById(userId!, guildId);
 
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const guild = await this.bot.utils.getGuildById(guildId);
@@ -47,7 +47,7 @@ export default class ProfileCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

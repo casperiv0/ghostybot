@@ -29,14 +29,14 @@ export default class PastebinCommand extends Command {
       });
 
       if (paste.startsWith("Bad API request, invalid api_paste_format")) {
-        return message.channel.send(
-          "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
-        );
+        return message.channel.send({
+          content: "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
+        });
       }
 
-      message.channel.send(paste);
+      message.channel.send({ content: paste });
     } catch (e) {
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -26,43 +26,55 @@ export default class IgnoredChannelsCommand extends Command {
 
       const guild = await this.bot.utils.getGuildById(guildId);
       if (!guild) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const ignoredChannels = guild?.ignored_channels;
 
       if (!item) {
-        return message.channel.send(lang.ADMIN.PROVIDE_CHANNEL);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_CHANNEL,
+        });
       }
 
       switch (option.toLowerCase()) {
         case "add":
           if (ignoredChannels?.includes(item.id)) {
-            return message.channel.send(lang.ADMIN.CHANNEL_ALREADY_IGNORED);
+            return message.channel.send({
+              content: lang.ADMIN.CHANNEL_ALREADY_IGNORED,
+            });
           }
 
           await this.bot.utils.updateGuildById(guildId, {
             ignored_channels: [...ignoredChannels, item.id],
           });
 
-          message.channel.send(lang.ADMIN.ADD_TO_IGNORE.replace("{item}", `${item}`));
+          message.channel.send({
+            content: lang.ADMIN.ADD_TO_IGNORE.replace("{item}", `${item}`),
+          });
           break;
         case "remove":
           if (!ignoredChannels?.includes(item.id)) {
-            return message.channel.send(lang.ADMIN.CHANNEL_NOT_IGNORED);
+            return message.channel.send({
+              content: lang.ADMIN.CHANNEL_NOT_IGNORED,
+            });
           }
 
           await this.bot.utils.updateGuildById(guildId, {
             ignored_channels: ignoredChannels?.filter((ci) => ci !== item.id),
           });
 
-          return message.channel.send(lang.ADMIN.REMOVE_IGNORED.replace("{item}", `${item}`));
+          return message.channel.send({
+            content: lang.ADMIN.REMOVE_IGNORED.replace("{item}", `${item}`),
+          });
         default:
-          return message.channel.send(lang.ADMIN.NOT_A_OPTION.replace("{option}", option));
+          return message.channel.send({
+            content: lang.ADMIN.NOT_A_OPTION.replace("{option}", option),
+          });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

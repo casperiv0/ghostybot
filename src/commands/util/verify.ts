@@ -25,7 +25,7 @@ export default class VerifyCommand extends Command {
           if (!guild.verify_data.role_id) return;
 
           if (member?.roles.cache.has(guild.verify_data.role_id)) {
-            const msg = await message.channel.send("You are already verified");
+            const msg = await message.channel.send({ content: "You are already verified" });
 
             setTimeout(() => {
               msg.deletable && msg.delete();
@@ -39,16 +39,19 @@ export default class VerifyCommand extends Command {
             }, 3_000);
           }
         } else {
-          message.channel.send(
-            lang.UTIL.VERIFY_CHANNEL.replace("{channel}", `<#${guild.verify_data.channel_id}>`),
-          );
+          message.channel.send({
+            content: lang.UTIL.VERIFY_CHANNEL.replace(
+              "{channel}",
+              `<#${guild.verify_data.channel_id}>`,
+            ),
+          });
         }
       } else {
-        return message.channel.send(lang.UTIL.VERIFY_NOT_ENABLED);
+        return message.channel.send({ content: lang.UTIL.VERIFY_NOT_ENABLED });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

@@ -15,32 +15,32 @@ export default class PlayerErrorEvent extends Event {
 
     switch (error) {
       case PlayerErrorEventCodes.UNABLE_TO_JOIN: {
-        return message.channel.send(lang.MUSIC.JOIN_ERROR);
+        return message.channel.send({ content: lang.MUSIC.JOIN_ERROR });
       }
       case PlayerErrorEventCodes.NOT_CONNECTED: {
-        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+        return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
       case PlayerErrorEventCodes.NOT_PLAYING: {
-        return message.channel.send(lang.MUSIC.NO_QUEUE);
+        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
       case PlayerErrorEventCodes.LIVE_VIDEO: {
-        return message.channel.send(lang.MUSIC.LIVE_NOT_SUPPORTED);
+        return message.channel.send({ content: lang.MUSIC.LIVE_NOT_SUPPORTED });
       }
       case PlayerErrorEventCodes.PARSE_ERROR: {
-        return message.channel.send(lang.MUSIC.PARSE_ERROR);
+        return message.channel.send({ content: lang.MUSIC.PARSE_ERROR });
       }
       case PlayerErrorEventCodes.VIDEO_UNAVAILABLE: {
-        return message.channel.send(lang.MUSIC.VIDEO_UNAVAILABLE);
+        return message.channel.send({ content: lang.MUSIC.VIDEO_UNAVAILABLE });
       }
       case PlayerErrorEventCodes.MUSIC_STARTING: {
-        return message.channel.send(lang.MUSIC.MUSIC_STARTING);
+        return message.channel.send({ content: lang.MUSIC.MUSIC_STARTING });
       }
       default: {
         bot.utils.sendErrorLog(
           { message: "discord-player error", stack: error, name: "discord-player" },
           "error",
         );
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
     }
   }

@@ -20,26 +20,30 @@ export default class RemoveMoneyCommand extends Command {
       const [, amount] = args;
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (member?.user?.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 
       const user = await this.bot.utils.getUserById(member.user.id, message.guild?.id);
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       await this.bot.utils.updateUserById(member.user.id, message.guild?.id, {
         bank: user.bank - Number(amount),
       });
 
-      return message.channel.send(lang.ECONOMY.REMOVED_MONEY.replace("{amount}", amount));
+      return message.channel.send({
+        content: lang.ECONOMY.REMOVED_MONEY.replace("{amount}", amount),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

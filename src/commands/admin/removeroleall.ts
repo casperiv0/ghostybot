@@ -23,23 +23,25 @@ export default class RemoveRoleAllCommand extends Command {
       const role = await this.bot.utils.findRole(message, args.join(" ") as Snowflake);
 
       if (!role) {
-        return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);
+        return message.channel.send({
+          content: lang.ADMIN.ROLE_NOT_FOUND,
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-        return message.channel.send(
-          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
-        );
+        return message.channel.send({
+          content: lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
+        });
       }
 
       message.guild.members.cache.forEach((member) => member.roles.remove(role));
 
-      return message.channel.send(
-        lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name),
-      );
+      return message.channel.send({
+        content: lang.ADMIN.REMOVED_ROLE_EVERYONE.replace("{roleName}", role.name),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

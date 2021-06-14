@@ -37,7 +37,7 @@ export default class WouldYouRatherCommand extends Command {
       console.log(err);
 
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

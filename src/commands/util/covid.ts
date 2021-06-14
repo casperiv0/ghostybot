@@ -23,7 +23,7 @@ export default class CovidCommand extends Command {
       if (!query) country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
       if (country.message) {
-        return message.channel.send(lang.COVID.NOT_FOUND);
+        return message.channel.send({ content: lang.COVID.NOT_FOUND });
       }
       const { tz, date } = await this.bot.utils.formatDate(country.updated, message.guild?.id);
       const Title = country.country ? `Covid: ${country.country}` : "Covid";
@@ -60,7 +60,7 @@ export default class CovidCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

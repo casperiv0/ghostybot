@@ -18,8 +18,8 @@ export default class ServerInfoCommand extends Command {
     try {
       const { guild } = message;
 
-      if (!guild) return message.channel.send(lang.GLOBAL.ERROR);
-      if (!message.member) return message.channel.send(lang.GLOBAL.ERROR);
+      if (!guild) return message.channel.send({ content: lang.GLOBAL.ERROR });
+      if (!message.member) return message.channel.send({ content: lang.GLOBAL.ERROR });
 
       const { name, memberCount } = guild;
       const roles = this.bot.utils.formatNumber(guild.roles.cache.size);
@@ -77,7 +77,7 @@ export default class ServerInfoCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

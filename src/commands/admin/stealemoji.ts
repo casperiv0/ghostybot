@@ -55,16 +55,22 @@ export default class StealEmojiCommand extends Command {
 
       const foundEmoji = parse(emoji, { assetType: "png" });
       if (!foundEmoji[0]) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_EMOJI);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_EMOJI,
+        });
       }
 
-      return message.channel.send(lang.ADMIN.USE_NORMAL_EMOJI);
+      return message.channel.send({
+        content: lang.ADMIN.USE_NORMAL_EMOJI,
+      });
     } catch (e) {
       if (String(e).includes("DiscordAPIError: Maximum number of emojis reached")) {
-        return message.channel.send(lang.ADMIN.MAX_EMOJI);
+        return message.channel.send({
+          content: lang.ADMIN.MAX_EMOJI,
+        });
       }
 
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

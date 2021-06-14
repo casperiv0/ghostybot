@@ -38,16 +38,22 @@ export default class BlacklistCommand extends Command {
       };
 
       if (!type) {
-        return message.channel.send(lang.BOT_OWNER.PROVIDE_TYPE);
+        return message.channel.send({
+          content: lang.BOT_OWNER.PROVIDE_TYPE,
+        });
       }
 
       if (member?.user?.id === this.bot.user?.id) {
-        return message.channel.send(lang.BOT_OWNER.CANNOT_BL_BOT);
+        return message.channel.send({
+          content: lang.BOT_OWNER.CANNOT_BL_BOT,
+        });
       }
 
       const owners = process.env["OWNERS"];
       if (owners?.includes(member?.user?.id)) {
-        return message.channel.send(lang.BOT_OWNER.CANNOT_BL_OWNER);
+        return message.channel.send({
+          content: lang.BOT_OWNER.CANNOT_BL_OWNER,
+        });
       }
 
       const users = await BlacklistedModel.find();
@@ -57,7 +63,9 @@ export default class BlacklistCommand extends Command {
           const usr = users.find((u: UserData) => u.user_id === member?.user?.id);
 
           if (!usr) {
-            return message.channel.send(lang.BOT_OWNER.NOT_BLD);
+            return message.channel.send({
+              content: lang.BOT_OWNER.NOT_BLD,
+            });
           }
 
           const embed = this.bot.utils
@@ -70,9 +78,9 @@ export default class BlacklistCommand extends Command {
         case "add": {
           const [existing] = users.filter((u: UserData) => u.user_id === member?.user?.id);
           if (existing) {
-            return message.channel.send(
-              lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag),
-            );
+            return message.channel.send({
+              content: lang.BOT_OWNER.ALREADY_BLD.replace("{member}", member?.user?.tag),
+            });
           }
 
           const blUser = new BlacklistedModel({ user_id: member?.user?.id });
@@ -82,29 +90,35 @@ export default class BlacklistCommand extends Command {
         }
         case "remove": {
           if (users === null) {
-            return message.channel.send(lang.BOT_OWNER.NOT_BLD);
+            return message.channel.send({
+              content: lang.BOT_OWNER.NOT_BLD,
+            });
           }
           const exists = users.find((u: UserData) => u.user_id === member?.user?.id);
           if (!exists) {
-            return message.channel.send(lang.BOT_OWNER.NOT_BLD);
+            return message.channel.send({
+              content: lang.BOT_OWNER.NOT_BLD,
+            });
           }
 
           await BlacklistedModel.findOneAndDelete({ user_id: member?.user?.id });
           break;
         }
         default: {
-          return message.channel.send(lang.BOT_OWNER.NOT_OPTION.replace("{type}", type));
+          return message.channel.send({
+            content: lang.BOT_OWNER.NOT_OPTION.replace("{type}", type),
+          });
         }
       }
-      return message.channel.send(
-        lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", member?.user?.tag).replace(
+      return message.channel.send({
+        content: lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", member?.user?.tag).replace(
           "{type}",
           type === "add" ? lang.BOT_OWNER.BLACKLISTED : lang.BOT_OWNER.UNBLACKLISTED,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

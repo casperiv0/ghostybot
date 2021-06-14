@@ -17,7 +17,7 @@ export default class DailyCommand extends Command {
     try {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const timeout = 60 * 60 * 24 * 1000; /* 24h timeout */
@@ -27,18 +27,21 @@ export default class DailyCommand extends Command {
 
       if (daily !== null && timeout - (Date.now() - daily) > 0) {
         const time = dayJs(timeout - (Date.now() - daily)).format("h [hrs], m [mins], s [secs]");
-        message.channel.send(`${lang.ECONOMY.DAILY_ERROR} ${time} remaining`);
+
+        message.channel.send({ content: `${lang.ECONOMY.DAILY_ERROR} ${time} remaining` });
       } else {
         this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           daily: Date.now(),
           money: currentMoney + amount,
         });
 
-        message.channel.send(lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", `${amount}`));
+        message.channel.send({
+          content: lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", `${amount}`),
+        });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

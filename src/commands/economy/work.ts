@@ -21,7 +21,7 @@ export default class WorkCommand extends Command {
 
       const user = await this.bot.utils.getUserById(member.id, message.guild?.id);
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const work = user.work;
@@ -30,7 +30,9 @@ export default class WorkCommand extends Command {
         const timeUntilWork = dayJs(timeout - (Date.now() - work)).format(
           "h [hrs], m [mins], s [secs]",
         );
-        message.channel.send(lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork));
+        message.channel.send({
+          content: lang.ECONOMY.RECENTLY_WORKED.replace("{time}", timeUntilWork),
+        });
       } else {
         const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
 
@@ -52,7 +54,7 @@ export default class WorkCommand extends Command {
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

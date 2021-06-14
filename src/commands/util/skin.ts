@@ -25,7 +25,9 @@ export default class SkinCommand extends Command {
       ).then((res) => res.json());
 
       if (!uuid.success || uuid?.error) {
-        return message.channel.send(lang.UTIL.SKIN_NOT_FOUND.replace("{search}", search));
+        return message.channel.send({
+          content: lang.UTIL.SKIN_NOT_FOUND.replace("{search}", search),
+        });
       }
 
       const player = uuid.data.player;
@@ -33,16 +35,16 @@ export default class SkinCommand extends Command {
       const skin = `https://visage.surgeplay.com/skin/2048/${uuid.id}.png`;
       const face = `https://visage.surgeplay.com/face/2048/${uuid.id}.png`;
 
-      message.channel.send(
-        this.bot.utils
-          .baseEmbed(message)
-          .setAuthor(lang.UTIL.SKIN_NAME.replace("{name}", player.username), face)
-          .setDescription(`${lang.UTIL.DOWNLOAD_SKIN}(${skin})`)
-          .setImage(full),
-      );
+      const embed = this.bot.utils
+        .baseEmbed(message)
+        .setAuthor(lang.UTIL.SKIN_NAME.replace("{name}", player.username), face)
+        .setDescription(`${lang.UTIL.DOWNLOAD_SKIN}(${skin})`)
+        .setImage(full);
+
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

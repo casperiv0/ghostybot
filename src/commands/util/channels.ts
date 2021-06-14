@@ -16,7 +16,7 @@ export default class ChannelsCommand extends Command {
     try {
       const channels = message.guild?.channels.cache;
       if (!channels) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const voiceChannels = channels
@@ -38,7 +38,7 @@ export default class ChannelsCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

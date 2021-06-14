@@ -18,7 +18,7 @@ export default class DiceCommand extends Command {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       const roll = Math.floor(Math.random() * 6) + 1;
@@ -40,7 +40,7 @@ export default class DiceCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

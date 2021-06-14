@@ -23,14 +23,16 @@ export default class SpotifyCommand extends Command {
       const search = encodeURIComponent(rest.join());
 
       if (!["track", "artist", "album"].includes(type.toLowerCase())) {
-        return message.channel.send("Invalid type");
+        return message.channel.send({ content: "Invalid type" });
       }
 
       const url = `http://api.xaliks.xyz/info/spotify?type=${type}&query=${search}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (data.error) {
-        return message.channel.send(data.error);
+        return message.channel.send({
+          content: data.error,
+        });
       }
 
       switch (type.toLowerCase()) {
@@ -93,14 +95,14 @@ export default class SpotifyCommand extends Command {
           return message.channel.send({ embeds: [embed] });
         }
         default: {
-          return message.channel.send("Invalid type");
+          return message.channel.send({ content: "Invalid type" });
         }
       }
     } catch (err) {
       console.log(err);
 
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

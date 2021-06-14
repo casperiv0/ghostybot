@@ -17,19 +17,19 @@ declare module "cowsay" {
 }
 
 declare module "image-gen-discord" {
-  import { Message } from "discord.js";
+  import * as DJS from "discord.js";
 
   export type Options = "embed" | "message" | "console";
   namespace ImageGen {
     export default class ImageGen {
-      static cat(message: Message, options: Options): void;
-      static dog(message: Message, options: Options): void;
-      static alpaca(message: Message, options: Options): void;
-      static lama(message: Message, options: Options): void;
-      static meme(message: Message, options: Options): void;
-      static joke(message: Message, options: Options): void;
-      static seal(message: Message, options: Options): void;
-      static camel(message: Message, options: Options): void;
+      static cat(message: DJS.Message, options: Options): void;
+      static dog(message: DJS.Message, options: Options): void;
+      static alpaca(message: DJS.Message, options: Options): void;
+      static lama(message: DJS.Message, options: Options): void;
+      static meme(message: DJS.Message, options: Options): void;
+      static joke(message: DJS.Message, options: Options): void;
+      static seal(message: DJS.Message, options: Options): void;
+      static camel(message: DJS.Message, options: Options): void;
     }
   }
 

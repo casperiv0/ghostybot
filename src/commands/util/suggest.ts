@@ -22,7 +22,7 @@ export default class SuggestCommand extends Command {
       const suggestChannel = guild?.suggest_channel;
 
       if (!suggestChannel) {
-        return message.channel.send(lang.UTIL.NO_SUGG_CHANNEL);
+        return message.channel.send({ content: lang.UTIL.NO_SUGG_CHANNEL });
       }
 
       const embed = this.bot.utils
@@ -41,10 +41,10 @@ export default class SuggestCommand extends Command {
       sendMessage.react("👍");
       sendMessage.react("👎");
 
-      return message.channel.send("Sent suggestion 👍");
+      return message.channel.send({ content: "Sent suggestion 👍" });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

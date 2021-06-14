@@ -13,7 +13,9 @@ export default class PlayerNoResultsEvent extends Event {
       if (!message.guild?.available) return;
       const lang = await bot.utils.getGuildLang(message.guild?.id);
 
-      return message.channel.send(lang.MUSIC.NO_RESULTS);
+      return message.channel.send({
+        content: lang.MUSIC.NO_RESULTS,
+      });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

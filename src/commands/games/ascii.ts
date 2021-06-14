@@ -21,11 +21,11 @@ export default class AsciiCommand extends Command {
 
       figlet.text(text, (e, txt) => {
         if (e) return;
-        message.channel.send(`\`\`\` ${txt?.trimRight()} \`\`\``);
+        message.channel.send({ content: txt?.trimRight() ?? "UNKNOWN", code: true });
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

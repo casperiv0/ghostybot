@@ -25,15 +25,15 @@ export default class BlacklistedWordsCommand extends Command {
       const blacklistWords = guild?.blacklistedwords;
 
       if (!guild) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       switch (option) {
         case "add": {
           if (blacklistWords?.includes(item)) {
-            return message.channel.send(
-              lang.ADMIN.BLACKLISTED_ALREADY_EXISTS.replace("{item}", item),
-            );
+            return message.channel.send({
+              content: lang.ADMIN.BLACKLISTED_ALREADY_EXISTS.replace("{item}", item),
+            });
           }
           if (blacklistWords === null || !blacklistWords) {
             this.bot.utils.updateGuildById(guildId, {
@@ -45,37 +45,45 @@ export default class BlacklistedWordsCommand extends Command {
             });
           }
 
-          return message.channel.send(lang.ADMIN.BLACKLISTED_ADDED.replace("{item}", item));
+          return message.channel.send({
+            content: lang.ADMIN.BLACKLISTED_ADDED.replace("{item}", item),
+          });
         }
         case "remove": {
           if (blacklistWords !== null) {
             if (!blacklistWords?.includes(item)) {
-              return message.channel.send(
-                lang.ADMIN.BLACKLISTED_NOT_EXISTS.replace("{item}", item),
-              );
+              return message.channel.send({
+                content: lang.ADMIN.BLACKLISTED_NOT_EXISTS.replace("{item}", item),
+              });
             }
 
             const words = blacklistWords?.filter((w) => w.toLowerCase() !== item.toLowerCase());
 
             this.bot.utils.updateGuildById(guildId, { blacklistedwords: words });
 
-            return message.channel.send(lang.ADMIN.BLACKLISTED_REMOVED.replace("{item}", item));
+            return message.channel.send({
+              content: lang.ADMIN.BLACKLISTED_REMOVED.replace("{item}", item),
+            });
           }
 
-          return message.channel.send(lang.ADMIN.BLACKLISTED_NONE_YET);
+          return message.channel.send({
+            content: lang.ADMIN.BLACKLISTED_NONE_YET,
+          });
         }
         case "get": {
           const words =
             blacklistWords !== null && blacklistWords?.map((w) => `\`${w}\``).join(", ");
-          return message.channel.send(words || lang.ADMIN.BLACKLISTED_NO_WORDS);
+          return message.channel.send({ content: words || lang.ADMIN.BLACKLISTED_NO_WORDS });
         }
         default: {
-          return message.channel.send(lang.ADMIN.OPTION_DOES_NOT_EXIST.replace("{option}", option));
+          return message.channel.send({
+            content: lang.ADMIN.OPTION_DOES_NOT_EXIST.replace("{option}", option),
+          });
         }
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

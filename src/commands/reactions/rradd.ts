@@ -32,9 +32,9 @@ export default class RrAddCommand extends Command {
 
       const channel = guild.channels.cache.get(channelId as Snowflake);
       if (!channel) {
-        return message.channel.send(
-          lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId),
-        );
+        return message.channel.send({
+          content: lang.REACTIONS.CHANNEL_NOT_FOUND.replace("{channelId}", channelId),
+        });
       }
 
       if (
@@ -51,7 +51,7 @@ export default class RrAddCommand extends Command {
         return message.channel.send({ embeds: [embed] });
       }
 
-      message.channel.send(lang.REACTIONS.ROLES);
+      message.channel.send({ content: lang.REACTIONS.ROLES });
 
       const roleMsgs = await message.channel.awaitMessages(filter, {
         time: 600000,
@@ -65,10 +65,10 @@ export default class RrAddCommand extends Command {
       roles = await this.parseRoles(roleMsg);
 
       if (!roles?.[0]) {
-        return message.channel.send(lang.REACTIONS.NO_ROLE);
+        return message.channel.send({ content: lang.REACTIONS.NO_ROLE });
       }
 
-      message.channel.send(lang.REACTIONS.EMOJIS);
+      message.channel.send({ content: lang.REACTIONS.EMOJIS });
 
       const emojiMsgs = await message.channel.awaitMessages(filter, {
         time: 600000,
@@ -81,7 +81,7 @@ export default class RrAddCommand extends Command {
       emojis = this.parseEmojis(emojiMsg);
 
       if (!emojis?.[0]) {
-        return message.channel.send(lang.REACTIONS.VALID_EMOJI);
+        return message.channel.send({ content: lang.REACTIONS.VALID_EMOJI });
       }
 
       const embed = this.bot.utils
@@ -110,10 +110,10 @@ export default class RrAddCommand extends Command {
 
       newRR.save();
 
-      return message.channel.send(lang.REACTIONS.SUCCESS);
+      return message.channel.send({ content: lang.REACTIONS.SUCCESS });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 

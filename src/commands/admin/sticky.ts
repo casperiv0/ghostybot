@@ -20,19 +20,21 @@ export default class StickyCommand extends Command {
       const stickyMsg = args.join(" ");
 
       if (stickyMsg.length > 1800) {
-        return message.channel.send(lang.ADMIN.STICKY_LONG);
+        return message.channel.send({
+          content: lang.ADMIN.STICKY_LONG,
+        });
       }
 
       const msg = `${lang.ADMIN.STICKY_READ}\n\n${stickyMsg}`;
 
       message.deletable && message.delete();
 
-      const stickyMessage = await message.channel.send(msg);
+      const stickyMessage = await message.channel.send({ content: msg });
 
       await this.bot.utils.addSticky(stickyMessage.id, message.channel.id, msg);
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

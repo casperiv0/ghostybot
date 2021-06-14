@@ -26,27 +26,33 @@ export default class TempRoleCommand extends Command {
       const [, , time] = args;
 
       if (!needsRole) {
-        return message.channel.send(lang.MEMBER.NOT_FOUND);
+        return message.channel.send({
+          content: lang.MEMBER.NOT_FOUND,
+        });
       }
 
       if (!role) {
-        return message.channel.send(lang.ADMIN.ROLE_NOT_FOUND);
+        return message.channel.send({
+          content: lang.ADMIN.ROLE_NOT_FOUND,
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(role) < 0) {
-        return message.channel.send(
-          lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
-        );
+        return message.channel.send({
+          content: lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
-        return message.channel.send(
-          lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", needsRole.user.username),
-        );
+        return message.channel.send({
+          content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", needsRole.user.username),
+        });
       }
 
       if (needsRole.roles.cache.some((r) => role.id === r.id)) {
-        return message.channel.send(lang.ROLES.ALREADY_HAS_ROLE);
+        return message.channel.send({
+          content: lang.ROLES.ALREADY_HAS_ROLE,
+        });
       }
 
       needsRole.roles.add(role);
@@ -65,12 +71,12 @@ export default class TempRoleCommand extends Command {
         },
       });
 
-      return message.channel.send(
-        `Successfully added the **${role.name}** role for **${time}** to ${needsRole.user.tag}`,
-      );
+      return message.channel.send({
+        content: `Successfully added the **${role.name}** role for **${time}** to ${needsRole.user.tag}`,
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

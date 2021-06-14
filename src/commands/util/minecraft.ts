@@ -23,7 +23,7 @@ export default class MinecraftCommand extends Command {
       const data = await fetch(url).then((res) => res.json());
 
       if (!data.server.name) {
-        return message.channel.send(lang.UTIL.MC_NOT_FOUND);
+        return message.channel.send({ content: lang.UTIL.MC_NOT_FOUND });
       }
 
       const status = data.online ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
@@ -46,7 +46,7 @@ export default class MinecraftCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

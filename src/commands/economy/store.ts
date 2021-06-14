@@ -25,11 +25,13 @@ export default class StoreCommand extends Command {
 
       if (option) {
         if (!message.member?.permissions.has("MANAGE_GUILD")) {
-          return message.channel.send("You need: `MANAGE_GUILD` permissions");
+          return message.channel.send({ content: "You need: `MANAGE_GUILD` permissions" });
         }
 
         if (!item) {
-          return message.channel.send(lang.ECONOMY.PROVIDE_VALID_ITEM);
+          return message.channel.send({
+            content: lang.ECONOMY.PROVIDE_VALID_ITEM,
+          });
         }
 
         switch (option.toLowerCase()) {
@@ -37,15 +39,21 @@ export default class StoreCommand extends Command {
             const exists = guild?.store.filter((i) => i.name === item)[0];
 
             if (exists) {
-              return message.channel.send(lang.ECONOMY.ALREADY_EXISTS.replace("{item}", item));
+              return message.channel.send({
+                content: lang.ECONOMY.ALREADY_EXISTS.replace("{item}", item),
+              });
             }
 
             if (!price) {
-              return message.channel.send(lang.ECONOMY.PROVIDE_PRICE);
+              return message.channel.send({
+                content: lang.ECONOMY.PROVIDE_PRICE,
+              });
             }
 
             if (isNaN(Number(price))) {
-              return message.channel.send(lang.ECONOMY.MUST_BE_NUMBER);
+              return message.channel.send({
+                content: lang.ECONOMY.MUST_BE_NUMBER,
+              });
             }
 
             if (!guild?.store) {
@@ -58,7 +66,9 @@ export default class StoreCommand extends Command {
               });
             }
 
-            message.channel.send(lang.ECONOMY.ADDED_TO_STORE.replace("{item}", item));
+            message.channel.send({
+              content: lang.ECONOMY.ADDED_TO_STORE.replace("{item}", item),
+            });
             break;
           }
 
@@ -66,23 +76,31 @@ export default class StoreCommand extends Command {
             const existing = guild?.store?.filter((i) => i.name === item)[0];
 
             if (!existing) {
-              return message.channel.send(lang.ECONOMY.NOT_IN_STORE.replace("{item}", item));
+              return message.channel.send({
+                content: lang.ECONOMY.NOT_IN_STORE.replace("{item}", item),
+              });
             }
 
             const updatedItems = guild?.store.filter((storeItem) => storeItem.name !== item);
 
             this.bot.utils.updateGuildById(guildId, { store: updatedItems });
 
-            message.channel.send(lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", item));
+            message.channel.send({
+              content: lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", item),
+            });
             break;
           }
 
           default:
-            message.channel.send(lang.GLOBAL.NOT_AN_OPTION.replace("{option}", option));
+            message.channel.send({
+              content: lang.GLOBAL.NOT_AN_OPTION.replace("{option}", option),
+            });
         }
       } else {
         if (!guild?.store) {
-          return message.channel.send(lang.ECONOMY.STORE_EMPTY.replace("{prefix}", `${prefix}`));
+          return message.channel.send({
+            content: lang.ECONOMY.STORE_EMPTY.replace("{prefix}", `${prefix}`),
+          });
         }
 
         const items = guild.store
@@ -101,7 +119,7 @@ export default class StoreCommand extends Command {
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

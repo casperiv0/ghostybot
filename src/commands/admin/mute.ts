@@ -31,21 +31,27 @@ export default class MuteCommand extends Command {
             (await this.bot.utils.findOrCreateMutedRole(message.guild));
 
       if (!muteMember) {
-        return message.channel.send(lang.EASY_GAMES.PROVIDE_MEMBER);
+        return message.channel.send({
+          content: lang.EASY_GAMES.PROVIDE_MEMBER,
+        });
       }
 
       if (muteMember?.roles.cache.find((r) => r.id === muted_role?.id)) {
-        return message.channel.send(lang.ADMIN.MUTE_ALREADY_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.MUTE_ALREADY_MUTED,
+        });
       }
 
       if (muteMember.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
-        return message.channel.send(lang.ADMIN.MUTE_CANNOT_MUTE);
+        return message.channel.send({
+          content: lang.ADMIN.MUTE_CANNOT_MUTE,
+        });
       }
 
       if (message.guild.me.roles.highest.comparePositionTo(muteMember.roles.highest) < 0) {
-        return message.channel.send(
-          lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", muteMember.user.tag),
-        );
+        return message.channel.send({
+          content: lang.ADMIN.MY_ROLE_MUST_BE_HIGHER.replace("{member}", muteMember.user.tag),
+        });
       }
 
       const muteRole = await this.bot.utils.findOrCreateMutedRole(message.guild);
@@ -57,18 +63,19 @@ export default class MuteCommand extends Command {
 
       // add role & send msg
       muteMember.roles.add(muteRole!);
-      muteMember.user.send(
-        lang.ADMIN.MUTE_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
+      muteMember.user.send({
+        content: lang.ADMIN.MUTE_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
           "{reason}",
           muteReason,
         ),
-      );
-      message.channel.send(
-        lang.ADMIN.MUTE_SUCCESS.replace("{tag}", muteMember.user.tag).replace(
+      });
+
+      message.channel.send({
+        content: lang.ADMIN.MUTE_SUCCESS.replace("{tag}", muteMember.user.tag).replace(
           "{reason}",
           muteReason,
         ),
-      );
+      });
 
       this.bot.emit("guildMuteAdd", message.guild, {
         member: muteMember,
@@ -78,7 +85,7 @@ export default class MuteCommand extends Command {
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

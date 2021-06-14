@@ -21,11 +21,13 @@ export default class EnableCommand extends Command {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
 
       if (!guild) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (!option) {
-        return message.channel.send(lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_COMMAND_OR_CATEGORY_NAME,
+        });
       }
 
       const command = this.bot.utils.resolveCommand(option.toLowerCase());
@@ -34,11 +36,15 @@ export default class EnableCommand extends Command {
         // enable category
         const category = option.toLowerCase();
         if (!categories.includes(category)) {
-          return message.channel.send(lang.ADMIN.COMMAND_OR_CATEGORY_NOT_FOUND);
+          return message.channel.send({
+            content: lang.ADMIN.COMMAND_OR_CATEGORY_NOT_FOUND,
+          });
         }
 
         if (!guild.disabled_categories.includes(category)) {
-          return message.channel.send(lang.ADMIN.CATEGORY_NOT_DISABLED);
+          return message.channel.send({
+            content: lang.ADMIN.CATEGORY_NOT_DISABLED,
+          });
         }
 
         await this.bot.utils.updateGuildById(message.guild?.id, {
@@ -55,11 +61,15 @@ export default class EnableCommand extends Command {
 
       // enable command
       if (!command?.name) {
-        return message.channel.send(lang.ADMIN.COMMAND_NOT_FOUND);
+        return message.channel.send({
+          content: lang.ADMIN.COMMAND_NOT_FOUND,
+        });
       }
 
       if (!guild.disabled_commands.includes(command.name)) {
-        return message.channel.send(lang.ADMIN.COMMAND_NOT_DISABLED);
+        return message.channel.send({
+          content: lang.ADMIN.COMMAND_NOT_DISABLED,
+        });
       }
 
       await this.bot.utils.updateGuildById(message.guild?.id, {
@@ -74,7 +84,7 @@ export default class EnableCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

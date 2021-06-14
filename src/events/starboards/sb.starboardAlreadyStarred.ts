@@ -14,6 +14,8 @@ export default class StarboardAlreadyStarredEvent extends Event {
     }
 
     const lang = await bot.utils.getGuildLang(message.guild?.id);
-    return message.channel.send(lang.EVENTS.STARBOARD_MESSAGE.replace("{userTag}", user.tag));
+    return message.channel.send({
+      content: lang.EVENTS.STARBOARD_MESSAGE.replace("{userTag}", user.tag),
+    });
   }
 }

@@ -22,25 +22,33 @@ export default class RemoveUserWarnsCommand extends Command {
       const guildId = message.guild?.id;
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_USER,
+        });
       }
 
       if (member.user.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({
+          content: lang.MEMBER.BOT_DATA,
+        });
       }
 
       const warnings = await this.bot.utils.getUserWarnings(member.user.id, guildId);
 
       if (!warnings[0]) {
-        return message.channel.send(lang.ADMIN.NO_WARNINGS);
+        return message.channel.send({
+          content: lang.ADMIN.NO_WARNINGS,
+        });
       }
 
       await this.bot.utils.removeUserWarnings(member.user.id, guildId);
 
-      return message.channel.send(lang.ADMIN.REMOVED_ALL_WARNINGS);
+      return message.channel.send({
+        content: lang.ADMIN.REMOVED_ALL_WARNINGS,
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

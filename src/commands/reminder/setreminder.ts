@@ -24,7 +24,7 @@ export default class SetReminderCommand extends Command {
 
       const isValid = ms(time);
       if (!isValid) {
-        return message.channel.send(lang.REMINDER.INVALID_DATE);
+        return message.channel.send({ content: lang.REMINDER.INVALID_DATE });
       }
 
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
@@ -48,10 +48,10 @@ export default class SetReminderCommand extends Command {
         },
       });
 
-      return message.channel.send(lang.REMINDER.SUCCESS.replace("{time}", time));
+      return message.channel.send({ content: lang.REMINDER.SUCCESS.replace("{time}", time) });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

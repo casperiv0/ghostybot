@@ -23,31 +23,35 @@ export default class VoiceMuteCommand extends Command {
       const muteReason = args.join(" ").slice(23);
 
       if (!muteUser) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (muteUser.voice.serverMute) {
-        return message.channel.send(lang.ADMIN.USER_NOT_VOICE_OR_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.USER_NOT_VOICE_OR_MUTED,
+        });
       }
 
       muteUser.voice.setMute(true, "muteReason");
 
-      muteUser.user.send(
-        lang.ADMIN.YOU_MUTED.replace("{guildName}", `${message.guild?.name}`).replace(
+      muteUser.user.send({
+        content: lang.ADMIN.YOU_MUTED.replace("{guildName}", `${message.guild?.name}`).replace(
           "{reason}",
           muteReason,
         ),
-      );
+      });
 
-      return message.channel.send(
-        lang.ADMIN.USER_MUTED.replace("{muteUserTag}", muteUser.user.tag).replace(
+      return message.channel.send({
+        content: lang.ADMIN.USER_MUTED.replace("{muteUserTag}", muteUser.user.tag).replace(
           "{reason}",
           muteReason,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

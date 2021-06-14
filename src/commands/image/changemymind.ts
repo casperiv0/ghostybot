@@ -19,7 +19,9 @@ export default class ChangeMyMindCommand extends Command {
     try {
       const text = args.join(" ");
 
-      const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
+      const sendMsg = await message.channel.send({
+        content: lang.UTIL.PROCESSING_IMAGE,
+      });
 
       const data = await fetch(
         `https://nekothis.bot.xyz/api/imagegen?type=changemymind&text=${encodeURIComponent(text)}`,
@@ -34,7 +36,7 @@ export default class ChangeMyMindCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

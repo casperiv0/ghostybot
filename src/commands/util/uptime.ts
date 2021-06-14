@@ -22,8 +22,11 @@ export default class UptimeCommand extends Command {
       .duration(this.bot?.uptime ?? 0)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
-    return message.channel.send(
-      lang.UTIL.UPTIME.replace("{member}", `${this.bot.user?.username}`).replace("{time}", uptime),
-    );
+    return message.channel.send({
+      content: lang.UTIL.UPTIME.replace("{member}", `${this.bot.user?.username}`).replace(
+        "{time}",
+        uptime,
+      ),
+    });
   }
 }

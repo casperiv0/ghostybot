@@ -21,24 +21,28 @@ export default class VoiceUnMuteCommand extends Command {
       const unmuteMember = await this.bot.utils.findMember(message, args);
 
       if (!unmuteMember) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_MEMBER);
+        return message.channel.send({
+          content: lang.ADMIN.PROVIDE_VALID_MEMBER,
+        });
       }
 
       if (!unmuteMember.voice.serverMute) {
-        return message.channel.send(lang.ADMIN.USER_NOT_VOICE_OR_NOT_MUTED);
+        return message.channel.send({
+          content: lang.ADMIN.USER_NOT_VOICE_OR_NOT_MUTED,
+        });
       }
 
       unmuteMember.voice.setMute(false, "unmuteReason");
 
-      unmuteMember.user.send(
-        lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`),
-      );
-      message.channel.send(
-        lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag),
-      );
+      unmuteMember.user.send({
+        content: lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${message.guild?.name}`),
+      });
+      message.channel.send({
+        content: lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", unmuteMember.user.tag),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

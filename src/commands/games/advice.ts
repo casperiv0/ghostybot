@@ -18,10 +18,10 @@ export default class AdviceCommand extends Command {
     try {
       const data = await fetch("https://api.adviceslip.com/advice").then((res) => res.json());
 
-      return message.channel.send(data.slip.advice);
+      return message.channel.send({ content: data.slip.advice });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

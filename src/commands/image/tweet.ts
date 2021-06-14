@@ -20,7 +20,9 @@ export default class TweetCommand extends Command {
       const text = args.join(" ");
       const { username } = message.author;
 
-      const sendMsg = await message.channel.send(lang.UTIL.PROCESSING_IMAGE);
+      const sendMsg = await message.channel.send({
+        content: lang.UTIL.PROCESSING_IMAGE,
+      });
 
       const data = await fetch(
         `https://nekothis.bot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(
@@ -29,7 +31,7 @@ export default class TweetCommand extends Command {
       )
         .then((res) => res.json())
         .catch(() => {
-          message.channel.send(lang.GLOBAL.ERROR);
+          message.channel.send({ content: lang.GLOBAL.ERROR });
         });
 
       sendMsg.deletable && sendMsg.delete();
@@ -41,7 +43,7 @@ export default class TweetCommand extends Command {
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

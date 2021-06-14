@@ -17,13 +17,13 @@ export default class QueueCommand extends Command {
 
     try {
       if (!message.member?.voice.channel) {
-        return message.channel.send(lang.MUSIC.MUST_BE_IN_VC);
+        return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
       const queue = this.bot.player.getQueue(message);
 
       if (!queue) {
-        return message.channel.send(lang.MUSIC.NO_QUEUE);
+        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
       const tracks = queue.tracks
@@ -41,7 +41,7 @@ export default class QueueCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

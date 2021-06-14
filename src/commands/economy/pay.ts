@@ -20,30 +20,36 @@ export default class PayCommand extends Command {
       const amount = Number(args[1]);
 
       if (!member) {
-        return message.channel.send(lang.ADMIN.PROVIDE_VALID_USER);
+        return message.channel.send({ content: lang.ADMIN.PROVIDE_VALID_USER });
       }
 
       if (member.user.bot) {
-        return message.channel.send(lang.MEMBER.BOT_DATA);
+        return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 
       const receiver = await this.bot.utils.getUserById(member.id, message.guild?.id);
       const sender = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
 
       if (!receiver || !sender) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (amount < 0) {
-        return message.channel.send(lang.ECONOMY.MIN_AMOUNT);
+        return message.channel.send({
+          content: lang.ECONOMY.MIN_AMOUNT,
+        });
       }
 
       if (amount > sender.money) {
-        return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
+        return message.channel.send({
+          content: lang.ECONOMY.NOT_ENOUGH_MONEY,
+        });
       }
 
       if (receiver.user_id === sender.user_id) {
-        return message.channel.send(lang.ECONOMY.CANNOT_PAY_SELF);
+        return message.channel.send({
+          content: lang.ECONOMY.CANNOT_PAY_SELF,
+        });
       }
 
       await this.bot.utils.updateUserById(member.id, message.guild?.id, {
@@ -53,15 +59,15 @@ export default class PayCommand extends Command {
         money: sender.money - amount,
       });
 
-      return message.channel.send(
-        lang.ECONOMY.PAY_SUCCESS.replace("{member}", member.user.tag).replace(
+      return message.channel.send({
+        content: lang.ECONOMY.PAY_SUCCESS.replace("{member}", member.user.tag).replace(
           "{amount}",
           `${amount}`,
         ),
-      );
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

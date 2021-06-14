@@ -24,23 +24,31 @@ export default class SlotsCommand extends Command {
       let hasWon = false;
 
       if (!user) {
-        return message.channel.send(lang.GLOBAL.ERROR);
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
       if (amount < 0) {
-        return message.channel.send(lang.ECONOMY.MIN_BET);
+        return message.channel.send({
+          content: lang.ECONOMY.MIN_BET,
+        });
       }
 
       if (amount > 500) {
-        return message.channel.send(lang.ECONOMY.MAX_BET);
+        return message.channel.send({
+          content: lang.ECONOMY.MAX_BET,
+        });
       }
 
       if (amount > user.money) {
-        return message.channel.send(lang.ECONOMY.NOT_ENOUGH_MONEY);
+        return message.channel.send({
+          content: lang.ECONOMY.NOT_ENOUGH_MONEY,
+        });
       }
 
       if (amount && isNaN(amount)) {
-        return message.channel.send(lang.LEVELS.PROVIDE_VALID_NR);
+        return message.channel.send({
+          content: lang.LEVELS.PROVIDE_VALID_NR,
+        });
       }
 
       for (let i = 0; i < 3; i++) {
@@ -80,7 +88,7 @@ export default class SlotsCommand extends Command {
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

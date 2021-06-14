@@ -25,11 +25,15 @@ export default class AddCmdCommand extends Command {
       const commands = guild?.custom_commands;
 
       if (commands && commands.find((x) => x.name === cmdName.toLowerCase())) {
-        return message.channel.send(lang.ADMIN.ADD_CMD_ALREADY_EXISTS);
+        return message.channel.send({
+          content: lang.ADMIN.ADD_CMD_ALREADY_EXISTS,
+        });
       }
 
       if (this.bot.commands.has(cmdName)) {
-        return message.channel.send(lang.ADMIN.ADD_CMD_USED_BY_BOT);
+        return message.channel.send({
+          content: lang.ADMIN.ADD_CMD_USED_BY_BOT,
+        });
       }
 
       const data = {
@@ -45,12 +49,12 @@ export default class AddCmdCommand extends Command {
         });
       }
 
-      return message.channel.send(
-        lang.ADMIN.ADD_CMD_ADDED.replace("{name}", cmdName.toLowerCase()),
-      );
+      return message.channel.send({
+        content: lang.ADMIN.ADD_CMD_ADDED.replace("{name}", cmdName.toLowerCase()),
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send(lang.GLOBAL.ERROR);
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }
