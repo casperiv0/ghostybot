@@ -149,6 +149,7 @@ export default {
     MANAGE_EMOJIS: "Manage emojis",
     REQUEST_TO_SPEAK: "Request to speak",
     USE_APPLICATION_COMMANDS: "Use application commands",
+    STAGE_MODERATOR: "Stage Moderator",
   },
   MUSIC: {
     MUST_BE_IN_VC: "You need to be in a voice channel",
@@ -745,6 +746,10 @@ export default {
       dubai: ":flag_ae: Dubai",
       "south-korea": ":flag_kr: South Korea",
       london: ":flag_gb: London",
+    },
+    MFA_LEVELS: {
+      NONE: "None",
+      ELEVATED: "Elevated",
     },
     VERLEVELS: {
       NONE: "None",

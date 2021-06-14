@@ -43,11 +43,10 @@ export default class NukeCommand extends Command {
 
       collector.on("collect", async (m) => {
         if (m.content?.toLowerCase() === "y") {
-          const channel2 = await channel.clone();
+          const channel2 = await channel.clone({ position, topic: topic ?? "" });
 
-          channel2.setPosition(position);
-          channel2.setTopic(topic);
           channel.delete();
+
           channel2.send({
             content: lang.ADMIN.NUKE_NUKED,
           });

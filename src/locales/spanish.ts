@@ -151,6 +151,7 @@ const LANG: typeof import("./english").default = {
     MANAGE_EMOJIS: "Manage emojis",
     REQUEST_TO_SPEAK: "Request to speak",
     USE_APPLICATION_COMMANDS: "Use application commands",
+    STAGE_MODERATOR: "Stage Moderator",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Necesitas estar en un canal de voz",
@@ -754,6 +755,10 @@ const LANG: typeof import("./english").default = {
       MEDIUM: "Medium",
       HIGH: "High",
       VERY_HIGH: "Very High",
+    },
+    MFA_LEVELS: {
+      NONE: "None",
+      ELEVATED: "Elevated",
     },
     ANSWERS: [
       "Yes.",

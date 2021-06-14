@@ -150,6 +150,7 @@ const LANG: typeof import("./english").default = {
     MANAGE_EMOJIS: "Управлять эмодзи",
     USE_APPLICATION_COMMANDS: "Использовать слэш-команды",
     REQUEST_TO_SPEAK: "Попросить выступить",
+    STAGE_MODERATOR: "Stage Moderator",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Вам нужно быть в голосовом канале.",
@@ -753,6 +754,10 @@ const LANG: typeof import("./english").default = {
       MEDIUM: "Средний",
       HIGH: "Высокий",
       VERY_HIGH: "Очень высокий",
+    },
+    MFA_LEVELS: {
+      NONE: "None",
+      ELEVATED: "Elevated",
     },
     ANSWERS: [
       "Да.",

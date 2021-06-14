@@ -352,7 +352,7 @@ export default class Util {
   ) {
     guild.channels.cache.forEach((channel) => {
       channel.updateOverwrite(memberId, perms as DJS.PermissionOverwriteOptions).catch((e) => {
-        this.bot.logger.error("mute_user", e);
+        this.bot.logger.error("updateMuteChannelPerms", e);
       });
     });
   }

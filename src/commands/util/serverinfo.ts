@@ -27,6 +27,7 @@ export default class ServerInfoCommand extends Command {
       const emojis = this.bot.utils.formatNumber(guild.emojis.cache.size);
 
       const verLevels = lang.OTHER.VERLEVELS;
+      const mfaLevels = lang.OTHER.MFA_LEVELS;
 
       const { date: createdAt } = await this.bot.utils.formatDate(
         guild.createdAt,
@@ -43,7 +44,7 @@ export default class ServerInfoCommand extends Command {
       });
 
       const verLevel = verLevels[guild.verificationLevel];
-      const mfaLevel = guild.mfaLevel;
+      const mfaLevel = mfaLevels[guild.mfaLevel];
 
       const embed = this.bot.utils
         .baseEmbed(message)

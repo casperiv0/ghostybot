@@ -150,6 +150,7 @@ export default {
     MANAGE_EMOJIS: "Manage emojis",
     REQUEST_TO_SPEAK: "Request to speak",
     USE_APPLICATION_COMMANDS: "Use application commands",
+    STAGE_MODERATOR: "Stage Moderator",
   },
   MUSIC: {
     MUST_BE_IN_VC: "Du måste vara i en röstkanal",
