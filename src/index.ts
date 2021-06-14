@@ -3,7 +3,6 @@ import "dotenv/config";
 
 P.Promise.config({
   longStackTraces: true,
-  warnings: true,
 });
 
 import "@utils/checkValid";
