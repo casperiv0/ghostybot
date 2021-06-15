@@ -554,8 +554,4 @@ export default class Util {
 
     return string.substring(1);
   }
-
-  toCapitalize(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
 }

@@ -52,7 +52,7 @@ export default class RockPaperScissorsCommand extends Command {
         .baseEmbed(message)
         .setTitle(lang.GAMES.RPS)
         .setDescription(`**${lang.GAMES.WINNER}:** ${winner}`)
-        .addField(lang.GAMES.YOUR_CHOICE, this.bot.utils.toCapitalize(input))
+        .addField(lang.GAMES.YOUR_CHOICE, input)
         .addField(lang.GAMES.OPPONENTS_CHOICE, reply);
 
       return message.channel.send({ embeds: [embed] });

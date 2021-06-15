@@ -26,7 +26,7 @@ export default class WouldYouRatherCommand extends Command {
         .setDescription(
           `${reply1.question} **OR** ${reply2.question}\n\n\n${data.description || ""}`,
         )
-        .addField("Votes", data.total_votes.toString(), true);
+        .addField("Votes", this.bot.utils.formatNumber(data.total_votes), true);
 
       if (data.author) {
         embed.addField(lang.UTIL.AUTHOR, data.author, true);
