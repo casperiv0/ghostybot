@@ -3,6 +3,8 @@ const withPWA = require("next-pwa");
 const { i18n } = require("./next-i18next.config");
 
 module.exports = withPWA({
+  webpack5: true,
+
   images: {
     domains: ["cdn.discordapp.com"] /* KEEP THIS OTHERWISE IMAGES WILL NOT LOAD */,
   },
@@ -31,12 +33,9 @@ module.exports = withPWA({
       },
     ];
   },
-  future: {
-    webpack5: true,
-  },
+  reactStrictMode: true,
   experimental: {
     turboMode: true,
-    disableOptimizedLoading: false,
   },
   webpack: (config, { dev, isServer }) => {
     // fixes 'cannot resolve 'erlpack' in discord.js/src'

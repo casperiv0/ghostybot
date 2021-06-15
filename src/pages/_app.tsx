@@ -1,3 +1,4 @@
+import * as React from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
@@ -19,15 +20,28 @@ import Loader from "@components/Loader";
 
 const paths = ["/error", "/"];
 
-Router.events.on("routeChangeStart", () => {
-  NProgress.start();
-});
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
-
 function GhostyBot({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  React.useEffect(() => {
+    function handleRouteStart() {
+      NProgress.start();
+    }
+    function handleRouteDone() {
+      NProgress.done();
+    }
+
+    Router.events.on("routeChangeStart", handleRouteStart);
+    Router.events.on("routeChangeComplete", handleRouteDone);
+    Router.events.on("routeChangeError", handleRouteDone);
+
+    return () => {
+      Router.events.off("routeChangeStart", handleRouteStart);
+      Router.events.off("routeChangeComplete", handleRouteDone);
+      Router.events.off("routeChangeError", handleRouteDone);
+    };
+  }, []);
 
   useEffect(() => {
     setLoading(false);
