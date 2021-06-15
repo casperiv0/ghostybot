@@ -35,13 +35,15 @@ export default class DocsInteraction extends Interaction {
   }
 
   async execute(interaction: CommandInteraction, args: string[]) {
+    console.log(args);
+
     const [query, branch = "stable"] = args;
     const lang = await this.bot.utils.getGuildLang(interaction.guildID!);
 
-    const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${encodeURIComponent(query)}`;
+    const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${query}`;
     const data = await fetch(url).then((res) => res.json());
 
-    if (!data?.message) {
+    if (!data || data?.message || data?.error) {
       return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND });
     }
 

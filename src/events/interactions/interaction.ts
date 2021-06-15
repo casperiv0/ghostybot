@@ -9,29 +9,34 @@ export default class InteractionEvent extends Event {
 
   async execute(bot: Bot, interaction: Interaction) {
     if (!interaction.isCommand()) return;
-    if (!interaction.commandID) return;
+
+    await bot.application?.commands.fetch(interaction.commandID).catch(() => null);
+
     if (!interaction.guildID) return;
 
-    const command = bot.interactions.get(interaction.command?.name ?? "");
-
-    if (!command) {
-      const guild = await bot.utils.getGuildById(interaction.guildID);
-
-      const command = guild?.slash_commands.find((c) => c.slash_cmd_id === interaction.commandID);
+    try {
+      const command = bot.interactions.get(interaction.command?.name ?? "");
 
       if (!command) {
-        return interaction.reply("An error has occurred");
+        if (!interaction.commandID) return;
+
+        const guild = await bot.utils.getGuildById(interaction.guildID);
+
+        const command = guild?.slash_commands.find((c) => c.slash_cmd_id === interaction.commandID);
+
+        if (!command) {
+          return interaction.reply({ content: "An error has occurred" });
+        }
+
+        return interaction.reply({ content: command.response });
       }
 
-      return interaction.reply(command.response);
-    }
-
-    try {
       await command?.execute(
         interaction,
-        interaction.options.map((v) => v.value),
+        interaction.options.array().map((v) => v.value),
       );
     } catch (e) {
+      interaction.reply({ content: "An error has occurred" });
       bot.utils.sendErrorLog(e, "error");
     }
   }
