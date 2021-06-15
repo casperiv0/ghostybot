@@ -18,7 +18,14 @@ export default class ImdbCommand extends Command {
     const search = args.join(" ");
 
     try {
-      const movie = await this.bot.imdb.get({ name: search });
+      const movie = await this.bot.imdb.get({ name: search }).catch(() => null);
+
+      if (!movie) {
+        return message.channel.send({
+          content: lang.UTIL.DB_NOT_FOUND.replace("{search}", search),
+        });
+      }
+
       const released = new Date(Number(movie.released)).toLocaleDateString();
 
       const embed = this.bot.utils
@@ -36,9 +43,8 @@ export default class ImdbCommand extends Command {
 
       message.channel.send({ embeds: [embed] });
     } catch (e) {
-      console.log(e);
-
-      return message.channel.send({ content: lang.UTIL.DB_NOT_FOUND.replace("{search}", search) });
+      this.bot.utils.sendErrorLog(e, "error");
+      return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
   }
 }

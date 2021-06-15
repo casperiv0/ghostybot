@@ -17,7 +17,7 @@ export default class BetCommand extends Command {
       const member = await this.bot.utils.findMember(message, args);
 
       if (!member) {
-        return message.reply(lang.EASY_GAMES.PROVIDE_MEMBER);
+        return message.reply({ content: lang.EASY_GAMES.PROVIDE_MEMBER });
       }
 
       const number = Math.random();

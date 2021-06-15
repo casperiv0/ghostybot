@@ -52,7 +52,7 @@ export default class InteractionHandler {
         }
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 }

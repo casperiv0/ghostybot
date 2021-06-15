@@ -19,7 +19,7 @@ if (process.env["DASHBOARD_ENABLED"] === "true") {
 }
 
 if (process.env["DEBUG_MODE"] === "true") {
-  bot.on("debug", console.log);
+  bot.on("debug", console.info);
 }
 
 bot.login(process.env["DISCORD_BOT_TOKEN"]);

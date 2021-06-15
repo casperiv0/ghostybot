@@ -32,7 +32,7 @@ export default class CommandHandler {
         import("@scripts/generateCommandList").then((v) => v.default(this.bot));
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

@@ -19,7 +19,7 @@ async function database() {
     Logger.log("database", "Connected to mongodb");
   } catch (e) {
     console.error(e);
-    console.log(e.reason);
+    console.error(e.reason);
 
     Logger.error("database", e?.stack || e);
   }

@@ -33,7 +33,7 @@ export default class PauseCommand extends Command {
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {
         message.react("⏯️");
       } else {
-        message.reply("⏯️");
+        message.reply({ content: "⏯️" });
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

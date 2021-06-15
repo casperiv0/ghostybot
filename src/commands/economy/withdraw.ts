@@ -26,7 +26,9 @@ export default class WithdrawCommand extends Command {
       const bank = user.bank;
       let [amount] = args as (string | number)[];
 
-      if (!amount) return message.reply(lang.ECONOMY.PROVIDE_AMOUNT);
+      if (!amount) {
+        return message.reply({ content: lang.ECONOMY.PROVIDE_AMOUNT });
+      }
 
       if (amount === "all") {
         this.bot.utils.updateUserById(member.id, message.guild?.id, {

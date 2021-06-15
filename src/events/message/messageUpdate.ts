@@ -29,9 +29,9 @@ export default class MessageUpdateEvent extends Event {
         blacklistedWords.forEach(async (word) => {
           if (newMsg.content.toLowerCase().includes(word.toLowerCase())) {
             newMsg.deletable && newMsg.delete();
-            const sentMsg = await newMsg.reply(
-              "You used a bad word the admin has set, therefore your message was deleted!",
-            );
+            const sentMsg = await newMsg.reply({
+              content: "You used a bad word the admin has set, therefore your message was deleted!",
+            });
 
             setTimeout(() => {
               sentMsg.deletable && sentMsg.delete();

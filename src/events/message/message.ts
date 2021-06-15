@@ -177,7 +177,7 @@ export default class MessageEvent extends Event {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === userId);
 
         if (isBlacklisted) {
-          return message.reply(lang.MESSAGE.BLACKLISTED);
+          return message.reply({ content: lang.MESSAGE.BLACKLISTED });
         }
       }
 
@@ -253,7 +253,7 @@ export default class MessageEvent extends Event {
       const owners = process.env["OWNERS"];
 
       if (command.options.ownerOnly && !owners?.includes(`${message.author.id}`)) {
-        return message.reply(lang.MESSAGE.OWNER_ONLY);
+        return message.reply({ content: lang.MESSAGE.OWNER_ONLY });
       }
 
       if (command.options.memberPermissions) {
@@ -349,12 +349,12 @@ export default class MessageEvent extends Event {
         if (now < expireTime) {
           const timeLeft = (expireTime - now) / 1000;
 
-          return message.reply(
-            lang.MESSAGE.COOLDOWN_AMOUNT.replace("{time}", `${timeLeft.toFixed(1)}`).replace(
-              "{command}",
-              command.name,
-            ),
-          );
+          return message.reply({
+            content: lang.MESSAGE.COOLDOWN_AMOUNT.replace(
+              "{time}",
+              `${timeLeft.toFixed(1)}`,
+            ).replace("{command}", command.name),
+          });
         }
       }
 

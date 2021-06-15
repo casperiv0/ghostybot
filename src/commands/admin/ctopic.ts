@@ -29,7 +29,7 @@ export default class CTopicCommand extends Command {
       }
 
       if (!topic) {
-        return message.reply(lang.ADMIN.C_TOPIC_PROVIDE_TOPIC);
+        return message.reply({ content: lang.ADMIN.C_TOPIC_PROVIDE_TOPIC });
       }
 
       await channel.setTopic(topic);

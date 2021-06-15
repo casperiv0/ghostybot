@@ -34,8 +34,6 @@ export default class WouldYouRatherCommand extends Command {
 
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
-      console.log(err);
-
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send({ content: lang.GLOBAL.ERROR });
     }
