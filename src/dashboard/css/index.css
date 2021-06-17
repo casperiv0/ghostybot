@@ -64,7 +64,7 @@ select:focus {
 
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
 }
 

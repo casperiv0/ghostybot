@@ -4,7 +4,6 @@ const { i18n } = require("./next-i18next.config");
 
 module.exports = withPWA({
   webpack5: true,
-
   images: {
     domains: ["cdn.discordapp.com"] /* KEEP THIS OTHERWISE IMAGES WILL NOT LOAD */,
   },

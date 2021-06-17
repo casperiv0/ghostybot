@@ -27,5 +27,5 @@ export default abstract class Interaction {
   abstract execute(
     message: DiscordInteraction,
     args: (string | number | boolean | undefined)[],
-  ): Promise<any>;
+  ): Promise<void>;
 }

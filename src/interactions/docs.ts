@@ -35,25 +35,31 @@ export default class DocsInteraction extends Interaction {
   }
 
   async execute(interaction: CommandInteraction, args: string[]) {
-    const [query, branch = "stable"] = args;
     const lang = await this.bot.utils.getGuildLang(interaction.guildID!);
 
-    const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${query}`;
-    const data = await fetch(url).then((res) => res.json());
+    try {
+      const [query, branch = "stable"] = args;
 
-    if (!data || data?.message || data?.error) {
-      return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND });
+      const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${query}`;
+      const data = await fetch(url).then((res) => res.json());
+
+      if (!data || data?.message || data?.error) {
+        return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND });
+      }
+
+      const embed = new MessageEmbed({
+        ...data,
+        color: "#5865f2",
+        footer: {
+          text: interaction.user.username,
+          icon_url: interaction.user?.displayAvatarURL({ dynamic: true }),
+        },
+      });
+
+      return interaction.reply({ embeds: [embed] });
+    } catch (err) {
+      this.bot.utils.sendErrorLog(err, "error");
+      return interaction.reply({ content: lang.GLOBAL.ERROR });
     }
-
-    const embed = new MessageEmbed({
-      ...data,
-      color: "#5865f2",
-      footer: {
-        text: interaction.user.username,
-        icon_url: interaction.user?.displayAvatarURL({ dynamic: true }),
-      },
-    });
-
-    return interaction.reply({ embeds: [embed] });
   }
 }

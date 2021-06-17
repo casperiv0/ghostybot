@@ -94,8 +94,8 @@ export default class BotInfoInteraction extends Interaction {
 
       return interaction.reply({ content: message });
     } catch (err) {
-      interaction.reply({ content: lang.GLOBAL.ERROR });
       this.bot.utils.sendErrorLog(err, "error");
+      return interaction.reply({ content: lang.GLOBAL.ERROR });
     }
   }
 }
