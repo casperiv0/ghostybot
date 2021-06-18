@@ -152,57 +152,64 @@ export default class Util {
     error: DJS.DiscordAPIError | DJS.HTTPError | Error,
     type: "warning" | "error",
   ): Promise<void> {
-    /* eslint-disable-next-line */
-    if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
-    if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) return;
+    try {
+      /* eslint-disable-next-line */
+      if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
+      if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) {
+        return;
+      }
 
-    const channelId = process.env["ERRORLOGS_CHANNEL_ID"] as DJS.Snowflake | undefined;
-    if (!channelId) {
-      return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
+      const channelId = process.env["ERRORLOGS_CHANNEL_ID"] as DJS.Snowflake | undefined;
+      if (!channelId) {
+        return this.bot.logger.error("ERR_LOG", error?.stack || `${error}`);
+      }
+
+      const channel = (this.bot.channels.cache.get(channelId) ||
+        (await this.bot.channels.fetch(channelId))) as DJS.TextChannel;
+
+      if (
+        !channel ||
+        !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
+      ) {
+        return this.bot.logger.error("ERR_LOG", error?.stack || `${error}`);
+      }
+
+      const message = {
+        author: this.bot.user,
+      };
+
+      const code = "code" in error ? error.code : "N/A";
+      const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
+      const requestData: any = "requestData" in error ? error.requestData : {};
+
+      const name = error.name || "N/A";
+      let stack = error.stack || error;
+      let jsonString = JSON.stringify(requestData.json, null, 2);
+
+      if (jsonString.length >= 2048) {
+        jsonString = `${jsonString.substr(0, 2045)}...`;
+      }
+
+      if (typeof stack === "string" && stack.length >= 2048) {
+        console.error(stack);
+        stack = "An error occurred but was too long to send to Discord, check your console.";
+      }
+
+      const embed = this.baseEmbed(message)
+        .setTitle("An error occurred")
+        .addField("Name", name, true)
+        .addField("Code", code.toString(), true)
+        .addField("httpStatus", httpStatus.toString(), true)
+        .addField("Timestamp", this.bot.logger.now, true)
+        .addField("Request data", `\`\`\`${jsonString.substr(0, 2045)}\`\`\``)
+        .setDescription(`\`\`\`${stack}\`\`\``)
+        .setColor(type === "error" ? "RED" : "ORANGE");
+
+      channel.send({ embeds: [embed] });
+    } catch (e) {
+      console.error({ error });
+      console.error(e);
     }
-
-    const channel = (this.bot.channels.cache.get(channelId) ||
-      (await this.bot.channels.fetch(channelId))) as DJS.TextChannel;
-
-    if (
-      !channel ||
-      !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
-    ) {
-      return this.bot.logger.error("UNHANDLED ERROR", error?.stack || `${error}`);
-    }
-
-    const message = {
-      author: this.bot.user,
-    };
-
-    const code = "code" in error ? error.code : "N/A";
-    const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
-    const requestData: any = "requestData" in error ? error.requestData : {};
-
-    const name = error.name || "N/A";
-    let stack = error.stack || error;
-    let jsonString = JSON.stringify(requestData.json, null, 2);
-
-    if (jsonString.length >= 2048) {
-      jsonString = `${jsonString.substr(0, 2045)}...`;
-    }
-
-    if (typeof stack === "string" && stack.length >= 2048) {
-      console.error(stack);
-      stack = "An error occurred but was too long to send to Discord, check your console.";
-    }
-
-    const embed = this.baseEmbed(message)
-      .setTitle("An error occurred")
-      .addField("Name", name, true)
-      .addField("Code", code.toString(), true)
-      .addField("httpStatus", httpStatus.toString(), true)
-      .addField("Timestamp", this.bot.logger.now, true)
-      .addField("Request data", `\`\`\`${jsonString.substr(0, 2045)}\`\`\``)
-      .setDescription(`\`\`\`${stack}\`\`\``)
-      .setColor(type === "error" ? "RED" : "ORANGE");
-
-    channel.send({ embeds: [embed] });
   }
 
   async findMember(

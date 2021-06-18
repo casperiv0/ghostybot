@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 206 commands.
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -357,7 +357,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 48**
+**Total commands: 47**
 
 [afk:](#afk) N/A
 
@@ -398,8 +398,6 @@ Click any of the command names for more information
 [github:](#github) Search someone on github
 
 [help:](#help) Shows all commands Or shows more info about a command
-
-[randomimage:](#randomimage) Search any image you want from google
 
 [imdb:](#imdb) Get the information about series and movie
 
@@ -3734,24 +3732,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES, ADD_REACTIONS
 
 **Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## randomimage
-
-**Category:** util
-
-**Description:** Search any image you want from google
-
-**Usage:** `N/A`
-
-**Aliases:** `imagesearch`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
 
 [Back to top](#ghostybot-command-list)
 

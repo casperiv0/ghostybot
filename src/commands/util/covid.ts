@@ -9,6 +9,7 @@ export default class CovidCommand extends Command {
       name: "covid",
       description: "Get covid 19 information",
       category: "util",
+      typing: true,
     });
   }
 

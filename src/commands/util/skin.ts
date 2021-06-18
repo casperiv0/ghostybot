@@ -24,6 +24,8 @@ export default class SkinCommand extends Command {
         `https://playerdb.co/api/player/minecraft/${encodeURIComponent(search)}`,
       ).then((res) => res.json());
 
+      console.log(uuid);
+
       if (!uuid.success || uuid?.error) {
         return message.channel.send({
           content: lang.UTIL.SKIN_NOT_FOUND.replace("{search}", search),
@@ -31,9 +33,9 @@ export default class SkinCommand extends Command {
       }
 
       const player = uuid.data.player;
-      const full = `https://visage.surgeplay.com/full/2048/${uuid.id}.png`;
-      const skin = `https://visage.surgeplay.com/skin/2048/${uuid.id}.png`;
-      const face = `https://visage.surgeplay.com/face/2048/${uuid.id}.png`;
+      const full = `https://visage.surgeplay.com/full/2048/${player.id}.png`;
+      const skin = `https://visage.surgeplay.com/skin/2048/${player.id}.png`;
+      const face = `https://visage.surgeplay.com/face/2048/${player.id}.png`;
 
       const embed = this.bot.utils
         .baseEmbed(message)

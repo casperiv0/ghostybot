@@ -11,6 +11,7 @@ export default class GitHubCommand extends Command {
       category: "util",
       aliases: ["gh"],
       requiredArgs: [{ name: "username" }],
+      typing: true,
     });
   }
 
@@ -19,32 +20,26 @@ export default class GitHubCommand extends Command {
     try {
       const [username] = args;
 
-      const msg = await message.channel.send({
-        content: `${lang.UTIL.SEARCHING}..`,
-      });
       const url = `https://api.github.com/users/${encodeURIComponent(username)}`;
-      const result = await fetch(url).then((res) => res.json());
-      const user = result;
+      const user = await fetch(url).then((res) => res.json());
 
       if (user?.message === "Not Found") {
-        return message.channel.send({ content: lang.UTIL.GH_NOT_FOUND }).then(() => msg.delete());
+        return message.channel.send({ content: lang.UTIL.GH_NOT_FOUND });
       }
-
-      msg.deletable && msg.delete();
 
       const twitter = user.twitter_username
         ? `[@${user.twitter_username}](https://twitter.com/${user.twitter_username})`
         : "N/A";
-      const website = user.blog ? user.blog : "N/A";
-      const location = user.location ? user.location : "N/A";
-      const bio = user.bio ? user.bio : "N/A";
+      const website = user.blog || "N/A";
+      const location = user.location || "N/A";
+      const bio = user.bio || "N/A";
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
         .addField("**Twitter**", twitter, true)
-        .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following, true)
-        .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers, true)
+        .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following.toString(), true)
+        .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers.toString(), true)
         .addField(`**${lang.UTIL.GH_WEBSITE}**`, website, true)
         .addField(`**${lang.UTIL.GH_LOCATION}**`, location, true)
         .addField(`${lang.GLOBAL.URL}`, user.html_url)

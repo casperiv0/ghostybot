@@ -323,7 +323,7 @@ export default {
     BOTS: "Bots",
     PLAYERS: "Players",
     VERSION: "Version",
-    PROTOCOL: "Protocol",
+    PORT: "Port",
     DESCRIPTION: "Description",
     NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "Server wasn't found",

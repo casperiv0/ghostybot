@@ -80,7 +80,7 @@ export default class IpLookupCommand extends Command {
 **${lang.BOT_OWNER.EVAL_TYPE}:** ${type}
 **${lang.UTIL.IP_LON_LAT}:** ${latitude}/${longitude}
 **${lang.UTIL.IP_ISP}:** ${isp}
-**${lang.UTIL.IP_ORG}:** ${org}
+**${lang.UTIL.IP_ORG}:** ${org || lang.GLOBAL.NONE}
 **${lang.UTIL.IP_TIMEZONE}:** ${timezone}
 `,
           )

@@ -11,6 +11,7 @@ export default class MinecraftCommand extends Command {
       category: "util",
       aliases: ["mc"],
       requiredArgs: [{ name: "server-ip" }],
+      typing: true,
     });
   }
 
@@ -19,19 +20,21 @@ export default class MinecraftCommand extends Command {
     try {
       const [server] = args;
 
-      const url = `https://mcapi.us/server/status?ip=${encodeURIComponent(server)}`;
+      const url = `http://api.xaliks.xyz/info/minecraft?type=server&query=${encodeURIComponent(
+        server,
+      )}`;
       const data = await fetch(url).then((res) => res.json());
 
-      if (!data.server.name) {
+      if (data.error) {
         return message.channel.send({ content: lang.UTIL.MC_NOT_FOUND });
       }
 
-      const status = data.online ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
-      const players = data.players.now;
-      const maxPlayers = data.players.max;
-      const description = data.motd;
-      const version = data.server.name;
-      const protocol = data.server.protocol;
+      const status = data.status === "online" ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
+      const players = data.players?.now.toString() ?? "Unknown";
+      const maxPlayers = data.players?.max.toString() ?? "Unknown";
+      const description = data.motd || lang.GLOBAL.NONE;
+      const version = data.version;
+      const port = data.port.toString();
 
       const embed = this.bot.utils
         .baseEmbed(message)
@@ -40,8 +43,8 @@ export default class MinecraftCommand extends Command {
         .addField(lang.UTIL.PLAYERS, players, true)
         .addField(lang.UTIL.MAX_PLAYERS, maxPlayers, true)
         .addField(lang.UTIL.VERSION, version, true)
-        .addField(lang.UTIL.PROTOCOL, protocol, true)
-        .addField(lang.UTIL.DESCRIPTION, description ? description : lang.GLOBAL.NONE);
+        .addField(lang.UTIL.PORT, port, true)
+        .addField(lang.UTIL.DESCRIPTION, description);
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {

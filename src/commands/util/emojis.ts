@@ -2,6 +2,11 @@ import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
+interface Field {
+  name: string;
+  value: string;
+}
+
 export default class EmojisCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -22,23 +27,26 @@ export default class EmojisCommand extends Command {
         else nonAnimated.push(e.toString());
       });
 
-      const animatedV =
-        animated.join(" ").length > 1024
-          ? `${animated.join(" ").slice(1010)}...`
-          : animated.join(" ");
+      const embed = this.bot.utils.baseEmbed(message);
+      const fields: Field[] = [];
 
-      const nonAnimatedV =
-        nonAnimated.join(" ").length > 1024
-          ? `${nonAnimated.join(" ").slice(1010)}...`
-          : nonAnimated.join(" ");
+      for (let i = 0; i < nonAnimated.length; i++) {
+        if (i % 20 === 0) {
+          const emojis = nonAnimated.slice(i, i + 20);
 
-      const embed = this.bot.utils
-        .baseEmbed(message)
-        .addField(`${lang.UTIL.ANIMATED}:`, animated.length === 0 ? lang.GLOBAL.NONE : animatedV)
-        .addField(
-          `${lang.UTIL.NON_ANIMATED}:`,
-          nonAnimated.length === 0 ? lang.GLOBAL.NONE : nonAnimatedV,
-        );
+          fields.push({ name: lang.UTIL.NON_ANIMATED, value: emojis.join(" ") });
+        }
+      }
+
+      for (let i = 0; i < animated.length; i++) {
+        if (i % 20 === 0) {
+          const emojis = animated.slice(i, i + 20);
+
+          fields.push({ name: lang.UTIL.ANIMATED, value: emojis.join(" ") });
+        }
+      }
+
+      embed.addFields(fields);
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {

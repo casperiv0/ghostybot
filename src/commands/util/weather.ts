@@ -23,7 +23,7 @@ export interface WeatherData {
   timezone: number;
   id: number;
   name: string;
-  cod: number;
+  cod: number | string;
 }
 
 export default class WeatherCommand extends Command {
@@ -50,7 +50,7 @@ export default class WeatherCommand extends Command {
         return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
-      if (data.cod === 404) {
+      if (data.cod === "404") {
         return message.channel.send({
           content: lang.UTIL.C_NOT_FOUND.replace("{query}", query),
         });
@@ -64,7 +64,7 @@ export default class WeatherCommand extends Command {
       const windSpeed = data.wind.speed.toString();
       const windDeg = data.wind.deg.toString();
       const country = data.sys.country.toString();
-      const flag = `https://www.countryflags.io/${country}/flat/64.png` || "";
+      const flag = `https://www.countryflags.io/${country}/flat/64.png`;
 
       const embed = this.bot.utils
         .baseEmbed(message)

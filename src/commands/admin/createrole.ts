@@ -28,7 +28,7 @@ export default class CreateRoleCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${roleName}`)
-        .setDescription(lang.ADMIN.CREATED_ROLE_ADDED);
+        .setDescription(lang.ADMIN.CREATED_ROLE_ADDED.replace("{roleName}", roleName));
 
       return message.channel.send({ embeds: [embed] });
     } catch (err) {

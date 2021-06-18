@@ -18,29 +18,28 @@ export default class CountryCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const query = args.join(" ");
-      const country = await fetch(
+      const data = await fetch(
         `https://restcountries.eu/rest/v2/name/${encodeURIComponent(query)}`,
       ).then((r) => r.json());
 
-      if (country.message) {
+      const country = data?.country;
+
+      if (data.message || !country) {
         return message.channel.send({ content: lang.COVID.NOT_FOUND });
       }
 
-      const name = country[0].name || "N/A";
-      const nativeName = country[0].nativeName || "N/A";
-      const domains = country[0].topLevelDomain || "N/A";
-      const callingCodes = country[0].callingCodes || "N/A";
-      const alphaCode = country[0].alpha2Code || "N/A";
-      const capital = country[0].capital || "N/A";
-      const timezones = country[0].timezones || "N/A";
-      const region = country[0].region || "N/A";
-      const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png`;
-      const population = this.bot.utils.formatNumber(country[0].population);
-      let languages = "";
+      const name = country.name || "N/A";
+      const nativeName = country.nativeName || "N/A";
+      const domains = country.topLevelDomain?.join("\n") || "N/A";
+      const callingCodes = country.callingCodes?.join("\n") || "N/A";
+      const alphaCode = country.alpha2Code || "N/A";
+      const capital = country.capital || "N/A";
+      const timezones = country.timezones?.join(", ") || "N/A";
+      const region = country.region || "N/A";
+      const population = this.bot.utils.formatNumber(country.population);
+      const languages = country.languages.map((v) => v.name).join("\n");
 
-      country[0].languages.forEach((lang) => {
-        languages += `${lang.name}\n`;
-      });
+      const flag = `https://www.countryflags.io/${alphaCode}/flat/64.png`;
 
       const embed = this.bot.utils
         .baseEmbed(message)
