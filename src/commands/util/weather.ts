@@ -3,6 +3,29 @@ import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
+export interface WeatherData {
+  weather: { id: number; main: string; description: string; icon: string }[];
+  base: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+    sea_level: number;
+    grnd_level: number;
+  };
+  visibility: number;
+  wind: { speed: number; deg: number; gust: number };
+  dt: number;
+  sys: { type: number; id: number; country: string; sunrise: number; sunset: number };
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
+}
+
 export default class WeatherCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -21,26 +44,26 @@ export default class WeatherCommand extends Command {
       const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
         query,
       )}&appid=${process.env["OPEN_WEATHER_MAP_API_KEY"]}&units=metric`;
-      const data = await fetch(url).then((res) => res.json());
+      const data: WeatherData = await fetch(url).then((res) => res.json());
 
       if (data.cod === 401) {
         return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
-      if (data.cod === "404") {
+      if (data.cod === 404) {
         return message.channel.send({
           content: lang.UTIL.C_NOT_FOUND.replace("{query}", query),
         });
       }
 
-      const main = data.weather[0].main;
-      const desc = data.weather[0].description;
-      const icon = data.weather[0].icon;
-      const feelsLike = data.main.feels_like;
-      const temp = data.main.temp;
-      const windSpeed = data.wind.speed;
-      const windDeg = data.wind.deg;
-      const country = data.sys.country;
+      const main = data.weather[0].main.toString();
+      const desc = data.weather[0].description.toString();
+      const icon = data.weather[0].icon.toString();
+      const feelsLike = data.main.feels_like.toString();
+      const temp = data.main.temp.toString();
+      const windSpeed = data.wind.speed.toString();
+      const windDeg = data.wind.deg.toString();
+      const country = data.sys.country.toString();
       const flag = `https://www.countryflags.io/${country}/flat/64.png` || "";
 
       const embed = this.bot.utils
