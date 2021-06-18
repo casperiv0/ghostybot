@@ -322,7 +322,7 @@ const LANG: typeof import("./english").default = {
     BOTS: "البوتات",
     PLAYERS: "اللاعبين",
     VERSION: "الاصدار",
-    PROTOCOL: "البروتوكول",
+    PORT: "Port",
     DESCRIPTION: "الوصف",
     NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "السرفر غير موجود",

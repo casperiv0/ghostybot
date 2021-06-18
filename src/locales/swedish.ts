@@ -322,7 +322,7 @@ export default {
     BOTS: "Bots",
     PLAYERS: "Spelare",
     VERSION: "Version",
-    PROTOCOL: "Protocol",
+    PORT: "Port",
     DESCRIPTION: "Beskrivning",
     NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "Server wasn't found",

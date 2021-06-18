@@ -325,7 +325,7 @@ const LANG: typeof import("./english").default = {
     BOTS: "Bots",
     PLAYERS: "Jugadores",
     VERSION: "Version",
-    PROTOCOL: "Protocolo",
+    PORT: "Port",
     DESCRIPTION: "Descripción",
     NPM_NOT_FOUND: "No NPM packages were found with **{query}**",
     MC_NOT_FOUND: "Servidor no fue encontrado",
