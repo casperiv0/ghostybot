@@ -1,8 +1,8 @@
 import glob from "glob";
 import { Collection } from "discord.js";
-import { parse } from "path";
 import Bot from "structures/Bot";
 import Command from "structures/Command";
+import { resolveFile, validateFile } from "./HandlersUtil";
 // import { generateCommandDescriptions } from "../scripts/generateCommandDescriptions";
 
 export default class CommandHandler {
@@ -18,10 +18,8 @@ export default class CommandHandler {
         ? glob.sync("./dist/src/commands/**/*.js")
         : glob.sync("./src/commands/**/*.ts");
 
-      const path = process.env.BUILD_PATH ? "../../../" : "../../";
-
       for (const file of files) {
-        await this.loadCommand(file, path);
+        await this.loadCommand(file);
       }
 
       if (process.env["DEV_MODE"] === "true") {
@@ -36,21 +34,11 @@ export default class CommandHandler {
     }
   }
 
-  async loadCommand(file: string, path: string) {
+  async loadCommand(file: string) {
     delete require.cache[file];
-    const options = parse(`${path}${file}`);
-    const File = await (await import(`${path}${file}`)).default;
-    const command = new File(this.bot, options) as Command;
 
-    if (!command.execute) {
-      new Error(`[ERROR][COMMANDS]: 'execute' function is required for commands! (${file})`);
-      process.exit();
-    }
-
-    if (!command.name || command.name === "") {
-      new Error(`[ERROR][COMMANDS]: 'name' is required for commands! (${file})`);
-      process.exit();
-    }
+    const command = await resolveFile<Command>(file, this.bot);
+    await validateFile(file, command);
 
     this.bot.commands.set(command.name, command);
 

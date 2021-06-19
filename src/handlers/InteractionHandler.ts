@@ -1,8 +1,8 @@
 import { ApplicationCommandData } from "discord.js";
 import glob from "glob";
-import { parse } from "path";
+import Interaction from "../structures/Interaction";
+import { resolveFile, validateFile } from "./HandlersUtil";
 import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
 
 export default class InteractionHandler {
   bot: Bot;
@@ -17,25 +17,11 @@ export default class InteractionHandler {
         ? glob.sync("./dist/src/interactions/**/*.js")
         : glob.sync("./src/interactions/**/*.ts");
 
-      const path = process.env.BUILD_PATH ? "../../../" : "../../";
-
       for (const file of files) {
         delete require.cache[file];
-        const options = parse(`${path}${file}`);
-        const File = await (await import(`${path}${file}`)).default;
-        const interaction = new File(this.bot, options) as Interaction;
 
-        if (!interaction.execute) {
-          new Error(
-            `[ERROR][INTERACTIONS]: 'execute' function is required for interactions! (${file})`,
-          );
-          process.exit();
-        }
-
-        if (!interaction.name) {
-          new Error(`[ERROR][INTERACTIONS]: 'name' is required for interactions! (${file})`);
-          process.exit();
-        }
+        const interaction = await resolveFile<Interaction>(file, this.bot);
+        await validateFile(file, interaction);
 
         this.bot.interactions.set(interaction.name, interaction);
 

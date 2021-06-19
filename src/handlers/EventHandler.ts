@@ -1,8 +1,8 @@
 import { StarboardEvents } from "discord-starboards";
 import glob from "glob";
-import { parse } from "path";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
+import { resolveFile, validateFile } from "./HandlersUtil";
 
 const types = ["channel", "client", "guild", "message", "player", "sb"];
 
@@ -19,18 +19,13 @@ export default class EventHandler {
     const files = process.env.BUILD_PATH
       ? glob.sync("./dist/src/events/**/*.js")
       : glob.sync("./src/events/**/*.ts");
-    const path = process.env.BUILD_PATH ? "../../../" : "../../";
 
     for (const file of files) {
       delete require.cache[file];
-      const { name } = parse(`${path}${file}`);
 
-      if (!name) {
-        throw Error(`[ERROR][EVENT]: event must have a name (${file})`);
-      }
+      const event = await resolveFile<Event>(file, this.bot);
+      await validateFile(file, event);
 
-      const File = await (await import(`${path}/${file}`)).default;
-      const event = new File(this.bot, name) as Event;
       const isPlayer = file.includes("player.");
       const isStarboard = file.includes("sb.");
 
