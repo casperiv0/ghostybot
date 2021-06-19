@@ -35,6 +35,7 @@ export default class MinecraftCommand extends Command {
       const description = data.motd || lang.GLOBAL.NONE;
       const version = data.version;
       const port = data.port.toString();
+      const icon = data.icon;
 
       const embed = this.bot.utils
         .baseEmbed(message)
@@ -44,7 +45,8 @@ export default class MinecraftCommand extends Command {
         .addField(lang.UTIL.MAX_PLAYERS, maxPlayers, true)
         .addField(lang.UTIL.VERSION, version, true)
         .addField(lang.UTIL.PORT, port, true)
-        .addField(lang.UTIL.DESCRIPTION, description);
+        .addField(lang.UTIL.DESCRIPTION, description)
+        .setThumbnail(icon);
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
