@@ -184,9 +184,15 @@ export default class Util {
 
       const name = error.name || "N/A";
       let stack = error.stack || error;
-      let jsonString = JSON.stringify(requestData.json, null, 2);
+      let jsonString = "";
 
-      if (jsonString.length >= 2048) {
+      try {
+        jsonString = JSON.stringify(requestData.json, null, 2);
+      } catch {
+        jsonString = "";
+      }
+
+      if (jsonString?.length >= 2048) {
         jsonString = `${jsonString.substr(0, 2045)}...`;
       }
 
