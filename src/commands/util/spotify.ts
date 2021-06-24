@@ -1,6 +1,5 @@
 import { Message } from "discord.js";
 import fetch from "node-fetch";
-import ms from "ms";
 import Command from "../../structures/Command";
 import Bot from "../../structures/Bot";
 
@@ -46,7 +45,7 @@ export default class SpotifyCommand extends Command {
             .setTitle(data.name)
             .setURL(data.url)
             .setThumbnail(data.album.images[0].url)
-            .addField(lang.MUSIC.DURATION, `about ${ms(data.duration, { long: true })}`)
+            .addField(lang.MUSIC.DURATION, data.duration)
             .addField(
               "Album",
               `
