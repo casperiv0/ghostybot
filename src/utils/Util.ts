@@ -558,7 +558,7 @@ export default class Util {
   }
 
   formatNumber(n: number | string): string {
-    return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    return Number.parseFloat(String(n)).toLocaleString("be-BE");
   }
 
   encode(obj: { [key: string]: unknown }) {
