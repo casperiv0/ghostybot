@@ -21,7 +21,7 @@ export default class ShellCommand extends Command {
     try {
       const stdout = ch.execSync(args.join(" "));
 
-      return message.channel.send({ content: stdout.toString(), code: true });
+      return message.channel.send({ content: this.bot.utils.codeContent(stdout.toString()) });
     } catch (err) {
       const errorEmbed = this.bot.utils
         .baseEmbed(message)

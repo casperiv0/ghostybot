@@ -21,7 +21,9 @@ export default class AsciiCommand extends Command {
 
       figlet.text(text, (e, txt) => {
         if (e) return;
-        message.channel.send({ content: txt?.trimRight() ?? "UNKNOWN", code: true });
+        message.channel.send({
+          content: this.bot.utils.codeContent(txt?.trimRight() ?? "UNKNOWN"),
+        });
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

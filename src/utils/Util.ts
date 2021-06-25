@@ -549,6 +549,10 @@ export default class Util {
     });
   }
 
+  codeContent(string: string, extension = ""): string {
+    return `\`\`\`${extension}\n${string}\`\`\``;
+  }
+
   calculateXp(xp: number): number {
     return Math.floor(0.1 * Math.sqrt(xp));
   }
