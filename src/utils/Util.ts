@@ -180,7 +180,7 @@ export default class Util {
 
       const code = "code" in error ? error.code : "N/A";
       const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
-      const requestData: any = "requestData" in error ? error.requestData : {};
+      const requestData: any = "requestData" in error ? error.requestData : { json: {} };
 
       const name = error.name || "N/A";
       let stack = error.stack || error;
