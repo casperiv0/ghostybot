@@ -276,6 +276,8 @@ const LANG: typeof import("./english").default = {
     YOUR_CHOICE: "Ваш выбор",
     WINNER: "Победитель",
     INVALID_INPUT: "Введите одно из следующих значений:",
+    QUOTE: "Quote",
+    TAGS: "Tags",
   },
   UTIL: {
     PROCESSING_IMAGE: "⚙ Обработка изображения..",

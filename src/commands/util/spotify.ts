@@ -9,7 +9,7 @@ export default class SpotifyCommand extends Command {
       name: "spotify",
       description: "Find a track/artist/album via the Spotify API",
       category: "util",
-      requiredArgs: [{ name: "track/artist/album" }, { name: "search query" }],
+      requiredArgs: [{ name: "track/artist/album/playlist" }, { name: "search query" }],
       aliases: ["spot"],
     });
   }
@@ -21,7 +21,7 @@ export default class SpotifyCommand extends Command {
       const [type, ...rest] = args;
       const search = encodeURIComponent(rest.join());
 
-      if (!["track", "artist", "album"].includes(type.toLowerCase())) {
+      if (!["track", "artist", "album", "playlist"].includes(type.toLowerCase())) {
         return message.channel.send({ content: "Invalid type" });
       }
 
@@ -89,6 +89,26 @@ export default class SpotifyCommand extends Command {
             .addField("Tracks", tracks, true)
             .addField(lang.UTIL.RELEASE_DATE, data.release_date, true)
             .addField("Artists", artists, true)
+            .setImage(data.images[0].url);
+
+          return message.channel.send({ embeds: [embed] });
+        }
+        case "playlist": {
+          const length = data.tracks.length <= 10 ? "" : `${data.tracks.length - 10} more tracks`;
+
+          const tracks =
+            (data.tracks as any[])
+              .map((v) => `[${v.name}](${v.url})`)
+              .slice(0, 10)
+              .join("\n") || lang.GLOBAL.NONE;
+
+          const embed = this.bot.utils
+            .baseEmbed(message)
+            .setDescription(data.description || "No description")
+            .setTitle(data.name)
+            .setURL(data.url)
+            .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.total_tracks), true)
+            .addField("Tracks", `${tracks}\n${length}`, true)
             .setImage(data.images[0].url);
 
           return message.channel.send({ embeds: [embed] });

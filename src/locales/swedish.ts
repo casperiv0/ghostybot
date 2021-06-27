@@ -274,6 +274,8 @@ export default {
     YOUR_CHOICE: "Your choice",
     WINNER: "Winner",
     INVALID_INPUT: "Input must be 1 of the following:",
+    QUOTE: "Quote",
+    TAGS: "Tags",
   },
   UTIL: {
     PROCESSING_IMAGE: "⚙ Processing Image..",

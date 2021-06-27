@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 205 commands.
+GhostyBot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -201,7 +201,7 @@ Click any of the command names for more information
 
 ### Category: games
 
-**Total commands: 18**
+**Total commands: 19**
 
 [8ball:](#8ball) 8Ball
 
@@ -228,6 +228,8 @@ Click any of the command names for more information
 [lmgtfy:](#lmgtfy) Let me google that for you
 
 [meme:](#meme) Returns a meme
+
+[quote:](#quote) desc
 
 [randomjoke:](#randomjoke) returns a random joke
 
@@ -2223,6 +2225,24 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
+## quote
+
+**Category:** games
+
+**Description:** desc
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## randomjoke
 
 **Category:** games
@@ -4073,7 +4093,7 @@ Click any of the command names for more information
 
 **Bot Permissions:** SEND_MESSAGES
 
-**Required Arguments:** `track/artist/album(string)`, `search query(string)`
+**Required Arguments:** `track/artist/album/playlist(string)`, `search query(string)`
 
 [Back to top](#ghostybot-command-list)
 
