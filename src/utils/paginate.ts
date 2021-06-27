@@ -1,17 +1,22 @@
 /* thanks to Tovade! https://github.com/tovade/Andoi/blob/HEAD/src/modules/paginate.js#L3 */
 import { Message, MessageEmbed, MessageReaction, User } from "discord.js";
+import ms from "ms";
 
 // if a user reacts with this emoji, the pagination will end
 const END_EMOJI = "🛑";
 const EMOJIS = ["⏪", "◀️", "▶️", "⏩"];
 const ALL_EMOJIS = [...EMOJIS, END_EMOJI];
-const TIMEOUT = 60 * 60 * 1000 * 5; // 5minutes
+const TIMEOUT = 60 * 1000 * 5; // 5minutes
 
 async function paginate(message: Message, embeds: MessageEmbed[]) {
   let page = 0;
 
   const currentPage = await message.channel.send({
-    embeds: [embeds[0].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5minutes)`)],
+    embeds: [
+      embeds[0].setFooter(
+        `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
+      ),
+    ],
   });
 
   ALL_EMOJIS.forEach((em) => {
@@ -25,7 +30,7 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     return ALL_EMOJIS.includes(reaction.emoji.name);
   };
 
-  const collector = currentPage.createReactionCollector(filter, { time: TIMEOUT });
+  const collector = currentPage.createReactionCollector({ filter, time: TIMEOUT });
 
   collector.on("collect", async (reaction) => {
     reaction.users.remove(message.author).catch(() => null);
@@ -59,7 +64,9 @@ async function paginate(message: Message, embeds: MessageEmbed[]) {
     if (page !== -1) {
       currentPage.edit({
         embeds: [
-          embeds[page].setFooter(`Page: ${page + 1} / ${embeds.length} (Times out in 5 minutes)`),
+          embeds[page].setFooter(
+            `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
+          ),
         ],
       });
     }
