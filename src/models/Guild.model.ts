@@ -23,7 +23,6 @@ export interface GuildData {
   sticky_data: StickyData;
   timezone: string;
   auto_delete_cmd: boolean;
-  member_count_channel_id: Snowflake | string;
   muted_role_id: Snowflake | string;
   level_data: LevelData;
   welcome_data: WelcomeData;
@@ -117,7 +116,6 @@ const guildSchema = new Schema<IGuild>({
   ignored_channels: { type: Array, default: [] },
   timezone: { type: String, default: "America/New_York" },
   auto_delete_cmd: { type: Boolean, default: false },
-  member_count_channel_id: { type: String, default: null },
   muted_role_id: { type: String, default: null },
   slash_commands: { type: Array, default: [] },
 

@@ -3,7 +3,6 @@ import Bot from "structures/Bot";
 import Event from "structures/Event";
 import BotModel from "models/Bot.model";
 import HelperHandler from "handlers/HelperHandler";
-import FeatureHandler from "handlers/FeatureHandler";
 import InteractionHandler from "handlers/InteractionHandler";
 import CommandHandler from "handlers/CommandHandler";
 
@@ -26,7 +25,6 @@ export default class ReadyEvent extends Event {
     ];
 
     new HelperHandler(bot).loadHelpers();
-    new FeatureHandler(bot).loadFeatures();
     new InteractionHandler(bot).loadInteractions();
     new CommandHandler(bot).loadCommands();
 
