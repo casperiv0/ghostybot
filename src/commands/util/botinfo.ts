@@ -24,7 +24,6 @@ export default class BotInfoCommand extends Command {
         .duration(this.bot?.uptime ?? 0)
         .format(" D [days], H [hrs], m [mins], s [secs]");
 
-      const nodev = process.version;
       const { total_used_cmds, used_since_up } = await BotModel.findOne({
         bot_id: this.bot.user?.id,
       });
@@ -40,16 +39,16 @@ export default class BotInfoCommand extends Command {
         .addField(
           `${lang.HELP.COMMANDS}:`,
           `
-  **${lang.BOT.USED_SINCE_UP}:** ${this.bot.utils.formatNumber(used_since_up)}
-  **${lang.BOT.TOTAL_USED_CMDS}:** ${this.bot.utils.formatNumber(total_used_cmds)}`,
+  **${lang.BOT.USED_SINCE_UP}:** \`${this.bot.utils.formatNumber(used_since_up)}\`
+  **${lang.BOT.TOTAL_USED_CMDS}:** \`${this.bot.utils.formatNumber(total_used_cmds)}\``,
         )
         .addField(
           `__**${lang.BOT.INFO}:**__`,
           `
-  **${lang.BOT.USERS}:** ${userCount}
-  **${lang.BOT.GUILDS}:** ${this.bot.utils.formatNumber(this.bot.guilds.cache.size)}
-  **${lang.BOT.CHANNELS}:** ${this.bot.utils.formatNumber(this.bot.channels.cache.size)}
-  **${lang.BOT.COMMAND_COUNT}:** ${this.bot.commands.size}
+  **${lang.BOT.USERS}:** \`${userCount}\`
+  **${lang.BOT.GUILDS}:** \`${this.bot.utils.formatNumber(this.bot.guilds.cache.size)}\`
+  **${lang.BOT.CHANNELS}:** \`${this.bot.utils.formatNumber(this.bot.channels.cache.size)}\`
+  **${lang.BOT.COMMAND_COUNT}:** \`${this.bot.commands.size}\`
               `,
           true,
         )
@@ -59,7 +58,6 @@ export default class BotInfoCommand extends Command {
             2,
           )}MB
   **${lang.BOT.UPTIME}:** ${uptime}
-  **${lang.BOT.NODE_V}:** ${nodev}
   **${lang.BOT.DJS_V}:** ${version}`,
           true,
         )
