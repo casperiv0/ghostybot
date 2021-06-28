@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 206 commands.
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -359,7 +359,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 47**
+**Total commands: 46**
 
 [afk:](#afk) N/A
 
@@ -406,8 +406,6 @@ Click any of the command names for more information
 [invite:](#invite) Creates an instant invite for the server
 
 [ip:](#ip) Search an IP
-
-[membercount:](#membercount) N/A
 
 [minecraft:](#minecraft) Get info about a minecraft server
 
@@ -3806,24 +3804,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `ip(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## membercount
-
-**Category:** util
-
-**Description:** N/A
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

@@ -18,7 +18,6 @@ export default class MongoGiveawayManager extends GiveawaysManager {
     return true;
   }
 
-  // @ts-expect-error ignore
   async deleteGiveaway(messageId: string): Promise<boolean> {
     await GiveawayModel.findOneAndDelete({ messageID: messageId }).exec();
 

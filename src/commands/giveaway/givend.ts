@@ -25,7 +25,7 @@ export default class GiveEndCommand extends Command {
         .catch(() => null);
 
       if (deleted === null) {
-        return message.channel.send({ content: "Giveaway not ended yet or was not found" });
+        return message.channel.send({ content: "Giveaway already ended yet or was not found" });
       }
 
       return message.channel.send({ content: "Successfully ended giveaway" });

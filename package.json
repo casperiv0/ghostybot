@@ -46,7 +46,7 @@
     "ctgs.js": "^1.1.0",
     "date-fns": "^2.22.1",
     "dayjs": "^1.10.5",
-    "discord-giveaways": "4.5.1",
+    "discord-giveaways": "github:Androz2091/discord-giveaways#discord.js-v13",
     "discord-logs": "^1.9.0",
     "discord-player": "4.1.0",
     "discord-starboards": "2.2.3",
