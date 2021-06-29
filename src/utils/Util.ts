@@ -324,7 +324,7 @@ export default class Util {
       guild.roles.cache.find((r) => r.name === "muted") ||
       guild.roles.create({
         name: "muted",
-        color: "GRAY",
+        color: "GREY",
         reason: "Mute a user",
       })
     );
