@@ -1,4 +1,5 @@
 import ch from "child_process";
+import { codeBlock } from "@discordjs/builders";
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -26,7 +27,7 @@ export default class ShellCommand extends Command {
       const errorEmbed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.ERROR)
-        .setDescription(`\`\`\`${err}\`\`\``);
+        .setDescription(codeBlock(err));
 
       message.channel.send({ embeds: [errorEmbed] });
     }

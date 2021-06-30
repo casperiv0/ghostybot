@@ -3,6 +3,7 @@ import categories from "data/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "@utils/paginate";
+import { codeBlock } from "@discordjs/builders";
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -51,7 +52,7 @@ export default class HelpCommand extends Command {
           .baseEmbed(message)
           .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
-        embed.setDescription(`\`\`\`${cmds}\`\`\``);
+        embed.setDescription(codeBlock(cmds));
         return message.channel.send({ embeds: [embed] });
       } else if (cmdArgs) {
         let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
@@ -136,7 +137,7 @@ export default class HelpCommand extends Command {
         const categoryEmbed = this.bot.utils
           .baseEmbed(message)
           .setTitle("Help")
-          .addField(name, `\`\`\`${cates[i].join(", ")}\`\`\``)
+          .addField(name, codeBlock(cates[i].join(", ")))
           .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
           .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
           .addField(

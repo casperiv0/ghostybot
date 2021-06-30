@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 import { create, all } from "mathjs";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { codeBlock } from "@discordjs/builders";
 const math = create(all);
 
 export default class CalcCommand extends Command {
@@ -23,8 +24,8 @@ export default class CalcCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.CALC)
-        .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, `\`\`\`js\n${args.join(" ")}\`\`\``)
-        .addField(`${lang.BOT_OWNER.EVAL_OUTPUT}:`, `\`\`\`js\n${calculation}\`\`\``);
+        .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, codeBlock("js", args.join(" F")))
+        .addField(`${lang.BOT_OWNER.EVAL_OUTPUT}:`, codeBlock("js", calculation));
 
       return message.channel.send({ embeds: [embed] });
     } catch (e) {

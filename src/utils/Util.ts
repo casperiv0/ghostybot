@@ -9,6 +9,7 @@ import WarningModal, { IWarning } from "models/Warning.model";
 import GuildModel, { GuildData, IGuild } from "models/Guild.model";
 import ApiRequest from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
+import { codeBlock } from "@discordjs/builders";
 
 dayJs.extend(utc);
 dayJs.extend(timezone);
@@ -207,8 +208,8 @@ export default class Util {
         .addField("Code", code.toString(), true)
         .addField("httpStatus", httpStatus.toString(), true)
         .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", `\`\`\`${jsonString.substr(0, 2045)}\`\`\``)
-        .setDescription(`\`\`\`${stack}\`\`\``)
+        .addField("Request data", codeBlock(jsonString.substr(0, 2045)))
+        .setDescription(codeBlock(stack as string))
         .setColor(type === "error" ? "RED" : "ORANGE");
 
       channel.send({ embeds: [embed] });

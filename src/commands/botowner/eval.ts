@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -53,15 +54,15 @@ export default class EvalCommand extends Command {
 
       const embed = this.bot.utils.baseEmbed(message).setTitle(lang.BOT_OWNER.EVAL)
         .setDescription(`\`${lang.BOT_OWNER.EVAL_TYPE}:\` ${type}
-\`${lang.BOT_OWNER.EVAL_INPUT}:\` \`\`\`js\n${toEval} \`\`\`
-\`${lang.BOT_OWNER.EVAL_OUTPUT}:\` \`\`\`js\n${evaluatedCode}\`\`\``);
+${inlineCode(lang.BOT_OWNER.EVAL_INPUT)}: ${codeBlock("js", toEval)}
+${inlineCode(lang.BOT_OWNER.EVAL_OUTPUT)}: ${codeBlock("js", toEval)}`);
 
       message.channel.send({ embeds: [embed] });
     } catch (error) {
       const errorEmbed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GLOBAL.ERROR)
-        .setDescription(`\`\`\`${error}\`\`\``);
+        .setDescription(codeBlock(error));
 
       message.channel.send({ embeds: [errorEmbed] });
     }

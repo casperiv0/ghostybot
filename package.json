@@ -35,6 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "@discord-player/extractor": "^3.0.2",
+    "@discordjs/builders": "^0.1.0",
     "@discordjs/opus": "^0.5.3",
     "@iamtraction/google-translate": "^1.1.2",
     "alexflipnote.js": "^2.5.0",
