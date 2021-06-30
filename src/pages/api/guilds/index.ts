@@ -4,6 +4,8 @@ import { hiddenGuildItems } from "data/hidden-items";
 import ApiRequest from "types/ApiRequest";
 import Guild from "types/Guild";
 
+const extraHidden = ["voiceStats", "stageInstances", "bans", "commands"];
+
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, headers } = req;
 
@@ -33,6 +35,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
         const g = req.bot.guilds.cache.get(guild.id);
+
         return {
           ...guild,
           ...g,
@@ -40,8 +43,10 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         };
       });
 
+      console.log(filteredGuilds);
+
       filteredGuilds.forEach((guild: Guild) => {
-        hiddenGuildItems.forEach((item) => {
+        [...hiddenGuildItems, ...extraHidden].forEach((item) => {
           return (guild[item] = undefined);
         });
       });

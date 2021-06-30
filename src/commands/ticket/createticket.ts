@@ -46,18 +46,29 @@ export default class CreateTicketCommand extends Command {
 
       const DEFAULT_PERMS: OverwriteResolvable[] = [
         {
-          id: `${message.author.id}`,
-          allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
+          type: "member",
+          id: message.author.id,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         },
         {
+          type: "member",
           id: `${this.bot.user?.id}`,
-          allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
+          allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         },
         {
-          id: `${message.guild?.id}`,
-          deny: ["VIEW_CHANNEL", "SEND_MESSAGES"],
+          id: message.guild?.id!,
+          allow: [],
+          deny: [Permissions.FLAGS.VIEW_CHANNEL],
         },
       ];
+
+      if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
+        DEFAULT_PERMS.push({
+          type: "role",
+          id: guild.ticket_data.role_id,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
+        });
+      }
 
       const channel = (await message.guild?.channels.create(
         lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
@@ -71,16 +82,6 @@ export default class CreateTicketCommand extends Command {
 
       if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
         channel?.setParent(guild.ticket_data.parent_id as Snowflake);
-      }
-
-      if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
-        (channel as TextChannel)?.overwritePermissions([
-          ...DEFAULT_PERMS,
-          {
-            id: guild.ticket_data.role_id,
-            allow: ["VIEW_CHANNEL", "SEND_MESSAGES"],
-          },
-        ]);
       }
 
       channel?.send({ content: `${lang.TICKET.CREATED} <@${message.author.id}>` });

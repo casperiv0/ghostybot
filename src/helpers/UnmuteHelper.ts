@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, ThreadChannel } from "discord.js";
 import Bot from "structures/Bot";
 import Helper from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
@@ -46,6 +46,8 @@ export default class ReminderHelper extends Helper {
             const mutedRole = await this.bot.utils.findOrCreateMutedRole(guild);
 
             guild.channels.cache.forEach((channel) => {
+              if (channel instanceof ThreadChannel) return;
+
               channel.permissionOverwrites.get(user.user_id)?.delete();
             });
 

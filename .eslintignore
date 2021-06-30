@@ -1,2 +1,3 @@
 dist/
 public/
+next-env.d.ts

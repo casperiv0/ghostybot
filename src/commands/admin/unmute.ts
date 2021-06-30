@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import { Message, Permissions, ThreadChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -40,6 +40,8 @@ export default class UnMuteCommand extends Command {
       }
 
       message.guild.channels.cache.forEach((channel) => {
+        if (channel instanceof ThreadChannel) return;
+
         channel.permissionOverwrites.get(mutedMember.id)?.delete();
       });
 

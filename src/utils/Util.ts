@@ -364,6 +364,8 @@ export default class Util {
     perms: Partial<DJS.PermissionOverwriteOptions>,
   ) {
     guild.channels.cache.forEach((channel) => {
+      if (channel instanceof DJS.ThreadChannel) return;
+
       channel.updateOverwrite(memberId, perms as DJS.PermissionOverwriteOptions).catch((e) => {
         this.bot.logger.error("updateMuteChannelPerms", e);
       });
