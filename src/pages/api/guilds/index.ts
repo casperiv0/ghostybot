@@ -43,8 +43,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         };
       });
 
-      console.log(filteredGuilds);
-
       filteredGuilds.forEach((guild: Guild) => {
         [...hiddenGuildItems, ...extraHidden].forEach((item) => {
           return (guild[item] = undefined);

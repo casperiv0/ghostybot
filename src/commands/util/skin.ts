@@ -24,8 +24,6 @@ export default class SkinCommand extends Command {
         `https://playerdb.co/api/player/minecraft/${encodeURIComponent(search)}`,
       ).then((res) => res.json());
 
-      console.log(uuid);
-
       if (!uuid.success || uuid?.error) {
         return message.channel.send({
           content: lang.UTIL.SKIN_NOT_FOUND.replace("{search}", search),
