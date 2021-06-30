@@ -23,7 +23,8 @@ export default class ResetXpCommand extends Command {
       });
 
       message.channel
-        .awaitMessages(filter, {
+        .awaitMessages({
+          filter,
           time: 600000,
           max: 1,
           errors: ["time"],

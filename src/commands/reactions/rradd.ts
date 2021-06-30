@@ -53,7 +53,8 @@ export default class RrAddCommand extends Command {
 
       message.channel.send({ content: lang.REACTIONS.ROLES });
 
-      const roleMsgs = await message.channel.awaitMessages(filter, {
+      const roleMsgs = await message.channel.awaitMessages({
+        filter,
         time: 600000,
         max: 1,
         errors: ["time"],
@@ -70,7 +71,8 @@ export default class RrAddCommand extends Command {
 
       message.channel.send({ content: lang.REACTIONS.EMOJIS });
 
-      const emojiMsgs = await message.channel.awaitMessages(filter, {
+      const emojiMsgs = await message.channel.awaitMessages({
+        filter,
         time: 600000,
         max: 1,
         errors: ["time"],

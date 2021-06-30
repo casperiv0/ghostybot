@@ -56,8 +56,7 @@ export default class CreateTicketCommand extends Command {
           allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         },
         {
-          id: message.guild?.id!,
-          allow: [],
+          id: message.guild?.roles.everyone.id!,
           deny: [Permissions.FLAGS.VIEW_CHANNEL],
         },
       ];
@@ -70,7 +69,7 @@ export default class CreateTicketCommand extends Command {
         });
       }
 
-      const channel = (await message.guild?.channels.create(
+      const channel = await message.guild?.channels.create(
         lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
         {
           type: "text",
@@ -78,7 +77,7 @@ export default class CreateTicketCommand extends Command {
           topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
           permissionOverwrites: DEFAULT_PERMS,
         },
-      )) as unknown as TextChannel;
+      );
 
       if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
         channel?.setParent(guild.ticket_data.parent_id as Snowflake);

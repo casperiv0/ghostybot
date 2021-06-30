@@ -22,7 +22,8 @@ export default class ResetEconomyCommand extends Command {
       message.channel.send({ content: lang.ECONOMY.RESET_CONF });
 
       message.channel
-        .awaitMessages(filter, {
+        .awaitMessages({
+          filter,
           time: 600000,
           max: 1,
           errors: ["time"],
