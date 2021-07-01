@@ -100,7 +100,7 @@
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.11",
     "@types/request": "^2.48.5",
-    "@types/twemoji-parser": "^12.1.0",
+    "@types/twemoji-parser": "^13.1.0",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
