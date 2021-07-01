@@ -85,7 +85,7 @@
     "word-definition": "^2.1.6"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^0.0.14",
+    "@casper124578/eslint-config": "^0.0.15",
     "@casper124578/eslint-config-next": "^0.0.3",
     "@casper124578/eslint-config-react": "^0.0.5",
     "@types/bluebird": "^3.5.35",
