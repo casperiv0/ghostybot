@@ -52,7 +52,7 @@ export default class CreateTicketCommand extends Command {
         },
         {
           type: "member",
-          id: `${this.bot.user?.id}`,
+          id: `${this.bot.user?.id!}`,
           allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         },
         {
@@ -64,7 +64,7 @@ export default class CreateTicketCommand extends Command {
       if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
         DEFAULT_PERMS.push({
           type: "role",
-          id: guild.ticket_data.role_id,
+          id: guild.ticket_data.role_id as Snowflake,
           allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         });
       }
