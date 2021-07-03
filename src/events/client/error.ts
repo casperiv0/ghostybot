@@ -8,6 +8,6 @@ export default class ErrorEvent extends Event {
   }
 
   async execute(_: Bot, error: Error) {
-    this.bot.utils.sendErrorLog(error, "error");
+    return this.bot.utils.sendErrorLog(error, "error");
   }
 }

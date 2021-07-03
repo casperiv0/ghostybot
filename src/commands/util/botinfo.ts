@@ -4,7 +4,7 @@ import duration from "dayjs/plugin/duration";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import BotModel from "models/Bot.model";
-import { hyperlink } from "@discordjs/builders";
+import { hyperlink, inlineCode } from "@discordjs/builders";
 dayJs.extend(duration);
 
 export default class BotInfoCommand extends Command {
@@ -32,6 +32,8 @@ export default class BotInfoCommand extends Command {
         this.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
       );
 
+      const RAM_USAGE = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+
       const BOT_REPO = hyperlink("Click Here", "https://github.com/dev-caspertheghost/ghostybot");
       const SUPPORT_SERVER = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
       const DASHBOARD = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
@@ -48,32 +50,30 @@ export default class BotInfoCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(`${lang.BOT.INFO_2}`)
+        .setTitle(lang.BOT.INFO_2)
         .addField(`${lang.MEMBER.USERNAME}:`, this.bot.user?.username ?? "GhostyBot")
-        .addField(`${lang.BOT.LATENCY}:`, Math.round(this.bot.ws.ping).toString(), true)
+        .addField(lang.BOT.LATENCY, Math.round(this.bot.ws.ping).toString(), true)
         .addField(
           `${lang.HELP.COMMANDS}:`,
           `
-  **${lang.BOT.USED_SINCE_UP}:** \`${this.bot.utils.formatNumber(used_since_up)}\`
-  **${lang.BOT.TOTAL_USED_CMDS}:** \`${this.bot.utils.formatNumber(total_used_cmds)}\``,
+**${lang.BOT.USED_SINCE_UP}:** ${inlineCode(this.bot.utils.formatNumber(used_since_up))}
+**${lang.BOT.TOTAL_USED_CMDS}:** ${inlineCode(this.bot.utils.formatNumber(total_used_cmds))}`,
         )
         .addField(
-          `__**${lang.BOT.INFO}:**__`,
+          `**${lang.BOT.INFO}:**`,
           `
-  **${lang.BOT.USERS}:** \`${userCount}\`
-  **${lang.BOT.GUILDS}:** \`${this.bot.utils.formatNumber(this.bot.guilds.cache.size)}\`
-  **${lang.BOT.CHANNELS}:** \`${this.bot.utils.formatNumber(this.bot.channels.cache.size)}\`
-  **${lang.BOT.COMMAND_COUNT}:** \`${this.bot.commands.size}\`
+**${lang.BOT.USERS}:** ${inlineCode(userCount)}
+**${lang.BOT.GUILDS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.guilds.cache.size))}
+**${lang.BOT.CHANNELS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.channels.cache.size))}
+**${lang.BOT.COMMAND_COUNT}:** ${inlineCode(this.bot.commands.size.toString())}
               `,
           true,
         )
         .addField(
-          `__**${lang.BOT.SYSTEM_INFO}**__`,
-          `**${lang.BOT.RAM_USAGE}:**  ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(
-            2,
-          )}MB
-  **${lang.BOT.UPTIME}:** ${uptime}
-  **${lang.BOT.DJS_V}:** ${version}`,
+          `**${lang.BOT.SYSTEM_INFO}**`,
+          `**${lang.BOT.RAM_USAGE}:**  ${RAM_USAGE}MB
+**${lang.BOT.UPTIME}:** ${uptime}
+**${lang.BOT.DJS_V}:** ${version}`,
           true,
         )
         .addField(
@@ -90,6 +90,10 @@ ${BOT_INVITE}`,
         .setImage(
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
         );
+
+      if (this.bot.user && this.bot.user.avatar) {
+        embed.setThumbnail(this.bot.user.avatarURL({ dynamic: true })!);
+      }
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {

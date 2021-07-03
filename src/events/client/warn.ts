@@ -8,6 +8,6 @@ export default class WarnEvent extends Event {
   }
 
   async execute(_: Bot, error: any) {
-    this.bot.utils.sendErrorLog(error, "warning");
+    return this.bot.utils.sendErrorLog(error, "warning");
   }
 }
