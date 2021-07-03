@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 205 commands.
+GhostyBot has a total of 206 commands.
 
 Click any of the command names for more information
 
@@ -359,7 +359,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 46**
+**Total commands: 47**
 
 [afk:](#afk) N/A
 
@@ -402,6 +402,8 @@ Click any of the command names for more information
 [help:](#help) Shows all commands Or shows more info about a command
 
 [imdb:](#imdb) Get the information about series and movie
+
+[invite-info:](#invite-info) Get information about an invite
 
 [invite:](#invite) Creates an instant invite for the server
 
@@ -3768,6 +3770,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query(string)`
+
+[Back to top](#ghostybot-command-list)
+
+## invite-info
+
+**Category:** util
+
+**Description:** Get information about an invite
+
+**Usage:** `N/A`
+
+**Aliases:** `inviteinfo`
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `code(string)`
 
 [Back to top](#ghostybot-command-list)
 

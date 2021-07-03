@@ -170,7 +170,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
             <>
               <a
                 href={
-                  "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot%20applications.commands&permissions=8"
+                  "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=applications.commands%20bot&permissions=8"
                 }
               >
                 {t("re_authorize")}

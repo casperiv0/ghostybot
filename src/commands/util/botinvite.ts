@@ -13,7 +13,7 @@ export default class BotInviteCommand extends Command {
   }
 
   async execute(message: Message) {
-    const botInvite = `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=bot%20applications.commands&permissions=8`;
+    const botInvite = `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands%20bot&permissions=8`;
 
     return message.channel.send({ content: encodeURI(botInvite) });
   }

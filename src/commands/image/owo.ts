@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { hyperlink } from "@discordjs/builders";
 import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -21,7 +22,10 @@ export default class OwoCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setDescription(
-          `${lang.IMAGE.CLICK_TO_VIEW}(https://cdn.ram.moe/${data.path.replace("/i/", "")})`,
+          hyperlink(
+            lang.IMAGE.CLICK_TO_VIEW,
+            `https://cdn.ram.moe/${data.path.replace("/i/", "")}`,
+          ),
         )
         .setImage(`https://cdn.ram.moe/${data.path.replace("/i/", "")}`);
 

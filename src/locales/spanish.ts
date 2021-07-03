@@ -784,6 +784,15 @@ const LANG: typeof import("./english").default = {
       "As I see it, yes.",
     ],
   },
+  INVITE: {
+    NOT_FOUND: "That invite was not found.",
+    NOT_EXPIRED_YET: "This invite has not expired yet.",
+    NOT_EXPIRE: "This invite does not expire",
+
+    EXPIRATION: "Expiration",
+    EXPIRES_AT: "Expires at",
+    EXPIRED_AT: "Expired at",
+  },
 };
 
 export default LANG;

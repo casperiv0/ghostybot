@@ -4,6 +4,7 @@ import duration from "dayjs/plugin/duration";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import BotModel from "models/Bot.model";
+import { hyperlink } from "@discordjs/builders";
 dayJs.extend(duration);
 
 export default class BotInfoCommand extends Command {
@@ -29,6 +30,20 @@ export default class BotInfoCommand extends Command {
       });
       const userCount = this.bot.utils.formatNumber(
         this.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
+      );
+
+      const BOT_REPO = hyperlink("Click Here", "https://github.com/dev-caspertheghost/ghostybot");
+      const SUPPORT_SERVER = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
+      const DASHBOARD = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
+
+      const BOT_DEV = hyperlink(lang.BOT.DEVELOPER, "https://caspertheghost.me");
+      const CONTRIBUTORS = hyperlink(
+        lang.BOT.CONTRIBUTORS,
+        "https://github.com/Dev-CasperTheGhost/ghostybot/contributors",
+      );
+      const BOT_INVITE = hyperlink(
+        lang.BOT.INVITE_BOT,
+        `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands%20bot&permissions=8`,
       );
 
       const embed = this.bot.utils
@@ -64,22 +79,14 @@ export default class BotInfoCommand extends Command {
         .addField(
           "Links",
           `
-  [${lang.BOT.DEVELOPER}](https://caspertheghost.me)
-  [${lang.BOT.CONTRIBUTORS}](https://github.com/Dev-CasperTheGhost/ghostybot/contributors)
-  [${lang.BOT.INVITE_BOT}](https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=bot%20application.commands&permissions=8)`,
+${BOT_DEV}
+${CONTRIBUTORS}
+${BOT_INVITE}`,
           true,
         )
-        .addField(
-          `${lang.BOT.REPO}`,
-          "[Click Here](https://github.com/dev-caspertheghost/ghostybot)",
-          true,
-        )
-        .addField(`${lang.UTIL.SUPPORT_SERVER}`, "[Click Here](https://discord.gg/XxHrtkA)", true)
-        .addField(
-          `${lang.BOT.DASHBOARD}`,
-          `[Click Here](${process.env["NEXT_PUBLIC_DASHBOARD_URL"]})`,
-          true,
-        )
+        .addField(lang.BOT.REPO, BOT_REPO, true)
+        .addField(lang.UTIL.SUPPORT_SERVER, SUPPORT_SERVER, true)
+        .addField(`${lang.BOT.DASHBOARD}`, DASHBOARD, true)
         .setImage(
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
         );

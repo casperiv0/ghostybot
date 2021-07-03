@@ -3,7 +3,7 @@ import categories from "data/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "@utils/paginate";
-import { codeBlock } from "@discordjs/builders";
+import { codeBlock, hyperlink } from "@discordjs/builders";
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -133,17 +133,19 @@ export default class HelpCommand extends Command {
       }
 
       for (let i = 0; i < cates.length; i++) {
+        const LINK = hyperlink(
+          lang.HELP.CLICK_ME,
+          "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md",
+        );
         const name = lang.HELP.CATEGORIES[filteredCategories[i]];
+
         const categoryEmbed = this.bot.utils
           .baseEmbed(message)
           .setTitle("Help")
           .addField(name, codeBlock(cates[i].join(", ")))
           .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
           .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
-          .addField(
-            lang.HELP.FULL_CMD_LIST,
-            `[${lang.HELP.CLICK_ME}](https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md)`,
-          );
+          .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
         embeds.push(categoryEmbed);
       }

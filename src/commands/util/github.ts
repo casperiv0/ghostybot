@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import fetch from "node-fetch";
+import { hyperlink } from "@discordjs/builders";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -28,8 +29,9 @@ export default class GitHubCommand extends Command {
       }
 
       const twitter = user.twitter_username
-        ? `[@${user.twitter_username}](https://twitter.com/${user.twitter_username})`
+        ? hyperlink(`@${user.twitter_username}`, `https://twitter.com/${user.twitter_username}`)
         : "N/A";
+
       const website = user.blog || "N/A";
       const location = user.location || "N/A";
       const bio = user.bio || "N/A";

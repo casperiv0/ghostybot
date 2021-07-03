@@ -24,7 +24,7 @@ export default class CalcCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.GAMES.CALC)
-        .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, codeBlock("js", args.join(" F")))
+        .addField(`${lang.BOT_OWNER.EVAL_INPUT}:`, codeBlock("js", args.join(" ")))
         .addField(`${lang.BOT_OWNER.EVAL_OUTPUT}:`, codeBlock("js", calculation));
 
       return message.channel.send({ embeds: [embed] });
