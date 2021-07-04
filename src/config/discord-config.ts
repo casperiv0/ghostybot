@@ -21,11 +21,10 @@ export const discordConfig: ClientOptions = {
     Constants.PartialTypes.REACTION,
     Constants.PartialTypes.CHANNEL,
   ],
-  disableMentions: "everyone",
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
 
   // 5 minutes
   messageSweepInterval: 60 * 5,
-  messageCacheMaxSize: 60 * 5,
+  messageCacheLifetime: 60 * 5,
 };

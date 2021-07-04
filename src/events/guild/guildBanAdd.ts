@@ -1,4 +1,4 @@
-import { Guild, User } from "discord.js";
+import { Guild, Permissions, User } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -10,7 +10,15 @@ export default class GuildBanAddEvent extends Event {
   async execute(bot: Bot, guild: Guild, user: User) {
     try {
       if (!guild) return;
-      if (!guild.me?.permissions.has(["MANAGE_WEBHOOKS", "VIEW_AUDIT_LOG"])) return;
+      if (
+        !guild.me?.permissions.has([
+          Permissions.FLAGS.MANAGE_WEBHOOKS,
+          Permissions.FLAGS.VIEW_AUDIT_LOG,
+        ])
+      ) {
+        return;
+      }
+
       const webhook = await bot.utils.getWebhook(guild);
       if (!webhook) return;
 

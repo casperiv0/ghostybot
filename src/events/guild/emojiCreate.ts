@@ -1,16 +1,16 @@
-import { Constants, GuildEmoji } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class EmojiCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.GUILD_EMOJI_CREATE);
+    super(bot, DJS.Constants.Events.GUILD_EMOJI_CREATE);
   }
 
-  async execute(bot: Bot, emoji: GuildEmoji) {
+  async execute(bot: Bot, emoji: DJS.GuildEmoji) {
     try {
       if (!emoji.guild) return;
-      if (!emoji.guild.me?.permissions.has("MANAGE_WEBHOOKS")) {
+      if (!emoji.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(emoji.guild);

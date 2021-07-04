@@ -13,8 +13,9 @@ export default class BotInviteCommand extends Command {
   }
 
   async execute(message: Message) {
-    const botInvite = `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands bot&permissions=8`;
+    // @ts-expect-error ignore
+    const invite = this.bot.generateInvite({ scopes: ["applications.commands"], permissions: 8 });
 
-    return message.channel.send({ content: encodeURI(botInvite) });
+    return message.channel.send({ content: invite });
   }
 }

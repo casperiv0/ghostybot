@@ -1,17 +1,17 @@
-import { Constants, Message } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.MESSAGE_DELETE);
+    super(bot, DJS.Constants.Events.MESSAGE_DELETE);
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(bot: Bot, message: DJS.Message) {
     try {
       if (!message.guild?.available) return;
       if (!message.guild) return;
-      if (!message.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
+      if (!message.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
 
       const webhook = await bot.utils.getWebhook(message.guild);
       if (!webhook) return;

@@ -1,4 +1,4 @@
-import { Constants, Message, Permissions, TextChannel } from "discord.js";
+import * as DJS from "discord.js";
 import ms from "ms";
 import { saveCommands } from "@commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
@@ -8,16 +8,18 @@ import Event from "structures/Event";
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.MESSAGE_CREATE);
+    super(bot, DJS.Constants.Events.MESSAGE_CREATE);
   }
 
-  async execute(bot: Bot, message: Message) {
+  async execute(bot: Bot, message: DJS.Message) {
     try {
       if (!message?.guild?.available || !message.guild) return;
       if (message.channel.type === "dm") return;
       if (!bot.user) return;
       if (!message.guild?.me) return;
-      if (!message.channel.permissionsFor(message.guild.me)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+      if (
+        !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
+      ) {
         return;
       }
 
@@ -150,7 +152,7 @@ export default class MessageEvent extends Event {
             if (
               !ch
                 .permissionsFor(message.guild.me)
-                .has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.EMBED_LINKS])
+                .has([DJS.Permissions.FLAGS.SEND_MESSAGES, DJS.Permissions.FLAGS.EMBED_LINKS])
             ) {
               return;
             }
@@ -217,11 +219,11 @@ export default class MessageEvent extends Event {
       }
 
       if (
-        !message.channel.permissionsFor(message.guild.me)?.has(Permissions.FLAGS.EMBED_LINKS) &&
+        !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
         bot.user.id !== message.author.id
       ) {
         return message.channel.send({
-          content: `Error: I need \`${Permissions.FLAGS.EMBED_LINKS}\` to work!`,
+          content: `Error: I need \`${DJS.Permissions.FLAGS.EMBED_LINKS}\` to work!`,
         });
       }
 
@@ -259,7 +261,7 @@ export default class MessageEvent extends Event {
       if (command.options.memberPermissions) {
         const neededPerms: bigint[] = [];
         command.options.memberPermissions.forEach((perm) => {
-          if (!(message.channel as TextChannel).permissionsFor(message.member!)?.has(perm)) {
+          if (!(message.channel as DJS.TextChannel).permissionsFor(message.member!)?.has(perm)) {
             neededPerms.push(perm);
           }
         });
@@ -271,8 +273,8 @@ export default class MessageEvent extends Event {
               neededPerms
                 .map((p) => {
                   const perms: string[] = [];
-                  Object.keys(Permissions.FLAGS).map((key) => {
-                    if (Permissions.FLAGS[key] === p) {
+                  Object.keys(DJS.Permissions.FLAGS).map((key) => {
+                    if (DJS.Permissions.FLAGS[key] === p) {
                       perms.push(`\`${lang.PERMISSIONS[key]}\``);
                     }
                   });
@@ -288,7 +290,7 @@ export default class MessageEvent extends Event {
       if (command.options.botPermissions) {
         const neededPerms: bigint[] = [];
         command.options.botPermissions.forEach((perm) => {
-          if (!(message.channel as TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
+          if (!(message.channel as DJS.TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
             neededPerms.push(perm);
           }
         });

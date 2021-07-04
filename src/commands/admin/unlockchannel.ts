@@ -21,11 +21,12 @@ export default class UnLockChannelCommand extends Command {
     try {
       const channel = (message.mentions.channels.first() || message.channel) as TextChannel;
 
-      if (channel.permissionsFor(message.guild?.id)?.has("SEND_MESSAGES") === true) {
+      if (
+        channel.permissionsFor(message.guild?.id)?.has(Permissions.FLAGS.SEND_MESSAGES) === true
+      ) {
         return message.channel.send({ content: lang.ADMIN.CHAN_NOT_LOCK });
       }
 
-      // @ts-expect-error ignore
       channel.permissionOverwrites.edit(message.guild.id, {
         SEND_MESSAGES: true,
       });

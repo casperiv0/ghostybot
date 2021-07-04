@@ -33,9 +33,7 @@ export default class NukeCommand extends Command {
       const topic = channel.topic;
 
       const filter = (m: Message) => m.author.id === message.author.id;
-      const collector = message.channel.createMessageCollector(filter, {
-        time: 15000,
-      });
+      const collector = message.channel.createMessageCollector({ filter, time: 15000 });
 
       message.channel.send({
         content: lang.ADMIN.NUKE_CONFIRM,

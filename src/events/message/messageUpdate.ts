@@ -1,16 +1,17 @@
-import { Constants, Message, TextChannel } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class MessageUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.MESSAGE_UPDATE);
+    super(bot, DJS.Constants.Events.MESSAGE_UPDATE);
   }
 
-  async execute(bot: Bot, oldMsg: Message, newMsg: Message) {
+  async execute(bot: Bot, oldMsg: DJS.Message, newMsg: DJS.Message) {
     try {
       if (!newMsg.guild?.available) return;
-      if (!newMsg.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
+      if (!newMsg.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+
       const webhook = await bot.utils.getWebhook(newMsg.guild);
       if (!webhook) return;
       const guild = await bot.utils.getGuildById(newMsg.guild.id);
@@ -47,7 +48,7 @@ export default class MessageUpdateEvent extends Event {
 
       const embed = bot.utils
         .baseEmbed(newMsg)
-        .setTitle(`Message updated in **${(newMsg.channel as TextChannel).name}**`)
+        .setTitle(`Message updated in **${(newMsg.channel as DJS.TextChannel).name}**`)
         .setDescription(
           `Message send by **${
             newMsg.author?.tag || newMsg.author?.id || "Unknown"

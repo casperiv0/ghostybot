@@ -1,4 +1,4 @@
-import { Message, User, TextChannel } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -7,9 +7,13 @@ export default class StarboardNoEmptyMsgEvent extends Event {
     super(bot, "starboardNoEmptyMsg");
   }
 
-  async execute(bot: Bot, _: string, message: Message, user: User) {
+  async execute(bot: Bot, _: string, message: DJS.Message, user: DJS.User) {
     if (!message.guild?.available) return;
-    if (!(message.channel as TextChannel).permissionsFor(message.guild.me!)?.has("SEND_MESSAGES")) {
+    if (
+      !(message.channel as DJS.TextChannel)
+        .permissionsFor(message.guild.me!)
+        ?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
+    ) {
       return;
     }
 

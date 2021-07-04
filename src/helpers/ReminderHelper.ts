@@ -1,7 +1,7 @@
+import { TextChannel, Permissions } from "discord.js";
 import Bot from "structures/Bot";
 import Helper from "structures/Helper";
 import UserModel, { IUser, Reminder } from "models/User.model";
-import { TextChannel } from "discord.js";
 
 export default class ReminderHelper extends Helper {
   constructor(bot: Bot) {
@@ -54,7 +54,7 @@ export default class ReminderHelper extends Helper {
               .setDescription(`Your timer of **${time}** has ended`)
               .addField("Reminder message", msg);
 
-            if (!channel.permissionsFor(guild.me!)?.has("SEND_MESSAGES")) return;
+            if (!channel.permissionsFor(guild.me!)?.has(Permissions.FLAGS.SEND_MESSAGES)) return;
             (channel as TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });
           });
       });

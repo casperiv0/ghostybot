@@ -28,7 +28,7 @@ export default class CloseTicketCommand extends Command {
 
       const timeout = 15000; /* 15 second timeout */
       const filter = (m: Message) => m.author.id === message.author.id;
-      const collector = message.channel.createMessageCollector(filter, { time: timeout });
+      const collector = message.channel.createMessageCollector({ filter, time: timeout });
       let canceled = false;
 
       message.channel.send({ content: lang.TICKET.CLOSING });

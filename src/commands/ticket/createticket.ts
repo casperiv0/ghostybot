@@ -79,7 +79,6 @@ export default class CreateTicketCommand extends Command {
         },
       );
 
-      // @ts-expect-error ignore
       await channel?.permissionOverwrites.create(message.guild!.id, {
         VIEW_CHANNEL: false,
       });

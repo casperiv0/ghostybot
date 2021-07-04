@@ -26,13 +26,14 @@ export default class LockChannelCommand extends Command {
         channel = message.channel as TextChannel;
       }
 
-      if (channel.permissionsFor(message.guild!.id)?.has("SEND_MESSAGES") === false) {
+      if (
+        channel.permissionsFor(message.guild!.id)?.has(Permissions.FLAGS.SEND_MESSAGES) === false
+      ) {
         return message.channel.send({
           content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,
         });
       }
 
-      // @ts-expect-error ignore
       channel.permissionOverwrites.create(message.guild!.id, {
         SEND_MESSAGES: false,
       });

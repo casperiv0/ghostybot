@@ -1,4 +1,4 @@
-import { GuildChannel } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -7,7 +7,7 @@ export default class GuildChannelTopicUpdateEvent extends Event {
     super(bot, "guildChannelTopicUpdate");
   }
 
-  async execute(bot: Bot, channel: GuildChannel, oldTopic: string, newTopic: string) {
+  async execute(bot: Bot, channel: DJS.GuildChannel, oldTopic: string, newTopic: string) {
     try {
       if (!channel.guild.available) return;
       const webhook = await bot.utils.getWebhook(channel.guild);

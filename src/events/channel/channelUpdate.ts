@@ -1,16 +1,16 @@
-import { GuildChannel, Constants } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class ChannelUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.CHANNEL_UPDATE);
+    super(bot, DJS.Constants.Events.CHANNEL_UPDATE);
   }
 
-  async execute(bot: Bot, oldChannel: GuildChannel, newChannel: GuildChannel) {
+  async execute(bot: Bot, oldChannel: DJS.GuildChannel, newChannel: DJS.GuildChannel) {
     try {
       if (!oldChannel.guild?.available) return;
-      if (!oldChannel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
+      if (!oldChannel.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
 
       const webhook = await bot.utils.getWebhook(newChannel.guild);
       if (!webhook) return;

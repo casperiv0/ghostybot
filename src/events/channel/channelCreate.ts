@@ -1,16 +1,16 @@
-import { GuildChannel, Constants } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class ChannelCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.CHANNEL_CREATE);
+    super(bot, DJS.Constants.Events.CHANNEL_CREATE);
   }
 
-  async execute(bot: Bot, channel: GuildChannel) {
+  async execute(bot: Bot, channel: DJS.GuildChannel) {
     try {
       if (!channel.guild?.available) return;
-      if (!channel.guild.me?.permissions.has("MANAGE_WEBHOOKS")) return;
+      if (!channel.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
 
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;
