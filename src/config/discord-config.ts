@@ -24,4 +24,8 @@ export const discordConfig: ClientOptions = {
   disableMentions: "everyone",
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
+
+  // 5 minutes
+  messageSweepInterval: 60 * 5,
+  messageCacheMaxSize: 60 * 5,
 };

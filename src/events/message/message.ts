@@ -47,7 +47,7 @@ export default class MessageEvent extends Event {
         if (!sticky) return;
         if (message.author.bot || message.content === sticky?.message) return;
 
-        const msg = message.channel.messages.cache.get(sticky?.message_id);
+        const msg = await message.channel.messages.fetch(sticky.message_id);
         if (msg) {
           msg.deletable && msg?.delete();
         }

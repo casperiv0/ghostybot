@@ -185,7 +185,7 @@ export default class Util {
 
       const name = error.name || "N/A";
       let stack = error.stack || error;
-      let jsonString = "";
+      let jsonString: string | undefined = "";
 
       try {
         jsonString = JSON.stringify(requestData.json, null, 2);
@@ -208,7 +208,7 @@ export default class Util {
         .addField("Code", code.toString(), true)
         .addField("httpStatus", httpStatus.toString(), true)
         .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", codeBlock(jsonString.substr(0, 2045)))
+        .addField("Request data", codeBlock(jsonString?.substr(0, 2045)))
         .setDescription(codeBlock(stack as string))
         .setColor(type === "error" ? "RED" : "ORANGE");
 

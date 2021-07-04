@@ -33,9 +33,7 @@ export default class RrRemoveCommand extends Command {
 
       let msg: Message | undefined;
       try {
-        msg =
-          (channel as TextChannel).messages.cache.get(messageId as Snowflake) ||
-          (await (channel as TextChannel).messages.fetch(messageId as Snowflake));
+        msg = await (channel as TextChannel).messages.fetch(messageId as Snowflake);
       } catch {
         return message.channel.send({ content: lang.REACTIONS.FOUND_NO_MSG });
       }
