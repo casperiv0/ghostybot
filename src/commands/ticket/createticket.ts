@@ -63,6 +63,11 @@ export default class CreateTicketCommand extends Command {
         });
       }
 
+      const parentId =
+        guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled"
+          ? guild.ticket_data.parent_id
+          : undefined;
+
       const channel = await message.guild?.channels.create(
         lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
         {
@@ -70,12 +75,9 @@ export default class CreateTicketCommand extends Command {
           nsfw: false,
           topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
           permissionOverwrites: DEFAULT_PERMS,
+          parent: parentId as Snowflake | undefined,
         },
       );
-
-      if (guild.ticket_data.parent_id !== null && guild.ticket_data.parent_id !== "Disabled") {
-        channel?.setParent(guild.ticket_data.parent_id as Snowflake);
-      }
 
       // @ts-expect-error ignore
       await channel?.permissionOverwrites.create(message.guild!.id, {

@@ -14,6 +14,13 @@ export default class InviteInfoCommand extends Command {
       aliases: ["inviteinfo"],
       requiredArgs: [{ name: "code" }],
     });
+
+    this.resolveCode = this.resolveCode.bind(this);
+  }
+
+  resolveCode(str: string) {
+    const split = str.split("/");
+    return split[split.length - 1];
   }
 
   async execute(message: Message, args: string[]) {
@@ -23,7 +30,9 @@ export default class InviteInfoCommand extends Command {
       const [code] = args;
 
       const data: APIInvite = await fetch(
-        `https://discord.com/api/v9/invites/${code}?with_counts=true&with_expiration=true`,
+        `https://discord.com/api/v9/invites/${this.resolveCode(
+          code,
+        )}?with_counts=true&with_expiration=true`,
       ).then((r) => r.json());
 
       if ((data as any).message) {
@@ -45,6 +54,7 @@ export default class InviteInfoCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`Invite: ${data.code}`)
+        .setDescription(data.guild?.description || "No description")
         .addField(
           "General Info",
           `
@@ -68,6 +78,11 @@ export default class InviteInfoCommand extends Command {
         const extension = data.guild.icon.startsWith("a_") ? "gif" : "webp";
         const url = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.${extension}?size=1024`;
         embed.setThumbnail(url);
+      }
+
+      if (data.guild?.banner) {
+        const url = `https://cdn.discordapp.com/banners/${data.guild.id}/${data.guild.banner}.webp?size=1024`;
+        embed.setImage(url);
       }
 
       return message.channel.send({ embeds: [embed] });
