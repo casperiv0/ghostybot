@@ -46,18 +46,12 @@ export default class CreateTicketCommand extends Command {
 
       const DEFAULT_PERMS: OverwriteResolvable[] = [
         {
-          type: "member",
           id: message.author.id,
           allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
         },
         {
-          type: "member",
-          id: `${this.bot.user?.id!}`,
+          id: this.bot.user?.id!,
           allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES],
-        },
-        {
-          id: message.guild?.roles.everyone.id!,
-          deny: [Permissions.FLAGS.VIEW_CHANNEL],
         },
       ];
 
@@ -83,7 +77,16 @@ export default class CreateTicketCommand extends Command {
         channel?.setParent(guild.ticket_data.parent_id as Snowflake);
       }
 
+      // @ts-expect-error ignore
+      await channel?.permissionOverwrites.create(message.guild!.id, {
+        VIEW_CHANNEL: false,
+      });
+
       channel?.send({ content: `${lang.TICKET.CREATED} <@${message.author.id}>` });
+
+      message.channel.send({
+        content: `Ticket was successfully created in ${channel?.toString()}`,
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send({ content: lang.GLOBAL.ERROR });
