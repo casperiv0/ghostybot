@@ -334,10 +334,10 @@ export default class Util {
   async createStarboard(
     channel: { id: string | undefined; guild: { id: string | undefined } },
     options,
-    old: { channelID: DJS.Snowflake | undefined; emoji: string | undefined },
+    old: { channelId: DJS.Snowflake | undefined; emoji: string | undefined },
   ) {
     if (old) {
-      old.channelID && old.emoji && this.bot.starboardsManager.delete(old.channelID, old.emoji);
+      old.channelId && old.emoji && this.bot.starboardsManager.delete(old.channelId, old.emoji);
     }
 
     this.bot.starboardsManager.create(channel as unknown as DJS.Channel, {

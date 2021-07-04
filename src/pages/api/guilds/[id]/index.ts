@@ -120,7 +120,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           try {
             const starboard = req.bot.starboardsManager.starboards.find(
               (s) =>
-                s.channelID === g?.starboards_data?.channel_id &&
+                s.channelId === g?.starboards_data?.channel_id &&
                 s.options.emoji === g?.starboards_data?.emoji,
             );
 
@@ -133,7 +133,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
                 emoji: body?.starboards_data?.emoji || "⭐",
               },
               {
-                channelID: starboard?.channelID as DJS.Snowflake,
+                channelId: starboard?.channelId as DJS.Snowflake,
                 emoji: starboard?.options.emoji,
               },
             );
