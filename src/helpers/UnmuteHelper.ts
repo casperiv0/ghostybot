@@ -48,7 +48,7 @@ export default class ReminderHelper extends Helper {
             guild.channels.cache.forEach((channel) => {
               if (channel instanceof ThreadChannel) return;
 
-              channel.permissionOverwrites.get(user.user_id)?.delete();
+              channel.permissionOverwrites.delete(user.user_id);
             });
 
             const embed = this.bot.utils

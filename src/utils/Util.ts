@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import dayJs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import { codeBlock } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import Bot from "structures/Bot";
 import UserModel, { IUser, UserData } from "models/User.model";
@@ -9,7 +10,6 @@ import WarningModal, { IWarning } from "models/Warning.model";
 import GuildModel, { GuildData, IGuild } from "models/Guild.model";
 import ApiRequest from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
-import { codeBlock } from "@discordjs/builders";
 
 dayJs.extend(utc);
 dayJs.extend(timezone);
@@ -194,7 +194,7 @@ export default class Util {
       }
 
       if (jsonString?.length >= 2048) {
-        jsonString = `${jsonString.substr(0, 2045)}...`;
+        jsonString = jsonString ? `${jsonString?.substr(0, 2045)}...` : "";
       }
 
       if (typeof stack === "string" && stack.length >= 2048) {
@@ -367,9 +367,11 @@ export default class Util {
     guild.channels.cache.forEach((channel) => {
       if (channel instanceof DJS.ThreadChannel) return;
 
-      channel.updateOverwrite(memberId, perms as DJS.PermissionOverwriteOptions).catch((e) => {
-        this.bot.logger.error("updateMuteChannelPerms", e);
-      });
+      channel.permissionOverwrites
+        .create(memberId, perms as DJS.PermissionOverwriteOptions)
+        .catch((e) => {
+          this.bot.logger.error("updateMuteChannelPerms", e);
+        });
     });
   }
 

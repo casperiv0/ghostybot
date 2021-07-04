@@ -32,10 +32,9 @@ export default class LockChannelCommand extends Command {
         });
       }
 
-      channel.updateOverwrite(message.guild!.id, {
-        deny: ["SEND_MESSAGES"],
-        allow: [],
-        id: message.guild!.id,
+      // @ts-expect-error ignore
+      channel.permissionOverwrites.create(message.guild!.id, {
+        SEND_MESSAGES: false,
       });
 
       message.channel.send({

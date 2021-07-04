@@ -42,7 +42,7 @@ export default class UnMuteCommand extends Command {
       message.guild.channels.cache.forEach((channel) => {
         if (channel instanceof ThreadChannel) return;
 
-        channel.permissionOverwrites.get(mutedMember.id)?.delete();
+        channel.permissionOverwrites.delete(mutedMember.id);
       });
 
       const user = await this.bot.utils.getUserById(mutedMember.user.id, message.guild?.id);
