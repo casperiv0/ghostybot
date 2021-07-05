@@ -13,8 +13,10 @@ export default class BotInviteCommand extends Command {
   }
 
   async execute(message: Message) {
-    // @ts-expect-error ignore
-    const invite = this.bot.generateInvite({ scopes: ["applications.commands"], permissions: 8 });
+    const invite = this.bot.generateInvite({
+      scopes: ["applications.commands"],
+      permissions: `${8}`,
+    });
 
     return message.channel.send({ content: invite });
   }

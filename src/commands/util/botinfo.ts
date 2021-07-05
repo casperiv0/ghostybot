@@ -91,10 +91,6 @@ ${BOT_INVITE}`,
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
         );
 
-      if (this.bot.user && this.bot.user.avatar) {
-        embed.setThumbnail(this.bot.user.avatarURL({ dynamic: true })!);
-      }
-
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

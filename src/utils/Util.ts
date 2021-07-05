@@ -529,12 +529,12 @@ export default class Util {
   }
 
   isBotInSameChannel(message: DJS.Message) {
-    const voiceChannelId = message.member?.voice.channelID;
+    const voiceChannelId = message.member?.voice.channelId;
 
     if (!voiceChannelId) return false;
     if (!message.guild?.me) return false;
 
-    return message.guild.me.voice.channelID === voiceChannelId;
+    return message.guild.me.voice.channelId === voiceChannelId;
   }
 
   resolveCommand(nameOrAlias: string) {

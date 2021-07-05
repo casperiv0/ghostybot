@@ -35,7 +35,7 @@ export default class DocsInteraction extends Interaction {
   }
 
   async execute(interaction: CommandInteraction, args: string[]) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guildID!);
+    const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
       const [query, branch = "stable"] = args;

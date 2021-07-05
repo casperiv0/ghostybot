@@ -77,7 +77,7 @@ export default class BotInfoInteraction extends Interaction {
   }
 
   async execute(interaction: CommandInteraction, args: string[]) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guildID!);
+    const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
       const [firstCommandOption] = args;

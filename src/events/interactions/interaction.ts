@@ -10,19 +10,19 @@ export default class InteractionEvent extends Event {
   async execute(bot: Bot, interaction: DJS.Interaction) {
     if (!interaction.isCommand()) return;
 
-    await bot.application?.commands.fetch(interaction.commandID).catch(() => null);
+    await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
 
-    if (!interaction.guildID) return;
+    if (!interaction.guildId) return;
 
     try {
       const command = bot.interactions.get(interaction.command?.name ?? "");
 
       if (!command) {
-        if (!interaction.commandID) return;
+        if (!interaction.commandId) return;
 
-        const guild = await bot.utils.getGuildById(interaction.guildID);
+        const guild = await bot.utils.getGuildById(interaction.guildId);
 
-        const command = guild?.slash_commands.find((c) => c.slash_cmd_id === interaction.commandID);
+        const command = guild?.slash_commands.find((c) => c.slash_cmd_id === interaction.commandId);
 
         if (!command) {
           return interaction.reply({ content: "An error has occurred" });
