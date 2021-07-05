@@ -1,19 +1,3 @@
-/* definitions created by Dev-CasperTheGhost */
-
-declare module "cowsay" {
-  export interface SayOptions {
-    text: string;
-    T?: string;
-    e?: string;
-  }
-
-  namespace CowSay {
-    export function say(options: SayOptions);
-  }
-
-  export = CowSay;
-}
-
 declare module "word-definition" {
   interface ReturnData {
     word: string;
@@ -37,15 +21,4 @@ declare module "word-definition" {
   }
 
   export = Wd;
-}
-
-declare module "one-liner-joke" {
-  interface Options {
-    exclude_tags?: string[];
-  }
-  namespace Joke {
-    export function getRandomJoke(opts: Options): { body: string };
-  }
-
-  export = Joke;
 }

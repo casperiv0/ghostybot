@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 206 commands.
+GhostyBot has a total of 205 commands.
 
 Click any of the command names for more information
 
@@ -201,7 +201,7 @@ Click any of the command names for more information
 
 ### Category: games
 
-**Total commands: 19**
+**Total commands: 18**
 
 [8ball:](#8ball) 8Ball
 
@@ -236,8 +236,6 @@ Click any of the command names for more information
 [randomnumber:](#randomnumber) Returns a random 6 digit number
 
 [rps:](#rps) Rock Paper Scissors
-
-[tictactoe:](#tictactoe) Play a game of tictactoe
 
 [wyr:](#wyr) Would you rather ...
 
@@ -2294,24 +2292,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `rock | paper | scissors(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## tictactoe
-
-**Category:** games
-
-**Description:** Play a game of tictactoe
-
-**Usage:** `N/A`
-
-**Aliases:** `ttt`, `tttoe`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `member(string)`
 
 [Back to top](#ghostybot-command-list)
 
