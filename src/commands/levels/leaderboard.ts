@@ -2,7 +2,7 @@ import Command from "structures/Command";
 import Bot from "structures/Bot";
 import { Message } from "discord.js";
 import UserModel, { IUser } from "models/User.model";
-import places from "data/places.json";
+import places from "assets/json/places.json";
 
 export default class XpCommand extends Command {
   constructor(bot: Bot) {

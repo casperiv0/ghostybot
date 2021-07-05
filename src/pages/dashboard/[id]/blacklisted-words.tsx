@@ -7,7 +7,7 @@ import Link from "next/link";
 import AlertMessage from "@components/AlertMessage";
 import { openModal } from "@components/modal";
 import AddBlacklistedWord from "@components/modal/add-blacklistedword";
-import Logger from "handlers/Logger";
+import Logger from "utils/Logger";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

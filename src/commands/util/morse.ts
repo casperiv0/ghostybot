@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import morseCode from "data/morse";
+import morseCode from "assets/ts/morse";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 

@@ -1,6 +1,6 @@
 import DJS from "discord.js";
 import { NextApiResponse } from "next";
-import { hiddenGuildItems } from "data/hidden-items";
+import hiddenGuildItems from "assets/json/hidden-items.json";
 import ApiRequest from "types/ApiRequest";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {

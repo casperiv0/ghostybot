@@ -1,6 +1,6 @@
 import * as React from "react";
 import Modal, { closeModal } from "./index";
-import Logger from "handlers/Logger";
+import Logger from "utils/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";

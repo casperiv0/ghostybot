@@ -1,5 +1,5 @@
 import { Message, Permissions } from "discord.js";
-import categories from "data/categories.json";
+import categories from "assets/json/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 

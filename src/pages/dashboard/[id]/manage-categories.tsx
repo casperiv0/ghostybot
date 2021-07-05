@@ -6,7 +6,7 @@ import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import AlertMessage from "@components/AlertMessage";
-import categories from "data/categories.json";
+import categories from "assets/json/categories.json";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
 import { useTranslation } from "react-i18next";

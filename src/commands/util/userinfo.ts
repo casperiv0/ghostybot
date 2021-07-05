@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import badges from "data/badges";
+import badges from "assets/ts/badges";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 

@@ -11,8 +11,8 @@ import EventHandler from "handlers/EventHandler";
 import MongStarboardsManager from "handlers/StarboardsManager";
 import MongoGiveawayManager from "handlers/GiveawayManager";
 import Command from "./Command";
-import Logger from "handlers/Logger";
-import Util from "@utils/Util";
+import Logger from "utils/Logger";
+import Util from "utils/Util";
 import Interaction from "./Interaction";
 import { discordConfig } from "@config/discord-config";
 
@@ -62,8 +62,7 @@ class Bot extends Client {
 
     this.player = new Player(this, {
       autoSelfDeaf: true,
-      // leaveOnEmpty: true,
-      // leaveOnEnd: true,
+      enableLive: false,
       leaveOnStop: true,
       ytdlDownloadOptions: {
         filter: "audioonly",

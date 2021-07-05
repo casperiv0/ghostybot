@@ -1,8 +1,8 @@
 import { Message, MessageEmbed, Permissions } from "discord.js";
-import categories from "data/categories.json";
+import categories from "assets/json/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import paginate from "@utils/paginate";
+import paginate from "utils/paginate";
 import { codeBlock, hyperlink } from "@discordjs/builders";
 
 export default class HelpCommand extends Command {

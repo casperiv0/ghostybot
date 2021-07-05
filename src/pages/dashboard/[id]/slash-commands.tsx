@@ -7,7 +7,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Logger from "handlers/Logger";
+import Logger from "utils/Logger";
 import { openModal } from "@components/modal";
 import CreateCommandModal from "@components/modal/create-command";
 import EditCommandModal from "@components/modal/edit-command";

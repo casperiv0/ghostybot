@@ -1,7 +1,7 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
 import { Collection, Permissions } from "discord.js";
-import categoriesData from "data/categories.json";
+import categoriesData from "assets/json/categories.json";
 import Bot from "structures/Bot";
 import Command from "structures/Command";
 

@@ -1,4 +1,4 @@
-export const hiddenGuildItems = [
+[
   "features",
   "members",
   "presences",
@@ -54,5 +54,5 @@ export const hiddenGuildItems = [
   "preferredLocale",
   "discoverySplash",
   "region",
-  "permissions",
-];
+  "permissions"
+]

@@ -28,15 +28,15 @@
       "@/*": ["./*"],
       "structures/*": ["./src/structures/*"],
       "handlers/*": ["./src/handlers/*"],
-      "data/*": ["./src/data/*"],
       "models/*": ["./src/models/*"],
       "types/*": ["./src/interfaces/*"],
-      "@utils/*": ["./src/utils/*"],
+      "utils/*": ["./src/utils/*"],
       "@components/*": ["./src/dashboard/components/*"],
       "@commands/*": ["./src/commands/*"],
       "@scripts/*": ["./src/scripts/*"],
       "@locales/*": ["./src/locales/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "assets/*": ["./src/assets/*"]
     },
     "moduleResolution": "node",
     "skipLibCheck": true

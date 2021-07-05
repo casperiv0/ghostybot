@@ -5,8 +5,8 @@ P.Promise.config({
   longStackTraces: true,
 });
 
-import "@utils/checkValid";
-import "@utils/database";
+import "utils/checkValid";
+import "utils/database";
 import logs from "discord-logs";
 import Bot from "structures/Bot";
 

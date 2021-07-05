@@ -1,6 +1,6 @@
 import { NextApiResponse } from "next";
 import { Permissions } from "discord.js";
-import { hiddenGuildItems } from "data/hidden-items";
+import hiddenGuildItems from "assets/json/hidden-items.json";
 import ApiRequest from "types/ApiRequest";
 import Guild from "types/Guild";
 

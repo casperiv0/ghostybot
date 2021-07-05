@@ -8,7 +8,7 @@ import { openModal } from "@components/modal";
 import AddStoreItem from "@components/modal/add-store-item";
 import { useRouter } from "next/router";
 import AlertMessage from "@components/AlertMessage";
-import Logger from "handlers/Logger";
+import Logger from "utils/Logger";
 import Guild from "types/Guild";
 import Loader from "@components/Loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
