@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { bold } from "@discordjs/builders";
 import badges from "assets/ts/badges";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -51,15 +52,15 @@ export default class UserInfoCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .addField(`**${lang.MEMBER.ID}**`, id, true)
-        .addField(`**${lang.MEMBER.USERNAME}**`, username, true)
-        .addField(`**${lang.MEMBER.TAG}**`, tag, true)
-        .addField(`**${lang.MEMBER.BADGES}**`, userFlags.length > 0 ? userFlags : "None", true)
-        .addField(`**${lang.MEMBER.CREATED_ON}**`, `${createdAt} (${tz})`, true)
-        .addField(`**${lang.MEMBER.JOINED_AT}**`, `${joinedAt} (${tz})`, true)
-        .addField(`**${lang.MEMBER.NICKNAME}**`, nickname, true)
-        .addField(`**${lang.MEMBER.ROLES} (${roleCount})**`, roles)
         .setTitle(`${username}'s info`)
+        .addField(bold(lang.MEMBER.ID), id, true)
+        .addField(bold(lang.MEMBER.USERNAME), username, true)
+        .addField(bold(lang.MEMBER.TAG), tag, true)
+        .addField(bold(lang.MEMBER.BADGES), userFlags.length > 0 ? userFlags : "None", true)
+        .addField(bold(lang.MEMBER.CREATED_ON), `${createdAt} (${tz})`, true)
+        .addField(bold(lang.MEMBER.JOINED_AT), `${joinedAt} (${tz})`, true)
+        .addField(bold(lang.MEMBER.NICKNAME), nickname, true)
+        .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
 
       message.channel.send({ embeds: [embed] });

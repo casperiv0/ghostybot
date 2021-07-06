@@ -1,9 +1,9 @@
 import { Message, MessageEmbed, Permissions } from "discord.js";
+import { hyperlink, inlineCode } from "@discordjs/builders";
 import categories from "assets/json/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "utils/paginate";
-import { codeBlock, hyperlink } from "@discordjs/builders";
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -41,7 +41,7 @@ export default class HelpCommand extends Command {
       if (cmdArgs && categories.includes(cmdArgs.toLowerCase())) {
         const cmds = commands
           .filter((cmd) => this.findCategory(cmd) === cmdArgs.toLowerCase())
-          .map(({ name }) => name)
+          .map(({ name }) => inlineCode(name))
           .join(", ");
 
         if (cmds.length < 0) {
@@ -52,24 +52,22 @@ export default class HelpCommand extends Command {
           .baseEmbed(message)
           .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
 
-        embed.setDescription(codeBlock(cmds));
+        embed.setDescription(cmds);
         return message.channel.send({ embeds: [embed] });
       } else if (cmdArgs) {
-        let cmd = commands.find((cmd) => cmd.name.toLowerCase() === cmdArgs.toLowerCase());
+        const cmd = this.findCommand(cmdArgs, commands);
 
         if (!cmd) {
-          cmd = commands.find(
-            (cmd) => cmd.name.toLowerCase() === this.bot.aliases.get(cmdArgs.toLowerCase()),
-          );
+          return message.channel.send({ content: lang.HELP.CMD_NOT_FOUND });
         }
 
-        if (!cmd) return message.channel.send({ content: lang.HELP.CMD_NOT_FOUND });
-
-        let aliases: string[] | string;
-        let options: string[] | string;
+        let aliases: string;
+        let options: string;
         let cooldown: string;
-        let memberPerms: string[] | string;
-        let botPerms: string[] | string;
+        let memberPerms: string;
+        let botPerms: string;
+        let usage: string;
+        let description: string;
 
         if ("category" in cmd && cmd.category === "custom") {
           const embed = this.bot.utils
@@ -83,13 +81,35 @@ export default class HelpCommand extends Command {
         }
 
         if ("options" in cmd && cmd.options.category !== "custom") {
-          aliases = cmd.options.aliases
-            ? cmd.options.aliases.map((alias) => alias).join(", ")
-            : lang.GLOBAL.NONE;
-          options = cmd.options.options
-            ? cmd.options.options.map((option) => option).join(", ")
-            : lang.GLOBAL.NONE;
-          cooldown = cmd.options.cooldown ? `${cmd.options.cooldown}s` : "3s";
+          if (cmd.options.aliases) {
+            aliases = cmd.options.aliases.map((alias) => alias).join(", ");
+          } else {
+            aliases = lang.GLOBAL.NONE;
+          }
+
+          if (cmd.options.options) {
+            options = cmd.options.options.map((option) => option).join(", ");
+          } else {
+            options = lang.GLOBAL.NONE;
+          }
+
+          if (cmd.options.cooldown) {
+            cooldown = `${cmd.options.cooldown}s`;
+          } else {
+            cooldown = "3s";
+          }
+
+          if (cmd.options.usage) {
+            usage = `${prefix}${cmd.name} ${cmd.options.usage}`;
+          } else {
+            usage = lang.GLOBAL.NOT_SPECIFIED;
+          }
+
+          if (cmd.options.description) {
+            description = cmd.options.description;
+          } else {
+            description = lang.GLOBAL.NOT_SPECIFIED;
+          }
 
           memberPerms = getMemberPermissions(cmd, lang).join(", ");
           botPerms = getBotPermissions(cmd, lang).join(", ");
@@ -97,23 +117,14 @@ export default class HelpCommand extends Command {
           const embed = this.bot.utils
             .baseEmbed(message)
             .addField(lang.HELP.ALIASES, aliases, true)
-            .addField(lang.HELP.COOLDOWN, `${cooldown}`, true)
-            .addField(
-              lang.HELP.USAGE,
-              cmd.options.usage
-                ? `${prefix}${cmd.name} ${cmd.options.usage}`
-                : lang.GLOBAL.NOT_SPECIFIED,
-              true,
-            )
+            .addField(lang.HELP.COOLDOWN, cooldown, true)
+            .addField(lang.HELP.USAGE, usage, true)
             .addField(lang.UTIL.CATEGORY, cmd.options.category, true)
-            .addField(
-              lang.UTIL.DESCRIPTION,
-              cmd.options.description ? cmd.options.description : lang.GLOBAL.NOT_SPECIFIED,
-              true,
-            )
+            .addField(lang.UTIL.DESCRIPTION, description, true)
             .addField(lang.HELP.OPTIONS, options, true)
             .addField(lang.HELP.BOT_PERMS, botPerms, true)
             .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
+
           return message.channel.send({ embeds: [embed] });
         }
       }
@@ -127,7 +138,7 @@ export default class HelpCommand extends Command {
       for (let i = 0; i < filteredCategories.length; i++) {
         const category = commands
           .filter((cmd) => this.findCategory(cmd) === filteredCategories[i])
-          .map(({ name }) => name);
+          .map(({ name }) => inlineCode(name));
 
         cates.push(category);
       }
@@ -142,9 +153,9 @@ export default class HelpCommand extends Command {
         const categoryEmbed = this.bot.utils
           .baseEmbed(message)
           .setTitle("Help")
-          .addField(name, codeBlock(cates[i].join(", ")))
+          .addField(name, cates[i].join(", "))
           .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
-          .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", `${prefix}`))
+          .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
           .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
         embeds.push(categoryEmbed);
@@ -159,6 +170,16 @@ export default class HelpCommand extends Command {
 
   findCategory(cmd: Command | { name: string; category: string }): string {
     return "options" in cmd ? cmd.options.category : cmd.category;
+  }
+
+  findCommand(args: string, commands: (Command | { name: string; category: string })[]) {
+    let command = commands.find((cmd) => cmd.name.toLowerCase() === args.toLowerCase());
+    if (command) return command;
+
+    const filter = (cmd) => cmd.name.toLowerCase() === this.bot.aliases.get(args.toLowerCase());
+    command = commands.find(filter);
+
+    return command;
   }
 }
 
