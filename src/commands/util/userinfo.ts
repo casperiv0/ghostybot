@@ -12,6 +12,7 @@ export default class UserInfoCommand extends Command {
       usage: "<user>",
       category: "util",
       aliases: ["whois", "user", "u"],
+      typing: true,
     });
   }
 

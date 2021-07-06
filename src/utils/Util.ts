@@ -243,7 +243,12 @@ export default class Util {
         (message.guild.members.cache.find((m) => m.user.tag === args[index]) as DJS.GuildMember);
 
       if (!member) {
-        member = await message.guild.members.fetch(arg)[0];
+        const fetched = await message.guild.members.fetch(arg).catch(() => null);
+
+        if (fetched) {
+          // eslint-disable-next-line
+          member = fetched;
+        }
       }
 
       if (!member && options?.allowAuthor) {
