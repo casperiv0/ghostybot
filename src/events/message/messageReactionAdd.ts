@@ -53,6 +53,10 @@ export default class MessageReactionAddEvent extends Event {
       if (!channel) return;
       if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
+      if (!channel?.permissionsFor(this.bot.user?.id!)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
+        return;
+      }
+
       const msg = await channel.messages.fetch(dbReaction.message_id).catch(() => null);
       if (!msg) return;
 

@@ -48,6 +48,13 @@ export default class MessageEvent extends Event {
       if (isSticky) {
         if (!sticky) return;
         if (message.author.bot || message.content === sticky?.message) return;
+        if (
+          !message.channel
+            ?.permissionsFor(message.guild.me)
+            ?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)
+        ) {
+          return;
+        }
 
         const msg = await message.channel.messages.fetch(sticky.message_id);
         if (msg) {

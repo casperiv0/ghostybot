@@ -1,4 +1,4 @@
-import { Message, Snowflake, TextChannel } from "discord.js";
+import { Message, Permissions, Snowflake, TextChannel } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import ReactionsModel from "models/Reactions.model";
@@ -30,6 +30,10 @@ export default class RrRemoveCommand extends Command {
       }
 
       const channel = message.guild?.channels.cache.get(reaction.channel_id);
+
+      if (!channel?.permissionsFor(this.bot.user?.id!)?.has(Permissions.FLAGS.VIEW_CHANNEL)) {
+        return message.channel.send({ content: lang.GLOBAL.ERROR });
+      }
 
       let msg: Message | undefined;
       try {
