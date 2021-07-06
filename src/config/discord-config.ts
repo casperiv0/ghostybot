@@ -10,7 +10,12 @@ export const discordConfig: ClientOptions = {
     Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
-  partials: [Constants.PartialTypes.MESSAGE, Constants.PartialTypes.REACTION],
+  partials: [
+    Constants.PartialTypes.MESSAGE,
+    Constants.PartialTypes.REACTION,
+    Constants.PartialTypes.GUILD_MEMBER,
+    Constants.PartialTypes.USER,
+  ],
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
 
