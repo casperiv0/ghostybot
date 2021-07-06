@@ -14,7 +14,7 @@ export default class BotInviteCommand extends Command {
 
   async execute(message: Message) {
     const invite = this.bot.generateInvite({
-      scopes: ["applications.commands"],
+      scopes: ["bot", "applications.commands"],
       permissions: `${8}`,
     });
 

@@ -12,7 +12,7 @@ module.exports = withPWA({
       {
         source: "/add",
         destination:
-          "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot applications.commands&permissions=8",
+          "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot+applications.commands&permissions=8",
         permanent: true,
       },
       {

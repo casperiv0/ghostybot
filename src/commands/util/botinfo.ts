@@ -45,7 +45,7 @@ export default class BotInfoCommand extends Command {
       );
       const BOT_INVITE = hyperlink(
         lang.BOT.INVITE_BOT,
-        `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands%20bot&permissions=8`,
+        `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands+bot&permissions=8`,
       );
 
       const embed = this.bot.utils

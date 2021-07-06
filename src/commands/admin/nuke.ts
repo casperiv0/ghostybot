@@ -40,9 +40,7 @@ export default class NukeCommand extends Command {
       });
 
       collector.on("collect", async (m) => {
-        const message = m as Message;
-
-        if (message.content?.toLowerCase() === "y") {
+        if (m.content?.toLowerCase() === "y") {
           const channel2 = await channel.clone({ position, topic: topic ?? "" });
 
           channel.delete();
@@ -52,7 +50,7 @@ export default class NukeCommand extends Command {
           });
         } else {
           collector.stop();
-          message.channel.send({
+          m.channel.send({
             content: lang.ADMIN.NUKE_CANCELED,
           });
         }

@@ -34,13 +34,11 @@ export default class CloseTicketCommand extends Command {
       message.channel.send({ content: lang.TICKET.CLOSING });
 
       collector.on("collect", (m) => {
-        const message = m as Message;
-
-        if (message.content.toLowerCase() === "cancel") {
+        if (m.content.toLowerCase() === "cancel") {
           canceled = true;
 
           collector.stop();
-          message.channel.send({ content: lang.TICKET.WILL_NOT_CLOSE });
+          m.channel.send({ content: lang.TICKET.WILL_NOT_CLOSE });
         }
       });
 

@@ -6,7 +6,7 @@
 
 A feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js
 
-[![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot%20applications.commands&permissions=8)
+[![Add ghostybot](./.github/add-to-discord.png)](https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=bot+applications.commands&permissions=8)
 
 [![banner](https://invidget.switchblade.xyz/XxHrtkA)](https://discord.gg/XxHrtkA)
 
