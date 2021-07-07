@@ -419,7 +419,7 @@ Click any of the command names for more information
 
 [playstore:](#playstore) Show Playstore Application Information Of Your Given Name!
 
-[pokemon:](#pokemon) Returns a pokemon information
+[pokemon:](#pokemon) Returns a pokémon information
 
 [poll:](#poll) Create a poll
 
@@ -3919,7 +3919,7 @@ Click any of the command names for more information
 
 **Category:** util
 
-**Description:** Returns a pokemon information
+**Description:** Returns a pokémon information
 
 **Usage:** `N/A`
 

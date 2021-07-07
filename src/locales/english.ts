@@ -480,7 +480,7 @@ export default {
     SPEED: "Speed",
     TOTAL: "Total",
     NOT_FOUND:
-      "No pokemon was found with {query}. Please use correct spelling and try again later.",
+      "No pokémon was found with {query}. Please use correct spelling and try again later.",
   },
   REACTIONS: {
     NO_ROLE: "Please provide a valid role",
@@ -496,7 +496,7 @@ export default {
       "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766",
     EMOJIS:
       "Please send your emojis below. The order will match with the order of the roles. Separate with a space",
-    VALID_EMOJI: "You must provide a valid emojis (no custom emojis)!",
+    VALID_EMOJI: "You must provide a valid emoji (no custom emojis)!",
   },
   REMINDER: {
     SUCCESS: "Success! I will ping you **in this channel** in {time}",

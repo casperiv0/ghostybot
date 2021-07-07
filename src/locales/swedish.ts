@@ -478,7 +478,7 @@ export default {
     SP_DEF: "SP DEF",
     SPEED: "Fart",
     TOTAL: "Total",
-    NOT_FOUND: "Ingen pokemon hittades med {query}. Använd rätt stavning och försök igen senare.",
+    NOT_FOUND: "Ingen pokémon hittades med {query}. Använd rätt stavning och försök igen senare.",
   },
   REACTIONS: {
     NO_ROLE: "Please provide a valid role",

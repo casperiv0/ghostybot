@@ -482,7 +482,7 @@ const LANG: typeof import("./english").default = {
     SPEED: "Veñocidad",
     TOTAL: "Total",
     NOT_FOUND:
-      "Ningun pokemon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
+      "Ningun pokémon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
   },
   REACTIONS: {
     NO_ROLE: "Por favor proporciona un rol valido",
