@@ -787,7 +787,7 @@ export default {
       "Ohne Zweifel.",
       "Ja - Definitiv.",
       "Du kannst darauf vertrauen.",
-      "We ich es sehe, ja.",
+      "Wie ich es sehe, ja.",
     ],
   },
   INVITE: {
