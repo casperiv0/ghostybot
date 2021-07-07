@@ -714,7 +714,7 @@ export default {
     CATEGORY_DISABLED:
       "That command is disabled because this guild disabled the {category} category",
     COMMAND_DISABLED: "That command was disabled for this guild",
-    OWNER_ONLY: "This command can only be used by the owners!",
+    OWNER_ONLY: "This command can only be used by the owner!",
     INCORRECT_ARGS: "Incorrect command usage",
     REQUIRED_ARGS: "You must provide more args: {args}",
     COOLDOWN_AMOUNT: "Please wait **{time}** more seconds before using the **{command}** command",
@@ -774,7 +774,7 @@ export default {
       "Nope.",
       "No thanks, I won’t be able to make it.",
       "No Way!",
-      " It is certain.",
+      "It is certain.",
       "It is decidedly so.",
       "Without a doubt.",
       "Yes - definitely.",

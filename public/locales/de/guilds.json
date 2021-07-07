@@ -1,5 +1,5 @@
 {
-  "beta": "Dieses Dashboard ist noch in dere Beta Phase! Einige Dinge könnten nicht funktionieren, wenn du einen Fehler gedunden hast melde ihn bitte hier: ",
+  "beta": "Dieses Dashboard ist noch in der Beta Phase! Einige Dinge könnten nicht funktionieren, wenn du einen Fehler gefunden hast melde ihn bitte hier: ",
   "select_a_server": "Bitte wähle einen Server aus",
   "bot_in_guild": "Der Bot muss in dem Server sein!",
 
@@ -43,7 +43,7 @@
   "manage_slash_commands": "Slash-Befehle verwalten",
   "add_slash_command": "Slash-Befehle hinzufügen",
   "no_slash_commands": "Dieser Server hat noch keine Benutzerdefinierten Slash-Befehle .",
-  "re_authorize": "Bitte authorisiere den Bot noch einmal mit der application.commands Berechtigung.",
+  "re_authorize": "Bitte autorisiere den Bot noch einmal mit der application.commands Berechtigung.",
 
   "settings": "Servereinstellungen",
   "save_settings": "Einstellung speichern",
@@ -65,13 +65,13 @@
   "ticket_role": "Ticket Rolle",
   "ticket_parent": "Ursprung",
 
-  "starboard": "Liste der Stars",
-  "starboard_channel": "Kanal für Liste der Stars",
-  "starboards_emoji": "Liste der Stars Emoji",
+  "starboard": "Favoritenliste",
+  "starboard_channel": "Kanal für Favoritenliste",
+  "starboards_emoji": "Favoritenlisten Emoji",
 
   "verification": "Verifizierung",
   "verify_channel": "Verizierungskanal",
-  "verified_role": "Verifierte Rolle",
+  "verified_role": "Verifizierte Rolle",
 
   "audit_logs_chn": "Kanal für Audit-Logs",
   "suggestion_channel": "Kanal für Vorschläge",
