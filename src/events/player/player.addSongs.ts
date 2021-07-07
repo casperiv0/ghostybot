@@ -21,7 +21,7 @@ export default class PlayerAddSongEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: song.user ?? null })
         .setTitle(lang.MUSIC.ADDED_TO_QUEUE.replace("{song}", song.name as string))
-        .setAuthor(`${lang.MUSIC.REQUESTED_BY.replace("{user}", track.requestedBy.username)}`);
+        .setAuthor(`${lang.MUSIC.REQUESTED_BY.replace("{user}", song.user.username)}`);
 
       if (song.thumbnail) {
         embed.setImage(song.thumbnail);
