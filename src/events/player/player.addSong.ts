@@ -9,10 +9,6 @@ export default class PlayerAddSongEvent extends Event {
 
   async execute(bot: Bot, queue: Queue, song: Song) {
     try {
-      console.log("here");
-      console.log(queue);
-      console.log(song);
-
       const channel = queue.textChannel;
 
       if (!channel?.guild?.available) return;

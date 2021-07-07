@@ -3,7 +3,7 @@ const LOCALE = {
   also_send_dm: "Es wurde auch eine Private Nachricht an die Person gesendet.",
 };
 
-export default {
+const LANG: typeof import("./english").default = {
   GLOBAL: {
     EVERYONE: "Alle",
     NOT_SPECIFIED: "Nicht festgelegt",
@@ -800,3 +800,5 @@ export default {
     EXPIRED_AT: "Abgelaufen am",
   },
 };
+
+export default LANG;
