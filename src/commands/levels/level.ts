@@ -24,7 +24,7 @@ export default class XpCommand extends Command {
         });
       }
 
-      if (member.user.bot) {
+      if (member.user?.bot) {
         return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 

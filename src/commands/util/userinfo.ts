@@ -26,12 +26,14 @@ export default class UserInfoCommand extends Command {
         return message.channel.send({ content: lang.MEMBER.NOT_FOUND });
       }
 
+      const { username, id, tag } = member.user;
+
       const { date: joinedAt, tz } = await this.bot.utils.formatDate(
-        member?.joinedAt,
+        member.joinedAt ? new Date(member.joinedAt) : null,
         message.guild?.id,
       );
       const { date: createdAt } = await this.bot.utils.formatDate(
-        member.user.createdAt,
+        new Date(member.user.createdAt),
         message.guild?.id,
       );
       const nickname = member.nickname || "None";
@@ -48,8 +50,6 @@ export default class UserInfoCommand extends Command {
           .map((r) => r)
           .join(", ") || "None";
       const roleCount = member.roles.cache.filter((r) => r.id !== message.guild?.id).size;
-
-      const { username, id, tag } = member.user;
 
       const embed = this.bot.utils
         .baseEmbed(message)

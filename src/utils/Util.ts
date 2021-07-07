@@ -242,7 +242,7 @@ export default class Util {
         message.guild.members.cache.find((m) => m.user.id === args[index]) ||
         (message.guild.members.cache.find((m) => m.user.tag === args[index]) as DJS.GuildMember);
 
-      if (!member) {
+      if (!member && arg) {
         const fetched = await message.guild.members.fetch(arg).catch(() => null);
 
         if (fetched) {
@@ -355,6 +355,13 @@ export default class Util {
   }
 
   async formatDate(date: string | Date | number | null, guildId: string | undefined) {
+    if (date === null) {
+      return {
+        date: null,
+        tz: null,
+      };
+    }
+
     const tz = await (await this.getGuildById(guildId))?.timezone;
     const m = dayJs.tz(`${date}`, tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a");
 
