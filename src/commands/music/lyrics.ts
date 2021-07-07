@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import { Track } from "discord-player";
+import { Song } from "distube";
 
 export default class LyricsCommand extends Command {
   constructor(bot: Bot) {
@@ -17,36 +17,39 @@ export default class LyricsCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const playing = this.bot.player.isPlaying(message);
       const queue = this.bot.player.getQueue(message);
-      const np = playing || queue ? this.bot.player.nowPlaying(message) : false;
-      const title = args.join(" ") || (np as Track)?.title;
+      const playing = queue?.playing;
+      const np = playing || queue ? queue?.songs[0] : false;
+      const title = args.join(" ") || (np as Song)?.name;
 
-      const lyrics = await this.bot.lyricsClient.search(title);
+      const lyrics = await this.bot.lyricsClient.search(title as string);
 
       if (!lyrics) {
         return message.channel.send({
-          content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
+          content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title as string),
         });
       }
 
-      const songTitle = lyrics.title || (np && np.title);
-      const songAuthor = (lyrics.artist?.name ?? "Unknown") || (np && np.author);
-      const songThumbnail = lyrics.thumbnail || (np as Track).thumbnail;
+      const songTitle = (lyrics.title || (np && np.name)) ?? "Unknown";
+      const songAuthor = (lyrics.artist?.name || (np && np.uploader.name)) ?? "Unknown";
+      const songThumbnail = lyrics.thumbnail || (np as Song).thumbnail;
       const songLyrics = lyrics.lyrics as string;
 
-      const lyricsEmbed = this.bot.utils
+      const embed = this.bot.utils
         .baseEmbed(message)
         .setAuthor(songAuthor.toString())
         .setTitle(songTitle.toString())
-        .setDescription(songLyrics)
-        .setThumbnail(songThumbnail);
+        .setDescription(songLyrics);
 
-      if (lyricsEmbed.description!.length >= 2048) {
-        lyricsEmbed.setDescription(`${songLyrics.substr(0, 2045)}...`);
+      if (songThumbnail) {
+        embed.setThumbnail(songThumbnail);
       }
 
-      return message.channel.send({ embeds: [lyricsEmbed] });
+      if (embed.description!.length >= 2048) {
+        embed.setDescription(`${songLyrics.substr(0, 2045)}...`);
+      }
+
+      return message.channel.send({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send({ content: lang.GLOBAL.ERROR });

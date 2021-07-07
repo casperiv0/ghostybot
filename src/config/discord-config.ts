@@ -9,6 +9,7 @@ export const discordConfig: ClientOptions = {
     Intents.FLAGS.GUILD_INTEGRATIONS,
     Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_VOICE_STATES,
   ],
   partials: [
     Constants.PartialTypes.GUILD_MEMBER,

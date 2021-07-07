@@ -21,11 +21,7 @@ export default class SkipCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
-      if (!queue) {
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 

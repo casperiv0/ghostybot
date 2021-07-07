@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -20,10 +20,6 @@ export default class ResumeCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
       if (!queue) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
@@ -33,6 +29,12 @@ export default class ResumeCommand extends Command {
       }
 
       this.bot.player.resume(message);
+
+      if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {
+        message.react("⏯️");
+      } else {
+        message.reply({ content: "⏯️" });
+      }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return message.channel.send({ content: lang.GLOBAL.ERROR });

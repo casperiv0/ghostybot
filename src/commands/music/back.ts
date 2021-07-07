@@ -21,15 +21,12 @@ export default class BackCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
+
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
-      if (!queue) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
-      if (queue.previousTracks.length < 1) {
+      if (queue.previousSongs.length < 1) {
         return message.channel.send({ content: lang.MUSIC.NO_PREV_QUEUE });
       }
 
@@ -37,7 +34,7 @@ export default class BackCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
-      this.bot.player.back(message);
+      this.bot.player.previous(message);
 
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {
         message.react("👍");

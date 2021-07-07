@@ -8,18 +8,22 @@ export default class LoopCommand extends Command {
       name: "loop",
       description: "Loop a song that is playing",
       category: "music",
+      requiredArgs: [{ name: "Repeat Type", type: "number" }],
+      options: ["0 (disabled)", "1 (repeat song)", "2 (repeat entire queue)"],
     });
   }
 
-  async execute(message: Message) {
+  async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
+      const [type] = args;
+
       if (!message.member?.voice.channel) {
         return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
@@ -27,13 +31,7 @@ export default class LoopCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
-      if (queue.tracks.length > 1) {
-        const modeloop = !queue.loopMode;
-        this.bot.player.setLoopMode(message, modeloop);
-      } else {
-        const moderepeat = !queue.repeatMode;
-        this.bot.player.setRepeatMode(message, moderepeat);
-      }
+      this.bot.player.setRepeatMode(message, Number(type));
 
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {
         message.react("🔁");

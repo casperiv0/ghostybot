@@ -15,12 +15,11 @@ export default class PlayCommand extends Command {
   }
 
   async execute(message: Message, args: string[]) {
+    if (!this.bot.user) return;
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const voiceChannel = message.member?.voice.channel;
     const search = args.join(" ");
     const queue = this.bot.player.getQueue(message);
-
-    if (!this.bot.user) return;
 
     if (!search) {
       return message.channel.send({ content: lang.MUSIC.PROVIDE_SEARCH });
@@ -40,7 +39,7 @@ export default class PlayCommand extends Command {
         return message.channel.send({ content: lang.MUSIC.NO_PERMS });
       }
 
-      await this.bot.player.play(message, search, true);
+      await this.bot.player.play(message, search);
     } catch (e) {
       this.bot.utils.sendErrorLog(e, "error");
     }

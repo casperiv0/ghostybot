@@ -24,11 +24,7 @@ export default class SeekCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
-      if (!queue) {
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
@@ -36,15 +32,15 @@ export default class SeekCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
-      const song = this.bot.player.nowPlaying(message);
+      // const song = this.bot.player.nowPlaying(message);
 
-      if (!song) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
+      // if (!song) {
+      //   return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
+      // }
 
-      if (time > song.durationMS) {
-        return message.channel.send({ content: "Time cannot be longer than song duration" });
-      }
+      // if (time > song.durationMS) {
+      //   return message.channel.send({ content: "Time cannot be longer than song duration" });
+      // }
 
       this.bot.player.seek(message, time);
     } catch (err) {

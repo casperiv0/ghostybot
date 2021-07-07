@@ -40,6 +40,7 @@ export default class EventHandler {
       }
 
       if (isPlayer) {
+        // @ts-expect-error this works!
         this.bot.player.on(event.name, event.execute.bind(null, this.bot));
       } else if (isStarboard) {
         this.bot.starboardsManager.on(

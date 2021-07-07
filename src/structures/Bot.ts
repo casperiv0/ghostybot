@@ -4,7 +4,7 @@ import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
-import { Player } from "discord-player";
+import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
 import EventHandler from "handlers/EventHandler";
 
@@ -25,7 +25,7 @@ class Bot extends Client {
   utils: Util;
   neko: NekoClient;
   imdb!: ImdbClient;
-  player: Player;
+  player: DistubePlayer;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
@@ -60,11 +60,12 @@ class Bot extends Client {
       this.imdb = new ImdbClient({ apiKey: process.env["IMDB_KEY"] });
     }
 
-    this.player = new Player(this, {
-      autoSelfDeaf: true,
-      enableLive: false,
-      leaveOnStop: true,
-      ytdlDownloadOptions: {
+    this.player = new DistubePlayer(this, {
+      leaveOnEmpty: true,
+      nsfw: false,
+      leaveOnFinish: true,
+
+      ytdlOptions: {
         filter: "audioonly",
       },
     });

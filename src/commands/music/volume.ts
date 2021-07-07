@@ -21,11 +21,7 @@ export default class VolumeCommand extends Command {
         return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
-      if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
-      if (!queue) {
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 

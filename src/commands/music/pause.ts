@@ -19,11 +19,11 @@ export default class PauseCommand extends Command {
         return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
-      if (!this.bot.player.isPlaying(message)) {
+      const queue = this.bot.player.getQueue(message);
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
-      const queue = this.bot.player.getQueue(message);
       if (queue && !this.bot.utils.isBotInSameChannel(message)) {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }

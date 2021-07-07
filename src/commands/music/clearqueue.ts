@@ -20,11 +20,7 @@ export default class ClearQueueCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-      if (!this.bot.player.isPlaying(message)) {
-        return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
-      }
-
-      if (!queue) {
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
@@ -32,7 +28,7 @@ export default class ClearQueueCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
-      this.bot.player.clearQueue(message);
+      this.bot.player.queues.delete(message);
       message.channel.send({ content: lang.MUSIC.QUEUE_CLEARED });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

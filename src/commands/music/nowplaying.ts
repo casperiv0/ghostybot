@@ -20,34 +20,28 @@ export default class NowPlayingCommand extends Command {
         return message.channel.send({ content: lang.MUSIC.MUST_BE_IN_VC });
       }
 
-      const playing = this.bot.player.isPlaying(message);
       const queue = this.bot.player.getQueue(message);
-      if (!playing) {
+
+      if (!queue || !queue.playing) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
 
-      if (!queue) {
+      const [song] = queue.songs;
+
+      if (!song) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }
-
-      const song = this.bot.player.nowPlaying(message);
-      const durBar = this.bot.player.createProgressBar(message, {
-        timecodes: true,
-        queue: false,
-      });
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(song.title)
+        .setTitle(song.name ?? "Unknown")
         .setURL(song.url)
-        .setAuthor(`🎵 ${lang.MUSIC.NOW} ${playing ? lang.MUSIC.PLAYING : lang.MUSIC.PAUSED}`)
-        .setImage(song.thumbnail)
-        .setDescription(
-          `
-        **${lang.MUSIC.DURATION}:** ${song.duration}
-          ${durBar}
-  `,
-        );
+        .setAuthor(`🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} `)
+        .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`);
+
+      if (song.thumbnail) {
+        embed.setImage(song.thumbnail);
+      }
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
