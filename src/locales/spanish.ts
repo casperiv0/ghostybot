@@ -170,7 +170,7 @@ const LANG: typeof import("./english").default = {
     ADDED_TO_QUEUE: "{song} ha sido añadida a la cola",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "Sonando ahora:",
-    REQUESTED_BY: "Pedida por:",
+    REQUESTED_BY: "Pedida por: {user}",
     NO_PERMS: "No tengo los permisos correctos para ese canal de voz!",
     NO_RESULTS: "Ninguna cancion fue encontrada",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
@@ -482,7 +482,7 @@ const LANG: typeof import("./english").default = {
     SPEED: "Veñocidad",
     TOTAL: "Total",
     NOT_FOUND:
-      "Ningun pokemon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
+      "Ningun pokémon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
   },
   REACTIONS: {
     NO_ROLE: "Por favor proporciona un rol valido",

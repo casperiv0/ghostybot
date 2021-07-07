@@ -30,6 +30,7 @@ const Footer: React.FC = () => {
         <option value="en">English</option>
         <option value="ru">Russian</option>
         <option value="nl">Dutch</option>
+        <option value="de">German</option>
       </select>
     </footer>
   );

@@ -169,7 +169,7 @@ export default {
     ADDED_TO_QUEUE: "Sång har lagts till i kön | {songs} låtar i kö",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "Nu spelas:",
-    REQUESTED_BY: "Efterfrågad av",
+    REQUESTED_BY: "Efterfrågad av {user}",
     NO_PERMS: "Jag har inte rätt behörighet för den röstkanalen!",
     NO_RESULTS: "Inga låtar hittades",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
@@ -478,7 +478,7 @@ export default {
     SP_DEF: "SP DEF",
     SPEED: "Fart",
     TOTAL: "Total",
-    NOT_FOUND: "Ingen pokemon hittades med {query}. Använd rätt stavning och försök igen senare.",
+    NOT_FOUND: "Ingen pokémon hittades med {query}. Använd rätt stavning och försök igen senare.",
   },
   REACTIONS: {
     NO_ROLE: "Please provide a valid role",

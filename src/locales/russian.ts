@@ -169,7 +169,7 @@ const LANG: typeof import("./english").default = {
     ADDED_TO_QUEUE: "{song} был добавлен в очередь.",
     ADDED_PL_TO_QUEUE: "Плейлист {name} был добавлен в очередь ({length} треков)",
     NOW_PLAYING: "Сейчас играет:",
-    REQUESTED_BY: "Запросил",
+    REQUESTED_BY: "Запросил {user}",
     NO_PERMS: "У меня недостаточно прав для этого голосового канала!",
     NO_RESULTS: "Ничего не найдено.",
     JOIN_ERROR: "Произошла ошибка при присоединении к каналу, убедитесь, что он не заполнен!",

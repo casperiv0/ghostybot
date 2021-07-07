@@ -7,7 +7,7 @@ export default class PokemonCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "pokemon",
-      description: "Returns a pokemon information",
+      description: "Returns a pokémon information",
       category: "util",
       requiredArgs: [{ name: "query" }],
     });

@@ -168,7 +168,7 @@ const LANG: typeof import("./english").default = {
     ADDED_TO_QUEUE: "{song} has been added to the queue",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "جاري التشغيل:",
-    REQUESTED_BY: "بواسطة",
+    REQUESTED_BY: "{user} بواسطة",
     NO_PERMS: "لا امتلك صلاحيات لهذه القناة الصوتية",
     NO_RESULTS: "No songs were found",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",

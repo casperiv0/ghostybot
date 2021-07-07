@@ -168,7 +168,7 @@ export default {
     ADDED_TO_QUEUE: "{song} has been added to the queue",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "Now Playing:",
-    REQUESTED_BY: "Requested by",
+    REQUESTED_BY: "Requested by {user}",
     NO_PERMS: "I don't have the correct permissions for that voice channel!",
     NO_RESULTS: "No songs were found",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
@@ -480,7 +480,7 @@ export default {
     SPEED: "Speed",
     TOTAL: "Total",
     NOT_FOUND:
-      "No pokemon was found with {query}. Please use correct spelling and try again later.",
+      "No pokémon was found with {query}. Please use correct spelling and try again later.",
   },
   REACTIONS: {
     NO_ROLE: "Please provide a valid role",
@@ -496,7 +496,7 @@ export default {
       "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766",
     EMOJIS:
       "Please send your emojis below. The order will match with the order of the roles. Separate with a space",
-    VALID_EMOJI: "You must provide a valid emojis (no custom emojis)!",
+    VALID_EMOJI: "You must provide a valid emoji (no custom emojis)!",
   },
   REMINDER: {
     SUCCESS: "Success! I will ping you **in this channel** in {time}",
@@ -714,7 +714,7 @@ export default {
     CATEGORY_DISABLED:
       "That command is disabled because this guild disabled the {category} category",
     COMMAND_DISABLED: "That command was disabled for this guild",
-    OWNER_ONLY: "This command can only be used by the owners!",
+    OWNER_ONLY: "This command can only be used by the owner!",
     INCORRECT_ARGS: "Incorrect command usage",
     REQUIRED_ARGS: "You must provide more args: {args}",
     COOLDOWN_AMOUNT: "Please wait **{time}** more seconds before using the **{command}** command",
@@ -774,7 +774,7 @@ export default {
       "Nope.",
       "No thanks, I won’t be able to make it.",
       "No Way!",
-      " It is certain.",
+      "It is certain.",
       "It is decidedly so.",
       "Without a doubt.",
       "Yes - definitely.",
