@@ -170,7 +170,7 @@ const LANG: typeof import("./english").default = {
     ADDED_TO_QUEUE: "{song} ha sido añadida a la cola",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
     NOW_PLAYING: "Sonando ahora:",
-    REQUESTED_BY: "Pedida por:",
+    REQUESTED_BY: "Pedida por: {user}",
     NO_PERMS: "No tengo los permisos correctos para ese canal de voz!",
     NO_RESULTS: "Ninguna cancion fue encontrada",
     JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",

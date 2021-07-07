@@ -1,0 +1,84 @@
+{
+  "beta": "Dieses Dashboard ist noch in dere Beta Phase! Einige Dinge könnten nicht funktionieren, wenn du einen Fehler gedunden hast melde ihn bitte hier: ",
+  "select_a_server": "Bitte wähle einen Server aus",
+  "bot_in_guild": "Der Bot muss in dem Server sein!",
+
+  "manage_blacklisted_words": "Verwalte verbotene Wörter",
+  "added_blacklisted_word": "Wort erfolgreich hinzugefügt",
+  "enter_word": "Wort eingeben",
+  "add_word": "Wort hinzufügen",
+  "words": "Wörter",
+  "no_words": "Dieser Server hat noch keine verbotenen Wörter.",
+
+  "manage_store": "Shop verwalten",
+  "store": "Shop",
+  "add_store_item": "Füge etwas hinzu",
+  "added_to_store": "wurde zum Shop hinzugefügt",
+  "enter_name": "Namen eingeben",
+  "enter_price": "Price eingeben",
+  "add_item": "Hinzufügen",
+  "price": "Preis",
+  "no_store_items": "Dieser Server hat noch nichts im Shop.",
+
+  "manage_custom_commands": "Benutzerdefinierte Befehle verwalten",
+  "create_command": "Befehl erstellen",
+  "add_command": "AdBefehl hinzufügen",
+  "added_command": "Befehl erfolgreich hinzugefügt",
+  "command_name": "Name des Befehls",
+  "command_desc": "Beschreibung des Befehls",
+  "command_response": "Antwort des Befehls",
+  "edit_command": "Befehl bearbeiten",
+  "updated_command": "Befehl erfolgreich aktualisiert",
+  "update_command": "Befehl aktualisieren",
+  "response": "Antwort",
+  "name": "Name",
+  "no_commands": "Dieser Server hat noch keine Benutzerdefinierten Befehle.",
+
+  "manage_categories": "Kategorien verwalten",
+  "search_for_categories": "Suche nach Kategorien",
+
+  "manage_commands": "Manage commands",
+  "search_for_commands": "Search for commands",
+
+  "manage_slash_commands": "Slash-Befehle verwalten",
+  "add_slash_command": "Slash-Befehle hinzufügen",
+  "no_slash_commands": "Dieser Server hat noch keine Benutzerdefinierten Slash-Befehle .",
+  "re_authorize": "Bitte authorisiere den Bot noch einmal mit der application.commands Berechtigung.",
+
+  "settings": "Servereinstellungen",
+  "save_settings": "Einstellung speichern",
+  "enable_or_disable_feature": "Funktion aktivieren oder deaktivieren",
+
+  "welcome": "Willkommen",
+  "welcome_channel": "Begrüßungskanal",
+  "welcome_role": "Standardrolle",
+  "welcome_message": "Wilkommensnachricht",
+  "ignore_bots": "Ignoriere Bots",
+
+  "leave_message": "Abschiedsnachricht",
+  "leave_channel": "Abschiedskanal",
+
+  "levels": "Level",
+  "level_message": "Level Nachricht",
+
+  "tickets": "Tickets",
+  "ticket_role": "Ticket Rolle",
+  "ticket_parent": "Ursprung",
+
+  "starboard": "Liste der Stars",
+  "starboard_channel": "Kanal für Liste der Stars",
+  "starboards_emoji": "Liste der Stars Emoji",
+
+  "verification": "Verifizierung",
+  "verify_channel": "Verizierungskanal",
+  "verified_role": "Verifierte Rolle",
+
+  "audit_logs_chn": "Kanal für Audit-Logs",
+  "suggestion_channel": "Kanal für Vorschläge",
+  "announcement_channel": "Ankündigungskanal",
+  "bot_language": "Bot Sprache",
+  "timezone": "Zeitzone",
+  "bot_prefix": "Bot Präfix",
+  "auto_delete_commands": "Automatisch Befehle Löschen",
+  "muted_role": "Stumm Rolle"
+}

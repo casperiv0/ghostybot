@@ -16,7 +16,7 @@ export default class PlayerTrackStarEvent extends Event {
       const embed = bot.utils
         .baseEmbed(message)
         .setTitle(`${lang.MUSIC.NOW_PLAYING} ${track.title}`)
-        .setAuthor(`${lang.MUSIC.REQUESTED_BY} ${track.requestedBy.username}`)
+        .setAuthor(`${lang.MUSIC.REQUESTED_BY.replace("{user}", track.requestedBy.username)}`)
         .setImage(track.thumbnail);
 
       return message.channel.send({ embeds: [embed] });
