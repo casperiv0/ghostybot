@@ -7,7 +7,7 @@ export default class ErrorEvent extends Event {
     super(bot, DJS.Constants.Events.ERROR);
   }
 
-  async execute(_: Bot, error: Error) {
-    return this.bot.utils.sendErrorLog(error, "error");
+  async execute(bot: Bot, error: Error) {
+    return bot.utils.sendErrorLog(error, "error");
   }
 }

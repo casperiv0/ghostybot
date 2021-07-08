@@ -149,10 +149,9 @@ export default class Util {
     }
   }
 
-  async sendErrorLog(
-    error: DJS.DiscordAPIError | DJS.HTTPError | Error,
-    type: "warning" | "error",
-  ): Promise<void> {
+  async sendErrorLog(err: unknown, type: "warning" | "error"): Promise<void> {
+    const error = err as DJS.DiscordAPIError | DJS.HTTPError | Error;
+
     try {
       /* eslint-disable-next-line */
       if (error.stack?.includes?.('type: Value "voice" is not int.')) return;

@@ -7,7 +7,7 @@ export default class WarnEvent extends Event {
     super(bot, DJS.Constants.Events.WARN);
   }
 
-  async execute(_: Bot, error: any) {
-    return this.bot.utils.sendErrorLog(error, "warning");
+  async execute(bot: Bot, error: any) {
+    return bot.utils.sendErrorLog(error, "warning");
   }
 }
