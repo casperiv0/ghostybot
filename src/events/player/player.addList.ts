@@ -18,10 +18,10 @@ export default class PlayerAddListEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: playlist.user ?? null })
         .setTitle(
-          lang.MUSIC.ADDED_PL_TO_QUEUE.replace("{length}", `${playlist.tracks.length}`).replace(
-            "{name}",
-            playlist.title,
-          ),
+          lang.MUSIC.ADDED_PL_TO_QUEUE.replace(
+            "{length}",
+            playlist.songs.length.toString(),
+          ).replace("{name}", playlist.name),
         );
 
       return channel?.send({ embeds: [embed] });

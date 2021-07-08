@@ -14,7 +14,7 @@
     "lib": ["dom", "dom.iterable", "esnext", "ES2020.BigInt"],
     "allowJs": true,
     "noEmit": false,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noUnusedLocals": true,
     "typeRoots": ["./node_modules/@types", "./typings"],
     "noImplicitOverride": false,
