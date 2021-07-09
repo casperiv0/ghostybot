@@ -71,7 +71,7 @@ export default class CreateTicketCommand extends Command {
       const channel = await message.guild?.channels.create(
         lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
         {
-          type: "text",
+          type: "GUILD_TEXT",
           nsfw: false,
           topic: lang.TICKET.TICKET_FOR.replace("{member}", message.author.tag),
           permissionOverwrites: DEFAULT_PERMS,

@@ -20,12 +20,12 @@ export default class ChannelsCommand extends Command {
       }
 
       const voiceChannels = channels
-        ?.filter((channel) => channel.type === "voice")
+        ?.filter((channel) => channel.type === "GUILD_VOICE")
         .map((channel) => `<#${channel.id}>`)
         .join(", ");
 
       const textChannels = channels
-        ?.filter((channel) => channel.type === "text")
+        ?.filter((channel) => channel.type === "GUILD_TEXT")
         .map((channel) => `<#${channel.id}>`)
         .join(", ");
 

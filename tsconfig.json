@@ -19,7 +19,6 @@
     "typeRoots": ["./node_modules/@types", "./typings"],
     "noImplicitOverride": false,
     "incremental": true,
-
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
