@@ -3,5 +3,6 @@
   "open_dashboard": "Открыть панель управления",
   "dashboard": "Панель управления",
   "invite": "Пригласить",
-  "support_server": "Сервер поддержки"
+  "support_server": "Сервер поддержки",
+  "stats": "Stats"
 }

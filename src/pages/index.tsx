@@ -28,6 +28,9 @@ const Landing: NextPage<Props> = ({ isAuth }) => {
             <a className="nav-link" href="/support">
               {t("support_server")}
             </a>
+            <a className="nav-link" href="/support">
+              {t("stats")}
+            </a>
           </div>
         </div>
       </nav>
