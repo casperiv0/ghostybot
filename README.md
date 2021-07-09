@@ -10,6 +10,8 @@ A feature-rich Discord bot with +200 commands for Discord servers. Economy, util
 
 [![banner](https://invidget.switchblade.xyz/XxHrtkA)](https://discord.gg/XxHrtkA)
 
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=2b55d2e00a11&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+
 ### Disclaimer (if self-hosted)
 
 You are not allowed to upload this bot to any service such as discordbotlist or top.gg, you are only allowed to host this bot for your community. **When self-hosting no support will be provided.**
