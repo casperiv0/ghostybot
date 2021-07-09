@@ -381,12 +381,12 @@ const LANG: typeof import("./english").default = {
     VERIFY_CHANNEL: "Verification channel is: {channel}",
     VERIFY_NOT_ENABLED: "Verification is not enabled for this guild",
     CHANNEL_TYPES: {
-      TEXT: "Text channel",
-      VOICE: "Voice channel",
-      STAGE: "Stage channel",
-      NEWS: "News channel",
-      STORE: "Store channel",
-      CATEGORY: "Category channel",
+      GUILD_TEXT: "Text channel",
+      GUILD_VOICE: "Voice channel",
+      GUILD_STAGE_VOICE: "Stage channel",
+      GUILD_NEWS: "News channel",
+      GUILD_STORE: "Store channel",
+      GUILD_CATEGORY: "Category channel",
     },
 
     TOTAL_TRACKS: "Total tracks",

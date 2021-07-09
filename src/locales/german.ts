@@ -389,12 +389,12 @@ const LANG: typeof import("./english").default = {
     VERIFY_CHANNEL: "Verifizierungskanal ist: {channel}",
     VERIFY_NOT_ENABLED: "Verifizierung ist auf diesem Server nicht aktiviert",
     CHANNEL_TYPES: {
-      TEXT: "Textkanal",
-      VOICE: "Sprachkanal",
-      STAGE: "Podiumskanal",
-      NEWS: "Ankündigungskanal",
-      STORE: "Shopkanal",
-      CATEGORY: "Kategoriekanal",
+      GUILD_TEXT: "Textkanal",
+      GUILD_VOICE: "Sprachkanal",
+      GUILD_STAGE_VOICE: "Podiumskanal",
+      GUILD_NEWS: "Ankündigungskanal",
+      GUILD_STORE: "Shopkanal",
+      GUILD_CATEGORY: "Kategoriekanal",
     },
 
     TOTAL_TRACKS: "Alle Lieder",

@@ -385,12 +385,12 @@ const LANG: typeof import("./english").default = {
     VERIFY_CHANNEL: "Канал верификации: {channel}",
     VERIFY_NOT_ENABLED: "Канал верификации не установлен",
     CHANNEL_TYPES: {
-      TEXT: "Text channel",
-      VOICE: "Voice channel",
-      STAGE: "Stage channel",
-      NEWS: "News channel",
-      STORE: "Store channel",
-      CATEGORY: "Category channel",
+      GUILD_TEXT: "Text channel",
+      GUILD_VOICE: "Voice channel",
+      GUILD_STAGE_VOICE: "Stage channel",
+      GUILD_NEWS: "News channel",
+      GUILD_STORE: "Store channel",
+      GUILD_CATEGORY: "Category channel",
     },
 
     TOTAL_TRACKS: "Total tracks",
