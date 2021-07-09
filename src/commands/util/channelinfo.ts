@@ -1,6 +1,8 @@
-import { Message, Snowflake, TextChannel, VoiceChannel } from "discord.js";
+import { Message, Snowflake, TextChannel, VoiceChannel, Constants } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+
+const voiceChannel: (keyof typeof Constants.ChannelTypes)[] = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
 
 export default class ChannelInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -34,7 +36,7 @@ export default class ChannelInfoCommand extends Command {
         .addField(lang.MEMBER.ID, channelId, true)
         .addField(lang.MEMBER.CREATED_ON, `${date} (${tz})`, true);
 
-      if (["voice", "stage"].includes(channel.type)) {
+      if (voiceChannel.includes(channel.type)) {
         const regions = lang.OTHER.REGIONS;
         const region = regions[(channel as VoiceChannel)?.rtcRegion ?? "us-central"];
 
