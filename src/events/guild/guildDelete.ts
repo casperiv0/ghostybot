@@ -1,10 +1,10 @@
-import { Constants, Guild, GuildMember } from "discord.js";
+import { Guild, GuildMember } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
 export default class GuildDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, Constants.Events.GUILD_DELETE);
+    super(bot, "guildDelete");
   }
 
   async execute(bot: Bot, guild: Guild) {

@@ -4,7 +4,7 @@ import Event from "structures/Event";
 
 export default class ChannelDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CHANNEL_DELETE);
+    super(bot, "channelDelete");
   }
 
   async execute(bot: Bot, channel: DJS.GuildChannel) {

@@ -1,4 +1,3 @@
-import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 import BotModel from "models/Bot.model";
@@ -8,7 +7,7 @@ import CommandHandler from "handlers/CommandHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CLIENT_READY);
+    super(bot, "ready");
   }
 
   async execute(bot: Bot) {

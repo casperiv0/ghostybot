@@ -4,7 +4,7 @@ import Event from "structures/Event";
 
 export default class MessageDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.MESSAGE_DELETE);
+    super(bot, "messageDelete");
   }
 
   async execute(bot: Bot, message: DJS.Message) {

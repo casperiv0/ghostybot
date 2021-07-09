@@ -21,7 +21,6 @@ export default class QueueCommand extends Command {
       }
 
       const queue = this.bot.player.getQueue(message);
-
       if (!queue) {
         return message.channel.send({ content: lang.MUSIC.NO_QUEUE });
       }

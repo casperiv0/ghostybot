@@ -4,7 +4,7 @@ import Event from "structures/Event";
 
 export default class ChannelCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CHANNEL_CREATE);
+    super(bot, "channelCreate");
   }
 
   async execute(bot: Bot, channel: DJS.GuildChannel) {

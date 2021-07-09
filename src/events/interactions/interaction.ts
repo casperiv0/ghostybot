@@ -4,7 +4,7 @@ import Event from "structures/Event";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.INTERACTION_CREATE);
+    super(bot, "interactionCreate");
   }
 
   async execute(bot: Bot, interaction: DJS.Interaction) {
