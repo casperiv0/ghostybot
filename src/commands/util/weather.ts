@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { bold } from "@discordjs/builders";
 
 export interface WeatherData {
   weather: { id: number; main: string; description: string; icon: string }[];
@@ -36,6 +37,28 @@ export default class WeatherCommand extends Command {
     });
   }
 
+  getWindDirection(v: number) {
+    if (v === 0) {
+      return "North";
+    } else if (v > 0 && v < 90) {
+      return "North East";
+    } else if (v === 90) {
+      return "East";
+    } else if (v > 90 && v < 180) {
+      return "South East";
+    } else if (v === 180) {
+      return "South";
+    } else if (v > 180 && v < 270) {
+      return "South West";
+    } else if (v === 270) {
+      return "West";
+    } else if (v > 270 && v < 360) {
+      return "North West";
+    }
+
+    return "Unknown";
+  }
+
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
@@ -62,20 +85,21 @@ export default class WeatherCommand extends Command {
       const feelsLike = data.main.feels_like.toString();
       const temp = data.main.temp.toString();
       const windSpeed = data.wind.speed.toString();
-      const windDeg = data.wind.deg.toString();
+      const windDeg = this.getWindDirection(data.wind.deg);
+
       const country = data.sys.country.toString();
       const flag = `https://www.countryflags.io/${country}/flat/64.png`;
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setAuthor(`${data.name} ${lang.UTIL.WEATHER}`, flag)
-        .addField(`**${lang.UTIL.MAIN}**`, main, true)
-        .addField(`**${lang.UTIL.CURRENT}**`, desc, true)
-        .addField(`**${lang.UTIL.CURRENT_TEMP}**`, `${temp}°C`, true)
-        .addField(`**${lang.UTIL.FEELS_LIKE}**`, `${feelsLike}°C`, true)
-        .addField(`**${lang.UTIL.WIND_SPEED}**`, `${windSpeed}Km/h`, true)
-        .addField(`**${lang.UTIL.WIND_DEGREES}**`, windDeg, true)
-        .addField(`**${lang.UTIL.COUNTRY}**`, country)
+        .addField(bold(lang.UTIL.MAIN), main, true)
+        .addField(bold(lang.UTIL.CURRENT), desc, true)
+        .addField(bold(lang.UTIL.CURRENT_TEMP), `${temp}°C`, true)
+        .addField(bold(lang.UTIL.FEELS_LIKE), `${feelsLike}°C`, true)
+        .addField(bold(lang.UTIL.WIND_SPEED), `${windSpeed}Km/h`, true)
+        .addField(bold(lang.UTIL.WIND_DEGREES), windDeg, true)
+        .addField(bold(lang.UTIL.COUNTRY), country)
         .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
 
       message.channel.send({ embeds: [embed] });

@@ -39,17 +39,24 @@ export default class InviteInfoCommand extends Command {
         return message.channel.send(lang.INVITE.NOT_FOUND);
       }
 
-      const expiresAt = data.expires_at
-        ? format(new Date(data.expires_at), "yyyy-MM-dd, HH:mm:SS")
+      const doesInviteExpire = !!data.expires_at;
+
+      const expiresAt = doesInviteExpire
+        ? format(new Date(data.expires_at!), "yyyy-MM-dd, HH:mm:ss")
         : lang.INVITE.NOT_EXPIRE;
 
       const hasExpired =
         (data as any).expired_at && new Date((data as any).expired_at).getTime() <= Date.now();
 
-      const expiredAt =
-        hasExpired && (data as any).expired_at
-          ? format(new Date((data as any).expired_at), "yyyy-MM-dd, HH:mm:SS")
-          : lang.INVITE.NOT_EXPIRED_YET || "Unknown";
+      const expiredAt = doesInviteExpire
+        ? hasExpired && (data as any).expired_at
+          ? format(new Date((data as any).expired_at), "yyyy-MM-dd, HH:mm:ss")
+          : lang.INVITE.NOT_EXPIRED_YET
+        : lang.INVITE.NOT_EXPIRE;
+
+      const inviter = data.inviter
+        ? `${data.inviter?.username}#${data.inviter.discriminator} (${data.inviter.id})`
+        : "Unknown";
 
       const embed = this.bot.utils
         .baseEmbed(message)
@@ -60,11 +67,7 @@ export default class InviteInfoCommand extends Command {
           `
 **Guild:** ${data.guild?.name ?? "Unknown"} (${data.guild?.id ?? "Unknown"})
 **Channel:** ${data.channel.name}
-**Inviter:** ${
-            data.inviter
-              ? `${data.inviter?.username}#${data.inviter.discriminator} (${data.inviter.id})`
-              : "Unknown"
-          }
+**Inviter:** ${inviter}
         `,
         )
         .addField(
