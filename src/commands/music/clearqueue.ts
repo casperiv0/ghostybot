@@ -28,7 +28,7 @@ export default class ClearQueueCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
-      this.bot.player.guildQueues.delete(message.guild?.id!);
+      this.bot.player.queues.delete(message.guild?.id!);
       message.channel.send({ content: lang.MUSIC.QUEUE_CLEARED });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

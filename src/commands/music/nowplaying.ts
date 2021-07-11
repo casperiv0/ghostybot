@@ -37,7 +37,13 @@ export default class NowPlayingCommand extends Command {
         .setTitle(song.name ?? "Unknown")
         .setURL(song.url)
         .setAuthor(`🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} `)
-        .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`);
+        .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`)
+        .addField(
+          "Information",
+          `
+**Uploader:** ${song.uploader.name ?? "Unknown"}
+**Likes:** ${this.bot.utils.formatNumber(song.likes)}`,
+        );
 
       if (song.thumbnail) {
         embed.setImage(song.thumbnail);
