@@ -1,3 +1,4 @@
+import { bold } from "@discordjs/builders";
 import { Message, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -31,21 +32,25 @@ export default class RoleInfoCommand extends Command {
               .toArray()
               .map((p) => lang.PERMISSIONS[p])
               .join(", ")}\`\`\``;
+
       const { date, tz } = await this.bot.utils.formatDate(role.createdAt, message.guild?.id);
       const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
-      const name = role.name;
-      const id = role.id;
-      const color = role.color || "#2F3136";
+      const color = role.color || "#5865f2";
       const position = message.guild?.roles.cache.size - role.position;
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(`**${name}**`)
+        .setTitle(bold(role.name))
         .setColor(color)
-        .addField(`**${lang.MEMBER.CREATED_ON}**`, `${date} (${tz})`, true)
-        .addField(`**${lang.UTIL.MENTIONABLE}**`, mentionable, true)
-        .addField(`**${lang.UTIL.POSITION}**`, position.toString(), true)
-        .addField(`**${lang.MEMBER.ID}**`, id, true)
+        .setDescription(
+          `
+${bold(lang.UTIL.POSITION)}: ${position}
+${bold(lang.UTIL.MENTIONABLE)}: ${mentionable}
+${bold(lang.MEMBER.ID)}: ${role.id}
+${bold(lang.UTIL.HEX_COLOR)}: ${role.hexColor}
+${bold(lang.MEMBER.CREATED_ON)}: ${date} (${tz})`,
+        )
+
         .addField(lang.MEMBER.PERMISSIONS, permissions);
 
       message.channel.send({ embeds: [embed] });

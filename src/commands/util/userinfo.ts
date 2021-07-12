@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { bold } from "@discordjs/builders";
+import { bold, inlineCode } from "@discordjs/builders";
 import badges from "assets/ts/badges";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -36,31 +36,41 @@ export default class UserInfoCommand extends Command {
         new Date(member.user.createdAt),
         message.guild?.id,
       );
-      const nickname = member.nickname || "None";
+      const nickname = member.nickname || lang.GLOBAL.NONE;
 
-      const userFlags = (await member.user.fetchFlags(true))
-        .toArray()
-        .map((flag) => badges[flag])
-        .join(" ");
+      const userFlags =
+        (await member.user.fetchFlags(true))
+          .toArray()
+          .map((flag) => badges[flag])
+          .join(" ") || lang.GLOBAL.NONE;
 
       const roles =
         member.roles.cache
           .filter((r) => r.id !== message.guild?.id)
           .sort((a, b) => b.rawPosition - a.rawPosition)
           .map((r) => r)
-          .join(", ") || "None";
+          .join(", ") || lang.GLOBAL.NONE;
       const roleCount = member.roles.cache.filter((r) => r.id !== message.guild?.id).size;
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${username}'s info`)
-        .addField(bold(lang.MEMBER.ID), id, true)
-        .addField(bold(lang.MEMBER.USERNAME), username, true)
-        .addField(bold(lang.MEMBER.TAG), tag, true)
-        .addField(bold(lang.MEMBER.BADGES), userFlags.length > 0 ? userFlags : "None", true)
-        .addField(bold(lang.MEMBER.CREATED_ON), `${createdAt} (${tz})`, true)
-        .addField(bold(lang.MEMBER.JOINED_AT), `${joinedAt} (${tz})`, true)
-        .addField(bold(lang.MEMBER.NICKNAME), nickname, true)
+        .setDescription(
+          `
+${bold(lang.MEMBER.ID)}: ${inlineCode(id)}
+${bold(lang.MEMBER.TAG)}: ${tag}
+${bold(lang.MEMBER.BADGES)}: ${userFlags}
+${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${tz})
+`,
+        )
+
+        .addField(
+          "Guild info",
+          `
+${bold(lang.MEMBER.NICKNAME)}: ${nickname}
+${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${tz})
+`,
+        )
         .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
 

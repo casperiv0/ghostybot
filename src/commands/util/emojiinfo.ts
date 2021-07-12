@@ -39,6 +39,9 @@ export default class EmojiInfoCommand extends Command {
         message.guild?.id,
       );
 
+      const accessibleBy =
+        foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE;
+
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`Emoji info: ${foundEmoji}`)
@@ -47,9 +50,7 @@ export default class EmojiInfoCommand extends Command {
 **ID:** ${foundEmoji.id}
 **Created At:** ${createdAt} (${tz})
 **Created by:** ${emojiAuthor}
-**Accessible By:** ${
-        foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE
-      }`);
+**Accessible By:** ${accessibleBy}`);
 
       return message.channel.send({ embeds: [embed] });
     } catch (err) {

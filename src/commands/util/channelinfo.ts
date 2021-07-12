@@ -1,6 +1,7 @@
 import { Message, Snowflake, TextChannel, VoiceChannel, Constants } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { bold } from "@discordjs/builders";
 
 const voiceChannel: (keyof typeof Constants.ChannelTypes)[] = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
 
@@ -23,18 +24,22 @@ export default class ChannelInfoCommand extends Command {
         message.guild?.channels.cache.get(args[0] as Snowflake) ||
         message.channel;
 
-      const topic = (channel as TextChannel)?.topic ?? "N/A";
-      const channelId = channel?.id;
-      const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
+      const topic = (channel as TextChannel)?.topic ?? lang.GLOBAL.NONE;
       const type = lang.UTIL.CHANNEL_TYPES[channel?.type.toUpperCase()];
+
+      const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${(channel as TextChannel)?.name}`)
-        .addField(lang.BOT_OWNER.EVAL_TYPE, type, true)
-        .addField(lang.UTIL.CHANNEL_TOPIC, topic, true)
-        .addField(lang.MEMBER.ID, channelId, true)
-        .addField(lang.MEMBER.CREATED_ON, `${date} (${tz})`, true);
+        .setDescription(
+          `
+${bold(lang.MEMBER.ID)}: ${channel.id}
+${bold(lang.BOT_OWNER.EVAL_TYPE)}: ${type}
+${bold(lang.UTIL.CHANNEL_TOPIC)}: ${topic}
+${bold(lang.MEMBER.CREATED_ON)}: ${date} (${tz})
+`,
+        );
 
       if (voiceChannel.includes(channel.type)) {
         const regions = lang.OTHER.REGIONS;

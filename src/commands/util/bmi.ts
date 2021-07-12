@@ -26,8 +26,8 @@ export default class BmiCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.author.username} ${lang.UTIL.BMI}`)
-        .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`)
-        .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`)
+        .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`, true)
+        .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`, true)
         .addField(`${lang.UTIL.BMI}`, bmi);
 
       message.channel.send({ embeds: [embed] });

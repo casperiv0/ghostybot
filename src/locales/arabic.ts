@@ -391,7 +391,9 @@ const LANG: typeof import("./english").default = {
 
     TOTAL_TRACKS: "Total tracks",
     RELEASE_DATE: "Release date",
+    HEX_COLOR: "HEX Color",
     C_NOT_FOUND: "City: **{query}** was not found!",
+    MDN_NOT_FOUND: "No results found for that query",
   },
   BOT: {
     GUILDS: "السرفرات",

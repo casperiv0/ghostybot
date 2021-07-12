@@ -394,6 +394,8 @@ export default {
 
     TOTAL_TRACKS: "Total tracks",
     RELEASE_DATE: "Release date",
+    HEX_COLOR: "HEX Color",
+    MDN_NOT_FOUND: "No results found for that query",
   },
   BOT: {
     GUILDS: "Guilds",

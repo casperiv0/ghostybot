@@ -399,6 +399,8 @@ const LANG: typeof import("./english").default = {
 
     TOTAL_TRACKS: "Alle Lieder",
     RELEASE_DATE: "Erscheinungdatum",
+    HEX_COLOR: "HEX Color",
+    MDN_NOT_FOUND: "No results found for that query",
   },
   BOT: {
     GUILDS: "Server",

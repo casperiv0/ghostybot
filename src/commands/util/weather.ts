@@ -92,14 +92,22 @@ export default class WeatherCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setAuthor(`${data.name} ${lang.UTIL.WEATHER}`, flag)
-        .addField(bold(lang.UTIL.MAIN), main, true)
-        .addField(bold(lang.UTIL.CURRENT), desc, true)
-        .addField(bold(lang.UTIL.CURRENT_TEMP), `${temp}°C`, true)
-        .addField(bold(lang.UTIL.FEELS_LIKE), `${feelsLike}°C`, true)
-        .addField(bold(lang.UTIL.WIND_SPEED), `${windSpeed}Km/h`, true)
-        .addField(bold(lang.UTIL.WIND_DEGREES), windDeg, true)
-        .addField(bold(lang.UTIL.COUNTRY), country)
+        .setAuthor(`${data.name} (${country}) ${lang.UTIL.WEATHER}`, flag)
+        .setDescription(
+          `
+${bold(lang.UTIL.MAIN)}: ${main}
+${bold(lang.UTIL.CURRENT)}: ${desc}
+${bold(lang.UTIL.WIND_SPEED)}: ${windSpeed}km/h
+${bold(lang.UTIL.WIND_DEGREES)}: ${windDeg}
+`,
+        )
+        .addField(
+          "Temperature",
+          `
+${bold(lang.UTIL.CURRENT_TEMP)}: ${temp}°C
+${bold(lang.UTIL.FEELS_LIKE)}: ${feelsLike}°C
+`,
+        )
         .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
 
       message.channel.send({ embeds: [embed] });
