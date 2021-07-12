@@ -21,12 +21,11 @@ export default class BalanceCommand extends Command {
         return message.channel.send({ content: lang.ADMIN.PROVIDE_VALID_MEMBER });
       }
 
-      if (member?.user?.bot) {
+      if (member.user?.bot) {
         return message.channel.send({ content: lang.MEMBER.BOT_DATA });
       }
 
       const user = await this.bot.utils.getUserById(member?.user?.id, message.guild?.id);
-
       if (!user) {
         return message.channel.send({ content: lang.ADMIN.PROVIDE_VALID_MEMBER });
       }

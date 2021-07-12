@@ -64,6 +64,9 @@ class Bot extends Client {
       leaveOnEmpty: true,
       nsfw: false,
       leaveOnFinish: true,
+      customFilters: {
+        cursed: "vibrato=f=6.5,tremolo,aresample=48000,asetrate=48000*1.25",
+      },
 
       ytdlOptions: {
         filter: "audioonly",
