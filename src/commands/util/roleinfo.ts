@@ -1,4 +1,4 @@
-import { bold } from "@discordjs/builders";
+import { bold, time } from "@discordjs/builders";
 import { Message, Snowflake } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -33,7 +33,6 @@ export default class RoleInfoCommand extends Command {
               .map((p) => lang.PERMISSIONS[p])
               .join(", ")}\`\`\``;
 
-      const { date, tz } = await this.bot.utils.formatDate(role.createdAt, message.guild?.id);
       const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
       const color = role.color || "#5865f2";
       const position = message.guild?.roles.cache.size - role.position;
@@ -48,9 +47,9 @@ ${bold(lang.UTIL.POSITION)}: ${position}
 ${bold(lang.UTIL.MENTIONABLE)}: ${mentionable}
 ${bold(lang.MEMBER.ID)}: ${role.id}
 ${bold(lang.UTIL.HEX_COLOR)}: ${role.hexColor}
-${bold(lang.MEMBER.CREATED_ON)}: ${date} (${tz})`,
+${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(role.createdAt), "F")}`,
         )
-
+        .addField("Role mention", `<@&${role.id}>`)
         .addField(lang.MEMBER.PERMISSIONS, permissions);
 
       message.channel.send({ embeds: [embed] });

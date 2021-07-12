@@ -71,7 +71,7 @@ export default class BlacklistCommand extends Command {
           const embed = this.bot.utils
             .baseEmbed(message)
             .setTitle(`${lang.BOT_OWNER.BLD_STATUS}: ${member?.user?.username}`)
-            .addField(`${lang.LEVELS.LEVEL}`, "2");
+            .addField(lang.LEVELS.LEVEL, "2");
 
           return message.channel.send({ embeds: [embed] });
         }

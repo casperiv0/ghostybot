@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import dayJs from "dayjs";
-import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict";
+import { time } from "@discordjs/builders";
 
 import duration from "dayjs/plugin/duration";
 dayJs.extend(duration);
@@ -33,15 +33,10 @@ export default class RemindersCommand extends Command {
       }
 
       const mappedReminders = user.reminder.reminders.map((reminder) => {
-        const endsAt = formatDistanceToNowStrict(reminder.ends_at, {
-          roundingMethod: "floor",
-          addSuffix: true,
-        });
-
         return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
 **${lang.REMINDER.TIME}** ${reminder.time}
 **${lang.MEMBER.ID}:** ${reminder.id}
-**${lang.REMINDER.ENDS_IN}** ${endsAt}`;
+**${lang.REMINDER.ENDS_IN}** ${time(new Date(reminder.ends_at), "R")}`;
       });
 
       const embed = this.bot.utils

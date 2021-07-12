@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { bold, inlineCode } from "@discordjs/builders";
+import { bold, inlineCode, time } from "@discordjs/builders";
 import badges from "assets/ts/badges";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -27,15 +27,8 @@ export default class UserInfoCommand extends Command {
       }
 
       const { username, id, tag } = member.user;
+      const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : "Unknown";
 
-      const { date: joinedAt, tz } = await this.bot.utils.formatDate(
-        member.joinedAt ? new Date(member.joinedAt) : null,
-        message.guild?.id,
-      );
-      const { date: createdAt } = await this.bot.utils.formatDate(
-        new Date(member.user.createdAt),
-        message.guild?.id,
-      );
       const nickname = member.nickname || lang.GLOBAL.NONE;
 
       const userFlags =
@@ -60,7 +53,7 @@ export default class UserInfoCommand extends Command {
 ${bold(lang.MEMBER.ID)}: ${inlineCode(id)}
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
-${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${tz})
+${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(member.user.createdAt), "F")}
 `,
         )
 
@@ -68,7 +61,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${tz})
           "Guild info",
           `
 ${bold(lang.MEMBER.NICKNAME)}: ${nickname}
-${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${tz})
+${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt}
 `,
         )
         .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)

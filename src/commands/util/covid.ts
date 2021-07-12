@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class CovidCommand extends Command {
   constructor(bot: Bot) {
@@ -21,17 +22,18 @@ export default class CovidCommand extends Command {
       let country = await (
         await fetch(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)
       ).json();
+
       if (!query) country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
 
       if (country.message) {
         return message.channel.send({ content: lang.COVID.NOT_FOUND });
       }
-      const { tz, date } = await this.bot.utils.formatDate(country.updated, message.guild?.id);
-      const Title = country.country ? `Covid: ${country.country}` : "Covid";
+
+      const title = country.country ? `Covid: ${country.country}` : "Covid";
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(Title)
+        .setTitle(title)
         .addField(
           lang.COVID.TOTAL,
           `
@@ -54,7 +56,7 @@ export default class CovidCommand extends Command {
         .addField(lang.COVID.TESTS, this.bot.utils.formatNumber(country.tests), true)
         .setThumbnail(country.countryInfo?.flag || "")
         .setFooter(
-          `${lang.COVID.LAST_UPDATED}: ${date} (${tz})`,
+          `${lang.COVID.LAST_UPDATED}: ${time(new Date(country.updated), "f")}`,
           message.author.displayAvatarURL({ dynamic: true }),
         );
 

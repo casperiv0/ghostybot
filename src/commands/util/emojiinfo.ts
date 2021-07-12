@@ -1,6 +1,7 @@
 import { Guild, Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class EmojiInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -34,11 +35,6 @@ export default class EmojiInfoCommand extends Command {
         emojiAuthor = "Invalid Permissions";
       }
 
-      const { date: createdAt, tz } = await this.bot.utils.formatDate(
-        foundEmoji.createdAt,
-        message.guild?.id,
-      );
-
       const accessibleBy =
         foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE;
 
@@ -48,7 +44,7 @@ export default class EmojiInfoCommand extends Command {
         .setThumbnail(foundEmoji.url).setDescription(`
 **Name:** ${foundEmoji.name}
 **ID:** ${foundEmoji.id}
-**Created At:** ${createdAt} (${tz})
+**Created At:** ${time(new Date(foundEmoji.createdAt), "F")}
 **Created by:** ${emojiAuthor}
 **Accessible By:** ${accessibleBy}`);
 

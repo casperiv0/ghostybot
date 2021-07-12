@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class ServerInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -29,14 +30,10 @@ export default class ServerInfoCommand extends Command {
       const verLevels = lang.OTHER.VERLEVELS;
       const mfaLevels = lang.OTHER.MFA_LEVELS;
 
-      const { date: createdAt } = await this.bot.utils.formatDate(
-        guild.createdAt,
-        message.guild?.id,
-      );
-      const { date: joined, tz } = await this.bot.utils.formatDate(
-        message.member?.joinedAt,
-        message.guild?.id,
-      );
+      const joinedAt = message.member?.joinedAt
+        ? time(new Date(message.member.joinedAt), "F")
+        : "Unknown";
+
       const owner = await guild.fetchOwner();
       const inviteBanner = guild.bannerURL({
         size: 2048,
@@ -55,8 +52,8 @@ export default class ServerInfoCommand extends Command {
   **${lang.GUILD.MFA}:** ${mfaLevel}
   **${lang.GUILD.VERIFICATION}:** ${verLevel}
 
-  **${lang.MEMBER.JOINED_AT}:** ${joined} (${tz})
-  **${lang.MEMBER.CREATED_ON}:** ${createdAt} (${tz})`,
+  **${lang.MEMBER.JOINED_AT}:** ${joinedAt}
+  **${lang.MEMBER.CREATED_ON}:** ${time(new Date(guild.createdAt), "F")}`,
         )
         .addField(
           "**📈 Stats**",

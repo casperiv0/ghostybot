@@ -353,23 +353,6 @@ export default class Util {
     });
   }
 
-  async formatDate(date: string | Date | number | null, guildId: string | undefined) {
-    if (date === null) {
-      return {
-        date: null,
-        tz: null,
-      };
-    }
-
-    const tz = await (await this.getGuildById(guildId))?.timezone;
-    const m = dayJs.tz(`${date}`, tz || "America/New_York").format("MM/DD/YYYY, h:mm:ss a");
-
-    return {
-      date: m,
-      tz,
-    };
-  }
-
   async updateMuteChannelPerms(
     guild: DJS.Guild,
     memberId: DJS.Snowflake,

@@ -1,7 +1,7 @@
 import { Message, Snowflake, TextChannel, VoiceChannel, Constants } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import { bold } from "@discordjs/builders";
+import { bold, time } from "@discordjs/builders";
 
 const voiceChannel: (keyof typeof Constants.ChannelTypes)[] = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
 
@@ -27,8 +27,6 @@ export default class ChannelInfoCommand extends Command {
       const topic = (channel as TextChannel)?.topic ?? lang.GLOBAL.NONE;
       const type = lang.UTIL.CHANNEL_TYPES[channel?.type.toUpperCase()];
 
-      const { date, tz } = await this.bot.utils.formatDate(channel.createdAt, message.guild?.id);
-
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${(channel as TextChannel)?.name}`)
@@ -37,7 +35,7 @@ export default class ChannelInfoCommand extends Command {
 ${bold(lang.MEMBER.ID)}: ${channel.id}
 ${bold(lang.BOT_OWNER.EVAL_TYPE)}: ${type}
 ${bold(lang.UTIL.CHANNEL_TOPIC)}: ${topic}
-${bold(lang.MEMBER.CREATED_ON)}: ${date} (${tz})
+${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(channel.createdAt), "F")}
 `,
         );
 

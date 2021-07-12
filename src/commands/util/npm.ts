@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 import fetch from "node-fetch";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class NpmCommand extends Command {
   constructor(bot: Bot) {
@@ -39,7 +40,8 @@ export default class NpmCommand extends Command {
 
       // if it was found, show more info about the package, otherwise return a list of the top 5
       if (foundPackage) {
-        const { tz, date } = await this.bot.utils.formatDate(foundPackage.date, message.guild?.id);
+        const updatedAt = time(new Date(foundPackage.date), "F");
+
         const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
         const downloads = await fetch(
           `https://api.npmjs.org/downloads/point/last-week/${foundPackage.name}`,
@@ -53,7 +55,7 @@ export default class NpmCommand extends Command {
           .setTitle(foundPackage.name)
           .setDescription(foundPackage?.description ?? lang.GLOBAL.NONE)
           .addField(lang.UTIL.VERSION, foundPackage.version, true)
-          .addField(lang.UTIL.LAST_MODIFIED, `${date} (${tz})`, true)
+          .addField(lang.UTIL.LAST_MODIFIED, updatedAt, true)
           .addField(lang.UTIL.MAINTAINERS, maintainers);
 
         if (downloads?.downloads) {
@@ -76,9 +78,9 @@ export default class NpmCommand extends Command {
         embed.addField(
           pkg.name,
           `
-          **${lang.UTIL.VERSION}:** ${pkg.version}
-          **${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
-          [**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
+**${lang.UTIL.VERSION}:** ${pkg.version}
+**${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
+[**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
           `,
         );
       });
