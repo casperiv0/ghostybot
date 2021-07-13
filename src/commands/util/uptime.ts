@@ -3,6 +3,7 @@ import dayJs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 dayJs.extend(duration);
 
 export default class UptimeCommand extends Command {
@@ -16,17 +17,11 @@ export default class UptimeCommand extends Command {
   }
 
   async execute(message: Message) {
-    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
-
-    const uptime = dayJs
-      .duration(this.bot?.uptime ?? 0)
-      .format(" D [days], H [hrs], m [mins], s [secs]");
+    const uptimeRelative = dayJs.duration(this.bot?.uptime ?? 0).format("H [hrs]");
+    const botUpSince = time(new Date(Date.now() - (this.bot.uptime ?? 0)), "f");
 
     return message.channel.send({
-      content: lang.UTIL.UPTIME.replace("{member}", `${this.bot.user?.username}`).replace(
-        "{time}",
-        uptime,
-      ),
+      content: `Bot has been up since: ${botUpSince} (${uptimeRelative})`,
     });
   }
 }

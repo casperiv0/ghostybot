@@ -43,12 +43,16 @@ export default class KickCommand extends Command {
 
       kickMember.kick(kickReason);
 
-      kickMember.user.send({
-        content: lang.ADMIN.KICK_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
-          "{reason}",
-          kickReason,
-        ),
-      });
+      try {
+        kickMember.user.send({
+          content: lang.ADMIN.KICK_SUCCESS_DM.replace("{guild}", message.guild.name).replace(
+            "{reason}",
+            kickReason,
+          ),
+        });
+        // eslint-disable-next-line no-empty
+      } catch {}
+
       message.channel.send({
         content: lang.ADMIN.KICK_SUCCESS.replace("{tag}", kickMember.user.tag).replace(
           "{reason}",
