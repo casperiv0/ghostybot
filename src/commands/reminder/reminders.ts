@@ -1,9 +1,5 @@
 import { Message } from "discord.js";
-import dayJs from "dayjs";
 import { time } from "@discordjs/builders";
-
-import duration from "dayjs/plugin/duration";
-dayJs.extend(duration);
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 

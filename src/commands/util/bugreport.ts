@@ -30,7 +30,9 @@ export default class BugReportCommand extends Command {
         .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", message.author.tag))
         .setDescription(bug);
 
-      (this.bot.channels.cache.get(channelId as Snowflake) as TextChannel)?.send({
+      const channel = this.bot.channels.cache.get(channelId as Snowflake) as TextChannel;
+
+      channel?.send({
         embeds: [embed],
       });
 

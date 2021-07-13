@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { bold } from "@discordjs/builders";
 
 export default class ChannelsCommand extends Command {
   constructor(bot: Bot) {
@@ -32,8 +33,8 @@ export default class ChannelsCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${message.guild?.name}'s channels`)
-        .addField(`**${lang.UTIL.VOICE_CHANNELS}:**`, voiceChannels)
-        .addField(`**${lang.UTIL.TEXT_CHANNELS}:**`, textChannels);
+        .addField(bold(lang.UTIL.VOICE_CHANNELS), voiceChannels)
+        .addField(bold(lang.UTIL.TEXT_CHANNELS), textChannels);
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {

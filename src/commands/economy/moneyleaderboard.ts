@@ -11,6 +11,7 @@ export default class MoneyLeaderboardCommand extends Command {
       description: "Returns a leaderboard with the top 10 users money",
       category: "economy",
       aliases: ["mlb"],
+      typing: true,
     });
   }
 

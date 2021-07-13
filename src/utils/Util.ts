@@ -1,7 +1,4 @@
 import * as DJS from "discord.js";
-import dayJs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import { codeBlock } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import Bot from "structures/Bot";
@@ -10,9 +7,6 @@ import WarningModal, { IWarning } from "models/Warning.model";
 import GuildModel, { GuildData, IGuild } from "models/Guild.model";
 import ApiRequest from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
-
-dayJs.extend(utc);
-dayJs.extend(timezone);
 
 export default class Util {
   bot: Bot;

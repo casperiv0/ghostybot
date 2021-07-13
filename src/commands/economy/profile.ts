@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { bold } from "@discordjs/builders";
 
 export default class ProfileCommand extends Command {
   constructor(bot: Bot) {
@@ -29,20 +30,21 @@ export default class ProfileCommand extends Command {
         return message.channel.send({ content: lang.GLOBAL.ERROR });
       }
 
-      const guild = await this.bot.utils.getGuildById(guildId);
-
       const { money, bank, inventory, xp } = user;
       const level = this.bot.utils.calculateXp(xp);
 
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(`${member?.user.username} ${lang.ECONOMY.PROFILE}`)
-        .addField(`**${lang.LEVELS.XP}**`, xp.toString(), true)
-        .addField(`**${lang.LEVELS.LEVEL}**`, level.toString(), true)
-        .addField(`**${lang.ECONOMY.MONEY}**`, money.toString(), true)
-        .addField(`**${lang.ECONOMY.BANK}**`, bank.toString(), true)
-        .addField(`**${lang.ECONOMY.INV_ITEMS}**`, inventory.length.toString(), true)
-        .setDescription(lang.ECONOMY.VIEW_INVENTORY.replace("{prefix}", `${guild?.prefix}`));
+        .setDescription(
+          `
+${bold(lang.LEVELS.XP)}: ${this.bot.utils.formatNumber(xp)}
+${bold(lang.LEVELS.LEVEL)}: ${level}
+${bold(lang.ECONOMY.MONEY)}: ${this.bot.utils.formatNumber(money)}
+${bold(lang.ECONOMY.BANK)}: ${this.bot.utils.formatNumber(bank)}
+        `,
+        )
+        .addField(bold(lang.ECONOMY.INV_ITEMS), inventory.length.toString(), true);
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
