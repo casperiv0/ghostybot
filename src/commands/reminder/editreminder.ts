@@ -29,8 +29,8 @@ export default class EditReminderCommand extends Command {
         return message.channel.send({ content: "You don't have any active reminders" });
       }
 
-      const reminder = user.reminder.reminders.find((r) => r.id === +id);
-      const updated = user.reminder.reminders.filter((r) => r.id !== +id);
+      const reminder = user.reminder.reminders.find((r) => r.id === id);
+      const updated = user.reminder.reminders.filter((r) => r.id !== id);
 
       if (!reminder) {
         return message.channel.send({ content: "That reminder was not found" });

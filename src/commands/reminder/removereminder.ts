@@ -32,9 +32,7 @@ export default class RemoveReminderCommand extends Command {
           break;
         }
         case "last": {
-          id = `${
-            user.reminder.reminders.find((v) => v.id === user.reminder.reminders.length)?.id
-          }`;
+          id = user.reminder.reminders[user.reminder.reminders.length - 1].id;
           break;
         }
         default: {
@@ -45,7 +43,7 @@ export default class RemoveReminderCommand extends Command {
       await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
         reminder: {
           hasReminder: user.reminder.reminders?.length - 1 > 0,
-          reminders: user.reminder.reminders.filter((reminder) => reminder.id !== +id),
+          reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),
         },
       });
 

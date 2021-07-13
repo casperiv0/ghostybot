@@ -41,7 +41,7 @@ export default class SetReminderCommand extends Command {
               msg,
               channel_id: message.channel.id,
               time,
-              id: reminders.length + 1,
+              id: v4().slice(0, 8),
               _id: v4(),
             },
           ],

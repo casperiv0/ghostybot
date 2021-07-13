@@ -84,7 +84,10 @@ export interface Reminders {
 
 export interface Reminder {
   _id: string;
-  id: number;
+  /**
+   * uuid but 8 characters long
+   */
+  id: string;
   channel_id: Snowflake;
   msg: string;
   time: string;

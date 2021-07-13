@@ -1,11 +1,11 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "Running 'npm run format:quick'"
+echo "\nRunning 'npm run format:quick'"
 
 npm run format:quick
 
-echo "Running 'npm run test:tsc'"
+echo "\nRunning 'npm run test:tsc'"
 
 npm run test:tsc
 
