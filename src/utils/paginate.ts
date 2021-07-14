@@ -5,7 +5,7 @@ import ms from "ms";
 // if a user reacts with this emoji, the pagination will end
 const END_EMOJI = "🛑";
 const EMOJIS = ["⏪", "◀️", "▶️", "⏩"];
-const ALL_EMOJIS = [...EMOJIS, END_EMOJI];
+const ALL_EMOJIS = [...EMOJIS.slice(0, 2), END_EMOJI, ...EMOJIS.slice(1, 4)];
 const TIMEOUT = 60 * 1000 * 5; // 5minutes
 
 async function paginate(message: Message, embeds: MessageEmbed[]) {

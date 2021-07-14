@@ -5,7 +5,7 @@ import { Message } from "discord.js";
 export default class RemoveReminderCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      usage: "removereminder <id | 'last' | 'first'>",
+      usage: "removereminder <id | 'last' | 'first' | 'all'>",
       name: "removereminder",
       description: "Remove your current reminder",
       category: "reminder",
@@ -24,6 +24,17 @@ export default class RemoveReminderCommand extends Command {
 
       if (user?.reminder.hasReminder === false) {
         return message.channel.send({ content: lang.REMINDER.NO_REMINDER_SET });
+      }
+
+      if (id === "all") {
+        await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
+          reminder: {
+            hasReminder: false,
+            reminders: [],
+          },
+        });
+
+        return message.channel.send({ content: "Removed all your reminders" });
       }
 
       switch (id) {

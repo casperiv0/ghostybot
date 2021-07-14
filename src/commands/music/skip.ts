@@ -29,6 +29,10 @@ export default class SkipCommand extends Command {
         return message.channel.send({ content: "Bot is not in this voice channel!" });
       }
 
+      if (queue.songs.length <= 1) {
+        return message.channel.send({ content: lang.MUSIC.ERRORS.NO_UP_NEXT });
+      }
+
       this.bot.player.skip(message);
 
       if (message.guild?.me?.permissions.has(Permissions.FLAGS.ADD_REACTIONS)) {

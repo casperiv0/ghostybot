@@ -3287,7 +3287,7 @@ Click any of the command names for more information
 
 **Description:** Remove your current reminder
 
-**Usage:** `removereminder <id, 'last', 'first'>`
+**Usage:** `removereminder <id | 'last' | 'first' | 'all'>`
 
 **Aliases:** `delreminder`
 
