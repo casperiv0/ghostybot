@@ -1,4 +1,5 @@
 import { TextChannel } from "discord.js";
+import { DisTubeError } from "distube";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -7,11 +8,15 @@ export default class PlayerErrorEvent extends Event {
     super(bot, "error");
   }
 
-  async execute(bot: Bot, channel: TextChannel, error: Error) {
+  async execute(bot: Bot, channel: TextChannel, error: DisTubeError) {
     if (!channel.guild?.available) return;
     const lang = await bot.utils.getGuildLang(channel.guild?.id);
 
+    if (lang.MUSIC.ERRORS[error.code]) {
+      return channel.send({ content: lang.MUSIC.ERRORS[error.code] });
+    }
+
     bot.utils.sendErrorLog(error, "error");
-    return channel.send({ content: lang.GLOBAL.ERROR });
+    return channel.send({ content: lang.MUSIC.ERRORS.JOIN_ERROR });
   }
 }

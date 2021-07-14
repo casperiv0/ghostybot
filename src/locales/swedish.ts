@@ -1,4 +1,4 @@
-export default {
+const LANG: typeof import("./english").default = {
   GLOBAL: {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "Ej angivet",
@@ -22,10 +22,6 @@ export default {
     WELCOME_CHANNEL: "Välkomstkanal",
     LEAVE_CHANNEL: "Lämna kanalen",
     PREFIX: "Prefix",
-    IS_VERIFIED: "Ja, den här servern är verifierad",
-    IS_PARTNERED: "Ja, den här servern är partner",
-    NOT_VERIFIED: "Nej, den här servern är inte verifierad",
-    NOT_PARTNERED: "Nej, den här servern är inte partner",
     OWNER: "Guildägare",
     CHANNEL_C: "Kanalantal",
     EMOJI_C: "Emoji räkna",
@@ -41,7 +37,6 @@ export default {
   },
   MEMBER: {
     TAG: "Tagg",
-    BOT: "Bottar",
     ROLES: "Roller",
     BADGES: "Badges",
     ONLINE: "Uppkopplad",
@@ -53,7 +48,6 @@ export default {
     ID: "Id",
     USERNAME: "Användarnamn",
     NICKNAME: "Smeknamn",
-    PROVIDE_MEMBER: "Vänligen ange en medlem",
     NOT_FOUND: "Medlem hittades inte",
     CANNOT_BE_BANNED: "Denna medlem kan inte förbjudas",
     DM_BAN_MESSAGE:
@@ -81,6 +75,8 @@ export default {
     KISSED: "kysste",
     POKED: "stötte",
     SLAPPED: "slog",
+    NO_GIPHY_KEY: "No giphy api was found in the config (contact the bot owner)",
+    NO_GPIHY_FOUND: "No gifs were found with that",
   },
   ANIMAL: {
     CAT_FACT: "Kattfakta",
@@ -104,6 +100,7 @@ export default {
     UNBLACKLISTED: "osvartlistad",
     BLACKLISTED_SUCCESS: "{member} var {type}",
     BLD_STATUS: "Svartlistans status",
+    CANNOT_BL_BOT: "The bot cannot be blacklisted",
   },
   LEVELS: {
     XP: "XP",
@@ -115,6 +112,9 @@ export default {
     PROVIDE_AMOUNT: "Vänligen ange ett belopp",
     PROVIDE_VALID_NR: "Ange ett giltigt nummer",
     GIVE_XP_SUCCESS: "SFramgångsrikt gav **{member}** **{amount}**XP",
+    TOTAL_XP: "Total XP",
+    NEW_LEVEL: "New level",
+    LEVEL_UP: "Level Up!",
   },
   PERMISSIONS: {
     CREATE_INSTANT_INVITE: "Create invites",
@@ -172,8 +172,6 @@ export default {
     REQUESTED_BY: "Efterfrågad av {user}",
     NO_PERMS: "Jag har inte rätt behörighet för den röstkanalen!",
     NO_RESULTS: "Inga låtar hittades",
-    JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
-    LIVE_NOT_SUPPORTED: "Live videos are not supported",
     SUC_REM_FILTER: "Successfully removed {filter}",
     SUC_APPLIED_FILTER: "Successfully applied {filter}",
     FILTER_NOT_FOUND: "That filter was not found",
@@ -182,9 +180,23 @@ export default {
     NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
     NO_LIRYCS: "No lyrics found for {songTitle}.",
     NOW: "Now",
-    PARSE_ERROR: "An error occurred when parsing the video/playlist",
-    VIDEO_UNAVAILABLE: "That video/playlist seems to be unavailable",
     MUSIC_STARTING: "The music is starting. Please wait a few seconds..",
+
+    ERRORS: {
+      LIVE_NOT_SUPPORTED: "Live videos are not supported",
+      JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
+      NO_RESULT: "No songs were found.",
+      VOICE_FULL: "That voice channel is full.",
+      NO_QUEUE: "There's no music playing.",
+      NO_PREVIOUS: "There is no previous song in the queue.",
+      NO_UP_NEXT: "There is no next song in the queue.",
+      UNAVAILABLE_VIDEO: "That video/playlist seems to be unavailable.",
+      NOT_SUPPORTED_URL: "That URL is not supported.",
+      NON_NSFW: "Cannot play age-restricted content in non-NSFW channel.",
+      UNPLAYABLE_FORMATS: "That format cannot be used.",
+      NO_SONG_POSITION: "There isn't a song at this position in the queue.",
+      EMPTY_PLAYLIST: "There isn't a valid song in the playlist",
+    },
   },
   ECONOMY: {
     MONEY: "Pengar",
@@ -247,6 +259,7 @@ export default {
     PROVIDE_AMOUNT: "Please provide an amount to withdraw",
     NO_MONEY: "You don't have that much money in your bank!",
     WORK: "Work!",
+    REMOVED_MONEY: "Successfully removed {amount} from user balance",
   },
   GAMES: {
     BETS_ON: "{member_1} satsar på {member_2}",
@@ -615,17 +628,10 @@ export default {
     NO_WARNINGS: "There are no warnings",
     REMOVED_ALL_WARNINGS: "Successfully removed all warnings",
     ANNOUNCEMENT: "📢 Announcement 📢",
-    PROVIDE_VALID_TIME: "Please provide a valid time: E.G.:",
     PROVIDE_VALID_MEMBER: "Please provide valid a member",
     PROVIDE_VALID_EMOJI: "Please provide a valid emoji",
     PROVIDE_VALID_OPTION: "Please provide an valid option",
     PROVIDE_VALID_CHANNEL_OR_ROLE: "Please provide a valid channel or role!",
-    SUG_CHAN_NOW: "Suggest channel is now:",
-    LANG_UPDATE: "Successfully updated language to",
-    SET_STARBOARD_CHAN: "Successfully set {channel} as starboards channel",
-    SET_MEM_COUNT_CHAN: "Successfully set as member count channel",
-    UPDATE_WEL_MES:
-      "Successfully updated welcome message (please use dashboard for better experience)",
     GIVE_NAME: "give_name",
     EMOJI_ADDED: "Emoji Added",
     EMOJI_ADDED_NAME: "Emoji Has Been Added! | Name:",
@@ -676,6 +682,7 @@ export default {
       "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
     ROLE_NOT_FOUND: "That role was not found",
     GUILD_CONFIG: "{guildName}'s config",
+    ADD_TO_IGNORE: "Successfully added {item} to ignored channels",
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",
@@ -695,6 +702,10 @@ export default {
     CHANNEL_DELETED_MSG: "{channel_type}: **{channel}** was deleted",
     CHANNEL_RENAME_MSG: "{channel_type}: **{channel}** was renamed to **{new_channel}**",
     CHANNEL_RENAME: "Channel Rename",
+    CHANNEL_TOPIC_UPDATED: "Channel Topic Updated",
+    CHANNEL_TOPIC_UPDATED_MSG: "Channel topic in channel: **{channel}** was updated",
+    CHANNEL_OLD_TOPIC: "Old Topic",
+    CHANNEL_NEW_TOPIC: "New Topic",
     EMOJI_CREATED_MSG: "Emoji: {emoji} was created",
     EMOJI_CREATED: "New Emoji Created",
     EMOJI_DELETED_MSG: "Emoji: **{emoji}** was deleted",
@@ -751,6 +762,10 @@ export default {
       "south-korea": ":flag_kr: South Korea",
       london: ":flag_gb: London",
     },
+    MFA_LEVELS: {
+      NONE: "None",
+      ELEVATED: "Elevated",
+    },
     VERLEVELS: {
       NONE: "None",
       LOW: "Low",
@@ -772,7 +787,7 @@ export default {
       "Nope.",
       "No thanks, I won’t be able to make it.",
       "No Way!",
-      " It is certain.",
+      "It is certain.",
       "It is decidedly so.",
       "Without a doubt.",
       "Yes - definitely.",
@@ -790,3 +805,5 @@ export default {
     EXPIRED_AT: "Expired at",
   },
 };
+
+export default LANG;
