@@ -5,7 +5,7 @@ import { Message } from "discord.js";
 export default class RemoveReminderCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
-      usage: "removereminder <id, 'last', 'first'>",
+      usage: "removereminder <id | 'last' | 'first'>",
       name: "removereminder",
       description: "Remove your current reminder",
       category: "reminder",
