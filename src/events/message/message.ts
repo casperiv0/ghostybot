@@ -368,7 +368,7 @@ export default class MessageEvent extends Event {
       }
 
       if (command.options.typing === true) {
-        message.channel.startTyping();
+        message.channel.sendTyping();
       }
 
       timestamps?.set(userId, now);
@@ -378,7 +378,7 @@ export default class MessageEvent extends Event {
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     } finally {
-      message.channel.stopTyping(true);
+      message.channel.sendTyping();
     }
   }
 }
