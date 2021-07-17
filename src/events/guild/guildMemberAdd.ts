@@ -1,4 +1,4 @@
-import { GuildMember, TextChannel } from "discord.js";
+import { GuildMember, Permissions, TextChannel } from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -41,12 +41,19 @@ export default class GuildMemberAddEvent extends Event {
           );
 
         const ch = bot.channels.cache.get(welcomeData.channel_id);
-        if (!ch) return;
-        (ch as TextChannel).send({ embeds: [embed] });
+        if (!ch || !ch.isText()) return;
+        if ((ch as TextChannel)?.permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+          return;
+        }
+
+        ch.send({ embeds: [embed] });
       }
 
-      if (!member.pending && welcomeData.role_id) {
-        if (!member.guild.me?.permissions.has("MANAGE_ROLES")) return;
+      if (
+        !member.pending &&
+        welcomeData.role_id &&
+        member.guild.me?.permissions.has("MANAGE_ROLES")
+      ) {
         member.roles.add(welcomeData.role_id);
       }
     } catch (err) {
