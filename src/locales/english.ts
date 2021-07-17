@@ -416,8 +416,8 @@ export default {
     COMMAND_COUNT: "Command count",
     VC_CONNS: "Voice connections",
     INFO_2: "Bot Information",
-    INFO: "Bot info",
-    SYSTEM_INFO: "System Info",
+    INFO: "Bot stats",
+    SYSTEM_INFO: "System info",
     RAM_USAGE: "RAM Usage",
     UPTIME: "Uptime",
     DJS_V: "Discord.js version",
@@ -522,6 +522,7 @@ export default {
     TIME: "Time:",
     ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
+    ALL_DELETED: "Removed all your reminders",
   },
   COVID: {
     CASES: "Cases",

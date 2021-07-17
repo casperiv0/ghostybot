@@ -521,6 +521,7 @@ const LANG: typeof import("./english").default = {
     TIME: "Time:",
     ENDS_IN: "Ends In:",
     USER_REMINDERS: "{memberUsername}'s active reminders",
+    ALL_DELETED: "Removed all your reminders",
   },
   COVID: {
     CASES: "Cases",

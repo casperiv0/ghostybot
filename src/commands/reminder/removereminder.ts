@@ -34,7 +34,7 @@ export default class RemoveReminderCommand extends Command {
           },
         });
 
-        return message.channel.send({ content: "Removed all your reminders" });
+        return message.channel.send({ content: lang.REMINDER.ALL_DELETED });
       }
 
       switch (id) {
