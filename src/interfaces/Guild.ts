@@ -1,12 +1,12 @@
-import { CategoryChannel, Channel, Guild as DiscordGuild, Role } from "discord.js";
+import * as DJS from "discord.js";
 import { GuildData, SlashCommand } from "models/Guild.model";
 
 // @ts-expect-error ignore
-interface Guild extends GuildData, DiscordGuild {
+interface Guild extends GuildData, DJS.Guild {
   inGuild: boolean;
-  channels: Channel[];
-  roles: Role[];
-  categories: CategoryChannel[];
+  channels: DJS.Channel[];
+  roles: DJS.Role[];
+  categories: DJS.CategoryChannel[];
   permissions: unknown;
   slash_commands: SlashCommand[];
 }

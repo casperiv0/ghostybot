@@ -1,7 +1,7 @@
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Helper from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
-import { Message } from "discord.js";
 
 export default class TemproleHelper extends Helper {
   constructor(bot: Bot) {
@@ -33,7 +33,7 @@ export default class TemproleHelper extends Helper {
               guild,
             };
 
-            const member = await this.bot.utils.findMember(message as unknown as Message, [
+            const member = await this.bot.utils.findMember(message as unknown as DJS.Message, [
               user.user_id,
             ]);
             if (!member) return;

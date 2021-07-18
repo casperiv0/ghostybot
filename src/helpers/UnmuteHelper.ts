@@ -1,4 +1,4 @@
-import { Message, ThreadChannel } from "discord.js";
+import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Helper from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
@@ -27,7 +27,7 @@ export default class ReminderHelper extends Helper {
             guild,
           };
 
-          const member = await this.bot.utils.findMember(message as unknown as Message, [
+          const member = await this.bot.utils.findMember(message as unknown as DJS.Message, [
             user.user_id,
           ]);
 
@@ -46,7 +46,7 @@ export default class ReminderHelper extends Helper {
             const mutedRole = await this.bot.utils.findOrCreateMutedRole(guild);
 
             guild.channels.cache.forEach((channel) => {
-              if (channel instanceof ThreadChannel) return;
+              if (channel instanceof DJS.ThreadChannel) return;
 
               channel.permissionOverwrites.delete(user.user_id);
             });

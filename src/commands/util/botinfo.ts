@@ -13,7 +13,7 @@ export default class BotInfoCommand extends Command {
       name: "botinfo",
       description: "Shows info about the bot",
       category: "util",
-      aliases: ["bot", "ping"],
+      aliases: ["bot", "ping", "about"],
     });
   }
 
@@ -32,18 +32,19 @@ export default class BotInfoCommand extends Command {
         this.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
       );
 
-      const RAM_USAGE = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+      const latency = Math.round(this.bot.ws.ping).toString();
+      const ramUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
 
-      const BOT_REPO = hyperlink("Click Here", "https://github.com/dev-caspertheghost/ghostybot");
-      const SUPPORT_SERVER = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
-      const DASHBOARD = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
+      const botRepo = hyperlink("Click Here", "https://github.com/dev-caspertheghost/ghostybot");
+      const supportServer = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
+      const dashboard = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
 
-      const BOT_DEV = hyperlink(lang.BOT.DEVELOPER, "https://caspertheghost.me");
-      const CONTRIBUTORS = hyperlink(
+      const botDeveloper = hyperlink(lang.BOT.DEVELOPER, "https://caspertheghost.me");
+      const contributors = hyperlink(
         lang.BOT.CONTRIBUTORS,
         "https://github.com/Dev-CasperTheGhost/ghostybot/contributors",
       );
-      const BOT_INVITE = hyperlink(
+      const botInvite = hyperlink(
         lang.BOT.INVITE_BOT,
         `https://discord.com/oauth2/authorize?client_id=${this.bot.user?.id}&scope=applications.commands+bot&permissions=8`,
       );
@@ -51,16 +52,15 @@ export default class BotInfoCommand extends Command {
       const embed = this.bot.utils
         .baseEmbed(message)
         .setTitle(lang.BOT.INFO_2)
-        .addField(`${lang.MEMBER.USERNAME}:`, this.bot.user?.username ?? "GhostyBot")
-        .addField(lang.BOT.LATENCY, Math.round(this.bot.ws.ping).toString(), true)
-        .addField(
-          `${lang.HELP.COMMANDS}:`,
+        .setDescription(
           `
+**${lang.BOT.LATENCY}:** ${latency}
 **${lang.BOT.USED_SINCE_UP}:** ${inlineCode(this.bot.utils.formatNumber(used_since_up))}
-**${lang.BOT.TOTAL_USED_CMDS}:** ${inlineCode(this.bot.utils.formatNumber(total_used_cmds))}`,
+**${lang.BOT.TOTAL_USED_CMDS}:** ${inlineCode(this.bot.utils.formatNumber(total_used_cmds))}
+        `,
         )
         .addField(
-          `**${lang.BOT.INFO}:**`,
+          lang.BOT.INFO,
           `
 **${lang.BOT.USERS}:** ${inlineCode(userCount)}
 **${lang.BOT.GUILDS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.guilds.cache.size))}
@@ -70,8 +70,9 @@ export default class BotInfoCommand extends Command {
           true,
         )
         .addField(
-          `**${lang.BOT.SYSTEM_INFO}**`,
-          `**${lang.BOT.RAM_USAGE}:**  ${RAM_USAGE}MB
+          lang.BOT.SYSTEM_INFO,
+          `
+**${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
 **${lang.BOT.UPTIME}:** ${uptime}
 **${lang.BOT.DJS_V}:** ${version}`,
           true,
@@ -79,14 +80,14 @@ export default class BotInfoCommand extends Command {
         .addField(
           "Links",
           `
-${BOT_DEV}
-${CONTRIBUTORS}
-${BOT_INVITE}`,
+${botDeveloper}
+${contributors}
+${botInvite}`,
           true,
         )
-        .addField(lang.BOT.REPO, BOT_REPO, true)
-        .addField(lang.UTIL.SUPPORT_SERVER, SUPPORT_SERVER, true)
-        .addField(`${lang.BOT.DASHBOARD}`, DASHBOARD, true)
+        .addField(lang.BOT.REPO, botRepo, true)
+        .addField(lang.UTIL.SUPPORT_SERVER, supportServer, true)
+        .addField(lang.BOT.DASHBOARD, dashboard, true)
         .setImage(
           "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
         );

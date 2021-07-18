@@ -1,4 +1,4 @@
-import { Message, Permissions } from "discord.js";
+import * as DJS from "discord.js";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -9,12 +9,12 @@ export default class AddCmdCommand extends Command {
       usage: "<cmd_name> <cmd_response>",
       description: "add guild custom commands",
       category: "admin",
-      memberPermissions: [Permissions.FLAGS.ADMINISTRATOR],
+      memberPermissions: [DJS.Permissions.FLAGS.ADMINISTRATOR],
       requiredArgs: [{ name: "command name" }, { name: "command response" }],
     });
   }
 
-  async execute(message: Message, args: string[]) {
+  async execute(message: DJS.Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {

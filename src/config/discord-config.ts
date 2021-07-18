@@ -1,22 +1,22 @@
-import { ClientOptions, Constants, Intents } from "discord.js";
+import * as DJS from "discord.js";
 
-export const discordConfig: ClientOptions = {
+export const discordConfig: DJS.ClientOptions = {
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_BANS,
-    Intents.FLAGS.GUILD_EMOJIS,
-    Intents.FLAGS.GUILD_INTEGRATIONS,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    Intents.FLAGS.GUILD_VOICE_STATES,
+    DJS.Intents.FLAGS.GUILDS,
+    DJS.Intents.FLAGS.GUILD_MESSAGES,
+    DJS.Intents.FLAGS.GUILD_BANS,
+    DJS.Intents.FLAGS.GUILD_EMOJIS,
+    DJS.Intents.FLAGS.GUILD_INTEGRATIONS,
+    DJS.Intents.FLAGS.GUILD_MEMBERS,
+    DJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    DJS.Intents.FLAGS.GUILD_VOICE_STATES,
   ],
   partials: [
-    Constants.PartialTypes.GUILD_MEMBER,
-    Constants.PartialTypes.MESSAGE,
-    Constants.PartialTypes.USER,
-    Constants.PartialTypes.REACTION,
-    Constants.PartialTypes.CHANNEL,
+    DJS.Constants.PartialTypes.GUILD_MEMBER,
+    DJS.Constants.PartialTypes.MESSAGE,
+    DJS.Constants.PartialTypes.USER,
+    DJS.Constants.PartialTypes.REACTION,
+    DJS.Constants.PartialTypes.CHANNEL,
   ],
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
