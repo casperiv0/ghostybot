@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import dayJs from "dayjs";
+import { time } from "@discordjs/builders";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 
@@ -26,9 +26,11 @@ export default class DailyCommand extends Command {
       const daily = user?.daily;
 
       if (daily !== null && timeout - (Date.now() - daily) > 0) {
-        const time = dayJs(timeout - (Date.now() - daily)).format("h [hrs], m [mins], s [secs]");
+        const dateTime = new Date(Date.now() + timeout - (Date.now() - daily));
 
-        message.channel.send({ content: `${lang.ECONOMY.DAILY_ERROR} ${time} remaining` });
+        message.channel.send({
+          content: `${lang.ECONOMY.DAILY_ERROR} Check back ${time(dateTime, "R")}`,
+        });
       } else {
         this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           daily: Date.now(),

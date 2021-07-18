@@ -57,7 +57,8 @@ export default class BotInfoCommand extends Command {
 **${lang.BOT.LATENCY}:** ${latency}
 **${lang.BOT.USED_SINCE_UP}:** ${inlineCode(this.bot.utils.formatNumber(used_since_up))}
 **${lang.BOT.TOTAL_USED_CMDS}:** ${inlineCode(this.bot.utils.formatNumber(total_used_cmds))}
-        `,
+**${lang.BOT.UPTIME}:** ${uptime}
+`,
         )
         .addField(
           lang.BOT.INFO,
@@ -73,7 +74,6 @@ export default class BotInfoCommand extends Command {
           lang.BOT.SYSTEM_INFO,
           `
 **${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
-**${lang.BOT.UPTIME}:** ${uptime}
 **${lang.BOT.DJS_V}:** ${version}`,
           true,
         )

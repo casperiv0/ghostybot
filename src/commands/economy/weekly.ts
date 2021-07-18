@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import dayJs from "dayjs";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class WeeklyCommand extends Command {
   constructor(bot: Bot) {
@@ -27,10 +27,11 @@ export default class WeeklyCommand extends Command {
       const weekly = user.weekly;
 
       if (weekly !== null && timeout - (Date.now() - weekly) > 0) {
-        const time = dayJs(timeout - (Date.now() - weekly)).format(
-          "D [days], H [hrs], m [mins], s [secs]",
-        );
-        message.channel.send({ content: `${lang.ECONOMY.WEEKLY_ERROR} ${time} remaining` });
+        const dateTime = new Date(Date.now() + timeout - (Date.now() - weekly));
+
+        message.channel.send({
+          content: `${lang.ECONOMY.WEEKLY_ERROR}. Check back ${time(dateTime, "R")}`,
+        });
       } else {
         await this.bot.utils.updateUserById(message.author.id, message.guild?.id, {
           money: user.money + amount,

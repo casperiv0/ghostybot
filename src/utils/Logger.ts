@@ -1,9 +1,15 @@
 import chalk from "chalk";
-import dayJs from "dayjs";
 
 class Logger {
   get now() {
-    return dayJs().format("YYYY-MM-DD, HH:mm:ss");
+    return Intl.DateTimeFormat("be-BE", {
+      minute: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      second: "2-digit",
+    }).format(Date.now());
   }
 
   error(type: string, error: string) {

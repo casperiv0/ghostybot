@@ -1,9 +1,9 @@
 import { Message } from "discord.js";
 import { APIInvite } from "discord-api-types";
 import fetch from "node-fetch";
-import format from "date-fns/format";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import { time } from "@discordjs/builders";
 
 export default class InviteInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -42,7 +42,7 @@ export default class InviteInfoCommand extends Command {
       const doesInviteExpire = !!data.expires_at;
 
       const expiresAt = doesInviteExpire
-        ? format(new Date(data.expires_at!), "yyyy-MM-dd, HH:mm:ss")
+        ? time(new Date(data.expires_at!), "f")
         : lang.INVITE.NOT_EXPIRE;
 
       const hasExpired =
@@ -50,7 +50,7 @@ export default class InviteInfoCommand extends Command {
 
       const expiredAt = doesInviteExpire
         ? hasExpired && (data as any).expired_at
-          ? format(new Date((data as any).expired_at), "yyyy-MM-dd, HH:mm:ss")
+          ? time(new Date((data as any).expired_at), "f")
           : lang.INVITE.NOT_EXPIRED_YET
         : lang.INVITE.NOT_EXPIRE;
 
