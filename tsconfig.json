@@ -2,26 +2,40 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "jsx": "preserve",
-    "removeComments": true,
+    "moduleResolution": "node",
+
+    "outDir": "dist",
+    "declaration": false,
+    "importHelpers": true,
+    "inlineSources": true,
+    "newLine": "lf",
+    "noEmitHelpers": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noEmit": false,
+
+    "lib": ["ESNext", "dom", "dom.iterable", "ES2020.BigInt"],
+
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
     "alwaysStrict": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext", "ES2020.BigInt"],
     "allowJs": true,
-    "noEmit": false,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    "typeRoots": ["./node_modules/@types", "./typings"],
     "noImplicitOverride": false,
-    "incremental": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
+
+    "useDefineForClassFields": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+
+    "typeRoots": ["./node_modules/@types", "./typings"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
@@ -36,9 +50,7 @@
       "@locales/*": ["./src/locales/*"],
       "@config/*": ["./src/config/*"],
       "assets/*": ["./src/assets/*"]
-    },
-    "moduleResolution": "node",
-    "skipLibCheck": true
+    }
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
