@@ -6,5 +6,6 @@
   "edit": "Edit",
   "enable": "Enable",
   "disable": "Disable",
-  "current_guild": "Current guild"
+  "current_guild": "Current guild",
+  "loading": "loading.."
 }

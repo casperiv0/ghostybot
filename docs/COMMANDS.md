@@ -3415,7 +3415,7 @@ Click any of the command names for more information
 
 **Usage:** `N/A`
 
-**Aliases:** `bot`, `ping`
+**Aliases:** `bot`, `ping`, `about`
 
 **Member Permissions:** None
 

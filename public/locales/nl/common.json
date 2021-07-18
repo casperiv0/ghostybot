@@ -6,5 +6,6 @@
   "edit": "Wijzigen",
   "enable": "Inschakelen",
   "disable": "Uitschakelen",
-  "current_guild": "Huidige server"
+  "current_guild": "Huidige server",
+  "loading": "loading.."
 }

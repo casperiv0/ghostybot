@@ -6,5 +6,6 @@
   "edit": "Bearbeiten",
   "enable": "Aktivieren",
   "disable": "Deaktivieren",
-  "current_guild": "Aktueller Server"
+  "current_guild": "Aktueller Server",
+  "loading": "loading.."
 }

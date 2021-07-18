@@ -19,7 +19,6 @@ export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
   id: string;
   label: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: React.ChangeEventHandler<any>;
   value: string | number | readonly string[] | undefined;
   data?: Channel[] | Role[];
@@ -40,15 +39,20 @@ interface Props {
   isAuth: boolean;
 }
 
+interface State {
+  state: "loading" | "idle" | "error";
+  message: string | null;
+}
+
 const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
-  const [message, setMessage] = React.useState<string | null>(null);
-  const [error, setError] = React.useState<string | null>(null);
-  const [welcomeData, setWelcomeData] = React.useState(guild?.welcome_data || {});
-  const [leaveData, setLeaveData] = React.useState(guild?.leave_data || {});
-  const [levelData, setLevelData] = React.useState(guild?.level_data || {});
-  const [verifyData, setVerifyData] = React.useState(guild?.verify_data || {});
-  const [ticketData, setTicketData] = React.useState(guild?.ticket_data || {});
-  const [starboardsData, setStarboardsData] = React.useState(guild?.starboards_data || {});
+  const [state, setState] = React.useState<State>({ state: "idle", message: null });
+
+  const [welcomeData, setWelcomeData] = React.useState(guild?.welcome_data ?? {});
+  const [leaveData, setLeaveData] = React.useState(guild?.leave_data ?? {});
+  const [levelData, setLevelData] = React.useState(guild?.level_data ?? {});
+  const [verifyData, setVerifyData] = React.useState(guild?.verify_data ?? {});
+  const [ticketData, setTicketData] = React.useState(guild?.ticket_data ?? {});
+  const [starboardsData, setStarboardsData] = React.useState(guild?.starboards_data ?? {});
   const [suggestChannel, setSuggestChannel] = React.useState(guild.suggest_channel || "");
   const [announceChannel, setAnnounceChannel] = React.useState(guild.announcement_channel || "");
   const [language, setLanguage] = React.useState(guild.locale || "");
@@ -380,9 +384,11 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
   ];
 
   async function onSubmit(e: React.FormEvent) {
-    setMessage(null);
-    setError(null);
     e.preventDefault();
+    setState({
+      state: "loading",
+      message: null,
+    });
 
     try {
       const res = await fetch(
@@ -411,15 +417,24 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       const data = await res.json();
 
       if (data.status === "success") {
-        setMessage(data.message);
+        setState({
+          message: data.message,
+          state: "idle",
+        });
+
         window.scroll({
           top: 0,
           behavior: "smooth",
         });
       } else {
-        setError(data.error);
+        setState({ state: "error", message: data.error });
       }
     } catch (e) {
+      setState({
+        state: "error",
+        message: "An unexpected error occurred, please try again later!",
+      });
+
       console.error(e);
     }
   }
@@ -449,8 +464,12 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
           </a>
         </Link>
       </div>
-      {message ? <AlertMessage type="success" message={message} /> : null}
-      {error ? <AlertMessage type="error" message={error} /> : null}
+      {state.message ? (
+        <AlertMessage
+          type={state.state === "error" ? "error" : "success"}
+          message={state.message}
+        />
+      ) : null}
 
       <form onSubmit={onSubmit}>
         <div className="grid">
@@ -507,7 +526,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         </div>
 
         <button type="submit" className="btn btn-primary float-right">
-          {t("save_settings")}
+          {state.state === "loading" ? t("loading") : t("save_settings")}
         </button>
       </form>
     </>

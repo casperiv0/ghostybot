@@ -6,5 +6,6 @@
   "edit": "Изменить",
   "enable": "Включить",
   "disable": "Выключить",
-  "current_guild": "Текущий сервер"
+  "current_guild": "Текущий сервер",
+  "loading": "loading.."
 }

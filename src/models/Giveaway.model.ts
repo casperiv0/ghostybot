@@ -1,7 +1,5 @@
 import { GiveawaysMessages, LastChanceOptions, PauseOptions } from "discord-giveaways";
-import Mongoose from "mongoose";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const Mixed = require("mongoose").Mixed;
+import * as Mongoose from "mongoose";
 
 export interface IGiveaway extends Mongoose.Document {
   messageID: string;
@@ -33,7 +31,7 @@ const GiveawaySchema = new Mongoose.Schema({
     inviteToParticipate: String,
     timeRemaining: String,
     winMessage: String,
-    embedFooter: Mixed,
+    embedFooter: Mongoose.Schema.Types.Mixed,
     noWinner: String,
     winners: String,
     endedAt: String,
@@ -49,25 +47,25 @@ const GiveawaySchema = new Mongoose.Schema({
   thumbnail: String,
   hostedBy: String,
   winnerIDs: [String],
-  reaction: Mixed,
+  reaction: Mongoose.Schema.Types.Mixed,
   botsCanWin: Boolean,
-  embedColor: Mixed,
-  embedColorEnd: Mixed,
+  embedColor: Mongoose.Schema.Types.Mixed,
+  embedColorEnd: Mongoose.Schema.Types.Mixed,
   exemptPermissions: [],
   exemptMembers: String,
   bonusEntries: String,
-  extraData: Mixed,
+  extraData: Mongoose.Schema.Types.Mixed,
   lastChance: {
     enabled: Boolean,
     content: String,
     threshold: Number,
-    embedColor: Mixed,
+    embedColor: Mongoose.Schema.Types.Mixed,
   },
   pauseOptions: {
     isPaused: Boolean,
     content: String,
     unPauseAfter: Number,
-    embedColor: Mixed,
+    embedColor: Mongoose.Schema.Types.Mixed,
     durationAfterPause: Number,
   },
 });
