@@ -40,7 +40,9 @@ export default class MoneyLeaderboardCommand extends Command {
         if (member) {
           embed.addField(
             member.user.username,
-            `${isInPlace ? places[idx] : ""} ${data[idx].total} ${lang.ECONOMY.TOTAL_BALANCE}`,
+            `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].total)} ${
+              lang.ECONOMY.TOTAL_BALANCE
+            }`,
             true,
           );
         }
