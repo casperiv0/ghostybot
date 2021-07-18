@@ -34,7 +34,7 @@ export default class XpCommand extends Command {
         if (member) {
           embed.addField(
             member.user.username,
-            `${isInPlace ? places[idx] : ""} ${data[idx].xp}xp`,
+            `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].xp)}xp`,
             true,
           );
         }
