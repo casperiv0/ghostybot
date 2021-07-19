@@ -5,7 +5,7 @@ import Interaction from "structures/Interaction";
 export default class DocsInteraction extends Interaction {
   constructor(bot: Bot) {
     super(bot, {
-      name: "docs",
+      name: "mdn",
       description: "Find something on the MDN Web Docs.",
       options: [
         {
