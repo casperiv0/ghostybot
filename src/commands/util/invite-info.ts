@@ -1,9 +1,7 @@
 import { Message } from "discord.js";
-import { APIInvite } from "discord-api-types";
-import fetch from "node-fetch";
+import { time } from "@discordjs/builders";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import { time } from "@discordjs/builders";
 
 export default class InviteInfoCommand extends Command {
   constructor(bot: Bot) {
@@ -29,44 +27,45 @@ export default class InviteInfoCommand extends Command {
     try {
       const [code] = args;
 
-      const data: APIInvite = await fetch(
-        `https://discord.com/api/v9/invites/${this.resolveCode(
-          code,
-        )}?with_counts=true&with_expiration=true`,
-      ).then((r) => r.json());
+      const invite = await message.guild?.invites.fetch(this.resolveCode(code)).catch(() => null);
 
-      if ((data as any).message) {
+      if (!invite) {
         return message.channel.send(lang.INVITE.NOT_FOUND);
       }
 
-      const doesInviteExpire = !!data.expires_at;
+      const doesInviteExpire = !!invite.expiresAt;
 
       const expiresAt = doesInviteExpire
-        ? time(new Date(data.expires_at!), "f")
+        ? time(new Date(invite.expiresAt!), "f")
         : lang.INVITE.NOT_EXPIRE;
 
       const hasExpired =
-        (data as any).expired_at && new Date((data as any).expired_at).getTime() <= Date.now();
+        (invite as any).expired_at && new Date((invite as any).expired_at).getTime() <= Date.now();
 
       const expiredAt = doesInviteExpire
-        ? hasExpired && (data as any).expired_at
-          ? time(new Date((data as any).expired_at), "f")
+        ? hasExpired && (invite as any).expired_at
+          ? time(new Date((invite as any).expired_at), "f")
           : lang.INVITE.NOT_EXPIRED_YET
         : lang.INVITE.NOT_EXPIRE;
 
-      const inviter = data.inviter
-        ? `${data.inviter?.username}#${data.inviter.discriminator} (${data.inviter.id})`
+      const inviter = invite.inviter
+        ? `${invite.inviter?.username}#${invite.inviter.discriminator} (${invite.inviter.id})`
         : "Unknown";
+
+      const uses = invite.uses ? this.bot.utils.formatNumber(invite.uses) : null;
+      const maxUses = invite.maxUses;
+      const usesStr = (maxUses && uses ? `${uses}/${maxUses}` : uses) ?? "Unknown";
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(`Invite: ${data.code}`)
-        .setDescription(data.guild?.description || "No description")
+        .setTitle(`Invite: ${invite.code}`)
+        .setDescription(invite.guild?.description || "No description")
         .addField(
           "General Info",
           `
-**Guild:** ${data.guild?.name ?? "Unknown"} (${data.guild?.id ?? "Unknown"})
-**Channel:** ${data.channel.name}
+**Uses:**: ${usesStr}
+**Guild:** ${invite.guild?.name ?? "Unknown"} (${invite.guild?.id ?? "Unknown"})
+**Channel:** ${invite.channel.name}
 **Inviter:** ${inviter}
         `,
         )
@@ -77,14 +76,14 @@ export default class InviteInfoCommand extends Command {
 **${lang.INVITE.EXPIRED_AT}:** ${expiredAt}`,
         );
 
-      if (data.guild?.icon) {
-        const extension = data.guild.icon.startsWith("a_") ? "gif" : "webp";
-        const url = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.${extension}?size=1024`;
+      if (invite.guild?.icon) {
+        const extension = invite.guild.icon.startsWith("a_") ? "gif" : "webp";
+        const url = `https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.${extension}?size=1024`;
         embed.setThumbnail(url);
       }
 
-      if (data.guild?.banner) {
-        const url = `https://cdn.discordapp.com/banners/${data.guild.id}/${data.guild.banner}.webp?size=1024`;
+      if (invite.guild?.banner) {
+        const url = `https://cdn.discordapp.com/banners/${invite.guild.id}/${invite.guild.banner}.webp?size=1024`;
         embed.setImage(url);
       }
 
