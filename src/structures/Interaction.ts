@@ -24,8 +24,5 @@ export default abstract class Interaction {
    * @param {string[]} args message args
    * @returns {any}
    */
-  abstract execute(
-    message: DiscordInteraction,
-    args: (string | number | boolean | undefined)[],
-  ): Promise<void>;
+  abstract execute(message: DiscordInteraction): Promise<void>;
 }

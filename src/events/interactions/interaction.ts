@@ -31,10 +31,7 @@ export default class InteractionEvent extends Event {
         return interaction.reply({ content: command.response });
       }
 
-      await command?.execute(
-        interaction,
-        interaction.options.array().map((v) => v.value),
-      );
+      await command?.execute(interaction);
     } catch (e) {
       interaction.reply({ content: "An error has occurred" });
       bot.utils.sendErrorLog(e, "error");

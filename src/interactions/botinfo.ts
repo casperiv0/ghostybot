@@ -76,26 +76,27 @@ export default class BotInfoInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction, args: string[]) {
+  async execute(interaction: CommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
-      const [firstCommandOption] = args;
+      const firstCommandOption = interaction.options.getString("option");
       const choice = choices.find((ch) => ch.value === firstCommandOption);
+      console.log(firstCommandOption);
 
       if (!choice) {
-        return interaction.reply({ content: "Invalid option!" });
+        return interaction.reply({ content: "Invalid option!", ephemeral: true });
       }
 
       const message = choice?.return(this.bot, lang);
       if (!message) {
-        return interaction.reply({ content: lang.GLOBAL.ERROR });
+        return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
       }
 
       return interaction.reply({ content: message });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return interaction.reply({ content: lang.GLOBAL.ERROR });
+      return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
     }
   }
 }

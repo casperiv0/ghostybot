@@ -34,17 +34,18 @@ export default class DocsInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction, args: string[]) {
+  async execute(interaction: CommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
-      const [query, branch = "stable"] = args;
+      const query = interaction.options.getString("query", true);
+      const branch = interaction.options.getString("branch", true) ?? "stable";
 
       const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${query}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (!data || data?.message || data?.error) {
-        return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND });
+        return interaction.reply({ content: lang.UTIL.DOC_NOT_FOUND, ephemeral: true });
       }
 
       const embed = new MessageEmbed({
@@ -59,7 +60,7 @@ export default class DocsInteraction extends Interaction {
       return interaction.reply({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return interaction.reply({ content: lang.GLOBAL.ERROR });
+      return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
     }
   }
 }

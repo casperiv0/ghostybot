@@ -19,15 +19,15 @@ export default class HelpInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction, args: (string | number | boolean | undefined)[]) {
+  async execute(interaction: CommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
-      const arg = `${args[0]}`;
+      const arg = interaction.options.getString("command", true);
       const command = this.bot.utils.resolveCommand(arg);
 
       if (!command) {
-        return interaction.reply({ content: lang.HELP.CMD_NOT_FOUND });
+        return interaction.reply({ content: lang.HELP.CMD_NOT_FOUND, ephemeral: true });
       }
 
       const aliases = command.options.aliases
@@ -69,7 +69,7 @@ export default class HelpInteraction extends Interaction {
       return interaction.reply({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return interaction.reply({ content: lang.GLOBAL.ERROR });
+      return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
     }
   }
 }
