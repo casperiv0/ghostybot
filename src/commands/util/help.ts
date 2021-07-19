@@ -67,7 +67,6 @@ export default class HelpCommand extends Command {
         let memberPerms: string;
         let botPerms: string;
         let usage: string;
-        let description: string;
 
         if ("category" in cmd && cmd.category === "custom") {
           const embed = this.bot.utils
@@ -105,12 +104,6 @@ export default class HelpCommand extends Command {
             usage = lang.GLOBAL.NOT_SPECIFIED;
           }
 
-          if (cmd.options.description) {
-            description = cmd.options.description;
-          } else {
-            description = lang.GLOBAL.NOT_SPECIFIED;
-          }
-
           memberPerms = getMemberPermissions(cmd, lang).join(", ");
           botPerms = getBotPermissions(cmd, lang).join(", ");
 
@@ -120,10 +113,13 @@ export default class HelpCommand extends Command {
             .addField(lang.HELP.COOLDOWN, cooldown, true)
             .addField(lang.HELP.USAGE, usage, true)
             .addField(lang.UTIL.CATEGORY, cmd.options.category, true)
-            .addField(lang.UTIL.DESCRIPTION, description, true)
             .addField(lang.HELP.OPTIONS, options, true)
             .addField(lang.HELP.BOT_PERMS, botPerms, true)
             .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
+
+          if (cmd.options.description) {
+            embed.setDescription(cmd.options.description);
+          }
 
           return message.channel.send({ embeds: [embed] });
         }
