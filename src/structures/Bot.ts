@@ -17,36 +17,31 @@ import Interaction from "./Interaction";
 import { discordConfig } from "@config/discord-config";
 
 class Bot extends Client {
-  commands: Collection<string, Command>;
-  aliases: Collection<string, string>;
-  interactions: Collection<string, Interaction>;
-  cooldowns: Collection<string, Collection<string, number>>;
-  logger: typeof Logger;
+  commands: Collection<string, Command> = new Collection();
+  aliases: Collection<string, string> = new Collection();
+  interactions: Collection<string, Interaction> = new Collection();
+  cooldowns: Collection<string, Collection<string, number>> = new Collection();
+
+  logger: typeof Logger = Logger;
   utils: Util;
-  neko: NekoClient;
+  neko: NekoClient = new NekoClient();
   imdb!: ImdbClient;
   player: DistubePlayer;
   starboardsManager: MongStarboardsManager;
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
-  ctgs: CtgsClient;
+  ctgs: CtgsClient = new CtgsClient();
 
   lyricsClient: {
     search: (query: string) => Promise<Lyrics.LyricsData>;
     client: unknown;
-  };
+  } = Lyrics.init();
 
   constructor() {
     super(discordConfig);
 
-    this.commands = new Collection();
-    this.aliases = new Collection();
-    this.interactions = new Collection();
-    this.cooldowns = new Collection();
-    this.logger = Logger;
     this.utils = new Util(this);
-    this.neko = new NekoClient();
 
     if (process.env["ALEXFLIPNOTE_API_KEY"]) {
       this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
@@ -72,9 +67,6 @@ class Bot extends Client {
         filter: "audioonly",
       },
     });
-
-    this.ctgs = new CtgsClient();
-    this.lyricsClient = Lyrics.init();
 
     this.starboardsManager = new MongStarboardsManager(this, {
       storage: false,

@@ -525,6 +525,12 @@ export default class Util {
     return message.guild.me.voice.channelId === voiceChannelId;
   }
 
+  hasSendPermissions(resolveable: DJS.Message | DJS.TextChannel) {
+    const ch = "channel" in resolveable ? resolveable.channel : resolveable;
+    if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) return true;
+    return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
+  }
+
   resolveCommand(nameOrAlias: string) {
     return (
       this.bot.commands.get(nameOrAlias) ??

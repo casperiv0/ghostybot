@@ -17,11 +17,7 @@ export default class MessageEvent extends Event {
       if (message.channel.type === "DM") return;
       if (!bot.user) return;
       if (!message.guild?.me) return;
-      if (
-        !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
-      ) {
-        return;
-      }
+      if (!this.bot.utils.hasSendPermissions(message)) return;
 
       const guildId = message?.guild?.id;
       const userId = message?.author?.id;
