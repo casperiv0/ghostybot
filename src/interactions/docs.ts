@@ -39,7 +39,7 @@ export default class DocsInteraction extends Interaction {
 
     try {
       const query = interaction.options.getString("query", true);
-      const branch = interaction.options.getString("branch", true) ?? "stable";
+      const branch = interaction.options.getString("branch") ?? "stable";
 
       const url = `https://djsdocs.sorta.moe/v2/embed?src=${branch}&q=${query}`;
       const data = await fetch(url).then((res) => res.json());
