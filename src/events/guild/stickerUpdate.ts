@@ -4,7 +4,7 @@ import Event from "structures/Event";
 
 export default class StickerDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "stickerDelete");
+    super(bot, "stickerUpdate");
   }
 
   async execute(bot: Bot, old: DJS.Sticker, newSticker: DJS.Sticker) {

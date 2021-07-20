@@ -20,7 +20,7 @@ export default class StickerCreateEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_CREATED)
-        .setColor("ORANGE")
+        .setColor("GREEN")
         .setImage(sticker.url)
         .setTimestamp();
 
