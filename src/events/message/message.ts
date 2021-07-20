@@ -215,12 +215,12 @@ export default class MessageEvent extends Event {
       const command = bot.utils.resolveCommand(cmd);
       if (!command) return;
 
-      if (command.options.category === "music") {
-        return message.channel.send({
-          content:
-            "The music category is currently temporary disabled due to breaking changes in the music module. Music will be re-enabled soon!",
-        });
-      }
+      // if (command.options.category === "music") {
+      //   return message.channel.send({
+      //     content:
+      //       "The music category is currently temporary disabled due to breaking changes in the music module. Music will be re-enabled soon!",
+      //   });
+      // }
 
       if (
         !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
