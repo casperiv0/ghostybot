@@ -42,7 +42,7 @@ export default class GuildMemberAddEvent extends Event {
 
         const ch = bot.channels.cache.get(welcomeData.channel_id);
         if (!ch || !ch.isText()) return;
-        if ((ch as TextChannel)?.permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!(ch as TextChannel)?.permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
           return;
         }
 
