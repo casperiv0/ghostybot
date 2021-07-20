@@ -5,7 +5,7 @@ export const discordConfig: DJS.ClientOptions = {
     DJS.Intents.FLAGS.GUILDS,
     DJS.Intents.FLAGS.GUILD_MESSAGES,
     DJS.Intents.FLAGS.GUILD_BANS,
-    DJS.Intents.FLAGS.GUILD_EMOJIS,
+    DJS.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
     DJS.Intents.FLAGS.GUILD_INTEGRATIONS,
     DJS.Intents.FLAGS.GUILD_MEMBERS,
     DJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
