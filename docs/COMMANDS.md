@@ -987,9 +987,9 @@ Click any of the command names for more information
 
 **Aliases:** N/A
 
-**Member Permissions:** MANAGE_EMOJIS
+**Member Permissions:** MANAGE_EMOJIS_AND_STICKERS
 
-**Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS
+**Bot Permissions:** SEND_MESSAGES, MANAGE_EMOJIS_AND_STICKERS
 
 **Required Arguments:** `emoji(string)`
 

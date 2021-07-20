@@ -290,7 +290,7 @@ export default class Util {
 
     if (oldChannelId) {
       const webhooks = await (channel as DJS.TextChannel).fetchWebhooks();
-      webhooks.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
+      await webhooks.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
     }
 
     await (channel as DJS.TextChannel).createWebhook(`audit-logs-${channelId}`, {
