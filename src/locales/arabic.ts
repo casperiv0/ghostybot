@@ -717,6 +717,13 @@ const LANG: typeof import("./english").default = {
     CHANNEL_TOPIC_UPDATED_MSG: "Channel topic in channel: **{channel}** was updated",
     CHANNEL_OLD_TOPIC: "Old Topic",
     CHANNEL_NEW_TOPIC: "New Topic",
+
+    STICKER_CREATED: "New Sticker Created",
+    STICKER_DELETED_MSG: "A sticker was deleted",
+    STICKER_DELETED: "Sticker Deleted",
+    STICKER_UPDATED: "Sticker updated",
+    NAME_UPDATED: "Name updated",
+    DESCRIPTION_UPDATED: "Description updated",
   },
   MESSAGE: {
     USER_IS_AFK: "{tag} is AFK!\n **Reason**: {reason}",

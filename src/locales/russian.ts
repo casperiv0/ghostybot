@@ -722,6 +722,13 @@ const LANG: typeof import("./english").default = {
     REASON: "Причина",
     STARBOARD_MESSAGE: "{userTag}, это сообщение уже находится на звездной доске.",
     STARBOARD_NOT_STAR: "{userTag}, вы не можете повесить пустое сообщение на звездную доску.",
+
+    STICKER_CREATED: "New Sticker Created",
+    STICKER_DELETED_MSG: "A sticker was deleted",
+    STICKER_DELETED: "Sticker Deleted",
+    STICKER_UPDATED: "Sticker updated",
+    NAME_UPDATED: "Name updated",
+    DESCRIPTION_UPDATED: "Description updated",
   },
   MESSAGE: {
     USER_IS_AFK: "{tag} ушел в AFK!\n **Причина**: {reason}",

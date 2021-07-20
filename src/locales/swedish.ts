@@ -720,6 +720,13 @@ const LANG: typeof import("./english").default = {
     REASON: "Reason",
     STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
     STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
+
+    STICKER_CREATED: "New Sticker Created",
+    STICKER_DELETED_MSG: "A sticker was deleted",
+    STICKER_DELETED: "Sticker Deleted",
+    STICKER_UPDATED: "Sticker updated",
+    NAME_UPDATED: "Name updated",
+    DESCRIPTION_UPDATED: "Description updated",
   },
   MESSAGE: {
     USER_IS_AFK: "{tag} är AFK!\n **Anledning**: {reason}",
