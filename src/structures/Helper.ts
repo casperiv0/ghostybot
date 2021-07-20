@@ -7,6 +7,8 @@ export default abstract class Helper {
   constructor(bot: Bot, name: string) {
     this.bot = bot;
     this.name = name;
+
+    this.execute = this.execute.bind(this);
   }
 
   abstract execute(): Promise<any>;

@@ -50,6 +50,8 @@ export default abstract class Command {
     this.bot = bot;
     this.name = options.name;
     this.options = options;
+
+    this.execute = this.execute.bind(this);
   }
 
   /**

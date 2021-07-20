@@ -7,11 +7,12 @@ export default abstract class Event {
   constructor(bot: Bot, name: string) {
     this.bot = bot;
     this.name = name;
+
+    this.execute = this.execute.bind(this);
   }
 
   /**
-   *
    * @param {Bot} bot bot
    */
-  abstract execute(bot: Bot, ...args: any): Promise<any>;
+  abstract execute(bot: Bot, ...args: any[]): Promise<any>;
 }

@@ -12,7 +12,7 @@ export default class PlayerAddListEvent extends Event {
       const channel = queue.textChannel;
 
       if (!channel?.guild?.available) return;
-      if (!this.bot.utils.hasSendPermissions(channel)) return;
+      if (!bot.utils.hasSendPermissions(channel)) return;
       const lang = await bot.utils.getGuildLang(channel?.guild?.id);
       if (!playlist) return;
 

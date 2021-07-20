@@ -16,12 +16,12 @@ export default abstract class Interaction {
     this.bot = bot;
     this.name = options.name;
     this.options = options;
+
+    this.execute = this.execute.bind(this);
   }
 
   /**
-   * @param {Bot} bot bot
    * @param {Message} message discord.js message
-   * @param {string[]} args message args
    * @returns {any}
    */
   abstract execute(message: DiscordInteraction): Promise<void>;

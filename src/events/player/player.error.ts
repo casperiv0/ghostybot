@@ -10,7 +10,7 @@ export default class PlayerErrorEvent extends Event {
 
   async execute(bot: Bot, channel: TextChannel, error: DisTubeError) {
     if (!channel.guild?.available) return;
-    if (!this.bot.utils.hasSendPermissions(channel)) return;
+    if (!bot.utils.hasSendPermissions(channel)) return;
     const lang = await bot.utils.getGuildLang(channel.guild?.id);
 
     if (lang.MUSIC.ERRORS[error.code]) {
@@ -18,6 +18,6 @@ export default class PlayerErrorEvent extends Event {
     }
 
     bot.utils.sendErrorLog(error, "error");
-    return channel.send({ content: lang.MUSIC.ERRORS.JOIN_ERROR });
+    return channel.send({ content: lang.GLOBAL.ERROR });
   }
 }
