@@ -11,6 +11,7 @@ export default class InviteInfoCommand extends Command {
       category: "util",
       aliases: ["inviteinfo"],
       requiredArgs: [{ name: "code" }],
+      typing: true,
     });
 
     this.resolveCode = this.resolveCode.bind(this);
@@ -27,7 +28,7 @@ export default class InviteInfoCommand extends Command {
     try {
       const [code] = args;
 
-      const invite = await message.guild?.invites.fetch(this.resolveCode(code)).catch(() => null);
+      const invite = await this.bot.fetchInvite(this.resolveCode(code)).catch(() => null);
 
       if (!invite) {
         return message.channel.send(lang.INVITE.NOT_FOUND);

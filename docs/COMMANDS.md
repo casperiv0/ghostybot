@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 203 commands.
+GhostyBot has a total of 204 commands.
 
 Click any of the command names for more information
 
@@ -317,7 +317,7 @@ Click any of the command names for more information
 
 ### Category: music
 
-**Total commands: 16**
+**Total commands: 17**
 
 [back:](#back) Play back the previous song
 
@@ -338,6 +338,8 @@ Click any of the command names for more information
 [play:](#play) Play a song
 
 [queue:](#queue) Show top 20 songs in the queue
+
+[remove:](#remove) Remove a song from the queue
 
 [resume:](#resume) Resume a song that was playing
 
@@ -3098,6 +3100,24 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## remove
+
+**Category:** music
+
+**Description:** Remove a song from the queue
+
+**Usage:** `N/A`
+
+**Aliases:** N/A
+
+**Member Permissions:** None
+
+**Bot Permissions:** SEND_MESSAGES
+
+**Required Arguments:** `track-number(number)`
 
 [Back to top](#ghostybot-command-list)
 
