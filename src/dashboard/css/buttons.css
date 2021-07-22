@@ -31,12 +31,17 @@
   outline: none;
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (hover: hover) {
-  .btn-primary:hover,
-  .btn-secondary:hover {
+  .btn-primary:enabled:hover,
+  .btn-secondary:enabled:hover {
     background: var(--blue);
   }
-  .btn-red:hover {
+  .btn-red:enabled:hover {
     filter: brightness(120%);
   }
 }

@@ -525,7 +525,11 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
           })}
         </div>
 
-        <button type="submit" className="btn btn-primary float-right">
+        <button
+          disabled={state.state === "loading"}
+          type="submit"
+          className="btn btn-primary float-right"
+        >
           {state.state === "loading" ? t("loading") : t("save_settings")}
         </button>
       </form>
