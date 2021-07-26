@@ -17,11 +17,10 @@ export default class UptimeCommand extends Command {
   }
 
   async execute(message: Message) {
-    const uptimeRelative = dayJs.duration(this.bot?.uptime ?? 0).format("H [hrs]");
     const botUpSince = time(new Date(Date.now() - (this.bot.uptime ?? 0)), "f");
 
     return message.channel.send({
-      content: `Bot has been up since: ${botUpSince} (${uptimeRelative})`,
+      content: `Bot has been up since: ${botUpSince}`,
     });
   }
 }

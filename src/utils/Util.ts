@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { codeBlock } from "@discordjs/builders";
+import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import Bot from "structures/Bot";
 import UserModel, { IUser, UserData } from "models/User.model";
@@ -490,14 +490,15 @@ export default class Util {
     return message
       .split(" ")
       .map((word) => {
-        const { username, tag, id, discriminator, createdAt } = user;
+        const { username, tag, id, discriminator } = user;
+        const createdAt = time(new Date(user.createdAt), "f");
         word = word
           .replace("{user}", `<@${id}>`)
           .replace("{user.tag}", this.escapeMarkdown(tag))
           .replace("{user.username}", this.escapeMarkdown(username))
           .replace("{user.discriminator}", discriminator)
           .replace("{user.id}", id)
-          .replace("{user.createdAt}", new Date(createdAt).toLocaleString());
+          .replace("{user.createdAt}", createdAt);
 
         if (msg) {
           if (!msg.guild) return word;

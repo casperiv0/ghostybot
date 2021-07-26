@@ -3273,7 +3273,7 @@ Click any of the command names for more information
 
 **Usage:** `edit-reminder <reminder-id> <new-time> <new message>`
 
-**Aliases:** N/A
+**Aliases:** `editreminder`, `erm`
 
 **Member Permissions:** None
 
@@ -3309,7 +3309,7 @@ Click any of the command names for more information
 
 **Usage:** `removereminder <id | 'last' | 'first' | 'all'>`
 
-**Aliases:** `delreminder`
+**Aliases:** `delreminder`, `rrm`
 
 **Member Permissions:** None
 
