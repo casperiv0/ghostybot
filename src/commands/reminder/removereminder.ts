@@ -9,7 +9,7 @@ export default class RemoveReminderCommand extends Command {
       name: "removereminder",
       description: "Remove your current reminder",
       category: "reminder",
-      aliases: ["delreminder"],
+      aliases: ["delreminder", "rrm"],
       requiredArgs: [{ name: "reminder_id" }],
     });
   }

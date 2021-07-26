@@ -12,6 +12,7 @@ export default class EditReminderCommand extends Command {
       category: "reminder",
       requiredArgs: [{ name: "id" }, { name: "time", type: "time" }, { name: "description" }],
       usage: "edit-reminder <reminder-id> <new-time> <new message>",
+      aliases: ["editreminder", "erm"],
     });
   }
 
