@@ -17,7 +17,7 @@ export default class AmazingEarthCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
 
     try {
-      const member = await this.bot.utils.findMember(message, args);
+      const member = await this.bot.utils.findMember(message, args, { allowAuthor: true });
       const image = member?.user.displayAvatarURL({ format: "png" });
       const url = `https://api.tovade.xyz/v1/canvas/ad?image=${image}`;
 

@@ -50,13 +50,13 @@ export default class BanCommand extends Command {
         });
       }
 
-      banMember.ban({
+      await banMember.ban({
         days: 7,
         reason: `${lang.ADMIN.BAN_BANNED_BY}: ${message.author.tag}\n**${lang.GLOBAL.REASON}:** ${banReason}`,
       });
 
       try {
-        banMember.user.send({
+        await banMember.user.send({
           content: lang.MEMBER.DM_BAN_MESSAGE.replace("{guild_name}", message.guild.name).replace(
             "{ban_reason}",
             banReason,

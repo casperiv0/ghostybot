@@ -22,9 +22,9 @@ export default class GuildBanAddEvent extends Event {
       const webhook = await bot.utils.getWebhook(guild);
       if (!webhook) return;
 
-      const audit = await (await guild.fetchAuditLogs()).entries.first();
+      const audit = (await guild.fetchAuditLogs()).entries.first();
       if (!audit) return;
-      const target = audit.executor as User;
+      const target = audit.executor;
 
       const lang = await bot.utils.getGuildLang(guild.id);
 
