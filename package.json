@@ -53,7 +53,7 @@
     "discord-logs": "^1.9.0",
     "discord-starboards": "github:Dev-CasperTheGhost/discord-starboards#djs-v13",
     "discord.js": "github:discordjs/discord.js",
-    "distube": "^3.0.0-alpha.15",
+    "distube": "^3.0.0-alpha.17",
     "dotenv": "^10.0.0",
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
