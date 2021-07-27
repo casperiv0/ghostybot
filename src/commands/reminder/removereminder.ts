@@ -39,7 +39,7 @@ export default class RemoveReminderCommand extends Command {
 
       switch (id) {
         case "first": {
-          id = "1";
+          id = user.reminder.reminders[0].id;
           break;
         }
         case "last": {
