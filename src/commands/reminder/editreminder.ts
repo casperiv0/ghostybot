@@ -18,7 +18,7 @@ export default class EditReminderCommand extends Command {
 
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
-    const [id, time, description] = args;
+    const [id, time, ...description] = args;
 
     try {
       const user = await this.bot.utils.getUserById(message.author.id, message.guild?.id);
@@ -39,12 +39,12 @@ export default class EditReminderCommand extends Command {
 
       reminder.time = time;
       reminder.ends_at = ms(time);
-      reminder.msg = description;
+      reminder.msg = description.join(" ");
 
       const newReminder: Reminder = {
         time,
         ends_at: Date.now() + ms(time),
-        msg: description,
+        msg: description.join(" "),
         channel_id: reminder.channel_id,
         id: reminder.id,
         _id: reminder._id,
