@@ -1,4 +1,4 @@
-import { Message, Permissions, TextChannel } from "discord.js";
+import { Message, Permissions } from "discord.js";
 import ms from "ms";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
@@ -26,7 +26,7 @@ export default class GivStartCommand extends Command {
       const [time, winnerCount, ...rest] = args;
       const prize = rest.join(" ");
 
-      await this.bot.giveawayManager.start(message.channel as TextChannel, {
+      await this.bot.giveawayManager.start(message.channel as any, {
         time: ms(time),
         prize,
         winnerCount: +winnerCount,
