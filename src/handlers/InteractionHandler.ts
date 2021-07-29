@@ -21,6 +21,7 @@ export default class InteractionHandler {
         delete require.cache[file];
 
         const interaction = await resolveFile<Interaction>(file, this.bot);
+        if (!interaction) continue;
         await validateFile(file, interaction);
 
         this.bot.interactions.set(interaction.name, interaction);
@@ -31,7 +32,11 @@ export default class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
-        await this.bot.application?.commands.create(data);
+        const guild = await this.bot.guilds.fetch("841737902065057823"); // test guild
+        const guild2 = await this.bot.guilds.fetch("737006392078106786"); // ghostybot
+
+        await guild?.commands.create(data);
+        await guild2?.commands.create(data);
 
         if (process.env["DEBUG_MODE"] === "true") {
           this.bot.logger.log("COMMAND", `Loaded ${interaction.name}`);

@@ -7,6 +7,7 @@ export default class DocsInteraction extends Interaction {
     super(bot, {
       name: "mdn",
       description: "Find something on the MDN Web Docs.",
+      category: "util",
       options: [
         {
           name: "query",

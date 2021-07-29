@@ -1,10 +1,14 @@
 import { ApplicationCommandOptionData, Interaction as DiscordInteraction } from "discord.js";
 import Bot from "./Bot";
+import { CommandCategories } from "./Command";
 
 export interface InteractionOptions {
   name: string;
   description: string;
+  category: CommandCategories;
   options?: ApplicationCommandOptionData[];
+
+  ownerOnly?: boolean;
 }
 
 export default abstract class Interaction {

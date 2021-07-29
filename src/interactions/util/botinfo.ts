@@ -60,6 +60,7 @@ export default class BotInfoInteraction extends Interaction {
   constructor(bot: Bot) {
     super(bot, {
       name: "botinfo",
+      category: "util",
       description: "Return a piece of information about the bot",
       options: [
         {

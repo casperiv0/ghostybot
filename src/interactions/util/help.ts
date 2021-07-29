@@ -8,6 +8,7 @@ export default class HelpInteraction extends Interaction {
     super(bot, {
       name: "help",
       description: "Return more information about a command",
+      category: "util",
       options: [
         {
           name: "command",

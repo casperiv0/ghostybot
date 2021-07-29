@@ -38,6 +38,7 @@ export default class CommandHandler {
     delete require.cache[file];
 
     const command = await resolveFile<Command>(file, this.bot);
+    if (!command) return;
     await validateFile(file, command);
 
     this.bot.commands.set(command.name, command);

@@ -7,6 +7,7 @@ export default class DocsInteraction extends Interaction {
     super(bot, {
       name: "docs",
       description: "Find something on the discord.js docs",
+      category: "util",
       options: [
         {
           name: "query",

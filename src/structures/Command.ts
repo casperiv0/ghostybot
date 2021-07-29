@@ -11,13 +11,17 @@ export type CommandCategories =
   | "music"
   | "util"
   | "exempt"
+  /**
+   * @deprecated use `bot-owner` instead
+   */
   | "botowner"
   | "giveaway"
   | "reactions"
   | "reminder"
   | "ticket"
   | "disabled"
-  | "custom";
+  | "custom"
+  | "bot-owner";
 
 export interface RequiredArg {
   type?: "time" | "number";

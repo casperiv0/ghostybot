@@ -19,6 +19,7 @@ export default class HelperHandler {
       delete require.cache[file];
 
       const helper = await resolveFile<Helper>(file, this.bot);
+      if (!helper) continue;
       await validateFile(file, helper);
 
       try {

@@ -8,10 +8,12 @@ import Interaction from "structures/Interaction";
 
 type Structures = Command | Event | Feature | Helper | Interaction;
 
-export async function resolveFile<T>(file: string, bot: Bot) {
+export async function resolveFile<T>(file: string, bot: Bot): Promise<T | null> {
   const resolvedPath = resolve(file);
 
   const File = await (await import(resolvedPath)).default;
+
+  if (!File?.constructor) return null;
 
   return new File(bot) as T;
 }

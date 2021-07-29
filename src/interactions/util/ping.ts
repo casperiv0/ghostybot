@@ -7,6 +7,7 @@ export default class PingInteraction extends Interaction {
     super(bot, {
       name: "ping",
       description: "Returns the bot's ping",
+      category: "util",
     });
   }
 
