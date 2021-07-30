@@ -28,6 +28,24 @@ export default class InteractionEvent extends Event {
         return interaction.reply({ content: command.response });
       }
 
+      if (command.options.botPermissions) {
+        const neededPerms: bigint[] = [];
+        const channel = interaction.channel as DJS.TextChannel;
+
+        command.options.botPermissions.forEach((perm) => {
+          if (!channel?.permissionsFor(interaction.guild!.me!)?.has(perm)) {
+            neededPerms.push(perm);
+          }
+        });
+
+        if (neededPerms.length > 0) {
+          return interaction.reply({
+            ephemeral: true,
+            embeds: [bot.utils.errorEmbed(neededPerms, interaction, lang.PERMISSIONS)],
+          });
+        }
+      }
+
       if (!this.isOwner(interaction)) {
         return interaction.reply({
           content: lang.MESSAGE.OWNER_ONLY,

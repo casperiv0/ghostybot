@@ -455,7 +455,11 @@ export default class Util {
     return Promise.resolve("Authorized");
   }
 
-  errorEmbed(permissions: bigint[], message: DJS.Message, lang: Record<string, string>) {
+  errorEmbed(
+    permissions: bigint[],
+    message: DJS.Message | DJS.CommandInteraction,
+    lang: Record<string, string>,
+  ) {
     return this.baseEmbed(message)
       .setTitle("Woah!")
       .setDescription(

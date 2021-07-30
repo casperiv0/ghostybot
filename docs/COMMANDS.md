@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 181 commands.
+GhostyBot has a total of 179 commands.
 
 Click any of the command names for more information
 
@@ -475,11 +475,7 @@ Click any of the command names for more information
 
 ### Category: ticket
 
-**Total commands: 2**
-
-[closeticket:](#closeticket) Closes the active ticket, use --force to force close issue
-
-[createticket:](#createticket) Creates a ticket
+**Total commands: 0**
 
 ## Detailed command list
 
@@ -2874,42 +2870,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `time(time)`, `message(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## closeticket
-
-**Category:** ticket
-
-**Description:** Closes the active ticket, use --force to force close issue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## createticket
-
-**Category:** ticket
-
-**Description:** Creates a ticket
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

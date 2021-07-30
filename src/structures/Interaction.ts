@@ -8,6 +8,9 @@ export interface InteractionOptions {
   category: CommandCategories;
   options?: ApplicationCommandOptionData[];
 
+  // memberPermissions?: bigint[];
+  botPermissions?: bigint[];
+
   ownerOnly?: boolean;
 }
 
