@@ -69,7 +69,7 @@ export default class GiveawayCommand extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
-      const command = interaction.options.getSubCommand(true);
+      const command = interaction.options.getSubcommand(true);
 
       switch (command) {
         case "start": {

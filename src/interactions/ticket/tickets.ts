@@ -35,7 +35,7 @@ export default class TicketsCommand extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
-      const command = interaction.options.getSubCommand(true);
+      const command = interaction.options.getSubcommand(true);
 
       if (command === "create") {
         await this.createTicket(interaction, lang);
