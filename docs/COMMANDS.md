@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 179 commands.
+GhostyBot has a total of 175 commands.
 
 Click any of the command names for more information
 
@@ -461,15 +461,7 @@ Click any of the command names for more information
 
 ### Category: reminder
 
-**Total commands: 4**
-
-[edit-reminder:](#edit-reminder) Edit an active reminder
-
-[reminders:](#reminders) All your active reminders
-
-[removereminder:](#removereminder) Remove your current reminder
-
-[setreminder:](#setreminder) Set a reminder, the bot will ping you when the timer runs out
+**Total commands: 0**
 
 ---
 
@@ -2798,78 +2790,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `message_id(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## edit-reminder
-
-**Category:** reminder
-
-**Description:** Edit an active reminder
-
-**Usage:** `edit-reminder <reminder-id> <new-time> <new message>`
-
-**Aliases:** `editreminder`, `erm`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `id(string)`, `time(time)`, `description(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## reminders
-
-**Category:** reminder
-
-**Description:** All your active reminders
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## removereminder
-
-**Category:** reminder
-
-**Description:** Remove your current reminder
-
-**Usage:** `removereminder <id | 'last' | 'first' | 'all'>`
-
-**Aliases:** `delreminder`, `rrm`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `reminder_id(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## setreminder
-
-**Category:** reminder
-
-**Description:** Set a reminder, the bot will ping you when the timer runs out
-
-**Usage:** `<time> <message>`
-
-**Aliases:** `addreminder`, `remind`, `remindme`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `time(time)`, `message(string)`
 
 [Back to top](#ghostybot-command-list)
 
