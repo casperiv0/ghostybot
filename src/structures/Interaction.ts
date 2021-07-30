@@ -31,5 +31,5 @@ export default abstract class Interaction {
    * @param {Message} message discord.js message
    * @returns {any}
    */
-  abstract execute(message: DiscordInteraction): Promise<void>;
+  abstract execute(message: DiscordInteraction): Promise<any>;
 }

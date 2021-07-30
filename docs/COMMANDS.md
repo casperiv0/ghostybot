@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 150 commands.
+GhostyBot has a total of 149 commands.
 
 Click any of the command names for more information
 
@@ -281,9 +281,7 @@ Click any of the command names for more information
 
 ### Category: music
 
-**Total commands: 1**
-
-[lyrics:](#lyrics) Get lyrics for the song
+**Total commands: 0**
 
 ---
 
@@ -2338,24 +2336,6 @@ Click any of the command names for more information
 **Usage:** `<user>`
 
 **Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## lyrics
-
-**Category:** music
-
-**Description:** Get lyrics for the song
-
-**Usage:** `N/A`
-
-**Aliases:** `ly`
 
 **Member Permissions:** None
 

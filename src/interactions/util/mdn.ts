@@ -23,13 +23,14 @@ export default class DocsInteraction extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
+      await interaction.defer();
       const query = interaction.options.getString("query", true);
 
       const url = `https://mdn.gideonbot.com/embed?q=${query}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (!data || data?.message || data?.code) {
-        return interaction.reply({ content: lang.UTIL.MDN_NOT_FOUND, ephemeral: true });
+        return interaction.editReply({ content: lang.UTIL.MDN_NOT_FOUND });
       }
 
       const embed = new MessageEmbed({
@@ -41,10 +42,10 @@ export default class DocsInteraction extends Interaction {
         },
       });
 
-      return interaction.reply({ embeds: [embed] });
+      return interaction.editReply({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
+      return interaction.editReply({ content: lang.GLOBAL.ERROR });
     }
   }
 }

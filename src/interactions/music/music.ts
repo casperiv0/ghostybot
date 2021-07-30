@@ -5,6 +5,7 @@ import Interaction from "structures/Interaction";
 import { clearQueue } from "./functions/clearQeue";
 import { filter } from "./functions/filter";
 import { loop } from "./functions/loop";
+import { lyrics } from "./functions/lyrics";
 import { nowPlaying } from "./functions/nowPlaying";
 import { pause } from "./functions/pause";
 import { play } from "./functions/play";
@@ -49,8 +50,7 @@ export default class MusicCommand extends Interaction {
           break;
         }
         case "lyrics": {
-          // todo: add this
-          await clearQueue(this.bot, interaction, lang);
+          await lyrics(this.bot, interaction, lang);
           break;
         }
         case "now-playing": {
