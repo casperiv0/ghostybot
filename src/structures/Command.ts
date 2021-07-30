@@ -21,6 +21,7 @@ export type CommandCategories =
   | "ticket"
   | "disabled"
   | "custom"
+  | "information"
   | "bot-owner";
 
 export interface RequiredArg {

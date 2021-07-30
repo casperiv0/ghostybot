@@ -213,7 +213,7 @@ export default class Util {
   }
 
   async findMember(
-    message: Partial<DJS.Message>,
+    message: Partial<DJS.Message> | DJS.CommandInteraction,
     args: string[],
     options?: { allowAuthor?: boolean; index?: number },
   ): Promise<DJS.GuildMember | undefined | null> {
@@ -224,10 +224,12 @@ export default class Util {
       let member: DJS.GuildMember | null | undefined;
       const arg = (args[index]?.replace?.(/[<@!>]/gi, "") || args[index]) as DJS.Snowflake;
 
-      const mention = // check if the first mention is not the bot prefix
-        message.mentions?.users.first()?.id !== this.bot.user?.id
-          ? message.mentions?.users.first()
-          : message.mentions?.users.array()[1];
+      const mention =
+        "mentions" in message // check if the first mention is not the bot prefix
+          ? message.mentions?.users.first()?.id !== this.bot.user?.id
+            ? message.mentions?.users.first()
+            : message.mentions?.users.array()[1]
+          : null;
 
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
@@ -245,7 +247,7 @@ export default class Util {
       }
 
       if (!member && options?.allowAuthor) {
-        member = message.member;
+        member = new DJS.GuildMember(this.bot, message.member, message.guild);
       }
 
       return member;

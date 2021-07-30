@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 175 commands.
+GhostyBot has a total of 167 commands.
 
 Click any of the command names for more information
 
@@ -321,7 +321,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 46**
+**Total commands: 41**
 
 [afk:](#afk) N/A
 
@@ -335,8 +335,6 @@ Click any of the command names for more information
 
 [bugreport:](#bugreport) Report a bug to your staff
 
-[channelinfo:](#channelinfo) Get information about a channel
-
 [channels:](#channels) Shows all channels in the server
 
 [country:](#country) Get information about a country
@@ -349,8 +347,6 @@ Click any of the command names for more information
 
 [docs:](#docs) Returns the request query from discord.js docs
 
-[emojiinfo:](#emojiinfo) Returns information about a custom emoji
-
 [emojis:](#emojis) Get a random color
 
 [enlarge:](#enlarge) get your emoji enlarged
@@ -362,8 +358,6 @@ Click any of the command names for more information
 [help:](#help) Shows all commands Or shows more info about a command
 
 [imdb:](#imdb) Get the information about series and movie
-
-[invite-info:](#invite-info) Get information about an invite
 
 [invite:](#invite) Creates an instant invite for the server
 
@@ -393,8 +387,6 @@ Click any of the command names for more information
 
 [servericon:](#servericon) Shows the server icon
 
-[serverinfo:](#serverinfo) Get info about the server
-
 [skin:](#skin) Search for skins from Minecraft
 
 [spotify:](#spotify) Find a track/artist/album via the Spotify API
@@ -404,8 +396,6 @@ Click any of the command names for more information
 [translate:](#translate) Translate a sentence
 
 [uptime:](#uptime) Returns the uptime of the bot
-
-[userinfo:](#userinfo) Get user info
 
 [verify:](#verify) Verify yourself to get guild access
 
@@ -439,13 +429,7 @@ Click any of the command names for more information
 
 ### Category: giveaway
 
-**Total commands: 3**
-
-[givend:](#givend) Ends a giveaway
-
-[givreroll:](#givreroll) Reroll a giveaway
-
-[givstart:](#givstart) Starts a giveaway
+**Total commands: 0**
 
 ---
 
@@ -1839,60 +1823,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## givend
-
-**Category:** giveaway
-
-**Description:** Ends a giveaway
-
-**Usage:** `givend <messageId> **Example:** !giveaway end <messageId>`
-
-**Aliases:** `gend`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `messageId(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## givreroll
-
-**Category:** giveaway
-
-**Description:** Reroll a giveaway
-
-**Usage:** `N/A`
-
-**Aliases:** `greroll`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `messageId(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## givstart
-
-**Category:** giveaway
-
-**Description:** Starts a giveaway
-
-**Usage:** `<time> <winner count> <price> **Example:** !givstart 2d 10 Discord nitro`
-
-**Aliases:** `gstart`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `time(time)`, `winnerCount(number)`, `prize(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## ad
 
 **Category:** image
@@ -2901,24 +2831,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## channelinfo
-
-**Category:** util
-
-**Description:** Get information about a channel
-
-**Usage:** `N/A`
-
-**Aliases:** `channel`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## channels
 
 **Category:** util
@@ -3027,24 +2939,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## emojiinfo
-
-**Category:** util
-
-**Description:** Returns information about a custom emoji
-
-**Usage:** `N/A`
-
-**Aliases:** `emoji`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `emoji(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## emojis
 
 **Category:** util
@@ -3150,24 +3044,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## invite-info
-
-**Category:** util
-
-**Description:** Get information about an invite
-
-**Usage:** `N/A`
-
-**Aliases:** `inviteinfo`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `code(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -3423,24 +3299,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## serverinfo
-
-**Category:** util
-
-**Description:** Get info about the server
-
-**Usage:** `N/A`
-
-**Aliases:** `guild`, `server`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## skin
 
 **Category:** util
@@ -3522,24 +3380,6 @@ Click any of the command names for more information
 **Usage:** `N/A`
 
 **Aliases:** `up`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## userinfo
-
-**Category:** util
-
-**Description:** Get user info
-
-**Usage:** `<user>`
-
-**Aliases:** `whois`, `user`, `u`
 
 **Member Permissions:** None
 

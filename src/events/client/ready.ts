@@ -1,6 +1,5 @@
 import Bot from "structures/Bot";
 import Event from "structures/Event";
-import BotModel from "models/Bot.model";
 import HelperHandler from "handlers/HelperHandler";
 import InteractionHandler from "handlers/InteractionHandler";
 import CommandHandler from "handlers/CommandHandler";
@@ -26,15 +25,6 @@ export default class ReadyEvent extends Event {
     new HelperHandler(bot).loadHelpers();
     new InteractionHandler(bot).loadInteractions();
     new CommandHandler(bot).loadCommands();
-
-    const botData = await BotModel.findOne({ bot_id: bot?.user?.id });
-
-    if (!botData) {
-      BotModel.create({ bot_id: bot?.user?.id });
-    } else {
-      botData.used_since_up = 0;
-      await botData.save();
-    }
 
     bot.logger.log(
       "bot",

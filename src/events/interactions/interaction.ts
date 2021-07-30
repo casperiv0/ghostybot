@@ -46,7 +46,7 @@ export default class InteractionEvent extends Event {
         }
       }
 
-      if (!this.isOwner(interaction)) {
+      if (command.options.ownerOnly && !this.isOwner(interaction)) {
         return interaction.reply({
           content: lang.MESSAGE.OWNER_ONLY,
           ephemeral: true,
