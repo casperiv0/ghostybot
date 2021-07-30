@@ -1,7 +1,7 @@
 # GhostyBot Command list
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 167 commands.
+GhostyBot has a total of 150 commands.
 
 Click any of the command names for more information
 
@@ -281,55 +281,21 @@ Click any of the command names for more information
 
 ### Category: music
 
-**Total commands: 17**
-
-[back:](#back) Play back the previous song
-
-[clearqueue:](#clearqueue) Clear the music playlist
-
-[filter:](#filter) Set or remove a filter to the music queue
-
-[filters:](#filters) All available filters
-
-[loop:](#loop) Loop a song that is playing
+**Total commands: 1**
 
 [lyrics:](#lyrics) Get lyrics for the song
-
-[nowplaying:](#nowplaying) Shows info about the current playing song
-
-[pause:](#pause) Pause a song that is playing
-
-[play:](#play) Play a song
-
-[queue:](#queue) Show top 20 songs in the queue
-
-[remove:](#remove) Remove a song from the queue
-
-[resume:](#resume) Resume a song that was playing
-
-[seek:](#seek) Seek thru a song
-
-[shuffle:](#shuffle) Shuffle the queue
-
-[skip:](#skip) Skip a song that is playing
-
-[stop:](#stop) stop
-
-[volume:](#volume) Set the volume between 1 to 100
 
 ---
 
 ### Category: util
 
-**Total commands: 41**
+**Total commands: 40**
 
 [afk:](#afk) N/A
 
 [avatar:](#avatar) Get user avatar
 
 [bmi:](#bmi) Calculate your BMI
-
-[botinfo:](#botinfo) Shows info about the bot
 
 [botinvite:](#botinvite) Returns the bot invite
 
@@ -2381,96 +2347,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## back
-
-**Category:** music
-
-**Description:** Play back the previous song
-
-**Usage:** `N/A`
-
-**Aliases:** `prev`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## clearqueue
-
-**Category:** music
-
-**Description:** Clear the music playlist
-
-**Usage:** `N/A`
-
-**Aliases:** `cq`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## filter
-
-**Category:** music
-
-**Description:** Set or remove a filter to the music queue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `filter(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## filters
-
-**Category:** music
-
-**Description:** All available filters
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## loop
-
-**Category:** music
-
-**Description:** Loop a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `Repeat Type(number)`
-
-[Back to top](#ghostybot-command-list)
-
 ## lyrics
 
 **Category:** music
@@ -2480,204 +2356,6 @@ Click any of the command names for more information
 **Usage:** `N/A`
 
 **Aliases:** `ly`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## nowplaying
-
-**Category:** music
-
-**Description:** Shows info about the current playing song
-
-**Usage:** `N/A`
-
-**Aliases:** `np`, `currentsong`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pause
-
-**Category:** music
-
-**Description:** Pause a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## play
-
-**Category:** music
-
-**Description:** Play a song
-
-**Usage:** `<youtube link | song name>`
-
-**Aliases:** `p`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `song(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## queue
-
-**Category:** music
-
-**Description:** Show top 20 songs in the queue
-
-**Usage:** `N/A`
-
-**Aliases:** `q`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## remove
-
-**Category:** music
-
-**Description:** Remove a song from the queue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `track-number(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## resume
-
-**Category:** music
-
-**Description:** Resume a song that was playing
-
-**Usage:** `N/A`
-
-**Aliases:** `r`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## seek
-
-**Category:** music
-
-**Description:** Seek thru a song
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `seconds/minutes(time)`
-
-[Back to top](#ghostybot-command-list)
-
-## shuffle
-
-**Category:** music
-
-**Description:** Shuffle the queue
-
-**Usage:** `N/A`
-
-**Aliases:** `sh`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## skip
-
-**Category:** music
-
-**Description:** Skip a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** `s`, `sk`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## stop
-
-**Category:** music
-
-**Description:** stop
-
-**Usage:** `N/A`
-
-**Aliases:** `leave`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## volume
-
-**Category:** music
-
-**Description:** Set the volume between 1 to 100
-
-**Usage:** `N/A`
-
-**Aliases:** `vol`
 
 **Member Permissions:** None
 
@@ -2774,24 +2452,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `weight(number)`, `height(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## botinfo
-
-**Category:** util
-
-**Description:** Shows info about the bot
-
-**Usage:** `N/A`
-
-**Aliases:** `bot`, `ping`, `about`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

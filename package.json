@@ -52,7 +52,7 @@
     "discord-giveaways": "github:Dev-CasperTheGhost/discord-giveaways#discord.js-v13",
     "discord-logs": "^1.9.0",
     "discord-starboards": "github:Dev-CasperTheGhost/discord-starboards#djs-v13",
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^13.0.0-dev.2675b08.1627646567",
     "distube": "^3.0.0-alpha.17",
     "dotenv": "^10.0.0",
     "ffmpeg": "0.0.4",

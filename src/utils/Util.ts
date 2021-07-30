@@ -340,7 +340,7 @@ export default class Util {
       old.channelId && old.emoji && this.bot.starboardsManager.delete(old.channelId, old.emoji);
     }
 
-    this.bot.starboardsManager.create(channel as unknown as DJS.Channel, {
+    this.bot.starboardsManager.create(channel as any, {
       ...options,
       selfStar: true,
       starEmbed: true,
@@ -527,8 +527,9 @@ export default class Util {
       .join(" ");
   }
 
-  isBotInSameChannel(message: DJS.Message) {
-    const voiceChannelId = message.member?.voice.channelId;
+  isBotInSameChannel(message: DJS.Message | DJS.CommandInteraction) {
+    const member = new DJS.GuildMember(this.bot, message.member, message.guild!);
+    const voiceChannelId = member?.voice.channelId;
 
     if (!voiceChannelId) return false;
     if (!message.guild?.me) return false;
