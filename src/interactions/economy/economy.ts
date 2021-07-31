@@ -19,6 +19,7 @@ import { work } from "./functions/work";
 import { withdraw } from "./functions/withdraw";
 import { addMoney } from "./functions/addMoney";
 import { removeMoney } from "./functions/removeMoney";
+import { store } from "./functions/store";
 
 export default class EconomyCommand extends Interaction {
   constructor(bot: Bot) {
@@ -77,10 +78,10 @@ export default class EconomyCommand extends Interaction {
           await slots(this.bot, interaction, lang);
           break;
         }
-        // case "store": {
-        //   await store(this.bot, interaction, lang);
-        //   break;
-        // }
+        case "store": {
+          await store(this.bot, interaction, lang);
+          break;
+        }
         case "weekly": {
           await weekly(this.bot, interaction, lang);
           break;
