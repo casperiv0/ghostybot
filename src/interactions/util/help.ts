@@ -1,4 +1,4 @@
-import { CommandInteraction } from "discord.js";
+import * as DJS from "discord.js";
 import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
 import Bot from "structures/Bot";
 import Interaction from "structures/Interaction";
@@ -20,7 +20,7 @@ export default class HelpInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {

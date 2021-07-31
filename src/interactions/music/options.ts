@@ -8,19 +8,6 @@ const loopTypes = [
 ];
 
 export const musicOptions: DJS.ApplicationCommandOptionData[] = [
-  //   {
-  //     type: "SUB_COMMAND",
-  //     name: "back",
-  //     description: "Play back the previous song",
-  //     options: [
-  //       {
-  //         type: "STRING",
-  //         name: "query",
-  //         description: "The URL or search query",
-  //         required: true,
-  //       },
-  //     ],
-  //   },
   {
     type: "SUB_COMMAND",
     name: "clear-queue",
