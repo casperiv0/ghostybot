@@ -1,7 +1,9 @@
 # GhostyBot Command list
 
+> **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
+
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 204 commands.
+GhostyBot has a total of 132 commands.
 
 Click any of the command names for more information
 
@@ -25,7 +27,7 @@ Click any of the command names for more information
 
 [exempt](#category-exempt)
 
-[botowner](#category-botowner)
+[bot-owner](#category-bot-owner)
 
 [giveaway](#category-giveaway)
 
@@ -34,6 +36,10 @@ Click any of the command names for more information
 [reminder](#category-reminder)
 
 [ticket](#category-ticket)
+
+[information](#category-information)
+
+[fun](#category-fun)
 
 ## Command list
 
@@ -117,43 +123,7 @@ Click any of the command names for more information
 
 ### Category: animal
 
-**Total commands: 18**
-
-[bird:](#bird) Returns an image of a bird
-
-[bunny:](#bunny) Shows a picture of a bunny
-
-[cat:](#cat) Shows a picture of a cat
-
-[catfact:](#catfact) Returns a cat fact
-
-[cow:](#cow) Returns a cow ascii
-
-[cowsay:](#cowsay) Let a cow say something
-
-[dog:](#dog) Shows a picture of a dog
-
-[dogfact:](#dogfact) Returns a dog fact
-
-[duck:](#duck) Shows a picture of a duck
-
-[fox:](#fox) Shows a picture of a fox
-
-[kangaroo:](#kangaroo) An image of a kangaroo
-
-[koala:](#koala) Shows a random picture of koala
-
-[lizard:](#lizard) Shows a picture of a lizard
-
-[panda:](#panda) Shows a picture of a panda
-
-[racoon:](#racoon) Shows an image of a raccoon
-
-[red-panda:](#red-panda) An image of a red panda
-
-[shibe:](#shibe) Returns an image of a shibe
-
-[whale:](#whale) Shows an image of a whale
+**Total commands: 0**
 
 ---
 
@@ -201,43 +171,7 @@ Click any of the command names for more information
 
 ### Category: games
 
-**Total commands: 18**
-
-[8ball:](#8ball) 8Ball
-
-[advice:](#advice) Gives you advice
-
-[ascii:](#ascii) Transform text to ascii
-
-[bet:](#bet) Bet on somebody
-
-[block:](#block) Write text with blocks
-
-[calc:](#calc) Calculate something
-
-[compliment:](#compliment) Get a compliment
-
-[dadjoke:](#dadjoke) Shows a dadjoke
-
-[flipcoin:](#flipcoin) Flip a coin
-
-[happiness:](#happiness) Get a happiness returned
-
-[iq:](#iq) Get a random Iq returned
-
-[lmgtfy:](#lmgtfy) Let me google that for you
-
-[meme:](#meme) Returns a meme
-
-[quote:](#quote) desc
-
-[randomjoke:](#randomjoke) returns a random joke
-
-[randomnumber:](#randomnumber) Returns a random 6 digit number
-
-[rps:](#rps) Rock Paper Scissors
-
-[wyr:](#wyr) Would you rather ...
+**Total commands: 0**
 
 ---
 
@@ -317,47 +251,13 @@ Click any of the command names for more information
 
 ### Category: music
 
-**Total commands: 17**
-
-[back:](#back) Play back the previous song
-
-[clearqueue:](#clearqueue) Clear the music playlist
-
-[filter:](#filter) Set or remove a filter to the music queue
-
-[filters:](#filters) All available filters
-
-[loop:](#loop) Loop a song that is playing
-
-[lyrics:](#lyrics) Get lyrics for the song
-
-[nowplaying:](#nowplaying) Shows info about the current playing song
-
-[pause:](#pause) Pause a song that is playing
-
-[play:](#play) Play a song
-
-[queue:](#queue) Show top 20 songs in the queue
-
-[remove:](#remove) Remove a song from the queue
-
-[resume:](#resume) Resume a song that was playing
-
-[seek:](#seek) Seek thru a song
-
-[shuffle:](#shuffle) Shuffle the queue
-
-[skip:](#skip) Skip a song that is playing
-
-[stop:](#stop) stop
-
-[volume:](#volume) Set the volume between 1 to 100
+**Total commands: 0**
 
 ---
 
 ### Category: util
 
-**Total commands: 46**
+**Total commands: 40**
 
 [afk:](#afk) N/A
 
@@ -365,13 +265,9 @@ Click any of the command names for more information
 
 [bmi:](#bmi) Calculate your BMI
 
-[botinfo:](#botinfo) Shows info about the bot
-
 [botinvite:](#botinvite) Returns the bot invite
 
 [bugreport:](#bugreport) Report a bug to your staff
-
-[channelinfo:](#channelinfo) Get information about a channel
 
 [channels:](#channels) Shows all channels in the server
 
@@ -385,8 +281,6 @@ Click any of the command names for more information
 
 [docs:](#docs) Returns the request query from discord.js docs
 
-[emojiinfo:](#emojiinfo) Returns information about a custom emoji
-
 [emojis:](#emojis) Get a random color
 
 [enlarge:](#enlarge) get your emoji enlarged
@@ -398,8 +292,6 @@ Click any of the command names for more information
 [help:](#help) Shows all commands Or shows more info about a command
 
 [imdb:](#imdb) Get the information about series and movie
-
-[invite-info:](#invite-info) Get information about an invite
 
 [invite:](#invite) Creates an instant invite for the server
 
@@ -429,8 +321,6 @@ Click any of the command names for more information
 
 [servericon:](#servericon) Shows the server icon
 
-[serverinfo:](#serverinfo) Get info about the server
-
 [skin:](#skin) Search for skins from Minecraft
 
 [spotify:](#spotify) Find a track/artist/album via the Spotify API
@@ -440,8 +330,6 @@ Click any of the command names for more information
 [translate:](#translate) Translate a sentence
 
 [uptime:](#uptime) Returns the uptime of the bot
-
-[userinfo:](#userinfo) Get user info
 
 [verify:](#verify) Verify yourself to get guild access
 
@@ -467,31 +355,15 @@ Click any of the command names for more information
 
 ---
 
-### Category: botowner
+### Category: bot-owner
 
-**Total commands: 5**
-
-[blacklist:](#blacklist) Remove/add blacklist from a user
-
-[eval:](#eval) Eval
-
-[leaveguild:](#leaveguild) Leaves a guild by the provided Id
-
-[shell:](#shell) Execute shell commands
-
-[shutdown:](#shutdown) Shuts the bot down
+**Total commands: 0**
 
 ---
 
 ### Category: giveaway
 
-**Total commands: 3**
-
-[givend:](#givend) Ends a giveaway
-
-[givreroll:](#givreroll) Reroll a giveaway
-
-[givstart:](#givstart) Starts a giveaway
+**Total commands: 0**
 
 ---
 
@@ -507,25 +379,27 @@ Click any of the command names for more information
 
 ### Category: reminder
 
-**Total commands: 4**
-
-[edit-reminder:](#edit-reminder) Edit an active reminder
-
-[reminders:](#reminders) All your active reminders
-
-[removereminder:](#removereminder) Remove your current reminder
-
-[setreminder:](#setreminder) Set a reminder, the bot will ping you when the timer runs out
+**Total commands: 0**
 
 ---
 
 ### Category: ticket
 
-**Total commands: 2**
+**Total commands: 0**
 
-[closeticket:](#closeticket) Closes the active ticket, use --force to force close issue
+---
 
-[createticket:](#createticket) Creates a ticket
+### Category: information
+
+**Total commands: 0**
+
+---
+
+### Category: fun
+
+**Total commands: 1**
+
+[calc:](#calc) Calculate something
 
 ## Detailed command list
 
@@ -1249,420 +1123,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## bird
-
-**Category:** animal
-
-**Description:** Returns an image of a bird
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## bunny
-
-**Category:** animal
-
-**Description:** Shows a picture of a bunny
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## cat
-
-**Category:** animal
-
-**Description:** Shows a picture of a cat
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## catfact
-
-**Category:** animal
-
-**Description:** Returns a cat fact
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## cow
-
-**Category:** animal
-
-**Description:** Returns a cow ascii
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## cowsay
-
-**Category:** animal
-
-**Description:** Let a cow say something
-
-**Usage:** `<text>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## dog
-
-**Category:** animal
-
-**Description:** Shows a picture of a dog
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## dogfact
-
-**Category:** animal
-
-**Description:** Returns a dog fact
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## duck
-
-**Category:** animal
-
-**Description:** Shows a picture of a duck
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## fox
-
-**Category:** animal
-
-**Description:** Shows a picture of a fox
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## kangaroo
-
-**Category:** animal
-
-**Description:** An image of a kangaroo
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## koala
-
-**Category:** animal
-
-**Description:** Shows a random picture of koala
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## lizard
-
-**Category:** animal
-
-**Description:** Shows a picture of a lizard
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## panda
-
-**Category:** animal
-
-**Description:** Shows a picture of a panda
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## racoon
-
-**Category:** animal
-
-**Description:** Shows an image of a raccoon
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## red-panda
-
-**Category:** animal
-
-**Description:** An image of a red panda
-
-**Usage:** `N/A`
-
-**Aliases:** `redpanda`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## shibe
-
-**Category:** animal
-
-**Description:** Returns an image of a shibe
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## whale
-
-**Category:** animal
-
-**Description:** Shows an image of a whale
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## blacklist
-
-**Category:** botowner
-
-**Description:** Remove/add blacklist from a user
-
-**Usage:** `<option> <level> <user>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## eval
-
-**Category:** botowner
-
-**Description:** Eval
-
-**Usage:** `N/A`
-
-**Aliases:** `e`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## leaveguild
-
-**Category:** botowner
-
-**Description:** Leaves a guild by the provided Id
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## shell
-
-**Category:** botowner
-
-**Description:** Execute shell commands
-
-**Usage:** `N/A`
-
-**Aliases:** `cmd`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `code(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## shutdown
-
-**Category:** botowner
-
-**Description:** Shuts the bot down
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## addmoney
 
 **Category:** economy
@@ -1987,99 +1447,9 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## 8ball
-
-**Category:** games
-
-**Description:** 8Ball
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## advice
-
-**Category:** games
-
-**Description:** Gives you advice
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## ascii
-
-**Category:** games
-
-**Description:** Transform text to ascii
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## bet
-
-**Category:** games
-
-**Description:** Bet on somebody
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## block
-
-**Category:** games
-
-**Description:** Write text with blocks
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## calc
 
-**Category:** games
+**Category:** fun
 
 **Description:** Calculate something
 
@@ -2092,276 +1462,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `calculation(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## compliment
-
-**Category:** games
-
-**Description:** Get a compliment
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## dadjoke
-
-**Category:** games
-
-**Description:** Shows a dadjoke
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## flipcoin
-
-**Category:** games
-
-**Description:** Flip a coin
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## happiness
-
-**Category:** games
-
-**Description:** Get a happiness returned
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## iq
-
-**Category:** games
-
-**Description:** Get a random Iq returned
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## lmgtfy
-
-**Category:** games
-
-**Description:** Let me google that for you
-
-**Usage:** `<search query>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `query(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## meme
-
-**Category:** games
-
-**Description:** Returns a meme
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## quote
-
-**Category:** games
-
-**Description:** desc
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## randomjoke
-
-**Category:** games
-
-**Description:** returns a random joke
-
-**Usage:** `N/A`
-
-**Aliases:** `joke`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## randomnumber
-
-**Category:** games
-
-**Description:** Returns a random 6 digit number
-
-**Usage:** `N/A`
-
-**Aliases:** `number`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## rps
-
-**Category:** games
-
-**Description:** Rock Paper Scissors
-
-**Usage:** `<rock | paper | scissors>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `rock | paper | scissors(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## wyr
-
-**Category:** games
-
-**Description:** Would you rather ...
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## givend
-
-**Category:** giveaway
-
-**Description:** Ends a giveaway
-
-**Usage:** `givend <messageId> **Example:** !giveaway end <messageId>`
-
-**Aliases:** `gend`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `messageId(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## givreroll
-
-**Category:** giveaway
-
-**Description:** Reroll a giveaway
-
-**Usage:** `N/A`
-
-**Aliases:** `greroll`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `messageId(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## givstart
-
-**Category:** giveaway
-
-**Description:** Starts a giveaway
-
-**Usage:** `<time> <winner count> <price> **Example:** !givstart 2d 10 Discord nitro`
-
-**Aliases:** `gstart`
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `time(time)`, `winnerCount(number)`, `prize(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -2923,312 +2023,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## back
-
-**Category:** music
-
-**Description:** Play back the previous song
-
-**Usage:** `N/A`
-
-**Aliases:** `prev`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## clearqueue
-
-**Category:** music
-
-**Description:** Clear the music playlist
-
-**Usage:** `N/A`
-
-**Aliases:** `cq`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## filter
-
-**Category:** music
-
-**Description:** Set or remove a filter to the music queue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `filter(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## filters
-
-**Category:** music
-
-**Description:** All available filters
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## loop
-
-**Category:** music
-
-**Description:** Loop a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `Repeat Type(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## lyrics
-
-**Category:** music
-
-**Description:** Get lyrics for the song
-
-**Usage:** `N/A`
-
-**Aliases:** `ly`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## nowplaying
-
-**Category:** music
-
-**Description:** Shows info about the current playing song
-
-**Usage:** `N/A`
-
-**Aliases:** `np`, `currentsong`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pause
-
-**Category:** music
-
-**Description:** Pause a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## play
-
-**Category:** music
-
-**Description:** Play a song
-
-**Usage:** `<youtube link | song name>`
-
-**Aliases:** `p`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `song(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## queue
-
-**Category:** music
-
-**Description:** Show top 20 songs in the queue
-
-**Usage:** `N/A`
-
-**Aliases:** `q`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## remove
-
-**Category:** music
-
-**Description:** Remove a song from the queue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `track-number(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## resume
-
-**Category:** music
-
-**Description:** Resume a song that was playing
-
-**Usage:** `N/A`
-
-**Aliases:** `r`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## seek
-
-**Category:** music
-
-**Description:** Seek thru a song
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `seconds/minutes(time)`
-
-[Back to top](#ghostybot-command-list)
-
-## shuffle
-
-**Category:** music
-
-**Description:** Shuffle the queue
-
-**Usage:** `N/A`
-
-**Aliases:** `sh`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## skip
-
-**Category:** music
-
-**Description:** Skip a song that is playing
-
-**Usage:** `N/A`
-
-**Aliases:** `s`, `sk`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## stop
-
-**Category:** music
-
-**Description:** stop
-
-**Usage:** `N/A`
-
-**Aliases:** `leave`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## volume
-
-**Category:** music
-
-**Description:** Set the volume between 1 to 100
-
-**Usage:** `N/A`
-
-**Aliases:** `vol`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## rradd
 
 **Category:** reactions
@@ -3262,114 +2056,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `message_id(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## edit-reminder
-
-**Category:** reminder
-
-**Description:** Edit an active reminder
-
-**Usage:** `edit-reminder <reminder-id> <new-time> <new message>`
-
-**Aliases:** `editreminder`, `erm`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `id(string)`, `time(time)`, `description(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## reminders
-
-**Category:** reminder
-
-**Description:** All your active reminders
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## removereminder
-
-**Category:** reminder
-
-**Description:** Remove your current reminder
-
-**Usage:** `removereminder <id | 'last' | 'first' | 'all'>`
-
-**Aliases:** `delreminder`, `rrm`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `reminder_id(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## setreminder
-
-**Category:** reminder
-
-**Description:** Set a reminder, the bot will ping you when the timer runs out
-
-**Usage:** `<time> <message>`
-
-**Aliases:** `addreminder`, `remind`, `remindme`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `time(time)`, `message(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## closeticket
-
-**Category:** ticket
-
-**Description:** Closes the active ticket, use --force to force close issue
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## createticket
-
-**Category:** ticket
-
-**Description:** Creates a ticket
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES, MANAGE_CHANNELS
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
@@ -3427,24 +2113,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## botinfo
-
-**Category:** util
-
-**Description:** Shows info about the bot
-
-**Usage:** `N/A`
-
-**Aliases:** `bot`, `ping`, `about`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## botinvite
 
 **Category:** util
@@ -3478,24 +2146,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `report(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## channelinfo
-
-**Category:** util
-
-**Description:** Get information about a channel
-
-**Usage:** `N/A`
-
-**Aliases:** `channel`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 
@@ -3607,24 +2257,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## emojiinfo
-
-**Category:** util
-
-**Description:** Returns information about a custom emoji
-
-**Usage:** `N/A`
-
-**Aliases:** `emoji`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `emoji(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## emojis
 
 **Category:** util
@@ -3730,24 +2362,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `query(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## invite-info
-
-**Category:** util
-
-**Description:** Get information about an invite
-
-**Usage:** `N/A`
-
-**Aliases:** `inviteinfo`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `code(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -4003,24 +2617,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## serverinfo
-
-**Category:** util
-
-**Description:** Get info about the server
-
-**Usage:** `N/A`
-
-**Aliases:** `guild`, `server`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## skin
 
 **Category:** util
@@ -4102,24 +2698,6 @@ Click any of the command names for more information
 **Usage:** `N/A`
 
 **Aliases:** `up`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## userinfo
-
-**Category:** util
-
-**Description:** Get user info
-
-**Usage:** `<user>`
-
-**Aliases:** `whois`, `user`, `u`
 
 **Member Permissions:** None
 

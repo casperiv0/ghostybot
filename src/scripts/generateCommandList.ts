@@ -118,8 +118,10 @@ ${commands.map((cmd) => `[${cmd.name}:](#${cmd.name}) ${cmd.description || "N/A"
 function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
   const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
+> **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
+
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} commands.
+${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} regular commands.
 
 Click any of the command names for more information
 

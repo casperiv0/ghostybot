@@ -67,7 +67,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
       if (gSlashCommands) {
-        guild.slash_commands = gSlashCommands.array().map((command) => {
+        guild.slash_commands = gSlashCommands.map((command) => {
           const cmd = g.slash_commands.find((c) => c.slash_cmd_id === command.id);
 
           return {

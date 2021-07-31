@@ -24,6 +24,7 @@ export default class EventHandler {
       delete require.cache[file];
 
       const event = await resolveFile<Event>(file, this.bot);
+      if (!event) continue;
       await validateFile(file, event);
 
       const isPlayer = file.includes("player.");

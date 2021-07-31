@@ -213,7 +213,7 @@ export default class Util {
   }
 
   async findMember(
-    message: Partial<DJS.Message>,
+    message: Partial<DJS.Message> | DJS.CommandInteraction,
     args: string[],
     options?: { allowAuthor?: boolean; index?: number },
   ): Promise<DJS.GuildMember | undefined | null> {
@@ -224,10 +224,12 @@ export default class Util {
       let member: DJS.GuildMember | null | undefined;
       const arg = (args[index]?.replace?.(/[<@!>]/gi, "") || args[index]) as DJS.Snowflake;
 
-      const mention = // check if the first mention is not the bot prefix
-        message.mentions?.users.first()?.id !== this.bot.user?.id
-          ? message.mentions?.users.first()
-          : message.mentions?.users.array()[1];
+      const mention =
+        "mentions" in message // check if the first mention is not the bot prefix
+          ? message.mentions?.users.first()?.id !== this.bot.user?.id
+            ? message.mentions?.users.first()
+            : message.mentions?.users.first(1)[1]
+          : null;
 
       member =
         message.guild.members.cache.find((m) => m.user.id === mention?.id) ||
@@ -245,7 +247,7 @@ export default class Util {
       }
 
       if (!member && options?.allowAuthor) {
-        member = message.member;
+        member = new DJS.GuildMember(this.bot, message.member, message.guild);
       }
 
       return member;
@@ -273,7 +275,7 @@ export default class Util {
   ): Promise<typeof import("../locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
-    return import(`../locales/${guild?.locale}`).then((f) => f.default);
+    return import(`../locales/${guild?.locale ?? "english"}`).then((f) => f.default);
   }
 
   async createWebhook(channelId: DJS.Snowflake, oldChannelId?: string) {
@@ -338,7 +340,7 @@ export default class Util {
       old.channelId && old.emoji && this.bot.starboardsManager.delete(old.channelId, old.emoji);
     }
 
-    this.bot.starboardsManager.create(channel as unknown as DJS.Channel, {
+    this.bot.starboardsManager.create(channel as any, {
       ...options,
       selfStar: true,
       starEmbed: true,
@@ -455,7 +457,11 @@ export default class Util {
     return Promise.resolve("Authorized");
   }
 
-  errorEmbed(permissions: bigint[], message: DJS.Message, lang: Record<string, string>) {
+  errorEmbed(
+    permissions: bigint[],
+    message: DJS.Message | DJS.CommandInteraction,
+    lang: Record<string, string>,
+  ) {
     return this.baseEmbed(message)
       .setTitle("Woah!")
       .setDescription(
@@ -475,9 +481,13 @@ export default class Util {
       .setColor("ORANGE");
   }
 
-  baseEmbed(message: DJS.Message | { author: DJS.User | null }): DJS.MessageEmbed {
-    const avatar = message.author?.displayAvatarURL({ dynamic: true });
-    const username = message.author?.username ?? this.bot.user?.username ?? "Unknown";
+  baseEmbed(
+    message: DJS.Message | DJS.CommandInteraction | { author: DJS.User | null },
+  ): DJS.MessageEmbed {
+    const user = "author" in message ? message.author : message.user;
+
+    const avatar = user?.displayAvatarURL({ dynamic: true });
+    const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
     return new DJS.MessageEmbed().setFooter(username, avatar).setColor("#5865f2").setTimestamp();
   }
@@ -517,8 +527,9 @@ export default class Util {
       .join(" ");
   }
 
-  isBotInSameChannel(message: DJS.Message) {
-    const voiceChannelId = message.member?.voice.channelId;
+  isBotInSameChannel(message: DJS.Message | DJS.CommandInteraction) {
+    const member = new DJS.GuildMember(this.bot, message.member, message.guild!);
+    const voiceChannelId = member?.voice.channelId;
 
     if (!voiceChannelId) return false;
     if (!message.guild?.me) return false;

@@ -1,10 +1,17 @@
 import { ApplicationCommandOptionData, Interaction as DiscordInteraction } from "discord.js";
 import Bot from "./Bot";
+import { CommandCategories } from "./Command";
 
 export interface InteractionOptions {
   name: string;
   description: string;
+  category: CommandCategories;
   options?: ApplicationCommandOptionData[];
+
+  // memberPermissions?: bigint[];
+  botPermissions?: bigint[];
+
+  ownerOnly?: boolean;
 }
 
 export default abstract class Interaction {
@@ -24,5 +31,5 @@ export default abstract class Interaction {
    * @param {Message} message discord.js message
    * @returns {any}
    */
-  abstract execute(message: DiscordInteraction): Promise<void>;
+  abstract execute(message: DiscordInteraction): Promise<any>;
 }

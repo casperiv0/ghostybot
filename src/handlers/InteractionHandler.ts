@@ -21,6 +21,7 @@ export default class InteractionHandler {
         delete require.cache[file];
 
         const interaction = await resolveFile<Interaction>(file, this.bot);
+        if (!interaction) continue;
         await validateFile(file, interaction);
 
         this.bot.interactions.set(interaction.name, interaction);

@@ -10,6 +10,7 @@ export const discordConfig: DJS.ClientOptions = {
     DJS.Intents.FLAGS.GUILD_MEMBERS,
     DJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     DJS.Intents.FLAGS.GUILD_VOICE_STATES,
+    DJS.Intents.FLAGS.GUILD_INTEGRATIONS,
   ],
   partials: [
     DJS.Constants.PartialTypes.GUILD_MEMBER,
@@ -20,8 +21,4 @@ export const discordConfig: DJS.ClientOptions = {
   ],
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
-
-  // 5 minutes
-  messageSweepInterval: 60 * 5,
-  messageCacheLifetime: 60 * 5,
 };

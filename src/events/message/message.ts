@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import ms from "ms";
 import { saveCommands } from "@commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
-import BotModel from "models/Bot.model";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
 
@@ -231,14 +230,6 @@ export default class MessageEvent extends Event {
         });
       }
 
-      const _bot =
-        (await BotModel.findOne({ bot_id: bot.user.id })) ||
-        (await BotModel.create({ bot_id: bot.user.id }));
-
-      _bot.total_used_cmds = (_bot?.total_used_cmds || 0) + 1;
-      _bot.used_since_up = (_bot?.used_since_up || 0) + 1;
-
-      _bot.save();
       const timestamps = bot.cooldowns.get(command.name);
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;

@@ -5,19 +5,24 @@ export type CommandCategories =
   | "admin"
   | "animal"
   | "economy"
-  | "games"
+  | "fun"
   | "image"
   | "levels"
   | "music"
   | "util"
   | "exempt"
+  /**
+   * @deprecated use `bot-owner` instead
+   */
   | "botowner"
   | "giveaway"
   | "reactions"
   | "reminder"
   | "ticket"
   | "disabled"
-  | "custom";
+  | "custom"
+  | "information"
+  | "bot-owner";
 
 export interface RequiredArg {
   type?: "time" | "number";
