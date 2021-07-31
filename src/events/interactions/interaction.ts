@@ -46,6 +46,18 @@ export default class InteractionEvent extends Event {
         }
       }
 
+      if (command.options.memberPermissions) {
+        const perms = bot.utils.formatMemberPermissions(
+          command.options.memberPermissions,
+          interaction,
+          lang,
+        );
+
+        if (perms) {
+          return interaction.reply({ content: perms, ephemeral: true });
+        }
+      }
+
       if (command.options.ownerOnly && !this.isOwner(interaction)) {
         return interaction.reply({
           content: lang.MESSAGE.OWNER_ONLY,

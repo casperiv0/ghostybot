@@ -1,4 +1,4 @@
-import { CommandInteraction, Snowflake } from "discord.js";
+import { CommandInteraction, Permissions, Snowflake } from "discord.js";
 import ms from "ms";
 import Bot from "structures/Bot";
 import Interaction from "structures/Interaction";
@@ -9,7 +9,7 @@ export default class GiveawayCommand extends Interaction {
       name: "giveaway",
       description: "Manage giveaways",
       category: "giveaway",
-
+      memberPermissions: [Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           type: "SUB_COMMAND",
