@@ -21,8 +21,4 @@ export const discordConfig: DJS.ClientOptions = {
   ],
   restRequestTimeout: 25000,
   allowedMentions: { parse: ["roles", "users"] },
-
-  // 5 minutes
-  messageSweepInterval: 60 * 5,
-  messageCacheLifetime: 60 * 5,
 };

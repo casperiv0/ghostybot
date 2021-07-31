@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 
-export const gamesOptions: DJS.ApplicationCommandOptionData[] = [
+export const funOptions: DJS.ApplicationCommandOptionData[] = [
   {
     type: "SUB_COMMAND",
     name: "8ball",
@@ -125,5 +125,18 @@ export const gamesOptions: DJS.ApplicationCommandOptionData[] = [
     type: "SUB_COMMAND",
     name: "would-you-rather",
     description: "Would you rather..",
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "lmgtfy",
+    description: "Let me google that for ya?",
+    options: [
+      {
+        required: true,
+        type: "STRING",
+        name: "query",
+        description: "The search query",
+      },
+    ],
   },
 ];

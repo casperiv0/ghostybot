@@ -44,7 +44,10 @@ export default class TicketsCommand extends Interaction {
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return interaction.reply(lang.GLOBAL.ERROR);
+
+      interaction.deferred
+        ? interaction.editReply(lang.GLOBAL.ERROR)
+        : interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
     }
   }
 

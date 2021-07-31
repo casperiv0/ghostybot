@@ -228,7 +228,7 @@ export default class Util {
         "mentions" in message // check if the first mention is not the bot prefix
           ? message.mentions?.users.first()?.id !== this.bot.user?.id
             ? message.mentions?.users.first()
-            : message.mentions?.users.array()[1]
+            : message.mentions?.users.first(1)[1]
           : null;
 
       member =

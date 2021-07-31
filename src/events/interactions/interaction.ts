@@ -55,8 +55,14 @@ export default class InteractionEvent extends Event {
 
       await command?.execute(interaction);
     } catch (e) {
-      interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
+      if (interaction.replied) return;
       bot.utils.sendErrorLog(e, "error");
+
+      if (interaction.deferred) {
+        interaction.editReply({ content: lang.GLOBAL.ERROR });
+      } else {
+        interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
+      }
     }
   }
 

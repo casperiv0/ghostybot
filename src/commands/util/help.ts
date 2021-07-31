@@ -36,7 +36,11 @@ export default class HelpCommand extends Command {
             return { name: cmd.name, category: "custom" };
           });
 
-      const commands = [...this.bot.commands.array(), ...disabledCmds, ...customCmds];
+      const commands = [
+        ...this.bot.commands.map((v) => ({ ...v.options })),
+        ...disabledCmds,
+        ...customCmds,
+      ];
 
       if (cmdArgs && categories.includes(cmdArgs.toLowerCase())) {
         const cmds = commands
