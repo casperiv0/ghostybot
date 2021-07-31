@@ -1,8 +1,8 @@
 import { CommandInteraction } from "discord.js";
 import Bot from "structures/Bot";
 import Interaction from "structures/Interaction";
-import { botInfo } from "./functions/bot";
 
+import { botInfo } from "./functions/bot";
 import { channelInfo } from "./functions/channel";
 import { emojiInfo } from "./functions/emoji";
 import { guildInfo } from "./functions/guild";
@@ -11,7 +11,7 @@ import { roleInfo } from "./functions/role";
 import { userInfo } from "./functions/user";
 import { infoOptions } from "./options";
 
-export default class GiveawayCommand extends Interaction {
+export default class InfoCommand extends Interaction {
   constructor(bot: Bot) {
     super(bot, {
       name: "info",

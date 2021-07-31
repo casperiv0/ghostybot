@@ -456,7 +456,7 @@ const LANG: typeof import("./english").default = {
     CATEGORIES: {
       admin: "Администрирование",
       animal: "Животные",
-      botowner: "Владельцу бота",
+      "bot-owner": "Владельцу бота",
       games: "Игровые команды",
       image: "Картинки",
       music: "Музыка",

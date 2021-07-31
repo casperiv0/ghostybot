@@ -3,7 +3,7 @@
 > **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 132 commands.
+GhostyBot has a total of 132 regular commands.
 
 Click any of the command names for more information
 
@@ -36,10 +36,6 @@ Click any of the command names for more information
 [reminder](#category-reminder)
 
 [ticket](#category-ticket)
-
-[information](#category-information)
-
-[fun](#category-fun)
 
 ## Command list
 
@@ -386,20 +382,6 @@ Click any of the command names for more information
 ### Category: ticket
 
 **Total commands: 0**
-
----
-
-### Category: information
-
-**Total commands: 0**
-
----
-
-### Category: fun
-
-**Total commands: 1**
-
-[calc:](#calc) Calculate something
 
 ## Detailed command list
 

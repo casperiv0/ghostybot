@@ -457,7 +457,7 @@ const LANG: typeof import("./english").default = {
     CATEGORIES: {
       admin: "Comandos de admins",
       animal: "Comandos de animales",
-      botowner: "Comandos del dueño del bot",
+      "bot-owner": "Comandos del dueño del bot",
       games: "Comandos de juegos",
       image: "Comandos de imagenes",
       music: "Comandos de musica",

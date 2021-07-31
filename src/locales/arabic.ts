@@ -452,7 +452,7 @@ const LANG: typeof import("./english").default = {
     CATEGORIES: {
       admin: "اوامر الادمنز",
       animal: "اوامر الحيوانات",
-      botowner: "اوامر اونر البوت",
+      "bot-owner": "اوامر اونر البوت",
       games: "اوامر الالعاب",
       image: "اوامر الصورة",
       music: "اومر الميوزك",

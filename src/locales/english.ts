@@ -455,7 +455,7 @@ export default {
     CATEGORIES: {
       admin: "Admin commands",
       animal: "Animal Commands",
-      botowner: "BotOwner Commands",
+      "bot-owner": "BotOwner Commands",
       games: "Game Commands",
       image: "Image Commands",
       music: "Music Commands",
