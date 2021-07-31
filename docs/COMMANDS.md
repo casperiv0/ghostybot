@@ -25,7 +25,7 @@ Click any of the command names for more information
 
 [exempt](#category-exempt)
 
-[botowner](#category-botowner)
+[bot-owner](#category-bot-owner)
 
 [giveaway](#category-giveaway)
 
@@ -34,6 +34,10 @@ Click any of the command names for more information
 [reminder](#category-reminder)
 
 [ticket](#category-ticket)
+
+[information](#category-information)
+
+[fun](#category-fun)
 
 ## Command list
 
@@ -165,9 +169,7 @@ Click any of the command names for more information
 
 ### Category: games
 
-**Total commands: 1**
-
-[calc:](#calc) Calculate something
+**Total commands: 0**
 
 ---
 
@@ -351,7 +353,7 @@ Click any of the command names for more information
 
 ---
 
-### Category: botowner
+### Category: bot-owner
 
 **Total commands: 0**
 
@@ -382,6 +384,20 @@ Click any of the command names for more information
 ### Category: ticket
 
 **Total commands: 0**
+
+---
+
+### Category: information
+
+**Total commands: 0**
+
+---
+
+### Category: fun
+
+**Total commands: 1**
+
+[calc:](#calc) Calculate something
 
 ## Detailed command list
 
@@ -1431,7 +1447,7 @@ Click any of the command names for more information
 
 ## calc
 
-**Category:** games
+**Category:** fun
 
 **Description:** Calculate something
 

@@ -36,6 +36,7 @@ export default class EvalCommand extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
+      await interaction.defer();
       const code = interaction.options.getString("code", true);
       let wasCanceled = false;
 
@@ -46,9 +47,8 @@ export default class EvalCommand extends Interaction {
       });
 
       if (wasCanceled) {
-        return interaction.reply({
+        return interaction.editReply({
           content: "That operation was canceled because it can include tokens or secrets.",
-          ephemeral: true,
         });
       }
 
@@ -68,14 +68,14 @@ ${inlineCode(lang.BOT_OWNER.EVAL_TYPE)}: ${type}
 ${inlineCode(lang.BOT_OWNER.EVAL_INPUT)}: ${codeBlock("js", code)}
 ${inlineCode(lang.BOT_OWNER.EVAL_OUTPUT)}: ${codeBlock("js", evaluatedCode)}`);
 
-      await interaction.reply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     } catch (err) {
       const embed = this.bot.utils
         .baseEmbed(interaction)
         .setTitle(lang.GLOBAL.ERROR)
         .setDescription(codeBlock(err));
 
-      return interaction.reply({ embeds: [embed] });
+      return interaction.editReply({ embeds: [embed] });
     }
   }
 }

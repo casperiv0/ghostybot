@@ -32,11 +32,7 @@ export default class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
-        const guild = await this.bot.guilds.fetch("841737902065057823"); // test guild
-        const guild2 = await this.bot.guilds.fetch("737006392078106786"); // ghostybot
-
-        await guild?.commands.create(data);
-        await guild2?.commands.create(data);
+        await this.bot.application?.commands.create(data);
 
         if (process.env["DEBUG_MODE"] === "true") {
           this.bot.logger.log("COMMAND", `Loaded ${interaction.name}`);
