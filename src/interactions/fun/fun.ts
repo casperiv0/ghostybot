@@ -26,7 +26,7 @@ export default class FunCommand extends Interaction {
     super(bot, {
       name: "fun",
       description: "Fun commands",
-      category: "information",
+      category: "fun",
       options: funOptions,
     });
   }

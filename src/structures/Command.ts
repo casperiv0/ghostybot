@@ -5,7 +5,7 @@ export type CommandCategories =
   | "admin"
   | "animal"
   | "economy"
-  | "games"
+  | "fun"
   | "image"
   | "levels"
   | "music"

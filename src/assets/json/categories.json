@@ -8,11 +8,13 @@
   "music",
   "util",
   "exempt",
-  "botowner",
+  "bot-owner",
   "giveaway",
   "reactions",
   "reminder",
   "ticket",
   "disabled",
-  "custom"
+  "custom",
+  "information",
+  "fun"
 ]
