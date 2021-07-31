@@ -3,26 +3,14 @@ import Bot from "./Bot";
 
 export type CommandCategories =
   | "admin"
-  | "animal"
   | "economy"
-  | "fun"
   | "image"
   | "levels"
-  | "music"
   | "util"
   | "exempt"
-  /**
-   * @deprecated use `bot-owner` instead
-   */
-  | "botowner"
-  | "giveaway"
   | "reactions"
-  | "reminder"
-  | "ticket"
   | "disabled"
-  | "custom"
-  | "information"
-  | "bot-owner";
+  | "custom";
 
 export interface RequiredArg {
   type?: "time" | "number";

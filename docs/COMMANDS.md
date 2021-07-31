@@ -11,31 +11,17 @@ Click any of the command names for more information
 
 [admin](#category-admin)
 
-[animal](#category-animal)
-
 [economy](#category-economy)
-
-[games](#category-games)
 
 [image](#category-image)
 
 [levels](#category-levels)
 
-[music](#category-music)
-
 [util](#category-util)
 
 [exempt](#category-exempt)
 
-[bot-owner](#category-bot-owner)
-
-[giveaway](#category-giveaway)
-
 [reactions](#category-reactions)
-
-[reminder](#category-reminder)
-
-[ticket](#category-ticket)
 
 ## Command list
 
@@ -117,12 +103,6 @@ Click any of the command names for more information
 
 ---
 
-### Category: animal
-
-**Total commands: 0**
-
----
-
 ### Category: economy
 
 **Total commands: 18**
@@ -162,12 +142,6 @@ Click any of the command names for more information
 [withdraw:](#withdraw) Withdraw money to your bank
 
 [work:](#work) work
-
----
-
-### Category: games
-
-**Total commands: 0**
 
 ---
 
@@ -245,15 +219,11 @@ Click any of the command names for more information
 
 ---
 
-### Category: music
-
-**Total commands: 0**
-
----
-
 ### Category: util
 
-**Total commands: 40**
+**Total commands: 41**
+
+[calc:](#calc) Calculate something
 
 [afk:](#afk) N/A
 
@@ -351,18 +321,6 @@ Click any of the command names for more information
 
 ---
 
-### Category: bot-owner
-
-**Total commands: 0**
-
----
-
-### Category: giveaway
-
-**Total commands: 0**
-
----
-
 ### Category: reactions
 
 **Total commands: 2**
@@ -370,18 +328,6 @@ Click any of the command names for more information
 [rradd:](#rradd) Add a reaction role
 
 [rrremove:](#rrremove) Add a reaction role
-
----
-
-### Category: reminder
-
-**Total commands: 0**
-
----
-
-### Category: ticket
-
-**Total commands: 0**
 
 ## Detailed command list
 
@@ -1431,7 +1377,7 @@ Click any of the command names for more information
 
 ## calc
 
-**Category:** fun
+**Category:** util
 
 **Description:** Calculate something
 

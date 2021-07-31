@@ -1,11 +1,22 @@
 import { ApplicationCommandOptionData, Interaction as DiscordInteraction } from "discord.js";
 import Bot from "./Bot";
-import { CommandCategories } from "./Command";
+
+export type InteractionCategories =
+  | "animal"
+  | "fun"
+  | "economy"
+  | "bot-owner"
+  | "reminder"
+  | "ticket"
+  | "information"
+  | "music"
+  | "giveaway"
+  | "util";
 
 export interface InteractionOptions {
   name: string;
   description: string;
-  category: CommandCategories;
+  category: InteractionCategories;
   options?: ApplicationCommandOptionData[];
 
   // memberPermissions?: bigint[];

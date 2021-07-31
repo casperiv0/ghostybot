@@ -10,7 +10,7 @@ export default class CalcCommand extends Command {
     super(bot, {
       name: "calc",
       description: "Calculate something",
-      category: "fun",
+      category: "util",
       aliases: ["math"],
       requiredArgs: [{ name: "calculation" }],
     });
