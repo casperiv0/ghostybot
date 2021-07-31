@@ -3,7 +3,7 @@
 > **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 132 regular commands.
+GhostyBot has a total of 117 regular commands.
 
 Click any of the command names for more information
 
@@ -105,43 +105,13 @@ Click any of the command names for more information
 
 ### Category: economy
 
-**Total commands: 18**
-
-[addmoney:](#addmoney) Add money to a user
-
-[balance:](#balance) balance
-
-[buy:](#buy) Buy an item from the store
-
-[daily:](#daily) daily
-
-[deposit:](#deposit) deposit money to your bank
-
-[dice:](#dice) Roll a dice
-
-[inventory:](#inventory) View your or a user inventory
-
-[moneyleaderboard:](#moneyleaderboard) Returns a leaderboard with the top 10 users money
-
-[pay:](#pay) Give money to a user
-
-[profile:](#profile) See the full profile of a user
+**Total commands: 3**
 
 [removemoney:](#removemoney) Remove money to a user
 
 [reseteconomy:](#reseteconomy) Reset all money/bank in this guild
 
-[rob:](#rob) Rob up to 1000coins from somebody
-
-[slots:](#slots) Slots machine
-
 [store:](#store) View the store/shop to buy something
-
-[weekly:](#weekly) Collect your weekly price
-
-[withdraw:](#withdraw) Withdraw money to your bank
-
-[work:](#work) work
 
 ---
 
@@ -1051,186 +1021,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## addmoney
-
-**Category:** economy
-
-**Description:** Add money to a user
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `member(string)`, `amount(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## balance
-
-**Category:** economy
-
-**Description:** balance
-
-**Usage:** `N/A`
-
-**Aliases:** `bal`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## buy
-
-**Category:** economy
-
-**Description:** Buy an item from the store
-
-**Usage:** `<item name>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `item name(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## daily
-
-**Category:** economy
-
-**Description:** daily
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## deposit
-
-**Category:** economy
-
-**Description:** deposit money to your bank
-
-**Usage:** `<all | amount>`
-
-**Aliases:** `dep`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `amount(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## dice
-
-**Category:** economy
-
-**Description:** Roll a dice
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## inventory
-
-**Category:** economy
-
-**Description:** View your or a user inventory
-
-**Usage:** `<user>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## moneyleaderboard
-
-**Category:** economy
-
-**Description:** Returns a leaderboard with the top 10 users money
-
-**Usage:** `N/A`
-
-**Aliases:** `mlb`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pay
-
-**Category:** economy
-
-**Description:** Give money to a user
-
-**Usage:** `<member>, <amount>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `member(string)`, `amount(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## profile
-
-**Category:** economy
-
-**Description:** See the full profile of a user
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## removemoney
 
 **Category:** economy
@@ -1267,42 +1057,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## rob
-
-**Category:** economy
-
-**Description:** Rob up to 1000coins from somebody
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `member(string)`, `amount(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## slots
-
-**Category:** economy
-
-**Description:** Slots machine
-
-**Usage:** `<amount>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## store
 
 **Category:** economy
@@ -1312,60 +1066,6 @@ Click any of the command names for more information
 **Usage:** `<option | no-args>`
 
 **Aliases:** `shop`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## weekly
-
-**Category:** economy
-
-**Description:** Collect your weekly price
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## withdraw
-
-**Category:** economy
-
-**Description:** Withdraw money to your bank
-
-**Usage:** `<all | amount>`
-
-**Aliases:** `with`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `amount(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## work
-
-**Category:** economy
-
-**Description:** work
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
 
 **Member Permissions:** None
 

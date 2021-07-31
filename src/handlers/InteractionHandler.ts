@@ -32,10 +32,12 @@ export default class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
-        const g = await this.bot.guilds.fetch("841737902065057823");
-        g.commands.create(data);
-
-        // await this.bot.application?.commands.create(data);
+        if (process.env.DEV_MODE === "true") {
+          const g = await this.bot.guilds.fetch("841737902065057823");
+          g.commands.create(data);
+        } else {
+          await this.bot.application?.commands.create(data);
+        }
 
         if (process.env["DEBUG_MODE"] === "true") {
           this.bot.logger.log("COMMAND", `Loaded ${interaction.name}`);

@@ -1,26 +1,44 @@
 import * as DJS from "discord.js";
 
 export const economyOptions: DJS.ApplicationCommandOptionData[] = [
-  // todo: add memberPermissions
-  //   {
-  //     type: "SUB_COMMAND",
-  //     name: "add-money",
-  //     description: "Add money to a user",
-  //     options: [
-  //       {
-  //         type: "USER",
-  //         name: "user",
-  //         description: "The user you want to add money to",
-  //         required: true,
-  //       },
-  //       {
-  //         type: "NUMBER",
-  //         name: "amount",
-  //         description: "The amount you want to add",
-  //         required: true,
-  //       },
-  //     ],
-  //   },
+  {
+    type: "SUB_COMMAND",
+    name: "add-money",
+    description: "Add money to a user",
+    options: [
+      {
+        type: "USER",
+        name: "user",
+        description: "The user you want to add money to",
+        required: true,
+      },
+      {
+        type: "NUMBER",
+        name: "amount",
+        description: "The amount you want to add",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "remove-money",
+    description: "Remove money to a user",
+    options: [
+      {
+        type: "USER",
+        name: "user",
+        description: "The user you want to remove money to",
+        required: true,
+      },
+      {
+        type: "NUMBER",
+        name: "amount",
+        description: "The amount you want to remove",
+        required: true,
+      },
+    ],
+  },
   {
     type: "SUB_COMMAND",
     name: "balance",

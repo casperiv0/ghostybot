@@ -17,6 +17,8 @@ import { weekly } from "./functions/weekly";
 import { daily } from "./functions/daily";
 import { work } from "./functions/work";
 import { withdraw } from "./functions/withdraw";
+import { addMoney } from "./functions/addMoney";
+import { removeMoney } from "./functions/removeMoney";
 
 export default class EconomyCommand extends Interaction {
   constructor(bot: Bot) {
@@ -93,6 +95,14 @@ export default class EconomyCommand extends Interaction {
         }
         case "withdraw": {
           await withdraw(this.bot, interaction, lang);
+          break;
+        }
+        case "add-money": {
+          await addMoney(this.bot, interaction, lang);
+          break;
+        }
+        case "remove-money": {
+          await removeMoney(this.bot, interaction, lang);
           break;
         }
 

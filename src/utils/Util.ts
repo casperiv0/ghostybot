@@ -537,6 +537,42 @@ export default class Util {
     return message.guild.me.voice.channelId === voiceChannelId;
   }
 
+  formatMemberPermissions(
+    permissions: bigint[],
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
+    const neededPerms: bigint[] = [];
+
+    permissions.forEach((perm) => {
+      if (
+        !(interaction.channel as DJS.TextChannel)
+          .permissionsFor(interaction.member as any)
+          ?.has(perm)
+      ) {
+        neededPerms.push(perm);
+      }
+    });
+
+    if (neededPerms.length > 0) {
+      return lang.MESSAGE.NEED_PERMS.replace(
+        "{perms}",
+        neededPerms
+          .map((p) => {
+            const perms: string[] = [];
+            Object.keys(DJS.Permissions.FLAGS).map((key) => {
+              if (DJS.Permissions.FLAGS[key] === p) {
+                perms.push(`\`${lang.PERMISSIONS[key]}\``);
+              }
+            });
+
+            return perms;
+          })
+          .join(", "),
+      );
+    }
+  }
+
   hasSendPermissions(resolveable: DJS.Message | DJS.TextChannel) {
     const ch = "channel" in resolveable ? resolveable.channel : resolveable;
     if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) return true;
