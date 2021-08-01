@@ -3,17 +3,13 @@
 > **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 92 regular commands.
+GhostyBot has a total of 88 regular commands.
 
 Click any of the command names for more information
 
 ## Category list
 
 [admin](#category-admin)
-
-[economy](#category-economy)
-
-[image](#category-image)
 
 [levels](#category-levels)
 
@@ -100,26 +96,6 @@ Click any of the command names for more information
 [warn:](#warn) Warns a user
 
 [warnings:](#warnings) Returns how many warnings a user has
-
----
-
-### Category: economy
-
-**Total commands: 0**
-
----
-
-### Category: image
-
-**Total commands: 4**
-
-[ad:](#ad) Shows an amazing advertisement
-
-[amazeme:](#amazeme) Shows interesting images or facts
-
-[amazingearth:](#amazingearth) Amazing images of light and landscape
-
-[pikachu:](#pikachu) An image of a pikachu
 
 ---
 
@@ -986,78 +962,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `calculation(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## ad
-
-**Category:** image
-
-**Description:** Shows an amazing advertisement
-
-**Usage:** `N/A`
-
-**Aliases:** `advertisement`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## amazeme
-
-**Category:** image
-
-**Description:** Shows interesting images or facts
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## amazingearth
-
-**Category:** image
-
-**Description:** Amazing images of light and landscape
-
-**Usage:** `N/A`
-
-**Aliases:** `earthporn`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## pikachu
-
-**Category:** image
-
-**Description:** An image of a pikachu
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
 
 [Back to top](#ghostybot-command-list)
 

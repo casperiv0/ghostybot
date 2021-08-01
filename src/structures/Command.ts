@@ -3,8 +3,6 @@ import Bot from "./Bot";
 
 export type CommandCategories =
   | "admin"
-  | "economy"
-  | "image"
   | "levels"
   | "util"
   | "exempt"

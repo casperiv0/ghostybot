@@ -1,11 +1,9 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
-export async function supreme(
-  bot: Bot,
-  interaction: DJS.CommandInteraction,
-  lang: typeof import("@locales/english").default,
-) {
+export async function supreme(bot: Bot, interaction: DJS.CommandInteraction) {
+  await interaction.defer();
+
   const text = interaction.options.getString("text", true);
   const image = await bot.alexClient.image.supreme({
     text: encodeURIComponent(text),
@@ -13,5 +11,5 @@ export async function supreme(
 
   const att = new DJS.MessageAttachment(image, "supreme.png");
 
-  await interaction.reply({ files: [att] });
+  await interaction.editReply({ files: [att] });
 }

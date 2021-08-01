@@ -40,5 +40,5 @@ export async function giphy(
     .setDescription(`${lang.IMAGE.CLICK_TO_VIEW}(${data.url})`)
     .setImage(`${image}`);
 
-  await interaction.reply({ embeds: [embed] });
+  await interaction.editReply({ embeds: [embed] });
 }

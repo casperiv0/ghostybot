@@ -3,6 +3,11 @@ import * as DJS from "discord.js";
 export const imageOptions: DJS.ApplicationCommandOptionData[] = [
   {
     type: "SUB_COMMAND",
+    name: "amazing-earth",
+    description: "Amazing images of light and landscape",
+  },
+  {
+    type: "SUB_COMMAND",
     name: "change-my-mind",
     description: "Change my mind..",
     options: [
@@ -89,6 +94,11 @@ export const imageOptions: DJS.ApplicationCommandOptionData[] = [
         required: false,
       },
     ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "pikachu",
+    description: "Returns an image of a pikachu",
   },
   {
     type: "SUB_COMMAND",

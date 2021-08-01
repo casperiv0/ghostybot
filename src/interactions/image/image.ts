@@ -15,6 +15,8 @@ import { threshold } from "./functions/threshold";
 import { trash } from "./functions/trash";
 import { tweet } from "./functions/tweet";
 import { ytComment } from "./functions/ytComment";
+import { amazingEarth } from "./functions/amazingEarth";
+import { pikachu } from "./functions/pikachu";
 
 export default class ImageCommand extends Interaction {
   constructor(bot: Bot) {
@@ -33,6 +35,10 @@ export default class ImageCommand extends Interaction {
       const command = interaction.options.getSubcommand(true);
 
       switch (command) {
+        case "amazing-earth": {
+          await amazingEarth(this.bot, interaction);
+          break;
+        }
         case "change-my-mind": {
           await changeMyMind(this.bot, interaction, lang);
           break;
@@ -42,7 +48,7 @@ export default class ImageCommand extends Interaction {
           break;
         }
         case "foodporn": {
-          await foodPorn(this.bot, interaction, lang);
+          await foodPorn(this.bot, interaction);
           break;
         }
         case "giphy": {
@@ -61,8 +67,12 @@ export default class ImageCommand extends Interaction {
           await magik(this.bot, interaction, lang);
           break;
         }
+        case "pikachu": {
+          await pikachu(this.bot, interaction, lang);
+          break;
+        }
         case "supreme": {
-          await supreme(this.bot, interaction, lang);
+          await supreme(this.bot, interaction);
           break;
         }
         case "threshold": {

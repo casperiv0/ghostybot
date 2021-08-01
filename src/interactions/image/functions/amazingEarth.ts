@@ -1,10 +1,12 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
-export async function foodPorn(bot: Bot, interaction: DJS.CommandInteraction) {
+export async function amazingEarth(bot: Bot, interaction: DJS.CommandInteraction) {
   await interaction.defer();
 
-  const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) => res.json());
+  const data = await fetch("https://www.reddit.com/r/Earthporn/random/.json").then((res) =>
+    res.json(),
+  );
 
   const [children] = data[0].data.children;
   const permaLink = children.data.permalink;
@@ -16,10 +18,10 @@ export async function foodPorn(bot: Bot, interaction: DJS.CommandInteraction) {
 
   const embed = bot.utils
     .baseEmbed(interaction)
-    .setTitle(title)
+    .setTitle(`${title}`)
     .setURL(url)
     .setImage(image)
-    .setFooter(`👍: ${upvotes} -  💬: ${comments}`);
+    .setFooter(`👍 ${upvotes} - 💬 ${comments}`);
 
   await interaction.editReply({ embeds: [embed] });
 }
