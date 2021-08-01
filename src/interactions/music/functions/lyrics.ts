@@ -1,31 +1,41 @@
 import Bot from "structures/Bot";
 import * as DJS from "discord.js";
 import { Song } from "distube";
+import fetch from "node-fetch";
 
 export async function lyrics(
   bot: Bot,
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
-
   const queue = bot.player.getQueue(interaction.guildId!);
-  const playing = queue?.playing;
-  const np = playing || queue ? queue?.songs[0] : false;
+  const np = queue?.songs[0];
   const title = interaction.options.getString("query") ?? (np as Song)?.name;
 
-  const lyrics = await bot.lyricsClient.search(title as string);
-
-  if (!lyrics) {
-    return interaction.editReply({
-      content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title as string),
+  if (!title) {
+    return interaction.reply({
+      ephemeral: true,
+      content: lang.MUSIC.NO_QUEUE,
     });
   }
 
-  const songTitle = (lyrics.title || (np && np.name)) ?? "Unknown";
-  const songAuthor = (lyrics.artist?.name || (np && np.uploader.name)) ?? "Unknown";
-  const songThumbnail = lyrics.thumbnail || (np as Song).thumbnail;
-  const songLyrics = lyrics.lyrics as string;
+  await interaction.defer();
+
+  const data = await fetch(
+    `https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`,
+  ).then((v) => v.json());
+
+  if (!data) {
+    return interaction.editReply({
+      content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
+    });
+  }
+
+  const songTitle = (data.title || np?.name) ?? "Unknown";
+  const songAuthor = (data.author || np?.uploader.name) ?? "Unknown";
+  const songThumbnail = data.thumbnail?.genius || (np as Song).thumbnail;
+  const url = data.links?.genius ?? np?.url;
+  const songLyrics = data.lyrics;
 
   const embed = bot.utils
     .baseEmbed(interaction)
@@ -35,6 +45,10 @@ export async function lyrics(
 
   if (songThumbnail) {
     embed.setThumbnail(songThumbnail);
+  }
+
+  if (url) {
+    embed.setURL(url);
   }
 
   if (embed.description!.length >= 2048) {

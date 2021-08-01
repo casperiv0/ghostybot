@@ -1,5 +1,4 @@
 import { Client, Collection } from "discord.js";
-import { Lyrics } from "@discord-player/extractor";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
@@ -32,11 +31,6 @@ class Bot extends Client {
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
   ctgs: CtgsClient = new CtgsClient();
-
-  lyricsClient: {
-    search: (query: string) => Promise<Lyrics.LyricsData>;
-    client: unknown;
-  } = Lyrics.init();
 
   constructor() {
     super(discordConfig);
