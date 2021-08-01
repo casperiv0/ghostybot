@@ -147,8 +147,7 @@ export default class Util {
     const error = err as DJS.DiscordAPIError | DJS.HTTPError | Error;
 
     try {
-      /* eslint-disable-next-line */
-      if (error.stack?.includes?.('type: Value "voice" is not int.')) return;
+      if (error.message.includes("Missing Access")) return;
       if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) {
         return;
       }
@@ -247,7 +246,7 @@ export default class Util {
       }
 
       if (!member && options?.allowAuthor) {
-        member = new DJS.GuildMember(this.bot, message.member as any, message.guild);
+        member = new DJS.GuildMember(this.bot, message.member!, message.guild);
       }
 
       return member;
@@ -528,7 +527,7 @@ export default class Util {
   }
 
   isBotInSameChannel(message: DJS.Message | DJS.CommandInteraction) {
-    const member = new DJS.GuildMember(this.bot, message.member as any, message.guild!);
+    const member = new DJS.GuildMember(this.bot, message.member!, message.guild!);
     const voiceChannelId = member?.voice.channelId;
 
     if (!voiceChannelId) return false;
