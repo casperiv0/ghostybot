@@ -32,6 +32,8 @@ export async function play(
     ...interaction,
     author: interaction.user,
   };
+
+  // @ts-expect-error ignore
   const message = new DJS.Message(bot, d, interaction.channel as DJS.TextChannel);
   await bot.player.play(message, search);
 }

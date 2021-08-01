@@ -247,7 +247,7 @@ export default class Util {
       }
 
       if (!member && options?.allowAuthor) {
-        member = new DJS.GuildMember(this.bot, message.member, message.guild);
+        member = new DJS.GuildMember(this.bot, message.member as any, message.guild);
       }
 
       return member;
@@ -528,7 +528,7 @@ export default class Util {
   }
 
   isBotInSameChannel(message: DJS.Message | DJS.CommandInteraction) {
-    const member = new DJS.GuildMember(this.bot, message.member, message.guild!);
+    const member = new DJS.GuildMember(this.bot, message.member as any, message.guild!);
     const voiceChannelId = member?.voice.channelId;
 
     if (!voiceChannelId) return false;

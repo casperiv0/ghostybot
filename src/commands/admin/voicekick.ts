@@ -45,7 +45,7 @@ export default class VoiceKickCommand extends Command {
         });
       }
 
-      kickMember.voice.kick(kickReason);
+      kickMember.voice.disconnect(kickReason);
 
       kickMember.user.send({
         content: lang.ADMIN.YOU_DISC.replace("{guildName}", `${message.guild?.name}`).replace(
