@@ -11,7 +11,9 @@ export type InteractionCategories =
   | "information"
   | "music"
   | "giveaway"
-  | "util";
+  | "util"
+  | "image"
+  | "anime";
 
 export interface InteractionOptions {
   name: string;
