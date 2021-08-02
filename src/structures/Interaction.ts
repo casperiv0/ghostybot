@@ -13,7 +13,8 @@ export type InteractionCategories =
   | "giveaway"
   | "util"
   | "image"
-  | "anime";
+  | "anime"
+  | "levels";
 
 export interface InteractionOptions {
   name: string;

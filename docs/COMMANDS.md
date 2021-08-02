@@ -3,7 +3,7 @@
 > **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 80 regular commands.
+GhostyBot has a total of 74 regular commands.
 
 Click any of the command names for more information
 
@@ -101,23 +101,13 @@ Click any of the command names for more information
 
 ### Category: levels
 
-**Total commands: 5**
-
-[givexp:](#givexp) Give someone Xp
-
-[leaderboard:](#leaderboard) Shows top 10 users with the highest amount of XP
-
-[level:](#level) Get your current level
-
-[resetxp:](#resetxp) reset all users xp for current server
-
-[xp:](#xp) Get xp from a user or yourself
+**Total commands: 0**
 
 ---
 
 ### Category: util
 
-**Total commands: 33**
+**Total commands: 32**
 
 [calc:](#calc) Calculate something
 
@@ -152,8 +142,6 @@ Click any of the command names for more information
 [invite:](#invite) Creates an instant invite for the server
 
 [minecraft:](#minecraft) Get info about a minecraft server
-
-[nasanews:](#nasanews) Looks up an astronomy-related term on NASA's Website
 
 [pastebin:](#pastebin) Get a link of pastebin for your text
 
@@ -949,96 +937,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## givexp
-
-**Category:** levels
-
-**Description:** Give someone Xp
-
-**Usage:** `<user> <amount>`
-
-**Aliases:** N/A
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `member(string)`, `amount(number)`
-
-[Back to top](#ghostybot-command-list)
-
-## leaderboard
-
-**Category:** levels
-
-**Description:** Shows top 10 users with the highest amount of XP
-
-**Usage:** `N/A`
-
-**Aliases:** `lb`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## level
-
-**Category:** levels
-
-**Description:** Get your current level
-
-**Usage:** `N/A`
-
-**Aliases:** `lvl`, `rank`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES, ATTACH_FILES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## resetxp
-
-**Category:** levels
-
-**Description:** reset all users xp for current server
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** MANAGE_GUILD
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## xp
-
-**Category:** levels
-
-**Description:** Get xp from a user or yourself
-
-**Usage:** `<user>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## rradd
 
 **Category:** reactions
@@ -1360,24 +1258,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `server-ip(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## nasanews
-
-**Category:** util
-
-**Description:** Looks up an astronomy-related term on NASA's Website
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
