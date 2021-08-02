@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 118 slash commands.
+GhostyBot has a total of 119 slash commands.
 
 ## Detailed command list
 
@@ -714,6 +714,16 @@ GhostyBot has a total of 118 slash commands.
 **Choices:** N/A
 
 **Options:** ip (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> pokemon
+
+**Description:** Returns a pokémon information
+
+**Choices:** N/A
+
+**Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 

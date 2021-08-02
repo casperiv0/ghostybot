@@ -104,6 +104,19 @@ export const infoOptions: DJS.ApplicationCommandOptionData[] = [
   },
   {
     type: "SUB_COMMAND",
+    description: "Returns a pokémon information",
+    name: "pokemon",
+    options: [
+      {
+        name: "query",
+        description: "The search query",
+        type: "STRING",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
     description: "Search packages on npm by their name",
     name: "npm",
     options: [

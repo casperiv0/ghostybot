@@ -11,6 +11,7 @@ import { guildInfo } from "./functions/guild";
 import { inviteInfo } from "./functions/invite";
 import { ip } from "./functions/ip";
 import { npm } from "./functions/npm";
+import { pokemon } from "./functions/pokemon";
 import { roleInfo } from "./functions/role";
 import { userInfo } from "./functions/user";
 import { weather } from "./functions/weather";
@@ -33,6 +34,10 @@ export default class InfoCommand extends Interaction {
       const command = interaction.options.getSubcommand(true);
 
       switch (command) {
+        case "bot": {
+          await botInfo(this.bot, interaction, lang);
+          break;
+        }
         case "guild": {
           await guildInfo(this.bot, interaction, lang);
           break;
@@ -57,8 +62,8 @@ export default class InfoCommand extends Interaction {
           await roleInfo(this.bot, interaction, lang);
           break;
         }
-        case "bot": {
-          await botInfo(this.bot, interaction, lang);
+        case "pokemon": {
+          await pokemon(this.bot, interaction, lang);
           break;
         }
         case "ip": {
