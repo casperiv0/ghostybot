@@ -20,6 +20,7 @@ import { randomNumber } from "./functions/randomNumber";
 import { rockPaperScissors } from "./functions/rockPaperScissors";
 import { wouldYouRather } from "./functions/wouldYouRather";
 import { lmgtfy } from "./functions/lmgtfy";
+import { morse } from "./functions/morse";
 
 export default class FunCommand extends Interaction {
   constructor(bot: Bot) {
@@ -80,6 +81,10 @@ export default class FunCommand extends Interaction {
         }
         case "meme": {
           await meme(this.bot, interaction, lang);
+          break;
+        }
+        case "morse": {
+          await morse(this.bot, interaction, lang);
           break;
         }
         case "quote": {

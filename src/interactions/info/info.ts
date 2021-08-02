@@ -4,11 +4,16 @@ import Interaction from "structures/Interaction";
 
 import { botInfo } from "./functions/bot";
 import { channelInfo } from "./functions/channel";
+import { country } from "./functions/country";
+import { covid } from "./functions/covid";
 import { emojiInfo } from "./functions/emoji";
 import { guildInfo } from "./functions/guild";
 import { inviteInfo } from "./functions/invite";
+import { ip } from "./functions/ip";
+import { npm } from "./functions/npm";
 import { roleInfo } from "./functions/role";
 import { userInfo } from "./functions/user";
+import { weather } from "./functions/weather";
 import { infoOptions } from "./options";
 
 export default class InfoCommand extends Interaction {
@@ -54,6 +59,26 @@ export default class InfoCommand extends Interaction {
         }
         case "bot": {
           await botInfo(this.bot, interaction, lang);
+          break;
+        }
+        case "ip": {
+          await ip(this.bot, interaction, lang);
+          break;
+        }
+        case "covid": {
+          await covid(this.bot, interaction, lang);
+          break;
+        }
+        case "npm": {
+          await npm(this.bot, interaction, lang);
+          break;
+        }
+        case "country": {
+          await country(this.bot, interaction, lang);
+          break;
+        }
+        case "weather": {
+          await weather(this.bot, interaction, lang);
           break;
         }
 

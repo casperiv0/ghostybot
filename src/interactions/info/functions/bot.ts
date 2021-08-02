@@ -21,6 +21,8 @@ export async function botInfo(
   const supportServer = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
   const dashboard = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
 
+  const commandCount = bot.utils.commandCount();
+
   const botDeveloper = hyperlink(lang.BOT.DEVELOPER, "https://caspertheghost.me");
   const contributors = hyperlink(
     lang.BOT.CONTRIBUTORS,
@@ -46,7 +48,7 @@ export async function botInfo(
 **${lang.BOT.USERS}:** ${inlineCode(userCount)}
 **${lang.BOT.GUILDS}:** ${inlineCode(bot.utils.formatNumber(bot.guilds.cache.size))}
 **${lang.BOT.CHANNELS}:** ${inlineCode(bot.utils.formatNumber(bot.channels.cache.size))}
-**${lang.BOT.COMMAND_COUNT}:** ${inlineCode(bot.commands.size.toString())}
+**${lang.BOT.COMMAND_COUNT}:** ${inlineCode(bot.utils.formatNumber(commandCount))}
               `,
       true,
     )
@@ -54,7 +56,7 @@ export async function botInfo(
       lang.BOT.SYSTEM_INFO,
       `
 **${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
-**${lang.BOT.DJS_V}:** ${DJS.version}`,
+**${lang.BOT.DJS_V}:** v13`,
       true,
     )
     .addField(

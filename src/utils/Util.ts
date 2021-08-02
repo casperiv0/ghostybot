@@ -578,6 +578,22 @@ export default class Util {
     return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
   }
 
+  commandCount() {
+    let count = 0;
+
+    this.bot.interactions.forEach((interaction) => {
+      count += 1;
+
+      interaction.options.options?.forEach((option) => {
+        if (option.type === "SUB_COMMAND") {
+          count += 1;
+        }
+      });
+    });
+
+    return count;
+  }
+
   resolveCommand(nameOrAlias: string) {
     return (
       this.bot.commands.get(nameOrAlias) ??

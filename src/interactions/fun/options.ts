@@ -90,6 +90,19 @@ export const funOptions: DJS.ApplicationCommandOptionData[] = [
   },
   {
     type: "SUB_COMMAND",
+    name: "morse",
+    description: "Transform text to morse code",
+    options: [
+      {
+        name: "text",
+        type: "STRING",
+        description: "The text you want to transform",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
     name: "quote",
     description: "Returns a random quote",
   },

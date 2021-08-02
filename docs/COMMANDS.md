@@ -3,7 +3,7 @@
 > **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 88 regular commands.
+GhostyBot has a total of 80 regular commands.
 
 Click any of the command names for more information
 
@@ -117,7 +117,7 @@ Click any of the command names for more information
 
 ### Category: util
 
-**Total commands: 41**
+**Total commands: 33**
 
 [calc:](#calc) Calculate something
 
@@ -133,15 +133,9 @@ Click any of the command names for more information
 
 [channels:](#channels) Shows all channels in the server
 
-[country:](#country) Get information about a country
-
-[covid:](#covid) Get covid 19 information
-
 [ctgs:](#ctgs) Create a shortened URL
 
 [define:](#define) Define a word
-
-[docs:](#docs) Returns the request query from discord.js docs
 
 [emojis:](#emojis) Get a random color
 
@@ -157,15 +151,9 @@ Click any of the command names for more information
 
 [invite:](#invite) Creates an instant invite for the server
 
-[ip:](#ip) Search an IP
-
 [minecraft:](#minecraft) Get info about a minecraft server
 
-[morse:](#morse) Convert a string to morse code
-
 [nasanews:](#nasanews) Looks up an astronomy-related term on NASA's Website
-
-[npm:](#npm) Search packages on npm by their name
 
 [pastebin:](#pastebin) Get a link of pastebin for your text
 
@@ -176,8 +164,6 @@ Click any of the command names for more information
 [poll:](#poll) Create a poll
 
 [randomcolor:](#randomcolor) Get a random color
-
-[roleinfo:](#roleinfo) Shows info about a role
 
 [roles:](#roles) Shows all roles from the guild
 
@@ -194,8 +180,6 @@ Click any of the command names for more information
 [uptime:](#uptime) Returns the uptime of the bot
 
 [verify:](#verify) Verify yourself to get guild access
-
-[weather:](#weather) See the weather in a country/city
 
 [web:](#web) Returns a screenshot of the requested website
 
@@ -1199,42 +1183,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## country
-
-**Category:** util
-
-**Description:** Get information about a country
-
-**Usage:** `<country>`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `country(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## covid
-
-**Category:** util
-
-**Description:** Get covid 19 information
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
 ## ctgs
 
 **Category:** util
@@ -1268,24 +1216,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** `word(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## docs
-
-**Category:** util
-
-**Description:** Returns the request query from discord.js docs
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `query(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1415,24 +1345,6 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## ip
-
-**Category:** util
-
-**Description:** Search an IP
-
-**Usage:** `N/A`
-
-**Aliases:** `ip-lookup`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `ip(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## minecraft
 
 **Category:** util
@@ -1451,47 +1363,11 @@ Click any of the command names for more information
 
 [Back to top](#ghostybot-command-list)
 
-## morse
-
-**Category:** util
-
-**Description:** Convert a string to morse code
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `text(string)`
-
-[Back to top](#ghostybot-command-list)
-
 ## nasanews
 
 **Category:** util
 
 **Description:** Looks up an astronomy-related term on NASA's Website
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `query(string)`
-
-[Back to top](#ghostybot-command-list)
-
-## npm
-
-**Category:** util
-
-**Description:** Search packages on npm by their name
 
 **Usage:** `N/A`
 
@@ -1592,24 +1468,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## roleinfo
-
-**Category:** util
-
-**Description:** Shows info about a role
-
-**Usage:** `N/A`
-
-**Aliases:** `role`
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `role(string)`
 
 [Back to top](#ghostybot-command-list)
 
@@ -1754,24 +1612,6 @@ Click any of the command names for more information
 **Bot Permissions:** SEND_MESSAGES
 
 **Required Arguments:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## weather
-
-**Category:** util
-
-**Description:** See the weather in a country/city
-
-**Usage:** `N/A`
-
-**Aliases:** N/A
-
-**Member Permissions:** None
-
-**Bot Permissions:** SEND_MESSAGES
-
-**Required Arguments:** `country/city(string)`
 
 [Back to top](#ghostybot-command-list)
 
