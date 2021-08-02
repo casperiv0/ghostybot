@@ -8,7 +8,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { id: guildId } = query;
 
   try {
-    await req.bot.utils.checkAuth(req, { guildId: `${guildId}` });
+    await req.bot.utils.checkAuth(req, { guildId: guildId.toString() });
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
@@ -18,7 +18,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const discordGuild = await req.bot.guilds.fetch(query.id as DJS.Snowflake);
       const guild = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}`,
-        { type: "Bot", data: `${process.env["DISCORD_BOT_TOKEN"]}` },
+        { type: "Bot", data: process.env["DISCORD_BOT_TOKEN"]! },
         "GET",
       );
 
@@ -27,7 +27,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         `/guilds/${query.id}/channels`,
         {
           type: "Bot",
-          data: `${process.env["DISCORD_BOT_TOKEN"]}`,
+          data: process.env["DISCORD_BOT_TOKEN"]!,
         },
         "GET",
       );
@@ -84,15 +84,53 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         guild[item] = undefined;
       });
 
+      const nonSubCommands = req.bot.interactions.reduce((ac, cv) => {
+        const cmds: string[] = [];
+
+        cv.options.options
+          ?.filter((v) => v.type !== "SUB_COMMAND")
+          .forEach(() => cmds.push(cv.name));
+
+        const obj = {
+          topLevelName: cv.name,
+          commands: [...new Set(cmds)],
+        };
+
+        if (cmds.length <= 0) {
+          return ac;
+        }
+
+        return [...ac, obj];
+      }, [] as any[]);
+
+      const commands = req.bot.interactions.reduce((ac, cv) => {
+        const cmds: string[] = [];
+
+        cv.options.options
+          ?.filter((v) => v.type === "SUB_COMMAND")
+          .forEach((c) => cmds.push(c.name));
+
+        const obj = {
+          topLevelName: cv.name,
+          commands: cmds,
+        };
+
+        if (cmds.length <= 0) {
+          return ac;
+        }
+
+        return [...ac, obj];
+      }, [] as any[]);
+
       return res.json({
         guild: { ...g.toJSON(), ...guild },
-        botCommands: req.bot.commands.map((cmd) => cmd.name),
+        botCommands: [...commands, ...nonSubCommands],
         status: "success",
       });
     }
     case "POST": {
       const body = JSON.parse(req.body);
-      const g = await req.bot.utils.getGuildById(`${guildId}`);
+      const g = await req.bot.utils.getGuildById(guildId.toString());
 
       if (!g) {
         return res.json({
@@ -161,7 +199,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         }
       }
 
-      await req.bot.utils.updateGuildById(`${guildId}`, body);
+      await req.bot.utils.updateGuildById(guildId.toString(), body);
 
       return res.json({
         status: "success",

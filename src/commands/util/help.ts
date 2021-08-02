@@ -1,9 +1,10 @@
 import { Message, MessageEmbed, Permissions } from "discord.js";
 import { hyperlink, inlineCode } from "@discordjs/builders";
-import categories from "assets/json/categories.json";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "utils/paginate";
+
+const REGULAR_CATEGORIES = ["admin", "util", "reactions"];
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -42,7 +43,7 @@ export default class HelpCommand extends Command {
         ...customCmds,
       ];
 
-      if (cmdArgs && categories.includes(cmdArgs.toLowerCase())) {
+      if (cmdArgs && REGULAR_CATEGORIES.includes(cmdArgs.toLowerCase())) {
         const cmds = commands
           .filter((cmd) => this.findCategory(cmd) === cmdArgs.toLowerCase())
           .map(({ name }) => inlineCode(name))
@@ -131,7 +132,7 @@ export default class HelpCommand extends Command {
 
       const cates: string[][] = [];
       const embeds: MessageEmbed[] = [];
-      const filteredCategories = categories.filter((category: string) => {
+      const filteredCategories = REGULAR_CATEGORIES.filter((category: string) => {
         return !guild?.disabled_categories.includes(category);
       });
 

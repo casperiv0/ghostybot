@@ -1,1 +1,16 @@
-["admin", "util", "exempt", "reactions", "disabled", "custom"]
+[
+  "admin",
+  "animal",
+  "anime",
+  "bot-owner",
+  "economy",
+  "fun",
+  "giveaway",
+  "image",
+  "info",
+  "levels",
+  "music",
+  "reminders",
+  "ticket",
+  "util"
+]

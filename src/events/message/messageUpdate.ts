@@ -17,29 +17,11 @@ export default class MessageUpdateEvent extends Event {
       const guild = await bot.utils.getGuildById(newMsg.guild.id);
       if (!guild) return;
 
-      const blacklistedWords = guild?.blacklistedwords;
-
       if (!oldMsg.content || !newMsg.content) {
         return;
       }
       if (newMsg.author?.id === bot.user?.id) return;
-
       if (oldMsg.content === newMsg.content) return;
-
-      if (blacklistedWords !== null && blacklistedWords[0]) {
-        blacklistedWords.forEach(async (word) => {
-          if (newMsg.content.toLowerCase().includes(word.toLowerCase())) {
-            newMsg.deletable && newMsg.delete();
-            const sentMsg = await newMsg.reply({
-              content: "You used a bad word the admin has set, therefore your message was deleted!",
-            });
-
-            setTimeout(() => {
-              sentMsg.deletable && sentMsg.delete();
-            }, 5000);
-          }
-        });
-      }
 
       const pOldMsg = oldMsg.content.length > 1024 ? `${oldMsg.content.slice(0, 1010)}...` : oldMsg;
       const PNewMsg = newMsg.content.length > 1024 ? `${newMsg.content.slice(0, 1010)}...` : newMsg;

@@ -15,6 +15,22 @@ export default class Util {
     this.bot = bot;
   }
 
+  get commandCount() {
+    let count = 0;
+
+    this.bot.interactions.forEach((interaction) => {
+      count += 1;
+
+      interaction.options.options?.forEach((option) => {
+        if (option.type === "SUB_COMMAND") {
+          count += 1;
+        }
+      });
+    });
+
+    return count;
+  }
+
   async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
     try {
       let user: IUser | undefined = await UserModel.findOne({ user_id: userId, guild_id: guildId });
@@ -195,7 +211,6 @@ export default class Util {
       }
 
       const embed = this.baseEmbed(message)
-        .setTitle("An error occurred")
         .addField("Name", name, true)
         .addField("Code", code.toString(), true)
         .addField("httpStatus", httpStatus.toString(), true)
@@ -576,22 +591,6 @@ export default class Util {
     const ch = "channel" in resolveable ? resolveable.channel : resolveable;
     if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) return true;
     return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
-  }
-
-  commandCount() {
-    let count = 0;
-
-    this.bot.interactions.forEach((interaction) => {
-      count += 1;
-
-      interaction.options.options?.forEach((option) => {
-        if (option.type === "SUB_COMMAND") {
-          count += 1;
-        }
-      });
-    });
-
-    return count;
   }
 
   resolveCommand(nameOrAlias: string) {

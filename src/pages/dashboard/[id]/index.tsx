@@ -63,11 +63,6 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
       </div>
 
       <div className="grid">
-        <Link href={`/dashboard/${guild.id}/commands`}>
-          <a href={`/dashboard/${guild.id}/commands`} className="btn btn-primary">
-            {t("manage_custom_commands")}
-          </a>
-        </Link>
         <Link href={`/dashboard/${guild.id}/slash-commands`}>
           <a href={`/dashboard/${guild.id}/slash-commands`} className="btn btn-primary">
             {t("manage_slash_commands")}
@@ -86,11 +81,6 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
         <Link href={`/dashboard/${guild.id}/settings`}>
           <a href={`/dashboard/${guild.id}/settings`} className="btn btn-primary">
             {t("settings")}
-          </a>
-        </Link>
-        <Link href={`/dashboard/${guild.id}/blacklisted-words`}>
-          <a href={`/dashboard/${guild.id}/blacklisted-words`} className="btn btn-primary">
-            {t("manage_blacklisted_words")}
           </a>
         </Link>
         <Link href={`/dashboard/${guild.id}/store`}>

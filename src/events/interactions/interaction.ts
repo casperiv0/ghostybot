@@ -1,13 +1,14 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
+import { IGuild } from "models/Guild.model";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
     super(bot, "interactionCreate");
   }
 
-  async execute(bot: Bot, interaction: DJS.Interaction) {
+  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
     if (!interaction.isCommand()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
@@ -26,6 +27,22 @@ export default class InteractionEvent extends Event {
         if (!command) return;
 
         return interaction.reply({ content: command.response });
+      }
+
+      const dbGuild = await bot.utils.getGuildById(interaction.guildId!);
+
+      if (dbGuild?.disabled_categories.includes(command.options.category)) {
+        return interaction.reply({
+          ephemeral: true,
+          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
+        });
+      }
+
+      if (this.isSubCommandDisabled(dbGuild!, interaction)) {
+        return interaction.reply({
+          ephemeral: true,
+          content: lang.MESSAGE.COMMAND_DISABLED,
+        });
       }
 
       if (command.options.botPermissions) {
@@ -81,5 +98,19 @@ export default class InteractionEvent extends Event {
   isOwner(interaction: DJS.CommandInteraction) {
     const owners = process.env["OWNERS"];
     return owners?.includes(interaction.user.id);
+  }
+
+  isSubCommandDisabled(dbGuild: IGuild, command: DJS.CommandInteraction) {
+    const commands = dbGuild.disabled_commands;
+
+    let subCommand: string;
+
+    try {
+      subCommand = command.options.getSubcommand();
+    } catch {
+      subCommand = command.commandName;
+    }
+
+    return commands.includes(subCommand);
   }
 }

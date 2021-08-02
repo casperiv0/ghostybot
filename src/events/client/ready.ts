@@ -22,10 +22,13 @@ export default class ReadyEvent extends Event {
       "!help | https://ghostybot.tk",
     ];
 
-    new HelperHandler(bot).loadHelpers();
-    new InteractionHandler(bot).loadInteractions();
-    new CommandHandler(bot).loadCommands();
+    await new HelperHandler(bot).loadHelpers();
+    await new InteractionHandler(bot).loadInteractions();
+    await new CommandHandler(bot).loadCommands();
 
+    if (process.env["DEV_MODE"] === "true") {
+      await import("@scripts/generateCommandList").then((v) => v.default(this.bot));
+    }
     bot.logger.log(
       "bot",
       `Bot is running with ${channelCount} channels, ${userCount} users and ${serverCount} servers`,

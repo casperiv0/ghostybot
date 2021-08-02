@@ -1,104 +1,44 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
-import { Collection, Permissions } from "discord.js";
-import categoriesData from "assets/json/categories.json";
+import { ApplicationCommandOptionData, Collection } from "discord.js";
 import Bot from "structures/Bot";
-import Command from "structures/Command";
+import Interaction from "../structures/Interaction";
 
-type Commands = Collection<string, Command>;
+type Commands = Collection<string, Interaction>;
 
 export default (bot: Bot) => {
-  const detailedCommandList = mapDetailedCommands(bot.commands);
-  const notDetailedCommandList = mapNotDetailedCommand(bot.commands);
+  const detailedCommandList = mapDetailedCommands(bot.interactions);
 
-  writeToFile(detailedCommandList, notDetailedCommandList, bot.commands.size);
+  writeToFile(detailedCommandList, bot.utils.commandCount);
 
   bot.logger.log("command_list", "Successfully generated command list");
 };
 
 function mapDetailedCommands(cmds: Commands) {
-  return cmds.map((cmd) => commandItem(cmd)).join("\n");
+  return cmds.map((cmd) => subCommandsItem(cmd)).join("\n");
 }
 
-interface Category {
-  name: string;
-  description: string | undefined;
+function subCommandsItem(command: Interaction) {
+  const subCommands = command.options.options?.filter((v) => v.type === "SUB_COMMAND");
+
+  return subCommands?.map(subCommandItem.bind(null, command)).join("\n");
 }
 
-function createCategoryList() {
-  return categoriesData
-    .filter((v) => !["disabled", "custom"].includes(v))
-    .map(
-      (category) => `
-[${category}](#category-${category})`,
-    )
-    .join("\n");
-}
+function subCommandItem(cmd: Interaction, value: ApplicationCommandOptionData) {
+  return `## ${cmd.name} -> ${value.name}
 
-function mapNotDetailedCommand(cmds: Commands) {
-  const categories: Category[][] = [];
-  const filteredCategories = categoriesData.filter((c) => !["custom", "disabled"].includes(c));
+**Description:** ${value.description}
 
-  for (let i = 0; i < filteredCategories.length; i++) {
-    const category: Category[] = cmds
-      .filter(({ options }) => options.category === filteredCategories[i])
-      .map(({ options }) => ({ name: options.name, description: options.description }));
+**Choices:** ${value.choices?.map((v) => v.name).join(", ") || "N/A"}
 
-    categories.push(category);
-  }
+**Options:** ${
+    value.options
+      ? value.options
+          .map((v) => {
+            const requiredText = v.required ? "Required" : "Optional";
 
-  return categories.map((cmds, i) => categoryItem(cmds, filteredCategories[i])).join("\n---\n");
-}
-
-function commandItem(command: Command) {
-  return `## ${command.name}
-
-**Category:** ${command.options.category}
-
-**Description:** ${command.options.description || "N/A"}
-
-**Usage:** ${`\`${command.options.usage || "N/A"}\``}
-
-**Aliases:** ${command.options.aliases?.map((value) => `\`${value}\``).join(", ") || "N/A"}
-
-**Member Permissions:** ${
-    !command.options.memberPermissions
-      ? "None"
-      : command.options.memberPermissions
-          .map((p) => {
-            const perms: string[] = [];
-            Object.keys(Permissions.FLAGS).map((key) => {
-              if (Permissions.FLAGS[key] === p) {
-                perms.push(key);
-              }
-            });
-
-            return perms;
+            return `${v.name} (${v.type} / ${requiredText})`;
           })
-          .join(", ")
-  }
-
-**Bot Permissions:** ${
-    !command.options.botPermissions
-      ? "SEND_MESSAGES"
-      : [Permissions.FLAGS.SEND_MESSAGES, ...command.options.botPermissions]
-          .map((p) => {
-            const perms: string[] = [];
-            Object.keys(Permissions.FLAGS).map((key) => {
-              if (Permissions.FLAGS[key] === p) {
-                perms.push(key);
-              }
-            });
-
-            return perms;
-          })
-          .join(", ")
-  }
-
-**Required Arguments:** ${
-    command.options.requiredArgs
-      ? command.options.requiredArgs
-          .map((a) => `\`${a.name}${a.type ? `(${a.type})` : "(string)"}\``)
           .join(", ")
       : "N/A"
   }
@@ -106,30 +46,14 @@ function commandItem(command: Command) {
 [Back to top](#ghostybot-command-list)\n`;
 }
 
-function categoryItem(commands: Category[], categoryName: string) {
-  return `
-### Category: ${categoryName}
-
-**Total commands: ${commands.length}**
-
-${commands.map((cmd) => `[${cmd.name}:](#${cmd.name}) ${cmd.description || "N/A"}\n`).join("\n")}`;
-}
-
-function writeToFile(detailedCommandList: string, notDetailedCommandList: string, length: number) {
+function writeToFile(detailedCommandList: string, length: number) {
   const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
-> **This list only show regular commands! Slash commands will not show here since they have a nice UI within Discord.**
+> **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} regular commands.
+${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} slash commands.
 
-Click any of the command names for more information
-
-## Category list
-${createCategoryList()}
-
-## Command list
-${notDetailedCommandList}
 ## Detailed command list
 
 ${detailedCommandList}`;

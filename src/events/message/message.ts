@@ -63,30 +63,6 @@ export default class MessageEvent extends Event {
         await sticky?.save();
       }
 
-      // check if message has a bad word in it
-      if (!message.content.includes(`${guild?.prefix}blacklistedwords`) && !message.author.bot) {
-        let hasBadWord = false;
-
-        guild?.blacklistedwords.forEach((word) => {
-          message.content.split(" ").forEach((messageWord) => {
-            if (word.toLowerCase() === messageWord.toLowerCase()) {
-              return (hasBadWord = true);
-            }
-          });
-        });
-
-        if (hasBadWord) {
-          message.deletable && message.delete();
-          const sentMsg = await message.channel.send({
-            content: lang.MESSAGE.BAD_WORD.replace("{mention}", `<@${userId}>`),
-          });
-
-          setTimeout(() => {
-            sentMsg.deletable && sentMsg.delete();
-          }, 5000);
-        }
-      }
-
       // check if mention user is afk
       if (mentions && mentions?.size > 0 && !prefixReg.test(message.content)) {
         mentions.forEach(async (member) => {
@@ -213,13 +189,6 @@ export default class MessageEvent extends Event {
 
       const command = bot.utils.resolveCommand(cmd);
       if (!command) return;
-
-      // if (command.options.category === "music") {
-      //   return message.channel.send({
-      //     content:
-      //       "The music category is currently temporary disabled due to breaking changes in the music module. Music will be re-enabled soon!",
-      //   });
-      // }
 
       if (
         !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&

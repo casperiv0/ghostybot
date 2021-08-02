@@ -21,7 +21,7 @@ export async function botInfo(
   const supportServer = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
   const dashboard = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
 
-  const commandCount = bot.utils.commandCount();
+  const commandCount = bot.utils.commandCount;
 
   const botDeveloper = hyperlink(lang.BOT.DEVELOPER, "https://caspertheghost.me");
   const contributors = hyperlink(

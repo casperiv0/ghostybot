@@ -21,14 +21,6 @@ export default class CommandHandler {
       for (const file of files) {
         await this.loadCommand(file);
       }
-
-      if (process.env["DEV_MODE"] === "true") {
-        // import("@scripts/generateCommandDescriptions").then((v) =>
-        //   v.generateCommandDescriptions(this.bot.commands.array()),
-        // );
-        // eslint-disable-next-line promise/catch-or-return
-        import("@scripts/generateCommandList").then((v) => v.default(this.bot));
-      }
     } catch (e) {
       console.error(e);
     }

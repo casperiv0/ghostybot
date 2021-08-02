@@ -2,14 +2,6 @@
   "beta": "Dit dashboard is nog in beta! Het kan zijn dat sommige dingen niet werken, als u een probleem heeft gevonden kunt u dit melden bij: ",
   "select_a_server": "Selecteer een server",
   "bot_in_guild": "De bot moet in deze server zijn!",
-
-  "manage_blacklisted_words": "Manage Blacklisted words",
-  "added_blacklisted_word": "Woord succesvol toegevoegd",
-  "enter_word": "Woord invoeren",
-  "add_word": "Woord toevoegen",
-  "words": "Woorden",
-  "no_words": "Deze server heeft nog geen woorden op de zwarte lijst.",
-
   "manage_store": "Beheer winkel",
   "store": "Winkel",
   "add_store_item": "Item toevoegen aan de winkel",
@@ -19,7 +11,6 @@
   "add_item": "Item toevoegen",
   "price": "Prijs",
   "no_store_items": "Deze server heeft nog geen items in de winkel.",
-
   "manage_custom_commands": "Beheer custom commands",
   "create_command": "Creëer command",
   "add_command": "Command toevoegen",
@@ -33,46 +24,35 @@
   "response": "Antwoord",
   "name": "Naam",
   "no_commands": "Deze server heeft nog geen custom commands",
-
   "manage_categories": "Beheer categorieën",
   "search_for_categories": "Categorieën zoeken",
-
   "manage_commands": "Beheer commando's",
   "search_for_commands": "Zoeken naar commando's",
-
   "manage_slash_commands": "Beheer slash commando's",
   "add_slash_command": "Slash commando toevoegen",
   "no_slash_commands": "Deze server heeft nog geen slash commando's.",
   "re_authorize": "Gelieve de bot opnieuw te autoriseren met de application.commands scope.",
-
   "settings": "Server instellingen",
   "save_settings": "Bewaar instellingen",
   "enable_or_disable_feature": "Functie in- of uitschakelen",
-
   "welcome": "Welkom",
   "welcome_channel": "Welkom kanaal",
   "welcome_role": "Welkom rol",
   "welcome_message": "Welkom bericht",
   "ignore_bots": "Negeer bots",
-
   "leave_message": "Verlaat bericht",
   "leave_channel": "Kanaal verlaten",
-
   "levels": "Levels",
   "level_message": "Level bericht",
-
   "tickets": "Tickets",
   "ticket_role": "Ticket rol",
   "ticket_parent": "Parent",
-
   "starboard": "Starboard",
   "starboard_channel": "Starboards kanaal",
   "starboards_emoji": "Starboards emoji",
-
   "verification": "Verificatie",
   "verify_channel": "Verificatie kanaal",
   "verified_role": "Geverifieerde rol",
-
   "audit_logs_chn": "Audit logs kanaal",
   "suggestion_channel": "Suggesties kanaal",
   "announcement_channel": "Aankondiging kanaal",

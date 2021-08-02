@@ -12,7 +12,6 @@ export interface GuildData {
   prefix: string;
   locale: string;
   store: StoreItem[];
-  blacklistedwords: string[];
   announcement_channel: Snowflake | null;
   suggest_channel: Snowflake | null;
   audit_channel: Snowflake | null;
@@ -104,7 +103,6 @@ const guildSchema = new Schema<IGuild>({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
   store: { type: Array, default: null },
-  blacklistedwords: { type: Array, default: [] },
   announcement_channel: { type: String, default: null },
   suggest_channel: { type: String, default: null },
   audit_channel: { type: String, default: null },
