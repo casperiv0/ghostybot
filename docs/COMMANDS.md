@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 119 slash commands.
+GhostyBot has a total of 122 slash commands.
 
 ## Detailed command list
 
@@ -677,6 +677,16 @@ GhostyBot has a total of 119 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## info -> github
+
+**Description:** Get information about a GitHub user
+
+**Choices:** N/A
+
+**Options:** username (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
 ## info -> channel
 
 **Description:** Get information about a channel
@@ -724,6 +734,26 @@ GhostyBot has a total of 119 slash commands.
 **Choices:** N/A
 
 **Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> playstore
+
+**Description:** Show information about an app on the PlayStore
+
+**Choices:** N/A
+
+**Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> spotify
+
+**Description:** Find a track/artist/album via the Spotify API
+
+**Choices:** N/A
+
+**Options:** type (STRING / Required), query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 

@@ -52,6 +52,19 @@ export const infoOptions: DJS.ApplicationCommandOptionData[] = [
   },
   {
     type: "SUB_COMMAND",
+    name: "github",
+    description: "Get information about a GitHub user",
+    options: [
+      {
+        description: "The GitHub username",
+        name: "username",
+        required: true,
+        type: "STRING",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
     name: "channel",
     description: "Get information about a channel",
     options: [
@@ -107,6 +120,56 @@ export const infoOptions: DJS.ApplicationCommandOptionData[] = [
     description: "Returns a pokémon information",
     name: "pokemon",
     options: [
+      {
+        name: "query",
+        description: "The search query",
+        type: "STRING",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    description: "Show information about an app on the PlayStore",
+    name: "playstore",
+    options: [
+      {
+        name: "query",
+        description: "The search query",
+        type: "STRING",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    description: "Find a track/artist/album via the Spotify API",
+    name: "spotify",
+    options: [
+      {
+        name: "type",
+        type: "STRING",
+        description: "The type you want to search for",
+        required: true,
+        choices: [
+          {
+            name: "Album",
+            value: "album",
+          },
+          {
+            name: "Artist",
+            value: "artist",
+          },
+          {
+            name: "Playlist",
+            value: "playlist",
+          },
+          {
+            name: "Track",
+            value: "track",
+          },
+        ],
+      },
       {
         name: "query",
         description: "The search query",
