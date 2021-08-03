@@ -463,7 +463,6 @@ const LANG: typeof import("./english").default = {
       disabled: "Disabled commands (this guild only)",
       giveaway: "Giveaway commands",
       reminder: "Reminder commands",
-      reactions: "Reaction role commands",
       custom: "Custom commands",
       ticket: "Ticket commands",
     },
@@ -491,22 +490,6 @@ const LANG: typeof import("./english").default = {
     SPEED: "السرعة",
     TOTAL: "الاجمالي",
     NOT_FOUND: "لم يتم العثور علي {query}. من فضلك تحقق من التهجئة الصحيحة وحاول مرة اخري",
-  },
-  REACTIONS: {
-    NO_ROLE: "Please provide a valid role",
-    CHANNEL_NOT_FOUND: "The channel with id `{channelId}` was not found",
-    TITLE: "Reaction Role",
-    DESC: "Reactions:",
-    SUCCESS: "Successfully send message with reactions",
-    NOT_FOUND: "Reaction was not found by that messageId",
-    DELETE_SUCCESS: "Successfully deleted reaction",
-    FOUND_NO_MSG:
-      "Reaction was found but the message was not, reaction was deleted from the database",
-    ROLES:
-      "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766",
-    EMOJIS:
-      "Please send your emojis below. The order will match with the order of the roles. Separate with a space",
-    VALID_EMOJI: "You must provide a valid emojis (no custom emojis)!",
   },
   REMINDER: {
     SUCCESS: "Success! I will ping you **in this channel** in {time}",

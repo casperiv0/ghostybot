@@ -468,7 +468,6 @@ const LANG: typeof import("./english").default = {
       disabled: "Disabled commands (this guild only)",
       giveaway: "Giveaway commands",
       reminder: "Reminder commands",
-      reactions: "Reaction role commands",
       custom: "Custom commands",
       ticket: "Ticket commands",
     },
@@ -497,22 +496,6 @@ const LANG: typeof import("./english").default = {
     TOTAL: "Total",
     NOT_FOUND:
       "Ningun pokémon fue encontrado con {query}. Por favor usa el deletreo correcto e intenta de nuevo.",
-  },
-  REACTIONS: {
-    NO_ROLE: "Por favor proporciona un rol valido",
-    CHANNEL_NOT_FOUND: "El canal con el ID `{channelId}` no fue encontrado",
-    TITLE: "Rol por reaccion",
-    DESC: "Reacciones:",
-    SUCCESS: "Se ha enviado el mensaje con las reacciones",
-    NOT_FOUND: "Reacción no encontrada con el ID del mensaje",
-    DELETE_SUCCESS: "Se ha eliminado la reacción",
-    FOUND_NO_MSG:
-      "La reaccion fue encontrada pero el mensaje no, la reaccion ha sido eliminada de la base de datos",
-    ROLES:
-      "Please send your roles by id below, separate by space. E.G.: 389730847098379087 9876096987980987 7867869876689766",
-    EMOJIS:
-      "Please send your emojis below. The order will match with the order of the roles. Separate with a space",
-    VALID_EMOJI: "You must provide a valid emojis (no custom emojis)!",
   },
   REMINDER: {
     SUCCESS: "Success! I will ping you **in this channel** in {time}",

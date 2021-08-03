@@ -471,7 +471,6 @@ const LANG: typeof import("./english").default = {
       disabled: "Deaktivierte Befehle (Nur für diesen Server)",
       giveaway: "Geschenk Befehle",
       reminder: "Erinnerungs Befehle",
-      reactions: "Reaktionsrollen Befehle",
       custom: "Benutzerdefinierte Befehle",
       ticket: "Ticket Befehle",
     },
@@ -500,22 +499,6 @@ const LANG: typeof import("./english").default = {
     TOTAL: "Insgesamt",
     NOT_FOUND:
       "Es wurde kein Pokémon mit {query} gefunden. Bitte schreibe es richtig und versuch es später noch einmal.",
-  },
-  REACTIONS: {
-    NO_ROLE: "Gib bitte eine gültige Rolle an",
-    CHANNEL_NOT_FOUND: "Es wurde keine Kanal mit der ID `{channelId}` gefunden",
-    TITLE: "Reaktionsrolle",
-    DESC: "Reaktionen:",
-    SUCCESS: "Erfolgreich eine Nachricht mit Reaktionen gesendet",
-    NOT_FOUND: "Reaktion wurde nicht gefunden",
-    DELETE_SUCCESS: "Reaktion erfolgreich gelöscht",
-    FOUND_NO_MSG:
-      "Reaktion wurde gefunden, die Nachricht aber nicht, Reaktion wurde von der Datenbank gelöscht",
-    ROLES:
-      "Sende deine Rollen durch die ID mit einem Leerzeichen dazwischen. z.B.: 389730847098379087 9876096987980987 7867869876689766",
-    EMOJIS:
-      "Bitte sende deine Emojis. Die Riehenfolge wird mit den Rollen übereingestimmt. Ein Leerzeichen zum Trennen benutzen",
-    VALID_EMOJI: "Du musst ein gültiges Emoji angeben(Kein benutzerdefiniertes Emoji)!",
   },
   REMINDER: {
     SUCCESS: "Erfolgreich! Ich werde dich **in diesem Kanal** in {time} pingen",

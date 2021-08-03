@@ -88,6 +88,11 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
             {t("manage_store")}
           </a>
         </Link>
+        <Link href={`/dashboard/${guild.id}/reaction-role`}>
+          <a href={`/dashboard/${guild.id}/reaction-role`} className="btn btn-primary">
+            Manage Reaction Roles
+          </a>
+        </Link>
       </div>
     </>
   );
