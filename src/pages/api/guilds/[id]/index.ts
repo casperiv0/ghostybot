@@ -129,8 +129,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         return [...ac, obj];
       }, [] as any[]);
 
-      console.log(req.query.reactions);
-
       let reactions: null | IReaction[] = null;
       if (req.query.reactions) {
         reactions = await ReactionsModel.find({ guild_id: query.id as Snowflake });
