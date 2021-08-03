@@ -4,7 +4,7 @@ import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "utils/paginate";
 
-const REGULAR_CATEGORIES = ["admin", "util", "reactions"];
+const REGULAR_CATEGORIES = ["admin", "util"];
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
