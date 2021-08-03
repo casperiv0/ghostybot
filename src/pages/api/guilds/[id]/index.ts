@@ -1,4 +1,4 @@
-import DJS, { Snowflake } from "discord.js";
+import DJS, { Role, Snowflake } from "discord.js";
 import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import ApiRequest from "types/ApiRequest";
@@ -49,14 +49,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           status: "error",
         });
       }
-      guild.channels = gChannels.filter((c: { type: number }) => {
-        /* remove category 'channels' & voice channels */
-        if (c.type === 4) return false; /* category */
-        if (c.type === 2) return false; /* voice chat */
-        if (c.type === 3) return false; /* group DM */
-        if (c.type === 6) return false; /* store page */
 
-        return true;
+      guild.channels = gChannels.filter((c: { type: number }) => {
+        return c.type === 0;
       });
 
       guild.categories = gChannels.filter((c) => c.type === 4);
@@ -65,7 +60,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       guild.channels.unshift({ id: null, name: "Disabled" });
       guild.roles.unshift({ id: null, name: "Disabled" });
       guild.voice_channels.unshift({ id: null, name: "Disabled" });
-      guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
+      guild.roles = (guild.roles as Role[])
+        .filter((r) => r.name !== "@everyone")
+        .filter((r) => !r.managed);
 
       if (gSlashCommands) {
         for (let i = 0; i < gSlashCommands.size; i++) {
