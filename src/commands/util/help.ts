@@ -136,7 +136,9 @@ export default class HelpCommand extends Command {
           .setTitle("Help")
           .addField(name, cates[i].join(", "))
           .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
-          .setDescription(lang.HELP.CMD_DESC.replace("{prefix}", prefix))
+          .setDescription(
+            "**Note: Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**",
+          )
           .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
         embeds.push(categoryEmbed);

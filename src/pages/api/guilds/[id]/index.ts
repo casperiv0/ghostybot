@@ -3,6 +3,7 @@ import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import ApiRequest from "types/ApiRequest";
 import ReactionsModel, { IReaction } from "@/src/models/Reactions.model";
+import { APIChannel } from "discord-api-types";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -24,7 +25,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       );
 
       const gSlashCommands = await discordGuild.commands.fetch().catch(() => null);
-      const gChannels = await req.bot.utils.handleApiRequest(
+      const gChannels: APIChannel[] = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}/channels`,
         {
           type: "Bot",
@@ -50,9 +51,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      guild.channels = gChannels.filter((c: { type: number }) => {
-        return c.type === 0;
-      });
+      guild.channels = gChannels.filter((c) => c.type === 0).filter((c) => c.type === 5);
 
       guild.categories = gChannels.filter((c) => c.type === 4);
       guild.voice_channels = gChannels.filter((c) => c.type === 2);

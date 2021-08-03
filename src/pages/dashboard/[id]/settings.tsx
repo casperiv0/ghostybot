@@ -59,7 +59,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
   const [auditChannel, setAuditChannel] = React.useState(guild.audit_channel || "");
   const [prefix, setPrefix] = React.useState(guild.prefix || "");
   const [tz, setTz] = React.useState(guild.timezone || "");
-  const [autoDelCmd, setAutoDelCmd] = React.useState(guild.auto_delete_cmd || "");
+  const [autoDelCmd, setAutoDelCmd] = React.useState<boolean>(guild.auto_delete_cmd ?? false);
   const [mutedRoleId, setMutedRoleId] = React.useState(guild.muted_role_id || "");
   const router = useRouter();
   const { t } = useTranslation("guilds");
@@ -408,7 +408,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             audit_channel: auditChannel,
             prefix,
             timezone: tz,
-            auto_delete_cmd: autoDelCmd === "true",
+            auto_delete_cmd: autoDelCmd,
             muted_role_id: mutedRoleId,
             verify_data: verifyData,
           }),
