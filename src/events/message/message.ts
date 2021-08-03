@@ -26,7 +26,6 @@ export default class MessageEvent extends Event {
       const lang = await bot.utils.getGuildLang(guildId);
       const mentions = message.mentions.members;
       const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
-      const customCommands = guild?.custom_commands;
 
       if (guild?.ignored_channels?.includes(message.channel.id)) return;
 
@@ -162,6 +161,7 @@ export default class MessageEvent extends Event {
       }
 
       // bot mention
+      // todo: remove this when message intents release.
       if (mentions?.has(bot.user.id) && !cmd) {
         const embed = bot.utils
           .baseEmbed(message)
@@ -174,17 +174,6 @@ export default class MessageEvent extends Event {
           );
 
         return message.channel.send({ embeds: [embed] });
-      }
-
-      if (customCommands) {
-        if (guild?.auto_delete_cmd === true) {
-          message.deletable && message?.delete();
-        }
-
-        const command = customCommands.find((c) => c.name === cmd);
-        if (command) {
-          return message.channel.send({ content: command.response });
-        }
       }
 
       const command = bot.utils.resolveCommand(cmd);

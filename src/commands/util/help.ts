@@ -31,17 +31,8 @@ export default class HelpCommand extends Command {
         : guild.disabled_commands.map((cmd) => {
             return { name: cmd, category: "disabled" };
           });
-      const customCmds = !guild?.custom_commands[0]
-        ? [{ category: "custom", name: lang.GLOBAL.NONE }]
-        : guild.custom_commands.map((cmd) => {
-            return { name: cmd.name, category: "custom" };
-          });
 
-      const commands = [
-        ...this.bot.commands.map((v) => ({ ...v.options })),
-        ...disabledCmds,
-        ...customCmds,
-      ];
+      const commands = [...this.bot.commands.map((v) => ({ ...v.options })), ...disabledCmds];
 
       if (cmdArgs && REGULAR_CATEGORIES.includes(cmdArgs.toLowerCase())) {
         const cmds = commands
@@ -73,18 +64,7 @@ export default class HelpCommand extends Command {
         let botPerms: string;
         let usage: string;
 
-        if ("category" in cmd && cmd.category === "custom") {
-          const embed = this.bot.utils
-            .baseEmbed(message)
-            .setTitle(`${lang.HELP.COMMAND}: ${cmd.name}`)
-            .setDescription(`${lang.HELP.CUSTOM_CMD}`);
-
-          return message.channel.send({
-            embeds: [embed],
-          });
-        }
-
-        if ("options" in cmd && cmd.options.category !== "custom") {
+        if ("options" in cmd) {
           if (cmd.options.aliases) {
             aliases = cmd.options.aliases.map((alias) => alias).join(", ");
           } else {

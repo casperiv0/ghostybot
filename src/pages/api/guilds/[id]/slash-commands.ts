@@ -112,7 +112,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         await req.bot.utils.updateGuildById(`${query.id}`, {
           slash_commands: [
             ...guild.slash_commands,
-            { name: commandName, response: body.response, slash_cmd_id: command.id },
+            {
+              description: body.description,
+              name: commandName,
+              response: body.response,
+              slash_cmd_id: command.id,
+            },
           ],
         });
 

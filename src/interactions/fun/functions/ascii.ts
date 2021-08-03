@@ -1,5 +1,6 @@
 import * as DJS from "discord.js";
 import figlet from "figlet";
+import { codeBlock } from "@discordjs/builders";
 import Bot from "structures/Bot";
 
 export async function ascii(bot: Bot, interaction: DJS.CommandInteraction) {
@@ -9,7 +10,7 @@ export async function ascii(bot: Bot, interaction: DJS.CommandInteraction) {
     if (e) return;
 
     interaction.reply({
-      content: bot.utils.codeContent(txt?.trimRight() ?? "UNKNOWN"),
+      content: codeBlock(txt?.trimRight() ?? "UNKNOWN"),
     });
   });
 }

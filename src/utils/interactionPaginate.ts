@@ -1,4 +1,3 @@
-/* thanks to Tovade! https://github.com/tovade/Andoi/blob/HEAD/src/modules/paginate.js#L3 */
 import {
   CommandInteraction,
   Message,

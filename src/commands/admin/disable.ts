@@ -34,12 +34,6 @@ export default class DisableCommand extends Command {
         });
       }
 
-      if (guild?.custom_commands?.find(({ name }) => name.toLowerCase() === option.toLowerCase())) {
-        return message.channel.send({
-          content: lang.ADMIN.COMMAND_CANNOT_DISABLED,
-        });
-      }
-
       const command = this.bot.utils.resolveCommand(option.toLowerCase());
 
       if (!command) {

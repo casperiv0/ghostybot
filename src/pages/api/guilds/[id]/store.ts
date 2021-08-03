@@ -1,6 +1,6 @@
 import { NextApiResponse } from "next";
 import ApiRequest from "types/ApiRequest";
-import { CustomCommand, StoreItem } from "models/Guild.model";
+import { StoreItem } from "models/Guild.model";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -35,14 +35,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const price = Number(body.price);
       const name = body.name.toLowerCase();
 
-      if (!isNumber.test(`${price}`)) {
+      if (!isNumber.test(price.toString())) {
         return res.status(400).json({
           error: lang.ECONOMY.MUST_BE_NUMBER,
           status: "error",
         });
       }
 
-      if (guild.custom_commands?.find((x: CustomCommand) => x.name === name)) {
+      if (guild.store?.find((x) => x.name === name)) {
         return res.status(400).json({
           error: lang.ECONOMY.ALREADY_EXISTS.replace("{item}", name),
           status: "error",

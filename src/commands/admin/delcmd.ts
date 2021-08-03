@@ -18,32 +18,8 @@ export default class DelCmdCommand extends Command {
   async execute(message: Message, args: string[]) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
-      const guild = await this.bot.utils.getGuildById(message.guild?.id);
-      const commands = guild?.custom_commands;
-      const [cmdName] = args;
-
-      if (commands) {
-        const data = commands.find((cmd) => cmd.name === cmdName.toLowerCase());
-
-        if (!data) {
-          return message.channel.send({
-            content: lang.ADMIN.DEL_CMD_NOT_FOUND,
-          });
-        }
-
-        const filtered = commands.filter((cmd) => cmd.name !== cmdName.toLowerCase());
-
-        await this.bot.utils.updateGuildById(message.guild?.id, {
-          custom_commands: filtered,
-        });
-
-        return message.channel.send({
-          content: lang.ADMIN.DEL_CMD_DELETED.replace("{cmd}", cmdName),
-        });
-      }
-
       return message.channel.send({
-        content: lang.ADMIN.DEL_CMD_NO_COMMANDS,
+        content: `This command has been deprecated. You can add new slash commands instead via the dashboard: ${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`,
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
