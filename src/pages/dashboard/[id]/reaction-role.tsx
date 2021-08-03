@@ -95,7 +95,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
   return (
     <>
       <Head>
-        <title>Manage reaction roles</title>
+        <title>{guild?.name} - Manage reaction roles</title>
       </Head>
 
       <div className="page-title">
@@ -109,7 +109,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
           </Link>
           <button
             //   @ts-expect-error ignore
-            onClick={() => setReactions((p) => [...p, { _id: v4() }])}
+            onClick={() => setReactions((p) => [...p, { editable: true, _id: v4() }])}
             className="btn btn-primary ml-5"
           >
             Add reaction role

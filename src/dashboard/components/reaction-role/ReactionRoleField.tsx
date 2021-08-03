@@ -105,6 +105,7 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
           Channel
         </label>
         <select
+          disabled={!reaction.editable}
           className="form-input"
           id="channelId"
           value={channelId}
@@ -116,6 +117,8 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
             </option>
           ))}
         </select>
+
+        <p>Note: Channel cannot be changed when message has been sent</p>
       </div>
 
       <div style={{ marginTop: "1rem" }}>
