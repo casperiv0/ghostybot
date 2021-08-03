@@ -5,6 +5,7 @@ export interface IReaction extends Document {
   message_id: string;
   channel_id: string;
   reactions: Reaction[];
+  editable: boolean;
 }
 
 export interface Reaction {
@@ -17,6 +18,7 @@ const ReactionsSchema = new Schema({
   message_id: { type: String, required: true },
   channel_id: { type: String, required: true },
   reactions: { type: Array, required: true },
+  editable: { type: Boolean, default: true },
 });
 
 export default models.Reaction || model<IReaction>("Reaction", ReactionsSchema);
