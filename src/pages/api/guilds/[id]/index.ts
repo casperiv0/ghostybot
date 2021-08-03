@@ -1,7 +1,8 @@
-import DJS from "discord.js";
+import DJS, { Snowflake } from "discord.js";
 import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import ApiRequest from "types/ApiRequest";
+import ReactionsModel, { IReaction } from "@/src/models/Reactions.model";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -128,8 +129,15 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         return [...ac, obj];
       }, [] as any[]);
 
+      console.log(req.query.reactions);
+
+      let reactions: null | IReaction[] = null;
+      if (req.query.reactions) {
+        reactions = await ReactionsModel.find({ guild_id: query.id as Snowflake });
+      }
+
       return res.json({
-        guild: { ...g.toJSON(), ...guild },
+        guild: { ...g.toJSON(), ...guild, reactions },
         botCommands: [...commands, ...nonSubCommands],
         status: "success",
       });
