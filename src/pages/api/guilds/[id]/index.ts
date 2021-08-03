@@ -67,15 +67,21 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       guild.roles = guild.roles.filter((r) => r.name !== "@everyone");
 
       if (gSlashCommands) {
-        guild.slash_commands = gSlashCommands.map((command) => {
-          const cmd = g.slash_commands.find((c) => c.slash_cmd_id === command.id);
+        for (let i = 0; i < gSlashCommands.size; i++) {
+          const command = [...gSlashCommands.values()][i];
 
-          return {
-            ...cmd,
-            description: command.description,
-            id: command.id,
-          };
-        });
+          const dbCommand = g.slash_commands.find((c) => c.slash_cmd_id === command.id);
+          if (!dbCommand) continue;
+
+          guild.slash_commands = [
+            ...(guild.slash_commands ?? []),
+            {
+              ...dbCommand,
+              description: command.description,
+              id: command.id,
+            },
+          ];
+        }
       } else {
         guild.slash_commands = null;
       }

@@ -4,27 +4,22 @@ import Logger from "utils/Logger";
 import AlertMessage from "../AlertMessage";
 import { useRouter } from "next/router";
 import Guild from "types/Guild";
-import { CustomCommand, SlashCommand } from "models/Guild.model";
+import { SlashCommand } from "models/Guild.model";
 import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
-  slash?: boolean;
 }
 
-async function getCommand(
-  guildId: string,
-  name: string,
-  slash: boolean,
-): Promise<CustomCommand | SlashCommand | null> {
+async function getCommand(guildId: string, name: string): Promise<SlashCommand | null> {
   try {
-    const res = await fetch(
-      `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guildId}/${
-        slash ? "slash-" : ""
-      }commands?name=${encodeURIComponent(name)}`,
-    );
-    const data = await res.json();
+    const url = `${
+      process.env["NEXT_PUBLIC_DASHBOARD_URL"]
+    }/api/guilds/${guildId}/slash-commands?name=${encodeURIComponent(name)}`;
 
+    const res = await fetch(url);
+
+    const data = await res.json();
     if (data.status === "error") return null;
 
     return data.command;
@@ -34,31 +29,25 @@ async function getCommand(
   }
 }
 
-const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
+const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
-  const [commandId, setCommandId] = React.useState(null);
+  const [commandId, setCommandId] = React.useState<string | null>(null);
   const router = useRouter();
   const { t } = useTranslation("guilds");
 
   const setCommandData = React.useCallback(async () => {
-    const command = await getCommand(`${router.query?.id}`, `${router.query.edit}`, slash ?? false);
+    const command = await getCommand(router.query.id?.toString()!, router.query.edit?.toString()!);
     if (!command) return;
 
     openModal("edit-command");
     setName(command.name);
     setCmdRes(command.response);
-
-    if (slash) {
-      // @ts-expect-error ignore
-      setDescription(command.description);
-
-      // @ts-expect-error ignore
-      setCommandId(command.slash_cmd_id);
-    }
-  }, [router.query, slash]);
+    setDescription(command.description);
+    setCommandId(command.slash_cmd_id);
+  }, [router.query]);
 
   React.useEffect(() => {
     setCommandData();
@@ -67,29 +56,16 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    let commandData = {};
-
-    if (slash) {
-      commandData = {
-        name,
-        response: cmdRes,
-        description,
-        commandId,
-      };
-    } else {
-      commandData = {
-        type: "enable",
-        name,
-        response: cmdRes,
-        description,
-      };
-    }
+    const commandData = {
+      name,
+      response: cmdRes,
+      description,
+      commandId,
+    };
 
     try {
       const res = await fetch(
-        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/${
-          slash ? "slash-" : ""
-        }commands`,
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/slash-commands`,
         {
           method: "PUT",
           body: JSON.stringify(commandData),
@@ -103,9 +79,7 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         setCmdRes("");
         setDescription("");
         setResponse(null);
-        router.push(
-          `/dashboard/${guild.id}/${slash ? "slash-" : ""}commands?message=${t("updated_command")}`,
-        );
+        router.push(`/dashboard/${guild.id}/slash-commands?message=${t("updated_command")}`);
       }
 
       setResponse(data);
@@ -129,19 +103,19 @@ const EditCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
             className="form-input"
           />
         </div>
-        {slash ? (
-          <div className="form-group">
-            <label className="form-label" htmlFor="name">
-              {t("command_desc")}
-            </label>
-            <input
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="form-input"
-            />
-          </div>
-        ) : null}
+
+        <div className="form-group">
+          <label className="form-label" htmlFor="name">
+            {t("command_desc")}
+          </label>
+          <input
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="form-input"
+          />
+        </div>
+
         <div className="form-group">
           <label className="form-label" htmlFor="response">
             {t("command_response")}

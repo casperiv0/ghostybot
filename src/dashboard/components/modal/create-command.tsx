@@ -8,10 +8,9 @@ import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
-  slash?: boolean;
 }
 
-const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
+const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -24,9 +23,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
 
     try {
       const res = await fetch(
-        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/${
-          slash ? "slash-" : ""
-        }commands`,
+        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/slash-commands`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -44,9 +41,8 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
         setCmdRes("");
         setDescription("");
         setResponse(null);
-        router.push(
-          `/dashboard/${guild.id}/${slash ? "slash-" : ""}commands?message=${t("added_command")}`,
-        );
+
+        router.push(`/dashboard/${guild.id}/slash-commands?message=${t("added_command")}`);
       }
 
       setResponse(data);
@@ -70,19 +66,17 @@ const CreateCommandModal: React.FC<Props> = ({ guild, slash }: Props) => {
             className="form-input"
           />
         </div>
-        {slash ? (
-          <div className="form-group">
-            <label className="form-label" htmlFor="name">
-              {t("command_desc")}
-            </label>
-            <input
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="form-input"
-            />
-          </div>
-        ) : null}
+        <div className="form-group">
+          <label className="form-label" htmlFor="name">
+            {t("command_desc")}
+          </label>
+          <input
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="form-input"
+          />
+        </div>
         <div className="form-group">
           <label className="form-label" htmlFor="response">
             {t("command_response")}

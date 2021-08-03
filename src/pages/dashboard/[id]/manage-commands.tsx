@@ -135,7 +135,6 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
         />
       </div>
 
-      {console.log(guild.disabled_commands)}
       <div className="grid">
         {botCommands?.slice(0, length)?.map((cmd, idx) => {
           return cmd.commands.map((c, id) => {
@@ -144,7 +143,6 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
             if (filter === "@disabled" && !isDisabled) return null;
             if (filter === "@enabled" && isDisabled) return null;
 
-            console.log(filter);
             if (showSearch && !filter!.includes(c)) return null;
 
             return (

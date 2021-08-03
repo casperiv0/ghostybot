@@ -123,8 +123,8 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
       {guild.slash_commands !== null ? (
         <>
-          <CreateCommandModal slash guild={guild} />
-          <EditCommandModal slash guild={guild} />
+          <CreateCommandModal guild={guild} />
+          <EditCommandModal guild={guild} />
 
           {commands?.length > 0 ? (
             <table>

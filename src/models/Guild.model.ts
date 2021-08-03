@@ -72,6 +72,7 @@ export interface CustomCommand {
 }
 
 export interface SlashCommand extends CustomCommand {
+  description: string;
   slash_cmd_id: Snowflake;
 }
 
