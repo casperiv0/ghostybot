@@ -30,7 +30,7 @@ export default class RemoveRoleCommand extends Command {
 
       if (!role) {
         return message.channel.send({
-          content: lang.REACTIONS.NO_ROLE,
+          content: "That role was not found",
         });
       }
 
