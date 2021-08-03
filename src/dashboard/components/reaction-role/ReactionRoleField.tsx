@@ -2,6 +2,7 @@ import * as React from "react";
 import Guild from "types/Guild";
 import AddReactionRole from "@components/modal/add-reaction-role";
 import { IReaction, Reaction } from "models/Reactions.model";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   index: number;
@@ -15,6 +16,9 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
   const [channelId, setChannelId] = React.useState("");
   const [data, setData] = React.useState<Reaction[]>([]);
   const [show, setShow] = React.useState(false);
+
+  const { t: t } = useTranslation("reaction-role");
+  const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {
     if (reaction.channel_id) {
@@ -93,16 +97,18 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
   return (
     <div className="card">
       <div style={{ display: "flex", alignContent: "flex-start", justifyContent: "space-between" }}>
-        <h2>Reaction Role {index + 1}</h2>
+        <h2>
+          {t("reaction_role")} {index + 1}
+        </h2>
 
         <button onClick={() => deleteReaction(reaction)} className="btn btn-red btn-sm">
-          Delete
+          {commonT("delete")}
         </button>
       </div>
 
       <div style={{ marginTop: "1rem" }} className="form-group">
         <label className="form-label" htmlFor="channelId">
-          Channel
+          {t("channel")}
         </label>
         <select
           disabled={!reaction.editable}
@@ -118,13 +124,13 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
           ))}
         </select>
 
-        <p>Note: Channel cannot be changed when message has been sent</p>
+        <p>{t("channel_note")}</p>
       </div>
 
       <div style={{ marginTop: "1rem" }}>
-        <h3>Roles</h3>
+        <h3>{t("roles")}</h3>
         {data.length <= 0 ? (
-          <p>No roles yet</p>
+          <p>{t("no_roles_yet")}</p>
         ) : (
           data.map((v, idx) => {
             const role = guild.roles.find((r) => r.id === v.role_id);
@@ -144,14 +150,14 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
                     onClick={() => handleEdit(v)}
                     className="btn btn-secondary btn-sm"
                   >
-                    Edit
+                    {commonT("edit")}
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(idx)}
                     className="btn btn-red btn-sm ml-5"
                   >
-                    Delete
+                    {commonT("delete")}
                   </button>
                 </div>
               </div>
@@ -166,7 +172,7 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
           className="btn btn-secondary btn-sm"
           onClick={() => setShow((p) => !p)}
         >
-          Add emoji and role
+          {t("add_emoji_and_role")}
         </button>
 
         {show ? (
@@ -182,4 +188,5 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
     </div>
   );
 };
+
 export default ReactionRoleField;

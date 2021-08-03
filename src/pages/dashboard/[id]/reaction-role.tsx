@@ -11,6 +11,7 @@ import AlertMessage from "@components/AlertMessage";
 import { IReaction } from "models/Reactions.model";
 import ReactionRoleField from "@/src/dashboard/components/reaction-role/ReactionRoleField";
 import { State } from "./settings";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   guild: Guild<true> | null;
@@ -21,6 +22,9 @@ interface Props {
 const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
   const [reactions, setReactions] = React.useState<IReaction[]>(guild?.reactions ?? []);
   const [state, setState] = React.useState<State>({ state: "idle", message: null });
+
+  const { t: t } = useTranslation("reaction-role");
+  const { t: commonT } = useTranslation("common");
 
   async function deleteReaction(reaction: IReaction) {
     setReactions((p) => p.filter((v) => v._id !== reaction._id));
@@ -76,7 +80,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
       setState({ state: "idle", message: "Successfully updated" });
     } catch (e) {
       console.log(e);
-      setState((p) => ({ state: "error", message: "An error occurred" }));
+      setState({ state: "error", message: "An error occurred" });
     }
   }
 
@@ -95,16 +99,20 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
   return (
     <>
       <Head>
-        <title>{guild?.name} - Manage reaction roles</title>
+        <title>
+          {guild?.name} - {t("Manage reaction roles")}
+        </title>
       </Head>
 
       <div className="page-title">
-        <h4>{guild?.name} - Manage reaction roles</h4>
+        <h4>
+          {guild?.name} - {t("manage_reaction_roles")}
+        </h4>
 
         <div>
           <Link href={`/dashboard/${guild.id}`}>
             <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
-              Return
+              {commonT("return")}
             </a>
           </Link>
           <button
@@ -112,7 +120,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
             onClick={() => setReactions((p) => [...p, { editable: true, _id: v4() }])}
             className="btn btn-primary ml-5"
           >
-            Add reaction role
+            {t("add_reaction_role")}
           </button>
         </div>
       </div>
@@ -126,7 +134,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
 
       <div className="grid">
         {reactions.length <= 0 ? (
-          <p>This guild does not have any reaction roles yet.</p>
+          <p>{t("no_reaction_roles")}</p>
         ) : (
           reactions.map((reaction, idx) => {
             return (
@@ -173,7 +181,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      ...(await serverSideTranslations(ctx.locale!, ["guilds", "footer", "profile", "common"])),
+      ...(await serverSideTranslations(ctx.locale!, [
+        "guilds",
+        "footer",
+        "profile",
+        "common",
+        "reaction-role",
+      ])),
       isAuth: data.error !== "invalid_token",
       guild: data?.guild ?? null,
       error: data?.error ?? null,
