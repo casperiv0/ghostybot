@@ -39,7 +39,7 @@ interface Props {
   isAuth: boolean;
 }
 
-interface State {
+export interface State {
   state: "loading" | "idle" | "error";
   message: string | null;
 }

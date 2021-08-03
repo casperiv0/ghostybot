@@ -12,8 +12,26 @@ interface Props {
 }
 
 const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReaction }: Props) => {
+  const [channelId, setChannelId] = React.useState("");
   const [data, setData] = React.useState<Reaction[]>([]);
   const [show, setShow] = React.useState(false);
+
+  React.useEffect(() => {
+    if (reaction.channel_id) {
+      setChannelId(reaction.channel_id);
+    }
+
+    if (reaction.reactions) {
+      setData(reaction.reactions);
+    }
+  }, [reaction]);
+
+  React.useEffect(() => {
+    // @ts-expect-error ignore
+    updateReaction({ ...reaction, channel_id: channelId });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelId]);
 
   const [editData, setEditData] = React.useState<Reaction | null>(null);
 
@@ -45,8 +63,13 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
     updateReaction({ ...reaction, reactions: newD! });
   }
 
-  function handleDelete(d: Reaction) {
-    setData((p) => p.filter((v) => v.role_id !== d.role_id && v.emoji !== d.emoji));
+  function handleDelete(idx: number) {
+    const newD = data.filter((_, i) => idx !== i);
+
+    setData(newD);
+
+    // @ts-expect-error ignore
+    updateReaction({ ...reaction, reactions: newD! });
   }
 
   function addReactionRole(d: Reaction) {
@@ -77,12 +100,30 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
         </button>
       </div>
 
+      <div style={{ marginTop: "1rem" }} className="form-group">
+        <label className="form-label" htmlFor="channelId">
+          Channel
+        </label>
+        <select
+          className="form-input"
+          id="channelId"
+          value={channelId}
+          onChange={(e) => setChannelId(e.target.value)}
+        >
+          {guild.channels.map((r) => (
+            <option key={r.id} value={r.id}>
+              {(r as any).name}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div style={{ marginTop: "1rem" }}>
         <h3>Roles</h3>
         {data.length <= 0 ? (
           <p>No roles yet</p>
         ) : (
-          data.map((v) => {
+          data.map((v, idx) => {
             const role = guild.roles.find((r) => r.id === v.role_id);
 
             return (
@@ -104,7 +145,7 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDelete(v)}
+                    onClick={() => handleDelete(idx)}
                     className="btn btn-red btn-sm ml-5"
                   >
                     Delete

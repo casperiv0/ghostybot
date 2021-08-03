@@ -10,6 +10,7 @@ import Loader from "@components/Loader";
 import AlertMessage from "@components/AlertMessage";
 import { IReaction } from "models/Reactions.model";
 import ReactionRoleField from "@/src/dashboard/components/reaction-role/ReactionRoleField";
+import { State } from "./settings";
 
 interface Props {
   guild: Guild<true> | null;
@@ -19,9 +20,20 @@ interface Props {
 
 const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
   const [reactions, setReactions] = React.useState<IReaction[]>(guild?.reactions ?? []);
+  const [state, setState] = React.useState<State>({ state: "idle", message: null });
 
-  function deleteReaction(reaction: IReaction) {
+  async function deleteReaction(reaction: IReaction) {
     setReactions((p) => p.filter((v) => v._id !== reaction._id));
+
+    await fetch(
+      `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/reaction-role`,
+      {
+        method: "DELETE",
+        body: JSON.stringify({
+          id: reaction._id,
+        }),
+      },
+    );
   }
 
   function updateReaction(reaction: IReaction) {
@@ -42,6 +54,30 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setState({ state: "loading", message: null });
+
+    try {
+      const data = await (
+        await fetch(
+          `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/reaction-role`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              reactions,
+            }),
+          },
+        )
+      ).json();
+
+      if (data.error || data.status === "error") {
+        return setState({ state: "error", message: data.error });
+      }
+
+      setState({ state: "idle", message: "Successfully updated" });
+    } catch (e) {
+      console.log(e);
+      setState((p) => ({ state: "error", message: "An error occurred" }));
+    }
   }
 
   if (!isAuth) {
@@ -81,6 +117,13 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
         </div>
       </div>
 
+      {state.message ? (
+        <AlertMessage
+          type={state.state === "error" ? "error" : "success"}
+          message={state.message}
+        />
+      ) : null}
+
       <div className="grid">
         {reactions.length <= 0 ? (
           <p>This guild does not have any reaction roles yet.</p>
@@ -100,9 +143,16 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
         )}
       </div>
 
-      <button style={{ marginTop: "1rem" }} className="btn btn-primary" onClick={onSubmit}>
-        Save reaction roles
-      </button>
+      {reactions.length > 0 ? (
+        <button
+          disabled={state.state === "loading"}
+          style={{ marginTop: "1rem" }}
+          className="btn btn-primary"
+          onClick={onSubmit}
+        >
+          {state.state === "loading" ? "loading..." : "Save reaction roles"}
+        </button>
+      ) : null}
     </>
   );
 };
