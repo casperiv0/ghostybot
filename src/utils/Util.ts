@@ -551,6 +551,26 @@ export default class Util {
     return message.guild.me.voice.channelId === voiceChannelId;
   }
 
+  formatBotPermissions(
+    permissions: bigint[],
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
+    const neededPerms: bigint[] = [];
+
+    permissions.forEach((perm) => {
+      if (
+        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!)?.has(perm)
+      ) {
+        neededPerms.push(perm);
+      }
+    });
+
+    if (neededPerms.length > 0) {
+      return this.errorEmbed(neededPerms, interaction, lang.PERMISSIONS);
+    }
+  }
+
   formatMemberPermissions(
     permissions: bigint[],
     interaction: DJS.CommandInteraction,

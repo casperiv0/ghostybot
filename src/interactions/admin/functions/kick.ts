@@ -15,6 +15,15 @@ export async function kick(
     return interaction.reply({ content: perms, ephemeral: true });
   }
 
+  const botPerms = bot.utils.formatBotPermissions(
+    [DJS.Permissions.FLAGS.KICK_MEMBERS],
+    interaction,
+    lang,
+  );
+  if (botPerms) {
+    return interaction.reply({ embeds: [botPerms], ephemeral: true });
+  }
+
   const user = interaction.options.getUser("user", true);
   const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
 

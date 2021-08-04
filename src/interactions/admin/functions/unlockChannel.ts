@@ -1,13 +1,13 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
-export async function deleteMessages(
+export async function unlockChannel(
   bot: Bot,
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
   const perms = bot.utils.formatMemberPermissions(
-    [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+    [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
     interaction,
     lang,
   );
@@ -16,7 +16,7 @@ export async function deleteMessages(
   }
 
   const botPerms = bot.utils.formatBotPermissions(
-    [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+    [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
     interaction,
     lang,
   );
@@ -24,19 +24,20 @@ export async function deleteMessages(
     return interaction.reply({ embeds: [botPerms], ephemeral: true });
   }
 
-  const amount = interaction.options.getNumber("amount", true);
+  const channel = interaction.channel as DJS.TextChannel;
 
-  if (amount < 1 || amount > 100) {
+  if (channel?.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
     return interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.DELETE_PROVIDE_AMOUNT,
+      content: lang.ADMIN.CHAN_NOT_LOCK,
     });
   }
 
-  await (interaction.channel as any)?.bulkDelete(amount);
+  await channel.permissionOverwrites.create(interaction.guildId!, {
+    SEND_MESSAGES: true,
+  });
 
   await interaction.reply({
-    ephemeral: true,
-    content: lang.ADMIN.DELETE_DELETED.replace("{amount}", amount.toString()),
+    content: lang.ADMIN.SUC_UNLOCK.replace("{channel}", channel.toString()),
   });
 }

@@ -6,7 +6,6 @@ export async function unMute(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  // todo: add bot permissions somewhere
   const perms = bot.utils.formatMemberPermissions(
     [DJS.Permissions.FLAGS.MANAGE_ROLES],
     interaction,
@@ -14,6 +13,14 @@ export async function unMute(
   );
   if (perms) {
     return interaction.reply({ content: perms, ephemeral: true });
+  }
+  const botPerms = bot.utils.formatBotPermissions(
+    [DJS.Permissions.FLAGS.MANAGE_ROLES, DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+    interaction,
+    lang,
+  );
+  if (botPerms) {
+    return interaction.reply({ embeds: [botPerms], ephemeral: true });
   }
 
   const user = interaction.options.getUser("user", true);

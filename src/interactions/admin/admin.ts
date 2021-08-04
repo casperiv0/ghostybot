@@ -8,6 +8,9 @@ import { ban } from "./functions/ban";
 import { mute } from "./functions/mute";
 import { deleteMessages } from "./functions/delete";
 import { unMute } from "./functions/unMute";
+import { warn } from "./functions/warn";
+import { lockChannel } from "./functions/lockChannel";
+import { unlockChannel } from "./functions/unlockChannel";
 
 export default class AdminCommand extends Interaction {
   constructor(bot: Bot) {
@@ -44,6 +47,18 @@ export default class AdminCommand extends Interaction {
         }
         case "unmute": {
           await unMute(this.bot, interaction, lang);
+          break;
+        }
+        case "warn": {
+          await warn(this.bot, interaction, lang);
+          break;
+        }
+        case "lock-channel": {
+          await lockChannel(this.bot, interaction, lang);
+          break;
+        }
+        case "unlock-channel": {
+          await unlockChannel(this.bot, interaction, lang);
           break;
         }
         default:

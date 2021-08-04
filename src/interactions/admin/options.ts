@@ -90,4 +90,41 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "warn",
+    description: "Warn a user",
+    options: [
+      {
+        name: "user",
+        description: "The user to unmute",
+        type: "USER",
+        required: true,
+      },
+      {
+        name: "user",
+        description: "The warn reason",
+        type: "STRING",
+        required: false,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "lock-channel",
+    description: "Lock the current channel",
+    options: [
+      {
+        name: "reason",
+        description: "The reason why the channel should be locked",
+        type: "STRING",
+        required: true,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "unlock-channel",
+    description: "Unlock the current channel",
+  },
 ];
