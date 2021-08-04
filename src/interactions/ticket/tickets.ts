@@ -128,7 +128,7 @@ export default class TicketsCommand extends Interaction {
 
     interaction.reply({
       ephemeral: true,
-      content: lang.TICKET.CREATED_IN.replace("{channel}", channel?.toString()),
+      content: lang.TICKET.CREATED_IN.replace("{channel}", channel?.toString()!),
     });
   }
 

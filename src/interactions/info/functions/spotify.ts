@@ -85,7 +85,10 @@ export async function spotify(
       const length =
         data.tracks.length <= 10
           ? ""
-          : lang.UTIL.SPOT_MORE_TRACKS.replace("{tracks - 10}", data.tracks.length - 10);
+          : lang.UTIL.SPOT_MORE_TRACKS.replace(
+              "{tracks - 10}",
+              (data.tracks.length - 10).toString(),
+            );
 
       const tracks =
         (data.tracks as any[])

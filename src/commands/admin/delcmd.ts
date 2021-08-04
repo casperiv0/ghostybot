@@ -21,7 +21,7 @@ export default class DelCmdCommand extends Command {
       return message.channel.send({
         content: lang.ADMIN.CMD_DEPRECATED.replace(
           "{url}",
-          process.env["NEXT_PUBLIC_DASHBOARD_URL"],
+          process.env["NEXT_PUBLIC_DASHBOARD_URL"]!,
         ),
       });
     } catch (err) {

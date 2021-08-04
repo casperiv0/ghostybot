@@ -15,7 +15,7 @@ export default class PingInteraction extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     return interaction.reply({
-      content: lang.UTIL.MY_PING.replace("{ping}", Math.round(this.bot.ws.ping)),
+      content: lang.UTIL.MY_PING.replace("{ping}", Math.round(this.bot.ws.ping).toString()),
     });
   }
 }
