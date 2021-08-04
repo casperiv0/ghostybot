@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 import colorRegex from "hex-color-regex";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
+import LANG from "@/src/locales/arabic";
 
 export default class RandomColorCommand extends Command {
   constructor(bot: Bot) {
@@ -22,6 +23,7 @@ export default class RandomColorCommand extends Command {
   }
 
   async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const [providedColor] = args;
     const color = this.parseColor(providedColor);
 
@@ -29,7 +31,7 @@ export default class RandomColorCommand extends Command {
       const isValid = colorRegex({ strict: true }).test(providedColor.toLowerCase());
 
       if (!isValid) {
-        return message.channel.send({ content: "Invalid color HEX" });
+        return message.channel.send({ content: lang.UTIL.INVALID_COLOR });
       }
     }
 

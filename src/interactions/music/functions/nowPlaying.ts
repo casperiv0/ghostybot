@@ -28,15 +28,15 @@ export async function nowPlaying(
 
   const embed = bot.utils
     .baseEmbed(interaction)
-    .setTitle(song.name ?? "Unknown")
+    .setTitle(song.name ?? lang.UTIL.UNKNOWN)
     .setURL(song.url)
     .setAuthor(`🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} `)
     .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`)
     .addField(
-      "Information",
+      lang.MUSIC.INFORMATION,
       `
-**Uploader:** ${song.uploader.name ?? "Unknown"}
-**Likes:** ${bot.utils.formatNumber(song.likes)}`,
+**${lang.MUSIC.UPLOADER}:** ${song.uploader.name ?? lang.UTIL.UNKNOWN}
+**${lang.MUSIC.LIKES}:** ${bot.utils.formatNumber(song.likes)}`,
     );
 
   if (song.thumbnail) {

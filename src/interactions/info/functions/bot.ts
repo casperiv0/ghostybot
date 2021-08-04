@@ -17,9 +17,9 @@ export async function botInfo(
   const latency = Math.round(bot.ws.ping).toString();
   const ramUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
 
-  const botRepo = hyperlink("Click Here", "https://github.com/dev-caspertheghost/ghostybot");
-  const supportServer = hyperlink("Click Here", "https://discord.gg/XxHrtkA");
-  const dashboard = hyperlink("Click Here", process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
+  const botRepo = hyperlink(lang.BOT.CLICK_HERE, "https://github.com/dev-caspertheghost/ghostybot");
+  const supportServer = hyperlink(lang.BOT.CLICK_HERE, "https://discord.gg/XxHrtkA");
+  const dashboard = hyperlink(lang.BOT.CLICK_HERE, process.env["NEXT_PUBLIC_DASHBOARD_URL"]!);
 
   const commandCount = bot.utils.commandCount;
 

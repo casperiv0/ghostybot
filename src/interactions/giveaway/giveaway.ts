@@ -111,12 +111,12 @@ export default class GiveawayCommand extends Interaction {
       prize,
       winnerCount: +winnerCount,
       messages: {
-        giveaway: "**🎉🎉 New Giveaway 🎉🎉**",
-        giveawayEnded: "**GIVEAWAY ENDED**",
+        giveaway: lang.GIVEAWAY.NEW,
+        giveawayEnded: lang.GIVEAWAY.ENDED,
       },
     });
 
-    await interaction.reply({ content: "Giveaway has started", ephemeral: true });
+    await interaction.reply({ content: lang.GIVEAWAY.STARTED, ephemeral: true });
   }
 
   async endGiveaway(
@@ -131,12 +131,12 @@ export default class GiveawayCommand extends Interaction {
       return interaction.reply({
         ephemeral: true,
         // @translation
-        content: "Giveaway already ended yet or was not found",
+        content: lang.GIVEAWAY.ALREADY_ENDED,
       });
     }
 
     // @translation
-    return interaction.reply({ ephemeral: true, content: "Successfully ended giveaway" });
+    return interaction.reply({ ephemeral: true, content: lang.GIVEAWAY.SUCCESS_ENDED });
   }
 
   async reRollGiveaway(
@@ -150,11 +150,11 @@ export default class GiveawayCommand extends Interaction {
       return interaction.reply({
         ephemeral: true,
         // @translation
-        content: `No giveaway found with id: ${messageId}`,
+        content: lang.GIVEAWAY.NOT_FOUND.replace("{id}", messageId),
       });
     }
 
     // @translation
-    await interaction.reply({ ephemeral: true, content: "Successfully re-rolled the giveaway" });
+    await interaction.reply({ ephemeral: true, content: lang.GIVEAWAY.SUCCESS_REROLLED });
   }
 }

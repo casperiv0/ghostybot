@@ -17,10 +17,11 @@ export default class UptimeCommand extends Command {
   }
 
   async execute(message: Message) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     const botUpSince = time(new Date(Date.now() - (this.bot.uptime ?? 0)), "f");
 
     return message.channel.send({
-      content: `Bot has been up since: ${botUpSince}`,
+      content: lang.UTIL.BOT_UPTIME.replace("{botUpSince}", botUpSince),
     });
   }
 }

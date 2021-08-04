@@ -27,7 +27,7 @@ export async function github(
   const embed = bot.utils
     .baseEmbed(interaction)
     .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
-    .addField("**Twitter**", twitter, true)
+    .addField(`**Twitter**`, twitter, true)
     .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following.toString(), true)
     .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers.toString(), true)
     .addField(`**${lang.UTIL.GH_WEBSITE}**`, website, true)

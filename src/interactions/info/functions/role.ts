@@ -15,7 +15,7 @@ export async function roleInfo(
   const mentionable = role.mentionable ? lang.GLOBAL.YES : lang.GLOBAL.NO;
   const color = role.color || "#5865f2";
   const position = (interaction.guild?.roles.cache.size ?? 0) - role.position;
-  const createdAt = "createdAt" in role ? time(new Date(role.createdAt), "F") : "Unknown";
+  const createdAt = "createdAt" in role ? time(new Date(role.createdAt), "F") : lang.UTIL.UNKNOWN;
   const hexColor =
     "hexColor" in role ? role.hexColor : `#${role.color.toString(16).padStart(6, "0")}`;
 
@@ -27,11 +27,11 @@ export async function roleInfo(
       `
 ${bold(lang.UTIL.POSITION)}: ${position}
 ${bold(lang.UTIL.MENTIONABLE)}: ${mentionable}
-${bold(lang.MEMBER.ID)}: ${role.id}
+${bold("ID")}: ${role.id}
 ${bold(lang.UTIL.HEX_COLOR)}: ${hexColor}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}`,
     )
-    .addField("Role mention", `<@&${role.id}>`)
+    .addField(lang.UTIL.ROLE_MENTION, `<@&${role.id}>`)
     .addField(lang.MEMBER.PERMISSIONS, permissions);
 
   interaction.reply({ embeds: [embed] });

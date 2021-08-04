@@ -12,7 +12,7 @@ export async function emojiInfo(
 
   if (!foundEmoji) {
     return interaction.reply({
-      content: "Emoji can only be a custom emoji or the emoji was not found",
+      content: lang.UTIL.EMOJI_NOT_FOUND,
     });
   }
 
@@ -21,20 +21,20 @@ export async function emojiInfo(
   try {
     emojiAuthor = await foundEmoji.fetchAuthor().then((v) => v.tag);
   } catch {
-    emojiAuthor = "Invalid Permissions";
+    emojiAuthor = lang.UTIL.INVALID_PERMS;
   }
 
   const accessibleBy = foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE;
 
   const embed = bot.utils
     .baseEmbed(interaction)
-    .setTitle(`Emoji info: ${foundEmoji}`)
+    .setTitle(`${lang.UTIL.EMOJI_INFO}: ${foundEmoji}`)
     .setThumbnail(foundEmoji.url).setDescription(`
-**Name:** ${foundEmoji.name}
+**${lang.GLOBAL.NAME}:** ${foundEmoji.name}
 **ID:** ${foundEmoji.id}
-**Created At:** ${time(new Date(foundEmoji.createdAt), "F")}
-**Created by:** ${emojiAuthor}
-**Accessible By:** ${accessibleBy}`);
+**${lang.UTIL.CREATED_AT}:** ${time(new Date(foundEmoji.createdAt), "F")}
+**${lang.UTIL.CREATED_BY.replace(" {member}", "")}:** ${emojiAuthor}
+**${lang.UTIL.ACCESSIBLE_BY}:** ${accessibleBy}`);
 
   return interaction.reply({ embeds: [embed] });
 }

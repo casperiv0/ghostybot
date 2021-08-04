@@ -18,7 +18,7 @@ export async function play(
   const queue = bot.player.getQueue(interaction.guildId!);
 
   if (queue && !bot.utils.isBotInSameChannel(interaction)) {
-    return interaction.reply({ ephemeral: true, content: "Bot is not in this voice channel!" });
+    return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
   }
 
   const perms = member.voice.channel?.permissionsFor(bot.user!);
@@ -26,7 +26,7 @@ export async function play(
     return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_PERMS });
   }
 
-  await interaction.reply({ ephemeral: true, content: "Song has been added to the queue" });
+  await interaction.reply({ ephemeral: true, content: lang.MUSIC.ADDED_TO_QUEUE2 });
 
   const d = {
     ...interaction,

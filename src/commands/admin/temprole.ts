@@ -72,7 +72,10 @@ export default class TempRoleCommand extends Command {
       });
 
       return message.channel.send({
-        content: `Successfully added the **${role.name}** role for **${time}** to ${needsRole.user.tag}`,
+        content: lang.ADMIN.ADDED_ROLE_TO
+          .replace("{roleName}", role.name)
+          .replace("{time}", time)
+          .replace("{userTag}", needsRole.user.tag),
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

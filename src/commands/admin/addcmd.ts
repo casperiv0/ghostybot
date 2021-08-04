@@ -19,7 +19,7 @@ export default class AddCmdCommand extends Command {
 
     try {
       return message.channel.send({
-        content: `This command has been deprecated. You can add new slash commands instead via the dashboard: ${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}`,
+        content: lang.ADMIN.CMD_DEPRECATED.replace("{url}", process.env["NEXT_PUBLIC_DASHBOARD_URL"]),
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
