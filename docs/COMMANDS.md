@@ -3,9 +3,59 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 123 slash commands.
+GhostyBot has a total of 129 slash commands.
 
 ## Detailed command list
+
+## admin -> ban
+
+**Description:** Ban a user from the current guild
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> kick
+
+**Description:** Kick a user from the current guild
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> delete
+
+**Description:** Delete up to 100 messages within 14 days
+
+**Choices:** N/A
+
+**Options:** amount (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> mute
+
+**Description:** Mute/tempmute a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unmute
+
+**Description:** Unmute a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
 
 ## anime -> baka
 

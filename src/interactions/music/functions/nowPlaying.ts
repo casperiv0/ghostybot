@@ -6,14 +6,6 @@ export async function nowPlaying(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  const member = await bot.utils.findMember(interaction, [interaction.user.id], {
-    allowAuthor: true,
-  });
-
-  if (!member?.voice.channel) {
-    return interaction.reply({ ephemeral: true, content: lang.MUSIC.MUST_BE_IN_VC });
-  }
-
   const queue = bot.player.getQueue(interaction.guildId!);
 
   if (!queue || !queue.playing) {
@@ -21,7 +13,6 @@ export async function nowPlaying(
   }
 
   const [song] = queue.songs;
-
   if (!song) {
     return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
   }
