@@ -31,7 +31,7 @@ export default class WikiCommand extends Command {
 
       const embed = this.bot.utils
         .baseEmbed(message)
-        .setTitle(`${title} (read more)`)
+        .setTitle(`${title} (${lang.UTIL.READ_MORE})`)
         .setURL(url)
         .setDescription(`${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`);
 

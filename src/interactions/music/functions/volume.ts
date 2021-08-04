@@ -21,7 +21,7 @@ export async function volume(
   }
 
   if (queue && !bot.utils.isBotInSameChannel(interaction)) {
-    return interaction.reply({ ephemeral: true, content: "Bot is not in this voice channel!" });
+    return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
   }
 
   if (isNaN(Number(newVol))) {

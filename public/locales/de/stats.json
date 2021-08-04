@@ -1,9 +1,9 @@
 {
-    "bot_stats": "Bot Statistiken",
-    "guilds": "Server",
-    "channels": "Kanäle",
-    "users": "Benutzer",
-    "commands": "Befehle",
-    "global_interactions": "Globale Interaktionen",
-    "memory_usage": "Speicherverbrauch"
+  "bot_stats": "Bot Statistiken",
+  "guilds": "Server",
+  "channels": "Kanäle",
+  "users": "Benutzer",
+  "commands": "Befehle",
+  "global_interactions": "Globale Interaktionen",
+  "memory_usage": "Speicherverbrauch"
 }

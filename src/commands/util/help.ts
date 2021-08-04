@@ -4,7 +4,7 @@ import Command from "structures/Command";
 import Bot from "structures/Bot";
 import paginate from "utils/paginate";
 
-const REGULAR_CATEGORIES = ["admin", "util"];
+const REGULAR_CATEGORIES = ["admin", "util", "reactions"];
 
 export default class HelpCommand extends Command {
   constructor(bot: Bot) {
@@ -133,12 +133,10 @@ export default class HelpCommand extends Command {
 
         const categoryEmbed = this.bot.utils
           .baseEmbed(message)
-          .setTitle("Help")
+          .setTitle(lang.HELP.HELP)
           .addField(name, cates[i].join(", "))
           .addField(`${lang.HELP.GUILD_PREFIX}: `, prefix)
-          .setDescription(
-            "**Note: Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**",
-          )
+          .setDescription(lang.HELP.DEPRECATED)
           .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
         embeds.push(categoryEmbed);

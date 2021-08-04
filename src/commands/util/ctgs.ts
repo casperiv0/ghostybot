@@ -13,13 +13,14 @@ export default class CtgsCommand extends Command {
   }
 
   async execute(message: Message, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const [slug, url] = args;
       const data = await this.bot.ctgs.new(slug, url);
 
       return message.channel.send({ content: data });
     } catch (err) {
-      return message.channel.send({ content: err?.message || "an error occurred" });
+      return message.channel.send({ content: err?.message || lang.GLOBAL.ERROR });
     }
   }
 }

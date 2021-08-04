@@ -32,23 +32,25 @@ export async function inviteInfo(
 
   const inviter = invite.inviter
     ? `${invite.inviter?.username}#${invite.inviter.discriminator} (${invite.inviter.id})`
-    : "Unknown";
+    : lang.UTIL.UNKNOWN;
 
   const uses = invite.uses ? bot.utils.formatNumber(invite.uses) : null;
   const maxUses = invite.maxUses;
-  const usesStr = (maxUses && uses ? `${uses}/${maxUses}` : uses) ?? "Unknown";
+  const usesStr = (maxUses && uses ? `${uses}/${maxUses}` : uses) ?? lang.UTIL.UNKNOWN;
 
   const embed = bot.utils
     .baseEmbed(interaction)
-    .setTitle(`Invite: ${invite.code}`)
-    .setDescription(invite.guild?.description || "No description")
+    .setTitle(`${lang.UTIL.INVITE}: ${invite.code}`)
+    .setDescription(invite.guild?.description || lang.UTIL.NO_DESCRIPTION)
     .addField(
-      "General Info",
+      lang.UTIL.GENERAL_INFO,
       `
-**Uses:**: ${usesStr}
-**Guild:** ${invite.guild?.name ?? "Unknown"} (${invite.guild?.id ?? "Unknown"})
-**Channel:** ${invite.channel.name}
-**Inviter:** ${inviter}
+**${lang.UTIL.USES}:**: ${usesStr}
+**${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${
+        invite.guild?.id ?? lang.UTIL.UNKNOWN
+      })
+**${lang.UTIL.CHANNEL}:** ${invite.channel.name}
+**${lang.UTIL.INVITER}:** ${inviter}
       `,
     )
     .addField(

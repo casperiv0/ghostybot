@@ -138,7 +138,7 @@ export default class RemindersCommand extends Interaction {
         const mappedReminders = dbUser.reminder.reminders.slice(i, i + 25).map((reminder) => {
           return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
 **${lang.REMINDER.TIME}** ${reminder.time}
-**${lang.MEMBER.ID}:** ${reminder.id}
+**ID:** ${reminder.id}
 **${lang.REMINDER.ENDS_IN}** ${time(new Date(reminder.ends_at), "R")}`;
         });
 
@@ -214,7 +214,7 @@ export default class RemindersCommand extends Interaction {
     const updated = user.reminder.reminders.filter((r) => r.id !== id);
 
     if (!reminder) {
-      return interaction.reply({ ephemeral: true, content: "That reminder was not found" });
+      return interaction.reply({ ephemeral: true, content: lang.REMINDER.NOT_FOUND });
     }
 
     const newReminder: Reminder = {
@@ -234,7 +234,7 @@ export default class RemindersCommand extends Interaction {
     });
 
     // @translation
-    return interaction.reply({ ephemeral: true, content: "Updated reminder" });
+    return interaction.reply({ ephemeral: true, content: lang.REMINDER.UPDATED });
   }
 
   async deleteReminder(

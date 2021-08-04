@@ -21,7 +21,7 @@ export async function weekly(
 
     interaction.reply({
       ephemeral: true,
-      content: `${lang.ECONOMY.WEEKLY_ERROR} Check back ${time(dateTime, "R")}`,
+      content: lang.ECONOMY.WEEKLY_ERROR.replace("{time}", time(dateTime, "R")),
     });
   } else {
     bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {

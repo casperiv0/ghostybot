@@ -36,11 +36,11 @@ export async function spotify(
         .setThumbnail(data.album.images[0].url)
         .addField(lang.MUSIC.DURATION, data.duration)
         .addField(
-          "Album",
+          lang.UTIL.SPOT_ALBUM,
           `
-**Name:** [${data.album.name}](${data.album.url})
+**${lang.GLOBAL.NAME}:** [${data.album.name}](${data.album.url})
 **${lang.UTIL.RELEASE_DATE}:** ${data.album.release_date}
-**Artists:** ${artists}`,
+**${lang.UTIL.SPOT_ARTISTS}:** ${artists}`,
         );
 
       return interaction.editReply({ embeds: [embed] });
@@ -55,8 +55,8 @@ export async function spotify(
         .setTitle(data.name)
         .setURL(data.url)
         .addField(lang.UTIL.GH_FOLLOWERS, bot.utils.formatNumber(data.followers), true)
-        .addField("Genres", genres, true)
-        .addField("Top 10 tracks", topTracks);
+        .addField(lang.UTIL.SPOT_GENRES, genres, true)
+        .addField(lang.UTIL.SPOT_TOP, topTracks);
 
       if (data.images.length > 0) {
         embed.setImage(data.images[0].url);
@@ -74,15 +74,18 @@ export async function spotify(
         .setTitle(data.name)
         .setURL(data.url)
         .addField(lang.UTIL.TOTAL_TRACKS, bot.utils.formatNumber(data.total_tracks), true)
-        .addField("Tracks", tracks, true)
+        .addField(lang.UTIL.SPOT_TRACKS, tracks, true)
         .addField(lang.UTIL.RELEASE_DATE, data.release_date, true)
-        .addField("Artists", artists, true)
+        .addField(lang.UTIL.SPOT_ARTISTS, artists, true)
         .setImage(data.images[0].url);
 
       return interaction.editReply({ embeds: [embed] });
     }
     case "playlist": {
-      const length = data.tracks.length <= 10 ? "" : `${data.tracks.length - 10} more tracks`;
+      const length =
+        data.tracks.length <= 10
+          ? ""
+          : lang.UTIL.SPOT_MORE_TRACKS.replace("{tracks - 10}", data.tracks.length - 10);
 
       const tracks =
         (data.tracks as any[])
@@ -92,11 +95,11 @@ export async function spotify(
 
       const embed = bot.utils
         .baseEmbed(interaction)
-        .setDescription(data.description || "No description")
+        .setDescription(data.description || lang.UTIL.NO_DESCRIPTION)
         .setTitle(data.name)
         .setURL(data.url)
         .addField(lang.UTIL.TOTAL_TRACKS, bot.utils.formatNumber(data.total_tracks), true)
-        .addField("Tracks", `${tracks}\n${length}`, true)
+        .addField(lang.UTIL.SPOT_TRACKS, `${tracks}\n${length}`, true)
         .setImage(data.images[0].url);
 
       return interaction.editReply({ embeds: [embed] });

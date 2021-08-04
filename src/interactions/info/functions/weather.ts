@@ -55,7 +55,7 @@ export async function weather(
   const feelsLike = data.main.feels_like.toString();
   const temp = data.main.temp.toString();
   const windSpeed = data.wind.speed.toString();
-  const windDeg = getWindDirection(data.wind.deg);
+  const windDeg = getWindDirection(data.wind.deg, lang);
 
   const country = data.sys.country.toString();
   const flag = `https://www.countryflags.io/${country}/flat/64.png`;
@@ -72,7 +72,7 @@ ${bold(lang.UTIL.WIND_DEGREES)}: ${windDeg}
 `,
     )
     .addField(
-      "Temperature",
+      lang.UTIL.TEMPERATURE,
       `
 ${bold(lang.UTIL.CURRENT_TEMP)}: ${temp}°C
 ${bold(lang.UTIL.FEELS_LIKE)}: ${feelsLike}°C
@@ -83,24 +83,24 @@ ${bold(lang.UTIL.FEELS_LIKE)}: ${feelsLike}°C
   await interaction.editReply({ embeds: [embed] });
 }
 
-function getWindDirection(v: number) {
+function getWindDirection(v: number, lang: typeof import("@locales/english").default) {
   if (v === 0) {
-    return "North";
+    return lang.OTHER.WIND_DIRECTIONS.NORTH;
   } else if (v > 0 && v < 90) {
-    return "North East";
+    return lang.OTHER.WIND_DIRECTIONS.NORTH_EAST;
   } else if (v === 90) {
-    return "East";
+    return lang.OTHER.WIND_DIRECTIONS.EAST;
   } else if (v > 90 && v < 180) {
-    return "South East";
+    return lang.OTHER.WIND_DIRECTIONS.SOUTH_EAST;
   } else if (v === 180) {
-    return "South";
+    return lang.OTHER.WIND_DIRECTIONS.SOUTH;
   } else if (v > 180 && v < 270) {
-    return "South West";
+    return lang.OTHER.WIND_DIRECTIONS.SOUTH_WEST;
   } else if (v === 270) {
-    return "West";
+    return lang.OTHER.WIND_DIRECTIONS.WEST;
   } else if (v > 270 && v < 360) {
-    return "North West";
+    return lang.OTHER.WIND_DIRECTIONS.NORTH_WEST;
   }
 
-  return "Unknown";
+  return lang.UTIL.UNKNOWN;
 }

@@ -22,7 +22,7 @@ export async function daily(
 
     await interaction.reply({
       ephemeral: true,
-      content: `${lang.ECONOMY.DAILY_ERROR} Check back ${time(dateTime, "R")}`,
+      content: lang.ECONOMY.DAILY_ERROR.replace("{time}", time(dateTime, "R")),
     });
   } else {
     bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {

@@ -30,7 +30,7 @@ export default class PastebinCommand extends Command {
 
       if (paste.startsWith("Bad API request, invalid api_paste_format")) {
         return message.channel.send({
-          content: "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
+          content: lang.UTIL.PASTE_INVALID_FORMAT,
         });
       }
 

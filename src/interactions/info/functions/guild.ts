@@ -22,7 +22,7 @@ export async function guildInfo(
 
   const member = await bot.utils.findMember(interaction, [interaction.user.id]);
 
-  const joinedAt = member?.joinedAt ? time(new Date(member.joinedAt), "F") : "Unknown";
+  const joinedAt = member?.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
 
   const owner = await guild.fetchOwner();
   const inviteBanner = guild.bannerURL({
@@ -46,7 +46,7 @@ export async function guildInfo(
 **${lang.MEMBER.CREATED_ON}:** ${time(new Date(guild.createdAt), "F")}`,
     )
     .addField(
-      "**📈 Stats**",
+      `**📈 ${lang.POKEMON.STATS}**`,
       `
 **${lang.GUILD.ROLES_C}:** ${roles}
 **${lang.GUILD.CHANNEL_C}:** ${channels}

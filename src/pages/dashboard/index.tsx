@@ -72,7 +72,9 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
                   <Image
                     alt={guild.name}
                     className="guild-card-img"
-                    src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp`}
+                    src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${
+                      guild.icon.startsWith("a_") ? "gif" : "webp"
+                    }`}
                     width="65"
                     height="65"
                   />
