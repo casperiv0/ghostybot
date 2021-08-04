@@ -17,7 +17,8 @@ export async function channelInfo(
 
   const topic = (channel as DJS.TextChannel)?.topic ?? lang.GLOBAL.NONE;
   const type = lang.UTIL.CHANNEL_TYPES[channel.type];
-  const createdAt = "createdAt" in channel ? time(new Date(channel.createdAt), "F") : lang.UTIL.UNKNOWN;
+  const createdAt =
+    "createdAt" in channel ? time(new Date(channel.createdAt), "F") : lang.UTIL.UNKNOWN;
 
   const embed = bot.utils
     .baseEmbed(interaction)

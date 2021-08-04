@@ -2,8 +2,6 @@ import { Message } from "discord.js";
 import colorRegex from "hex-color-regex";
 import Command from "structures/Command";
 import Bot from "structures/Bot";
-import LANG from "@/src/locales/arabic";
-
 export default class RandomColorCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {

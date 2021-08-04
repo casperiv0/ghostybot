@@ -19,7 +19,10 @@ export default class DelCmdCommand extends Command {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       return message.channel.send({
-        content: lang.ADMIN.CMD_DEPRECATED.replace("{url}", process.env["NEXT_PUBLIC_DASHBOARD_URL"]),
+        content: lang.ADMIN.CMD_DEPRECATED.replace(
+          "{url}",
+          process.env["NEXT_PUBLIC_DASHBOARD_URL"],
+        ),
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

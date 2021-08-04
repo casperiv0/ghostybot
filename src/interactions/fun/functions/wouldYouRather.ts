@@ -14,7 +14,12 @@ export async function wouldYouRather(
   const embed = bot.utils
     .baseEmbed(interaction)
     .setTitle(data.title)
-    .setDescription(`${lang.GAMES.WYR_QUESTIONS.replace("{question1}", reply1.question).replace("{question2}", reply2.question)}\n\n\n${data.description || ""}`)
+    .setDescription(
+      `${lang.GAMES.WYR_QUESTIONS.replace("{question1}", reply1.question).replace(
+        "{question2}",
+        reply2.question,
+      )}\n\n\n${data.description || ""}`,
+    )
     .addField(lang.GAMES.VOTES, bot.utils.formatNumber(data.total_votes), true);
 
   if (data.author) {

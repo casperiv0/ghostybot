@@ -82,7 +82,10 @@ export async function spotify(
       return interaction.editReply({ embeds: [embed] });
     }
     case "playlist": {
-      const length = data.tracks.length <= 10 ? "" : lang.UTIL.SPOT_MORE_TRACKS.replace("{tracks - 10}", data.tracks.length - 10);
+      const length =
+        data.tracks.length <= 10
+          ? ""
+          : lang.UTIL.SPOT_MORE_TRACKS.replace("{tracks - 10}", data.tracks.length - 10);
 
       const tracks =
         (data.tracks as any[])

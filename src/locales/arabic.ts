@@ -414,7 +414,8 @@ const LANG: typeof import("./english").default = {
     C_NOT_FOUND: "City: **{query}** was not found!",
     MDN_NOT_FOUND: "No results found for that query",
     UNKNOWN: "Unknown",
-    PASTE_INVALID_FORMAT: "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
+    PASTE_INVALID_FORMAT:
+      "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
     INVALID_COLOR: "Invalid color HEX",
     SENT_SUG: "Sent suggestion 👍",
     ALREADY_VERIFED: "You are already verified",
@@ -839,7 +840,7 @@ const LANG: typeof import("./english").default = {
       SOUTH_EAST: "South East",
       SOUTH_WEST: "South West",
       WEST: "West",
-      NORTH_WEST: "North West"
+      NORTH_WEST: "North West",
     },
   },
   INVITE: {

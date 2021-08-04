@@ -72,8 +72,7 @@ export default class TempRoleCommand extends Command {
       });
 
       return message.channel.send({
-        content: lang.ADMIN.ADDED_ROLE_TO
-          .replace("{roleName}", role.name)
+        content: lang.ADMIN.ADDED_ROLE_TO.replace("{roleName}", role.name)
           .replace("{time}", time)
           .replace("{userTag}", needsRole.user.tag),
       });

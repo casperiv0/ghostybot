@@ -19,7 +19,10 @@ export default class AddCmdCommand extends Command {
 
     try {
       return message.channel.send({
-        content: lang.ADMIN.CMD_DEPRECATED.replace("{url}", process.env["NEXT_PUBLIC_DASHBOARD_URL"]),
+        content: lang.ADMIN.CMD_DEPRECATED.replace(
+          "{url}",
+          process.env["NEXT_PUBLIC_DASHBOARD_URL"],
+        ),
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

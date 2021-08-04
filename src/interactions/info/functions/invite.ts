@@ -46,7 +46,9 @@ export async function inviteInfo(
       lang.UTIL.GENERAL_INFO,
       `
 **${lang.UTIL.USES}:**: ${usesStr}
-**${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${invite.guild?.id ?? lang.UTIL.UNKNOWN})
+**${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${
+        invite.guild?.id ?? lang.UTIL.UNKNOWN
+      })
 **${lang.UTIL.CHANNEL}:** ${invite.channel.name}
 **${lang.UTIL.INVITER}:** ${inviter}
       `,
