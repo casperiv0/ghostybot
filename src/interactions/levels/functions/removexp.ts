@@ -40,6 +40,9 @@ export async function removeXP(
   });
 
   await interaction.reply({
-    content: `Successfully removed **${amount}**XP from **${user.tag}**`,
+    content: lang.LEVELS.REMOVED_XP.replace("{amount}", amount.toString()).replace(
+      "{userTag}",
+      user.tag,
+    ),
   });
 }

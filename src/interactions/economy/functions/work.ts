@@ -23,7 +23,7 @@ export async function work(
 
     interaction.reply({
       ephemeral: true,
-      content: `You have already worked recently. Check back ${time(dateTime, "R")}`,
+      content: lang.ECONOMY.ALREADY_WORKED.replace("{time}", time(dateTime, "R")),
     });
   } else {
     const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];

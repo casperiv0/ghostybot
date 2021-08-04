@@ -31,8 +31,8 @@ export async function lyrics(
     });
   }
 
-  const songTitle = (data.title || np?.name) ?? "Unknown";
-  const songAuthor = (data.author || np?.uploader.name) ?? "Unknown";
+  const songTitle = (data.title || np?.name) ?? lang.UTIL.UNKNOWN;
+  const songAuthor = (data.author || np?.uploader.name) ?? lang.UTIL.UNKNOWN;
   const songThumbnail = data.thumbnail?.genius || (np as Song).thumbnail;
   const url = data.links?.genius ?? np?.url;
   const songLyrics = data.lyrics;

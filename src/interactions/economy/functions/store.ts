@@ -10,8 +10,7 @@ export async function store(
 
   if (!guild?.store || !guild.store.length) {
     return interaction.reply({
-      content:
-        "There are no items in the store! Ask an admin to add items to the store via the dashboard.",
+      content: lang.ECONOMY.STORE_EMPTY,
     });
   }
 

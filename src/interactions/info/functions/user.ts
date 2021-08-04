@@ -16,7 +16,7 @@ export async function userInfo(
   }
 
   const { username, id, tag } = member.user;
-  const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : "Unknown";
+  const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
 
   const nickname = member.nickname || lang.GLOBAL.NONE;
 
@@ -37,10 +37,10 @@ export async function userInfo(
 
   const embed = bot.utils
     .baseEmbed(interaction)
-    .setTitle(`${username}'s info`)
+    .setTitle(lang.UTIL.USER_INFO.replace("{username}", username))
     .setDescription(
       `
-${bold(lang.MEMBER.ID)}: ${inlineCode(id)}
+${bold("ID")}: ${inlineCode(id)}
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
 ${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(member.user.createdAt), "F")}
@@ -48,7 +48,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(member.user.createdAt), "F")}
     )
 
     .addField(
-      "Guild info",
+      lang.UTIL.GUILD_INFO,
       `
 ${bold(lang.MEMBER.NICKNAME)}: ${nickname}
 ${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt}

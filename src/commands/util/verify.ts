@@ -25,7 +25,7 @@ export default class VerifyCommand extends Command {
           if (!guild.verify_data.role_id) return;
 
           if (member?.roles.cache.has(guild.verify_data.role_id)) {
-            const msg = await message.channel.send({ content: "You are already verified" });
+            const msg = await message.channel.send({ content: lang.UTIL.ALREADY_VERIFED });
 
             setTimeout(() => {
               msg.deletable && msg.delete();

@@ -19,8 +19,8 @@ export async function minecraft(
   await interaction.defer();
 
   const status = data.status === "online" ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
-  const players = data.players?.now.toString() ?? "Unknown";
-  const maxPlayers = data.players?.max.toString() ?? "Unknown";
+  const players = data.players?.now.toString() ?? lang.UTIL.UNKNOWN;
+  const maxPlayers = data.players?.max.toString() ?? lang.UTIL.UNKNOWN;
   const description = data.motd || lang.GLOBAL.NONE;
   const version = data.version;
   const port = data.port.toString();

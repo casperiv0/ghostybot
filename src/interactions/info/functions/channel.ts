@@ -17,14 +17,15 @@ export async function channelInfo(
 
   const topic = (channel as DJS.TextChannel)?.topic ?? lang.GLOBAL.NONE;
   const type = lang.UTIL.CHANNEL_TYPES[channel.type];
-  const createdAt = "createdAt" in channel ? time(new Date(channel.createdAt), "F") : "Unknown";
+  const createdAt =
+    "createdAt" in channel ? time(new Date(channel.createdAt), "F") : lang.UTIL.UNKNOWN;
 
   const embed = bot.utils
     .baseEmbed(interaction)
     .setTitle(`${(channel as DJS.TextChannel)?.name}`)
     .setDescription(
       `
-${bold(lang.MEMBER.ID)}: ${channel.id}
+${bold("ID")}: ${channel.id}
 ${bold(lang.BOT_OWNER.EVAL_TYPE)}: ${type}
 ${bold(lang.UTIL.CHANNEL_TOPIC)}: ${topic}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}

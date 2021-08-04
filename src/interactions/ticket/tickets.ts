@@ -128,7 +128,7 @@ export default class TicketsCommand extends Interaction {
 
     interaction.reply({
       ephemeral: true,
-      content: `Ticket was successfully created in ${channel?.toString()}`,
+      content: lang.TICKET.CREATED_IN.replace("{channel}", channel?.toString()!),
     });
   }
 

@@ -50,7 +50,6 @@ const LANG: typeof import("./english").default = {
     STATUS: "Status",
     CREATED_ON: "Erstellt am",
     JOINED_AT: "Beigetreten am",
-    ID: "Id",
     USERNAME: "Benutzername",
     NICKNAME: "Nickname",
     NOT_FOUND: "Mitglied nicht gefunden",
@@ -118,6 +117,7 @@ const LANG: typeof import("./english").default = {
     TOTAL_XP: "Alle Erfahrungspunkte",
     NEW_LEVEL: "Neues Level",
     LEVEL_UP: "Aufgelevelt!",
+    REMOVED_XP: "Successfully removed **{amount}**XP from **{userTag}**",
   },
   PERMISSIONS: {
     CREATE_INSTANT_INVITE: "Einladungen erstellen",
@@ -157,6 +157,7 @@ const LANG: typeof import("./english").default = {
   },
   MUSIC: {
     MUST_BE_IN_VC: "Du musst in einem Sprachkanal sein",
+    BOT_NOT_IN_VC: "Bot is not in this voice channel!",
     NO_QUEUE: "Momentan wird kein Lied abgespielt",
     NO_PREV_QUEUE: "Es wurde kein vorheriges Lied gefunden",
     QUEUE_CLEARED: "Die Warteschlange wurde geleert",
@@ -170,6 +171,7 @@ const LANG: typeof import("./english").default = {
     DURATION: "Dauer",
     PROVIDE_SEARCH: "Gib bitte eine Suche an",
     ADDED_TO_QUEUE: "{song} wurde zur Warteschlange hinzugefügt",
+    ADDED_TO_QUEUE2: "Song has been added to the queue",
     ADDED_PL_TO_QUEUE: "Playlist: {name} wurde zur Warteschlange hinzugefügt ({length} Lieder)",
     NOW_PLAYING: "Läuft jetzt:",
     REQUESTED_BY: "Von {user} angefordert",
@@ -184,7 +186,9 @@ const LANG: typeof import("./english").default = {
     NO_LIRYCS: "Kein Text für {songTitle} gefunden.",
     NOW: "Jetzt",
     MUSIC_STARTING: "Die Musik startet jetzt. Warte bitte kurz..",
-
+    INFORMATION: "Information",
+    UPLOADER: "Uploader",
+    LIKES: "Likes",
     ERRORS: {
       LIVE_NOT_SUPPORTED: "Live videos are not supported",
       JOIN_ERROR: "There was an error joining the voice channel, make sure it's not full!",
@@ -205,12 +209,12 @@ const LANG: typeof import("./english").default = {
     MONEY: "Geld",
     BANK: "Bank",
     BALANCE: "Kontostand",
-    DAILY_ERROR: "Du hast deinen Täglichen Bonus bereits eingesammelt",
-    WEEKLY_ERROR: "Du hast deinen Wöchentlichen Bonus bereits eingesammelt",
+    DAILY_ERROR: "You already collected your daily. Check back {time}",
+    WEEKLY_ERROR: "You already collected your weekly. Check back {time}",
     DAILY_SUCCESS: "Du hast deinen Täglichen Bonus von **{amount}** Münzen eingesammelt",
     WEEKLY_SUCCESS: "Du hast deinen Wöchentlichen Bonus von **{amount}** Münzen eingesammelt",
     STORE_EMPTY:
-      "Der Shop für diesen Server ist leer! Frag einen Moderator, etwas hinzuzufügen, mithilfe von`{prefix}store add <item>`",
+      "There are no items in the store! Ask an admin to add items to the store via the dashboard.",
     PROVIDE_ITEM_TO_BUY: "Gib bitte ein Item zum Kaufen an",
     NOT_ENOUGH_MONEY: "Du hast nicht so viel Geld",
     BUY_SUCCESS: "Erfolgreich **{item}** für **{price}** gekauft",
@@ -264,6 +268,7 @@ const LANG: typeof import("./english").default = {
     PROVIDE_AMOUNT: "Bitte gib eine Anzahl zum abheben an",
     NO_MONEY: "Duz hast nicht so viel Geld auf der Bank!",
     WORK: "Arbeite!",
+    ALREADY_WORKED: "You have already worked recently. Check back {time}",
   },
   GAMES: {
     BETS_ON: "{member_1} setzt auf {member_2}",
@@ -293,6 +298,8 @@ const LANG: typeof import("./english").default = {
     INVALID_INPUT: "Der Input muss etwas des Folgenden sein:",
     QUOTE: "Zitat",
     TAGS: "Tags",
+    VOTES: "Votes",
+    WYR_QUESTIONS: "{question1} **OR** {question2}",
   },
   UTIL: {
     PROCESSING_IMAGE: "⚙ Bild wird verarbeitet..",
@@ -369,6 +376,7 @@ const LANG: typeof import("./english").default = {
     NO_SUGG_CHANNEL:
       "Der Server hat keinen Standard Kanal für Vorschläge!\n Benutze `set suggest-channel <channel mention>` um den Standard Kanal dafür zu setzen.",
     UPTIME: "{member} ist seit {time} online",
+    BOT_UPTIME: "Bot has been up since: {botUpSince}",
     WEATHER: "Wetter",
     C_NOT_FOUND: "Stadt: **{query}** wurde nicht gefunden!",
     MAIN: "Standard",
@@ -407,11 +415,40 @@ const LANG: typeof import("./english").default = {
       GUILD_STORE: "Shopkanal",
       GUILD_CATEGORY: "Kategoriekanal",
     },
-
     TOTAL_TRACKS: "Alle Lieder",
     RELEASE_DATE: "Erscheinungdatum",
     HEX_COLOR: "HEX Color",
     MDN_NOT_FOUND: "No results found for that query",
+    UNKNOWN: "Unknown",
+    PASTE_INVALID_FORMAT:
+      "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
+    INVALID_COLOR: "Invalid color HEX",
+    SENT_SUG: "Sent suggestion 👍",
+    ALREADY_VERIFED: "You are already verified",
+    READ_MORE: "read more",
+    EMOJI_NOT_FOUND: "Emoji can only be a custom emoji or the emoji was not found",
+    EMOJI_INFO: "Emoji info",
+    INVALID_PERMS: "Invalid Permissions",
+    CREATED_AT: "Created At",
+    ACCESSIBLE_BY: "Accessible By",
+    GENERAL_INFO: "General Info",
+    USES: "Uses",
+    NO_DESCRIPTION: "No description",
+    GUILD: "Guild",
+    CHANNEL: "Channel",
+    INVITER: "Inviter",
+    INVITE: "Invite",
+    ROLE_MENTION: "Role mention",
+    SPOT_ARTISTS: "Artists",
+    SPOT_ALBUM: "Album",
+    SPOT_GENRES: "Genres",
+    SPOT_TOP: "Top 10 tracks",
+    SPOT_TRACKS: "Tracks",
+    SPOT_MORE_TRACKS: "{tracks - 10} more tracks",
+    USER_INFO: "{username}'s info",
+    GUILD_INFO: "Guild info",
+    TEMPERATURE: "Temperature",
+    MY_PING: "My ping is `{ping}`ms",
   },
   BOT: {
     GUILDS: "Server",
@@ -434,11 +471,13 @@ const LANG: typeof import("./english").default = {
     USED_SINCE_UP: "Seit Anfang benutzt",
     TOTAL_USED_CMDS: "Insgesamt benutzt",
     LATENCY: "Verzögerung",
+    CLICK_HERE: "Click Here",
   },
   CONFIG: {
     OPTION_CMD_WORK: "{option} muss gegeben sein, damit der Befehl funktioniert.",
   },
   HELP: {
+    HELP: "Help",
     CAT_NOT_EXIST: "Diese Kategorie existiert nicht",
     CMD_NOT_FOUND: "Befehl oder Pseudonym nicht gefunden",
     FULL_CMD_LIST: "Zeige die volle Befehlsliste",
@@ -457,6 +496,8 @@ const LANG: typeof import("./english").default = {
       "Das ist ein benutzerdefinierter Befehl, daher kann ich nicht mehr Informationen geben",
     BOT_PERMS: "Bot Berechtigungen",
     MEMBER_PERMS: "Berechtigungen der Mitglieder",
+    DEPRECATED:
+      "**Note: Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**",
     CATEGORIES: {
       admin: "Administrator Befehle",
       animal: "Tierbefehle",
@@ -505,6 +546,8 @@ const LANG: typeof import("./english").default = {
     REMOVE_SUCCESS: "Die Erinnerung erfolgreich entfernt",
     NO_REMINDER_SET: "Du hast keine aktiven Erinnerungen",
     INVALID_DATE: "Das ist kein gültiges Datum",
+    NOT_FOUND: "That reminder was not found",
+    UPDATED: "Updated reminder",
     NO_ACTIVE_REM: "Der Benutzer hat keine aktiven Erinnerungen",
     MESSAGE: "Nachricht:",
     TIME: "Zeit:",
@@ -668,6 +711,9 @@ const LANG: typeof import("./english").default = {
     ROLE_NOT_FOUND: "Diese Rolle wurde nicht gefunden",
     GUILD_CONFIG: "{guildName}'s Konfiguration",
     ADD_TO_IGNORE: "Erfolgreich {item} zu den ignorierten Kanälen hinzugefügt",
+    CMD_DEPRECATED:
+      "This command has been deprecated. You can add new slash commands instead via the dashboard: {URL}",
+    ADDED_ROLE_TO: "Successfully added the **{roleName}** role for **{time}** to {userTag}",
   },
   TICKET: {
     CANNOT_DO_ACTION:
@@ -677,6 +723,7 @@ const LANG: typeof import("./english").default = {
     ALREADY_ACTIVE_TICKET: "Du hast bereits ein Aktives Ticket",
     TICKET_FOR: "Support Ticket für: {member}",
     CREATED: "Ticket erfolgreich erstellt!",
+    CREATED_IN: "Ticket was successfully created in {channel}",
     NOT_ENABLED:
       "Tickets sind auf diesem Server nicht aktiviert! Ein Administrator kann diese in den Einstellungen von {botName} aktivieren",
     TICKET: "ticket-#{Id}",
@@ -705,7 +752,6 @@ const LANG: typeof import("./english").default = {
     REASON: "Grund",
     STARBOARD_MESSAGE: "{userTag}, diese Nachricht ist bereits in der Favoritenliste",
     STARBOARD_NOT_STAR: "{userTag}, du kannst keine leere Nachricht zu den Favoriten hinzufügen.",
-
     STICKER_CREATED: "New Sticker Created",
     STICKER_DELETED_MSG: "A sticker was deleted",
     STICKER_DELETED: "Sticker Deleted",
@@ -731,6 +777,15 @@ const LANG: typeof import("./english").default = {
     NEED_PERMS: "Du benötigst: {perms} Berechtigungen",
     MUST_BE_DATE: "Dieses Argument muss ein **Datum** sein. z.B.: `1h`, `2days`, `5min`",
     MUST_BE_NUMBER: "Dieses Argument muss eine **Nummer** sein.",
+  },
+  GIVEAWAY: {
+    NEW: "**🎉🎉 New Giveaway 🎉🎉**",
+    ENDED: "**GIVEAWAY ENDED**",
+    ALREADY_ENDED: "Giveaway already ended yet or was not found",
+    SUCCESS_ENDED: "Successfully ended giveaway",
+    SUCCESS_REROLLED: "Successfully re-rolled the giveaway",
+    STARTED: "Giveaway has started",
+    NOT_FOUND: "No giveaway found with id: {id}",
   },
   OTHER: {
     REGIONS: {
@@ -787,12 +842,21 @@ const LANG: typeof import("./english").default = {
       "Du kannst darauf vertrauen.",
       "Wie ich es sehe, ja.",
     ],
+    WIND_DIRECTIONS: {
+      NORTH: "North",
+      NORTH_EAST: "North East",
+      EAST: "East",
+      SOUTH: "South",
+      SOUTH_EAST: "South East",
+      SOUTH_WEST: "South West",
+      WEST: "West",
+      NORTH_WEST: "North West",
+    },
   },
   INVITE: {
     NOT_FOUND: "Diese Einladung wurde nicht gefunden.",
     NOT_EXPIRED_YET: "Diese Einladung ist noch nicht abgelaufen.",
     NOT_EXPIRE: "Diese Einladung läuft nicht ab",
-
     EXPIRATION: "Ablaufdatum",
     EXPIRES_AT: "Läuft ab am",
     EXPIRED_AT: "Abgelaufen am",
