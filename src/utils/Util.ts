@@ -589,7 +589,11 @@ export default class Util {
 
   hasSendPermissions(resolveable: DJS.Message | DJS.TextChannel) {
     const ch = "channel" in resolveable ? resolveable.channel : resolveable;
-    if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) return true;
+    if (!("permissionsFor" in ch)) return false;
+    if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) {
+      return true;
+    }
+
     return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
   }
 
