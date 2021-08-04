@@ -11,6 +11,7 @@ import { github } from "./functions/github";
 import { guildInfo } from "./functions/guild";
 import { inviteInfo } from "./functions/invite";
 import { ip } from "./functions/ip";
+import { minecraft } from "./functions/minecraft";
 import { npm } from "./functions/npm";
 import { playStore } from "./functions/playStore";
 import { pokemon } from "./functions/pokemon";
@@ -99,6 +100,10 @@ export default class InfoCommand extends Interaction {
         }
         case "weather": {
           await weather(this.bot, interaction, lang);
+          break;
+        }
+        case "minecraft": {
+          await minecraft(this.bot, interaction, lang);
           break;
         }
 

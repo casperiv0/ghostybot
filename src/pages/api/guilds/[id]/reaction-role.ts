@@ -110,13 +110,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         .catch(() => null)) as DJS.TextChannel | null;
 
       const message = await channel?.messages.fetch(reaction.message_id).catch(() => null);
-      if (!message) {
-        return res.status(404).json({
-          error: "Original message was not found",
-        });
-      }
-
-      message.deletable && (await message.delete());
+      message?.deletable && (await message.delete());
 
       await ReactionsModel.findByIdAndDelete(id);
 

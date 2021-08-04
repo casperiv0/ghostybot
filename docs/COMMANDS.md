@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 122 slash commands.
+GhostyBot has a total of 123 slash commands.
 
 ## Detailed command list
 
@@ -754,6 +754,16 @@ GhostyBot has a total of 122 slash commands.
 **Choices:** N/A
 
 **Options:** type (STRING / Required), query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> minecraft
+
+**Description:** Get info about a minecraft server
+
+**Choices:** N/A
+
+**Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
