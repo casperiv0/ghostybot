@@ -33,7 +33,7 @@ export async function interactionPaginate(
   let currentPage: Message | null = null;
   const v = await interaction.fetchReply();
   if (!(v instanceof Message)) {
-    currentPage = new Message(bot, v, interaction.channel as TextChannel);
+    currentPage = new Message(bot, v);
   } else {
     currentPage = v;
   }
