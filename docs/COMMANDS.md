@@ -137,6 +137,26 @@ GhostyBot has a total of 135 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## admin-> warnings -> view
+
+**Description:** View warnings of a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> sticky -> remove
+
+**Description:** Remove a warning from a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
 ## anime -> baka
 
 **Description:** Baka?

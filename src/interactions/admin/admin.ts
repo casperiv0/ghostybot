@@ -16,6 +16,8 @@ import { setSticky } from "./functions/setSticky";
 import { removeSticky } from "./functions/removeSticky";
 import { stealEmoji } from "./functions/stealEmoji";
 import { unban } from "./functions/unban";
+import { warnings } from "./functions/warnings";
+import { removeWarning } from "./functions/removeWarning";
 
 export default class AdminCommand extends Interaction {
   constructor(bot: Bot) {
@@ -81,6 +83,16 @@ export default class AdminCommand extends Interaction {
         }
 
         default: {
+          if (group === "warnings") {
+            if (command === "view") {
+              warnings(this.bot, interaction, lang);
+            }
+
+            if (command === "remove") {
+              removeWarning(this.bot, interaction, lang);
+            }
+          }
+
           if (group === "sticky") {
             if (command === "set") {
               setSticky(this.bot, interaction, lang);

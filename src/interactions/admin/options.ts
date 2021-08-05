@@ -172,6 +172,51 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
     ],
   },
   {
+    type: "SUB_COMMAND_GROUP",
+    name: "warnings",
+    description: "Manage warnings",
+    options: [
+      {
+        type: "SUB_COMMAND",
+        name: "view",
+        description: "View warnings of a user",
+        options: [
+          {
+            name: "user",
+            required: true,
+            description: "The user you want to see their warnings of",
+            type: "USER",
+          },
+          {
+            name: "warning-id",
+            required: false,
+            description: "The id of a warning",
+            type: "NUMBER",
+          },
+        ],
+      },
+      {
+        type: "SUB_COMMAND",
+        name: "remove",
+        description: "Remove a warning from a user",
+        options: [
+          {
+            name: "user",
+            required: true,
+            description: "The user you want to remove a warning of",
+            type: "USER",
+          },
+          {
+            name: "warning-id",
+            required: true,
+            description: "The id of a warning",
+            type: "NUMBER",
+          },
+        ],
+      },
+    ],
+  },
+  {
     type: "SUB_COMMAND",
     name: "steal-emoji",
     description: "Add an emoji from a different guild to this guild",
