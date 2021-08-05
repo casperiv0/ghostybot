@@ -19,13 +19,18 @@ function mapDetailedCommands(cmds: Commands) {
 }
 
 function subCommandsItem(command: Interaction) {
-  const subCommands = command.options.options?.filter((v) => v.type === "SUB_COMMAND");
+  const subCommands = command.options.options?.filter((v) => v.type === "SUB_COMMAND") ?? [];
+  const groupCommands = parseGroupCommands(command) ?? [];
 
-  return subCommands?.map(subCommandItem.bind(null, command)).join("\n");
+  return [...subCommands, ...groupCommands]?.map(subCommandItem.bind(null, command)).join("\n");
 }
 
 function subCommandItem(cmd: Interaction, value: ApplicationCommandOptionData) {
-  return `## ${cmd.name} -> ${value.name}
+  const groupName = cmd.options.options?.find(
+    (v) => v.type === "SUB_COMMAND_GROUP" && v.options?.some((v) => v.name === value.name),
+  );
+
+  return `## ${cmd.name}${groupName ? `-> ${groupName.name}` : ""} -> ${value.name}
 
 **Description:** ${value.description}
 
@@ -59,4 +64,14 @@ ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} slash c
 ${detailedCommandList}`;
 
   fs.writeFileSync(TARGET_FILE, DEFAULT);
+}
+
+function parseGroupCommands(command: Interaction) {
+  const groupCommands = command.options.options
+    ?.filter((v) => v.type === "SUB_COMMAND_GROUP")
+    ?.flatMap((v) => {
+      return v.options?.filter((v) => v.type === "SUB_COMMAND");
+    });
+
+  return groupCommands as ApplicationCommandOptionData[] | undefined;
 }

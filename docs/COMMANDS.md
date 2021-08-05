@@ -117,6 +117,26 @@ GhostyBot has a total of 135 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## admin-> sticky -> set
+
+**Description:** Set a new sticky message for the current channel
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> sticky -> remove
+
+**Description:** Remove the sticky message for the current channel
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
 ## anime -> baka
 
 **Description:** Baka?
