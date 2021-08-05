@@ -14,6 +14,8 @@ import { unlockChannel } from "./functions/unlockChannel";
 import { say } from "./functions/say";
 import { setSticky } from "./functions/setSticky";
 import { removeSticky } from "./functions/removeSticky";
+import { stealEmoji } from "./functions/stealEmoji";
+import { unban } from "./functions/unban";
 
 export default class AdminCommand extends Interaction {
   constructor(bot: Bot) {
@@ -63,6 +65,14 @@ export default class AdminCommand extends Interaction {
         }
         case "unlock-channel": {
           await unlockChannel(this.bot, interaction, lang);
+          break;
+        }
+        case "steal-emoji": {
+          await stealEmoji(this.bot, interaction, lang);
+          break;
+        }
+        case "unban": {
+          await unban(this.bot, interaction, lang);
           break;
         }
         case "say": {

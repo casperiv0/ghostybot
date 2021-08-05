@@ -171,4 +171,36 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "steal-emoji",
+    description: "Add an emoji from a different guild to this guild",
+    options: [
+      {
+        name: "emoji",
+        type: "STRING",
+        required: true,
+        description: "The emoji you want to add",
+      },
+      {
+        name: "name",
+        type: "STRING",
+        required: true,
+        description: "The name of the emoji",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "unban",
+    description: "Unban a member from the current guild",
+    options: [
+      {
+        name: "user-id",
+        type: "STRING",
+        required: true,
+        description: "The user id of the banned member",
+      },
+    ],
+  },
 ];
