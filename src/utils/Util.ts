@@ -405,7 +405,7 @@ export default class Util {
 
   async removeSticky(channelId: string) {
     try {
-      await StickyModel.findOneAndDelete({ channel_id: channelId });
+      await StickyModel.deleteMany({ channel_id: channelId });
     } catch (e) {
       console.error(e);
     }

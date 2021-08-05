@@ -11,6 +11,9 @@ import { unMute } from "./functions/unMute";
 import { warn } from "./functions/warn";
 import { lockChannel } from "./functions/lockChannel";
 import { unlockChannel } from "./functions/unlockChannel";
+import { say } from "./functions/say";
+import { setSticky } from "./functions/setSticky";
+import { removeSticky } from "./functions/removeSticky";
 
 export default class AdminCommand extends Interaction {
   constructor(bot: Bot) {
@@ -27,6 +30,7 @@ export default class AdminCommand extends Interaction {
 
     try {
       const command = interaction.options.getSubcommand(true);
+      const group = interaction.options.getSubcommandGroup(false);
 
       switch (command) {
         case "ban": {
@@ -61,8 +65,22 @@ export default class AdminCommand extends Interaction {
           await unlockChannel(this.bot, interaction, lang);
           break;
         }
-        default:
+        case "say": {
+          await say(this.bot, interaction, lang);
           break;
+        }
+
+        default: {
+          if (group === "sticky") {
+            if (command === "set") {
+              setSticky(this.bot, interaction, lang);
+            }
+
+            if (command === "remove") {
+              removeSticky(this.bot, interaction, lang);
+            }
+          }
+        }
       }
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

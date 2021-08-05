@@ -102,7 +102,7 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
         required: true,
       },
       {
-        name: "user",
+        name: "reason",
         description: "The warn reason",
         type: "STRING",
         required: false,
@@ -126,5 +126,49 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
     type: "SUB_COMMAND",
     name: "unlock-channel",
     description: "Unlock the current channel",
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "say",
+    description: "Let the bot say something",
+    options: [
+      {
+        name: "text",
+        type: "STRING",
+        required: true,
+        description: "The text",
+      },
+      {
+        name: "embed",
+        type: "BOOLEAN",
+        required: false,
+        description: "Send the text in an embed",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND_GROUP",
+    name: "sticky",
+    description: "Manage stickies",
+    options: [
+      {
+        type: "SUB_COMMAND",
+        name: "set",
+        description: "Set a new sticky message for the current channel",
+        options: [
+          {
+            name: "text",
+            required: true,
+            description: "The text you want as a sticky message",
+            type: "STRING",
+          },
+        ],
+      },
+      {
+        type: "SUB_COMMAND",
+        name: "remove",
+        description: "Remove the sticky message for the current channel",
+      },
+    ],
   },
 ];

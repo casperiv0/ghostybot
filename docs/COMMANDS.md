@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 129 slash commands.
+GhostyBot has a total of 133 slash commands.
 
 ## Detailed command list
 
@@ -54,6 +54,46 @@ GhostyBot has a total of 129 slash commands.
 **Choices:** N/A
 
 **Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> warn
+
+**Description:** Warn a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> lock-channel
+
+**Description:** Lock the current channel
+
+**Choices:** N/A
+
+**Options:** reason (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unlock-channel
+
+**Description:** Unlock the current channel
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> say
+
+**Description:** Let the bot say something
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required), embed (BOOLEAN / Optional)
 
 [Back to top](#ghostybot-command-list)
 

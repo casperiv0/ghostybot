@@ -1,11 +1,4 @@
-import {
-  CommandInteraction,
-  Message,
-  MessageEmbed,
-  MessageReaction,
-  TextChannel,
-  User,
-} from "discord.js";
+import { CommandInteraction, Message, MessageEmbed, MessageReaction, User } from "discord.js";
 import ms from "ms";
 import Bot from "../structures/Bot";
 

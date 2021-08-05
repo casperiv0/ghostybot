@@ -1,13 +1,13 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
-export async function deleteMessages(
+export async function setSticky(
   bot: Bot,
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
   const perms = bot.utils.formatMemberPermissions(
-    [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+    [DJS.Permissions.FLAGS.MANAGE_GUILD],
     interaction,
     lang,
   );
@@ -24,19 +24,27 @@ export async function deleteMessages(
     return interaction.reply({ embeds: [botPerms], ephemeral: true });
   }
 
-  const amount = interaction.options.getNumber("amount", true);
+  const text = interaction.options.getString("text", true);
 
-  if (amount < 1 || amount > 100) {
+  if (text.length > 1800) {
     return interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.DELETE_PROVIDE_AMOUNT,
+      content: lang.ADMIN.STICKY_LONG,
     });
   }
 
+  const msg = `${lang.ADMIN.STICKY_READ}\n\n${text}`;
+
   await interaction.reply({
+    content: "Done!",
     ephemeral: true,
-    content: lang.ADMIN.DELETE_DELETED.replace("{amount}", amount.toString()),
   });
 
-  await (interaction.channel as any)?.bulkDelete(amount);
+  const channel = (await interaction.guild?.channels
+    .fetch(interaction.channelId)
+    .catch(() => null)) as DJS.TextChannel | null;
+
+  const stickyMessage = await channel?.send({ content: msg });
+
+  await bot.utils.addSticky(stickyMessage?.id!, interaction.channelId, msg);
 }

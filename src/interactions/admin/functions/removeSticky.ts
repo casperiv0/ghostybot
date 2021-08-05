@@ -1,13 +1,13 @@
 import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
-export async function deleteMessages(
+export async function removeSticky(
   bot: Bot,
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
   const perms = bot.utils.formatMemberPermissions(
-    [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+    [DJS.Permissions.FLAGS.MANAGE_GUILD],
     interaction,
     lang,
   );
@@ -24,19 +24,10 @@ export async function deleteMessages(
     return interaction.reply({ embeds: [botPerms], ephemeral: true });
   }
 
-  const amount = interaction.options.getNumber("amount", true);
-
-  if (amount < 1 || amount > 100) {
-    return interaction.reply({
-      ephemeral: true,
-      content: lang.ADMIN.DELETE_PROVIDE_AMOUNT,
-    });
-  }
+  await bot.utils.removeSticky(interaction.channelId);
 
   await interaction.reply({
     ephemeral: true,
-    content: lang.ADMIN.DELETE_DELETED.replace("{amount}", amount.toString()),
+    content: lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${interaction.channel}`),
   });
-
-  await (interaction.channel as any)?.bulkDelete(amount);
 }

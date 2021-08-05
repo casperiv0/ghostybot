@@ -34,7 +34,7 @@ export default class InteractionHandler {
 
         if (process.env.DEV_MODE === "true") {
           const g = await this.bot.guilds.fetch("841737902065057823");
-          g.commands.create(data);
+          await g.commands.create(data);
         } else {
           await this.bot.application?.commands.create(data);
         }
