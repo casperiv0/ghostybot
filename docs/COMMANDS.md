@@ -3,9 +3,159 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 123 slash commands.
+GhostyBot has a total of 135 slash commands.
 
 ## Detailed command list
+
+## admin -> ban
+
+**Description:** Ban a user from the current guild
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> kick
+
+**Description:** Kick a user from the current guild
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> delete
+
+**Description:** Delete up to 100 messages within 14 days
+
+**Choices:** N/A
+
+**Options:** amount (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> mute
+
+**Description:** Mute/tempmute a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unmute
+
+**Description:** Unmute a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> warn
+
+**Description:** Warn a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> lock-channel
+
+**Description:** Lock the current channel
+
+**Choices:** N/A
+
+**Options:** reason (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unlock-channel
+
+**Description:** Unlock the current channel
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> say
+
+**Description:** Let the bot say something
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required), embed (BOOLEAN / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> steal-emoji
+
+**Description:** Add an emoji from a different guild to this guild
+
+**Choices:** N/A
+
+**Options:** emoji (STRING / Required), name (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unban
+
+**Description:** Unban a member from the current guild
+
+**Choices:** N/A
+
+**Options:** user-id (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> sticky -> set
+
+**Description:** Set a new sticky message for the current channel
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> sticky -> remove
+
+**Description:** Remove the sticky message for the current channel
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> warnings -> view
+
+**Description:** View warnings of a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> sticky -> remove
+
+**Description:** Remove a warning from a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+
+[Back to top](#ghostybot-command-list)
 
 ## anime -> baka
 

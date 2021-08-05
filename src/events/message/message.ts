@@ -1,9 +1,10 @@
 import * as DJS from "discord.js";
 import ms from "ms";
-import { saveCommands } from "@commands/admin/disable";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import Bot from "structures/Bot";
 import Event from "structures/Event";
+
+export const saveCommands = ["help", "enable", "disable"];
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {

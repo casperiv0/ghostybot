@@ -405,7 +405,7 @@ export default class Util {
 
   async removeSticky(channelId: string) {
     try {
-      await StickyModel.findOneAndDelete({ channel_id: channelId });
+      await StickyModel.deleteMany({ channel_id: channelId });
     } catch (e) {
       console.error(e);
     }
@@ -549,6 +549,26 @@ export default class Util {
     if (!message.guild?.me) return false;
 
     return message.guild.me.voice.channelId === voiceChannelId;
+  }
+
+  formatBotPermissions(
+    permissions: bigint[],
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
+    const neededPerms: bigint[] = [];
+
+    permissions.forEach((perm) => {
+      if (
+        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!)?.has(perm)
+      ) {
+        neededPerms.push(perm);
+      }
+    });
+
+    if (neededPerms.length > 0) {
+      return this.errorEmbed(neededPerms, interaction, lang.PERMISSIONS);
+    }
   }
 
   formatMemberPermissions(

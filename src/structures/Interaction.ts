@@ -14,7 +14,8 @@ export type InteractionCategories =
   | "util"
   | "image"
   | "anime"
-  | "levels";
+  | "levels"
+  | "admin";
 
 export interface InteractionOptions {
   name: string;
