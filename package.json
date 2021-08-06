@@ -54,6 +54,7 @@
     "discord.js": "^13.0.0",
     "distube": "^3.0.0-alpha.17",
     "dotenv": "^10.0.0",
+    "erlpack": "github:GingkathFox/erlpack",
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.0",
     "glob": "^7.1.7",
