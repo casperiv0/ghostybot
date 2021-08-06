@@ -50,7 +50,7 @@
     "dayjs": "^1.10.6",
     "discord-giveaways": "github:Dev-CasperTheGhost/discord-giveaways#discord.js-v13",
     "discord-logs": "^2.0.0",
-    "discord-starboards": "file:../../forks/discord-starboards/",
+    "discord-starboards": "github:Dev-CasperTheGhost/discord-starboards#djs-v13",
     "discord.js": "^13.0.0",
     "distube": "^3.0.0-alpha.17",
     "dotenv": "^10.0.0",
