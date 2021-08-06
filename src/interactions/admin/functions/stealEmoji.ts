@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { parse } from "twemoji-parser";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 export async function stealEmoji(
   bot: Bot,

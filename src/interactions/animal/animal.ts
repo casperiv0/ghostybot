@@ -1,6 +1,6 @@
 import { CommandInteraction } from "discord.js";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 import { animalChoices, Choice } from "./choices";
 
 export default class AnimalCommand extends Interaction {

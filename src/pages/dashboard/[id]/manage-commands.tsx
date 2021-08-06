@@ -5,9 +5,9 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import fetch from "node-fetch";
-import AlertMessage from "@components/AlertMessage";
-import Guild from "types/Guild";
-import Loader from "@components/Loader";
+import { AlertMessage } from "@components/AlertMessage";
+import { Guild } from "types/Guild";
+import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

@@ -1,8 +1,8 @@
-import Bot from "structures/Bot";
-import Event from "structures/Event";
-import HelperHandler from "handlers/HelperHandler";
-import InteractionHandler from "handlers/InteractionHandler";
-import CommandHandler from "handlers/CommandHandler";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
+import { HelperHandler } from "handlers/HelperHandler";
+import { InteractionHandler } from "handlers/InteractionHandler";
+import { CommandHandler } from "handlers/CommandHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {

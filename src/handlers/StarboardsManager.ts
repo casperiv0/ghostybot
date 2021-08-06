@@ -17,7 +17,7 @@ export interface Starboard {
   allowNsfw: boolean;
 }
 
-class MongStarboardsManager extends StarboardsManager {
+export class MongoStarboardsManager extends StarboardsManager {
   async getAllStarboards() {
     return StarboardModel.find();
   }
@@ -35,5 +35,3 @@ class MongStarboardsManager extends StarboardsManager {
     return true;
   }
 }
-
-export default MongStarboardsManager;

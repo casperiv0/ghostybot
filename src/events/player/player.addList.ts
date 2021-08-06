@@ -1,6 +1,6 @@
 import { Playlist, Queue } from "distube";
-import Bot from "structures/Bot";
-import Event from "structures/Event";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
 
 export default class PlayerAddListEvent extends Event {
   constructor(bot: Bot) {

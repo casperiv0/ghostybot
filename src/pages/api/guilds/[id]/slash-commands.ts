@@ -1,6 +1,6 @@
 import DJS from "discord.js";
 import { NextApiResponse } from "next";
-import ApiRequest from "types/ApiRequest";
+import { ApiRequest } from "types/ApiRequest";
 import { Constants } from "utils/constants";
 
 const botSlashCommands = ["help", "botinfo", "ping"];

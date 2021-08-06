@@ -1,5 +1,5 @@
 import { NextApiResponse } from "next";
-import ApiRequest from "types/ApiRequest";
+import { ApiRequest } from "types/ApiRequest";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, headers } = req;

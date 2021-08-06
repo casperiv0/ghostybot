@@ -1,12 +1,12 @@
 import { StarboardEvents } from "discord-starboards";
 import glob from "glob";
-import Bot from "structures/Bot";
-import Event from "structures/Event";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
 import { resolveFile, validateFile } from "../utils/HandlersUtil";
 
 const types = ["channel", "client", "guild", "message", "player", "sb"];
 
-export default class EventHandler {
+export class EventHandler {
   bot: Bot;
 
   constructor(bot: Bot) {

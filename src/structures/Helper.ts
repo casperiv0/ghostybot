@@ -1,6 +1,6 @@
-import Bot from "./Bot";
+import { Bot } from "./Bot";
 
-export default abstract class Helper {
+export abstract class Helper {
   bot: Bot;
   name: string;
 

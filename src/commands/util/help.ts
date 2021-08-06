@@ -1,7 +1,7 @@
 import { Message, MessageEmbed, Permissions } from "discord.js";
 import { hyperlink, inlineCode } from "@discordjs/builders";
-import Command from "structures/Command";
-import Bot from "structures/Bot";
+import { Command } from "structures/Command";
+import { Bot } from "structures/Bot";
 import paginate from "utils/paginate";
 
 const REGULAR_CATEGORIES = ["admin", "util"];

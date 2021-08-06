@@ -1,5 +1,5 @@
 import { connect } from "mongoose";
-import Logger from "utils/Logger";
+import { logger } from "utils/logger";
 
 async function database() {
   const uri = process.env["MONGO_DB_URI"];
@@ -16,12 +16,12 @@ async function database() {
       keepAliveInitialDelay: 300000,
     });
 
-    Logger.log("database", "Connected to mongodb");
+    logger.log("database", "Connected to mongodb");
   } catch (e) {
     console.error(e);
     console.error(e.reason);
 
-    Logger.error("database", e?.stack || e);
+    logger.error("database", e?.stack || e);
   }
 }
 

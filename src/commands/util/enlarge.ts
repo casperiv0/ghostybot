@@ -1,7 +1,7 @@
 import { Message, Util } from "discord.js";
 import { parse } from "twemoji-parser";
-import Command from "structures/Command";
-import Bot from "structures/Bot";
+import { Command } from "structures/Command";
+import { Bot } from "structures/Bot";
 
 export default class EnlargeCommand extends Command {
   constructor(bot: Bot) {

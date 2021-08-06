@@ -5,11 +5,11 @@ import Link from "next/link";
 import { v4 } from "uuid";
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Guild from "types/Guild";
-import Loader from "@components/Loader";
-import AlertMessage from "@components/AlertMessage";
+import { Guild } from "types/Guild";
+import { Loader } from "@components/Loader";
+import { AlertMessage } from "@components/AlertMessage";
 import { IReaction } from "models/Reactions.model";
-import ReactionRoleField from "@/src/dashboard/components/reaction-role/ReactionRoleField";
+import { ReactionRoleField } from "@components/reaction-role/ReactionRoleField";
 import { State } from "./settings";
 import { useTranslation } from "next-i18next";
 

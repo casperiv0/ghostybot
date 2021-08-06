@@ -4,9 +4,9 @@ import { parseCookies } from "nookies";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import GuildData from "types/Guild";
-import AlertMessage from "@components/AlertMessage";
-import Loader from "@components/Loader";
+import { Guild as GuildData } from "types/Guild";
+import { AlertMessage } from "@components/AlertMessage";
+import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

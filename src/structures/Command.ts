@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import Bot from "./Bot";
+import { Bot } from "./Bot";
 
 export type CommandCategories =
   | "admin"
@@ -32,7 +32,7 @@ export interface CommandOptions {
   ownerOnly?: boolean;
 }
 
-export default abstract class Command {
+export abstract class Command {
   bot: Bot;
   name: string;
   options: CommandOptions;

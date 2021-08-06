@@ -1,6 +1,6 @@
-import Bot from "./Bot";
+import { Bot } from "./Bot";
 
-export default abstract class Event {
+export abstract class Event {
   bot: Bot;
   name: string;
 

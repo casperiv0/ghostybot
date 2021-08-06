@@ -3,7 +3,7 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Loader from "./Loader";
+import { Loader } from "./Loader";
 import { useTranslation } from "react-i18next";
 
 export interface User {
@@ -12,7 +12,7 @@ export interface User {
   avatar: string | null;
 }
 
-const Navbar = () => {
+export const Navbar = () => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
   const [user, setUser] = React.useState<User | null>(null);
@@ -97,5 +97,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

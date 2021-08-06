@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import UserModel, { IUser } from "models/User.model";
 import places from "assets/json/places.json";
 

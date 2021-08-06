@@ -1,6 +1,6 @@
 import { CommandInteraction, Message, MessageEmbed, MessageReaction, User } from "discord.js";
 import ms from "ms";
-import Bot from "../structures/Bot";
+import { Bot } from "structures/Bot";
 
 // if a user reacts with this emoji, the pagination will end
 const END_EMOJI = "🛑";

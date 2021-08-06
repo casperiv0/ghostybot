@@ -5,7 +5,7 @@ interface Props {
   message: string | React.ReactFragment;
 }
 
-const AlertMessage: React.FC<Props> = ({ type = "warning", message }: Props) => {
+export const AlertMessage: React.FC<Props> = ({ type = "warning", message }: Props) => {
   return (
     <div className={`alert-message alert-${type}`}>
       {type === "warning" ? <Warning /> : null}
@@ -15,5 +15,3 @@ const AlertMessage: React.FC<Props> = ({ type = "warning", message }: Props) => 
     </div>
   );
 };
-
-export default AlertMessage;

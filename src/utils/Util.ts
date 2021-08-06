@@ -1,14 +1,14 @@
 import * as DJS from "discord.js";
 import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import UserModel, { IUser, UserData } from "models/User.model";
 import WarningModal, { IWarning } from "models/Warning.model";
 import GuildModel, { GuildData, IGuild } from "models/Guild.model";
-import ApiRequest from "types/ApiRequest";
+import { ApiRequest } from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
 
-export default class Util {
+export class Util {
   bot: Bot;
 
   constructor(bot: Bot) {

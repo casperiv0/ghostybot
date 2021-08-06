@@ -1,10 +1,10 @@
-import { Reminder } from "@/src/models/User.model";
-import { interactionPaginate } from "@/src/utils/interactionPaginate";
+import { Reminder } from "models/User.model";
+import { interactionPaginate } from "utils/interactionPaginate";
 import { time } from "@discordjs/builders";
 import { ApplicationCommandOptionData, CommandInteraction, MessageEmbed } from "discord.js";
 import ms from "ms";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 import { v4 } from "uuid";
 
 const BASE_OPTIONS: ApplicationCommandOptionData[] = [

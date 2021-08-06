@@ -4,7 +4,7 @@ interface Props {
   onChange?: React.ChangeEventHandler;
 }
 
-const Switch: React.FC<Props> = (props: Props) => {
+export const Switch: React.FC<Props> = (props: Props) => {
   return (
     <label title={props.title || ""} className="switch">
       <input onChange={props.onChange} checked={props.checked} {...props} type="checkbox" />
@@ -12,5 +12,3 @@ const Switch: React.FC<Props> = (props: Props) => {
     </label>
   );
 };
-
-export default Switch;

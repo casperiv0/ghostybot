@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import * as React from "react";
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   const [locale, setLocale] = React.useState("");
   const router = useRouter();
   const { t } = useTranslation("footer");
@@ -35,5 +35,3 @@ const Footer: React.FC = () => {
     </footer>
   );
 };
-
-export default Footer;

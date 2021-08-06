@@ -1,4 +1,4 @@
-import logger from "utils/Logger";
+import { logger } from "utils/logger";
 import chalk from "chalk";
 
 interface EnvOptions {

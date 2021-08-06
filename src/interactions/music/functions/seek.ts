@@ -1,4 +1,4 @@
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import * as DJS from "discord.js";
 import ms from "ms";
 

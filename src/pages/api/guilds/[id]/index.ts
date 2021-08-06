@@ -1,8 +1,8 @@
 import DJS, { Role, Snowflake } from "discord.js";
 import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
-import ApiRequest from "types/ApiRequest";
-import ReactionsModel, { IReaction } from "@/src/models/Reactions.model";
+import { ApiRequest } from "types/ApiRequest";
+import ReactionsModel, { IReaction } from "models/Reactions.model";
 import { APIChannel } from "discord-api-types";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {

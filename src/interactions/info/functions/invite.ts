@@ -1,4 +1,4 @@
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import { time } from "@discordjs/builders";
 import * as DJS from "discord.js";
 

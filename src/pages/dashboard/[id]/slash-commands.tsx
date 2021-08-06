@@ -7,13 +7,13 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Logger from "utils/Logger";
+import { logger } from "utils/logger";
 import { openModal } from "@components/modal";
-import CreateCommandModal from "@components/modal/create-command";
-import EditCommandModal from "@components/modal/edit-command";
-import AlertMessage from "@components/AlertMessage";
-import Guild from "types/Guild";
-import Loader from "@components/Loader";
+import { CreateCommandModal } from "@components/modal/create-command";
+import { EditCommandModal } from "@components/modal/edit-command";
+import { AlertMessage } from "@components/AlertMessage";
+import { Guild } from "types/Guild";
+import { Loader } from "@components/Loader";
 
 interface Props {
   guild: Guild | null;
@@ -64,7 +64,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
       setMessage(data?.error);
     } catch (e) {
-      Logger.error("delete_command", e);
+      logger.error("delete_command", e);
     }
   }
 

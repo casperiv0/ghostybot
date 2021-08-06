@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import dayJs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import { hyperlink, inlineCode } from "@discordjs/builders";
 dayJs.extend(duration);
 

@@ -5,10 +5,10 @@ import Head from "next/head";
 import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import AlertMessage from "@components/AlertMessage";
+import { AlertMessage } from "@components/AlertMessage";
 import categories from "assets/json/categories.json";
-import Guild from "types/Guild";
-import Loader from "@components/Loader";
+import { Guild } from "types/Guild";
+import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 

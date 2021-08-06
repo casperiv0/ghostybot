@@ -1,6 +1,6 @@
 import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 export async function profile(
   bot: Bot,

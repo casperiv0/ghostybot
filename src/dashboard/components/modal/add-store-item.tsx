@@ -1,16 +1,16 @@
 import * as React from "react";
-import Modal, { closeModal } from "./index";
-import Logger from "utils/Logger";
-import AlertMessage from "../AlertMessage";
+import { Modal, closeModal } from "./index";
+import { logger } from "utils/logger";
+import { AlertMessage } from "../AlertMessage";
 import { useRouter } from "next/router";
-import Guild from "types/Guild";
+import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
 }
 
-const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
+export const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
   const [name, setName] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
@@ -43,7 +43,7 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
 
       setResponse(data);
     } catch (e) {
-      Logger.error("add_store_item", e);
+      logger.error("add_store_item", e);
     }
   }
 
@@ -82,5 +82,3 @@ const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
     </Modal>
   );
 };
-
-export default AddStoreItem;

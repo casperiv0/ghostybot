@@ -1,8 +1,8 @@
-import Bot from "./structures/Bot";
+import { Bot } from "structures/Bot";
 import { createServer } from "http";
 import { parse } from "url";
 import next from "next";
-import ApiRequest from "./interfaces/ApiRequest";
+import { ApiRequest } from "types/ApiRequest";
 
 export default (bot: Bot) => {
   const dev = process.env["DEV_MODE"] === "true";

@@ -1,16 +1,16 @@
 import * as React from "react";
-import Modal, { closeModal } from "./index";
-import Logger from "utils/Logger";
-import AlertMessage from "../AlertMessage";
+import { Modal, closeModal } from "./index";
+import { logger } from "utils/logger";
+import { AlertMessage } from "../AlertMessage";
 import { useRouter } from "next/router";
-import Guild from "types/Guild";
+import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
 
 interface Props {
   guild: Guild;
 }
 
-const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
+export const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -47,7 +47,7 @@ const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
 
       setResponse(data);
     } catch (e) {
-      Logger.error("create_Command", e);
+      logger.error("create_Command", e);
     }
   }
 
@@ -98,5 +98,3 @@ const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
     </Modal>
   );
 };
-
-export default CreateCommandModal;

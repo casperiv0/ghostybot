@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 const API_URL = "https://api.no-api-key.com/api/v2/delete?image=";
 

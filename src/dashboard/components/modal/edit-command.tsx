@@ -1,9 +1,9 @@
 import * as React from "react";
-import Modal, { closeModal, openModal } from "./index";
-import Logger from "utils/Logger";
-import AlertMessage from "../AlertMessage";
+import { Modal, closeModal, openModal } from "./index";
+import { logger } from "utils/logger";
+import { AlertMessage } from "../AlertMessage";
 import { useRouter } from "next/router";
-import Guild from "types/Guild";
+import { Guild } from "types/Guild";
 import { SlashCommand } from "models/Guild.model";
 import { useTranslation } from "react-i18next";
 
@@ -24,12 +24,12 @@ async function getCommand(guildId: string, name: string): Promise<SlashCommand |
 
     return data.command;
   } catch (e) {
-    Logger.error("edit_command", e);
+    logger.error("edit_command", e);
     return null;
   }
 }
 
-const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
+export const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -84,7 +84,7 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
 
       setResponse(data);
     } catch (e) {
-      Logger.error("edit_command", e);
+      logger.error("edit_command", e);
     }
   }
 
@@ -137,5 +137,3 @@ const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
     </Modal>
   );
 };
-
-export default EditCommandModal;

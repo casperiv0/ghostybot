@@ -1,6 +1,6 @@
 import { Guild } from "discord.js";
-import Bot from "structures/Bot";
-import Event from "structures/Event";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
 import { MuteData } from "./guildMuteAdd";
 
 export default class GuildMemberRemoveEvent extends Event {

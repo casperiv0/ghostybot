@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import PlayStore, { IAppItem } from "google-play-scraper";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 export async function playStore(
   bot: Bot,

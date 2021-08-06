@@ -3,7 +3,7 @@ import { GuildData, SlashCommand } from "models/Guild.model";
 import { IReaction } from "../models/Reactions.model";
 
 // @ts-expect-error ignore
-interface Guild<R extends boolean = false> extends GuildData, DJS.Guild {
+export interface Guild<R extends boolean = false> extends GuildData, DJS.Guild {
   inGuild: boolean;
   channels: DJS.Channel[];
   roles: DJS.Role[];
@@ -12,5 +12,3 @@ interface Guild<R extends boolean = false> extends GuildData, DJS.Guild {
   slash_commands: SlashCommand[];
   reactions: R extends true ? IReaction[] : null;
 }
-
-export default Guild;

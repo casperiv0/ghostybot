@@ -5,8 +5,8 @@ import {
   TextChannel,
   Snowflake,
 } from "discord.js";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 
 export default class TicketsCommand extends Interaction {
   constructor(bot: Bot) {

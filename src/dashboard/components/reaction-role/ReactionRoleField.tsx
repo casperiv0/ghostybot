@@ -1,6 +1,6 @@
 import * as React from "react";
-import Guild from "types/Guild";
-import AddReactionRole from "@components/modal/add-reaction-role";
+import { Guild } from "types/Guild";
+import { AddReactionRole } from "@components/modal/add-reaction-role";
 import { IReaction, Reaction } from "models/Reactions.model";
 import { useTranslation } from "next-i18next";
 
@@ -12,7 +12,13 @@ interface Props {
   updateReaction: (r: IReaction) => void;
 }
 
-const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReaction }: Props) => {
+export const ReactionRoleField = ({
+  index,
+  reaction,
+  guild,
+  deleteReaction,
+  updateReaction,
+}: Props) => {
   const [channelId, setChannelId] = React.useState("");
   const [data, setData] = React.useState<Reaction[]>([]);
   const [show, setShow] = React.useState(false);
@@ -188,5 +194,3 @@ const ReactionRoleField = ({ index, reaction, guild, deleteReaction, updateReact
     </div>
   );
 };
-
-export default ReactionRoleField;

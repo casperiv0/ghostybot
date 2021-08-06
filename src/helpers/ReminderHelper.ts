@@ -1,9 +1,9 @@
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
-import Helper from "structures/Helper";
+import { Bot } from "structures/Bot";
+import { Helper } from "structures/Helper";
 import UserModel, { IUser, Reminder } from "models/User.model";
 
-export default class ReminderHelper extends Helper {
+export class ReminderHelper extends Helper {
   constructor(bot: Bot) {
     super(bot, "reminderHelper");
   }

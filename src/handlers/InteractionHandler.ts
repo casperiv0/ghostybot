@@ -1,10 +1,10 @@
 import { ApplicationCommandData } from "discord.js";
 import glob from "glob";
-import Interaction from "../structures/Interaction";
+import { Interaction } from "structures/Interaction";
 import { resolveFile, validateFile } from "../utils/HandlersUtil";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
-export default class InteractionHandler {
+export class InteractionHandler {
   bot: Bot;
 
   constructor(bot: Bot) {

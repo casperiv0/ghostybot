@@ -1,6 +1,6 @@
 import { CommandInteraction } from "discord.js";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 import { giveXP } from "./functions/givexp";
 import { leaderboard } from "./functions/leaderboard";
 import { rank } from "./functions/rank";

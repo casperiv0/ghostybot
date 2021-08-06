@@ -1,7 +1,7 @@
 import * as React from "react";
-import Guild from "types/Guild";
+import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
-import { Reaction } from "@/src/models/Reactions.model";
+import { Reaction } from "models/Reactions.model";
 
 interface Props {
   guild: Guild<true>;
@@ -12,7 +12,13 @@ interface Props {
   editData: Reaction | null;
 }
 
-const AddReactionRole: React.FC<Props> = ({ close, onAdd, onUpdate, editData, guild }: Props) => {
+export const AddReactionRole: React.FC<Props> = ({
+  close,
+  onAdd,
+  onUpdate,
+  editData,
+  guild,
+}: Props) => {
   const { t } = useTranslation("guilds");
   const [emoji, setEmoji] = React.useState("");
   const [roleId, setRoleId] = React.useState("");
@@ -86,5 +92,3 @@ const AddReactionRole: React.FC<Props> = ({ close, onAdd, onUpdate, editData, gu
     </form>
   );
 };
-
-export default AddReactionRole;

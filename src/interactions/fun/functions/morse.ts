@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import morseCode from "assets/ts/morse";
 
 export async function morse(

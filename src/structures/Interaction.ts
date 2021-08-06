@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionData, Interaction as DiscordInteraction } from "discord.js";
-import Bot from "./Bot";
+import { Bot } from "./Bot";
 
 export type InteractionCategories =
   | "animal"
@@ -29,7 +29,7 @@ export interface InteractionOptions {
   ownerOnly?: boolean;
 }
 
-export default abstract class Interaction {
+export abstract class Interaction {
   bot: Bot;
   name: string;
   options: InteractionOptions;

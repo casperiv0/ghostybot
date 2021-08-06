@@ -5,28 +5,28 @@ import PasteClient from "pastebin-api";
 import AlexClient from "alexflipnote.js";
 import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
-import EventHandler from "handlers/EventHandler";
+import { EventHandler } from "handlers/EventHandler";
 
-import MongStarboardsManager from "handlers/StarboardsManager";
-import MongoGiveawayManager from "handlers/GiveawayManager";
-import Command from "./Command";
-import Logger from "utils/Logger";
-import Util from "utils/Util";
-import Interaction from "./Interaction";
+import { MongoStarboardsManager } from "handlers/StarboardsManager";
+import { MongoGiveawayManager } from "handlers/GiveawayManager";
+import { Command } from "./Command";
+import { logger } from "utils/logger";
+import { Util } from "utils/Util";
+import { Interaction } from "./Interaction";
 import { discordConfig } from "@config/discord-config";
 
-class Bot extends Client {
+export class Bot extends Client {
   commands: Collection<string, Command> = new Collection();
   aliases: Collection<string, string> = new Collection();
   interactions: Collection<string, Interaction> = new Collection();
   cooldowns: Collection<string, Collection<string, number>> = new Collection();
 
-  logger: typeof Logger = Logger;
+  logger: typeof logger = logger;
   utils: Util;
   neko: NekoClient = new NekoClient();
   imdb!: ImdbClient;
   player: DistubePlayer;
-  starboardsManager: MongStarboardsManager;
+  starboardsManager: MongoStarboardsManager;
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
@@ -62,8 +62,7 @@ class Bot extends Client {
       },
     });
 
-    // @ts-expect-error ignore
-    this.starboardsManager = new MongStarboardsManager(this, {
+    this.starboardsManager = new MongoStarboardsManager(this, {
       storage: false,
       translateClickHere: "Jump to message",
     });
@@ -82,5 +81,3 @@ class Bot extends Client {
     new EventHandler(this).loadEvents();
   }
 }
-
-export default Bot;

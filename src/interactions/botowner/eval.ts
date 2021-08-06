@@ -1,8 +1,8 @@
 import { CommandInteraction } from "discord.js";
 import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 
 const classified = [
   "this.bot.config",

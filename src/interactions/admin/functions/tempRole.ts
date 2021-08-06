@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import ms from "ms";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 export async function tempRole(
   bot: Bot,

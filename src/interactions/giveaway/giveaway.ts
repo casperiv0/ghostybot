@@ -1,7 +1,7 @@
 import { CommandInteraction, Permissions, Snowflake } from "discord.js";
 import ms from "ms";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 
 export default class GiveawayCommand extends Interaction {
   constructor(bot: Bot) {

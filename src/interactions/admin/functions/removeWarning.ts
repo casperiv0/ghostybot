@@ -1,6 +1,6 @@
-import WarningModel from "@/src/models/Warning.model";
+import WarningModel from "models/Warning.model";
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 
 export async function removeWarning(
   bot: Bot,

@@ -6,7 +6,7 @@ interface Props {
   id: string;
 }
 
-const Modal: React.FC<Props> = ({ title, id, children }) => {
+export const Modal: React.FC<Props> = ({ title, id, children }) => {
   React.useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -46,5 +46,3 @@ export function closeModal(id: string) {
     document.querySelector(`#${id}`)?.classList.remove("active");
   });
 }
-
-export default Modal;

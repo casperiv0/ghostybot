@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
-import Bot from "structures/Bot";
-import Interaction from "structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 import { hyperlink } from "@discordjs/builders";
 
 export default class HelpInteraction extends Interaction {

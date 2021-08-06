@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { create, all } from "mathjs";
-import Command from "structures/Command";
-import Bot from "structures/Bot";
+import { Command } from "structures/Command";
+import { Bot } from "structures/Bot";
 import { codeBlock } from "@discordjs/builders";
 const math = create(all);
 

@@ -5,12 +5,12 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { openModal } from "@components/modal";
-import AddStoreItem from "@components/modal/add-store-item";
+import { AddStoreItem } from "@components/modal/add-store-item";
 import { useRouter } from "next/router";
-import AlertMessage from "@components/AlertMessage";
-import Logger from "utils/Logger";
-import Guild from "types/Guild";
-import Loader from "@components/Loader";
+import { AlertMessage } from "@components/AlertMessage";
+import { logger } from "utils/logger";
+import { Guild } from "types/Guild";
+import { Loader } from "@components/Loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
 
@@ -56,7 +56,7 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
 
       setMessage(data?.error);
     } catch (e) {
-      Logger.error("delete_store_item", e);
+      logger.error("delete_store_item", e);
     }
   }
 

@@ -1,5 +1,5 @@
 import badges from "assets/ts/badges";
-import Bot from "structures/Bot";
+import { Bot } from "structures/Bot";
 import { bold, inlineCode, time } from "@discordjs/builders";
 import * as DJS from "discord.js";
 

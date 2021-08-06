@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import Bot from "structures/Bot";
-import Event from "structures/Event";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
 
 export default class InteractionEvent extends Event {

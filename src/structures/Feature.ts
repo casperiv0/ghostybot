@@ -1,6 +1,6 @@
-import Bot from "./Bot";
+import { Bot } from "./Bot";
 
-export default abstract class Feature {
+export abstract class Feature {
   bot: Bot;
   name: string;
 

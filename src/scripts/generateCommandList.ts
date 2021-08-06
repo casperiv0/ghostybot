@@ -1,8 +1,8 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
 import { ApplicationCommandOptionData, Collection } from "discord.js";
-import Bot from "structures/Bot";
-import Interaction from "../structures/Interaction";
+import { Bot } from "structures/Bot";
+import { Interaction } from "structures/Interaction";
 
 type Commands = Collection<string, Interaction>;
 
