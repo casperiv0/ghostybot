@@ -6,7 +6,7 @@ export async function changeMyMind(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const text = interaction.options.getString("text", true);
 

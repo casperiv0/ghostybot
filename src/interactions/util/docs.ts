@@ -39,7 +39,7 @@ export default class DocsInteraction extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
-      await interaction.defer();
+      await interaction.deferReply();
       const query = interaction.options.getString("query", true);
       const branch = interaction.options.getString("branch") ?? "stable";
 

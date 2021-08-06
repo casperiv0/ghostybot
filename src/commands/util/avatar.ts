@@ -35,11 +35,11 @@ export default class AvatarCommand extends Command {
     }
   }
 
-  avatar(member: GuildMember | null | undefined, format: AllowedImageFormat) {
+  avatar(member: GuildMember | null | undefined, format: AllowedImageFormat | "gif") {
     return member?.user.displayAvatarURL({
       dynamic: true,
       size: 1024,
-      format,
+      format: format as AllowedImageFormat,
     });
   }
 }

@@ -19,7 +19,7 @@ export async function lyrics(
     });
   }
 
-  await interaction.defer();
+  await interaction.deferReply();
 
   const data = await fetch(
     `https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`,

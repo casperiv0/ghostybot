@@ -6,7 +6,7 @@ export async function compliment(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const { compliment } = await fetch("https://complimentr.com/api").then((res) => res.json());
 

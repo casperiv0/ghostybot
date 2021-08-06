@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
 export async function supreme(bot: Bot, interaction: DJS.CommandInteraction) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const text = interaction.options.getString("text", true);
   const image = await bot.alexClient.image.supreme({

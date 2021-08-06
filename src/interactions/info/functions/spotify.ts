@@ -6,7 +6,7 @@ export async function spotify(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const type = interaction.options.getString("type", true) as
     | "track"

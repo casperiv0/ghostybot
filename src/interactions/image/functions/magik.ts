@@ -6,7 +6,7 @@ export async function magik(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const user = interaction.options.getUser("user") ?? interaction.user;
   const intensity = interaction.options.getNumber("intensity") ?? Math.floor(Math.random() * 10);

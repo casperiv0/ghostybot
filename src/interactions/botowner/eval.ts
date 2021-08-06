@@ -36,7 +36,7 @@ export default class EvalCommand extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
-      await interaction.defer();
+      await interaction.deferReply();
       const code = interaction.options.getString("code", true);
       let wasCanceled = false;
 

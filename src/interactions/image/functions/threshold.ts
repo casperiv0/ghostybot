@@ -8,7 +8,7 @@ export async function threshold(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const user = interaction.options.getUser("user") ?? interaction.user;
   const image = `${API_URL}${user.displayAvatarURL({ format: "png" })}`;

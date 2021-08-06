@@ -6,7 +6,7 @@ export async function wouldYouRather(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const data = await fetch("http://api.xaliks.xyz/random/wyr").then((res) => res.json());
   const [reply1, reply2] = data.questions;

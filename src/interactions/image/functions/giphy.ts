@@ -13,7 +13,7 @@ export async function giphy(
     });
   }
 
-  await interaction.defer();
+  await interaction.deferReply();
 
   const api_key = process.env["GIPHY_API_KEY"];
   const query = interaction.options.getString("query", true);

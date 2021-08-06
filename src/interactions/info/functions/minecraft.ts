@@ -16,7 +16,7 @@ export async function minecraft(
     return interaction.reply({ ephemeral: true, content: lang.UTIL.MC_NOT_FOUND });
   }
 
-  await interaction.defer();
+  await interaction.deferReply();
 
   const status = data.status === "online" ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
   const players = data.players?.now.toString() ?? lang.UTIL.UNKNOWN;

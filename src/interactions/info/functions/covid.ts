@@ -8,7 +8,7 @@ export async function covid(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const query = interaction.options.getString("country");
 

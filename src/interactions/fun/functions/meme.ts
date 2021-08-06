@@ -6,7 +6,7 @@ export async function meme(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const data = await fetch("https://meme-api.herokuapp.com/gimme").then((res) => res.json());
 

@@ -8,7 +8,7 @@ export async function country(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const countryQuery = interaction.options.getString("country", true);
 

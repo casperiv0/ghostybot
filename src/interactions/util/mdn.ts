@@ -23,7 +23,7 @@ export default class DocsInteraction extends Interaction {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
 
     try {
-      await interaction.defer();
+      await interaction.deferReply();
       const query = interaction.options.getString("query", true);
 
       const url = `https://mdn.gideonbot.com/embed?q=${query}`;

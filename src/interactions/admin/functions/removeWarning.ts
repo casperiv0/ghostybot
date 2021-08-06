@@ -26,7 +26,7 @@ export async function removeWarning(
     });
   }
 
-  await interaction.defer({ ephemeral: true });
+  await interaction.deferReply({ ephemeral: true });
 
   const warnings = await bot.utils.getUserWarnings(user.id, interaction.guildId!);
 

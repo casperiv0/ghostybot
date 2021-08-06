@@ -30,7 +30,7 @@ export async function weather(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const query = interaction.options.getString("query", true);
 

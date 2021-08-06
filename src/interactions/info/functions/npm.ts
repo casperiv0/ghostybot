@@ -8,7 +8,7 @@ export async function npm(
   interaction: DJS.CommandInteraction,
   lang: typeof import("@locales/english").default,
 ) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const query = interaction.options.getString("query", true);
   const data = await fetch(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(

@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import Bot from "structures/Bot";
 
 export async function foodPorn(bot: Bot, interaction: DJS.CommandInteraction) {
-  await interaction.defer();
+  await interaction.deferReply();
 
   const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) => res.json());
 
