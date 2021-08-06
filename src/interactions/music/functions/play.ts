@@ -28,12 +28,7 @@ export async function play(
 
   await interaction.reply({ ephemeral: true, content: lang.MUSIC.ADDED_TO_QUEUE2 });
 
-  const d = {
-    ...interaction,
-    author: interaction.user,
-  };
+  const channel = member.voice.channel;
 
-  // @ts-expect-error ignore
-  const message = new DJS.Message(bot, d, interaction.channel as DJS.TextChannel);
-  await bot.player.play(message, search);
+  await bot.player.playVoiceChannel(channel, search);
 }

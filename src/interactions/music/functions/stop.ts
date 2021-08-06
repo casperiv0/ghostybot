@@ -23,11 +23,6 @@ export async function stop(
     return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
   }
 
-  if (queue.songs.length <= 1) {
-    return interaction.reply({ ephemeral: true, content: lang.MUSIC.ERRORS.NO_UP_NEXT });
-  }
-
   bot.player.stop(interaction.guildId!);
-
   interaction.reply({ content: "👍" });
 }
