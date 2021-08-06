@@ -62,6 +62,7 @@ export class Bot extends Client {
       },
     });
 
+    // @ts-expect-error ignore
     this.starboardsManager = new MongoStarboardsManager(this, {
       storage: false,
       translateClickHere: "Jump to message",
