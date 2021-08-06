@@ -33,7 +33,8 @@ You are not allowed to upload this bot to any service such as discordbotlist or 
 
 ## Features
 
-- Custom commands + custom slash commands (Max 100 per guild.)
+- Slash command based
+- Custom slash commands (Max 100 per guild.)
 - A dashboard where you can easily manage the bot's settings
 - Reaction Roles
 - Welcome/leave messages
