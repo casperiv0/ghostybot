@@ -3,6 +3,25 @@ import * as DJS from "discord.js";
 export const adminOptions: DJS.ApplicationCommandOptionData[] = [
   {
     type: "SUB_COMMAND",
+    name: "announce",
+    description: "Announce something with a cool embed",
+    options: [
+      {
+        name: "text",
+        description: "The announcement message",
+        type: "STRING",
+        required: true,
+      },
+      {
+        name: "channel",
+        description: "A channel (Default: announcement channel set in dashboard)",
+        type: "CHANNEL",
+        required: false,
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
     name: "ban",
     description: "Ban a user from the current guild",
     options: [
@@ -245,6 +264,31 @@ export const adminOptions: DJS.ApplicationCommandOptionData[] = [
         type: "STRING",
         required: true,
         description: "The user id of the banned member",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "temp-role",
+    description: "Give someone a role for a period of time",
+    options: [
+      {
+        name: "user",
+        description: "The user",
+        type: "USER",
+        required: true,
+      },
+      {
+        name: "role",
+        description: "The role you want to add",
+        type: "ROLE",
+        required: true,
+      },
+      {
+        name: "time",
+        description: "The amount of time (Eg: 2d, 40h, 10min, etc.)",
+        type: "STRING",
+        required: true,
       },
     ],
   },

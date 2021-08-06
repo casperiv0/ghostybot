@@ -171,7 +171,7 @@ export default class MessageEvent extends Event {
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
           .addField(
             lang.BOT.DASHBOARD,
-            process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.tk",
+            process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.caspertheghost.me",
           );
 
         return message.channel.send({ embeds: [embed] });

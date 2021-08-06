@@ -28,7 +28,7 @@ class Ghostybot extends Document {
           {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
           {/* <!-- Facebook Meta Tags --> */}
           <meta property="og:color" content="#5865f2" />
-          <meta property="og:url" content="https://ghostybot.tk" />
+          <meta property="og:url" content="https://ghostybot.caspertheghost.me" />
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
@@ -38,17 +38,17 @@ class Ghostybot extends Document {
             property="og:description"
             content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is a feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js`}
           />
-          <meta property="og:image" content="https://ghostybot.tk/banner.png" />
+          <meta property="og:image" content="https://ghostybot.caspertheghost.me/banner.png" />
 
           {/* <!-- Twitter Meta Tags --> */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta property="twitter:domain" content="ghostybot.tk" />
-          <meta property="twitter:url" content="https://ghostybot.tk" />
+          <meta property="twitter:domain" content="ghostybot.caspertheghost.me" />
+          <meta property="twitter:url" content="https://ghostybot.caspertheghost.me" />
           <meta
             name="twitter:title"
             content={`${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} - A Discord bot`}
           />
-          <meta name="twitter:image" content="https://ghostybot.tk/banner.png" />
+          <meta name="twitter:image" content="https://ghostybot.caspertheghost.me/banner.png" />
           <meta
             name="twitter:description"
             content={`🤖 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} is a feature-rich Discord bot with +200 commands for Discord servers. Economy, util, fun, music, admin and more! Built with Next.js and Discord.js`}

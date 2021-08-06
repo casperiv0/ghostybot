@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
 import Bot from "structures/Bot";
 import Interaction from "structures/Interaction";
+import { hyperlink } from "@discordjs/builders";
 
 export default class HelpInteraction extends Interaction {
   constructor(bot: Bot) {
@@ -30,6 +31,11 @@ export default class HelpInteraction extends Interaction {
       if (!command) {
         return interaction.reply({ content: lang.HELP.CMD_NOT_FOUND, ephemeral: true });
       }
+
+      const LINK = hyperlink(
+        lang.HELP.CLICK_ME,
+        "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md",
+      );
 
       const aliases = command.options.aliases
         ? command.options.aliases.map((alias) => alias).join(", ")
@@ -65,7 +71,8 @@ export default class HelpInteraction extends Interaction {
         .addField(lang.UTIL.DESCRIPTION, commandDesc, true)
         .addField(lang.HELP.OPTIONS, options, true)
         .addField(lang.HELP.BOT_PERMS, botPerms, true)
-        .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
+        .addField(lang.HELP.MEMBER_PERMS, memberPerms, true)
+        .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
       return interaction.reply({ embeds: [embed] });
     } catch (err) {

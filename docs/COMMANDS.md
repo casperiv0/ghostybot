@@ -3,9 +3,19 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 135 slash commands.
+GhostyBot has a total of 137 slash commands.
 
 ## Detailed command list
+
+## admin -> announce
+
+**Description:** Announce something with a cool embed
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required), channel (CHANNEL / Optional)
+
+[Back to top](#ghostybot-command-list)
 
 ## admin -> ban
 
@@ -117,6 +127,16 @@ GhostyBot has a total of 135 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## admin -> temp-role
+
+**Description:** Give someone a role for a period of time
+
+**Choices:** N/A
+
+**Options:** user (USER / Required), role (ROLE / Required), time (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
 ## admin-> sticky -> set
 
 **Description:** Set a new sticky message for the current channel
@@ -153,7 +173,7 @@ GhostyBot has a total of 135 slash commands.
 
 **Choices:** N/A
 
-**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+**Options:** user (USER / Required), warning-id (NUMBER / Required)
 
 [Back to top](#ghostybot-command-list)
 

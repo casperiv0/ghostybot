@@ -18,6 +18,8 @@ import { stealEmoji } from "./functions/stealEmoji";
 import { unban } from "./functions/unban";
 import { warnings } from "./functions/warnings";
 import { removeWarning } from "./functions/removeWarning";
+import { announce } from "./functions/announce";
+import { tempRole } from "./functions/tempRole";
 
 export default class AdminCommand extends Interaction {
   constructor(bot: Bot) {
@@ -79,6 +81,14 @@ export default class AdminCommand extends Interaction {
         }
         case "say": {
           await say(this.bot, interaction, lang);
+          break;
+        }
+        case "announce": {
+          await announce(this.bot, interaction, lang);
+          break;
+        }
+        case "temp-role": {
+          await tempRole(this.bot, interaction, lang);
           break;
         }
 
