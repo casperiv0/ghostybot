@@ -29,6 +29,5 @@ export async function play(
   await interaction.reply({ ephemeral: true, content: lang.MUSIC.ADDED_TO_QUEUE2 });
 
   const channel = member.voice.channel;
-
   await bot.player.playVoiceChannel(channel, search);
 }
