@@ -42,11 +42,20 @@
 }
 
 @media (hover: hover) {
+  .btn-primary:is(a):hover,
+  .btn-secondary:is(a):hover {
+    background: var(--blue);
+  }
+
   .btn-primary:enabled:hover,
   .btn-secondary:enabled:hover {
     background: var(--blue);
   }
+
   .btn-red:enabled:hover {
+    filter: brightness(120%);
+  }
+  .btn-red:is(a):hover {
     filter: brightness(120%);
   }
 }

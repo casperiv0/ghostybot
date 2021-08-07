@@ -51,8 +51,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      guild.channels = gChannels.filter((c) => c.type === 0).filter((c) => c.type === 5);
-
+      guild.channels = gChannels.filter((c) => c.type === 0 || c.type === 5);
       guild.categories = gChannels.filter((c) => c.type === 4);
       guild.voice_channels = gChannels.filter((c) => c.type === 2);
       guild.categories.unshift({ id: null, name: "Disabled" });
