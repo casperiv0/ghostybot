@@ -230,4 +230,17 @@ export const infoOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "imdb",
+    description: "Get information about a series or a movie",
+    options: [
+      {
+        name: "query",
+        description: "What you're looking for",
+        type: "STRING",
+        required: true,
+      },
+    ],
+  },
 ];

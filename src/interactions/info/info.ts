@@ -9,6 +9,7 @@ import { covid } from "./functions/covid";
 import { emojiInfo } from "./functions/emoji";
 import { github } from "./functions/github";
 import { guildInfo } from "./functions/guild";
+import { imdb } from "./functions/imdb";
 import { inviteInfo } from "./functions/invite";
 import { ip } from "./functions/ip";
 import { minecraft } from "./functions/minecraft";
@@ -104,6 +105,10 @@ export default class InfoCommand extends Interaction {
         }
         case "minecraft": {
           await minecraft(this.bot, interaction, lang);
+          break;
+        }
+        case "imdb": {
+          await imdb(this.bot, interaction, lang);
           break;
         }
 

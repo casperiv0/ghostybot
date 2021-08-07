@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 137 slash commands.
+GhostyBot has a total of 146 slash commands.
 
 ## Detailed command list
 
@@ -967,6 +967,16 @@ GhostyBot has a total of 137 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## info -> imdb
+
+**Description:** Get information about a series or a movie
+
+**Choices:** N/A
+
+**Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
 ## levels -> givexp
 
 **Description:** Give a user xp
@@ -1224,5 +1234,75 @@ GhostyBot has a total of 137 slash commands.
 **Choices:** N/A
 
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> avatar
+
+**Description:** View the avatar of a user
+
+**Choices:** N/A
+
+**Options:** user (USER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bmi
+
+**Description:** Calculate your body mass index
+
+**Choices:** N/A
+
+**Options:** height (NUMBER / Required), weight (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> calculate
+
+**Description:** Calculate something
+
+**Choices:** N/A
+
+**Options:** calculation (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> translate
+
+**Description:** Translate something
+
+**Choices:** N/A
+
+**Options:** language (STRING / Required), sentence (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> server-icon
+
+**Description:** View the icon of the current guild
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bot-invite
+
+**Description:** Generate a bot invite URL for GhostyBot
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> poll
+
+**Description:** Create a poll in the current channel
+
+**Choices:** N/A
+
+**Options:** question (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
