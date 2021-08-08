@@ -25,16 +25,14 @@ export default class ReminderHelper extends Helper {
             const { channel_id, msg, time, _id: reminderId } = reminder;
             const usr =
               this.bot.users.cache.get(user.user_id) || (await this.bot.users.fetch(user.user_id));
-            const channel =
-              guild.channels.cache.get(channel_id) ||
-              (await guild.channels.fetch(channel_id).catch(() => null));
+            const channel = guild.channels.cache.get(channel_id);
 
             if (!channel) {
               this.bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
                   hasReminder: !(user.reminder.reminders?.length - 1 === 0),
                   reminders: user.reminder.reminders.filter(
-                    (rem: Reminder) => rem.id !== reminderId,
+                    (rem: Reminder) => rem._id !== reminderId,
                   ),
                 },
               });
@@ -44,7 +42,9 @@ export default class ReminderHelper extends Helper {
             await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
                 hasReminder: !(user.reminder.reminders?.length - 1 === 0),
-                reminders: user.reminder.reminders.filter((rem: Reminder) => rem.id !== reminderId),
+                reminders: user.reminder.reminders.filter(
+                  (rem: Reminder) => rem._id !== reminderId,
+                ),
               },
             });
 
