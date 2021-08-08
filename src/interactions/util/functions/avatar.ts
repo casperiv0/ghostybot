@@ -25,7 +25,7 @@ export async function avatar(
 function getAvatar(user: DJS.User, format: DJS.AllowedImageFormat | "gif") {
   return user.displayAvatarURL({
     dynamic: true,
-    size: 1024,
+    size: 4096,
     format: format as DJS.AllowedImageFormat,
   });
 }

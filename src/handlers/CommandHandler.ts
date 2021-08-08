@@ -5,6 +5,9 @@ import { Command } from "structures/Command";
 import { resolveFile, validateFile } from "utils/HandlersUtil";
 // import { generateCommandDescriptions } from "../scripts/generateCommandDescriptions";
 
+/**
+ * @deprecated will be replaced with slash commands soon™
+ */
 export class CommandHandler {
   bot: Bot;
 

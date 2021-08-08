@@ -166,4 +166,67 @@ export const utilOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "uptime",
+    description: "View the uptime of the bot",
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "bug-report",
+    description: "Report a bug to the bot developer",
+    options: [
+      {
+        name: "text",
+        required: true,
+        description: "The bug description",
+        type: "STRING",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "feedback",
+    description: "Send feedback to the bot developer",
+    options: [
+      {
+        name: "text",
+        required: true,
+        description: "The feedback description",
+        type: "STRING",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "ctgs",
+    description: "Create a shortened URL (ctgs.ga)",
+    options: [
+      {
+        name: "slug",
+        required: true,
+        description: "The slug, the part after the domain",
+        type: "STRING",
+      },
+      {
+        name: "url",
+        required: true,
+        description: "The URL where it should be redirected to",
+        type: "STRING",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "suggest",
+    description: "Suggest something for this guild",
+    options: [
+      {
+        name: "text",
+        required: true,
+        description: "The suggestion description",
+        type: "STRING",
+      },
+    ],
+  },
 ];

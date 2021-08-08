@@ -18,11 +18,11 @@ these are the available options for the commands
 ## Example command file
 
 ```js
-import { Message } from "discord.js";
-import { Command } from "structures/Command";
+import * as DJS from "discord.js";
+import { Interaction } from "structures/Interaction";
 import { Bot } from "structures/Bot";
 
-export default class MyCommand extends Command {
+export default class MyCommand extends Interaction {
   constructor(bot: Bot) {
     super(bot, {
       name: "",
@@ -31,13 +31,14 @@ export default class MyCommand extends Command {
     });
   }
 
-  async execute(message: Message, args: string[]) {
-    const lang = await this.bot.utils.getGuildLang(message.guild?.id);
+  async execute(interaction: DJS.CommandInteraction, args: string[]) {
+    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
+      await interaction.reply("Hello");
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
-      return message.channel.send({ content: lang.GLOBAL.ERROR });
+      return interaction.reply({ content: lang.GLOBAL.ERROR });
     }
   }
 }

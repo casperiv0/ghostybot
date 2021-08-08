@@ -12,6 +12,11 @@ import { botInvite } from "./functions/botInvite";
 import { poll } from "./functions/poll";
 import { pastebin } from "./functions/pastebin";
 import { enlarge } from "./functions/enlarge";
+import { uptime } from "./functions/uptime";
+import { suggest } from "./functions/suggest";
+import { bugReport } from "./functions/bugReport";
+import { ctgs } from "./functions/ctgs";
+import { feedback } from "./functions/feedback";
 
 export default class UtilCommand extends Interaction {
   constructor(bot: Bot) {
@@ -64,6 +69,26 @@ export default class UtilCommand extends Interaction {
         }
         case "enlarge": {
           enlarge(this.bot, interaction, lang);
+          break;
+        }
+        case "uptime": {
+          uptime(this.bot, interaction, lang);
+          break;
+        }
+        case "suggest": {
+          suggest(this.bot, interaction, lang);
+          break;
+        }
+        case "bug-report": {
+          bugReport(this.bot, interaction, lang);
+          break;
+        }
+        case "ctgs": {
+          ctgs(this.bot, interaction, lang);
+          break;
+        }
+        case "feedback": {
+          feedback(this.bot, interaction, lang);
           break;
         }
         default:

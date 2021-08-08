@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 148 slash commands.
+GhostyBot has a total of 153 slash commands.
 
 ## Detailed command list
 
@@ -1324,5 +1324,55 @@ GhostyBot has a total of 148 slash commands.
 **Choices:** N/A
 
 **Options:** code (STRING / Required), extension (STRING / Optional), filename (STRING / Optional), expire-date (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> uptime
+
+**Description:** View the uptime of the bot
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bug-report
+
+**Description:** Report a bug to the bot developer
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> feedback
+
+**Description:** Send feedback to the bot developer
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> ctgs
+
+**Description:** Create a shortened URL (ctgs.ga)
+
+**Choices:** N/A
+
+**Options:** slug (STRING / Required), url (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> suggest
+
+**Description:** Suggest something for this guild
+
+**Choices:** N/A
+
+**Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
