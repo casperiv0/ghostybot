@@ -3,7 +3,7 @@ import { Bot } from "structures/Bot";
 import { Helper } from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
 
-export class TemproleHelper extends Helper {
+export default class TemproleHelper extends Helper {
   constructor(bot: Bot) {
     super(bot, "temproleHelper");
   }

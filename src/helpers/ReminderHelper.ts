@@ -3,7 +3,7 @@ import { Bot } from "structures/Bot";
 import { Helper } from "structures/Helper";
 import UserModel, { IUser, Reminder } from "models/User.model";
 
-export class ReminderHelper extends Helper {
+export default class ReminderHelper extends Helper {
   constructor(bot: Bot) {
     super(bot, "reminderHelper");
   }
