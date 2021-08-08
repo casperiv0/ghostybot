@@ -2,7 +2,7 @@ import glob from "glob";
 import { Collection } from "discord.js";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command";
-import { resolveFile, validateFile } from "../utils/HandlersUtil";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
 // import { generateCommandDescriptions } from "../scripts/generateCommandDescriptions";
 
 export class CommandHandler {

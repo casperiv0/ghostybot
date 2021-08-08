@@ -1,7 +1,7 @@
 import { ApplicationCommandData } from "discord.js";
 import glob from "glob";
 import { Interaction } from "structures/Interaction";
-import { resolveFile, validateFile } from "../utils/HandlersUtil";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
 import { Bot } from "structures/Bot";
 
 export class InteractionHandler {

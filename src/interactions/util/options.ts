@@ -88,4 +88,82 @@ export const utilOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "enlarge",
+    description: "Enlarge an emoji",
+    options: [
+      {
+        name: "emoji",
+        type: "STRING",
+        required: true,
+        description: "The emoji you want to enlarge",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "pastebin",
+    description: "Create a paste (pastebin.com)",
+    options: [
+      {
+        name: "code",
+        required: true,
+        description: "This will be the paste code",
+        type: "STRING",
+      },
+      {
+        name: "extension",
+        required: false,
+        description: "The file extension",
+        type: "STRING",
+      },
+      {
+        name: "filename",
+        required: false,
+        description: "This will be the name of the paste",
+        type: "STRING",
+      },
+      {
+        type: "STRING",
+        name: "expire-date",
+        required: false,
+        description: "When the paste will expire",
+        choices: [
+          {
+            name: "Never",
+            value: "N",
+          },
+          {
+            name: "10 Minutes",
+            value: "10M",
+          },
+          {
+            name: "1 Hour",
+            value: "1H",
+          },
+          {
+            name: "1 Week",
+            value: "1W",
+          },
+          {
+            name: "2 Weeks",
+            value: "2W",
+          },
+          {
+            name: "1 Month",
+            value: "1M",
+          },
+          {
+            name: "6 Months",
+            value: "6M",
+          },
+          {
+            name: "1 Year",
+            value: "1Y",
+          },
+        ],
+      },
+    ],
+  },
 ];

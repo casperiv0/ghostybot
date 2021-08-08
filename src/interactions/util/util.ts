@@ -10,6 +10,8 @@ import { translate } from "./functions/translate";
 import { serverIcon } from "./functions/serverIcon";
 import { botInvite } from "./functions/botInvite";
 import { poll } from "./functions/poll";
+import { pastebin } from "./functions/pastebin";
+import { enlarge } from "./functions/enlarge";
 
 export default class UtilCommand extends Interaction {
   constructor(bot: Bot) {
@@ -54,6 +56,14 @@ export default class UtilCommand extends Interaction {
         }
         case "poll": {
           await poll(this.bot, interaction, lang);
+          break;
+        }
+        case "pastebin": {
+          pastebin(this.bot, interaction, lang);
+          break;
+        }
+        case "enlarge": {
+          enlarge(this.bot, interaction, lang);
           break;
         }
         default:

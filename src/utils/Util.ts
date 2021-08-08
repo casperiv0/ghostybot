@@ -286,7 +286,7 @@ export class Util {
 
   async getGuildLang(
     guildId: string | undefined,
-  ): Promise<typeof import("../locales/english").default> {
+  ): Promise<typeof import("@locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
     return import(`../locales/${guild?.locale ?? "english"}`).then((f) => f.default);

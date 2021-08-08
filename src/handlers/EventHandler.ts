@@ -1,8 +1,9 @@
-import { StarboardEvents } from "discord-starboards";
 import glob from "glob";
+import {} from "distube";
+import { StarboardEvents } from "discord-starboards";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
-import { resolveFile, validateFile } from "../utils/HandlersUtil";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
 
 const types = ["channel", "client", "guild", "message", "player", "sb"];
 
@@ -41,13 +42,14 @@ export class EventHandler {
       }
 
       if (isPlayer) {
-        // @ts-expect-error this works!
-        this.bot.player.on(event.name, event.execute.bind(null, this.bot));
+        this.bot.player.on(event.name as any, event.execute.bind(null, this.bot));
       } else if (isStarboard) {
         this.bot.starboardsManager.on(
           event.name as keyof StarboardEvents,
           event.execute.bind(null, this.bot),
         );
+      } else if (event.once) {
+        this.bot.once(event.name, event.execute.bind(null, this.bot));
       } else {
         this.bot.on(event.name, event.execute.bind(null, this.bot));
       }

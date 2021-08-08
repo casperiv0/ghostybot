@@ -6,7 +6,7 @@ import { CommandHandler } from "handlers/CommandHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "ready");
+    super(bot, "ready", true);
   }
 
   async execute(bot: Bot) {
