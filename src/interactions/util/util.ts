@@ -17,6 +17,10 @@ import { suggest } from "./functions/suggest";
 import { bugReport } from "./functions/bugReport";
 import { ctgs } from "./functions/ctgs";
 import { feedback } from "./functions/feedback";
+import { emojis } from "./functions/emojis";
+import { web } from "./functions/web";
+import { roles } from "./functions/roles";
+import { afk } from "./functions/afk";
 
 export default class UtilCommand extends Interaction {
   constructor(bot: Bot) {
@@ -89,6 +93,22 @@ export default class UtilCommand extends Interaction {
         }
         case "feedback": {
           feedback(this.bot, interaction, lang);
+          break;
+        }
+        case "emojis": {
+          emojis(this.bot, interaction, lang);
+          break;
+        }
+        case "web": {
+          web(this.bot, interaction, lang);
+          break;
+        }
+        case "roles": {
+          roles(this.bot, interaction, lang);
+          break;
+        }
+        case "afk": {
+          afk(this.bot, interaction, lang);
           break;
         }
         default:

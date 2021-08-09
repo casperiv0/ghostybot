@@ -229,4 +229,40 @@ export const utilOptions: DJS.ApplicationCommandOptionData[] = [
       },
     ],
   },
+  {
+    type: "SUB_COMMAND",
+    name: "emojis",
+    description: "View all emojis in this guild",
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "roles",
+    description: "View all roles in this guild",
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "afk",
+    description: "Set yourself to afk/not-afk",
+    options: [
+      {
+        name: "reason",
+        type: "STRING",
+        required: false,
+        description: "The reason why you're going afk",
+      },
+    ],
+  },
+  {
+    type: "SUB_COMMAND",
+    name: "web",
+    description: "View a screenshot of a website",
+    options: [
+      {
+        name: "url",
+        type: "STRING",
+        required: true,
+        description: "The URL of the website",
+      },
+    ],
+  },
 ];

@@ -1,5 +1,5 @@
 import { Bot } from "structures/Bot";
-import { time } from "@discordjs/builders";
+import { roleMention, time } from "@discordjs/builders";
 import * as DJS from "discord.js";
 
 export async function emojiInfo(
@@ -24,7 +24,8 @@ export async function emojiInfo(
     emojiAuthor = lang.UTIL.INVALID_PERMS;
   }
 
-  const accessibleBy = foundEmoji.roles.cache.map((r) => r.name).join(", ") || lang.GLOBAL.EVERYONE;
+  const accessibleBy =
+    foundEmoji.roles.cache.map((r) => roleMention(r.id)).join(", ") || lang.GLOBAL.EVERYONE;
 
   const embed = bot.utils
     .baseEmbed(interaction)

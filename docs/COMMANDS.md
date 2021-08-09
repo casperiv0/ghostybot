@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 153 slash commands.
+GhostyBot has a total of 157 slash commands.
 
 ## Detailed command list
 
@@ -1374,5 +1374,45 @@ GhostyBot has a total of 153 slash commands.
 **Choices:** N/A
 
 **Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> emojis
+
+**Description:** View all emojis in this guild
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> roles
+
+**Description:** View all roles in this guild
+
+**Choices:** N/A
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> afk
+
+**Description:** Set yourself to afk/not-afk
+
+**Choices:** N/A
+
+**Options:** reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> web
+
+**Description:** View a screenshot of a website
+
+**Choices:** N/A
+
+**Options:** url (STRING / Required)
 
 [Back to top](#ghostybot-command-list)

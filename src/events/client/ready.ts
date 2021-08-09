@@ -19,7 +19,8 @@ export default class ReadyEvent extends Event {
       ` ${serverCount} servers.`,
       `!help | ${channelCount} channels`,
       `${userCount} users`,
-      "!help | https://ghostybot.caspertheghost.me",
+      "Slash commands",
+      "https://ghostybot.caspertheghost.me",
     ];
 
     await new HelperHandler(bot).loadHelpers();
