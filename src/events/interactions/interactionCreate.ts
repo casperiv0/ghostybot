@@ -58,36 +58,6 @@ export default class InteractionEvent extends Event {
         }
       }
 
-      // if (command.options.botPermissions) {
-      //   const neededPerms: bigint[] = [];
-      //   const channel = interaction.channel as DJS.TextChannel;
-
-      //   command.options.botPermissions.forEach((perm) => {
-      //     if (!channel?.permissionsFor(interaction.guild!.me!)?.has(perm)) {
-      //       neededPerms.push(perm);
-      //     }
-      //   });
-
-      //   if (neededPerms.length > 0) {
-      //     return interaction.reply({
-      //       ephemeral: true,
-      //       embeds: [bot.utils.errorEmbed(neededPerms, interaction, lang.PERMISSIONS)],
-      //     });
-      //   }
-      // }
-
-      // if (command.options.memberPermissions) {
-      //   const perms = bot.utils.formatMemberPermissions(
-      //     command.options.memberPermissions,
-      //     interaction,
-      //     lang,
-      //   );
-
-      //   if (perms) {
-      //     return interaction.reply({ content: perms, ephemeral: true });
-      //   }
-      // }
-
       await command?.execute(interaction, lang);
     } catch (e) {
       if (interaction.replied) return;

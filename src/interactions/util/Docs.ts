@@ -1,13 +1,12 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Interaction } from "structures/Interaction";
+import { Command, ValidateReturn } from "structures/Command/Command";
 
-export default class DocsInteraction extends Interaction {
+export default class DocsInteraction extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "docs",
       description: "Find something on the discord.js docs",
-      category: "util",
       options: [
         {
           name: "query",
@@ -35,9 +34,14 @@ export default class DocsInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
+  async validate(): Promise<ValidateReturn> {
+    return { ok: true };
+  }
 
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     try {
       await interaction.deferReply();
       const query = interaction.options.getString("query", true);
@@ -50,7 +54,7 @@ export default class DocsInteraction extends Interaction {
         return interaction.editReply({ content: lang.UTIL.DOC_NOT_FOUND });
       }
 
-      const embed = new MessageEmbed({
+      const embed = new DJS.MessageEmbed({
         ...data,
         color: "#5865f2",
         footer: {
@@ -59,7 +63,7 @@ export default class DocsInteraction extends Interaction {
         },
       });
 
-      return interaction.editReply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return interaction.editReply({ content: lang.GLOBAL.ERROR });

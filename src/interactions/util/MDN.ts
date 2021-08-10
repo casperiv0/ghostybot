@@ -1,13 +1,12 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Interaction } from "structures/Interaction";
+import { Command, ValidateReturn } from "structures/Command/Command";
 
-export default class DocsInteraction extends Interaction {
+export default class MDNInteraction extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "mdn",
       description: "Find something on the MDN Web Docs.",
-      category: "util",
       options: [
         {
           name: "query",
@@ -19,9 +18,14 @@ export default class DocsInteraction extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guildId!);
+  async validate(): Promise<ValidateReturn> {
+    return { ok: true };
+  }
 
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     try {
       await interaction.deferReply();
       const query = interaction.options.getString("query", true);
@@ -33,7 +37,7 @@ export default class DocsInteraction extends Interaction {
         return interaction.editReply({ content: lang.UTIL.MDN_NOT_FOUND });
       }
 
-      const embed = new MessageEmbed({
+      const embed = new DJS.MessageEmbed({
         ...data,
         color: "#5865f2",
         footer: {
