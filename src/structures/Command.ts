@@ -32,6 +32,9 @@ export interface CommandOptions {
   ownerOnly?: boolean;
 }
 
+/**
+ * @deprecated use slash commands instead.
+ */
 export abstract class Command {
   bot: Bot;
   name: string;

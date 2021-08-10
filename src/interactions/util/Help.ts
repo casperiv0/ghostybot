@@ -1,15 +1,14 @@
 import * as DJS from "discord.js";
 import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
 import { Bot } from "structures/Bot";
-import { Interaction } from "structures/Interaction";
 import { hyperlink } from "@discordjs/builders";
+import { Command, ValidateReturn } from "structures/Command/Command";
 
-export default class HelpInteraction extends Interaction {
+export default class HelpInteraction extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "help",
       description: "Return more information about a command",
-      category: "util",
       options: [
         {
           name: "command",
@@ -19,6 +18,10 @@ export default class HelpInteraction extends Interaction {
         },
       ],
     });
+  }
+
+  async validate(): Promise<ValidateReturn> {
+    return { ok: true };
   }
 
   async execute(interaction: DJS.CommandInteraction) {
