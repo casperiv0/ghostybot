@@ -3,12 +3,12 @@ import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
-export default class Rank extends SubCommand {
+export default class GiveXP extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
+      name: "xp",
       commandName: "levels",
-      name: "rank",
-      description: "Get the rank of a user or yourself",
+      description: "Get the xp of a user or yourself",
       options: [
         {
           name: "user",
@@ -24,9 +24,10 @@ export default class Rank extends SubCommand {
     return { ok: true };
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guildId);
-
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
     if (user.bot) {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.BOT_DATA });
@@ -37,19 +38,13 @@ export default class Rank extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
-    const level = this.bot.utils.calculateXp(dbUser.xp);
-    const avatar = encodeURIComponent(user.displayAvatarURL());
-
-    const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
-      user.username,
-    )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${dbUser.xp}&nextlevelxp=${
-      dbUser.xp + 1200
-    }&previouslevelxp=${dbUser.xp}&custombg=2F3136&xpcolor=fff`;
-
-    const attach = new DJS.MessageAttachment(url, "rank.png");
+    const embed = this.bot.utils
+      .baseEmbed(interaction)
+      .setTitle(`${user.username} ${lang.LEVELS.XP}`)
+      .setDescription(`${lang.LEVELS.XP}: ${this.bot.utils.formatNumber(dbUser.xp)}`);
 
     await interaction.reply({
-      files: [attach],
+      embeds: [embed],
     });
   }
 }

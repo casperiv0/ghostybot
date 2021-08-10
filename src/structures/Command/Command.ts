@@ -12,7 +12,7 @@ export type ValidateReturn = {
 export interface CommandOptions {
   name: string;
   description: string;
-  options: DJS.ApplicationCommandOptionData[];
+  options?: DJS.ApplicationCommandOptionData[];
 }
 
 export abstract class Command {

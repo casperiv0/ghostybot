@@ -30,7 +30,7 @@ export async function resolveFile<T>(file: string, bot: Bot): Promise<T | null> 
 export async function validateFile(file: string, item: Structures) {
   const type = getType(item);
 
-  if (type !== "SUB_COMMAND" && !item.name) {
+  if (!item.name) {
     throw new TypeError(`[ERROR][${type}]: name is required for ${type}! (${file})`);
   }
 
