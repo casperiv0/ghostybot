@@ -3,6 +3,7 @@ import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { ValidateReturn } from "structures/Command/Command";
 
 const classified = [
   "this.bot.config",
@@ -33,12 +34,12 @@ export default class Eval extends SubCommand {
   async validate(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
-  ) {
+  ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
     const isOwner = owners?.includes(interaction.user.id);
 
     if (!isOwner) {
-      return { ok: false, error: { content: lang.MESSAGE.OWNER_ONLY } };
+      return { ok: false, error: { ephemeral: true, content: lang.MESSAGE.OWNER_ONLY } };
     }
 
     return { ok: true };

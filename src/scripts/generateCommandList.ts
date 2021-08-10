@@ -1,3 +1,6 @@
+/* eslint-disable */
+// todo: re-implement this.
+
 // const TARGET_FILE = "./docs/COMMANDS.md";
 // import fs from "fs";
 // import { ApplicationCommandOptionData, Collection } from "discord.js";

@@ -31,8 +31,6 @@ export default class InteractionEvent extends Event {
         return interaction.reply({ content: command.response });
       }
 
-      console.log(command);
-
       const dbGuild = await bot.utils.getGuildById(interaction.guildId!);
       const topLevelName =
         command instanceof SubCommand ? command.options.commandName : command.name;

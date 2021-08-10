@@ -1,14 +1,14 @@
-import { CommandInteraction } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Interaction } from "structures/Interaction";
+import { ValidateReturn } from "structures/Command/Command";
+import { SubCommand } from "structures/Command/SubCommand";
 
-export default class LeaveGuildCommand extends Interaction {
+export default class LeaveGuildCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
-      name: "leaveguild",
+      name: "leave-guild",
       description: "Leave a guild by id",
-      category: "bot-owner",
-      ownerOnly: true,
+      commandName: "bot-owner",
       options: [
         {
           type: "STRING",
@@ -20,9 +20,24 @@ export default class LeaveGuildCommand extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
+  async validate(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ): Promise<ValidateReturn> {
+    const owners = process.env["OWNERS"];
+    const isOwner = owners?.includes(interaction.user.id);
 
+    if (!isOwner) {
+      return { ok: false, error: { ephemeral: true, content: lang.MESSAGE.OWNER_ONLY } };
+    }
+
+    return { ok: true };
+  }
+
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     try {
       const id = interaction.options.getString("id", true);
 
@@ -37,7 +52,7 @@ export default class LeaveGuildCommand extends Interaction {
 
       await guild.leave();
 
-      interaction.reply({
+      await interaction.reply({
         content: lang.GUILD.LEFT.replace("{guild_name}", guild.name),
       });
     } catch (err) {

@@ -3,7 +3,6 @@ import { Bot } from "structures/Bot";
 import { Interaction } from "structures/Interaction";
 import { giveXP } from "./functions/givexp";
 import { leaderboard } from "./functions/leaderboard";
-// import { rank } from "./functions/rank";
 import { removeXP } from "./functions/removexp";
 import { xp } from "./functions/xp";
 
@@ -34,10 +33,6 @@ export default class LevelsCommand extends Interaction {
           await leaderboard(this.bot, interaction, lang);
           break;
         }
-        // case "rank": {
-        //   await rank(this.bot, interaction, lang);
-        //   break;
-        // }
         case "removexp": {
           await removeXP(this.bot, interaction, lang);
           break;
