@@ -24,10 +24,7 @@ export default class SupremeCommand extends SubCommand {
     return { ok: true };
   }
 
-  async execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ) {
+  async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
 
     const text = interaction.options.getString("text", true);

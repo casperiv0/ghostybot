@@ -3,6 +3,10 @@
     "target": "ESNext",
     "module": "commonjs",
     "moduleResolution": "node",
+    "checkJs": false,
+    // "noImplicitThis": false,
+    // "noUnusedParameters": true,
+    "traceResolution": true,
 
     "outDir": "dist",
     "declaration": false,

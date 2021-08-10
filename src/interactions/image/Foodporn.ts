@@ -17,10 +17,7 @@ export default class FoodpornCommand extends SubCommand {
     return { ok: true };
   }
 
-  async execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ) {
+  async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
 
     const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) =>

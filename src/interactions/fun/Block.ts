@@ -24,10 +24,7 @@ export default class BlockCommand extends SubCommand {
     return { ok: true };
   }
 
-  async execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ) {
+  async execute(interaction: DJS.CommandInteraction) {
     const text = interaction.options.getString("text", true);
 
     const blocks = text
