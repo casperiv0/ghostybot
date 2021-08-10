@@ -28,7 +28,7 @@ export default class ReadyEvent extends Event {
     await new CommandHandler(bot).loadCommands();
 
     if (process.env["DEV_MODE"] === "true") {
-      await import("@scripts/generateCommandList").then((v) => v.default(this.bot));
+      // await import("@scripts/generateCommandList").then((v) => v.default(this.bot));
     }
     bot.logger.log(
       "bot",
