@@ -42,17 +42,17 @@ export class InteractionHandler {
           commandName = `${topLevelName}-${interaction.name}`;
         } else {
           commandName = interaction.name;
+
+          const data: ApplicationCommandData = {
+            name: interaction.name,
+            description: interaction.options.description ?? "Empty description",
+            options: interaction.options.options ?? [],
+          };
+
+          await this.createCommand(data);
         }
 
-        const data: ApplicationCommandData = {
-          name: interaction.name,
-          description: interaction.options.description ?? "Empty description",
-          options: interaction.options.options ?? [],
-        };
-
         this.bot.interactions.set(commandName, interaction);
-
-        await this.createCommand(data);
 
         if (process.env["DEBUG_MODE"] === "true") {
           this.bot.logger.log("COMMAND", `Loaded ${commandName}`);
@@ -78,7 +78,7 @@ export class InteractionHandler {
   async createCommand(data: ApplicationCommandData) {
     if (process.env.DEV_MODE === "true") {
       const g = await this.bot.guilds.fetch("841737902065057823");
-      await g.commands.create(data);
+      await g.commands.create(data).catch(console.error);
     } else {
       await this.bot.application?.commands.create(data);
     }
