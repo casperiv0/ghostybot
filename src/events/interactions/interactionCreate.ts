@@ -113,7 +113,8 @@ export default class InteractionEvent extends Event {
     let command: string;
 
     try {
-      command = interaction.options.getSubcommand();
+      const sub = interaction.options.getSubcommand();
+      command = `${interaction.commandName}-${sub}`;
     } catch {
       command = interaction.commandName;
     }

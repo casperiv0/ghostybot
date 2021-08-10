@@ -32,11 +32,16 @@ export class InteractionHandler {
         if (!interaction) continue;
         await validateFile(file, interaction);
 
+        let commandName;
+
         if (interaction instanceof SubCommand) {
           const topLevelName = interaction.options.commandName;
           const prevSubCommands = subCommands[topLevelName] ?? [];
 
           subCommands[topLevelName] = [...prevSubCommands, interaction];
+          commandName = `${topLevelName}-${interaction.name}`;
+        } else {
+          commandName = interaction.name;
         }
 
         const data: ApplicationCommandData = {
@@ -45,12 +50,12 @@ export class InteractionHandler {
           options: interaction.options.options ?? [],
         };
 
-        this.bot.interactions.set(interaction.name, interaction);
+        this.bot.interactions.set(commandName, interaction);
 
         await this.createCommand(data);
 
         if (process.env["DEBUG_MODE"] === "true") {
-          this.bot.logger.log("COMMAND", `Loaded ${interaction.name}`);
+          this.bot.logger.log("COMMAND", `Loaded ${commandName}`);
         }
       }
 
