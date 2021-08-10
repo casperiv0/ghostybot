@@ -1,14 +1,13 @@
-import { CommandInteraction } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Interaction } from "structures/Interaction";
+import { Command } from "structures/Command/Command";
 import { animalChoices, Choice } from "./choices";
 
-export default class AnimalCommand extends Interaction {
+export default class AnimalCommand extends Command {
   constructor(bot: Bot) {
     super(bot, {
       name: "animal",
       description: "Returns an image of an animal",
-      category: "animal",
       options: [
         {
           name: "type",
@@ -21,9 +20,14 @@ export default class AnimalCommand extends Interaction {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
+  async validate() {
+    return { ok: true };
+  }
 
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     try {
       const type = interaction.options.getString("type", true);
 

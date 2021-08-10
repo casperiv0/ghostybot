@@ -24,6 +24,9 @@ export abstract class Command {
     this.bot = bot;
     this.name = options.name;
     this._options = options;
+
+    this.validate = this.validate.bind(this);
+    this.execute = this.execute.bind(this);
   }
 
   get options(): CommandOptions {
@@ -32,7 +35,13 @@ export abstract class Command {
     };
   }
 
-  abstract validate(interaction: DJS.CommandInteraction): Promise<ValidateReturn>;
+  abstract validate(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ): Promise<ValidateReturn>;
 
-  abstract execute(interaction: DJS.CommandInteraction): Promise<unknown>;
+  abstract execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ): Promise<unknown>;
 }

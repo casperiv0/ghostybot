@@ -17,6 +17,9 @@ export abstract class SubCommand {
     this.bot = bot;
     this.name = options.name;
     this._options = options;
+
+    this.validate = this.validate.bind(this);
+    this.execute = this.execute.bind(this);
   }
 
   get options(): SubCommandOptions & {
