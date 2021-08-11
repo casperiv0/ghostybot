@@ -17,6 +17,9 @@ export interface Starboard {
   allowNsfw: boolean;
 }
 
+/**
+ * @deprecated will be removed when message intents arrive
+ */
 export class MongoStarboardsManager extends StarboardsManager {
   async getAllStarboards() {
     return StarboardModel.find();

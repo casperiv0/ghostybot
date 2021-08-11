@@ -3,6 +3,12 @@
     "target": "ESNext",
     "module": "commonjs",
     "moduleResolution": "node",
+    "checkJs": false,
+
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "traceResolution": true,
+    "allowUnreachableCode": false,
 
     "outDir": "dist",
     "declaration": false,
@@ -38,7 +44,6 @@
     "typeRoots": ["./node_modules/@types", "./typings"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
       "structures/*": ["./src/structures/*"],
       "handlers/*": ["./src/handlers/*"],
       "models/*": ["./src/models/*"],

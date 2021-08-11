@@ -1,7 +1,7 @@
+import * as DJS from "discord.js";
 import fetch from "node-fetch";
-import { ApplicationCommandOptionChoice } from "discord.js";
 
-export interface Choice extends ApplicationCommandOptionChoice {
+export interface Choice extends DJS.ApplicationCommandOptionChoice {
   /**
    * @returns the URL to the image
    */

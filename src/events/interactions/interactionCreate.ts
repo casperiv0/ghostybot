@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -17,7 +18,7 @@ export default class InteractionEvent extends Event {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
-      const command = bot.interactions.get(interaction.command?.name ?? "");
+      const command = bot.interactions.get(this.getCommandName(interaction));
 
       if (!command) {
         if (!interaction.commandId) return;
@@ -30,11 +31,13 @@ export default class InteractionEvent extends Event {
       }
 
       const dbGuild = await bot.utils.getGuildById(interaction.guildId!);
+      const topLevelName =
+        command instanceof SubCommand ? command.options.commandName : command.name;
 
-      if (dbGuild?.disabled_categories.includes(command.options.category)) {
+      if (dbGuild?.disabled_categories.includes(topLevelName)) {
         return interaction.reply({
           ephemeral: true,
-          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
+          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", topLevelName),
         });
       }
 
@@ -45,44 +48,16 @@ export default class InteractionEvent extends Event {
         });
       }
 
-      if (command.options.botPermissions) {
-        const neededPerms: bigint[] = [];
-        const channel = interaction.channel as DJS.TextChannel;
+      if (command.validate) {
+        const { ok, error } = await command.validate(interaction, lang);
 
-        command.options.botPermissions.forEach((perm) => {
-          if (!channel?.permissionsFor(interaction.guild!.me!)?.has(perm)) {
-            neededPerms.push(perm);
-          }
-        });
-
-        if (neededPerms.length > 0) {
-          return interaction.reply({
-            ephemeral: true,
-            embeds: [bot.utils.errorEmbed(neededPerms, interaction, lang.PERMISSIONS)],
-          });
+        if (!ok) {
+          // @ts-expect-error this works!
+          return interaction.reply(error);
         }
       }
 
-      if (command.options.memberPermissions) {
-        const perms = bot.utils.formatMemberPermissions(
-          command.options.memberPermissions,
-          interaction,
-          lang,
-        );
-
-        if (perms) {
-          return interaction.reply({ content: perms, ephemeral: true });
-        }
-      }
-
-      if (command.options.ownerOnly && !this.isOwner(interaction)) {
-        return interaction.reply({
-          content: lang.MESSAGE.OWNER_ONLY,
-          ephemeral: true,
-        });
-      }
-
-      await command?.execute(interaction);
+      await command?.execute(interaction, lang);
     } catch (e) {
       if (interaction.replied) return;
       bot.utils.sendErrorLog(e, "error");
@@ -95,22 +70,24 @@ export default class InteractionEvent extends Event {
     }
   }
 
-  isOwner(interaction: DJS.CommandInteraction) {
-    const owners = process.env["OWNERS"];
-    return owners?.includes(interaction.user.id);
-  }
-
-  isSubCommandDisabled(dbGuild: IGuild, command: DJS.CommandInteraction) {
+  isSubCommandDisabled(dbGuild: IGuild, interaction: DJS.CommandInteraction) {
     const commands = dbGuild.disabled_commands;
 
-    let subCommand: string;
+    const command = this.getCommandName(interaction);
+
+    return commands.includes(command);
+  }
+
+  getCommandName(interaction: DJS.CommandInteraction) {
+    let command: string;
 
     try {
-      subCommand = command.options.getSubcommand();
+      const sub = interaction.options.getSubcommand();
+      command = `${interaction.commandName}-${sub}`;
     } catch {
-      subCommand = command.commandName;
+      command = interaction.commandName;
     }
 
-    return commands.includes(subCommand);
+    return command;
   }
 }

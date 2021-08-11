@@ -7,6 +7,9 @@ export interface IStarboard extends Document {
   options: Starboard;
 }
 
+/**
+ * @deprecated will be removed when message intents arrive
+ */
 const StarboardModel = new Schema({
   guildId: { type: String, required: true },
   channelId: { type: String, required: true },

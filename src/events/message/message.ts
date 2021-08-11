@@ -162,7 +162,6 @@ export default class MessageEvent extends Event {
       }
 
       // bot mention
-      // todo: remove this when message intents release.
       if (mentions?.has(bot.user.id) && !cmd) {
         const embed = bot.utils
           .baseEmbed(message)

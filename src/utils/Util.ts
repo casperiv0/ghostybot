@@ -110,11 +110,11 @@ export class Util {
     }
   }
 
-  async getGuildById(guildId: string | undefined): Promise<IGuild | undefined> {
+  async getGuildById(guildId: string | undefined | null): Promise<IGuild | undefined> {
     try {
       let guild = await GuildModel.findOne({ guild_id: guildId });
 
-      if (!guild) {
+      if (!guild && guildId) {
         guild = await this.addGuild(guildId);
       }
 
@@ -285,7 +285,7 @@ export class Util {
   }
 
   async getGuildLang(
-    guildId: string | undefined,
+    guildId: string | undefined | null,
   ): Promise<typeof import("@locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
@@ -345,6 +345,9 @@ export class Util {
     );
   }
 
+  /**
+   * @deprecated will be removed when message intents arrive
+   */
   async createStarboard(
     channel: { id: string | undefined; guild: { id: string | undefined } },
     options,

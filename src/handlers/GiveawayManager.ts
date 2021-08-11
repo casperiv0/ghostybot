@@ -6,7 +6,7 @@ export class MongoGiveawayManager extends GiveawaysManager {
     return GiveawayModel.find();
   }
 
-  async saveGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
+  async saveGiveaway(_: string, giveawayData: GiveawayData): Promise<boolean> {
     await GiveawayModel.create(giveawayData);
 
     return true;
