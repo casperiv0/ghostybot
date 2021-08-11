@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class PlayerAddSongEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "addSong");
+    super(bot, "addSongs");
   }
 
   async execute(bot: Bot, queue: Queue, song: Song) {

@@ -47,7 +47,7 @@ export default class LyricsCommand extends SubCommand {
       `https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`,
     ).then((v) => v.json());
 
-    if (!data) {
+    if (!data || data.error) {
       return interaction.editReply({
         content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
       });
