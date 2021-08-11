@@ -24,6 +24,8 @@ export default class BotInfoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
+    await interaction.deferReply();
+
     const uptime = dayjs
       .duration(this.bot?.uptime ?? 0)
       .format(" D [days], H [hrs], m [mins], s [secs]");
@@ -66,28 +68,26 @@ export default class BotInfoCommand extends SubCommand {
       .addField(
         lang.BOT.INFO,
         `
-      **${lang.BOT.USERS}:** ${inlineCode(userCount)}
-      **${lang.BOT.GUILDS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.guilds.cache.size))}
-      **${lang.BOT.CHANNELS}:** ${inlineCode(
-          this.bot.utils.formatNumber(this.bot.channels.cache.size),
-        )}
-      **${lang.BOT.COMMAND_COUNT}:** ${inlineCode(this.bot.utils.formatNumber(commandCount))}
-                    `,
+**${lang.BOT.USERS}:** ${inlineCode(userCount)}
+**${lang.BOT.GUILDS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.guilds.cache.size))}
+**${lang.BOT.CHANNELS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.channels.cache.size))}
+**${lang.BOT.COMMAND_COUNT}:** ${inlineCode(this.bot.utils.formatNumber(commandCount))}
+`,
         true,
       )
       .addField(
         lang.BOT.SYSTEM_INFO,
         `
-      **${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
-      **${lang.BOT.DJS_V}:** v13`,
+**${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
+**${lang.BOT.DJS_V}:** v13`,
         true,
       )
       .addField(
         "Links",
         `
-      ${botDeveloper}
-      ${contributors}
-      ${botInvite}`,
+${botDeveloper}
+${contributors}
+${botInvite}`,
         true,
       )
       .addField(lang.BOT.REPO, botRepo, true)
@@ -97,6 +97,6 @@ export default class BotInfoCommand extends SubCommand {
         "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
       );
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 }

@@ -29,11 +29,13 @@ export default class EmojiInfoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
+    await interaction.deferReply();
+
     const emoji = interaction.options.getString("emoji", true);
     const foundEmoji = this.findEmoji(interaction.guild!, emoji);
 
     if (!foundEmoji) {
-      return interaction.reply({
+      return interaction.editReply({
         content: lang.UTIL.EMOJI_NOT_FOUND,
       });
     }
@@ -59,7 +61,7 @@ export default class EmojiInfoCommand extends SubCommand {
 **${lang.UTIL.CREATED_BY.replace(" {member}", "")}:** ${emojiAuthor}
 **${lang.UTIL.ACCESSIBLE_BY}:** ${accessibleBy}`);
 
-    return interaction.reply({ embeds: [embed] });
+    return interaction.editReply({ embeds: [embed] });
   }
 
   findEmoji(guild: DJS.Guild, arg: string) {

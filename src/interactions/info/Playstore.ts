@@ -29,8 +29,9 @@ export default class PlaystoreInfoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const query = interaction.options.getString("query", true);
+    await interaction.deferReply();
 
+    const query = interaction.options.getString("query", true);
     const data = await PlayStore.search({
       term: query,
       num: 1,
@@ -41,7 +42,7 @@ export default class PlaystoreInfoCommand extends SubCommand {
     try {
       app = JSON.parse(JSON.stringify(data[0]));
     } catch (error) {
-      return interaction.reply({ content: lang.UTIL.PS_NOT_FOUND });
+      return interaction.editReply({ content: lang.UTIL.PS_NOT_FOUND });
     }
 
     const embed = this.bot.utils
@@ -54,6 +55,6 @@ export default class PlaystoreInfoCommand extends SubCommand {
       .addField(lang.UTIL.DEVELOPER, app.developer, true)
       .addField(lang.UTIL.SCORE, app.scoreText, true);
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 }

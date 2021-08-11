@@ -30,13 +30,14 @@ export default class GitHubInfoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
+    await interaction.deferReply();
     const username = interaction.options.getString("username", true);
 
     const url = `https://api.github.com/users/${encodeURIComponent(username)}`;
     const user = await fetch(url).then((res) => res.json());
 
     if (user?.message === "Not Found") {
-      return interaction.reply({ ephemeral: true, content: lang.UTIL.GH_NOT_FOUND });
+      return interaction.editReply({ content: lang.UTIL.GH_NOT_FOUND });
     }
 
     const twitter = user.twitter_username
@@ -63,6 +64,6 @@ export default class GitHubInfoCommand extends SubCommand {
       embed.setAuthor(user.name);
     }
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 }
