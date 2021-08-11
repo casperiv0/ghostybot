@@ -25,6 +25,9 @@ export class InteractionHandler {
        */
       const subCommands: Record<string, SubCommand[]> = {};
 
+      /** object of saved SUB_COMMAND that will be inside of a SUB_COMMAND_GROUP */
+      const commandGroups: Record<string, [string, SubCommand[]]> = {};
+
       for (const file of files) {
         delete require.cache[file];
 
@@ -35,10 +38,18 @@ export class InteractionHandler {
         let commandName;
 
         if (interaction instanceof SubCommand) {
+          const groupName = interaction.options.groupName;
           const topLevelName = interaction.options.commandName;
-          const prevSubCommands = subCommands[topLevelName] ?? [];
 
-          subCommands[topLevelName] = [...prevSubCommands, interaction];
+          if (groupName) {
+            const prev = commandGroups[groupName]?.[1] ?? [];
+
+            commandGroups[groupName] = [topLevelName, [...prev, interaction]];
+          } else if (topLevelName) {
+            const prevSubCommands = subCommands[topLevelName] ?? [];
+            subCommands[topLevelName] = [...prevSubCommands, interaction];
+          }
+
           commandName = `${topLevelName}-${interaction.name}`;
         } else {
           commandName = interaction.name;
@@ -66,6 +77,28 @@ export class InteractionHandler {
           name: topLevelName,
           description: `${topLevelName} commands`,
           options: cmds.map((v) => v.options),
+        };
+
+        // todo: check if the topLevelCommand has a SUB_COMMAND_GROUP
+        // if so, do not create it here because it will be re-created below
+        await this.createCommand(data);
+      }
+
+      for (const groupName in commandGroups) {
+        const [topLevelName, cmds] = commandGroups[groupName];
+
+        const data: ApplicationCommandData = {
+          name: topLevelName,
+          description: `${topLevelName} commands`,
+          options: [
+            ...subCommands[topLevelName].map((v) => v.options),
+            {
+              type: "SUB_COMMAND_GROUP",
+              name: groupName,
+              description: `${groupName} sub commands`,
+              options: cmds.map((v) => v.options),
+            },
+          ],
         };
 
         await this.createCommand(data);

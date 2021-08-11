@@ -6,6 +6,9 @@ import { CommandOptions, ValidateReturn } from "structures/Command/Command";
 export interface SubCommandOptions extends CommandOptions {
   /** top level command name (/top-level \<sub command\>) */
   commandName: string;
+
+  /** the SUB_COMMAND_GROUP name */
+  groupName?: string;
 }
 
 export abstract class SubCommand {
