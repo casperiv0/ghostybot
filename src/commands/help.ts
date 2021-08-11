@@ -15,7 +15,7 @@ export default class HelpCommand extends Command {
     });
   }
 
-  async execute(message: Message, args: string[]) {
+  async execute(message: Message) {
     const lang = await this.bot.utils.getGuildLang(message.guild?.id);
     try {
       const LINK = hyperlink(

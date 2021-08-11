@@ -30,10 +30,7 @@ export default class CtgsCommand extends SubCommand {
     return { ok: true };
   }
 
-  async execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ) {
+  async execute(interaction: DJS.CommandInteraction) {
     const slug = interaction.options.getString("slug", true);
     const url = interaction.options.getString("url", true);
     const data = await this.bot.ctgs.new(slug, url).catch((e) => e?.message ?? e);

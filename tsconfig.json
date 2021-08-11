@@ -4,9 +4,11 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "checkJs": false,
-    // "noImplicitThis": false,
-    // "noUnusedParameters": true,
+
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
     "traceResolution": true,
+    "allowUnreachableCode": false,
 
     "outDir": "dist",
     "declaration": false,
