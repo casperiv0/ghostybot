@@ -20,10 +20,20 @@ export default class PlayCommand extends SubCommand {
     });
   }
 
-  async validate(
+  async validate(): Promise<ValidateReturn> {
+    return { ok: true };
+  }
+
+  async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
+  ) {
+    const query = interaction.options.getString("query");
+    const queue = this.bot.player.getQueue(interaction.guildId!);
+    if (queue && !this.bot.utils.isBotInSameChannel(interaction)) {
+      return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
+    }
+
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
       allowAuthor: true,
     });
@@ -38,19 +48,7 @@ export default class PlayCommand extends SubCommand {
       return { ok: false, error: { ephemeral: true, content: lang.MUSIC.NO_PERMS } };
     }
 
-    return { ok: true };
-  }
-
-  async execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ) {
-    const queue = this.bot.player.getQueue(interaction.guildId!);
-    if (queue && !this.bot.utils.isBotInSameChannel(interaction)) {
-      return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
-    }
-
-    this.bot.player.pause(interaction.guildId!);
+    await this.bot.player.playVoiceChannel(channel, query);
 
     await interaction.reply({ content: "⏯️" });
   }
