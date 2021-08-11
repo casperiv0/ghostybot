@@ -13,7 +13,6 @@ export default class HelpCommand extends Command {
       description: "Shows all commands Or shows more info about a command",
       category: "util",
       cooldown: 2,
-      usage: "<category name | command name>",
       aliases: ["h", "info", "commands"],
       botPermissions: [Permissions.FLAGS.ADD_REACTIONS],
     });
@@ -24,7 +23,6 @@ export default class HelpCommand extends Command {
     try {
       const guild = await this.bot.utils.getGuildById(message.guild?.id);
       const prefix = guild?.prefix ?? "!";
-      const [cmdArgs] = args;
 
       const disabledCmds = !guild?.disabled_commands[0]
         ? [{ category: "disabled", name: lang.GLOBAL.NONE }]
@@ -33,82 +31,6 @@ export default class HelpCommand extends Command {
           });
 
       const commands = [...this.bot.commands.map((v) => ({ ...v.options })), ...disabledCmds];
-
-      if (cmdArgs && REGULAR_CATEGORIES.includes(cmdArgs.toLowerCase())) {
-        const cmds = commands
-          .filter((cmd) => this.findCategory(cmd) === cmdArgs.toLowerCase())
-          .map(({ name }) => inlineCode(name))
-          .join(", ");
-
-        if (cmds.length < 0) {
-          return message.channel.send({ content: lang.HELP.CAT_NOT_EXIST });
-        }
-
-        const embed = this.bot.utils
-          .baseEmbed(message)
-          .setTitle(`${lang.HELP.COMMANDS}: ${cmdArgs}`);
-
-        embed.setDescription(cmds);
-        return message.channel.send({ embeds: [embed] });
-      } else if (cmdArgs) {
-        const cmd = this.findCommand(cmdArgs, commands);
-
-        if (!cmd) {
-          return message.channel.send({ content: lang.HELP.CMD_NOT_FOUND });
-        }
-
-        let aliases: string;
-        let options: string;
-        let cooldown: string;
-        let memberPerms: string;
-        let botPerms: string;
-        let usage: string;
-
-        if ("options" in cmd) {
-          if (cmd.options.aliases) {
-            aliases = cmd.options.aliases.map((alias) => alias).join(", ");
-          } else {
-            aliases = lang.GLOBAL.NONE;
-          }
-
-          if (cmd.options.options) {
-            options = cmd.options.options.map((option) => option).join(", ");
-          } else {
-            options = lang.GLOBAL.NONE;
-          }
-
-          if (cmd.options.cooldown) {
-            cooldown = `${cmd.options.cooldown}s`;
-          } else {
-            cooldown = "3s";
-          }
-
-          if (cmd.options.usage) {
-            usage = `${prefix}${cmd.name} ${cmd.options.usage}`;
-          } else {
-            usage = lang.GLOBAL.NOT_SPECIFIED;
-          }
-
-          memberPerms = getMemberPermissions(cmd, lang).join(", ");
-          botPerms = getBotPermissions(cmd, lang).join(", ");
-
-          const embed = this.bot.utils
-            .baseEmbed(message)
-            .addField(lang.HELP.ALIASES, aliases, true)
-            .addField(lang.HELP.COOLDOWN, cooldown, true)
-            .addField(lang.HELP.USAGE, usage, true)
-            .addField(lang.UTIL.CATEGORY, cmd.options.category, true)
-            .addField(lang.HELP.OPTIONS, options, true)
-            .addField(lang.HELP.BOT_PERMS, botPerms, true)
-            .addField(lang.HELP.MEMBER_PERMS, memberPerms, true);
-
-          if (cmd.options.description) {
-            embed.setDescription(cmd.options.description);
-          }
-
-          return message.channel.send({ embeds: [embed] });
-        }
-      }
 
       const cates: string[][] = [];
       const embeds: MessageEmbed[] = [];
@@ -151,16 +73,6 @@ export default class HelpCommand extends Command {
 
   findCategory(cmd: Command | { name: string; category: string }): string {
     return "options" in cmd ? cmd.options.category : cmd.category;
-  }
-
-  findCommand(args: string, commands: (Command | { name: string; category: string })[]) {
-    let command = commands.find((cmd) => cmd.name.toLowerCase() === args.toLowerCase());
-    if (command) return command;
-
-    const filter = (cmd) => cmd.name.toLowerCase() === this.bot.aliases.get(args.toLowerCase());
-    command = commands.find(filter);
-
-    return command;
   }
 }
 

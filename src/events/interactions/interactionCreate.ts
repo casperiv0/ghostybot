@@ -3,7 +3,6 @@ import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
-import { Interaction } from "structures/Interaction";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -49,7 +48,7 @@ export default class InteractionEvent extends Event {
         });
       }
 
-      if (!(command instanceof Interaction) && command.validate) {
+      if (command.validate) {
         const { ok, error } = await command.validate(interaction, lang);
 
         if (!ok) {

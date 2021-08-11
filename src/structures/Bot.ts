@@ -12,7 +12,6 @@ import { MongoGiveawayManager } from "handlers/GiveawayManager";
 import { Command } from "./Command";
 import { logger } from "utils/logger";
 import { Util } from "utils/Util";
-import { Interaction } from "./Interaction";
 import { discordConfig } from "@config/discord-config";
 import { SubCommand } from "./Command/SubCommand";
 import { Command as InteractionCommand } from "./Command/Command";
@@ -20,8 +19,7 @@ import { Command as InteractionCommand } from "./Command/Command";
 export class Bot extends Client {
   commands: Collection<string, Command> = new Collection();
   aliases: Collection<string, string> = new Collection();
-  interactions: Collection<string, Interaction | SubCommand | InteractionCommand> =
-    new Collection();
+  interactions: Collection<string, SubCommand | InteractionCommand> = new Collection();
   cooldowns: Collection<string, Collection<string, number>> = new Collection();
 
   logger: typeof logger = logger;
