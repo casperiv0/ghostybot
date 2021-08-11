@@ -48,8 +48,7 @@ export default class PlayCommand extends SubCommand {
       return { ok: false, error: { ephemeral: true, content: lang.MUSIC.NO_PERMS } };
     }
 
+    await interaction.reply({ ephemeral: true, content: lang.MUSIC.ADDED_TO_QUEUE2 });
     await this.bot.player.playVoiceChannel(channel, query);
-
-    await interaction.reply({ content: "⏯️" });
   }
 }
