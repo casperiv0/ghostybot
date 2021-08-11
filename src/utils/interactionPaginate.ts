@@ -15,7 +15,8 @@ export async function interactionPaginate(
 ) {
   let page = 0;
 
-  await interaction.reply({
+  const v = await interaction.reply({
+    fetchReply: true,
     embeds: [
       embeds[0].setFooter(
         `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
@@ -24,7 +25,6 @@ export async function interactionPaginate(
   });
 
   let currentPage: Message | null = null;
-  const v = await interaction.fetchReply();
   if (!(v instanceof Message)) {
     currentPage = new Message(bot, v);
   } else {
