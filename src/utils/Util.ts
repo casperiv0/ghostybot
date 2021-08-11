@@ -345,6 +345,9 @@ export class Util {
     );
   }
 
+  /**
+   * @deprecated will be removed when message intents arrive
+   */
   async createStarboard(
     channel: { id: string | undefined; guild: { id: string | undefined } },
     options,

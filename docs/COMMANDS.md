@@ -3,15 +3,21 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 157 slash commands.
+GhostyBot has a total of 153 slash commands.
 
 ## Detailed command list
+
+## admin -> add-role
+
+**Description:** Add a role to a user
+
+**Options:** user (USER / Required), role (ROLE / Required)
+
+[Back to top](#ghostybot-command-list)
 
 ## admin -> announce
 
 **Description:** Announce something with a cool embed
-
-**Choices:** N/A
 
 **Options:** text (STRING / Required), channel (CHANNEL / Optional)
 
@@ -21,18 +27,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Ban a user from the current guild
 
-**Choices:** N/A
-
-**Options:** user (USER / Required), reason (STRING / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> kick
-
-**Description:** Kick a user from the current guild
-
-**Choices:** N/A
-
 **Options:** user (USER / Required), reason (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -41,37 +35,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Delete up to 100 messages within 14 days
 
-**Choices:** N/A
-
 **Options:** amount (NUMBER / Required)
 
 [Back to top](#ghostybot-command-list)
 
-## admin -> mute
+## admin -> kick
 
-**Description:** Mute/tempmute a user
-
-**Choices:** N/A
-
-**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> unmute
-
-**Description:** Unmute a user
-
-**Choices:** N/A
-
-**Options:** user (USER / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> warn
-
-**Description:** Warn a user
-
-**Choices:** N/A
+**Description:** Kick a user from the current guild
 
 **Options:** user (USER / Required), reason (STRING / Optional)
 
@@ -81,19 +51,39 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Lock the current channel
 
-**Choices:** N/A
-
 **Options:** reason (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
-## admin -> unlock-channel
+## admin -> mute
 
-**Description:** Unlock the current channel
+**Description:** Mute/tempmute a user
 
-**Choices:** N/A
+**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> nuke
+
+**Description:** Nuke the current channel. Note: The channel will instantly be deleted and re-created.
 
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> remove-role
+
+**Description:** Remove a role to a user
+
+**Options:** user (USER / Required), role (ROLE / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> warnings -> remove
+
+**Description:** Remove a warning from a user
+
+**Options:** user (USER / Required), warning-id (NUMBER / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -101,39 +91,7 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Let the bot say something
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required), embed (BOOLEAN / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> steal-emoji
-
-**Description:** Add an emoji from a different guild to this guild
-
-**Choices:** N/A
-
-**Options:** emoji (STRING / Required), name (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> unban
-
-**Description:** Unban a member from the current guild
-
-**Choices:** N/A
-
-**Options:** user-id (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## admin -> temp-role
-
-**Description:** Give someone a role for a period of time
-
-**Choices:** N/A
-
-**Options:** user (USER / Required), role (ROLE / Required), time (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -141,19 +99,55 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Set a new sticky message for the current channel
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> sticky -> remove
+## admin -> steal-emoji
 
-**Description:** Remove the sticky message for the current channel
+**Description:** Add an emoji from a different guild to this guild
 
-**Choices:** N/A
+**Options:** emoji (STRING / Required), name (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> temp-role
+
+**Description:** Give someone a role for a period of time
+
+**Options:** user (USER / Required), role (ROLE / Required), time (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unban
+
+**Description:** Unban a member from the current guild
+
+**Options:** user-id (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unlock-channel
+
+**Description:** Unlock the current channel
 
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> unmute
+
+**Description:** Unmute a user
+
+**Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin -> warn
+
+**Description:** Warn a user
+
+**Options:** user (USER / Required), reason (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -161,27 +155,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** View warnings of a user
 
-**Choices:** N/A
-
 **Options:** user (USER / Required), warning-id (NUMBER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> sticky -> remove
+## animal
 
-**Description:** Remove a warning from a user
+**Description:** Returns an image of an animal
 
-**Choices:** N/A
-
-**Options:** user (USER / Required), warning-id (NUMBER / Required)
+**Options:** type (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## anime -> baka
 
 **Description:** Baka?
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -191,8 +179,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Cuddle with somebody
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -200,8 +186,6 @@ GhostyBot has a total of 157 slash commands.
 ## anime -> feed
 
 **Description:** Feed somebody
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -211,8 +195,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Shows a picture of people hugging
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -220,8 +202,6 @@ GhostyBot has a total of 157 slash commands.
 ## anime -> kiss
 
 **Description:** Shows a picture of people kissing
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -231,8 +211,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** OwO
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -240,8 +218,6 @@ GhostyBot has a total of 157 slash commands.
 ## anime -> pat
 
 **Description:** Pat somebody
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -251,8 +227,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Poke somebody
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -260,8 +234,6 @@ GhostyBot has a total of 157 slash commands.
 ## anime -> slap
 
 **Description:** Slap somebody
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -271,27 +243,29 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Smug
 
-**Choices:** N/A
-
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bot-owner -> eval
+
+**Description:** Execute a piece of code
+
+**Options:** code (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## bot-owner -> leave-guild
+
+**Description:** Leave a guild by id
+
+**Options:** id (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## economy -> add-money
 
 **Description:** Add money to a user
-
-**Choices:** N/A
-
-**Options:** user (USER / Required), amount (NUMBER / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## economy -> remove-money
-
-**Description:** Remove money to a user
-
-**Choices:** N/A
 
 **Options:** user (USER / Required), amount (NUMBER / Required)
 
@@ -301,8 +275,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** See the balance of a user
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -311,17 +283,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Buy something from the store
 
-**Choices:** N/A
-
 **Options:** item (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## economy -> daily
+
+**Description:** Claim your daily
+
+**Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
 ## economy -> deposit
 
 **Description:** Deposit money to your bank
-
-**Choices:** N/A
 
 **Options:** amount (NUMBER / Required)
 
@@ -331,8 +307,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Roll a dice and win 200 coins
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -340,8 +314,6 @@ GhostyBot has a total of 157 slash commands.
 ## economy -> inventory
 
 **Description:** See the inventory of a user
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -351,8 +323,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** See the money leaderboard
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -360,8 +330,6 @@ GhostyBot has a total of 157 slash commands.
 ## economy -> pay
 
 **Description:** Give money to a user
-
-**Choices:** N/A
 
 **Options:** user (USER / Required), amount (NUMBER / Required)
 
@@ -371,17 +339,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** See the profile of a user
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## economy -> remove-money
+
+**Description:** Remove money to a user
+
+**Options:** user (USER / Required), amount (NUMBER / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## economy -> rob
 
 **Description:** Rob up to 1000 coins from somebody
-
-**Choices:** N/A
 
 **Options:** user (USER / Required), amount (NUMBER / Required)
 
@@ -391,8 +363,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Play the slots machine
 
-**Choices:** N/A
-
 **Options:** amount (NUMBER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -400,8 +370,6 @@ GhostyBot has a total of 157 slash commands.
 ## economy -> store
 
 **Description:** See items in the store
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -411,28 +379,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Claim your weekly
 
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## economy -> daily
-
-**Description:** Claim your daily
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## economy -> work
-
-**Description:** Work!
-
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -441,17 +387,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Withdraw money to your bank
 
-**Choices:** N/A
-
 **Options:** amount (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## economy -> work
+
+**Description:** Work!
+
+**Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
 ## fun -> 8ball
 
 **Description:** 8Ball
-
-**Choices:** N/A
 
 **Options:** question (STRING / Required)
 
@@ -461,8 +411,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Gives you advice
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -470,8 +418,6 @@ GhostyBot has a total of 157 slash commands.
 ## fun -> ascii
 
 **Description:** Transform text to ascii
-
-**Choices:** N/A
 
 **Options:** text (STRING / Required)
 
@@ -481,8 +427,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Bet on somebody
 
-**Choices:** N/A
-
 **Options:** user (USER / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -490,8 +434,6 @@ GhostyBot has a total of 157 slash commands.
 ## fun -> block
 
 **Description:** Transform text to block text
-
-**Choices:** N/A
 
 **Options:** text (STRING / Required)
 
@@ -501,8 +443,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get a compliment
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -510,8 +450,6 @@ GhostyBot has a total of 157 slash commands.
 ## fun -> dad-joke
 
 **Description:** Returns a dad joke
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -521,8 +459,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Flip a coin
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -530,8 +466,6 @@ GhostyBot has a total of 157 slash commands.
 ## fun -> happiness
 
 **Description:** Get a happiness score returned
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -541,17 +475,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get an IQ score returned
 
-**Choices:** N/A
-
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## fun -> lmgtfy
+
+**Description:** Let me google that for ya?
+
+**Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## fun -> meme
 
 **Description:** Returns a funny meme
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -561,8 +499,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Transform text to morse code
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -571,7 +507,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Returns a random quote
 
-**Choices:** N/A
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## fun -> random-color
+
+**Description:** Returns a random color
 
 **Options:** N/A
 
@@ -581,8 +523,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Returns a random joke
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -590,8 +530,6 @@ GhostyBot has a total of 157 slash commands.
 ## fun -> random-number
 
 **Description:** Returns a random number
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -601,8 +539,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Rock Paper Scissors
 
-**Choices:** N/A
-
 **Options:** item (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -611,37 +547,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Would you rather..
 
-**Choices:** N/A
-
 **Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## fun -> lmgtfy
-
-**Description:** Let me google that for ya?
-
-**Choices:** N/A
-
-**Options:** query (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## giveaway -> start
-
-**Description:** Start a new giveaway
-
-**Choices:** N/A
-
-**Options:** time (STRING / Required), prize (STRING / Required), winner-count (NUMBER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
 ## giveaway -> end
 
 **Description:** End a giveaway
-
-**Choices:** N/A
 
 **Options:** message-id (STRING / Required)
 
@@ -651,17 +563,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Re-roll a giveaway
 
-**Choices:** N/A
-
 **Options:** message-id (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## giveaway -> start
+
+**Description:** Start a new giveaway
+
+**Options:** time (STRING / Required), prize (STRING / Required), winner-count (NUMBER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
 ## image -> amazing-earth
 
 **Description:** Amazing images of light and landscape
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -671,8 +587,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Change my mind..
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -680,8 +594,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> clyde
 
 **Description:** Let clyde say something
-
-**Choices:** N/A
 
 **Options:** text (STRING / Required)
 
@@ -691,8 +603,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Shows Food images
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -700,8 +610,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> giphy
 
 **Description:** Return a giphy image
-
-**Choices:** N/A
 
 **Options:** query (STRING / Required)
 
@@ -711,8 +619,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** text to image converter
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -720,8 +626,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> invert
 
 **Description:** Invert an avatar
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -731,8 +635,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Just Magik.
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional), intensity (NUMBER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -740,8 +642,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> pikachu
 
 **Description:** Returns an image of a pikachu
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -751,8 +651,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Display custom text as the Supreme logo
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -760,8 +658,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> threshold
 
 **Description:** threshold an avatar
-
-**Choices:** N/A
 
 **Options:** user (USER / Optional)
 
@@ -771,8 +667,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Put someone in the trash
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -780,8 +674,6 @@ GhostyBot has a total of 157 slash commands.
 ## image -> tweet
 
 **Description:** Returns an image with your tweet
-
-**Choices:** N/A
 
 **Options:** text (STRING / Required)
 
@@ -791,8 +683,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Returns an image with your YouTube comment
 
-**Choices:** N/A
-
 **Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -801,59 +691,7 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about GhostyBot
 
-**Choices:** N/A
-
 **Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## info -> covid
-
-**Description:** Get COVID-19 information
-
-**Choices:** N/A
-
-**Options:** country (STRING / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> country
-
-**Description:** Get information about a country
-
-**Choices:** N/A
-
-**Options:** country (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> guild
-
-**Description:** Get information about the current guild
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## info -> user
-
-**Description:** Get information about a user
-
-**Choices:** N/A
-
-**Options:** user (USER / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> github
-
-**Description:** Get information about a GitHub user
-
-**Choices:** N/A
-
-**Options:** username (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -861,9 +699,23 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about a channel
 
-**Choices:** N/A
-
 **Options:** channel (CHANNEL / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> country
+
+**Description:** Get information about a country
+
+**Options:** country (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> covid
+
+**Description:** Get COVID-19 information
+
+**Options:** country (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -871,17 +723,37 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about an emoji
 
-**Choices:** N/A
-
 **Options:** emoji (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> github
+
+**Description:** Get information about a GitHub user
+
+**Options:** username (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> guild
+
+**Description:** Get information about the current guild
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## info -> imdb
+
+**Description:** Get information about a series or a movie
+
+**Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## info -> invite
 
 **Description:** Get information about an invite code
-
-**Choices:** N/A
 
 **Options:** code (STRING / Required)
 
@@ -891,47 +763,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about an IP address
 
-**Choices:** N/A
-
 **Options:** ip (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> pokemon
-
-**Description:** Returns a pokémon information
-
-**Choices:** N/A
-
-**Options:** query (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> playstore
-
-**Description:** Show information about an app on the PlayStore
-
-**Choices:** N/A
-
-**Options:** query (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## info -> spotify
-
-**Description:** Find a track/artist/album via the Spotify API
-
-**Choices:** N/A
-
-**Options:** type (STRING / Required), query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
 ## info -> minecraft
 
 **Description:** Get info about a minecraft server
-
-**Choices:** N/A
 
 **Options:** query (STRING / Required)
 
@@ -941,7 +779,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Search packages on npm by their name
 
-**Choices:** N/A
+**Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> playstore
+
+**Description:** Show information about an app on the PlayStore
+
+**Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> pokemon
+
+**Description:** Returns a pokémon information
 
 **Options:** query (STRING / Required)
 
@@ -951,9 +803,23 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about a role in the current guild
 
-**Choices:** N/A
-
 **Options:** role (ROLE / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> spotify
+
+**Description:** Find a track/artist/album via the Spotify API
+
+**Options:** type (STRING / Required), query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## info -> user
+
+**Description:** Get information about a user
+
+**Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -961,27 +827,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get information about a country
 
-**Choices:** N/A
-
 **Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
-## info -> imdb
-
-**Description:** Get information about a series or a movie
-
-**Choices:** N/A
-
-**Options:** query (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## levels -> givexp
+## levels -> give-xp
 
 **Description:** Give a user xp
-
-**Choices:** N/A
 
 **Options:** user (USER / Required), amount (NUMBER / Required)
 
@@ -991,8 +843,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Shows top 10 users with the highest amount of XP
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -1001,17 +851,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get the rank of a user or yourself
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
-## levels -> removexp
+## levels -> remove-xp
 
 **Description:** Remove xp from a user
-
-**Choices:** N/A
 
 **Options:** user (USER / Required), amount (NUMBER / Required)
 
@@ -1021,8 +867,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get the xp of a user or yourself
 
-**Choices:** N/A
-
 **Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -1030,8 +874,6 @@ GhostyBot has a total of 157 slash commands.
 ## music -> clear-queue
 
 **Description:** Clear the current music queue
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -1041,8 +883,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Set or remove a filter for the current queue
 
-**Choices:** N/A
-
 **Options:** filter (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
@@ -1050,8 +890,6 @@ GhostyBot has a total of 157 slash commands.
 ## music -> loop
 
 **Description:** Loop a song that is playing
-
-**Choices:** N/A
 
 **Options:** type (NUMBER / Required)
 
@@ -1061,8 +899,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Get lyrics for a song
 
-**Choices:** N/A
-
 **Options:** query (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
@@ -1070,8 +906,6 @@ GhostyBot has a total of 157 slash commands.
 ## music -> now-playing
 
 **Description:** Shows information about the current playing song
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -1081,18 +915,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Pause the song that is playing
 
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## music -> resume
-
-**Description:** Resume..
-
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -1100,8 +922,6 @@ GhostyBot has a total of 157 slash commands.
 ## music -> play
 
 **Description:** Play a song
-
-**Choices:** N/A
 
 **Options:** query (STRING / Required)
 
@@ -1111,8 +931,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Show top 20 songs in the queue
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -1121,17 +939,21 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Remove a song from the queue
 
-**Choices:** N/A
-
 **Options:** track-number (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## music -> resume
+
+**Description:** Resume the queue
+
+**Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
 ## music -> seek
 
 **Description:** Seek through a song
-
-**Choices:** N/A
 
 **Options:** time (STRING / Required)
 
@@ -1141,8 +963,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Shuffle the current queue
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -1150,8 +970,6 @@ GhostyBot has a total of 157 slash commands.
 ## music -> skip
 
 **Description:** Skip the song that is playing
-
-**Choices:** N/A
 
 **Options:** N/A
 
@@ -1161,8 +979,6 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Stop the current queue
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
@@ -1171,19 +987,7 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Set the volume for the current queue
 
-**Choices:** N/A
-
 **Options:** volume (NUMBER / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## reminders -> view
-
-**Description:** View all your reminders
-
-**Choices:** N/A
-
-**Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1191,19 +995,7 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Create a new reminder
 
-**Choices:** N/A
-
 **Options:** time (STRING / Required), message (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## reminders -> delete
-
-**Description:** Delete one of your reminders
-
-**Choices:** N/A
-
-**Options:** id (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1211,19 +1003,23 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Edit one of your reminders
 
-**Choices:** N/A
+**Options:** id (STRING / Required), time (STRING / Required), message (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## reminders -> delete
+
+**Description:** Delete one of your reminders
 
 **Options:** id (STRING / Required), time (STRING / Required), message (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
-## tickets -> create
+## reminders -> view
 
-**Description:** Open a new ticket
+**Description:** View all your reminders
 
-**Choices:** N/A
-
-**Options:** N/A
+**Options:** user (USER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1231,167 +1027,13 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Close your ticket
 
-**Choices:** N/A
-
 **Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
-## util -> avatar
+## tickets -> create
 
-**Description:** View the avatar of a user
-
-**Choices:** N/A
-
-**Options:** user (USER / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> bmi
-
-**Description:** Calculate your body mass index
-
-**Choices:** N/A
-
-**Options:** height (NUMBER / Required), weight (NUMBER / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> calculate
-
-**Description:** Calculate something
-
-**Choices:** N/A
-
-**Options:** calculation (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> translate
-
-**Description:** Translate something
-
-**Choices:** N/A
-
-**Options:** language (STRING / Required), sentence (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> server-icon
-
-**Description:** View the icon of the current guild
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## util -> bot-invite
-
-**Description:** Generate a bot invite URL for GhostyBot
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## util -> poll
-
-**Description:** Create a poll in the current channel
-
-**Choices:** N/A
-
-**Options:** question (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> enlarge
-
-**Description:** Enlarge an emoji
-
-**Choices:** N/A
-
-**Options:** emoji (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> pastebin
-
-**Description:** Create a paste (pastebin.com)
-
-**Choices:** N/A
-
-**Options:** code (STRING / Required), extension (STRING / Optional), filename (STRING / Optional), expire-date (STRING / Optional)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> uptime
-
-**Description:** View the uptime of the bot
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## util -> bug-report
-
-**Description:** Report a bug to the bot developer
-
-**Choices:** N/A
-
-**Options:** text (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> feedback
-
-**Description:** Send feedback to the bot developer
-
-**Choices:** N/A
-
-**Options:** text (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> ctgs
-
-**Description:** Create a shortened URL (ctgs.ga)
-
-**Choices:** N/A
-
-**Options:** slug (STRING / Required), url (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> suggest
-
-**Description:** Suggest something for this guild
-
-**Choices:** N/A
-
-**Options:** text (STRING / Required)
-
-[Back to top](#ghostybot-command-list)
-
-## util -> emojis
-
-**Description:** View all emojis in this guild
-
-**Choices:** N/A
-
-**Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## util -> roles
-
-**Description:** View all roles in this guild
-
-**Choices:** N/A
+**Description:** Open a new ticket
 
 **Options:** N/A
 
@@ -1401,9 +1043,175 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** Set yourself to afk/not-afk
 
-**Choices:** N/A
-
 **Options:** reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> avatar
+
+**Description:** View the avatar of a user
+
+**Options:** user (USER / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bmi
+
+**Description:** Calculate your body mass index
+
+**Options:** height (NUMBER / Required), weight (NUMBER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bot-invite
+
+**Description:** Generate a bot invite URL for GhostyBot
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> bug-report
+
+**Description:** Report a bug to the bot developer
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> calculate
+
+**Description:** Calculate something
+
+**Options:** calculation (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> ctgs
+
+**Description:** Create a shortened URL (ctgs.ga)
+
+**Options:** slug (STRING / Required), url (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> define
+
+**Description:** Define something
+
+**Options:** word (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## docs
+
+**Description:** Find something on the discord.js docs
+
+**Options:** query (STRING / Required), branch (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> emojis
+
+**Description:** View all emojis in this guild
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> enlarge
+
+**Description:** Enlarge an emoji
+
+**Options:** emoji (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> feedback
+
+**Description:** Send feedback to the bot developer
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## help
+
+**Description:** Return more information about a command
+
+**Options:** command (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## mdn
+
+**Description:** Find something on the MDN Web Docs.
+
+**Options:** query (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> pastebin
+
+**Description:** Create a paste (pastebin.com)
+
+**Options:** code (STRING / Required), extension (STRING / Optional), filename (STRING / Optional), expire-date (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## ping
+
+**Description:** Returns the bot's ping
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> poll
+
+**Description:** Create a poll in the current channel
+
+**Options:** question (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> roles
+
+**Description:** View all roles in this guild
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> server-icon
+
+**Description:** View the icon of the current guild
+
+**Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## util -> suggest
+
+**Description:** Suggest something for this guild
+
+**Options:** text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> translate
+
+**Description:** Translate something
+
+**Options:** language (STRING / Required), sentence (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> uptime
+
+**Description:** View the uptime of the bot
+
+**Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
@@ -1411,8 +1219,14 @@ GhostyBot has a total of 157 slash commands.
 
 **Description:** View a screenshot of a website
 
-**Choices:** N/A
-
 **Options:** url (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## util -> wiki
+
+**Description:** Search something up on Wikipedia
+
+**Options:** query (STRING / Required)
 
 [Back to top](#ghostybot-command-list)

@@ -2,6 +2,9 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
+/**
+ * @deprecated will be removed when message intents arrive
+ */
 export default class StarboardNoEmptyMsgEvent extends Event {
   constructor(bot: Bot) {
     super(bot, "starboardNoEmptyMsg");

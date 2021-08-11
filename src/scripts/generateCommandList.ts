@@ -1,82 +1,61 @@
-/* eslint-disable */
-// todo: re-implement this.
+const TARGET_FILE = "./docs/COMMANDS.md";
+import fs from "fs";
+import { Collection } from "discord.js";
+import { Bot } from "structures/Bot";
+import { Command } from "structures/Command/Command";
+import { SubCommand } from "structures/Command/SubCommand";
 
-// const TARGET_FILE = "./docs/COMMANDS.md";
-// import fs from "fs";
-// import { ApplicationCommandOptionData, Collection } from "discord.js";
-// import { Bot } from "structures/Bot";
-// import { Interaction } from "structures/Interaction";
+type TCommand = Command | SubCommand;
+type Commands = Collection<string, TCommand>;
 
-// type Commands = Collection<string, Interaction>;
+export default (bot: Bot) => {
+  const detailedCommandList = mapDetailedCommands(bot.interactions);
 
-// export default (bot: Bot) => {
-//   const detailedCommandList = mapDetailedCommands(bot.interactions);
+  writeToFile(detailedCommandList, bot.utils.commandCount);
 
-//   writeToFile(detailedCommandList, bot.utils.commandCount);
+  bot.logger.log("command_list", "Successfully generated command list");
+};
 
-//   bot.logger.log("command_list", "Successfully generated command list");
-// };
+function mapDetailedCommands(cmds: Commands) {
+  return cmds.map((cmd) => subCommandItem(cmd)).join("\n");
+}
 
-// function mapDetailedCommands(cmds: Commands) {
-//   return cmds.map((cmd) => subCommandsItem(cmd)).join("\n");
-// }
+function subCommandItem(cmd: TCommand) {
+  const groupName = cmd instanceof SubCommand ? cmd.options.groupName : null;
+  const topLevelname = cmd instanceof SubCommand ? cmd.options.commandName : "";
 
-// function subCommandsItem(command: Interaction) {
-//   const subCommands = command.options.options?.filter((v) => v.type === "SUB_COMMAND") ?? [];
-//   const groupCommands = parseGroupCommands(command) ?? [];
+  return `## ${topLevelname}${groupName ? `-> ${groupName}` : ""} ${topLevelname ? " -> " : ""} ${
+    cmd.name
+  }
 
-//   return [...subCommands, ...groupCommands]?.map(subCommandItem.bind(null, command)).join("\n");
-// }
+**Description:** ${cmd.options.description}
 
-// function subCommandItem(cmd: Interaction, value: ApplicationCommandOptionData) {
-//   const groupName = cmd.options.options?.find(
-//     (v) => v.type === "SUB_COMMAND_GROUP" && v.options?.some((v) => v.name === value.name),
-//   );
+**Options:** ${
+    cmd.options.options
+      ? cmd.options.options
+          .map((v) => {
+            const requiredText = v.required ? "Required" : "Optional";
 
-//   return `## ${cmd.name}${groupName ? `-> ${groupName.name}` : ""} -> ${value.name}
+            return `${v.name} (${v.type} / ${requiredText})`;
+          })
+          .join(", ")
+      : "N/A"
+  }
 
-// **Description:** ${value.description}
+[Back to top](#ghostybot-command-list)\n`;
+}
 
-// **Choices:** ${value.choices?.map((v) => v.name).join(", ") || "N/A"}
+function writeToFile(detailedCommandList: string, length: number) {
+  const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
-// **Options:** ${
-//     value.options
-//       ? value.options
-//           .map((v) => {
-//             const requiredText = v.required ? "Required" : "Optional";
+> **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
 
-//             return `${v.name} (${v.type} / ${requiredText})`;
-//           })
-//           .join(", ")
-//       : "N/A"
-//   }
+This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
+${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} slash commands.
 
-// [Back to top](#ghostybot-command-list)\n`;
-// }
+## Detailed command list
 
-// function writeToFile(detailedCommandList: string, length: number) {
-//   const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
+${detailedCommandList}`;
 
-// > **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
-
-// This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-// ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} slash commands.
-
-// ## Detailed command list
-
-// ${detailedCommandList}`;
-
-//   fs.writeFileSync(TARGET_FILE, DEFAULT);
-// }
-
-// function parseGroupCommands(command: Interaction) {
-//   const groupCommands = command.options.options
-//     ?.filter((v) => v.type === "SUB_COMMAND_GROUP")
-//     ?.flatMap((v) => {
-//       return v.options?.filter((v) => v.type === "SUB_COMMAND");
-//     });
-
-//   return groupCommands as ApplicationCommandOptionData[] | undefined;
-// }
-
-export {};
+  fs.writeFileSync(TARGET_FILE, DEFAULT);
+}
