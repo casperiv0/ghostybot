@@ -39,7 +39,7 @@ export default class RemoveCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const songNo = interaction.options.getNumber("position", true);
+    const songNo = interaction.options.getNumber("track-number", true);
     const queue = this.bot.player.getQueue(interaction.guildId!);
 
     if (!queue || !queue.playing) {
