@@ -1,5 +1,4 @@
 import * as DJS from "discord.js";
-import { getBotPermissions, getMemberPermissions } from "@commands/util/help";
 import { Bot } from "structures/Bot";
 import { hyperlink } from "@discordjs/builders";
 import { Command, ValidateReturn } from "structures/Command/Command";
@@ -9,14 +8,6 @@ export default class HelpInteraction extends Command {
     super(bot, {
       name: "help",
       description: "Return more information about a command",
-      options: [
-        {
-          name: "command",
-          type: "STRING",
-          description: "The command you're looking for",
-          required: true,
-        },
-      ],
     });
   }
 
@@ -24,57 +15,21 @@ export default class HelpInteraction extends Command {
     return { ok: true };
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
-    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
-
+  async execute(
+    interaction: DJS.CommandInteraction,
+    lang: typeof import("@locales/english").default,
+  ) {
     try {
-      const arg = interaction.options.getString("command", true);
-      const command = this.bot.utils.resolveCommand(arg);
-
-      if (!command) {
-        return interaction.reply({ content: lang.HELP.CMD_NOT_FOUND, ephemeral: true });
-      }
-
-      const LINK = hyperlink(
-        lang.HELP.CLICK_ME,
-        "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md",
-      );
-
-      const aliases = command.options.aliases
-        ? command.options.aliases.map((alias) => alias).join(", ")
-        : lang.GLOBAL.NONE;
-
-      const options = command.options.options
-        ? command.options.options.map((option) => option).join(", ")
-        : lang.GLOBAL.NONE;
-
-      const cooldown = command.options.cooldown ? `${command.options.cooldown}s` : "3s";
-      const guild = await this.bot.utils.getGuildById(interaction.guild?.id);
-      const prefix = guild?.prefix;
-
-      const memberPerms = getMemberPermissions(command, lang).join(", ");
-      const botPerms = getBotPermissions(command, lang).join(", ");
-
-      const commandDesc = command.options.description
-        ? command.options.description
-        : lang.GLOBAL.NOT_SPECIFIED;
-
-      const commandUsage = command.options.usage
-        ? `${prefix}${command.name} ${command.options.usage}`
-        : lang.GLOBAL.NOT_SPECIFIED;
+      const url = "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md";
+      const LINK = hyperlink(lang.HELP.CLICK_ME, url);
 
       const embed = this.bot.utils
         .baseEmbed({
           author: interaction.user,
         })
-        .addField(lang.HELP.ALIASES, aliases, true)
-        .addField(lang.HELP.COOLDOWN, cooldown, true)
-        .addField(lang.HELP.USAGE, commandUsage, true)
-        .addField(lang.UTIL.CATEGORY, command.options.category, true)
-        .addField(lang.UTIL.DESCRIPTION, commandDesc, true)
-        .addField(lang.HELP.OPTIONS, options, true)
-        .addField(lang.HELP.BOT_PERMS, botPerms, true)
-        .addField(lang.HELP.MEMBER_PERMS, memberPerms, true)
+        .setDescription(
+          `You can view all the slash commands [here](${url}). Due to some limitations it is hard to implement a new help command within Discord`,
+        )
         .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
       return interaction.reply({ embeds: [embed] });

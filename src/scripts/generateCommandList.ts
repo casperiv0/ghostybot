@@ -22,13 +22,15 @@ function mapDetailedCommands(cmds: Commands) {
 
 function subCommandItem(cmd: TCommand) {
   const groupName = cmd instanceof SubCommand ? cmd.options.groupName : null;
-  const topLevelname = cmd instanceof SubCommand ? cmd.options.commandName : "";
+  const topLevelName = cmd instanceof SubCommand ? cmd.options.commandName : "";
 
-  return `## ${topLevelname}${groupName ? `-> ${groupName}` : ""} ${topLevelname ? " -> " : ""} ${
+  return `## ${topLevelName}${groupName ? `-> ${groupName}` : ""} ${topLevelName ? " -> " : ""} ${
     cmd.name
   }
 
 **Description:** ${cmd.options.description}
+
+**Example usage:** ${makeUsage(topLevelName, groupName ?? null, cmd.name)}
 
 **Options:** ${
     cmd.options.options
@@ -45,10 +47,14 @@ function subCommandItem(cmd: TCommand) {
 [Back to top](#ghostybot-command-list)\n`;
 }
 
+function makeUsage(topLevelName: string, groupName: string | null, name: string) {
+  return `/${topLevelName ? `${topLevelName} ` : ""}${groupName ? `${groupName} ` : ""}${name} ...`;
+}
+
 function writeToFile(detailedCommandList: string, length: number) {
   const DEFAULT = `# ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} Command list
 
-> **This list only shows slash commands! Regular are considered deprecated for GhostyBot. We're working hard to transition the last batch of regular commands to slash commands.**
+> **This list only shows slash commands! Regular are considered deprecated for GhostyBot.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
 ${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]} has a total of ${length} slash commands.
