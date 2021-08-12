@@ -10,8 +10,13 @@ export type ValidateReturn = {
 };
 
 export interface CommandOptions {
+  /** the name of the command */
   name: string;
+
+  /** the description of the command */
   description: string;
+
+  /** options for the command, choices, required, add more options, etc.  */
   options?: DJS.ApplicationCommandOptionData[];
 }
 

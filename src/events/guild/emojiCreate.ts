@@ -24,7 +24,7 @@ export default class EmojiCreateEvent extends Event {
         .setColor("GREEN")
         .setTimestamp();
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

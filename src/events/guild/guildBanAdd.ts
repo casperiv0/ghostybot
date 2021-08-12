@@ -37,7 +37,7 @@ export default class GuildBanAddEvent extends Event {
         .setDescription(audit.reason ?? lang.GLOBAL.NOT_SPECIFIED)
         .setColor("RED");
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

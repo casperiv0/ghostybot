@@ -24,7 +24,7 @@ export default class GuildMemberRemoveEvent extends Event {
         .addField("Executed by", executor.tag, true)
         .setColor("ORANGE");
 
-      return webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

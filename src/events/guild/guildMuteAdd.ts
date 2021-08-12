@@ -36,7 +36,7 @@ export default class GuildMemberMuteAddEvent extends Event {
         embed.addField("Muted for", time);
       }
 
-      return webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

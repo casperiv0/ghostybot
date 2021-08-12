@@ -1,10 +1,6 @@
 import * as DJS from "discord.js";
-import ms from "ms";
-import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
-
-export const saveCommands = ["help", "enable", "disable"];
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
@@ -21,12 +17,14 @@ export default class MessageEvent extends Event {
 
       const guildId = message?.guild?.id;
       const userId = message?.author?.id;
+
       const guild = await bot.utils.getGuildById(guildId);
       // an error occurred
       if (!guild) return;
+
       const lang = await bot.utils.getGuildLang(guildId);
+      const user = await bot.utils.getUserById(userId, guildId);
       const mentions = message.mentions.members;
-      const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
 
       if (guild?.ignored_channels?.includes(message.channel.id)) return;
 
@@ -60,10 +58,11 @@ export default class MessageEvent extends Event {
           content: sticky.message,
         });
         sticky.message_id = stickyMessage.id;
-        await sticky?.save();
+        await sticky.save();
       }
 
       // check if mention user is afk
+      // todo: remove `prefixReg.test..` once message intents arrive
       if (mentions && mentions?.size > 0 && !prefixReg.test(message.content)) {
         mentions.forEach(async (member) => {
           const user = await bot.utils.getUserById(member.user.id, guildId);
@@ -85,13 +84,7 @@ export default class MessageEvent extends Event {
       }
 
       // remove AFK from user if they send a message
-      const user = await bot.utils.getUserById(userId, guildId);
-      if (
-        !message.author.bot &&
-        user &&
-        user?.afk.is_afk === true &&
-        !message.content.includes(`${guild?.prefix}afk`)
-      ) {
+      if (!message.author.bot && user?.afk.is_afk === true) {
         await bot.utils.updateUserById(userId, guildId, {
           afk: {
             is_afk: false,
@@ -111,9 +104,7 @@ export default class MessageEvent extends Event {
       }
 
       // level
-      if (!message.author.bot) {
-        const user = await bot.utils.getUserById(userId, guildId);
-        if (!user) return;
+      if (!message.author.bot && user) {
         const xp = Math.ceil(Math.random() * (5 * 10));
         const level = bot.utils.calculateXp(user.xp);
         const newLevel = bot.utils.calculateXp(user.xp + xp);
@@ -153,14 +144,6 @@ export default class MessageEvent extends Event {
       const [arg, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
       const cmd = arg.toLowerCase();
 
-      if (blacklistedUsers) {
-        const isBlacklisted = blacklistedUsers.find((u) => u.user_id === userId);
-
-        if (isBlacklisted) {
-          return message.reply({ content: lang.MESSAGE.BLACKLISTED });
-        }
-      }
-
       // bot mention
       if (mentions?.has(bot.user.id) && !cmd) {
         const embed = bot.utils
@@ -192,111 +175,6 @@ export default class MessageEvent extends Event {
       const now = Date.now();
       const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
 
-      if (
-        !saveCommands.includes(command.name) &&
-        guild?.disabled_categories?.includes(command.options.category)
-      ) {
-        return message.channel.send({
-          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", command.options.category),
-        });
-      }
-
-      if (guild?.disabled_commands?.includes(command.name)) {
-        return message.channel.send({ content: lang.MESSAGE.COMMAND_DISABLED });
-      }
-
-      const owners = process.env["OWNERS"];
-
-      if (command.options.ownerOnly && !owners?.includes(`${message.author.id}`)) {
-        return message.reply({ content: lang.MESSAGE.OWNER_ONLY });
-      }
-
-      if (command.options.memberPermissions) {
-        const neededPerms: bigint[] = [];
-        command.options.memberPermissions.forEach((perm) => {
-          if (!(message.channel as DJS.TextChannel).permissionsFor(message.member!)?.has(perm)) {
-            neededPerms.push(perm);
-          }
-        });
-
-        if (neededPerms.length > 0) {
-          return message.channel.send({
-            content: lang.MESSAGE.NEED_PERMS.replace(
-              "{perms}",
-              neededPerms
-                .map((p) => {
-                  const perms: string[] = [];
-                  Object.keys(DJS.Permissions.FLAGS).map((key) => {
-                    if (DJS.Permissions.FLAGS[key] === p) {
-                      perms.push(`\`${lang.PERMISSIONS[key]}\``);
-                    }
-                  });
-
-                  return perms;
-                })
-                .join(", "),
-            ),
-          });
-        }
-      }
-
-      if (command.options.botPermissions) {
-        const neededPerms: bigint[] = [];
-        command.options.botPermissions.forEach((perm) => {
-          if (!(message.channel as DJS.TextChannel).permissionsFor(message.guild!.me!)?.has(perm)) {
-            neededPerms.push(perm);
-          }
-        });
-
-        if (neededPerms.length > 0) {
-          return message.channel.send({
-            embeds: [bot.utils.errorEmbed(neededPerms, message, lang.PERMISSIONS)],
-          });
-        }
-      }
-
-      if (command.options.requiredArgs) {
-        if (command.options.requiredArgs && args.length < command.options.requiredArgs.length) {
-          const cmdArgs = command.options.requiredArgs.map((a) => `\`${a.name}\``).join(", ");
-          const cmdExample = `${prefix}${command.options.name} ${command.options.requiredArgs
-            .map((a) => `<${a.name}>`)
-            .join(" ")}`;
-
-          const embed = bot.utils
-            .baseEmbed(message)
-            .setTitle(lang.MESSAGE.INCORRECT_ARGS)
-            .setColor("RED")
-            .setDescription(`:x: ${lang.MESSAGE.REQUIRED_ARGS.replace("{args}", cmdArgs)}`)
-            .addField(lang.MESSAGE.EXAMPLE, cmdExample);
-
-          return message.channel.send({ embeds: [embed] });
-        }
-
-        let incorrectArg = false;
-        command.options.requiredArgs.map((arg, i) => {
-          switch (arg?.type) {
-            case "number": {
-              if (!Number(args[i])) {
-                message.channel.send({ content: lang.MESSAGE.MUST_BE_NUMBER });
-                return (incorrectArg = true);
-              }
-              break;
-            }
-            case "time": {
-              if (!ms(args[i])) {
-                message.channel.send({ content: lang.MESSAGE.MUST_BE_DATE });
-                return (incorrectArg = true);
-              }
-              break;
-            }
-            default:
-              break;
-          }
-        });
-
-        if (incorrectArg) return;
-      }
-
       if (timestamps?.has(userId)) {
         const userTime = timestamps.get(userId);
         const expireTime = userTime! + cooldown;
@@ -313,14 +191,10 @@ export default class MessageEvent extends Event {
         }
       }
 
-      if (command.options.typing === true) {
-        await message.channel.sendTyping();
-      }
-
       timestamps?.set(userId, now);
       setTimeout(() => timestamps?.delete(userId), cooldown);
 
-      command.execute(message, args);
+      await command.execute(message, args);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

@@ -3,6 +3,7 @@ import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
+import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -19,6 +20,15 @@ export default class InteractionEvent extends Event {
 
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));
+
+      const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
+      if (blacklistedUsers) {
+        const isBlacklisted = blacklistedUsers.find((u) => u.user_id === interaction.user.id);
+
+        if (isBlacklisted) {
+          return interaction.reply({ ephemeral: true, content: lang.MESSAGE.BLACKLISTED });
+        }
+      }
 
       if (!command) {
         if (!interaction.commandId) return;

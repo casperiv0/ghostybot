@@ -31,7 +31,7 @@ export default class GuildKickAddEvent extends Event {
         .addField(lang.EVENTS.REASON, reason ?? lang.GLOBAL.NOT_SPECIFIED)
         .setColor("ORANGE");
 
-      return webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

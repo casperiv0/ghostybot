@@ -2,6 +2,9 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
+/**
+ * @deprecated this event will be deprecated once message intents arrive
+ */
 export default class MessageUpdateEvent extends Event {
   constructor(bot: Bot) {
     super(bot, "messageUpdate");
@@ -41,7 +44,7 @@ export default class MessageUpdateEvent extends Event {
         .setColor("ORANGE")
         .setTimestamp();
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

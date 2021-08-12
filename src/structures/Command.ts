@@ -21,15 +21,7 @@ export interface CommandOptions {
   usage?: string;
   cooldown?: number;
 
-  typing?: boolean;
   aliases?: string[];
-  requiredArgs?: RequiredArg[];
-  options?: string[];
-
-  memberPermissions?: bigint[];
-  botPermissions?: bigint[];
-
-  ownerOnly?: boolean;
 }
 
 /**
