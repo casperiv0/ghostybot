@@ -55,6 +55,7 @@ export class InteractionHandler {
           commandName = interaction.name;
 
           const data: ApplicationCommandData = {
+            type: "CHAT_INPUT",
             name: interaction.name,
             description: interaction.options.description ?? "Empty description",
             options: interaction.options.options ?? [],
@@ -74,6 +75,7 @@ export class InteractionHandler {
         const cmds = subCommands[topLevelName];
 
         const data: ApplicationCommandData = {
+          type: "CHAT_INPUT",
           name: topLevelName,
           description: `${topLevelName} commands`,
           options: cmds.map((v) => v.options),
@@ -99,6 +101,7 @@ export class InteractionHandler {
         groupCache.push(groupData);
 
         const data: ApplicationCommandData = {
+          type: "CHAT_INPUT",
           name: topLevelName,
           description: `${topLevelName} commands`,
           options: [...groupCache, ...subCommands[topLevelName].map((v) => v.options)],
