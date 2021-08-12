@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 157 slash commands.
+GhostyBot has a total of 159 slash commands.
 
 ## Detailed command list
 
@@ -334,6 +334,26 @@ GhostyBot has a total of 157 slash commands.
 **Example usage:** /anime smug ...
 
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## bot-owner-> blacklist -> add
+
+**Description:** Blacklist a user from the bot
+
+**Example usage:** /bot-owner blacklist add ...
+
+**Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## bot-owner-> blacklist -> remove
+
+**Description:** Remove a user from the blacklist
+
+**Example usage:** /bot-owner blacklist remove ...
+
+**Options:** user (USER / Required)
 
 [Back to top](#ghostybot-command-list)
 
