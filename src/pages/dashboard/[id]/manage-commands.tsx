@@ -10,17 +10,14 @@ import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { SubCommandOptions } from "structures/Command/SubCommand";
+import { CommandOptions } from "structures/Command";
 
 interface Props {
   guild: Guild | null;
   isAuth: boolean;
-  botCommands: TopLevelCommand[];
+  botCommands: (SubCommandOptions | CommandOptions)[];
   error: string | undefined;
-}
-
-interface TopLevelCommand {
-  topLevelName: string;
-  commands: string[];
 }
 
 const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: Props) => {
@@ -137,31 +134,37 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
 
       <div className="grid">
         {botCommands?.slice(0, length)?.map((cmd, idx) => {
-          return cmd.commands.map((c, id) => {
-            const isDisabled = guild.disabled_commands?.find((c2) => c === c2);
+          const topLevelName = "commandName" in cmd ? cmd.commandName : cmd.name;
+          const groupName = "groupName" in cmd ? cmd.groupName : "";
 
-            if (filter === "@disabled" && !isDisabled) return null;
-            if (filter === "@enabled" && isDisabled) return null;
+          const isDisabled = guild.disabled_commands?.some(
+            (c2) => `${topLevelName}-${cmd.name}` === c2,
+          );
 
-            if (showSearch && !filter!.includes(c)) return null;
+          if (filter === "@disabled" && !isDisabled) return null;
+          if (filter === "@enabled" && isDisabled) return null;
 
-            return (
-              <div ref={lastRef} id={`${idx}`} key={`${c}-${id}`} className="card cmd-card">
-                <p>
-                  {cmd.topLevelName} {"->"} {c}
-                </p>
+          if (showSearch && !cmd.name.includes(filter!)) return null;
 
-                <div>
-                  <button
-                    onClick={() => updateCommand(isDisabled ? "enable" : "disable", c)}
-                    className="btn btn-secondary"
-                  >
-                    {isDisabled ? t("enable") : t("disable")}
-                  </button>
-                </div>
+          return (
+            <div ref={lastRef} id={`${idx}`} key={`${cmd.name}-${idx}`} className="card cmd-card">
+              <p>
+                {topLevelName}
+                {groupName ? ` -> ${groupName}` : null} {"->"} {cmd.name}
+              </p>
+
+              <div>
+                <button
+                  onClick={() =>
+                    updateCommand(isDisabled ? "enable" : "disable", `${topLevelName}-${cmd.name}`)
+                  }
+                  className="btn btn-secondary"
+                >
+                  {isDisabled ? t("enable") : t("disable")}
+                </button>
               </div>
-            );
-          });
+            </div>
+          );
         })}
       </div>
     </>

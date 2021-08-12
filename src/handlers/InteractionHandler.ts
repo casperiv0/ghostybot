@@ -84,21 +84,24 @@ export class InteractionHandler {
         await this.createCommand(data);
       }
 
+      const groupCache: any[] = [];
+
       for (const groupName in commandGroups) {
         const [topLevelName, cmds] = commandGroups[groupName];
+
+        const groupData = {
+          type: "SUB_COMMAND_GROUP",
+          name: groupName,
+          description: `${groupName} sub commands`,
+          options: cmds.map((v) => v.options),
+        };
+
+        groupCache.push(groupData);
 
         const data: ApplicationCommandData = {
           name: topLevelName,
           description: `${topLevelName} commands`,
-          options: [
-            ...subCommands[topLevelName].map((v) => v.options),
-            {
-              type: "SUB_COMMAND_GROUP",
-              name: groupName,
-              description: `${groupName} sub commands`,
-              options: cmds.map((v) => v.options),
-            },
-          ],
+          options: [...groupCache, ...subCommands[topLevelName].map((v) => v.options)],
         };
 
         await this.createCommand(data);
