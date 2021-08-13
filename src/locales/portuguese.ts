@@ -187,7 +187,8 @@ export default {
     LIKES: "Likes",
     ERRORS: {
       LIVE_NOT_SUPPORTED: "Lives não são suportadas",
-      JOIN_ERROR: "Ocorreu um erro ao entrar no canal de voz, verifique de que ele não está lotado!",
+      JOIN_ERROR:
+        "Ocorreu um erro ao entrar no canal de voz, verifique de que ele não está lotado!",
       NO_RESULT: "Não foram encontrados nenhuma música.",
       VOICE_FULL: "Esse canal de voz está lotado.",
       NO_QUEUE: "Não tem nenhuma música tocando.",
