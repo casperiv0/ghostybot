@@ -9,8 +9,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const guildCount = req.bot.guilds.cache.size;
       const userCount = req.bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
       const channelCount = req.bot.channels.cache.size;
-      const commandCount = req.bot.commands.size;
-      const interactionCount = req.bot.application?.commands.cache.size;
+      const commandCount = req.bot.interactions.size;
       const memoryUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
 
       return res.json({
@@ -30,10 +29,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         commands: {
           formatted: req.bot.utils.formatNumber(commandCount),
           default: commandCount,
-        },
-        globalInteractions: {
-          formatted: req.bot.utils.formatNumber(interactionCount ?? 0),
-          default: interactionCount,
         },
         memory: {
           formatted: `${memoryUsage}MB`,

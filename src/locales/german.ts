@@ -26,7 +26,6 @@ const LANG: typeof import("./english").default = {
     SUGGEST_CHANNEL: "Kanal für Vorschläge",
     WELCOME_CHANNEL: "Begrüßungskanal",
     LEAVE_CHANNEL: "Abschiedskanal",
-    PREFIX: "Präfix",
     OWNER: "Servereigentümer",
     CHANNEL_C: "Kanalanzahl",
     EMOJI_C: "Emojianzahl",
@@ -218,8 +217,7 @@ const LANG: typeof import("./english").default = {
     PROVIDE_ITEM_TO_BUY: "Gib bitte ein Item zum Kaufen an",
     NOT_ENOUGH_MONEY: "Du hast nicht so viel Geld",
     BUY_SUCCESS: "Erfolgreich **{item}** für **{price}** gekauft",
-    NOT_FOUND_STORE:
-      "**{query}** wurde im Shop nicht gefunden, benutze `{prefix}store` um alle Items im Shop zu sehen",
+    NOT_FOUND_STORE: "**{query}** wasn't found in the store.",
     ALREADY_OWN_ITEM: "Du besitzt dieses Item bereits",
     DEPOSITED_ALL: "Erfolgreich all dein Geld eingelegt!",
     DEPOSITED_AMOUNT: "Erfolgreich **{amount} Münzen** eingelegt",
@@ -488,9 +486,6 @@ const LANG: typeof import("./english").default = {
     USAGE: "Benutzung",
     COMMAND: "Befehl",
     OPTIONS: "Optionen",
-    GUILD_PREFIX: "Server Präfix",
-    CMD_DESC:
-      "benutze`{prefix}help <command name | alias>` um mehr über den Befehl zu erfahren\n Mehr darüber erfährst du durch das Benutzen von dem `botinfo` Befehl",
     OWNER_ONLY: "Nur der Besitzer kann das sehen!",
     CUSTOM_CMD:
       "Das ist ein benutzerdefinierter Befehl, daher kann ich nicht mehr Informationen geben",
@@ -642,9 +637,6 @@ const LANG: typeof import("./english").default = {
     REASON_LOCK_CHANNEL: "Gib bitte einen Grund zum Sperren dieses Kanals an",
     LOCKED_CHANNEL_REASON: "Erfolgreich {channel} gesperrt, Grund: **{lockReason}**",
     NO_PERMISSIONS: "Tut uns leid, du hast nicht die richtigen Berechtigungen für diesen Befehl.",
-    CURRENT_PREFIX:
-      "Aktuelles Server Präfix: `{guildPrefix}`\nBenutze `{guildPrefix}prefix <prefix>` um ein neues Präfix zu setzen",
-    UPDATE_PREFIX: "Präfix erfolgreich zu `{prefix}` geändert",
     MY_ROLE_MUST_BE_HIGHER: "Meine Rolle muss höher als die **{roleName}** Rolle sein!",
     MY_ROLE_MUST_BE_HIGHER2:
       "Meine Rolle muss höher als die höchste Rolle von **{needsRoleTag}** sein!",
@@ -706,8 +698,6 @@ const LANG: typeof import("./english").default = {
     WARNED_ON: "Warnungen an:",
     MEMBER_WARNS: "{memberTag}'s Warnungen",
     TOTAL_WARNS: "Insgesamte Warnungen",
-    USE_WARNS:
-      "Benutze `{prefix}warnings <user> <warning number>` um mehr über eine spezifische Warnung zu erfahren",
     ROLE_NOT_FOUND: "Diese Rolle wurde nicht gefunden",
     GUILD_CONFIG: "{guildName}'s Konfiguration",
     ADD_TO_IGNORE: "Erfolgreich {item} zu den ignorierten Kanälen hinzugefügt",

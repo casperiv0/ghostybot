@@ -21,7 +21,6 @@ const LANG: typeof import("./english").default = {
     SUGGEST_CHANNEL: "Канал предложений",
     WELCOME_CHANNEL: "Канал приветствий",
     LEAVE_CHANNEL: "Канал прощаний",
-    PREFIX: "Префикс",
     OWNER: "Владелец сервера",
     CHANNEL_C: "Количество каналов",
     EMOJI_C: "Количество эмодзи",
@@ -215,8 +214,7 @@ const LANG: typeof import("./english").default = {
     PROVIDE_ITEM_TO_BUY: "Пожалуйста, укажите предмет для покупки!",
     NOT_ENOUGH_MONEY: "У вас нет столько денег.",
     BUY_SUCCESS: "Успешно куплено **{item}** за **{price}** монет",
-    NOT_FOUND_STORE:
-      "**{query}** отсутствует в магазине, используйте `{prefix}store` чтобы просмотреть весь магазин",
+    NOT_FOUND_STORE: "**{query}** wasn't found in the store.",
     ALREADY_OWN_ITEM: "У вас уже есть этот предмет.",
     DEPOSITED_ALL: "Успешно положены в банк все деньги!",
     DEPOSITED_AMOUNT: "Успешно положено в банк **{amount} монет**",
@@ -485,9 +483,6 @@ const LANG: typeof import("./english").default = {
     USAGE: "Использование",
     COMMAND: "Команда",
     OPTIONS: "Опции",
-    GUILD_PREFIX: "Серверный префикс",
-    CMD_DESC:
-      "Используйте `{prefix}help <команда | псевдоним>` для просмотра дополнительной информации о команде.\nБольше информации можно получить, используя команду `botinfo`.",
     OWNER_ONLY: "Только владелец может это видеть!",
     CUSTOM_CMD: "Это пользовательская команда, поэтому я не могу показать больше информации.",
     BOT_PERMS: "Права для бота",
@@ -638,9 +633,6 @@ const LANG: typeof import("./english").default = {
     REASON_LOCK_CHANNEL: "Пожалуйста, укажите причину для закрытия канала.",
     LOCKED_CHANNEL_REASON: "Успешно закрыл канал {channel}. Причина: **{lockReason}**",
     NO_PERMISSIONS: "Извините, у вас недостаточно прав для использования этой команды.",
-    CURRENT_PREFIX:
-      "Текущий префикс на сервере: `{guildPrefix}`\nИспользуйте `{guildPrefix}prefix <префикс>` чтобы поставить новый префикс",
-    UPDATE_PREFIX: "Префикс успешно обновлён на `{prefix}`",
     MY_ROLE_MUST_BE_HIGHER: "Моя роль должна быть выше чем роль **{roleName}**!",
     MY_ROLE_MUST_BE_HIGHER2: "Моя роль должна быть выше чем высшая роль **{needsRoleTag}**!",
     USER_WAS_NOT_FOUND: "Пользователь не найден!",
@@ -702,8 +694,6 @@ const LANG: typeof import("./english").default = {
     WARNED_ON: "Выдано:",
     MEMBER_WARNS: "Предупреждения {memberTag}",
     TOTAL_WARNS: "Всего предупреждений",
-    USE_WARNS:
-      "Используйте `{prefix}warnings <пользователь> <номер предупреждения>` для просмотра более подробной информации о конкретном предупреждении",
     ROLE_NOT_FOUND: "Роль не найдена.",
     GUILD_CONFIG: "Конфигурация {guildName}",
     ADD_TO_IGNORE: "Канал {item} теперь игнорируется.",

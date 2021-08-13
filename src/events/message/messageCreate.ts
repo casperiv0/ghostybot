@@ -1,3 +1,4 @@
+import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
@@ -9,11 +10,12 @@ export default class MessageEvent extends Event {
 
   async execute(bot: Bot, message: DJS.Message) {
     try {
-      if (!message?.guild?.available || !message.guild) return;
+      if (!message?.guild?.available) return;
       if (message.channel.type === "DM") return;
+      if (!bot.utils.hasSendPermissions(message)) return;
+
       if (!bot.user) return;
       if (!message.guild?.me) return;
-      if (!bot.utils.hasSendPermissions(message)) return;
 
       const guildId = message?.guild?.id;
       const userId = message?.author?.id;
@@ -27,12 +29,6 @@ export default class MessageEvent extends Event {
       const mentions = message.mentions.members;
 
       if (guild?.ignored_channels?.includes(message.channel.id)) return;
-
-      const escapeRegex = (str?: string) => str?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const prefixReg = new RegExp(`^(<@!?${bot?.user?.id}>|${escapeRegex(guild?.prefix)})\\s*`);
-
-      const prefixArr = message.content.match(prefixReg);
-      const prefix = prefixArr?.[0];
 
       // sticky
       const sticky = await bot.utils.getSticky(message.channel.id);
@@ -62,8 +58,7 @@ export default class MessageEvent extends Event {
       }
 
       // check if mention user is afk
-      // todo: remove `prefixReg.test..` once message intents arrive
-      if (mentions && mentions?.size > 0 && !prefixReg.test(message.content)) {
+      if (mentions && mentions?.size > 0) {
         mentions.forEach(async (member) => {
           const user = await bot.utils.getUserById(member.user.id, guildId);
 
@@ -139,17 +134,11 @@ export default class MessageEvent extends Event {
         await bot.utils.updateUserById(userId, guildId, { xp: user.xp + xp });
       }
 
-      if (!prefix) return; // prefix didn't match
-      if (!prefixReg.test(message.content) || message.author.bot || userId === bot.user.id) return;
-      const [arg, ...args] = message.content.slice(prefix?.length).trim().split(/ +/g);
-      const cmd = arg.toLowerCase();
-
       // bot mention
-      if (mentions?.has(bot.user.id) && !cmd) {
+      if (mentions?.first()?.id === bot.user.id) {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
-          .addField(lang.GUILD.PREFIX, guild?.prefix)
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
           .addField(
             lang.BOT.DASHBOARD,
@@ -158,9 +147,6 @@ export default class MessageEvent extends Event {
 
         return message.channel.send({ embeds: [embed] });
       }
-
-      const command = bot.utils.resolveCommand(cmd);
-      if (!command) return;
 
       if (
         !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
@@ -171,32 +157,36 @@ export default class MessageEvent extends Event {
         });
       }
 
-      const timestamps = bot.cooldowns.get(command.name);
-      const now = Date.now();
-      const cooldown = command.options.cooldown ? command?.options?.cooldown * 1000 : 3000;
+      const [cmd] = message.content.trim().split(/ +/g);
+      const [prefix, ...cmdName] = cmd.split("");
+      const command = cmdName.join("");
 
-      if (timestamps?.has(userId)) {
-        const userTime = timestamps.get(userId);
-        const expireTime = userTime! + cooldown;
-
-        if (now < expireTime) {
-          const timeLeft = (expireTime - now) / 1000;
-
-          return message.reply({
-            content: lang.MESSAGE.COOLDOWN_AMOUNT.replace(
-              "{time}",
-              `${timeLeft.toFixed(1)}`,
-            ).replace("{command}", command.name),
-          });
-        }
+      if (prefix === guild.prefix && command === "help") {
+        await this.helpCommand(message, lang);
       }
-
-      timestamps?.set(userId, now);
-      setTimeout(() => timestamps?.delete(userId), cooldown);
-
-      await command.execute(message, args);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }
+  }
+
+  async helpCommand(message: DJS.Message, lang: any) {
+    const LINK = hyperlink(
+      "Click here for a full command list",
+      "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md",
+    );
+
+    const embed = this.bot.utils
+      .baseEmbed(message)
+      .setTitle(lang.HELP.HELP)
+      .setDescription(
+        "Regular commands are now fully removed from GhostyBot. Please use slash commands instead.",
+      )
+      .addField(
+        "Why slash commands",
+        "Discord has announced a new [Intent](https://support-dev.discord.com/hc/en-us/articles/4404772028055) which will require all/most verified bots to transition over to slash commands. I think this is a good privacy change.",
+      )
+      .addField(lang.HELP.FULL_CMD_LIST, LINK);
+
+    await message.channel.send({ embeds: [embed] });
   }
 }

@@ -620,13 +620,6 @@ export class Util {
     return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
   }
 
-  resolveCommand(nameOrAlias: string) {
-    return (
-      this.bot.commands.get(nameOrAlias) ??
-      this.bot.commands.get(this.bot.aliases.get(nameOrAlias)!)
-    );
-  }
-
   escapeMarkdown(message: string): string {
     return DJS.Util.escapeMarkdown(message, {
       codeBlock: true,

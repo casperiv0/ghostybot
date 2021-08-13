@@ -12,9 +12,9 @@ export default class InteractionEvent extends Event {
 
   async execute(bot: Bot, interaction: DJS.CommandInteraction) {
     if (!interaction.isCommand()) return;
+    if (!interaction.inGuild()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
-    if (!interaction.guildId) return;
 
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 

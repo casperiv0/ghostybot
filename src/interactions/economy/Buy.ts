@@ -33,7 +33,6 @@ export default class BuyCommand extends SubCommand {
     const guild = await this.bot.utils.getGuildById(interaction.guildId!);
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
     const inventory = user?.inventory;
-    const prefix = guild?.prefix;
 
     if (!guild?.store) {
       return interaction.reply({
@@ -53,10 +52,7 @@ export default class BuyCommand extends SubCommand {
     if (!item) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", rawItem).replace(
-          "{prefix}",
-          `${prefix}`,
-        ),
+        content: lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", rawItem),
       });
     }
 
