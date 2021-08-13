@@ -51,7 +51,7 @@
     "discord-giveaways": "github:Dev-CasperTheGhost/discord-giveaways#discord.js-v13",
     "discord-logs": "^2.0.1",
     "discord-starboards": "2.3.1",
-    "discord.js": "^13.1.0-dev.1628770069.d9456a1",
+    "discord.js": "^13.1.0",
     "distube": "^3.0.0-alpha.35",
     "dotenv": "^10.0.0",
     "erlpack": "github:GingkathFox/erlpack",
@@ -79,7 +79,7 @@
     "react-dom": "^17.0.2",
     "twemoji-parser": "^13.1.0",
     "uuid": "^8.3.2",
-    "wikijs": "^6.2.3",
+    "wikijs": "^6.3.0",
     "word-definition": "^2.1.6"
   },
   "devDependencies": {
@@ -91,7 +91,7 @@
     "@types/glob": "^7.1.4",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/ms": "^0.7.31",
-    "@types/node": "^16.6.0",
+    "@types/node": "^16.6.1",
     "@types/node-fetch": "^2.5.12",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.17",

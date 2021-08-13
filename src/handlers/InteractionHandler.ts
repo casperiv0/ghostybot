@@ -78,6 +78,7 @@ export class InteractionHandler {
           type: "CHAT_INPUT",
           name: topLevelName,
           description: `${topLevelName} commands`,
+          // @ts-expect-error ignore
           options: cmds.map((v) => v.options),
         };
 

@@ -1,5 +1,4 @@
 import * as DJS from "discord.js";
-import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 import { Bot } from "structures/Bot";
 import { CommandOptions, ValidateReturn } from "structures/Command/Command";
 
@@ -26,7 +25,7 @@ export abstract class SubCommand {
   }
 
   get options(): SubCommandOptions & {
-    type: DJS.ApplicationCommandOptionType | ApplicationCommandOptionTypes;
+    type: "SUB_COMMAND";
   } {
     return {
       type: "SUB_COMMAND",

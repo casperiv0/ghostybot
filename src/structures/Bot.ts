@@ -63,13 +63,11 @@ export class Bot extends Client {
       },
     });
 
-    // @ts-expect-error ignore
     this.starboardsManager = new MongoStarboardsManager(this, {
       storage: false,
       translateClickHere: "Jump to message",
     });
 
-    // @ts-expect-error ignore
     this.giveawayManager = new MongoGiveawayManager(this, {
       updateCountdownEvery: 10000,
       storage: undefined,

@@ -363,7 +363,7 @@ GhostyBot has a total of 159 slash commands.
 
 **Example usage:** /bot-owner eval ...
 
-**Options:** code (STRING / Required)
+**Options:** code (STRING / Required), ephemeral (BOOLEAN / Optional)
 
 [Back to top](#ghostybot-command-list)
 
