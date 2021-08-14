@@ -16,18 +16,6 @@ export default class RemoveReminderCommand extends SubCommand {
           required: true,
           type: "STRING",
         },
-        {
-          name: "time",
-          description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "STRING",
-          required: true,
-        },
-        {
-          name: "message",
-          description: "The message you want the bot to remind you of",
-          type: "STRING",
-          required: true,
-        },
       ],
     });
   }
