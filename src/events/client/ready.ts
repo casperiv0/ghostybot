@@ -1,3 +1,4 @@
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { HelperHandler } from "handlers/HelperHandler";
@@ -15,12 +16,27 @@ export default class ReadyEvent extends Event {
       bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
     );
 
-    const statuses = [
-      ` ${serverCount} servers.`,
-      `!help | ${channelCount} channels`,
-      `${userCount} users`,
-      "Slash commands",
-      "https://ghostybot.caspertheghost.me",
+    const statuses: { type: DJS.ActivityType; value: string }[] = [
+      {
+        type: "LISTENING",
+        value: "/help",
+      },
+      {
+        type: "WATCHING",
+        value: `${userCount} users`,
+      },
+      {
+        type: "WATCHING",
+        value: `${serverCount} servers`,
+      },
+      {
+        type: "WATCHING",
+        value: "https://discord.gg/XxHrtkA",
+      },
+      {
+        type: "WATCHING",
+        value: "https://ghostybot.caspertheghost.me",
+      },
     ];
 
     await new HelperHandler(bot).loadHelpers();
@@ -37,7 +53,8 @@ export default class ReadyEvent extends Event {
 
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];
-      bot?.user?.setActivity(status, { type: "WATCHING" });
-    }, 60000);
+
+      bot?.user?.setActivity(status.value, { type: status.type });
+    }, 60_000);
   }
 }
