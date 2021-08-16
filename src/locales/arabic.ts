@@ -268,7 +268,6 @@ const LANG: typeof import("./english").default = {
     WYR_QUESTIONS: "{question1} **OR** {question2}",
   },
   UTIL: {
-    PROCESSING_IMAGE: "⚙ Processing Image..",
     TEXT_NOT_SUP: "That text is not supported",
     AVATAR: "االافاتار",
     NOT_AFK: "تم الغاء تفعيل نظام ال AFK",
@@ -280,15 +279,10 @@ const LANG: typeof import("./english").default = {
     BUG_REPORT: "{member} has reported a bug",
     BUG_REPORTED: "Bug report was send!",
     CHANNEL_TOPIC: "وصف القناة",
-    TEXT_CHANNEL: "قناة كتابية",
-    VOICE_CHANNEL: "قناة صوتية",
-    TEXT_CHANNELS: "قنوات كتابية" /* plural! */,
-    VOICE_CHANNELS: "قنوات صوتية" /* plural! */,
     NO_DEF_FOUND: "لم يتم العثور علي تعريف لل  {word}",
     DEF_FOR_WORD: "تعريف ال {word}",
     CATEGORY: "كتاجري",
     DEFINITION: "التعريف",
-    DEPENDENCIES: "التبعيات",
     ANIMATED: "متحركة",
     NON_ANIMATED: "غير متحركة",
     NEW_FEEDBACK: "ملاحظة جديدة",
@@ -299,8 +293,6 @@ const LANG: typeof import("./english").default = {
     GH_WEBSITE: "الموقع الالكتروني",
     GH_LOCATION: "الموقع",
     GH_BIO: "Bio",
-    SEARCHING: "جاري البحث",
-    NO_IMG_FOUND: "لم يتم العثور علي صور",
     DB_RATINGS: "التقييمات",
     DB_COUNTRY: "البلد",
     DB_GENRES: "الانواع",
@@ -309,9 +301,6 @@ const LANG: typeof import("./english").default = {
     POPULATION: "Population",
     DB_RELEASED: "تم الاصدار",
     DB_NOT_FOUND: "لم يتم العثور علي فيلم   {search}",
-    TOTAL_MB: "الاجمالي",
-    HUMANS: "البشريين",
-    BOTS: "البوتات",
     PLAYERS: "اللاعبين",
     VERSION: "الاصدار",
     PORT: "Port",
@@ -390,7 +379,6 @@ const LANG: typeof import("./english").default = {
     UNKNOWN: "Unknown",
     PASTE_INVALID_FORMAT:
       "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
-    INVALID_COLOR: "Invalid color HEX",
     SENT_SUG: "Sent suggestion 👍",
     ALREADY_VERIFED: "You are already verified",
     READ_MORE: "read more",
@@ -440,9 +428,6 @@ const LANG: typeof import("./english").default = {
     LATENCY: "Latency",
     CLICK_HERE: "Click Here",
   },
-  CONFIG: {
-    OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",
-  },
   HELP: {
     HELP: "Help",
     CAT_NOT_EXIST: "الكتاجري هذا غير مدرج",
@@ -478,9 +463,6 @@ const LANG: typeof import("./english").default = {
       custom: "Custom commands",
       ticket: "Ticket commands",
     },
-  },
-  NASANEWS: {
-    NOT_FOUND: "لم يتم العثور علي {query}.",
   },
   POKEMON: {
     SPECIES: "النوع",
@@ -529,17 +511,7 @@ const LANG: typeof import("./english").default = {
     NOT_FOUND: "Country was not found",
     TOTAL_POP: "Population",
   },
-  EASY_GAMES: {
-    PROVIDE_MEMBER: "Please provide a member",
-    ACCEPT_CHALLENGE: "{user} Do you accept this challange?",
-    DOESNT_PLAY: "looks like {user} doesnt wanna play",
-    WICH_SIDE: "**{user}, Which Side Do You Pick? Type `End` To Forfeit!**",
-    GAME_OVER: "Times up!",
-    END: "end",
-    INACTIVITY: "game ended due to inactivity!",
-    WINNER: "Congrats u have won {winner}",
-    DRAW: "Its a draw",
-  },
+
   ADMIN: {
     CREATED_ROLE_CREATED: "Created Role",
     CREATED_ROLE_ADDED: "Successfully created the `{roleName}` role",
