@@ -36,17 +36,6 @@ These api keys are not required for the bot to function. Only required for their
 - `DISCORD_BOT_TOKEN`: Your bot token
 - `MONGO_DB_URI`: your mongoDb uri
 
---
-
-- `DASHBOARD_ENABLED`: wether the dashboard is enabled
-- `NEXT_PUBLIC_DASHBOARD_BOTNAME`: the name of your bot
-- `NEXT_PUBLIC_DASHBOARD_URL`: the full URL for your dashboard
-- `DASHBOARD_DISCORD_API_URL`: the URL to the Discord API
-- `DASHBOARD_JWT_SECRET`: secret string of random characters
-- `DASHBOARD_CALLBACK_URL`: the full URL to your dashboard + `/api/auth/callback`
-- `DASHBOARD_PORT`: the port your dashboard should run on
-- `OWNERS`: string of all owners
-
 #### Not required
 
 _Not required, some may be required for some commands_
@@ -61,6 +50,15 @@ _Not required, some may be required for some commands_
 - `ALEXFLIPNOTE_API_KEY`: the key for the alexFlipNote API
 - `OPEN_WEATHER_MAP_API_KEY`: the key for the openweathermap API
 - `PASTE_CLIENT_KEY`: the key for the pastebin API
+
+- `DASHBOARD_ENABLED`: wether the dashboard is enabled
+- `NEXT_PUBLIC_DASHBOARD_BOTNAME`: the name of your bot
+- `NEXT_PUBLIC_DASHBOARD_URL`: the full URL for your dashboard
+- `DASHBOARD_DISCORD_API_URL`: the URL to the Discord API
+- `DASHBOARD_JWT_SECRET`: secret string of random characters
+- `DASHBOARD_CALLBACK_URL`: the full URL to your dashboard + `/api/auth/callback`
+- `DASHBOARD_PORT`: the port your dashboard should run on
+- `OWNERS`: string of all owners
 
 ## Installation
 

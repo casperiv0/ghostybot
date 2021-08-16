@@ -40,7 +40,7 @@ export default class UnlockChannelCommand extends SubCommand {
     if (threadChannels.includes(interaction.channel?.type!)) {
       return {
         ok: false,
-        error: { ephemeral: true, content: "Cannot use this command in a thread channel!" },
+        error: { ephemeral: true, content: lang.ADMIN.CANNOT_USE_CMD_THREAD },
       };
     }
 

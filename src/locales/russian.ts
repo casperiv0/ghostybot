@@ -675,6 +675,7 @@ const LANG: typeof import("./english").default = {
     CMD_DEPRECATED:
       "This command has been deprecated. You can add new slash commands instead via the dashboard: {URL}",
     ADDED_ROLE_TO: "Successfully added the **{roleName}** role for **{time}** to {userTag}",
+    CANNOT_USE_CMD_THREAD: "Cannot use this command in a thread channel!",
   },
   TICKET: {
     CANNOT_DO_ACTION: "Это действие не может быть выполнено вне канала для тикета.",

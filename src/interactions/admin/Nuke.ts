@@ -37,6 +37,14 @@ export default class RemoveRoleCommand extends SubCommand {
       return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
     }
 
+    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
+    if (threadChannels.includes(interaction.channel?.type!)) {
+      return {
+        ok: false,
+        error: { ephemeral: true, content: lang.ADMIN.CANNOT_USE_CMD_THREAD },
+      };
+    }
+
     return { ok: true };
   }
 
