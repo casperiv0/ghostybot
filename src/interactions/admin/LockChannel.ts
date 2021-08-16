@@ -44,6 +44,14 @@ export default class LockChannelCommand extends SubCommand {
       return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
     }
 
+    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
+    if (threadChannels.includes(interaction.channel?.type!)) {
+      return {
+        ok: false,
+        error: { ephemeral: true, content: "Cannot use this command in a thread channel!" },
+      };
+    }
+
     return { ok: true };
   }
 

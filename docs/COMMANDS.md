@@ -1313,7 +1313,7 @@ GhostyBot has a total of 159 slash commands.
 
 **Example usage:** /reminders delete ...
 
-**Options:** id (STRING / Required), time (STRING / Required), message (STRING / Required)
+**Options:** id (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
