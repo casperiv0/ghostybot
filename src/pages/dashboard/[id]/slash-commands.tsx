@@ -14,6 +14,8 @@ import { EditCommandModal } from "@components/modal/edit-command";
 import { AlertMessage } from "@components/AlertMessage";
 import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
+import { useSlashStore } from "src/dashboard/state/slashState";
+import { SlashCommand } from "models/Guild.model";
 
 interface Props {
   guild: Guild | null;
@@ -23,10 +25,13 @@ interface Props {
 
 const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = React.useState<string | null>(null);
-  const [commands, setCommands] = React.useState(guild?.slash_commands ?? []);
+  const [tempCommand, setTempCommand] = React.useState<SlashCommand | null>(null);
+
   const router = useRouter();
   const { t } = useTranslation("guilds");
   const { t: commonT } = useTranslation("common");
+
+  const state = useSlashStore();
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -35,7 +40,8 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
   }, [router, isAuth]);
 
   React.useEffect(() => {
-    setCommands(guild?.slash_commands ?? []);
+    state.setItems(guild?.slash_commands ?? []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guild?.slash_commands]);
 
   React.useEffect(() => {
@@ -57,12 +63,13 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
       ).json();
 
       if (data.status === "success") {
-        setMessage(data.message);
-        setCommands((prev) => prev.filter((v) => v.name.toLowerCase() !== name.toLowerCase()));
+        state.setMessage(data.message);
+        state.setItems(state.items.filter((v) => v.name.toLowerCase() !== name.toLowerCase()));
+
         return;
       }
 
-      setMessage(data?.error);
+      state.setMessage(data.error);
     } catch (e) {
       logger.error("delete_command", e);
     }
@@ -73,12 +80,8 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
   }
 
   function handleEdit(name: string) {
-    router.push({
-      pathname: `/dashboard/${guild?.guild_id}/slash-commands`,
-      query: {
-        edit: name,
-      },
-    });
+    openModal("edit-command");
+    setTempCommand(state.items.find((v) => v.name === name)!);
   }
 
   if (!isAuth) {
@@ -100,7 +103,9 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
           {t("manage_slash_commands")} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
         </title>
       </Head>
-      {message ? <AlertMessage type="success" message={message} /> : null}
+      {message || state.message ? (
+        <AlertMessage type="success" message={message || state.message!} />
+      ) : null}
 
       <div className="page-title">
         <h4>
@@ -123,10 +128,10 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
       {guild.slash_commands !== null ? (
         <>
-          <CreateCommandModal guild={guild} />
-          <EditCommandModal guild={guild} />
+          <CreateCommandModal guildId={guild.id} />
+          <EditCommandModal command={tempCommand} guildId={guild.id} />
 
-          {commands?.length > 0 ? (
+          {state.items?.length > 0 ? (
             <table>
               <thead>
                 <tr>
@@ -136,7 +141,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
                 </tr>
               </thead>
               <tbody>
-                {commands?.map((cmd, idx) => {
+                {state.items?.map((cmd, idx) => {
                   return (
                     <tr key={idx}>
                       <td>{cmd.name}</td>

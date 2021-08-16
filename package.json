@@ -80,7 +80,8 @@
     "twemoji-parser": "^13.1.0",
     "uuid": "^8.3.2",
     "wikijs": "^6.3.0",
-    "word-definition": "^2.1.6"
+    "word-definition": "^2.1.6",
+    "zustand": "^3.5.8"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^0.0.16",

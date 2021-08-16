@@ -2,5 +2,5 @@
   "watch": ["**/*.ts"],
   "exec": "ts-node -r tsconfig-paths/register src/index.ts",
   "ext": "js ts",
-  "ignore": ["./src/pages/**", "./next-env.d.ts"]
+  "ignore": ["./src/pages/**", "./next-env.d.ts", "./src/dashboard/**"]
 }

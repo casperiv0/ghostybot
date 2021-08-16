@@ -124,7 +124,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           ],
         });
 
-        return res.json({ status: "success" });
+        const cmdData = {
+          description: body.description,
+          name: commandName,
+          response: body.response,
+          slash_cmd_id: command.id,
+        };
+
+        return res.json({ command: cmdData, status: "success" });
       } catch (e) {
         if (e.httpStatus === 403) {
           return res.json({
