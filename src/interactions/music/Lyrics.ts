@@ -44,33 +44,32 @@ export default class LyricsCommand extends SubCommand {
     await interaction.deferReply();
 
     const data = await fetch(
-      `https://some-random-api.ml/lyrics?title=${encodeURIComponent(title)}`,
+      `http://api.xaliks.xyz/info/lyrics?query=${encodeURIComponent(title)}`,
     ).then((v) => v.json());
 
-    if (!data || data.error) {
+    if (!data.lyrics) {
       return interaction.editReply({
         content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
       });
     }
 
-    const songTitle = (data.title || np?.name) ?? lang.UTIL.UNKNOWN;
-    const songAuthor = (data.author || np?.uploader.name) ?? lang.UTIL.UNKNOWN;
-    const songThumbnail = data.thumbnail?.genius || (np as Song).thumbnail;
-    const url = data.links?.genius ?? np?.url;
+    const songTitle = data.title || lang.UTIL.UNKNOWN;
+    const songThumbnail = data.header_image_url || null;
+    const artist = data.artist?.name || lang.UTIL.UNKNOWN;
+    const artistImageURL = data.artist?.header_image_url;
+    const artistURL = data.artist?.url;
+    const url = data.url || null;
     const songLyrics = data.lyrics;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setAuthor(songAuthor.toString())
+      .setAuthor(artist.toString(), artistImageURL, artistURL)
       .setTitle(songTitle.toString())
-      .setDescription(songLyrics);
+      .setDescription(songLyrics)
+      .setURL(url);
 
     if (songThumbnail) {
       embed.setThumbnail(songThumbnail);
-    }
-
-    if (url) {
-      embed.setURL(url);
     }
 
     if (embed.description!.length >= 2048) {
