@@ -79,6 +79,6 @@ export default class RemoveWarningCommand extends SubCommand {
 
     await WarningModel.findByIdAndDelete(warning._id).catch(() => null);
 
-    await interaction.editReply({ content: lang.ADMIN.REMOVED_ALL_WARNINGS });
+    await interaction.editReply({ content: "Successfully removed the warning." });
   }
 }
