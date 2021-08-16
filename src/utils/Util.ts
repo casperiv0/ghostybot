@@ -499,7 +499,7 @@ export class Util {
   }
 
   baseEmbed(
-    message: DJS.Message | DJS.CommandInteraction | { author: DJS.User | null },
+    message: DJS.Message | DJS.Interaction | { author: DJS.User | null },
   ): DJS.MessageEmbed {
     const user = "author" in message ? message.author : message.user;
 

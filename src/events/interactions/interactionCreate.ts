@@ -4,6 +4,7 @@ import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
+import { handleCategories } from "src/interactions/util/Help";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -11,6 +12,10 @@ export default class InteractionEvent extends Event {
   }
 
   async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+    if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
+      return handleCategories(interaction, bot);
+    }
+
     if (!interaction.isCommand()) return;
     if (!interaction.inGuild()) return;
 
