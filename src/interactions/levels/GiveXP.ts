@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class GiveXP extends SubCommand {
@@ -9,6 +8,7 @@ export default class GiveXP extends SubCommand {
       name: "give-xp",
       commandName: "levels",
       description: "Give a user xp",
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           name: "user",
@@ -24,23 +24,6 @@ export default class GiveXP extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

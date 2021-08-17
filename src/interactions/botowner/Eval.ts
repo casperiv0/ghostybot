@@ -3,7 +3,7 @@ import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 
 const classified = [
   "this.bot.config",

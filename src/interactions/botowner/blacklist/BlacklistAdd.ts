@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import BlacklistedModel from "models/Blacklisted.model";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class BlacklistAdd extends SubCommand {

@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class EndGiveaway extends SubCommand {
@@ -9,6 +8,7 @@ export default class EndGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "end",
       description: "End a giveaway",
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           description: "The messageId of the giveaway",
@@ -18,23 +18,6 @@ export default class EndGiveaway extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(
