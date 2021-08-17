@@ -18,7 +18,7 @@ export default class ComplimentCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const { compliment } = await fetch("https://complimentr.com/api").then((res) => res.json());
+    const { compliment } = await fetch(this.APIs.Compliment).then((res) => res.json());
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

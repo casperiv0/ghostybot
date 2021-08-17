@@ -33,9 +33,9 @@ export default class YtCommentCommand extends SubCommand {
       format: "png",
     });
 
-    const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(
-      username,
-    )}&comment=${encodeURIComponent(text)}&avatar=${encodeURIComponent(avatar)}`;
+    const url = `${this.APIs.YtComment}${encodeURIComponent(username)}&comment=${encodeURIComponent(
+      text,
+    )}&avatar=${encodeURIComponent(avatar)}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

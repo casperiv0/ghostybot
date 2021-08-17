@@ -1,5 +1,6 @@
-import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
+import { hyperlink } from "@discordjs/builders";
+import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -16,7 +17,7 @@ export default class OwoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const data = await fetch("https://rra.ram.moe/i/r?type=owo").then((res) => res.json());
+    const data = await fetch(this.APIs.Owo).then((res) => res.json());
 
     const link = hyperlink(
       lang.IMAGE.CLICK_TO_VIEW,

@@ -29,9 +29,9 @@ export default class TweetCommand extends SubCommand {
     const text = interaction.options.getString("text", true);
 
     const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(
-        text,
-      )}&username=${encodeURIComponent(interaction.user.username)}`,
+      `${this.APIs.Tweet}${encodeURIComponent(text)}&username=${encodeURIComponent(
+        interaction.user.username,
+      )}`,
     ).then((res) => res.json());
 
     const embed = this.bot.utils

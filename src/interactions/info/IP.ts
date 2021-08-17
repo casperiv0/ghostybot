@@ -28,9 +28,9 @@ export default class IPInfoCommand extends SubCommand {
 
     const ip = interaction.options.getString("ip", true);
 
-    const data: ReturnResponse = await fetch(
-      `https://ipwhois.app/json/${ip}?lang=${lang.UTIL.IP_LOC}`,
-    ).then((res) => res.json());
+    const data: ReturnResponse = await fetch(`${this.APIs.IP}${ip}?lang=${lang.UTIL.IP_LOC}`).then(
+      (res) => res.json(),
+    );
 
     if (data.success) {
       const {

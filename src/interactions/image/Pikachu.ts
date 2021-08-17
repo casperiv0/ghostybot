@@ -3,8 +3,6 @@ import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const API_URL = "https://some-random-api.ml/img/pikachu";
-
 export default class PikachuCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -20,7 +18,7 @@ export default class PikachuCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch(API_URL).then((res) => res.json());
+    const data = await fetch(this.APIs.Pikachu).then((res) => res.json());
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

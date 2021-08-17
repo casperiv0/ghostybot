@@ -32,7 +32,7 @@ export default class CovidInfoCommand extends SubCommand {
     let country: any;
 
     if (!query) {
-      country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
+      country = await (await fetch(this.APIs.Covid)).json();
     } else {
       country = await (
         await fetch(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)

@@ -27,9 +27,7 @@ export default class ImgfyCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const image = `https://flamingtext.com/net-fu/proxy_form.cgi?script=3d-logo&text=${encodeURIComponent(
-      text,
-    )}&_loc=generate&imageoutput=true`;
+    const image = `${this.APIs.Imgfy}${encodeURIComponent(text)}&_loc=generate&imageoutput=true`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

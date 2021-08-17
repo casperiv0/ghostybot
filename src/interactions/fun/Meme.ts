@@ -18,7 +18,7 @@ export default class MemeCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch("https://meme-api.herokuapp.com/gimme").then((res) => res.json());
+    const data = await fetch(this.APIs.Meme).then((res) => res.json());
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

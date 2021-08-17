@@ -2,8 +2,6 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const API_URL = "https://some-random-api.ml/canvas/invert?avatar=";
-
 export default class InvertCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -28,7 +26,7 @@ export default class InvertCommand extends SubCommand {
     await interaction.deferReply();
 
     const user = interaction.options.getUser("user") ?? interaction.user;
-    const image = `${API_URL}${user.displayAvatarURL({ format: "png" })}`;
+    const image = `${this.APIs.Invert}${user.displayAvatarURL({ format: "png" })}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

@@ -28,7 +28,7 @@ export default class GitHubInfoCommand extends SubCommand {
     await interaction.deferReply();
     const username = interaction.options.getString("username", true);
 
-    const url = `https://api.github.com/users/${encodeURIComponent(username)}`;
+    const url = `${this.APIs.GitHub}${encodeURIComponent(username)}`;
     const user = await fetch(url).then((res) => res.json());
 
     if (user?.message === "Not Found") {

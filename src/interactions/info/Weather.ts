@@ -29,9 +29,9 @@ export default class WeatherInfoCommand extends SubCommand {
 
     const query = interaction.options.getString("query", true);
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-      query,
-    )}&appid=${process.env["OPEN_WEATHER_MAP_API_KEY"]}&units=metric`;
+    const url = `${this.APIs.Weather}${encodeURIComponent(query)}&appid=${
+      process.env["OPEN_WEATHER_MAP_API_KEY"]
+    }&units=metric`;
     const data: WeatherData = await fetch(url).then((res) => res.json());
 
     if (data.cod === 401) {

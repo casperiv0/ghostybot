@@ -28,9 +28,9 @@ export default class ChangeMyMindCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=changemymind&text=${encodeURIComponent(text)}`,
-    ).then((res) => res.json());
+    const data = await fetch(`${this.APIs.ChangeMyMind}${encodeURIComponent(text)}`).then((res) =>
+      res.json(),
+    );
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

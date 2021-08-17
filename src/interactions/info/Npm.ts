@@ -50,9 +50,7 @@ export default class NpmInfoCommand extends SubCommand {
       const updatedAt = time(new Date(foundPackage.date), "F");
 
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
-      const downloads = await fetch(
-        `https://api.npmjs.org/downloads/point/last-week/${foundPackage.name}`,
-      )
+      const downloads = await fetch(`${this.APIs.npm}${foundPackage.name}`)
         .then((res) => res.json())
         .catch(() => null);
 

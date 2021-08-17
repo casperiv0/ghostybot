@@ -18,7 +18,7 @@ export default class QuoteCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch("https://api.tovade.xyz/v1/fun/quote").then((r) => r.json());
+    const data = await fetch(this.APIs.Quote).then((r) => r.json());
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

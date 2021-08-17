@@ -21,7 +21,7 @@ export default class LmgtfyCommand extends SubCommand {
 
   async execute(interaction: DJS.CommandInteraction) {
     const query = interaction.options.getString("query", true);
-    const url = `https://lmgtfy.com/?q=${encodeURIComponent(query)}&s=g`;
+    const url = `${this.APIs.Lmgtfy}${encodeURIComponent(query)}`;
 
     return interaction.reply({ content: url });
   }

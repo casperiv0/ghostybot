@@ -26,7 +26,7 @@ export default class MDNInteraction extends Command {
       await interaction.deferReply();
       const query = interaction.options.getString("query", true);
 
-      const url = `https://mdn.gideonbot.com/embed?q=${query}`;
+      const url = `${this.APIs.MDN}${query}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (!data || data?.message || data?.code) {

@@ -2,8 +2,6 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const API_URL = "https://api.no-api-key.com/api/v2/delete?image=";
-
 export default class TrashCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -26,7 +24,7 @@ export default class TrashCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
-    const image = `${API_URL}${user.displayAvatarURL({ format: "png" })}`;
+    const image = `${this.APIs.Thrash}${user.displayAvatarURL({ format: "png" })}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

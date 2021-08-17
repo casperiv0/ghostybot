@@ -14,7 +14,7 @@ export default class AdviceCommand extends SubCommand {
 
   async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
-    const data = await fetch("https://api.adviceslip.com/advice").then((res) => res.json());
+    const data = await fetch(this.APIs.Advice).then((res) => res.json());
 
     await interaction.editReply({ content: data.slip.advice });
   }

@@ -35,7 +35,7 @@ export default class Rank extends SubCommand {
     const level = this.bot.utils.calculateXp(dbUser.xp);
     const avatar = encodeURIComponent(user.displayAvatarURL());
 
-    const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
+    const url = `${this.APIs.Rank}${encodeURIComponent(
       user.username,
     )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${dbUser.xp}&nextlevelxp=${
       dbUser.xp + 1200

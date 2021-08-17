@@ -29,9 +29,9 @@ export default class CountryInfoCommand extends SubCommand {
 
     const countryQuery = interaction.options.getString("country", true);
 
-    const data = await fetch(
-      `https://restcountries.eu/rest/v2/name/${encodeURIComponent(countryQuery)}`,
-    ).then((r) => r.json());
+    const data = await fetch(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then((r) =>
+      r.json(),
+    );
 
     const [country] = data;
 

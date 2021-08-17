@@ -15,9 +15,7 @@ export default class FoodpornCommand extends SubCommand {
   async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
 
-    const data = await fetch("https://www.reddit.com/r/food/random/.json").then((res) =>
-      res.json(),
-    );
+    const data = await fetch(this.APIs.FoodPorn).then((res) => res.json());
 
     const [children] = data[0].data.children;
     const permaLink = children.data.permalink;

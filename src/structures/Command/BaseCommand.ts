@@ -1,3 +1,4 @@
+import { APIs } from "@config/APIs";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 
@@ -30,6 +31,7 @@ export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseComm
   bot: Bot;
   name: string;
   _options: TOptions;
+  APIs: typeof APIs = APIs;
 
   constructor(bot: Bot, options: TOptions) {
     this.bot = bot;
