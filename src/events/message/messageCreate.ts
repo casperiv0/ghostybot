@@ -139,6 +139,7 @@ export default class MessageEvent extends Event {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
+          .addField("Help command", "/help")
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
           .addField(
             lang.BOT.DASHBOARD,
