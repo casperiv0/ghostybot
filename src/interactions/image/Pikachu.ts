@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 const API_URL = "https://some-random-api.ml/img/pikachu";
@@ -13,10 +12,6 @@ export default class PikachuCommand extends SubCommand {
       name: "pikachu",
       description: "Returns an image of a pikachu",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

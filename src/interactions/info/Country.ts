@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import { bold } from "@discordjs/builders";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class CountryInfoCommand extends SubCommand {
@@ -20,10 +19,6 @@ export default class CountryInfoCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

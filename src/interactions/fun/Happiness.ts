@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class HappinessCommand extends SubCommand {
@@ -10,10 +9,6 @@ export default class HappinessCommand extends SubCommand {
       name: "happiness",
       description: "Get a happiness score returned",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { bold, time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 const voiceChannel = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
@@ -21,10 +20,6 @@ export default class ChannelInfoCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

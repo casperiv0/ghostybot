@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class UnmuteCommand extends SubCommand {
@@ -9,6 +8,11 @@ export default class UnmuteCommand extends SubCommand {
       commandName: "admin",
       name: "unmute",
       description: "Unmute a user",
+      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES, DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      memberPermissions: [
+        DJS.Permissions.FLAGS.MANAGE_ROLES,
+        DJS.Permissions.FLAGS.MANAGE_CHANNELS,
+      ],
       options: [
         {
           name: "user",
@@ -18,33 +22,6 @@ export default class UnmuteCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_ROLES, DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    const botPerms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_ROLES, DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      interaction,
-      lang,
-    );
-
-    if (botPerms) {
-      return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

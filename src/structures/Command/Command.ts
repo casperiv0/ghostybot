@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
+import { BaseCommand, BaseCommandOptions } from "./BaseCommand";
 
 export type ValidateReturn = {
   ok: boolean;
@@ -9,44 +9,10 @@ export type ValidateReturn = {
     | (DJS.InteractionReplyOptions & { fetchReply: true });
 };
 
-export interface CommandOptions {
-  /** the name of the command */
-  name: string;
-
-  /** the description of the command */
-  description: string;
-
-  /** options for the command, choices, required, add more options, etc.  */
-  options?: DJS.ApplicationCommandOptionData[];
-}
-
-export abstract class Command {
-  bot: Bot;
-  name: string;
-  _options: CommandOptions;
-
-  constructor(bot: Bot, options: CommandOptions) {
-    this.bot = bot;
-    this.name = options.name;
-    this._options = options;
-
-    this.validate = this.validate.bind(this);
-    this.execute = this.execute.bind(this);
-  }
-
-  get options(): CommandOptions {
+export abstract class Command extends BaseCommand {
+  get options(): BaseCommandOptions {
     return {
       ...this._options,
     };
   }
-
-  abstract validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn>;
-
-  abstract execute(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<unknown>;
 }

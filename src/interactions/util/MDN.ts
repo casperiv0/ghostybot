@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Command, ValidateReturn } from "structures/Command/Command";
+import { Command } from "structures/Command/Command";
 
 export default class MDNInteraction extends Command {
   constructor(bot: Bot) {
@@ -16,10 +16,6 @@ export default class MDNInteraction extends Command {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

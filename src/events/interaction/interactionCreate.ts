@@ -63,6 +63,30 @@ export default class InteractionEvent extends Event {
         });
       }
 
+      if (command.options.botPermissions) {
+        const botPerms = this.bot.utils.formatBotPermissions(
+          command.options.botPermissions,
+          interaction,
+          lang,
+        );
+
+        if (botPerms) {
+          return interaction.reply({ embeds: [botPerms], ephemeral: true });
+        }
+      }
+
+      if (command.options.memberPermissions) {
+        const perms = this.bot.utils.formatMemberPermissions(
+          command.options.memberPermissions,
+          interaction,
+          lang,
+        );
+
+        if (perms) {
+          return interaction.reply({ content: perms, ephemeral: true });
+        }
+      }
+
       if (command.validate) {
         const { ok, error } = await command.validate(interaction, lang);
 
@@ -96,11 +120,18 @@ export default class InteractionEvent extends Event {
   getCommandName(interaction: DJS.CommandInteraction) {
     let command: string;
 
-    try {
-      const sub = interaction.options.getSubcommand();
-      command = `${interaction.commandName}-${sub}`;
-    } catch {
-      command = interaction.commandName;
+    const commandName = interaction.commandName;
+    const group = interaction.options.getSubcommandGroup(false);
+    const subCommand = interaction.options.getSubcommand(false);
+
+    if (subCommand) {
+      if (group) {
+        command = `${commandName}-${group}-${subCommand}`;
+      } else {
+        command = `${commandName}-${subCommand}`;
+      }
+    } else {
+      command = commandName;
     }
 
     return command;

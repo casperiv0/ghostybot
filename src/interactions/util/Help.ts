@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { hyperlink } from "@discordjs/builders";
-import { Command, ValidateReturn } from "structures/Command/Command";
+import { Command } from "structures/Command/Command";
 import categories from "assets/json/categories.json";
 
 export default class HelpInteraction extends Command {
@@ -10,10 +10,6 @@ export default class HelpInteraction extends Command {
       name: "help",
       description: "Return more information about a command",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

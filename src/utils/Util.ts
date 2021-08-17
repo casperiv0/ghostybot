@@ -554,6 +554,9 @@ export class Util {
     return message.guild.me.voice.channelId === voiceChannelId;
   }
 
+  /**
+   * @returns `string` = doesn't have the required permissions, `undefined` = has the required permissions
+   */
   formatBotPermissions(
     permissions: bigint[],
     interaction: DJS.CommandInteraction,

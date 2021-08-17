@@ -45,12 +45,12 @@ export class InteractionHandler {
             const prev = commandGroups[groupName]?.[1] ?? [];
 
             commandGroups[groupName] = [topLevelName, [...prev, interaction]];
+            commandName = `${topLevelName}-${groupName}-${interaction.name}`;
           } else if (topLevelName) {
             const prevSubCommands = subCommands[topLevelName] ?? [];
             subCommands[topLevelName] = [...prevSubCommands, interaction];
+            commandName = `${topLevelName}-${interaction.name}`;
           }
-
-          commandName = `${topLevelName}-${interaction.name}`;
         } else {
           commandName = interaction.name;
 

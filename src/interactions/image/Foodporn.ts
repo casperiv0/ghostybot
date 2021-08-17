@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import fetch from "node-fetch";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class FoodpornCommand extends SubCommand {
@@ -11,10 +10,6 @@ export default class FoodpornCommand extends SubCommand {
       name: "foodporn",
       description: "Shows Food images",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(interaction: DJS.CommandInteraction) {

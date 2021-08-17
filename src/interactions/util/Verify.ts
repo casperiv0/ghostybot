@@ -10,10 +10,6 @@ export default class VerifyCommand extends Command {
     });
   }
 
-  async validate() {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,

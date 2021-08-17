@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import PlayStore, { IAppItem } from "google-play-scraper";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class PlaystoreInfoCommand extends SubCommand {
@@ -19,10 +18,6 @@ export default class PlaystoreInfoCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

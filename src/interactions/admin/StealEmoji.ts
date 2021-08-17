@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { parse } from "twemoji-parser";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class StealEmojiCommand extends SubCommand {
@@ -10,6 +9,8 @@ export default class StealEmojiCommand extends SubCommand {
       commandName: "admin",
       name: "steal-emoji",
       description: "Add an emoji from a different guild to this guild",
+      botPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
       options: [
         {
           name: "emoji",
@@ -25,33 +26,6 @@ export default class StealEmojiCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    const botPerms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
-      interaction,
-      lang,
-    );
-
-    if (botPerms) {
-      return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

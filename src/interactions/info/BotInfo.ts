@@ -3,7 +3,6 @@ import { hyperlink, inlineCode } from "@discordjs/builders";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 dayjs.extend(duration);
 
@@ -14,10 +13,6 @@ export default class BotInfoCommand extends SubCommand {
       name: "bot",
       description: "Get information about GhostyBot",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

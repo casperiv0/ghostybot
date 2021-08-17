@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import { codeBlock } from "@discordjs/builders";
 import { create, all } from "mathjs";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 const math = create(all);
@@ -22,10 +21,6 @@ export default class CalculateCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RandomJokeCommand extends SubCommand {
@@ -10,10 +9,6 @@ export default class RandomJokeCommand extends SubCommand {
       name: "random-color",
       description: "Returns a random color",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(interaction: DJS.CommandInteraction) {

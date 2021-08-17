@@ -11,12 +11,12 @@ import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SubCommandOptions } from "structures/Command/SubCommand";
-import { CommandOptions } from "structures/Command/Command";
+import { BaseCommandOptions } from "structures/Command/BaseCommand";
 
 interface Props {
   guild: Guild | null;
   isAuth: boolean;
-  botCommands: (SubCommandOptions | CommandOptions)[];
+  botCommands: (SubCommandOptions | BaseCommandOptions)[];
   error: string | undefined;
 }
 
@@ -135,11 +135,15 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
       <div className="grid">
         {botCommands?.slice(0, length)?.map((cmd, idx) => {
           const topLevelName = "commandName" in cmd ? cmd.commandName : cmd.name;
-          const groupName = "groupName" in cmd ? cmd.groupName : "";
+          const groupName = "groupName" in cmd ? cmd.groupName : null;
 
-          const isDisabled = guild.disabled_commands?.some(
-            (c2) => `${topLevelName}-${cmd.name}` === c2,
-          );
+          const fullName = groupName
+            ? `${topLevelName}-${groupName}-${cmd.name}`
+            : "commandName" in cmd
+            ? `${cmd.commandName}-${cmd.name}`
+            : cmd.name;
+
+          const isDisabled = guild.disabled_commands?.some((c2) => fullName === c2);
 
           if (filter === "@disabled" && !isDisabled) return null;
           if (filter === "@enabled" && isDisabled) return null;
@@ -155,9 +159,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
 
               <div>
                 <button
-                  onClick={() =>
-                    updateCommand(isDisabled ? "enable" : "disable", `${topLevelName}-${cmd.name}`)
-                  }
+                  onClick={() => updateCommand(isDisabled ? "enable" : "disable", fullName)}
                   className="btn btn-secondary"
                 >
                   {isDisabled ? t("enable") : t("disable")}

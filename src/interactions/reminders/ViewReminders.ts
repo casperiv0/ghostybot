@@ -1,7 +1,6 @@
 import { time } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import { interactionPaginate } from "utils/interactionPaginate";
 
@@ -20,10 +19,6 @@ export default class ViewRemindersCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

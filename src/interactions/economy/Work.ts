@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import jobs from "assets/json/jobs.json";
 
@@ -15,10 +14,6 @@ export default class WorkCommand extends SubCommand {
       name: "work",
       description: "Work!",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

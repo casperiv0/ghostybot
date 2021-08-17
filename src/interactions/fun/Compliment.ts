@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import fetch from "node-fetch";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class ComplimentCommand extends SubCommand {
@@ -11,10 +10,6 @@ export default class ComplimentCommand extends SubCommand {
       name: "compliment",
       description: "Get a compliment",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

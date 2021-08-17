@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RemoveRoleCommand extends SubCommand {
@@ -9,6 +8,8 @@ export default class RemoveRoleCommand extends SubCommand {
       commandName: "admin",
       name: "remove-role",
       description: "Remove a role to a user",
+      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
       options: [
         {
           name: "user",
@@ -24,32 +25,6 @@ export default class RemoveRoleCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      interaction,
-      lang,
-    );
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    const botPerms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      interaction,
-      lang,
-    );
-
-    if (botPerms) {
-      return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

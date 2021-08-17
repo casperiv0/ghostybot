@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import ms from "ms";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import { v4 } from "uuid";
 
@@ -26,10 +25,6 @@ export default class CreateReminderCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

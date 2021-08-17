@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class MemeCommand extends SubCommand {
@@ -11,10 +10,6 @@ export default class MemeCommand extends SubCommand {
       name: "meme",
       description: "Returns a funny meme",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

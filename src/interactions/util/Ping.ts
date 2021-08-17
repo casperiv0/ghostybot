@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Command, ValidateReturn } from "structures/Command/Command";
+import { Command } from "structures/Command/Command";
 
 export default class PingInteraction extends Command {
   constructor(bot: Bot) {
@@ -8,10 +8,6 @@ export default class PingInteraction extends Command {
       name: "ping",
       description: "Returns the bot's ping",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 159 slash commands.
+GhostyBot has a total of 163 slash commands.
 
 ## Detailed command list
 
@@ -57,11 +57,11 @@ GhostyBot has a total of 159 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> voice -> kick
+## admin -> kick
 
-**Description:** Kick a user that is in a voice channel
+**Description:** Kick a user from the current guild
 
-**Example usage:** /admin voice kick ...
+**Example usage:** /admin kick ...
 
 **Options:** user (USER / Required), reason (STRING / Optional)
 
@@ -77,13 +77,13 @@ GhostyBot has a total of 159 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> voice -> mute
+## admin -> mute
 
-**Description:** Mute a user that is in a voice channel
+**Description:** Mute/tempmute a user
 
-**Example usage:** /admin voice mute ...
+**Example usage:** /admin mute ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -107,13 +107,13 @@ GhostyBot has a total of 159 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> warnings -> remove
+## admin-> sticky -> remove
 
-**Description:** Remove a warning from a user
+**Description:** Remove the sticky message for the current channel
 
-**Example usage:** /admin warnings remove ...
+**Example usage:** /admin sticky remove ...
 
-**Options:** user (USER / Required), warning-id (NUMBER / Required)
+**Options:** N/A
 
 [Back to top](#ghostybot-command-list)
 
@@ -177,11 +177,11 @@ GhostyBot has a total of 159 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
-## admin-> voice -> unmute
+## admin -> unmute
 
-**Description:** Unmute a user that is in a voice channel
+**Description:** Unmute a user
 
-**Example usage:** /admin voice unmute ...
+**Example usage:** /admin unmute ...
 
 **Options:** user (USER / Required)
 
@@ -197,6 +197,26 @@ GhostyBot has a total of 159 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## admin-> voice -> kick
+
+**Description:** Kick a user that is in a voice channel
+
+**Example usage:** /admin voice kick ...
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> voice -> mute
+
+**Description:** Mute a user that is in a voice channel
+
+**Example usage:** /admin voice mute ...
+
+**Options:** user (USER / Required), reason (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
 ## admin-> voice -> undeafen
 
 **Description:** Undeafen a user that is in a voice channel
@@ -204,6 +224,26 @@ GhostyBot has a total of 159 slash commands.
 **Example usage:** /admin voice undeafen ...
 
 **Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> voice -> unmute
+
+**Description:** Unmute a user that is in a voice channel
+
+**Example usage:** /admin voice unmute ...
+
+**Options:** user (USER / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## admin-> warnings -> remove
+
+**Description:** Remove a warning from a user
+
+**Example usage:** /admin warnings remove ...
+
+**Options:** user (USER / Required), warning-id (NUMBER / Required)
 
 [Back to top](#ghostybot-command-list)
 
