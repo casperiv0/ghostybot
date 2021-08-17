@@ -48,7 +48,7 @@ export default class WarnCommand extends SubCommand {
       });
     }
 
-    if (member.permissions.has("MANAGE_MESSAGES")) {
+    if (member.permissions.has(DJS.Permissions.FLAGS.MANAGE_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.USER_NOT_WARN,

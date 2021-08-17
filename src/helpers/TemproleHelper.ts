@@ -4,13 +4,13 @@ import { Helper } from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
 
 export default class TemproleHelper extends Helper {
+  private TEN_SECOND_INTERVAL = 10_000;
+
   constructor(bot: Bot) {
     super(bot, "temproleHelper");
   }
 
   async execute() {
-    const TEN_SECOND_INTERVAL = 10000;
-
     setInterval(async () => {
       const roles = await UserModel.find({ "temproles.hasTempRoles": true });
       if (!roles) return;
@@ -40,6 +40,6 @@ export default class TemproleHelper extends Helper {
             member.roles.remove(tempRole.roleId);
           });
       });
-    }, TEN_SECOND_INTERVAL);
+    }, this.TEN_SECOND_INTERVAL);
   }
 }

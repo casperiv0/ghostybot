@@ -4,13 +4,13 @@ import { Helper } from "structures/Helper";
 import UserModel, { IUser } from "models/User.model";
 
 export default class ReminderHelper extends Helper {
+  private TEN_SECOND_INTERVAL = 10_000;
+
   constructor(bot: Bot) {
     super(bot, "unmuteHelper");
   }
 
   async execute() {
-    const TEN_SECOND_INTERVAL = 10000;
-
     setInterval(async () => {
       const mutes = await UserModel.find({ "mute.muted": true });
       if (!mutes) return;
@@ -21,7 +21,7 @@ export default class ReminderHelper extends Helper {
           const guild = this.bot.guilds.cache.get(user.guild_id);
           if (!guild) return;
           if (!guild.available) return;
-          if (!guild.me?.permissions.has(["MANAGE_CHANNELS"])) return;
+          if (!guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_CHANNELS)) return;
 
           const message = {
             guild,
@@ -69,7 +69,7 @@ export default class ReminderHelper extends Helper {
               },
             });
 
-            if (!guild.me.permissions.has("MANAGE_ROLES")) return;
+            if (!guild.me.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)) return;
             if (!mutedRole) return;
             member.roles.remove(mutedRole);
 
@@ -78,6 +78,6 @@ export default class ReminderHelper extends Helper {
             await webhook.send({ embeds: [embed] });
           }
         });
-    }, TEN_SECOND_INTERVAL);
+    }, this.TEN_SECOND_INTERVAL);
   }
 }
