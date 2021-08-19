@@ -97,7 +97,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       return res.json({
         guild: { ...g.toJSON(), ...guild, reactions },
-        botCommands: commands,
+        botCommands: commands.map((v) => {
+          delete v.memberPermissions;
+          delete v.botPermissions;
+
+          return v;
+        }),
         status: "success",
       });
     }
