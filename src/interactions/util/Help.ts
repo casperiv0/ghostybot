@@ -4,6 +4,8 @@ import { hyperlink } from "@discordjs/builders";
 import { Command } from "structures/Command/Command";
 import categories from "assets/json/categories.json";
 
+const HELP_URL_GH = "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md";
+
 export default class HelpInteraction extends Command {
   constructor(bot: Bot) {
     super(bot, {
@@ -17,8 +19,7 @@ export default class HelpInteraction extends Command {
     lang: typeof import("@locales/english").default,
   ) {
     try {
-      const url = "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md";
-      const LINK = hyperlink(lang.HELP.CLICK_ME, url);
+      const LINK = hyperlink(lang.HELP.CLICK_ME, HELP_URL_GH);
 
       const menu = this.createSelectMenu();
       const actionRow = new DJS.MessageActionRow().addComponents(menu);
@@ -28,7 +29,7 @@ export default class HelpInteraction extends Command {
           author: interaction.user,
         })
         .setDescription(
-          `You can view all the slash commands [here](${url}). Due to some limitations it is hard to implement a new help command within Discord`,
+          `You can view all the slash commands [here](${HELP_URL_GH}). Due to some limitations it is hard to implement a new help command within Discord`,
         )
         .addField(lang.HELP.FULL_CMD_LIST, LINK);
 
@@ -83,7 +84,7 @@ export function handleCategories(interaction: DJS.SelectMenuInteraction, bot: Bo
     .setDescription(commands.map((command) => `\`${command.name}\``).join(" "))
     .addField(
       "Note",
-      `This does not include all commands within the ${category} category. Please use the linked page to view **all** commands.`,
+      `This does not include all commands within the ${category} category. [Please click here to view **all** commands.](${HELP_URL_GH})`,
     );
 
   interaction.reply({
