@@ -1,11 +1,11 @@
 {
-  "manage_reaction_roles": "Manage Reaction Roles",
-  "reaction_role": "Reaction Role",
-  "add_emoji_and_role": " Add emoji and role",
-  "channel_note": "Note: Channel cannot be changed when message has been sent",
-  "no_roles_yet": "No roles yet",
-  "channel": "Channel",
-  "roles": "Roles",
-  "no_reaction_roles": "This guild does not have any reaction roles yet.",
-  "add_reaction_role": "Add reaction role"
+  "manage_reaction_roles": "Verwalte Reaktionsrollen",
+  "reaction_role": "Reaktionsrolle",
+  "add_emoji_and_role": "Füge das Emoji und die Rolle hinzu",
+  "channel_note": "Achtung: Der Kanal kann nicht geändert werden, nachdem die Nachricht gesendet wurde",
+  "no_roles_yet": "Noch keine Rollen",
+  "channel": "Kanal",
+  "roles": "Rollen",
+  "no_reaction_roles": "Dieser Server hat noch keine Reaktionsrollen.",
+  "add_reaction_role": "Füge Reaktionsrolle hinzu"
 }
