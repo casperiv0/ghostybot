@@ -1,7 +1,7 @@
 {
   "manage_reaction_roles": "Manage Reaction Roles",
   "reaction_role": "Reaction Role",
-  "add_emoji_and_role": " Add emoji and role",
+  "add_emoji_and_role": "Add emoji and role",
   "channel_note": "Note: Channel cannot be changed when message has been sent",
   "no_roles_yet": "No roles yet",
   "channel": "Channel",
