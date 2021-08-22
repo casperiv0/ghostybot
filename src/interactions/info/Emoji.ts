@@ -48,6 +48,7 @@ export default class EmojiInfoCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
+      .setURL(foundEmoji.url)
       .setTitle(`${lang.UTIL.EMOJI_INFO}: ${foundEmoji}`)
       .setThumbnail(foundEmoji.url).setDescription(`
 **${lang.GLOBAL.NAME}:** ${foundEmoji.name}
