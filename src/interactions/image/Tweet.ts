@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class TweetCommand extends SubCommand {
@@ -21,10 +20,6 @@ export default class TweetCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -34,9 +29,9 @@ export default class TweetCommand extends SubCommand {
     const text = interaction.options.getString("text", true);
 
     const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=tweet&text=${encodeURIComponent(
-        text,
-      )}&username=${encodeURIComponent(interaction.user.username)}`,
+      `${this.APIs.Tweet}${encodeURIComponent(text)}&username=${encodeURIComponent(
+        interaction.user.username,
+      )}`,
     ).then((res) => res.json());
 
     const embed = this.bot.utils

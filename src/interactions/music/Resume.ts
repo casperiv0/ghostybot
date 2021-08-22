@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RemoveCommand extends SubCommand {
@@ -32,7 +32,7 @@ export default class RemoveCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
-    if (!queue || !queue.playing) {
+    if (!queue) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
     }
 

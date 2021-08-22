@@ -3,8 +3,6 @@ import { NextApiResponse } from "next";
 import { ApiRequest } from "types/ApiRequest";
 import { Constants } from "utils/constants";
 
-const botSlashCommands = ["help", "botinfo", "ping"];
-
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
@@ -28,6 +26,10 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       status: "error",
       error: "An unexpected error occurred",
     });
+  }
+
+  function includesCommand(commandName: string) {
+    return req.bot.interactions.find((v) => v.options.name === commandName);
   }
 
   switch (method) {
@@ -96,7 +98,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (req.bot.commands.has(commandName) || botSlashCommands.includes(commandName)) {
+      if (commandName === "help" || includesCommand(commandName)) {
         return res.json({
           error: "This command name is already in use by the bot!",
           status: "error",
@@ -105,6 +107,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       try {
         const command = await discordGuild?.commands.create({
+          type: "CHAT_INPUT",
           name: commandName,
           description: body.description,
         });
@@ -121,7 +124,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
           ],
         });
 
-        return res.json({ status: "success" });
+        const cmdData = {
+          description: body.description,
+          name: commandName,
+          response: body.response,
+          slash_cmd_id: command.id,
+        };
+
+        return res.json({ command: cmdData, status: "success" });
       } catch (e) {
         if (e.httpStatus === 403) {
           return res.json({
@@ -153,7 +163,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (req.bot.commands.has(name) || botSlashCommands.includes(name)) {
+      if (name === "help" || includesCommand(name)) {
         return res.json({
           error: "This command name is already in use by the bot!",
           status: "error",
@@ -168,6 +178,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       await discordGuild?.commands.edit(commandId, {
+        type: "CHAT_INPUT",
         name,
         description: body.description,
       });

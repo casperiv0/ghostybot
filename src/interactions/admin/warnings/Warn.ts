@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class WarnCommand extends SubCommand {
@@ -9,6 +8,7 @@ export default class WarnCommand extends SubCommand {
       commandName: "admin",
       name: "warn",
       description: "Warn a user",
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           name: "user",
@@ -24,23 +24,6 @@ export default class WarnCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(
@@ -65,7 +48,7 @@ export default class WarnCommand extends SubCommand {
       });
     }
 
-    if (member.permissions.has("MANAGE_MESSAGES")) {
+    if (member.permissions.has(DJS.Permissions.FLAGS.MANAGE_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.USER_NOT_WARN,

@@ -4,13 +4,13 @@ import { Helper } from "structures/Helper";
 import UserModel, { IUser, Reminder } from "models/User.model";
 
 export default class ReminderHelper extends Helper {
+  private TEN_SECOND_INTERVAL = 10_000;
+
   constructor(bot: Bot) {
     super(bot, "reminderHelper");
   }
 
   async execute() {
-    const TEN_SECOND_INTERVAL = 10000;
-
     setInterval(async () => {
       const reminders = await UserModel.find({ "reminder.hasReminder": true });
       if (!reminders) return;
@@ -60,6 +60,6 @@ export default class ReminderHelper extends Helper {
             (channel as DJS.TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });
           });
       });
-    }, TEN_SECOND_INTERVAL);
+    }, this.TEN_SECOND_INTERVAL);
   }
 }

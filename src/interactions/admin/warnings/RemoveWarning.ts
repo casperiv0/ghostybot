@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import WarningModel from "models/Warning.model";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RemoveWarningCommand extends SubCommand {
@@ -11,6 +10,7 @@ export default class RemoveWarningCommand extends SubCommand {
       groupName: "warnings",
       name: "remove",
       description: "Remove a warning from a user",
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           name: "user",
@@ -26,23 +26,6 @@ export default class RemoveWarningCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(
@@ -79,6 +62,6 @@ export default class RemoveWarningCommand extends SubCommand {
 
     await WarningModel.findByIdAndDelete(warning._id).catch(() => null);
 
-    await interaction.editReply({ content: lang.ADMIN.REMOVED_ALL_WARNINGS });
+    await interaction.editReply({ content: "Successfully removed the warning." });
   }
 }

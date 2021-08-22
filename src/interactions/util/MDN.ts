@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { Command, ValidateReturn } from "structures/Command/Command";
+import { Command } from "structures/Command/Command";
 
 export default class MDNInteraction extends Command {
   constructor(bot: Bot) {
@@ -18,10 +18,6 @@ export default class MDNInteraction extends Command {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -30,7 +26,7 @@ export default class MDNInteraction extends Command {
       await interaction.deferReply();
       const query = interaction.options.getString("query", true);
 
-      const url = `https://mdn.gideonbot.com/embed?q=${query}`;
+      const url = `${this.APIs.MDN}${query}`;
       const data = await fetch(url).then((res) => res.json());
 
       if (!data || data?.message || data?.code) {

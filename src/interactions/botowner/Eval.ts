@@ -3,7 +3,7 @@ import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 
 const classified = [
   "this.bot.config",
@@ -26,6 +26,12 @@ export default class Eval extends SubCommand {
           name: "code",
           description: "The code you want to execute",
           required: true,
+        },
+        {
+          type: "BOOLEAN",
+          name: "ephemeral",
+          description: "Whether the command should be sent with ephemeral: true",
+          required: false,
         },
       ],
     });
@@ -50,7 +56,8 @@ export default class Eval extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     try {
-      await interaction.deferReply();
+      const ephemeral = interaction.options.getBoolean("ephemeral") ?? false;
+      await interaction.deferReply({ ephemeral });
       const code = interaction.options.getString("code", true);
       let wasCanceled = false;
 

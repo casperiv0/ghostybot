@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import fetch from "node-fetch";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class GiphyCommand extends SubCommand {

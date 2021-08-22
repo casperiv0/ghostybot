@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { bold, time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 const voiceChannel = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
@@ -23,18 +22,15 @@ export default class ChannelInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const channel = interaction.options.getChannel("channel") ?? interaction.channel;
+    await interaction.deferReply();
 
+    const channel = interaction.options.getChannel("channel") ?? interaction.channel;
     if (!channel) {
-      return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
+      return interaction.editReply({ content: lang.GLOBAL.ERROR });
     }
 
     const topic = (channel as DJS.TextChannel)?.topic ?? lang.GLOBAL.NONE;
@@ -61,6 +57,6 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}
       embed.addField(lang.GUILD.REGION, region);
     }
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 }

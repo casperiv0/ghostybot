@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import { time } from "@discordjs/builders";
 
@@ -11,10 +10,6 @@ export default class UptimeCommand extends SubCommand {
       name: "uptime",
       description: "View the uptime of the bot",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

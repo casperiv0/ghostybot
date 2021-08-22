@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class DiceCommand extends SubCommand {
@@ -10,10 +9,6 @@ export default class DiceCommand extends SubCommand {
       name: "dice",
       description: "Roll a dice and win 200 coins",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

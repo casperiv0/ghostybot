@@ -2,47 +2,49 @@ import * as React from "react";
 import { Modal, closeModal } from "./index";
 import { logger } from "utils/logger";
 import { AlertMessage } from "../AlertMessage";
-import { useRouter } from "next/router";
-import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
+import { useSlashStore } from "src/dashboard/state/slashState";
 
 interface Props {
-  guild: Guild;
+  guildId: string;
 }
 
-export const CreateCommandModal: React.FC<Props> = ({ guild }: Props) => {
+export const CreateCommandModal: React.FC<Props> = ({ guildId }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
-  const router = useRouter();
+
   const { t } = useTranslation("guilds");
+  const state = useSlashStore();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/slash-commands`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name,
-            description,
-            response: cmdRes,
-          }),
-        },
-      );
+      const url = `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guildId}/slash-commands`;
+
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          description,
+          response: cmdRes,
+        }),
+      });
+
       const data = await res.json();
 
       if (data.status === "success") {
         closeModal("createCommandModal");
+
         setName("");
         setCmdRes("");
         setDescription("");
         setResponse(null);
 
-        router.push(`/dashboard/${guild.id}/slash-commands?message=${t("added_command")}`);
+        state.setItems([...state.items, data.command]);
+        state.setMessage(t("added_command"));
       }
 
       setResponse(data);

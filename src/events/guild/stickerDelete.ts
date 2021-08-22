@@ -25,7 +25,7 @@ export default class StickerDeleteEvent extends Event {
         .setImage(sticker.url)
         .setTimestamp();
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

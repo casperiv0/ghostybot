@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { bold, time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import { APIRole } from "discord-api-types";
 
@@ -20,10 +19,6 @@ export default class RoleInfoCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

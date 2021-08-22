@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class ImgfyCommand extends SubCommand {
@@ -20,10 +19,6 @@ export default class ImgfyCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -32,9 +27,7 @@ export default class ImgfyCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const image = `https://flamingtext.com/net-fu/proxy_form.cgi?script=3d-logo&text=${encodeURIComponent(
-      text,
-    )}&_loc=generate&imageoutput=true`;
+    const image = `${this.APIs.Imgfy}${encodeURIComponent(text)}&_loc=generate&imageoutput=true`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

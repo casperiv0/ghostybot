@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class MinecraftInfoCommand extends SubCommand {
@@ -21,14 +20,12 @@ export default class MinecraftInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
+    await interaction.deferReply();
+
     const query = interaction.options.getString("query", true);
 
     const url = `http://api.xaliks.xyz/info/minecraft?type=server&query=${encodeURIComponent(
@@ -38,10 +35,8 @@ export default class MinecraftInfoCommand extends SubCommand {
     const data = await fetch(url).then((res) => res.json());
 
     if (data.error) {
-      return interaction.reply({ ephemeral: true, content: lang.UTIL.MC_NOT_FOUND });
+      return interaction.editReply({ content: lang.UTIL.MC_NOT_FOUND });
     }
-
-    await interaction.deferReply();
 
     const status = data.status === "online" ? lang.MEMBER.ONLINE : lang.MEMBER.OFFLINE;
     const players = data.players?.now.toString() ?? lang.UTIL.UNKNOWN;

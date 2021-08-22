@@ -2,10 +2,8 @@ const LANG: typeof import("./english").default = {
   GLOBAL: {
     EVERYONE: "Everyone",
     NOT_SPECIFIED: "غير محدد",
-    PROVIDE_ARGS: "من فضلك ادخل المتغير",
     ERROR: "حدث خطأ ما",
     NAME: "الاسم",
-    NOT_AN_OPTION: "`{option}` ليس خيارا صحيح ",
     SUCCESS: "تم",
     REASON: "السبب",
     URL: "URLعنوان ",
@@ -16,12 +14,6 @@ const LANG: typeof import("./english").default = {
   GUILD: {
     NOT_FOUND: "لم يتم العثور علي السرفر",
     LEFT: "لقد غادرت  **${guild_name}**",
-    LEVEL_UP_MESSAGES: "رسالة رفع المستوي",
-    ANNOUNCE_CHANNEL: "قناة الاخبار",
-    SUGGEST_CHANNEL: "قناة الاقتراحات",
-    WELCOME_CHANNEL: "قناة الترحيب",
-    LEAVE_CHANNEL: "قناة المغادرة",
-    PREFIX: "Prefix",
     OWNER: "اونر السرفر",
     CHANNEL_C: "عدد القنوات",
     EMOJI_C: "عدد الايموجيات",
@@ -30,10 +22,6 @@ const LANG: typeof import("./english").default = {
     REGION: "Region",
     VERIFICATION: "مستوي الحماية",
     MFA: "MFA Level",
-    BOOSTS: "البوست",
-    BOOST_LVL: "مستوي البوست",
-    VERIFIED: "مؤكد",
-    PARTNERED: "شريك",
   },
   MEMBER: {
     TAG: "علامة",
@@ -41,11 +29,9 @@ const LANG: typeof import("./english").default = {
     BADGES: "شارات",
     ONLINE: "متصل",
     OFFLINE: "غير متصل",
-    MEMBERS: "الاعضاء",
     STATUS: "الحالة",
     CREATED_ON: "تم انشائه بتاريخ",
     JOINED_AT: "انضم بتاريخ",
-    USERNAME: "اسم الشخص",
     NICKNAME: "اللقب",
     NOT_FOUND: "هذا الشخص غير موجود",
     CANNOT_BE_BANNED: "لا يمكنك تبنيد هذا الشخص",
@@ -58,8 +44,6 @@ const LANG: typeof import("./english").default = {
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "رتبتي ليست اعلي من رول  **{role}** ",
     MY_ROLE_MUST_BE_HIGHER: "يجب ان تكون رتبتي اعلي من  **{member}** ",
-    YOUR_ROLE_MUST_BE_HIGHER: "يحب ان تكون رتبتك اعلي من  **{role}** ",
-    PROVIDE_ROLE: "من فضلك منشن الرول ",
     ALREADY_HAS_ROLE: "هذا المستخدم يمتلك هذه الرتبة بالفعل ",
     ADDED_ROLE_TO: "تم اعطاء رول  **{role}** الي {member} بنجاح",
   },
@@ -76,20 +60,11 @@ const LANG: typeof import("./english").default = {
     NO_GIPHY_KEY: "No giphy api was found in the config (contact the bot owner)",
     NO_GPIHY_FOUND: "No gifs were found with that",
   },
-  ANIMAL: {
-    CAT_FACT: "حقيقة القطة",
-    DOG_FACT: "حقيقة الكلب",
-    COW: "بقرة",
-  },
   BOT_OWNER: {
-    SHUTDOWN: "جاري ايقاف البوت",
     EVAL: "Eval command",
     EVAL_TYPE: "النوع",
     EVAL_INPUT: "الادخال",
     EVAL_OUTPUT: "الاخراج",
-    UPDATE_NICKNAME: "تم تحديث اللقب بواسطة اونر البوتr",
-    UPDATED_NICKNAME: "تم تغير اللقب الي  **{nickname}**",
-    PROVIDE_TYPE: "من فضلك قم بادخال شئ ما",
     CANNOT_BL_OWNER: "لا يمكن اعطاء اونر البوت قائمة سوداء",
     CANNOT_BL_BOT: "The bot cannot be blacklisted",
     NOT_BLD: "هذا المستخدم ليس بالقائمة السوداء",
@@ -98,17 +73,11 @@ const LANG: typeof import("./english").default = {
     BLACKLISTED: "blacklisted",
     UNBLACKLISTED: "unblacklisted",
     BLACKLISTED_SUCCESS: "{member} كان {type}",
-    BLD_STATUS: "حالة القائمة السوداء",
   },
   LEVELS: {
     XP: "خبرة",
     LEVEL: "المستوي",
     LEADERBOARD: "قائمة المستويات",
-    RESET_CONF: "اعادة تعيين جميع الخبرة? y/n",
-    RESET_SUCCESS: "تم اعادة تعيين  خبرة الجميع",
-    RESET_CANCEL: "نم الغاء اعادة تعيين الخبرة",
-    PROVIDE_AMOUNT: "من فضلك قم بادخال العدد",
-    PROVIDE_VALID_NR: "من فضلك قم بكتابة رقم صحيح",
     GIVE_XP_SUCCESS: "تم اعطاء  **{member}** **{amount}**خبرة بنجاح",
     TOTAL_XP: "Total XP",
     NEW_LEVEL: "New level",
@@ -150,12 +119,16 @@ const LANG: typeof import("./english").default = {
     REQUEST_TO_SPEAK: "Request to speak",
     USE_APPLICATION_COMMANDS: "Use application commands",
     STAGE_MODERATOR: "Stage Moderator",
+    MANAGE_EMOJIS_AND_STICKERS: "Manage emojis and stickers",
+    MANAGE_THREADS: "Manage threads",
+    USE_PUBLIC_THREADS: "Use public threads",
+    USE_PRIVATE_THREADS: "Use private threads",
+    USE_EXTERNAL_STICKERS: "Use external stickers",
   },
   MUSIC: {
     MUST_BE_IN_VC: "يجب ان تكون بقناة صوتية",
     BOT_NOT_IN_VC: "Bot is not in this voice channel!",
     NO_QUEUE: "ليس هناك شيئ لتشغيله",
-    NO_PREV_QUEUE: "No previous track was found",
     QUEUE_CLEARED: "تم حذف القائمة",
     QUEUE: "قائمة الموسيقيlume",
     BETWEEN_0_100: "يجب ان يكون الصوت بين 0 و 100",
@@ -165,7 +138,6 @@ const LANG: typeof import("./english").default = {
     PLAYING: "جاري التشغيل",
     PAUSED: "تم الايقاف",
     DURATION: "التوقيت",
-    PROVIDE_SEARCH: "الرجاء تقديم استعلام بحث",
     ADDED_TO_QUEUE: "{song} has been added to the queue",
     ADDED_TO_QUEUE2: "Song has been added to the queue",
     ADDED_PL_TO_QUEUE: "Playlist: {name} was added to queue ({length} songs)",
@@ -210,12 +182,11 @@ const LANG: typeof import("./english").default = {
     DAILY_SUCCESS: "لقد تم اضافة الراتب اليومي اليك وهو  **{amount}** كوينز",
     WEEKLY_SUCCESS: "لقد تم اضافة الراتب الاسبوعي اليك وهو **{amount}** كوينز",
     STORE_EMPTY:
-      "المتجر في هذا السرفر فارغ يمكنك طلب من الادمن اضافة اغراض عن كريق امر  `{prefix}store add <الغرض>`",
+      "There are no items in the store! Ask an admin to add items to the store via the dashboard.",
     PROVIDE_ITEM_TO_BUY: "من فضلك ادخل الغرض المراد اضافته للمتجر",
     NOT_ENOUGH_MONEY: "انت لا تمتلك الرصيد الكافي لشراء ذلك",
     BUY_SUCCESS: "تم شراء **{item}** المبلغ **{price}**",
-    NOT_FOUND_STORE:
-      "**{query}** الغرض ليس موجود بالمتجر فضلك استخدمuse `{prefix}store` لتري جميع الاغراض المتوفرة بالمتجر",
+    NOT_FOUND_STORE: "**{query}** wasn't found in the store.",
     ALREADY_OWN_ITEM: "انت بالفعل تمتلك هذا الغرض ",
     DEPOSITED_ALL: "تم ادخار جميع اموالك بنجاح",
     DEPOSITED_AMOUNT: "تم ادخار **{amount} كوينز**",
@@ -297,7 +268,6 @@ const LANG: typeof import("./english").default = {
     WYR_QUESTIONS: "{question1} **OR** {question2}",
   },
   UTIL: {
-    PROCESSING_IMAGE: "⚙ Processing Image..",
     TEXT_NOT_SUP: "That text is not supported",
     AVATAR: "االافاتار",
     NOT_AFK: "تم الغاء تفعيل نظام ال AFK",
@@ -309,15 +279,10 @@ const LANG: typeof import("./english").default = {
     BUG_REPORT: "{member} has reported a bug",
     BUG_REPORTED: "Bug report was send!",
     CHANNEL_TOPIC: "وصف القناة",
-    TEXT_CHANNEL: "قناة كتابية",
-    VOICE_CHANNEL: "قناة صوتية",
-    TEXT_CHANNELS: "قنوات كتابية" /* plural! */,
-    VOICE_CHANNELS: "قنوات صوتية" /* plural! */,
     NO_DEF_FOUND: "لم يتم العثور علي تعريف لل  {word}",
     DEF_FOR_WORD: "تعريف ال {word}",
     CATEGORY: "كتاجري",
     DEFINITION: "التعريف",
-    DEPENDENCIES: "التبعيات",
     ANIMATED: "متحركة",
     NON_ANIMATED: "غير متحركة",
     NEW_FEEDBACK: "ملاحظة جديدة",
@@ -328,8 +293,6 @@ const LANG: typeof import("./english").default = {
     GH_WEBSITE: "الموقع الالكتروني",
     GH_LOCATION: "الموقع",
     GH_BIO: "Bio",
-    SEARCHING: "جاري البحث",
-    NO_IMG_FOUND: "لم يتم العثور علي صور",
     DB_RATINGS: "التقييمات",
     DB_COUNTRY: "البلد",
     DB_GENRES: "الانواع",
@@ -338,9 +301,6 @@ const LANG: typeof import("./english").default = {
     POPULATION: "Population",
     DB_RELEASED: "تم الاصدار",
     DB_NOT_FOUND: "لم يتم العثور علي فيلم   {search}",
-    TOTAL_MB: "الاجمالي",
-    HUMANS: "البشريين",
-    BOTS: "البوتات",
     PLAYERS: "اللاعبين",
     VERSION: "الاصدار",
     PORT: "Port",
@@ -407,6 +367,9 @@ const LANG: typeof import("./english").default = {
       GUILD_NEWS: "News channel",
       GUILD_STORE: "Store channel",
       GUILD_CATEGORY: "Category channel",
+      GUILD_NEWS_THREAD: "New thread",
+      GUILD_PUBLIC_THREAD: "Public thread",
+      GUILD_PRIVATE_THREAD: "Private thread",
     },
     TOTAL_TRACKS: "Total tracks",
     RELEASE_DATE: "Release date",
@@ -416,7 +379,6 @@ const LANG: typeof import("./english").default = {
     UNKNOWN: "Unknown",
     PASTE_INVALID_FORMAT:
       "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
-    INVALID_COLOR: "Invalid color HEX",
     SENT_SUG: "Sent suggestion 👍",
     ALREADY_VERIFED: "You are already verified",
     READ_MORE: "read more",
@@ -449,7 +411,6 @@ const LANG: typeof import("./english").default = {
     CHANNELS: "القنوات",
     USERS: "المستخدمين",
     COMMAND_COUNT: "عدد الاوامر",
-    VC_CONNS: "المتصلين صوتيا",
     INFO_2: "بيانات البوت",
     INFO: "بيانات البوت",
     SYSTEM_INFO: "بيانات النظام",
@@ -467,9 +428,6 @@ const LANG: typeof import("./english").default = {
     LATENCY: "Latency",
     CLICK_HERE: "Click Here",
   },
-  CONFIG: {
-    OPTION_CMD_WORK: " يجب توفير{option} ، لكي يعمل هذا الأمر",
-  },
   HELP: {
     HELP: "Help",
     CAT_NOT_EXIST: "الكتاجري هذا غير مدرج",
@@ -482,8 +440,6 @@ const LANG: typeof import("./english").default = {
     USAGE: "الاستخدام",
     COMMAND: "الامر",
     OPTIONS: "الخيارات",
-    GUILD_PREFIX: "بريفكس السرفر",
-    CMD_DESC: "استخدم `{prefix}help <اسم الامر>",
     OWNER_ONLY: "لا يمكن عرض الاوامر هذه للمستخدمين",
     CUSTOM_CMD: "This is a custom command, therefore I cannot show more info",
     BOT_PERMS: "Bot Permissions",
@@ -507,9 +463,6 @@ const LANG: typeof import("./english").default = {
       custom: "Custom commands",
       ticket: "Ticket commands",
     },
-  },
-  NASANEWS: {
-    NOT_FOUND: "لم يتم العثور علي {query}.",
   },
   POKEMON: {
     SPECIES: "النوع",
@@ -558,30 +511,10 @@ const LANG: typeof import("./english").default = {
     NOT_FOUND: "Country was not found",
     TOTAL_POP: "Population",
   },
-  EASY_GAMES: {
-    PROVIDE_MEMBER: "Please provide a member",
-    ACCEPT_CHALLENGE: "{user} Do you accept this challange?",
-    DOESNT_PLAY: "looks like {user} doesnt wanna play",
-    WICH_SIDE: "**{user}, Which Side Do You Pick? Type `End` To Forfeit!**",
-    GAME_OVER: "Times up!",
-    END: "end",
-    INACTIVITY: "game ended due to inactivity!",
-    WINNER: "Congrats u have won {winner}",
-    DRAW: "Its a draw",
-  },
+
   ADMIN: {
-    SET_CMD:
-      "Unfortunately due to the bot becoming more complex, it's hard to manage everything in a command. No need to worry! You can manage everything in our dashboard: {url}",
-    ADD_CMD_ALREADY_EXISTS: "This command name is already added in guild custom commands.",
-    ADD_CMD_USED_BY_BOT: "This command name is already in use by the bot",
-    ADD_CMD_ADDED: "Successfully added **{name}** as a custom command to this guild",
-    DEL_CMD_NOT_FOUND: "That command was not found",
-    DEL_CMD_DELETED: "Successfully deleted the **{cmd}** Command",
-    DEL_CMD_NO_COMMANDS: "This guild doesn't have any custom commands",
     CREATED_ROLE_CREATED: "Created Role",
     CREATED_ROLE_ADDED: "Successfully created the `{roleName}` role",
-    C_TOPIC_PROVIDE_TOPIC: "Please provide a new topic",
-    C_TOPIC_ADDED: "Successfully updated channel topic to {topic}",
     DEAFEN_ALREADY_DEAFENED: "User is not in a voice channel or is already deafened",
     DEAFEN_SUCCESS:
       "{member} was successfully deafenned from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
@@ -607,50 +540,17 @@ const LANG: typeof import("./english").default = {
     TEXT_OR_VALID_CHANNEL: "Please provide text or a valid channel!",
     DEFAULT_ANNOUNCE_CHANNEL:
       "You can also set a default channel using `set announce-channel <channel mention>`",
-    OPTION_DOES_NOT_EXIST: "{option} does not exist",
-    PROVIDE_COMMAND_OR_CATEGORY_NAME: "Please provide a command or category name",
-    COMMAND_CANNOT_DISABLED: "That command cannot be disabled",
-    COMMAND_ALREADY_DISABLED: "That command is already disabled",
-    COMMAND_DISABLED: "Successfully **disabled** {commandName}",
-    COMMAND_ENABLED: "Successfully **enabled** {commandName}",
-    COMMAND_NOT_DISABLED: "That command is not disabled",
-    COMMAND_OR_CATEGORY_NOT_FOUND: "Command or category was not found",
-    COMMAND_NOT_FOUND: "Command was not found",
-    CATEGORY_CANNOT_DISABLED: "That category cannot be disabled!",
-    CATEGORY_ALREADY_DISABLED: "That category is already disabled",
-    CATEGORY_DISABLED: "Successfully **disabled** {category}",
-    CATEGORY_ENABLED: "Successfully **enabled** {category}",
-    CATEGORY_NOT_DISABLED: "That category is not disabled",
-    DISABLED_CATEGORY: "Disabled category",
-    DISABLED_COMMAND: "Disabled command",
-    ENABLED_CATEGORY: "Enabled category",
-    ENABLED_COMMAND: "Enabled command",
-    PROVIDE_CHANNEL: "Please provide a channel",
-    CHANNEL_ALREADY_IGNORED: "That channel is already ignored by the bot",
-    CHANNEL_NOT_IGNORED: "That channel is not ignored by the bot",
-    REMOVE_IGNORED: "Remove {item} from ignored channels",
-    NOT_A_OPTION: "`{option}` is not a option",
     CHANNEL_ALREADY_LOCKED: "That channel is already locked!",
-    REASON_LOCK_CHANNEL: "Please provide a reason to lock this channel",
     LOCKED_CHANNEL_REASON: "Successfully locked {channel}, Reason: **{lockReason}**",
-    NO_PERMISSIONS: "Sorry, You don't have the correct permissions for this command.",
-    CURRENT_PREFIX:
-      "Current server prefix: `{guildPrefix}`\nUse `{guildPrefix}prefix <prefix>` to set a new prefix",
-    UPDATE_PREFIX: "Successfully updated prefix to `{prefix}`",
     MY_ROLE_MUST_BE_HIGHER: "My role must be higher than **{roleName}** role!",
     MY_ROLE_MUST_BE_HIGHER2: "My role must be higher than **{needsRoleTag}** highest role!",
-    USER_WAS_NOT_FOUND: "User wasn't found",
     REMOVED_ROLE: "Successfully removed **{roleName}** from {needsRole}",
     REMOVED_ROLE_EVERYONE: "Successfully Removed **{roleName}** from Everyone",
     PROVIDE_VALID_USER: "Please provide a valid user",
     NO_WARNINGS: "There are no warnings",
-    REMOVED_ALL_WARNINGS: "Successfully removed all warnings",
     ANNOUNCEMENT: "📢 Announcement 📢",
     PROVIDE_VALID_MEMBER: "Please provide valid a member",
     PROVIDE_VALID_EMOJI: "Please provide a valid emoji",
-    PROVIDE_VALID_OPTION: "Please provide an valid option",
-    PROVIDE_VALID_CHANNEL_OR_ROLE: "Please provide a valid channel or role!",
-    GIVE_NAME: "give_name",
     EMOJI_ADDED: "Emoji Added",
     EMOJI_ADDED_NAME: "Emoji Has Been Added! | Name:",
     PREVIEW: "Preview:",
@@ -673,8 +573,6 @@ const LANG: typeof import("./english").default = {
     SUC_UNLOCK: "{channel} was successfully unlocked",
     NOT_MUTED: "User is not muted!",
     SUC_UNMUTE: "Successfully unmuted **{mutedMemberTag}**",
-    CANNOT_RESET: "Cannot reset this! As there is no webhook for logging",
-    SUC_RESET: "Succesfully reset logging!",
     STICKY_CLEAR: "Cleared sticky for **{channel}**",
     CAN_NOT_DISC: "User can't be disconnected.",
     NOT_IN_VOICE: "User is not in a voice at the moment.",
@@ -696,14 +594,8 @@ const LANG: typeof import("./english").default = {
     WARNED_ON: "Warned on:",
     MEMBER_WARNS: "{memberTag}'s warnings",
     TOTAL_WARNS: "Total warnings",
-    USE_WARNS:
-      "Use `{prefix}warnings <user> <warning number>` to view more info about a specific warning",
-    ROLE_NOT_FOUND: "That role was not found",
-    GUILD_CONFIG: "{guildName}'s config",
-    ADD_TO_IGNORE: "Successfully added {item} to ignored channels",
-    CMD_DEPRECATED:
-      "This command has been deprecated. You can add new slash commands instead via the dashboard: {URL}",
     ADDED_ROLE_TO: "Successfully added the **{roleName}** role for **{time}** to {userTag}",
+    CANNOT_USE_CMD_THREAD: "Cannot use this command in a thread channel!",
   },
   TICKET: {
     CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",

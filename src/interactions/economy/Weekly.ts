@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 /** 1 week timeout */
@@ -14,10 +13,6 @@ export default class WeeklyCommand extends SubCommand {
       name: "weekly",
       description: "Claim your weekly",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

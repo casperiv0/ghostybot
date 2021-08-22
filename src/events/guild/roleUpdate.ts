@@ -30,7 +30,7 @@ export default class RoleUpdateEvent extends Event {
         .setColor("ORANGE")
         .setTimestamp();
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

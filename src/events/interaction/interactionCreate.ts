@@ -3,6 +3,8 @@ import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
+import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
+import { handleCategories } from "src/interactions/util/Help";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -10,15 +12,28 @@ export default class InteractionEvent extends Event {
   }
 
   async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+    if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
+      return handleCategories(interaction, bot);
+    }
+
     if (!interaction.isCommand()) return;
+    if (!interaction.inGuild()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
-    if (!interaction.guildId) return;
 
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));
+
+      const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
+      if (blacklistedUsers) {
+        const isBlacklisted = blacklistedUsers.find((u) => u.user_id === interaction.user.id);
+
+        if (isBlacklisted) {
+          return interaction.reply({ ephemeral: true, content: lang.MESSAGE.BLACKLISTED });
+        }
+      }
 
       if (!command) {
         if (!interaction.commandId) return;
@@ -46,6 +61,30 @@ export default class InteractionEvent extends Event {
           ephemeral: true,
           content: lang.MESSAGE.COMMAND_DISABLED,
         });
+      }
+
+      if (command.options.botPermissions) {
+        const botPerms = this.bot.utils.formatBotPermissions(
+          command.options.botPermissions,
+          interaction,
+          lang,
+        );
+
+        if (botPerms) {
+          return interaction.reply({ embeds: [botPerms], ephemeral: true });
+        }
+      }
+
+      if (command.options.memberPermissions) {
+        const perms = this.bot.utils.formatMemberPermissions(
+          command.options.memberPermissions,
+          interaction,
+          lang,
+        );
+
+        if (perms) {
+          return interaction.reply({ content: perms, ephemeral: true });
+        }
       }
 
       if (command.validate) {
@@ -81,11 +120,18 @@ export default class InteractionEvent extends Event {
   getCommandName(interaction: DJS.CommandInteraction) {
     let command: string;
 
-    try {
-      const sub = interaction.options.getSubcommand();
-      command = `${interaction.commandName}-${sub}`;
-    } catch {
-      command = interaction.commandName;
+    const commandName = interaction.commandName;
+    const group = interaction.options.getSubcommandGroup(false);
+    const subCommand = interaction.options.getSubcommand(false);
+
+    if (subCommand) {
+      if (group) {
+        command = `${commandName}-${group}-${subCommand}`;
+      } else {
+        command = `${commandName}-${subCommand}`;
+      }
+    } else {
+      command = commandName;
     }
 
     return command;

@@ -499,7 +499,7 @@ export class Util {
   }
 
   baseEmbed(
-    message: DJS.Message | DJS.CommandInteraction | { author: DJS.User | null },
+    message: DJS.Message | DJS.Interaction | { author: DJS.User | null },
   ): DJS.MessageEmbed {
     const user = "author" in message ? message.author : message.user;
 
@@ -554,6 +554,9 @@ export class Util {
     return message.guild.me.voice.channelId === voiceChannelId;
   }
 
+  /**
+   * @returns `string` = doesn't have the required permissions, `undefined` = has the required permissions
+   */
   formatBotPermissions(
     permissions: bigint[],
     interaction: DJS.CommandInteraction,
@@ -618,13 +621,6 @@ export class Util {
     }
 
     return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
-  }
-
-  resolveCommand(nameOrAlias: string) {
-    return (
-      this.bot.commands.get(nameOrAlias) ??
-      this.bot.commands.get(this.bot.aliases.get(nameOrAlias)!)
-    );
   }
 
   escapeMarkdown(message: string): string {

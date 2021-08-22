@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import fetch from "node-fetch";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class MagikCommand extends SubCommand {
@@ -27,10 +26,6 @@ export default class MagikCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -41,9 +36,7 @@ export default class MagikCommand extends SubCommand {
     const intensity = interaction.options.getNumber("intensity") ?? Math.floor(Math.random() * 10);
 
     const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=magik&intensity=${encodeURIComponent(
-        intensity,
-      )}&image=${user?.displayAvatarURL({
+      `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user?.displayAvatarURL({
         format: "png",
       })}`,
     ).then((res) => res.json());

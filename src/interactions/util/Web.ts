@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import URL from "node:url";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 const PORN_BLACKLIST_LIST_URL =
@@ -24,10 +23,6 @@ export default class WebCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

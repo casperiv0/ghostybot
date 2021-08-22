@@ -26,7 +26,7 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
         .setDescription(`${member}'s **nickname** was changed.`)
         .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

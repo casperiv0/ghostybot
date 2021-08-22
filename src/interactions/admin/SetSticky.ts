@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class SetStickyCommand extends SubCommand {
@@ -10,6 +9,8 @@ export default class SetStickyCommand extends SubCommand {
       groupName: "sticky",
       name: "set",
       description: "Set a new sticky message for the current channel",
+      botPermissions: [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
           name: "text",
@@ -19,33 +20,6 @@ export default class SetStickyCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    const botPerms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
-      interaction,
-      lang,
-    );
-
-    if (botPerms) {
-      return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

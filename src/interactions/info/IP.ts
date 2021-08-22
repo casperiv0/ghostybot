@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class IPInfoCommand extends SubCommand {
@@ -21,10 +20,6 @@ export default class IPInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -33,9 +28,9 @@ export default class IPInfoCommand extends SubCommand {
 
     const ip = interaction.options.getString("ip", true);
 
-    const data: ReturnResponse = await fetch(
-      `https://ipwhois.app/json/${ip}?lang=${lang.UTIL.IP_LOC}`,
-    ).then((res) => res.json());
+    const data: ReturnResponse = await fetch(`${this.APIs.IP}${ip}?lang=${lang.UTIL.IP_LOC}`).then(
+      (res) => res.json(),
+    );
 
     if (data.success) {
       const {

@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import UserModel, { IUser } from "models/User.model";
 import places from "assets/json/places.json";
@@ -12,10 +11,6 @@ export default class GiveXP extends SubCommand {
       commandName: "levels",
       description: "Shows top 10 users with the highest amount of XP",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

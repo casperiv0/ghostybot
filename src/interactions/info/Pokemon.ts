@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class PokemonInfoCommand extends SubCommand {
@@ -21,10 +20,6 @@ export default class PokemonInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -32,9 +27,9 @@ export default class PokemonInfoCommand extends SubCommand {
     await interaction.deferReply();
     const query = interaction.options.getString("query", true).toLowerCase();
 
-    const data = await fetch(
-      `https://some-random-api.ml/pokedex?pokemon=${encodeURIComponent(query)}`,
-    ).then((res) => res.json());
+    const data = await fetch(`${this.APIs.Pokemon}${encodeURIComponent(query)}`).then((res) =>
+      res.json(),
+    );
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

@@ -1,57 +1,32 @@
 import * as React from "react";
-import { Modal, closeModal, openModal } from "./index";
+import { Modal, closeModal } from "./index";
 import { logger } from "utils/logger";
 import { AlertMessage } from "../AlertMessage";
-import { useRouter } from "next/router";
-import { Guild } from "types/Guild";
 import { SlashCommand } from "models/Guild.model";
 import { useTranslation } from "react-i18next";
+import { useSlashStore } from "src/dashboard/state/slashState";
 
 interface Props {
-  guild: Guild;
+  command: SlashCommand | null;
+  guildId: string;
 }
 
-async function getCommand(guildId: string, name: string): Promise<SlashCommand | null> {
-  try {
-    const url = `${
-      process.env["NEXT_PUBLIC_DASHBOARD_URL"]
-    }/api/guilds/${guildId}/slash-commands?name=${encodeURIComponent(name)}`;
-
-    const res = await fetch(url);
-
-    const data = await res.json();
-    if (data.status === "error") return null;
-
-    return data.command;
-  } catch (e) {
-    logger.error("edit_command", e);
-    return null;
-  }
-}
-
-export const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
+export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) => {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
-  const [commandId, setCommandId] = React.useState<string | null>(null);
-  const router = useRouter();
+
+  const state = useSlashStore();
   const { t } = useTranslation("guilds");
 
-  const setCommandData = React.useCallback(async () => {
-    const command = await getCommand(router.query.id?.toString()!, router.query.edit?.toString()!);
+  React.useEffect(() => {
     if (!command) return;
 
-    openModal("edit-command");
     setName(command.name);
     setCmdRes(command.response);
     setDescription(command.description);
-    setCommandId(command.slash_cmd_id);
-  }, [router.query]);
-
-  React.useEffect(() => {
-    setCommandData();
-  }, [setCommandData]);
+  }, [command]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -60,26 +35,38 @@ export const EditCommandModal: React.FC<Props> = ({ guild }: Props) => {
       name,
       response: cmdRes,
       description,
-      commandId,
+      commandId: command?.slash_cmd_id,
+      slash_cmd_id: command?.slash_cmd_id,
     };
 
     try {
-      const res = await fetch(
-        `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild.id}/slash-commands`,
-        {
-          method: "PUT",
-          body: JSON.stringify(commandData),
-        },
-      );
+      const url = `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guildId}/slash-commands`;
+
+      const res = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(commandData),
+      });
+
       const data = await res.json();
 
       if (data.status === "success") {
         closeModal("edit-command");
+
         setName("");
         setCmdRes("");
         setDescription("");
         setResponse(null);
-        router.push(`/dashboard/${guild.id}/slash-commands?message=${t("updated_command")}`);
+
+        state.setItems(
+          state.items.map((v) => {
+            if (v.slash_cmd_id === command?.slash_cmd_id) {
+              v = commandData as SlashCommand;
+            }
+
+            return v;
+          }),
+        );
+        state.setMessage(t("updated_command"));
       }
 
       setResponse(data);

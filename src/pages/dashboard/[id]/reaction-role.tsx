@@ -79,7 +79,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
 
       setState({ state: "idle", message: "Successfully updated" });
     } catch (e) {
-      console.log(e);
+      console.error(e);
       setState({ state: "error", message: "An error occurred" });
     }
   }

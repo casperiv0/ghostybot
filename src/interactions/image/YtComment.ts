@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class YtCommentCommand extends SubCommand {
@@ -20,10 +19,6 @@ export default class YtCommentCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -38,9 +33,9 @@ export default class YtCommentCommand extends SubCommand {
       format: "png",
     });
 
-    const url = `https://some-random-api.ml/canvas/youtube-comment?username=${encodeURIComponent(
-      username,
-    )}&comment=${encodeURIComponent(text)}&avatar=${encodeURIComponent(avatar)}`;
+    const url = `${this.APIs.YtComment}${encodeURIComponent(username)}&comment=${encodeURIComponent(
+      text,
+    )}&avatar=${encodeURIComponent(avatar)}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

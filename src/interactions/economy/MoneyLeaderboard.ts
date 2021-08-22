@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 import UserModel, { IUser } from "models/User.model";
@@ -13,10 +12,6 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       name: "money-leaderboard",
       description: "See the money leaderboard",
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

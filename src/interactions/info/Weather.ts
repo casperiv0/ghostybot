@@ -2,7 +2,6 @@ import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class WeatherInfoCommand extends SubCommand {
@@ -22,10 +21,6 @@ export default class WeatherInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -34,9 +29,9 @@ export default class WeatherInfoCommand extends SubCommand {
 
     const query = interaction.options.getString("query", true);
 
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-      query,
-    )}&appid=${process.env["OPEN_WEATHER_MAP_API_KEY"]}&units=metric`;
+    const url = `${this.APIs.Weather}${encodeURIComponent(query)}&appid=${
+      process.env["OPEN_WEATHER_MAP_API_KEY"]
+    }&units=metric`;
     const data: WeatherData = await fetch(url).then((res) => res.json());
 
     if (data.cod === 401) {

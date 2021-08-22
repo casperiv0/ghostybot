@@ -86,52 +86,23 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         guild[item] = undefined;
       });
 
-      const nonSubCommands = req.bot.interactions.reduce((ac, cv) => {
-        const cmds: string[] = [];
-
-        cv.options.options
-          ?.filter((v) => v.type !== "SUB_COMMAND")
-          .forEach(() => cmds.push(cv.name));
-
-        const obj = {
-          topLevelName: cv.name,
-          commands: [...new Set(cmds)],
-        };
-
-        if (cmds.length <= 0) {
-          return ac;
-        }
-
-        return [...ac, obj];
-      }, [] as any[]);
-
-      const commands = req.bot.interactions.reduce((ac, cv) => {
-        const cmds: string[] = [];
-
-        cv.options.options
-          ?.filter((v) => v.type === "SUB_COMMAND")
-          .forEach((c) => cmds.push(c.name));
-
-        const obj = {
-          topLevelName: cv.name,
-          commands: cmds,
-        };
-
-        if (cmds.length <= 0) {
-          return ac;
-        }
-
-        return [...ac, obj];
-      }, [] as any[]);
-
       let reactions: null | IReaction[] = null;
       if (req.query.reactions) {
         reactions = await ReactionsModel.find({ guild_id: query.id as Snowflake });
       }
 
+      const commands = req.bot.interactions.map((v) => {
+        return v.options;
+      });
+
       return res.json({
         guild: { ...g.toJSON(), ...guild, reactions },
-        botCommands: [...commands, ...nonSubCommands],
+        botCommands: commands.map((v) => {
+          delete v.memberPermissions;
+          delete v.botPermissions;
+
+          return v;
+        }),
         status: "success",
       });
     }

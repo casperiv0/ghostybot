@@ -2,7 +2,6 @@ import { time } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class NpmInfoCommand extends SubCommand {
@@ -20,10 +19,6 @@ export default class NpmInfoCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(
@@ -55,9 +50,7 @@ export default class NpmInfoCommand extends SubCommand {
       const updatedAt = time(new Date(foundPackage.date), "F");
 
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
-      const downloads = await fetch(
-        `https://api.npmjs.org/downloads/point/last-week/${foundPackage.name}`,
-      )
+      const downloads = await fetch(`${this.APIs.npm}${foundPackage.name}`)
         .then((res) => res.json())
         .catch(() => null);
 

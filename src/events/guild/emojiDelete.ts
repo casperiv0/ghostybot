@@ -23,7 +23,7 @@ export default class EmojiDeleteEvent extends Event {
         .setColor("RED")
         .setTimestamp();
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

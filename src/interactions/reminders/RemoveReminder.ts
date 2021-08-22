@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RemoveReminderCommand extends SubCommand {
@@ -16,24 +15,8 @@ export default class RemoveReminderCommand extends SubCommand {
           required: true,
           type: "STRING",
         },
-        {
-          name: "time",
-          description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "STRING",
-          required: true,
-        },
-        {
-          name: "message",
-          description: "The message you want the bot to remind you of",
-          type: "STRING",
-          required: true,
-        },
       ],
     });
-  }
-
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
   }
 
   async execute(

@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class GuildInfoCommand extends SubCommand {
@@ -13,19 +12,14 @@ export default class GuildInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const { guild } = interaction;
+    await interaction.deferReply();
 
-    if (!guild) {
-      return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
-    }
+    const { guild } = interaction;
+    if (!guild) return;
 
     const roles = this.bot.utils.formatNumber(guild.roles.cache.size);
     const channels = this.bot.utils.formatNumber(guild.channels.cache.size);
@@ -76,6 +70,6 @@ export default class GuildInfoCommand extends SubCommand {
       embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
     }
 
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 }

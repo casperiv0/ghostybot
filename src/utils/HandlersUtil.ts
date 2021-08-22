@@ -1,13 +1,12 @@
 import { resolve } from "path";
 import { Bot } from "structures/Bot";
-import { Command } from "structures/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 import { Event } from "structures/Event";
 import { Feature } from "structures/Feature";
 import { Helper } from "structures/Helper";
-import { Command as CommandInteraction } from "structures/Command/Command";
+import { Command } from "structures/Command/Command";
 
-type Structures = Command | Event | Feature | Helper | SubCommand | CommandInteraction;
+type Structures = Event | Feature | Helper | SubCommand | Command;
 
 export async function resolveFile<T>(file: string, bot: Bot): Promise<T | null> {
   const resolvedPath = resolve(file);
@@ -32,9 +31,6 @@ export async function validateFile(file: string, item: Structures) {
 }
 
 function getType(item: Structures) {
-  if (item instanceof Command) {
-    return "COMMAND";
-  }
   if (item instanceof Event) {
     return "EVENT";
   }
@@ -44,8 +40,8 @@ function getType(item: Structures) {
   if (item instanceof Helper) {
     return "HELPER";
   }
-  if (item instanceof CommandInteraction) {
-    return "COMMAND_INTERACTION";
+  if (item instanceof Command) {
+    return "COMMAND";
   }
   if (item instanceof SubCommand) {
     return "SUB_COMMAND";

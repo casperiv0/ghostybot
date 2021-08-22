@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import { bold } from "@discordjs/builders";
 import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class CountryInfoCommand extends SubCommand {
@@ -22,10 +21,6 @@ export default class CountryInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -34,9 +29,9 @@ export default class CountryInfoCommand extends SubCommand {
 
     const countryQuery = interaction.options.getString("country", true);
 
-    const data = await fetch(
-      `https://restcountries.eu/rest/v2/name/${encodeURIComponent(countryQuery)}`,
-    ).then((r) => r.json());
+    const data = await fetch(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then((r) =>
+      r.json(),
+    );
 
     const [country] = data;
 

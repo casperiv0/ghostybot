@@ -45,16 +45,17 @@ export class InteractionHandler {
             const prev = commandGroups[groupName]?.[1] ?? [];
 
             commandGroups[groupName] = [topLevelName, [...prev, interaction]];
+            commandName = `${topLevelName}-${groupName}-${interaction.name}`;
           } else if (topLevelName) {
             const prevSubCommands = subCommands[topLevelName] ?? [];
             subCommands[topLevelName] = [...prevSubCommands, interaction];
+            commandName = `${topLevelName}-${interaction.name}`;
           }
-
-          commandName = `${topLevelName}-${interaction.name}`;
         } else {
           commandName = interaction.name;
 
           const data: ApplicationCommandData = {
+            type: "CHAT_INPUT",
             name: interaction.name,
             description: interaction.options.description ?? "Empty description",
             options: interaction.options.options ?? [],
@@ -74,8 +75,10 @@ export class InteractionHandler {
         const cmds = subCommands[topLevelName];
 
         const data: ApplicationCommandData = {
+          type: "CHAT_INPUT",
           name: topLevelName,
           description: `${topLevelName} commands`,
+          // @ts-expect-error ignore
           options: cmds.map((v) => v.options),
         };
 
@@ -84,21 +87,25 @@ export class InteractionHandler {
         await this.createCommand(data);
       }
 
+      const groupCache: any[] = [];
+
       for (const groupName in commandGroups) {
         const [topLevelName, cmds] = commandGroups[groupName];
 
+        const groupData = {
+          type: "SUB_COMMAND_GROUP",
+          name: groupName,
+          description: `${groupName} sub commands`,
+          options: cmds.map((v) => v.options),
+        };
+
+        groupCache.push(groupData);
+
         const data: ApplicationCommandData = {
+          type: "CHAT_INPUT",
           name: topLevelName,
           description: `${topLevelName} commands`,
-          options: [
-            ...subCommands[topLevelName].map((v) => v.options),
-            {
-              type: "SUB_COMMAND_GROUP",
-              name: groupName,
-              description: `${groupName} sub commands`,
-              options: cmds.map((v) => v.options),
-            },
-          ],
+          options: [...groupCache, ...subCommands[topLevelName].map((v) => v.options)],
         };
 
         await this.createCommand(data);

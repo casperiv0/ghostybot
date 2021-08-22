@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class CreateTicket extends SubCommand {
@@ -9,24 +8,8 @@ export default class CreateTicket extends SubCommand {
       commandName: "tickets",
       name: "create",
       description: "Open a new ticket",
+      botPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.MANAGE_GUILD],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { embeds: [perms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

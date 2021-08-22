@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class BuyCommand extends SubCommand {
@@ -20,10 +19,6 @@ export default class BuyCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -33,7 +28,6 @@ export default class BuyCommand extends SubCommand {
     const guild = await this.bot.utils.getGuildById(interaction.guildId!);
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
     const inventory = user?.inventory;
-    const prefix = guild?.prefix;
 
     if (!guild?.store) {
       return interaction.reply({
@@ -53,10 +47,7 @@ export default class BuyCommand extends SubCommand {
     if (!item) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", rawItem).replace(
-          "{prefix}",
-          `${prefix}`,
-        ),
+        content: lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", rawItem),
       });
     }
 

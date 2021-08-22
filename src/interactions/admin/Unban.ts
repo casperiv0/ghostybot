@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class UnbanCommand extends SubCommand {
@@ -9,6 +8,8 @@ export default class UnbanCommand extends SubCommand {
       commandName: "admin",
       name: "unban",
       description: "Unban a member from the current guild",
+      botPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
+      memberPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
       options: [
         {
           name: "user-id",
@@ -18,33 +19,6 @@ export default class UnbanCommand extends SubCommand {
         },
       ],
     });
-  }
-
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const perms = this.bot.utils.formatMemberPermissions(
-      [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      interaction,
-      lang,
-    );
-
-    if (perms) {
-      return { ok: false, error: { content: perms, ephemeral: true } };
-    }
-
-    const botPerms = this.bot.utils.formatBotPermissions(
-      [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      interaction,
-      lang,
-    );
-
-    if (botPerms) {
-      return { ok: false, error: { embeds: [botPerms], ephemeral: true } };
-    }
-
-    return { ok: true };
   }
 
   async execute(

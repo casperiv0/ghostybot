@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class InviteInfoCommand extends SubCommand {
@@ -21,20 +20,17 @@ export default class InviteInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const code = interaction.options.getString("code", true);
+    await interaction.deferReply();
 
+    const code = interaction.options.getString("code", true);
     const invite = await this.bot.fetchInvite(this.resolveCode(code)).catch(() => null);
 
     if (!invite) {
-      return interaction.reply(lang.INVITE.NOT_FOUND);
+      return interaction.editReply(lang.INVITE.NOT_FOUND);
     }
 
     const doesInviteExpire = !!invite.expiresAt;
@@ -93,7 +89,7 @@ export default class InviteInfoCommand extends SubCommand {
       embed.setImage(url);
     }
 
-    return interaction.reply({ embeds: [embed] });
+    return interaction.editReply({ embeds: [embed] });
   }
 
   resolveCode(str: string) {

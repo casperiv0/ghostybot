@@ -22,7 +22,7 @@ export default class GuildMemberRoleRemoveEvent extends Event {
         .setTitle("Member Update: `Role Remove`")
         .setDescription(`${member} was **removed** from ${role} role.`);
 
-      webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

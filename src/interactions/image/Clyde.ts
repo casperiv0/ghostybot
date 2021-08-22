@@ -1,7 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import fetch from "node-fetch";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class ClydeCommand extends SubCommand {
@@ -21,10 +20,6 @@ export default class ClydeCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -33,9 +28,9 @@ export default class ClydeCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = await fetch(
-      `https://nekobot.xyz/api/imagegen?type=clyde&text=${encodeURIComponent(text)}`,
-    ).then((res) => res.json());
+    const data = await fetch(`${this.APIs.Clyde}${encodeURIComponent(text)}`).then((res) =>
+      res.json(),
+    );
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

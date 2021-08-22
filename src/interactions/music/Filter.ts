@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 import filters from "assets/json/filters.json";
 
@@ -24,19 +24,24 @@ export default class FilterCommand extends SubCommand {
     this.didEnableFilter = this.didEnableFilter.bind(this);
   }
 
-  async validate(
-    interaction: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
-  ): Promise<ValidateReturn> {
-    const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
-      allowAuthor: true,
-    });
+  async validate(): Promise<ValidateReturn> {
+    return {
+      ok: false,
+      error: {
+        content: "Filter has been temporary disabled due to it resulting in high RAM usage.",
+        ephemeral: true,
+      },
+    };
 
-    if (!member?.voice.channel) {
-      return { ok: false, error: { ephemeral: true, content: lang.MUSIC.MUST_BE_IN_VC } };
-    }
+    // const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
+    //   allowAuthor: true,
+    // });
 
-    return { ok: true };
+    // if (!member?.voice.channel) {
+    //   return { ok: false, error: { ephemeral: true, content: lang.MUSIC.MUST_BE_IN_VC } };
+    // }
+
+    // return { ok: true };
   }
 
   async execute(

@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RandomJokeCommand extends SubCommand {
@@ -12,13 +11,9 @@ export default class RandomJokeCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(interaction: DJS.CommandInteraction) {
     const color = this.generateColor();
-    const preview = `https://api.no-api-key.com/api/v2/color?hex=${color.slice(1, color.length)}`;
+    const preview = `${this.APIs.RandomColor}${color.slice(1, color.length)}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

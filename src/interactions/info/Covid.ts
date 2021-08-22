@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import fetch from "node-fetch";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class CovidInfoCommand extends SubCommand {
@@ -22,10 +21,6 @@ export default class CovidInfoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
@@ -37,7 +32,7 @@ export default class CovidInfoCommand extends SubCommand {
     let country: any;
 
     if (!query) {
-      country = await (await fetch("https://disease.sh/v3/covid-19/all")).json();
+      country = await (await fetch(this.APIs.Covid)).json();
     } else {
       country = await (
         await fetch(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)

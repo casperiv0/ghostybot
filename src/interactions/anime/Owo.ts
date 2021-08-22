@@ -1,7 +1,7 @@
-import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
+import { hyperlink } from "@discordjs/builders";
+import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class OwoCommand extends SubCommand {
@@ -13,15 +13,11 @@ export default class OwoCommand extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const data = await fetch("https://rra.ram.moe/i/r?type=owo").then((res) => res.json());
+    const data = await fetch(this.APIs.Owo).then((res) => res.json());
 
     const link = hyperlink(
       lang.IMAGE.CLICK_TO_VIEW,

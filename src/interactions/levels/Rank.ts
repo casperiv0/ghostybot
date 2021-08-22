@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class Rank extends SubCommand {
@@ -20,10 +19,6 @@ export default class Rank extends SubCommand {
     });
   }
 
-  async validate(): Promise<ValidateReturn> {
-    return { ok: true };
-  }
-
   async execute(interaction: DJS.CommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId);
 
@@ -40,7 +35,7 @@ export default class Rank extends SubCommand {
     const level = this.bot.utils.calculateXp(dbUser.xp);
     const avatar = encodeURIComponent(user.displayAvatarURL());
 
-    const url = `https://vacefron.nl/api/rankcard?username=${encodeURIComponent(
+    const url = `${this.APIs.Rank}${encodeURIComponent(
       user.username,
     )}&avatar=${avatar}&level=${level}&rank=${level}&currentxp=${dbUser.xp}&nextlevelxp=${
       dbUser.xp + 1200
