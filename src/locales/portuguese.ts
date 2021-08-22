@@ -299,7 +299,6 @@ export default {
     WYR_QUESTIONS: "{question1} **OU** {question2}",
   },
   UTIL: {
-    PROCESSING_IMAGE: "⚙ Processando Imagem..",
     TEXT_NOT_SUP: "Este texto não é suportado",
     AVATAR: "Avatar",
     NOT_AFK: "Você não está mais AFK",
@@ -311,15 +310,10 @@ export default {
     BUG_REPORT: "{member} reportou um bug",
     BUG_REPORTED: "O reporte do bug foi enviado!",
     CHANNEL_TOPIC: "Tópico do canal",
-    TEXT_CHANNEL: "Canal de Texto",
-    VOICE_CHANNEL: "Canal de voz",
-    TEXT_CHANNELS: "Canais de Texto" /* plural! */,
-    VOICE_CHANNELS: "Canais de voz" /* plural! */,
     NO_DEF_FOUND: "Nenhuma definição foi encontrada para a palavra {word}",
     DEF_FOR_WORD: "Definição de {word}",
     CATEGORY: "Categoria",
     DEFINITION: "Definição",
-    DEPENDENCIES: "Dependências",
     ANIMATED: "Animado",
     NON_ANIMATED: "Não Animado",
     NEW_FEEDBACK: "Novo Feedback",
@@ -330,8 +324,6 @@ export default {
     GH_WEBSITE: "Website",
     GH_LOCATION: "Localização",
     GH_BIO: "Bio",
-    SEARCHING: "Procurando",
-    NO_IMG_FOUND: "Nenhuma imagem foi encontrada",
     DB_RATINGS: "Avaliações",
     DB_COUNTRY: "País",
     DB_GENRES: "Gêneros",
@@ -340,9 +332,6 @@ export default {
     POPULATION: "População",
     DB_RELEASED: "Lançamento",
     DB_NOT_FOUND: "Nenhum filme foi encontrado com {search}",
-    TOTAL_MB: "Total",
-    HUMANS: "Humanos",
-    BOTS: "Bots",
     PLAYERS: "Jogadores",
     VERSION: "Versão",
     PORT: "Porta",
@@ -419,7 +408,6 @@ export default {
     UNKNOWN: "Desconhecido",
     PASTE_INVALID_FORMAT:
       "Um formato inválido foi pedido, tipos válidos: https://pastebin.com/doc_api#5",
-    INVALID_COLOR: "Cor HEX inválida",
     SENT_SUG: "Sugestão enviada 👍",
     ALREADY_VERIFED: "Você já é verificado",
     READ_MORE: "ler mais",
@@ -470,9 +458,6 @@ export default {
     LATENCY: "Latência",
     CLICK_HERE: "Clique aqui",
   },
-  CONFIG: {
-    OPTION_CMD_WORK: "{option} precisa ser informado para que este comando funcione.",
-  },
   HELP: {
     HELP: "Ajuda",
     CAT_NOT_EXIST: "Esta categoria não existe",
@@ -511,9 +496,6 @@ export default {
       custom: "Commandos Personalizados",
       ticket: "Commandos de Tíquete",
     },
-  },
-  NASANEWS: {
-    NOT_FOUND: "Nenhum fato foi encontrado com {query}.",
   },
   POKEMON: {
     SPECIES: "Species",
@@ -562,17 +544,6 @@ export default {
     LAST_UPDATED: "Last updated",
     NOT_FOUND: "Country was not found",
     TOTAL_POP: "Population",
-  },
-  EASY_GAMES: {
-    PROVIDE_MEMBER: "Please provide a member",
-    ACCEPT_CHALLENGE: "{user} Do you accept this challange?",
-    DOESNT_PLAY: "looks like {user} doesnt wanna play",
-    WICH_SIDE: "**{user}, Which Side Do You Pick? Type `End` To Forfeit!**",
-    GAME_OVER: "Times up!",
-    END: "end",
-    INACTIVITY: "game ended due to inactivity!",
-    WINNER: "Congrats u have won {winner}",
-    DRAW: "Its a draw",
   },
   ADMIN: {
     SET_CMD:
