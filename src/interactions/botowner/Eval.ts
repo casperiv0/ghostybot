@@ -91,10 +91,12 @@ export default class Eval extends SubCommand {
 
       await interaction.editReply({ embeds: [embed] });
     } catch (err) {
+      const message = err instanceof Error ? err.message : "Unknown Error";
+
       const embed = this.bot.utils
         .baseEmbed(interaction)
         .setTitle(lang.GLOBAL.ERROR)
-        .setDescription(codeBlock(err));
+        .setDescription(codeBlock(message));
 
       return interaction.editReply({ embeds: [embed] });
     }

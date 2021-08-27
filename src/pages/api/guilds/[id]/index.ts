@@ -165,10 +165,13 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       } else {
         try {
           req.bot.starboardsManager.delete(g.starboards_data.channel_id, g?.starboards_data.emoji);
-        } catch (e) {
+        } catch (error) {
+          const message = error instanceof Error ? error.message : null;
+
           // eslint-disable-next-line quotes
-          if (!e?.stack?.includes('Error: The channel "')) {
-            req.bot.utils.sendErrorLog(e, "error");
+          if (!message?.includes('Error: The channel "')) {
+            req.bot.utils.sendErrorLog(error, "error");
+
             return res.json({
               error: "An error occurred when deleting the starboard, please try again later",
               status: "error",

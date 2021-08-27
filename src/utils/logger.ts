@@ -12,8 +12,9 @@ class Logger {
     }).format(Date.now());
   }
 
-  error(type: string, error: string) {
-    return console.error(`${chalk.red("[ERROR]")}[${type.toUpperCase()}][${this.now}]: ${error}`);
+  error(type: string, error: unknown) {
+    const message = error instanceof Error ? error.message : error;
+    return console.error(`${chalk.red("[ERROR]")}[${type.toUpperCase()}][${this.now}]: ${message}`);
   }
 
   warn(type: string, warning: string) {

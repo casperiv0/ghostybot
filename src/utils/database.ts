@@ -18,10 +18,11 @@ async function database() {
 
     logger.log("database", "Connected to mongodb");
   } catch (e) {
-    console.error(e);
-    console.error(e.reason);
+    const error = e instanceof global.Error ? e : null;
 
-    logger.error("database", e?.stack || e);
+    console.error(error);
+
+    logger.error("database", error?.message!);
   }
 }
 

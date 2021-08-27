@@ -1,9 +1,3 @@
-import { BaseCommand, BaseCommandOptions } from "./BaseCommand";
+import { BaseCommand } from "./BaseCommand";
 
-export abstract class Command extends BaseCommand {
-  get options(): BaseCommandOptions {
-    return {
-      ...this._options,
-    };
-  }
-}
+export abstract class Command extends BaseCommand {}

@@ -40,8 +40,8 @@ export class Util {
       }
 
       return user;
-    } catch (e) {
-      this.bot.logger.error("GET_USER_BY_ID", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("GET_USER_BY_ID", error);
     }
   }
 
@@ -54,16 +54,16 @@ export class Util {
       const warning = new WarningModal({ guild_id: guildId, user_id: userId, reason });
 
       await warning.save();
-    } catch (e) {
-      this.bot.logger.error("ADD_WARNING", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("ADD_WARNING", error);
     }
   }
 
   async removeUserWarnings(userId: string, guildId: string | undefined) {
     try {
       await WarningModal.deleteMany({ user_id: userId, guild_id: guildId });
-    } catch (e) {
-      this.bot.logger.error("REMOVE_USER_WARNINGS", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("REMOVE_USER_WARNINGS", error);
     }
   }
 
@@ -78,8 +78,8 @@ export class Util {
       await user.save();
 
       return user;
-    } catch (e) {
-      this.bot.logger.error("ADD_USER", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("ADD_USER", error);
     }
   }
 
@@ -105,8 +105,8 @@ export class Util {
   async removeUser(userId: string, guildId: string): Promise<void> {
     try {
       await UserModel.findOneAndDelete({ user_id: userId, guild_id: guildId });
-    } catch (e) {
-      this.bot.logger.error("REMOVE_USER", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("REMOVE_USER", error);
     }
   }
 
@@ -119,8 +119,8 @@ export class Util {
       }
 
       return guild;
-    } catch (e) {
-      this.bot.logger.error("GET_GUILD_BY_ID", e.stack || e);
+    } catch (error) {
+      this.bot.logger.error("GET_GUILD_BY_ID", error);
     }
   }
 
@@ -131,8 +131,8 @@ export class Util {
       await guild.save();
 
       return guild;
-    } catch (e) {
-      this.bot.logger.error("ADD_GUILD", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("ADD_GUILD", error);
     }
   }
 
@@ -154,8 +154,8 @@ export class Util {
   async removeGuild(guildId: string): Promise<void> {
     try {
       await GuildModel.findOneAndDelete({ guild_id: guildId });
-    } catch (e) {
-      this.bot.logger.error("REMOVE_GUILD", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("REMOVE_GUILD", error);
     }
   }
 
@@ -266,8 +266,10 @@ export class Util {
 
       return member;
     } catch (e) {
-      if (e?.includes?.("DiscordAPIError: Unknown Member")) return undefined;
-      if (e?.includes?.("is not a snowflake.")) return undefined;
+      const error = e instanceof Error ? e : null;
+
+      if (error?.message?.includes("DiscordAPIError: Unknown Member")) return undefined;
+      if (error?.message?.includes("is not a snowflake.")) return undefined;
 
       this.sendErrorLog(e, "error");
     }
@@ -391,8 +393,8 @@ export class Util {
       });
 
       await sticky.save();
-    } catch (e) {
-      this.bot.logger.error("add_sticky", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("add_sticky", error);
     }
   }
 
@@ -401,8 +403,8 @@ export class Util {
       const sticky = await StickyModel.findOne({ channel_id: channelId });
 
       return sticky;
-    } catch (e) {
-      this.bot.logger.error("get_sticky", e?.stack || e);
+    } catch (error) {
+      this.bot.logger.error("get_sticky", error);
     }
   }
 

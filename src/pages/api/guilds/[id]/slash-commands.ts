@@ -133,7 +133,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
         return res.json({ command: cmdData, status: "success" });
       } catch (e) {
-        if (e.httpStatus === 403) {
+        if ((e as any).httpStatus === 403) {
           return res.json({
             error: "Missing permissions",
             status: "error",

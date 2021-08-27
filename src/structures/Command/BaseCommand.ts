@@ -28,9 +28,9 @@ export type ValidateReturn = {
 };
 
 export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseCommandOptions> {
+  protected _options: TOptions;
   bot: Bot;
   name: string;
-  _options: TOptions;
   APIs: typeof APIs = APIs;
 
   constructor(bot: Bot, options: TOptions) {
@@ -40,6 +40,10 @@ export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseComm
 
     this.validate = this.validate?.bind(this);
     this.execute = this.execute.bind(this);
+  }
+
+  get options(): TOptions {
+    return this._options;
   }
 
   validate?(
