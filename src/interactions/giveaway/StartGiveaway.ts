@@ -45,7 +45,7 @@ export default class StartGiveaway extends SubCommand {
     }
 
     await this.bot.giveawayManager.start(interaction.channel as any, {
-      time: ms(time),
+      duration: ms(time),
       prize,
       winnerCount: +winnerCount,
       messages: {

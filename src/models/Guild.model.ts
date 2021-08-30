@@ -96,7 +96,7 @@ export interface VerifyData {
   channel_id: Snowflake | null;
 }
 
-const guildSchema = new Schema<IGuild>({
+const guildSchema = new Schema({
   guild_id: { type: String, required: true },
   prefix: { type: String, default: "!" },
   store: { type: Array, default: null },

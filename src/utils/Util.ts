@@ -163,7 +163,7 @@ export class Util {
     const error = err as DJS.DiscordAPIError | DJS.HTTPError | Error;
 
     try {
-      if (error.message.includes("Missing Access")) return;
+      if (error.message?.includes("Missing Access")) return;
       if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) {
         return;
       }

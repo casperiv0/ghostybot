@@ -17,7 +17,7 @@
     "start": "BUILD_PATH=true DEV_MODE=false node -r ts-node/register -r tsconfig-paths/register ./dist/index.js",
     "dev": "nodemon",
     "build": "tsc && next build && next-sitemap",
-    "test:tsc": "tsc --noEmit",
+    "test-tsc": "tsc --noEmit",
     "prepare": "husky install",
     "prebuild": "rimraf -rf dist"
   },
@@ -48,7 +48,7 @@
     "chalk": "^4.1.2",
     "ctgs.js": "^1.1.0",
     "dayjs": "^1.10.6",
-    "discord-giveaways": "github:Dev-CasperTheGhost/discord-giveaways#discord.js-v13",
+    "discord-giveaways": "5.0.0",
     "discord-logs": "^2.0.1",
     "discord-starboards": "2.3.1",
     "discord.js": "^13.2.0-dev.1629936291.fc51f61",
