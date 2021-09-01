@@ -22,6 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noEmit": false,
+    "useUnknownInCatchVariables": false,
 
     "lib": ["ESNext", "dom", "dom.iterable", "ES2020.BigInt"],
 
