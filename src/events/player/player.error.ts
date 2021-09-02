@@ -8,7 +8,7 @@ export default class PlayerErrorEvent extends Event {
     super(bot, "error");
   }
 
-  async execute(bot: Bot, channel: TextChannel, error: DisTubeError) {
+  async execute(bot: Bot, channel: TextChannel, error: DisTubeError<string>) {
     if (!channel.guild?.available) return;
     if (!bot.utils.hasSendPermissions(channel)) return;
     const lang = await bot.utils.getGuildLang(channel.guild?.id);
