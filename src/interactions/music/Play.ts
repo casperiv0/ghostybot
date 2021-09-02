@@ -46,6 +46,7 @@ export default class PlayCommand extends SubCommand {
     await interaction.reply({ ephemeral: true, content: lang.MUSIC.ADDED_TO_QUEUE2 });
     await this.bot.player.playVoiceChannel(channel, query, {
       textChannel: interaction.channel as any,
+      member,
     });
   }
 }
