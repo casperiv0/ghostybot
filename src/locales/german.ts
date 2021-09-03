@@ -29,6 +29,7 @@ const LANG: typeof import("./english").default = {
     MFA: "Multifaktor-Authentifizierungs Level",
   },
   MEMBER: {
+    BANNER: "Banner",
     TAG: "Tag",
     ROLES: "Rollen",
     BADGES: "Abzeichen",

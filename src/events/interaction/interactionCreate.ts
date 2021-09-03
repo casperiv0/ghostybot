@@ -5,6 +5,7 @@ import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import { handleCategories } from "src/interactions/util/Help";
+import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -12,16 +13,35 @@ export default class InteractionEvent extends Event {
   }
 
   async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
+
     if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
       return handleCategories(interaction, bot);
+    }
+
+    if (interaction.isButton() && interaction.customId.startsWith(CANCEL_REMINDER_ID)) {
+      const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+
+      if (user) {
+        const id = interaction.customId.replace(`${CANCEL_REMINDER_ID}_`, "");
+
+        await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
+          reminder: {
+            hasReminder: user.reminder.reminders.length - 1 > 0,
+            reminders: user.reminder.reminders.filter((reminder) => reminder._id !== id),
+          },
+        });
+
+        return interaction.reply({ ephemeral: true, content: "Successfully canceled reminder" });
+      }
+
+      return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
     if (!interaction.isCommand()) return;
     if (!interaction.inGuild()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
-
-    const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));

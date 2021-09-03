@@ -24,6 +24,7 @@ export default {
     MFA: "MFA Level",
   },
   MEMBER: {
+    BANNER: "Banner",
     TAG: "Tag",
     ROLES: "Roles",
     BADGES: "Badges",

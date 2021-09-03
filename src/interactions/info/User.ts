@@ -32,8 +32,12 @@ export default class UserInfoCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.NOT_FOUND });
     }
 
-    const { username, id, tag } = member.user;
+    const { username, id, tag, banner, bannerURL } = member.user;
     const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
+    const joinedAtR = member.joinedAt ? time(new Date(member.joinedAt), "R") : lang.UTIL.UNKNOWN;
+
+    const createdAt = user.createdAt ? time(new Date(user.createdAt), "F") : lang.UTIL.UNKNOWN;
+    const createdAtR = user.createdAt ? time(new Date(user.createdAt), "R") : lang.UTIL.UNKNOWN;
 
     const nickname = member.nickname || lang.GLOBAL.NONE;
 
@@ -58,9 +62,10 @@ export default class UserInfoCommand extends SubCommand {
       .setDescription(
         `
 ${bold("ID")}: ${inlineCode(id)}
+${banner ? `${lang.MEMBER.BANNER}: ${bannerURL({ dynamic: true, size: 4096 })}` : ""}
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
-${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(member.user.createdAt), "F")}
+${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${createdAtR})
 `,
       )
 
@@ -68,7 +73,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${time(new Date(member.user.createdAt), "F")}
         lang.UTIL.GUILD_INFO,
         `
 ${bold(lang.MEMBER.NICKNAME)}: ${nickname}
-${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt}
+${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${joinedAtR})
 `,
       )
       .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)

@@ -24,6 +24,7 @@ const LANG: typeof import("./english").default = {
     MFA: "MFA-nivå",
   },
   MEMBER: {
+    BANNER: "Banner",
     TAG: "Tagg",
     ROLES: "Roller",
     BADGES: "Badges",
