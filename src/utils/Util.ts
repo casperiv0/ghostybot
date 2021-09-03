@@ -164,6 +164,7 @@ export class Util {
 
     try {
       if (error.message?.includes("Missing Access")) return;
+      if (error.message?.includes("Unknown Message")) return;
       if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) {
         return;
       }

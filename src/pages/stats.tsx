@@ -64,11 +64,6 @@ const StatsPage: NextPage<Props> = ({ stats }) => {
           </div>
           <div>
             <p style={{ fontSize: "1.1rem" }}>
-              <strong>{stats.globalInteractions.formatted}</strong> {tStats("global_interactions")}
-            </p>
-          </div>
-          <div>
-            <p style={{ fontSize: "1.1rem" }}>
               <strong>{stats.memory.formatted}</strong> {tStats("memory_usage")}
             </p>
           </div>
