@@ -25,7 +25,7 @@ export default class StartGiveaway extends SubCommand {
         },
         {
           name: "winner-count",
-          type: "NUMBER",
+          type: "INTEGER",
           description: "The amount of people that can win (Default: 1)",
         },
       ],

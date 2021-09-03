@@ -14,7 +14,7 @@ export default class RemoveCommand extends SubCommand {
           description: "The position of the song in the queue",
           name: "track-number",
           required: true,
-          type: "NUMBER",
+          type: "INTEGER",
         },
       ],
     });

@@ -19,7 +19,7 @@ export default class MagikCommand extends SubCommand {
         {
           name: "intensity",
           description: "The intensity of the Magik",
-          type: "NUMBER",
+          type: "INTEGER",
           required: false,
         },
       ],

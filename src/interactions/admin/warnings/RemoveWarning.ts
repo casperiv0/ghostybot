@@ -22,7 +22,7 @@ export default class RemoveWarningCommand extends SubCommand {
           name: "warning-id",
           required: true,
           description: "The id of a warning",
-          type: "NUMBER",
+          type: "INTEGER",
         },
       ],
     });

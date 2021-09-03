@@ -21,7 +21,7 @@ export default class WarningsCommand extends SubCommand {
           name: "warning-id",
           required: false,
           description: "The id of a warning",
-          type: "NUMBER",
+          type: "INTEGER",
         },
       ],
     });
