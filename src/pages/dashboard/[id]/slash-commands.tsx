@@ -51,7 +51,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
   async function deleteCommand(name: string) {
     try {
-      const data = await (
+      const data = (await (
         await fetch(
           `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${
             guild?.id
@@ -60,7 +60,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
             method: "DELETE",
           },
         )
-      ).json();
+      ).json()) as any;
 
       if (data.status === "success") {
         state.setMessage(data.message);
@@ -191,13 +191,13 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
-  const data = await (
+  const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
     })
-  ).json();
+  ).json()) as any;
 
   return {
     props: {

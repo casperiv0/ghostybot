@@ -35,11 +35,11 @@ export default class MagikCommand extends SubCommand {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const intensity = interaction.options.getNumber("intensity") ?? Math.floor(Math.random() * 10);
 
-    const data = await fetch(
+    const data = (await fetch(
       `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user?.displayAvatarURL({
         format: "png",
       })}`,
-    ).then((res) => res.json());
+    ).then((res) => res.json())) as { message: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

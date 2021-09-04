@@ -15,7 +15,7 @@ export default class AmazingEarthCommand extends SubCommand {
   async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
 
-    const data = await fetch(this.APIs.AmazingEarth).then((res) => res.json());
+    const data = (await fetch(this.APIs.AmazingEarth).then((res) => res.json())) as any;
 
     const [children] = data[0].data.children;
     const permaLink = children.data.permalink;

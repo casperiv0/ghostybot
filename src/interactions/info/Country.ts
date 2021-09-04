@@ -29,9 +29,9 @@ export default class CountryInfoCommand extends SubCommand {
 
     const countryQuery = interaction.options.getString("country", true);
 
-    const data = await fetch(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then((r) =>
+    const data = (await fetch(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then((r) =>
       r.json(),
-    );
+    )) as any;
 
     const [country] = data;
 

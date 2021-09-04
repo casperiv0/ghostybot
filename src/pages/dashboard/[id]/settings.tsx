@@ -414,7 +414,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
           }),
         },
       );
-      const data = await res.json();
+      const data = (await res.json()) as any;
 
       if (data.status === "success") {
         setState({
@@ -596,13 +596,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return { id: lang, name: lang };
   });
 
-  const data = await (
+  const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
     })
-  ).json();
+  ).json()) as any;
 
   return {
     props: {

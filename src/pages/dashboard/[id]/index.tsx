@@ -101,13 +101,13 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
-  const data = await (
+  const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
     })
-  ).json();
+  ).json()) as any;
 
   return {
     props: {

@@ -28,9 +28,9 @@ export default class NpmInfoCommand extends SubCommand {
     await interaction.deferReply();
 
     const query = interaction.options.getString("query", true);
-    const data = await fetch(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(
+    const data = (await fetch(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(
       (res) => res.json(),
-    );
+    )) as any;
 
     const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
       return { ...pkg, searchScore };
@@ -50,9 +50,9 @@ export default class NpmInfoCommand extends SubCommand {
       const updatedAt = time(new Date(foundPackage.date), "F");
 
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
-      const downloads = await fetch(`${this.APIs.npm}${foundPackage.name}`)
+      const downloads = (await fetch(`${this.APIs.npm}${foundPackage.name}`)
         .then((res) => res.json())
-        .catch(() => null);
+        .catch(() => null)) as { downloads: number } | null;
 
       const embed = this.bot.utils
         .baseEmbed(interaction)

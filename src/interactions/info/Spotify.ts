@@ -60,7 +60,7 @@ export default class SpotifyInfoCommand extends SubCommand {
     const url = `http://api.xaliks.xyz/info/spotify?type=${type}&query=${encodeURIComponent(
       query,
     )}`;
-    const data = await fetch(url).then((res) => res.json());
+    const data = (await fetch(url).then((res) => res.json())) as any;
 
     if (data.error) {
       return interaction.editReply({

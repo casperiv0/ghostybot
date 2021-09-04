@@ -168,7 +168,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
-  const data = await (
+  const data = (await (
     await fetch(
       `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}?reactions=true`,
       {
@@ -177,7 +177,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         },
       },
     )
-  ).json();
+  ).json()) as any;
 
   return {
     props: {

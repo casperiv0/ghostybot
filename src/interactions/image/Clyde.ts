@@ -28,9 +28,9 @@ export default class ClydeCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = await fetch(`${this.APIs.Clyde}${encodeURIComponent(text)}`).then((res) =>
+    const data = (await fetch(`${this.APIs.Clyde}${encodeURIComponent(text)}`).then((res) =>
       res.json(),
-    );
+    )) as { message: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

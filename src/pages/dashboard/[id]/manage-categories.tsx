@@ -55,7 +55,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
   }
 
   async function updateCategory(type: string, category: string) {
-    const data = await (
+    const data = (await (
       await fetch(
         `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/categories`,
         {
@@ -66,7 +66,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
           }),
         },
       )
-    ).json();
+    ).json()) as any;
 
     if (data.status === "success") {
       router.push(
@@ -151,13 +151,13 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
-  const data = await (
+  const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
     })
-  ).json();
+  ).json()) as any;
 
   return {
     props: {

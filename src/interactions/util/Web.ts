@@ -1,5 +1,6 @@
 import * as DJS from "discord.js";
 import fetch from "node-fetch";
+import timeoutSignal from "timeout-signal";
 import URL from "node:url";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
@@ -58,7 +59,7 @@ export default class WebCommand extends SubCommand {
   async isAvailable(url: string) {
     let available = false;
     try {
-      await fetch(url, { timeout: 2000 });
+      await fetch(url, { signal: timeoutSignal(2_000) });
 
       return (available = true);
     } catch {
@@ -83,7 +84,7 @@ export default class WebCommand extends SubCommand {
     const includes = list.includes(parsed.host!);
     const includesPorn = await (
       await fetch(url, {
-        timeout: 2500,
+        signal: timeoutSignal(2_500),
       }).then((res) => res.text())
     ).includes("porn");
 

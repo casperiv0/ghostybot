@@ -38,9 +38,9 @@ export default class LyricsCommand extends SubCommand {
 
     await interaction.deferReply();
 
-    const data = await fetch(
+    const data = (await fetch(
       `http://api.xaliks.xyz/info/lyrics?query=${encodeURIComponent(title)}`,
-    ).then((v) => v.json());
+    ).then((v) => v.json())) as any;
 
     if (!data.lyrics) {
       return interaction.editReply({

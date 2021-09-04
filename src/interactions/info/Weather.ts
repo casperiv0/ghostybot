@@ -32,7 +32,7 @@ export default class WeatherInfoCommand extends SubCommand {
     const url = `${this.APIs.Weather}${encodeURIComponent(query)}&appid=${
       process.env["OPEN_WEATHER_MAP_API_KEY"]
     }&units=metric`;
-    const data: WeatherData = await fetch(url).then((res) => res.json());
+    const data = (await fetch(url).then((res) => res.json())) as WeatherData;
 
     if (data.cod === 401) {
       return interaction.editReply({ content: lang.GLOBAL.ERROR });

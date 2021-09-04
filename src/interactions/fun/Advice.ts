@@ -3,6 +3,13 @@ import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
+interface Data {
+  slip: {
+    id: number;
+    advice: string;
+  };
+}
+
 export default class AdviceCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -14,7 +21,7 @@ export default class AdviceCommand extends SubCommand {
 
   async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
-    const data = await fetch(this.APIs.Advice).then((res) => res.json());
+    const data = (await fetch(this.APIs.Advice).then((res) => res.json())) as Data;
 
     await interaction.editReply({ content: data.slip.advice });
   }

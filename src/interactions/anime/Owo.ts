@@ -17,7 +17,7 @@ export default class OwoCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const data = await fetch(this.APIs.Owo).then((res) => res.json());
+    const data = (await fetch(this.APIs.Owo).then((res) => res.json())) as { path: string };
 
     const link = hyperlink(
       lang.IMAGE.CLICK_TO_VIEW,

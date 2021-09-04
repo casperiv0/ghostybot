@@ -18,7 +18,7 @@ export default class PikachuCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch(this.APIs.Pikachu).then((res) => res.json());
+    const data = (await fetch(this.APIs.Pikachu).then((res) => res.json())) as { link: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

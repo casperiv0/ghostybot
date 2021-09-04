@@ -27,9 +27,9 @@ export default class PokemonInfoCommand extends SubCommand {
     await interaction.deferReply();
     const query = interaction.options.getString("query", true).toLowerCase();
 
-    const data = await fetch(`${this.APIs.Pokemon}${encodeURIComponent(query)}`).then((res) =>
+    const data = (await fetch(`${this.APIs.Pokemon}${encodeURIComponent(query)}`).then((res) =>
       res.json(),
-    );
+    )) as any;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

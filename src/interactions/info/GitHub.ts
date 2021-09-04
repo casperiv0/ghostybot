@@ -29,7 +29,7 @@ export default class GitHubInfoCommand extends SubCommand {
     const username = interaction.options.getString("username", true);
 
     const url = `${this.APIs.GitHub}${encodeURIComponent(username)}`;
-    const user = await fetch(url).then((res) => res.json());
+    const user = (await fetch(url).then((res) => res.json())) as any;
 
     if (user?.message === "Not Found") {
       return interaction.editReply({ content: lang.UTIL.GH_NOT_FOUND });

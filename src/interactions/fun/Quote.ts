@@ -3,6 +3,13 @@ import fetch from "node-fetch";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
+interface Data {
+  id: string;
+  content: string;
+  author: string;
+  tags: string[];
+}
+
 export default class QuoteCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -18,7 +25,7 @@ export default class QuoteCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch(this.APIs.Quote).then((r) => r.json());
+    const data = (await fetch(this.APIs.Quote).then((r) => r.json())) as Data;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

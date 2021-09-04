@@ -28,11 +28,11 @@ export default class TweetCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = await fetch(
+    const data = (await fetch(
       `${this.APIs.Tweet}${encodeURIComponent(text)}&username=${encodeURIComponent(
         interaction.user.username,
       )}`,
-    ).then((res) => res.json());
+    ).then((res) => res.json())) as { message: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

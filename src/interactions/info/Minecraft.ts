@@ -32,7 +32,7 @@ export default class MinecraftInfoCommand extends SubCommand {
       query,
     )}`;
 
-    const data = await fetch(url).then((res) => res.json());
+    const data = (await fetch(url).then((res) => res.json())) as any;
 
     if (data.error) {
       return interaction.editReply({ content: lang.UTIL.MC_NOT_FOUND });

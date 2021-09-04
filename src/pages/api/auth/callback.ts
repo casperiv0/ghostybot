@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { RESTPostOAuth2AccessTokenResult } from "discord-api-types";
 import jwt from "jsonwebtoken";
 import { NextApiResponse } from "next";
 import { setCookie } from "nookies";
@@ -23,7 +24,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     return res.redirect(`/error?error=${encodeURIComponent("No code was provided")}`);
   }
 
-  const data = await (
+  const data = (await (
     await fetch(
       `${discordApiUrl}oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${callbackUrl}`,
       {
@@ -39,7 +40,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         }),
       },
     )
-  ).json();
+  ).json()) as RESTPostOAuth2AccessTokenResult;
 
   if (!data.access_token) {
     return res.redirect(

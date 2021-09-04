@@ -18,12 +18,14 @@ export default class ComplimentCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const { compliment } = await fetch(this.APIs.Compliment).then((res) => res.json());
+    const data = (await fetch(this.APIs.Compliment).then((res) => res.json())) as {
+      compliment: string;
+    };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(lang.GAMES.COMPLIMENT)
-      .setDescription(compliment);
+      .setDescription(data.compliment);
 
     await interaction.editReply({ embeds: [embed] });
   }

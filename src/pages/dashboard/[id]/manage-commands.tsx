@@ -67,7 +67,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
   }
 
   async function updateCommand(type: string, cmdName: string) {
-    const data = await (
+    const data = (await (
       await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/commands`, {
         method: "PUT",
         body: JSON.stringify({
@@ -75,7 +75,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
           type,
         }),
       })
-    ).json();
+    ).json()) as any;
 
     if (data.status === "success") {
       router.push(
@@ -176,13 +176,13 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
 
-  const data = await (
+  const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
         auth: cookies?.token,
       },
     })
-  ).json();
+  ).json()) as any;
 
   return {
     props: {
