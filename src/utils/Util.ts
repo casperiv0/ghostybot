@@ -295,7 +295,7 @@ export class Util {
     return import(`../locales/${guild?.locale ?? "english"}`).then((f) => f.default);
   }
 
-  async createWebhook(channelId: DJS.Snowflake, oldChannelId?: string) {
+  async createWebhook(channelId: DJS.Snowflake, oldChannelId: string | null) {
     const channel = this.bot.channels.cache.get(channelId);
     if (!channel) return;
     if (!this.bot.user) return;

@@ -118,7 +118,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       if (body?.audit_channel) {
-        await req.bot.utils.createWebhook(body.audit_channel, g?.audit_channel || undefined);
+        await req.bot.utils.createWebhook(body.audit_channel, g?.audit_channel);
       }
 
       if (body?.starboards_data?.enabled === true) {

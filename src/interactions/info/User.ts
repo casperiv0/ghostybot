@@ -32,7 +32,11 @@ export default class UserInfoCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.NOT_FOUND });
     }
 
-    const { username, id, tag, banner, bannerURL } = member.user;
+    const banner = await this.bot.users
+      .fetch(user.id, { force: true })
+      .then((v) => ({ banner: v.banner, bannerURL: v.bannerURL }))
+      .catch(() => null);
+    const { username, id, tag } = member.user;
     const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
     const joinedAtR = member.joinedAt ? time(new Date(member.joinedAt), "R") : lang.UTIL.UNKNOWN;
 
@@ -62,7 +66,7 @@ export default class UserInfoCommand extends SubCommand {
       .setDescription(
         `
 ${bold("ID")}: ${inlineCode(id)}
-${banner ? `${lang.MEMBER.BANNER}: ${bannerURL({ dynamic: true, size: 4096 })}` : ""}
+${banner?.banner ? `${lang.MEMBER.BANNER}: ${banner.bannerURL({ dynamic: true, size: 4096 })}` : ""}
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${createdAtR})
