@@ -53,7 +53,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /admin delete ...
 
-**Options:** amount (NUMBER / Required)
+**Options:** amount (INTEGER / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -243,7 +243,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /admin warnings remove ...
 
-**Options:** user (USER / Required), warning-id (NUMBER / Required)
+**Options:** user (USER / Required), warning-id (INTEGER / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -263,7 +263,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /admin warnings view ...
 
-**Options:** user (USER / Required), warning-id (NUMBER / Optional)
+**Options:** user (USER / Required), warning-id (INTEGER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -803,7 +803,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /giveaway start ...
 
-**Options:** time (STRING / Required), prize (STRING / Required), winner-count (NUMBER / Optional)
+**Options:** time (STRING / Required), prize (STRING / Required), winner-count (INTEGER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -883,7 +883,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /image magik ...
 
-**Options:** user (USER / Optional), intensity (NUMBER / Optional)
+**Options:** user (USER / Optional), intensity (INTEGER / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1203,7 +1203,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /music loop ...
 
-**Options:** type (NUMBER / Required)
+**Options:** type (INTEGER / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1263,7 +1263,7 @@ GhostyBot has a total of 163 slash commands.
 
 **Example usage:** /music remove ...
 
-**Options:** track-number (NUMBER / Required)
+**Options:** track-number (INTEGER / Required)
 
 [Back to top](#ghostybot-command-list)
 

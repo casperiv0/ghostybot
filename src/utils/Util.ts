@@ -356,7 +356,7 @@ export class Util {
     options,
     old: { channelId: DJS.Snowflake | undefined; emoji: string | undefined },
   ) {
-    if (old) {
+    if (old && old?.channelId !== "null") {
       old.channelId && old.emoji && this.bot.starboardsManager.delete(old.channelId, old.emoji);
     }
 
