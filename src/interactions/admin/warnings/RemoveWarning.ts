@@ -33,7 +33,7 @@ export default class RemoveWarningCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
-    const id = interaction.options.getNumber("warning-id", true);
+    const id = interaction.options.getInteger("warning-id", true);
 
     if (user.bot) {
       return interaction.reply({

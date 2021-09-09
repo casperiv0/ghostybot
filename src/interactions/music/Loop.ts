@@ -48,7 +48,7 @@ export default class LoopCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const type = interaction.options.getNumber("type", true);
+    const type = interaction.options.getInteger("type", true);
 
     const queue = this.bot.player.getQueue(interaction.guildId!);
     if (!queue || !queue.playing) {

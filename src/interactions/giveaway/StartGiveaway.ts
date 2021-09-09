@@ -38,7 +38,7 @@ export default class StartGiveaway extends SubCommand {
   ) {
     const time = interaction.options.getString("time", true);
     const prize = interaction.options.getString("prize", true);
-    const winnerCount = interaction.options.getNumber("winner-count") ?? 1;
+    const winnerCount = interaction.options.getInteger("winner-count") ?? 1;
 
     if (!ms(time)) {
       return interaction.reply({ ephemeral: true, content: lang.MESSAGE.MUST_BE_DATE });

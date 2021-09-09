@@ -25,7 +25,7 @@ export default class DeleteCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const amount = interaction.options.getNumber("amount", true);
+    const amount = interaction.options.getInteger("amount", true);
 
     if (amount < 1 || amount > 100) {
       return interaction.reply({
