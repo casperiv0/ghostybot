@@ -34,7 +34,7 @@ export default class UserInfoCommand extends SubCommand {
 
     const banner = await this.bot.users
       .fetch(user.id, { force: true })
-      .then((v) => ({ banner: v.banner, bannerURL: v.bannerURL }))
+      .then((v) => v)
       .catch(() => null);
     const { username, id, tag } = member.user;
     const joinedAt = member.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
