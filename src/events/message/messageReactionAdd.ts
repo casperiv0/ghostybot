@@ -57,10 +57,7 @@ export default class MessageReactionAddEvent extends Event {
         return;
       }
 
-      const msg = await channel.messages.fetch(dbReaction.message_id).catch(() => null);
-      if (!msg) return;
-
-      msg.reactions.resolve(react.emoji.id!)?.users.remove(user.id);
+      await react.users.remove(user.id);
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }
