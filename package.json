@@ -47,11 +47,11 @@
     "bluebird": "^3.7.2",
     "chalk": "^4.1.2",
     "ctgs.js": "^1.1.0",
-    "dayjs": "^1.10.6",
+    "dayjs": "^1.10.7",
     "discord-giveaways": "5.0.1",
     "discord-logs": "^2.0.1",
     "discord-starboards": "2.3.1",
-    "discord.js": "^13.2.0-dev.1631189184.8cc3885",
+    "discord.js": "^13.2.0-dev.1631318678.be8912a",
     "distube": "^3.0.0-beta.37",
     "dotenv": "^10.0.0",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",
@@ -85,7 +85,7 @@
     "zustand": "^3.5.10"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^0.0.17",
+    "@casper124578/eslint-config": "^1.0.0",
     "@casper124578/eslint-config-next": "^0.1.1",
     "@casper124578/eslint-config-react": "^0.1.2",
     "@types/bluebird": "^3.5.36",
@@ -93,7 +93,7 @@
     "@types/glob": "^7.1.4",
     "@types/jsonwebtoken": "^8.5.5",
     "@types/ms": "^0.7.31",
-    "@types/node": "^16.9.0",
+    "@types/node": "^16.9.1",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.20",
     "@types/twemoji-parser": "^13.1.1",
@@ -110,7 +110,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.2.1",
     "tsconfig-paths": "^3.11.0",
-    "typescript": "^4.4.2",
+    "typescript": "^4.4.3",
     "zlib-sync": "^0.1.7"
   },
   "prettier": {
