@@ -822,11 +822,11 @@ export default {
     },
   },
   INVITE: {
-    NOT_FOUND: "That invite was not found.",
-    NOT_EXPIRED_YET: "This invite has not expired yet.",
-    NOT_EXPIRE: "This invite does not expire",
-    EXPIRATION: "Expiration",
-    EXPIRES_AT: "Expires at",
-    EXPIRED_AT: "Expired at",
+    NOT_FOUND: "Este convite não foi encontrado.",
+    NOT_EXPIRED_YET: "Este convite ainda não expirou.",
+    NOT_EXPIRE: "Este convite não expira",
+    EXPIRATION: "Expiração",
+    EXPIRES_AT: "Expira em",
+    EXPIRED_AT: "Expirado em",
   },
 };
