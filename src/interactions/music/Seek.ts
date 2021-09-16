@@ -3,7 +3,6 @@ import ms from "ms";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
-
 export default class SeekCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -12,7 +11,7 @@ export default class SeekCommand extends SubCommand {
       description: "Seek through a song",
       options: [
         {
-          description: "seconds/minutes/hours (eg: 200s, 10s, 1h)",
+          description: "time in seconds",
           name: "time",
           required: true,
           type: "STRING",
@@ -40,7 +39,8 @@ export default class SeekCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const time = ms(interaction.options.getString("time", true));
+    const timeOption = interaction.options.getString("time", true);
+    const time = ms(timeOption);
 
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
       allowAuthor: true,
