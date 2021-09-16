@@ -748,13 +748,13 @@ export default {
     MUST_BE_NUMBER: "Este argumento deve ser um **número**.",
   },
   GIVEAWAY: {
-    NEW: "**🎉🎉 New Giveaway 🎉🎉**",
-    ENDED: "**GIVEAWAY ENDED**",
-    ALREADY_ENDED: "Giveaway already ended yet or was not found",
-    SUCCESS_ENDED: "Successfully ended giveaway",
-    SUCCESS_REROLLED: "Successfully re-rolled the giveaway",
-    STARTED: "Giveaway has started",
-    NOT_FOUND: "No giveaway found with id: {id}",
+    NEW: "**🎉🎉 Novo Sorteio 🎉🎉**",
+    ENDED: "**SORTEIO FINALIZADO**",
+    ALREADY_ENDED: "O sorteio já acabou ou não foi encontrado",
+    SUCCESS_ENDED: "Sorteio finalizado com sucesso",
+    SUCCESS_REROLLED: "Sorteio retomado com sucesso",
+    STARTED: "O sorteio começou",
+    NOT_FOUND: "Nenhum sorteio foi encontrado com este id: {id}",
   },
   OTHER: {
     REGIONS: {
