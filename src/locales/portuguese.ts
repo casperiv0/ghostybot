@@ -685,15 +685,15 @@ export default {
     ADDED_ROLE_TO: "O cargo **{roleName}** foi concedido por **{time}** a {userTag}",
   },
   TICKET: {
-    CANNOT_DO_ACTION: "This action cannot be done in a non ticket channel",
-    CLOSING: "Closing this ticket in 15 seconds, type `cancel` to cancel",
-    WILL_NOT_CLOSE: "This ticket will not be closed.",
-    ALREADY_ACTIVE_TICKET: "You already have an active ticket",
-    TICKET_FOR: "Support ticket for: {member}",
-    CREATED: "Successfully created ticket!",
-    CREATED_IN: "Ticket was successfully created in {channel}",
+    CANNOT_DO_ACTION: "Está ação só pode ser feita em um canal de ticket",
+    CLOSING: "Fechando esse ticket em 15 segundos, digite `cancel` para cancelar",
+    WILL_NOT_CLOSE: "Este ticket não será fechado.",
+    ALREADY_ACTIVE_TICKET: "Você já tem um ticket ativo",
+    TICKET_FOR: "Ticket de suporte para: {member}",
+    CREATED: "Ticket craido com sucesso!",
+    CREATED_IN: "Ticket craido com sucesso em {channel}",
     NOT_ENABLED:
-      "Tickets are not enabled for this guild! An administrator can enable it in {botName}'s settings",
+      "Tickets não estão habilitados nesse servidor! Um administrador pode habilitá-lo nas configurações",
     TICKET: "ticket-#{Id}",
   },
   EVENTS: {
