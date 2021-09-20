@@ -1,0 +1,11 @@
+{
+  "manage_reaction_roles": "Gerenciar Cargos de Reação",
+  "reaction_role": "Cargo de Reação",
+  "add_emoji_and_role": "Adicionar emoji e cargo",
+  "channel_note": "Nota: O canal não pode ser alterado uma vez que a mensagem estiver sido envidada",
+  "no_roles_yet": "Sem cargos ainda",
+  "channel": "Canal",
+  "roles": "Cargos",
+  "no_reaction_roles": "Este servidor não possui nenhum cargo de reação ainda.",
+  "add_reaction_role": "Adicionar cargo de reação"
+}
