@@ -19,8 +19,8 @@ export default class GuildChannelTopicUpdateEvent extends Event {
         .setTitle(lang.EVENTS.CHANNEL_TOPIC_UPDATED)
         .setDescription(lang.EVENTS.CHANNEL_TOPIC_UPDATED_MSG.replace("{channel}", channel.name))
         .setColor("ORANGE")
-        .addField(lang.EVENTS.CHANNEL_OLD_TOPIC, oldTopic)
-        .addField(lang.EVENTS.CHANNEL_NEW_TOPIC, newTopic)
+        .addField(lang.EVENTS.CHANNEL_OLD_TOPIC, oldTopic || lang.GLOBAL.NONE)
+        .addField(lang.EVENTS.CHANNEL_NEW_TOPIC, newTopic || lang.GLOBAL.NONE)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });
