@@ -6,10 +6,6 @@ async function database() {
 
   try {
     await connect(String(uri), {
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       connectTimeoutMS: 300000,
       socketTimeoutMS: 75000,
       keepAlive: true,
