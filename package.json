@@ -98,7 +98,7 @@
     "@types/react": "^17.0.24",
     "@types/twemoji-parser": "^13.1.1",
     "@types/uuid": "^8.3.1",
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.31.2",
     "discord-api-types": "^0.23.1",
     "eslint": "^7.32.0",
