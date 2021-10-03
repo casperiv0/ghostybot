@@ -16,7 +16,7 @@ export default class ReadyEvent extends Event {
       bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
     );
 
-    const statuses: { type: DJS.ActivityType; value: string }[] = [
+    const statuses: { type: Exclude<DJS.ActivityType, "CUSTOM">; value: string }[] = [
       {
         type: "LISTENING",
         value: "/help",
