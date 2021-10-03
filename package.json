@@ -51,7 +51,7 @@
     "discord-giveaways": "5.0.1",
     "discord-logs": "^2.0.1",
     "discord-starboards": "2.3.1",
-    "discord.js": "^13.2.0-dev.1632139402.92f6471",
+    "discord.js": "^13.2.0-dev.1633219528.b76bb8a",
     "distube": "^3.0.0-beta.38",
     "dotenv": "^10.0.0",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",
