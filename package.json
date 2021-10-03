@@ -58,7 +58,7 @@
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.2",
     "glob": "^7.1.7",
-    "google-play-scraper": "^8.0.3",
+    "google-play-scraper": "^8.0.4",
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mathjs": "^9.4.5",
@@ -82,7 +82,7 @@
     "uuid": "^8.3.2",
     "wikijs": "^6.3.2",
     "word-definition": "^2.1.6",
-    "zustand": "^3.5.10"
+    "zustand": "^3.5.11"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^1.0.0",
@@ -99,7 +99,7 @@
     "@types/twemoji-parser": "^13.1.1",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
+    "@typescript-eslint/parser": "^4.32.0",
     "discord-api-types": "^0.23.1",
     "eslint": "^7.32.0",
     "husky": "^7.0.2",
