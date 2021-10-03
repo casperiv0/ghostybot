@@ -82,7 +82,7 @@
     "uuid": "^8.3.2",
     "wikijs": "^6.3.2",
     "word-definition": "^2.1.6",
-    "zustand": "^3.5.10"
+    "zustand": "^3.5.11"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^1.0.0",
