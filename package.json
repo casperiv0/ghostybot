@@ -58,7 +58,7 @@
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.2",
     "glob": "^7.1.7",
-    "google-play-scraper": "^8.0.3",
+    "google-play-scraper": "^8.0.4",
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mathjs": "^9.4.5",
@@ -73,7 +73,7 @@
     "nookies": "^2.5.2",
     "nprogress": "^0.2.0",
     "one-liner-joke": "^1.2.2",
-    "pastebin-api": "^2.3.6",
+    "pastebin-api": "^2.4.0",
     "preact": "^10.5.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -82,7 +82,7 @@
     "uuid": "^8.3.2",
     "wikijs": "^6.3.2",
     "word-definition": "^2.1.6",
-    "zustand": "^3.5.10"
+    "zustand": "^3.5.11"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^1.0.0",
