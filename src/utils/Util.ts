@@ -262,6 +262,7 @@ export class Util {
       }
 
       if (!member && options?.allowAuthor) {
+        // @ts-expect-error ignore
         member = new DJS.GuildMember(this.bot, message.member!, message.guild);
       }
 
@@ -548,6 +549,7 @@ export class Util {
   }
 
   isBotInSameChannel(message: DJS.Message | DJS.CommandInteraction) {
+    // @ts-expect-error ignore
     const member = new DJS.GuildMember(this.bot, message.member!, message.guild!);
     const voiceChannelId = member?.voice.channelId;
 

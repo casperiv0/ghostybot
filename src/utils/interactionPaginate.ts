@@ -26,6 +26,7 @@ export async function interactionPaginate(
 
   let currentPage: Message | null = null;
   if (!(v instanceof Message)) {
+    // @ts-expect-error ignore
     currentPage = new Message(bot, v);
   } else {
     currentPage = v;
@@ -45,6 +46,7 @@ export async function interactionPaginate(
     return ALL_EMOJIS.includes(reaction.emoji.name);
   };
 
+  // @ts-expect-error ignore
   const collector = currentPage.createReactionCollector({ filter, time: TIMEOUT });
   if (!collector) return console.error("No collector");
 
