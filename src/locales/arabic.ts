@@ -152,7 +152,7 @@ const LANG: typeof import("./english").default = {
     FILTER_ALREADY_ENABLED: "Filter `{filter}` is already enabled",
     FILTER_NOT_ENABLED: "Filter `{filter}` is not enabled?",
     NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
-    NO_LIRYCS: "No lyrics found for {songTitle}.",
+    NO_LYRICS: "No lyrics found for {songTitle}.",
     NOW: "Now",
     MUSIC_STARTING: "The music is starting. Please wait a few seconds..",
     INFORMATION: "Information",
@@ -381,7 +381,7 @@ const LANG: typeof import("./english").default = {
     PASTE_INVALID_FORMAT:
       "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
     SENT_SUG: "Sent suggestion 👍",
-    ALREADY_VERIFED: "You are already verified",
+    ALREADY_VERIFIED: "You are already verified",
     READ_MORE: "read more",
     EMOJI_NOT_FOUND: "Emoji can only be a custom emoji or the emoji was not found",
     EMOJI_INFO: "Emoji info",
@@ -563,7 +563,7 @@ const LANG: typeof import("./english").default = {
     CAN_NOT_MUTED: "User can't be muted",
     TEMP_MUTED:
       "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
-    SUCCES_MUTED: "{muteMemberTag} was successfully muted for {time}. Reason: **{reason}**",
+    SUCCESS_MUTED: "{muteMemberTag} was successfully muted for {time}. Reason: **{reason}**",
     PROVIDE_VALID_USERID: "Please provide a user id",
     SUC_UNBAN: "**{bannedUsername}** was successfully unbanned from the server.",
     NOT_IN_VOICE_OR_NOT_DEAF: "User is not in a voice channel or isn't deafened",

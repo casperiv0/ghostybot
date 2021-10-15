@@ -153,7 +153,7 @@ const LANG: typeof import("./english").default = {
     FILTER_ALREADY_ENABLED: "Фильтр `{filter}` уже включен.",
     FILTER_NOT_ENABLED: "Фильтр `{filter}` не включен.",
     NOT_VALID_OPTION: "{option} не является правильной опцией (`set`, `remove`)",
-    NO_LIRYCS: "Текст для песни {songTitle} не найден.",
+    NO_LYRICS: "Текст для песни {songTitle} не найден.",
     NOW: "Сейчас",
     MUSIC_STARTING: "Трек запускается. Подождите пару секунд..",
     INFORMATION: "Information",
@@ -384,7 +384,7 @@ const LANG: typeof import("./english").default = {
     PASTE_INVALID_FORMAT:
       "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
     SENT_SUG: "Sent suggestion 👍",
-    ALREADY_VERIFED: "You are already verified",
+    ALREADY_VERIFIED: "You are already verified",
     READ_MORE: "read more",
     EMOJI_NOT_FOUND: "Emoji can only be a custom emoji or the emoji was not found",
     EMOJI_INFO: "Emoji info",
@@ -567,7 +567,7 @@ const LANG: typeof import("./english").default = {
     CAN_NOT_MUTED: "Пользователь не может быть замучен",
     TEMP_MUTED:
       "Вы были **временно замучены** на **{guildName}**. Причина: **{reason}**. Время: **{time}**",
-    SUCCES_MUTED: "{muteMemberTag} был успешно замучен на {time}. Причина: **{reason}**",
+    SUCCESS_MUTED: "{muteMemberTag} был успешно замучен на {time}. Причина: **{reason}**",
     PROVIDE_VALID_USERID: "Пожалуйста, укажите ID пользователя!",
     SUC_UNBAN: "**{bannedUsername}** был успешно разбанен на сервере.",
     NOT_IN_VOICE_OR_NOT_DEAF: "Пользователь не в голосовом канале или не замучен",
