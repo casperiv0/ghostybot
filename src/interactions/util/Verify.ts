@@ -26,7 +26,7 @@ export default class VerifyCommand extends Command {
         if (member?.roles.cache.has(guild.verify_data.role_id)) {
           await interaction.reply({
             ephemeral: true,
-            content: lang.UTIL.ALREADY_VERIFED,
+            content: lang.UTIL.ALREADY_VERIFIED,
           });
         } else {
           member?.roles.add(guild.verify_data.role_id);

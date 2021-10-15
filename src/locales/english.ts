@@ -383,7 +383,7 @@ export default {
     PASTE_INVALID_FORMAT:
       "An invalid format was requested, valid types: https://pastebin.com/doc_api#5",
     SENT_SUG: "Sent suggestion 👍",
-    ALREADY_VERIFED: "You are already verified",
+    ALREADY_VERIFIED: "You are already verified",
     READ_MORE: "read more",
     EMOJI_NOT_FOUND: "Emoji can only be a custom emoji or the emoji was not found",
     EMOJI_INFO: "Emoji info",

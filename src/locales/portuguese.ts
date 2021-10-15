@@ -409,7 +409,7 @@ export default {
     PASTE_INVALID_FORMAT:
       "Um formato inválido foi pedido, tipos válidos: https://pastebin.com/doc_api#5",
     SENT_SUG: "Sugestão enviada 👍",
-    ALREADY_VERIFED: "Você já é verificado",
+    ALREADY_VERIFIED: "Você já é verificado",
     READ_MORE: "ler mais",
     EMOJI_NOT_FOUND: "O emoji pode ser um emoji customizado ou o emoji não foi encontrado",
     EMOJI_INFO: "Informação do Emoji",
