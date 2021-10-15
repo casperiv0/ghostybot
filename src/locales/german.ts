@@ -164,7 +164,8 @@ const LANG: typeof import("./english").default = {
     LIKES: "Likes",
     ERRORS: {
       LIVE_NOT_SUPPORTED: "Live videos werden nicht unterstützt",
-      JOIN_ERROR: "Beim betreten des Sprachkanals ist ein Fehler aufgetreten, stell sicher, dass er nicht voll ist!",
+      JOIN_ERROR:
+        "Beim betreten des Sprachkanals ist ein Fehler aufgetreten, stell sicher, dass er nicht voll ist!",
       NO_RESULT: "Es wurden keine Lieder gefunden.",
       VOICE_FULL: "Der Sprachkanal ist voll.",
       NO_QUEUE: "Es wird gerade keine Musik abgespielt.",
@@ -186,8 +187,7 @@ const LANG: typeof import("./english").default = {
     WEEKLY_ERROR: "Du hast deinen Wöchentlichen Bonus schon abgeholt. Komm zurück in {time}",
     DAILY_SUCCESS: "Du hast deinen Täglichen Bonus von **{amount}** Münzen eingesammelt",
     WEEKLY_SUCCESS: "Du hast deinen Wöchentlichen Bonus von **{amount}** Münzen eingesammelt",
-    STORE_EMPTY:
-      "Es gibt keine Items im Shop! Frag einen Admin im Dashboard etwas hinzuzufügen.",
+    STORE_EMPTY: "Es gibt keine Items im Shop! Frag einen Admin im Dashboard etwas hinzuzufügen.",
     PROVIDE_ITEM_TO_BUY: "Gib bitte ein Item zum Kaufen an",
     NOT_ENOUGH_MONEY: "Du hast nicht so viel Geld",
     BUY_SUCCESS: "Erfolgreich **{item}** für **{price}** gekauft",
