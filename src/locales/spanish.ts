@@ -154,7 +154,7 @@ const LANG: typeof import("./english").default = {
     FILTER_ALREADY_ENABLED: "Filter `{filter}` is already enabled",
     FILTER_NOT_ENABLED: "Filter `{filter}` is not enabled?",
     NOT_VALID_OPTION: "{option} Is not a valid option `set`, `remove`",
-    NO_LIRYCS: "No lyrics found for {songTitle}.",
+    NO_LYRICS: "No lyrics found for {songTitle}.",
     NOW: "Now",
     MUSIC_STARTING: "The music is starting. Please wait a few seconds..",
     INFORMATION: "Information",
