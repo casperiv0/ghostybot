@@ -179,7 +179,7 @@ export default {
     FILTER_ALREADY_ENABLED: "Filter `{filter}` já está ativado",
     FILTER_NOT_ENABLED: "Filter `{filter}` não está ativado?",
     NOT_VALID_OPTION: "{option} não é uma opção válida `set`, `remove`",
-    NO_LIRYCS: "Não foram encontradas letras para {songTitle}.",
+    NO_LYRICS: "Não foram encontradas letras para {songTitle}.",
     NOW: "Agora",
     MUSIC_STARTING: "A música tá começando. Por favor espere uns segundinhos..",
     INFORMATION: "Informação",
@@ -639,7 +639,7 @@ export default {
     CAN_NOT_MUTED: "Usuário não pode ser mutado",
     TEMP_MUTED:
       "Você foi **mutado temporáriamente** de **{guildName}**, Motivo: **{reason}**, Tempo: **{time}**",
-    SUCCES_MUTED: "{muteMemberTag} fou mutado com sucesso por {time}. Motivo: **{reason}**",
+    SUCCESS_MUTED: "{muteMemberTag} fou mutado com sucesso por {time}. Motivo: **{reason}**",
     PROVIDE_VALID_USERID: "Por favor informe um id de usuário",
     SUC_UNBAN: "**{bannedUsername}** foi desbanido do servidor com sucesso.",
     NOT_IN_VOICE_OR_NOT_DEAF:

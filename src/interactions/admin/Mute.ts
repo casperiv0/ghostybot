@@ -64,7 +64,7 @@ export default class MuteCommand extends SubCommand {
     let content;
     let dmContent;
     if (time) {
-      content = lang.ADMIN.SUCCES_MUTED.replace("{muteMemberTag}", user.tag)
+      content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", user.tag)
         .replace("{time}", time)
         .replace("{reason}", reason);
 

@@ -156,7 +156,7 @@ const LANG: typeof import("./english").default = {
     FILTER_ALREADY_ENABLED: "Filter `{filter}` ist bereits aktiviert",
     FILTER_NOT_ENABLED: "Filter `{filter}` ist nicht aktiviert?",
     NOT_VALID_OPTION: "{option} ist keine gültige Option wie `set` oder `remove`",
-    NO_LIRYCS: "Kein Text für {songTitle} gefunden.",
+    NO_LYRICS: "Kein Text für {songTitle} gefunden.",
     NOW: "Jetzt",
     MUSIC_STARTING: "Die Musik startet jetzt. Warte bitte kurz..",
     INFORMATION: "Informationen",
@@ -174,7 +174,7 @@ const LANG: typeof import("./english").default = {
       UNAVAILABLE_VIDEO: "Diese Video/Wiedergabeliste ist nicht verfügbar.",
       NOT_SUPPORTED_URL: "Diese URL wird nicht unterstützt.",
       NON_NSFW: "Kann keine Altersbeschränkten Sachen in einem NSFW Kanal spielen.",
-      UNPLAYABLE_FORMATS: "Dieses Format kann nnc9iht benutzt werden.",
+      UNPLAYABLE_FORMATS: "Dieses Format kann nicht benutzt werden.",
       NO_SONG_POSITION: "In dieser Position in der Warteschlange befindet sich kein Lied.",
       EMPTY_PLAYLIST: "Es gibt keinen abspielbaren Song in der Wiedergabeliste.",
     },
@@ -570,7 +570,7 @@ const LANG: typeof import("./english").default = {
     CAN_NOT_MUTED: "Benutzer kann nicht stunmmgeschalten werden",
     TEMP_MUTED:
       "Du wurdest **temporär stunmmgeschalten** vom Server **{guildName}**, Grund: **{reason}**, Zeit: **{time}**",
-    SUCCES_MUTED:
+    SUCCESS_MUTED:
       "{muteMemberTag} wurde erfolgreich für {time} stummgeschalten. Grund: **{reason}**",
     PROVIDE_VALID_USERID: "Gib bitte eine ID von einem Benutzer an",
     SUC_UNBAN: "**{bannedUsername}** wurde erfolgreich vom Server entbannt.",

@@ -44,7 +44,7 @@ export default class LyricsCommand extends SubCommand {
 
     if (!data.lyrics) {
       return interaction.editReply({
-        content: lang.MUSIC.NO_LIRYCS.replace("{songTitle}", title),
+        content: lang.MUSIC.NO_LYRICS.replace("{songTitle}", title),
       });
     }
 
