@@ -31,7 +31,7 @@
   "manage_slash_commands": "Управление слеш-командами",
   "add_slash_command": "Добавить слеш-команду",
   "no_slash_commands": "На этом сервере еще нет пользовательских слеш-команд.",
-  "re_authorize": "Пожалуйста, повторно авторизуйте бота с правами application.commands.",
+  "re_authorize": "Пожалуйста, повторно авторизуйте бота с правом application.commands.",
   "settings": "Настройки сервера",
   "save_settings": "Сохранить настройки",
   "enable_or_disable_feature": "Включить или отключить функцию",
