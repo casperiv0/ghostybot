@@ -74,9 +74,9 @@ If you have any concerns about your data, privacy or security, please [join our 
 
 ## Hosting Problems
 
-> I would not recommend self-hosting the bot on repl.it, Glitch and other public services. If you host your bot in public Glitch.com or repl.it projects, you take a risk, the risk is that in public projects ANYONE can steal your bot TOKEN and hack it, people that steal bot tokens will use your bot to DM advertise users, to raid servers, to scam people with fake things, and to impersonate the bot owner.
+> I would not recommend self-hosting the bot on repl.it, Glitch and other public services. If you host your bot in public Glitch or Repl projects, you take a risk, the risk is that in public projects ANYONE can steal your bot TOKEN and hack it, people that steal bot tokens may (and probably will) use your bot to DM advertise users, to raid servers, to scam people with fake things, and to impersonate the bot owner.
 
 > If that happens with your bot, YOU have the fault for hosting it on a public project.
-> For those things i recommend hosts like Danbot or other private hosts (except FalixNodes, they sell user data), repl.it and glitch.com projects are easy to steal, anyone can get your token and/or other confidential information.
+> For those things i recommend hosts like Danbot or other private hosts (except FalixNodes, they sell user data), Repl and Glitch projects are easy to steal, anyone can get your token and/or other confidential information.
 
-- Text by [@Tegnio](https://github.com/tegnio)
+- Text by [@Dev-Okula](https://github.com/Dev-Okula)
