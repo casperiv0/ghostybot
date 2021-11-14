@@ -718,8 +718,6 @@ export default {
     KICK_ADD: "Membro Expulso",
     EXECUTED_BY: "Executado Por",
     REASON: "Motivo",
-    STARBOARD_MESSAGE: "{userTag}, esta mensagem já está no mural",
-    STARBOARD_NOT_STAR: "{userTag}, você não pode estrelar uma mensagem vazia.",
     STICKER_CREATED: "Novo Sticker Criado",
     STICKER_DELETED_MSG: "Uma figurinha foi deletada",
     STICKER_DELETED: "Figurinha Deletada",

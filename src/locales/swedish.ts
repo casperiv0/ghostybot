@@ -634,8 +634,6 @@ const LANG: typeof import("./english").default = {
     KICK_ADD: "Member Kicked",
     EXECUTED_BY: "Executed By",
     REASON: "Reason",
-    STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
-    STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
     STICKER_CREATED: "New Sticker Created",
     STICKER_DELETED_MSG: "A sticker was deleted",
     STICKER_DELETED: "Sticker Deleted",

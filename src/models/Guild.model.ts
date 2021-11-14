@@ -25,7 +25,6 @@ export interface GuildData {
   level_data: LevelData;
   welcome_data: WelcomeData;
   leave_data: LeaveData;
-  starboards_data: StarboardData;
   ban_data: BanData;
   ticket_data: TicketData;
   verify_data: VerifyData;
@@ -70,12 +69,6 @@ export interface SlashCommand {
   name: string;
   description: string;
   slash_cmd_id: Snowflake;
-}
-
-export interface StarboardData {
-  enabled: boolean;
-  channel_id: Snowflake;
-  emoji: string;
 }
 
 export interface TicketData {
@@ -138,10 +131,6 @@ const guildSchema = new Schema({
   ticket_data: {
     type: Object,
     default: { enabled: false, channel_id: null, parent_id: null, role_id: null },
-  },
-  starboards_data: {
-    type: Object,
-    default: { enabled: false, channel_id: null, emoji: "⭐" },
   },
   verify_data: {
     type: Object,

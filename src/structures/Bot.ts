@@ -7,7 +7,6 @@ import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
 import { EventHandler } from "handlers/EventHandler";
 
-import { MongoStarboardsManager } from "handlers/StarboardsManager";
 import { MongoGiveawayManager } from "handlers/GiveawayManager";
 import { logger } from "utils/logger";
 import { Util } from "utils/Util";
@@ -23,7 +22,6 @@ export class Bot extends Client {
   neko: NekoClient = new NekoClient();
   imdb!: ImdbClient;
   player: DistubePlayer;
-  starboardsManager: MongoStarboardsManager;
   giveawayManager: MongoGiveawayManager;
   alexClient!: AlexClient;
   pasteClient!: PasteClient;
@@ -56,11 +54,6 @@ export class Bot extends Client {
       ytdlOptions: {
         filter: "audioonly",
       },
-    });
-
-    this.starboardsManager = new MongoStarboardsManager(this, {
-      storage: false,
-      translateClickHere: "Jump to message",
     });
 
     this.giveawayManager = new MongoGiveawayManager(this, {

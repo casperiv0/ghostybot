@@ -349,27 +349,6 @@ export class Util {
     );
   }
 
-  /**
-   * @deprecated will be removed when message intents arrive
-   */
-  async createStarboard(
-    channel: { id: string | undefined; guild: { id: string | undefined } },
-    options,
-    old: { channelId: DJS.Snowflake | undefined; emoji: string | undefined },
-  ) {
-    if (old && old.channelId !== null) {
-      old.channelId && old.emoji && this.bot.starboardsManager.delete(old.channelId, old.emoji);
-    }
-
-    this.bot.starboardsManager.create(channel as any, {
-      ...options,
-      selfStar: true,
-      starEmbed: true,
-      attachments: true,
-      resolveImageUrl: true,
-    });
-  }
-
   async updateMuteChannelPerms(
     guild: DJS.Guild,
     memberId: DJS.Snowflake,

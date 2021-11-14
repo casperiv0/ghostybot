@@ -640,8 +640,6 @@ const LANG: typeof import("./english").default = {
     KICK_ADD: "Mitglied gekickt",
     EXECUTED_BY: "Ausgeführt von",
     REASON: "Grund",
-    STARBOARD_MESSAGE: "{userTag}, diese Nachricht ist bereits in der Favoritenliste",
-    STARBOARD_NOT_STAR: "{userTag}, du kannst keine leere Nachricht zu den Favoriten hinzufügen.",
     STICKER_CREATED: "Ein neuer Sticker wurde erstellt",
     STICKER_DELETED_MSG: "Ein Sticker wurde gelöscht",
     STICKER_DELETED: "Sticker gelöscht",

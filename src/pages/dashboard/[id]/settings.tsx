@@ -52,7 +52,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
   const [levelData, setLevelData] = React.useState(guild?.level_data ?? {});
   const [verifyData, setVerifyData] = React.useState(guild?.verify_data ?? {});
   const [ticketData, setTicketData] = React.useState(guild?.ticket_data ?? {});
-  const [starboardsData, setStarboardsData] = React.useState(guild?.starboards_data ?? {});
   const [suggestChannel, setSuggestChannel] = React.useState(guild.suggest_channel || "");
   const [announceChannel, setAnnounceChannel] = React.useState(guild.announcement_channel || "");
   const [language, setLanguage] = React.useState(guild.locale || "");
@@ -240,42 +239,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
     },
     {
-      enabled: starboardsData?.enabled ?? false,
-      id: "starboards_data",
-      title: t("starboard"),
-      onChecked: () => {
-        setStarboardsData((prev) => ({
-          ...prev,
-          enabled: !starboardsData?.enabled,
-        }));
-      },
-      fields: [
-        {
-          type: "select",
-          id: "starboards_channel_id",
-          value: starboardsData?.channel_id || "",
-          onChange: (e) =>
-            setStarboardsData((prev) => ({
-              ...prev,
-              channel_id: e.target.value,
-            })),
-          label: t("starboard_channel"),
-          data: guild.channels,
-        },
-        {
-          type: "input",
-          id: "starboards_emoji",
-          value: starboardsData?.emoji || "⭐",
-          onChange: (e) =>
-            setStarboardsData((prev) => ({
-              ...prev,
-              emoji: e.target.value,
-            })),
-          label: t("starboards_emoji"),
-        },
-      ],
-    },
-    {
       enabled: verifyData?.enabled ?? false,
       id: "verify_data",
       title: t("verification"),
@@ -400,7 +363,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             leave_data: leaveData,
             ticket_data: ticketData,
             level_data: levelData,
-            starboards_data: starboardsData,
 
             suggest_channel: suggestChannel,
             announcement_channel: announceChannel,
