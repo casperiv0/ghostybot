@@ -121,65 +121,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         await req.bot.utils.createWebhook(body.audit_channel, g?.audit_channel);
       }
 
-      if (body?.starboards_data?.enabled === true) {
-        /**
-         * check if starboards is enabled and no channel is provider
-         */
-        if (body.starboards_data?.channel_id !== "Disabled") {
-          if (body?.starboards_data?.channel_id === null) {
-            return res.json({
-              error: "Starboards channel must be provided when starboards is enabled!",
-              status: "error",
-            });
-          }
-
-          try {
-            const starboard = req.bot.starboardsManager.starboards.find(
-              (s) =>
-                s.channelId === g?.starboards_data?.channel_id &&
-                s.options.emoji === g?.starboards_data?.emoji,
-            );
-
-            await req.bot.utils.createStarboard(
-              {
-                id: body?.starboards_data?.channel_id,
-                guild: { id: g?.guild_id },
-              },
-              {
-                emoji: body?.starboards_data?.emoji || "⭐",
-              },
-              {
-                channelId: starboard?.channelId as DJS.Snowflake,
-                emoji: starboard?.options.emoji,
-              },
-            );
-          } catch (e) {
-            req.bot.utils.sendErrorLog(e, "error");
-          }
-        } else {
-          return res.json({
-            error: "Starboards channel must be provided when starboards is enabled!",
-            status: "error",
-          });
-        }
-      } else {
-        try {
-          req.bot.starboardsManager.delete(g.starboards_data.channel_id, g?.starboards_data.emoji);
-        } catch (error) {
-          const message = error instanceof Error ? error.message : null;
-
-          // eslint-disable-next-line quotes
-          if (!message?.includes('Error: The channel "')) {
-            req.bot.utils.sendErrorLog(error, "error");
-
-            return res.json({
-              error: "An error occurred when deleting the starboard, please try again later",
-              status: "error",
-            });
-          }
-        }
-      }
-
       await req.bot.utils.updateGuildById(guildId.toString(), body);
 
       return res.json({
