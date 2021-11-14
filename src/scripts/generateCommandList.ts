@@ -36,7 +36,7 @@ function subCommandItem(cmd: TCommand) {
     cmd.options.options
       ? cmd.options.options
           .map((v) => {
-            const requiredText = v.required ? "Required" : "Optional";
+            const requiredText = "required" in v && v.required ? "Required" : "Optional";
 
             return `${v.name} (${v.type} / ${requiredText})`;
           })

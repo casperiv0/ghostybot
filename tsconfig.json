@@ -4,12 +4,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "checkJs": false,
-
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "traceResolution": true,
     "allowUnreachableCode": false,
-
     "outDir": "dist",
     "declaration": false,
     "importHelpers": true,
@@ -23,9 +21,7 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "useUnknownInCatchVariables": false,
-
     "lib": ["ESNext", "dom", "dom.iterable", "ES2020.BigInt"],
-
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
@@ -37,11 +33,9 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
-
     "useDefineForClassFields": true,
     "jsx": "preserve",
     "skipLibCheck": true,
-
     "typeRoots": ["./node_modules/@types", "./typings"],
     "baseUrl": ".",
     "paths": {
@@ -56,7 +50,8 @@
       "@locales/*": ["./src/locales/*"],
       "@config/*": ["./src/config/*"],
       "assets/*": ["./src/assets/*"]
-    }
+    },
+    "incremental": true
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
