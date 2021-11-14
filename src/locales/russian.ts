@@ -637,8 +637,6 @@ const LANG: typeof import("./english").default = {
     KICK_ADD: "Участник выгнан",
     EXECUTED_BY: "Выполнил:",
     REASON: "Причина",
-    STARBOARD_MESSAGE: "{userTag}, это сообщение уже находится на звездной доске.",
-    STARBOARD_NOT_STAR: "{userTag}, вы не можете повесить пустое сообщение на звездную доску.",
     STICKER_CREATED: "Новый стикер создан",
     STICKER_DELETED_MSG: "Стикер удалён",
     STICKER_DELETED: "Стикер удалён",

@@ -1,6 +1,5 @@
 import glob from "glob";
 import {} from "distube";
-import { StarboardEvents } from "discord-starboards";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { resolveFile, validateFile } from "utils/HandlersUtil";
@@ -29,7 +28,6 @@ export class EventHandler {
       await validateFile(file, event);
 
       const isPlayer = file.includes("player.");
-      const isStarboard = file.includes("sb.");
 
       types.forEach((t) => {
         if (file.includes(`${t}.`)) {
@@ -43,11 +41,6 @@ export class EventHandler {
 
       if (isPlayer) {
         this.bot.player.on(event.name as any, event.execute.bind(null, this.bot));
-      } else if (isStarboard) {
-        this.bot.starboardsManager.on(
-          event.name as keyof StarboardEvents,
-          event.execute.bind(null, this.bot),
-        );
       } else if (event.once) {
         this.bot.once(event.name, event.execute.bind(null, this.bot));
       } else {

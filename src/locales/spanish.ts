@@ -633,8 +633,6 @@ const LANG: typeof import("./english").default = {
     KICK_ADD: "Member Kicked",
     EXECUTED_BY: "Executed By",
     REASON: "Reason",
-    STARBOARD_MESSAGE: "{userTag}, this message is already in the starboard",
-    STARBOARD_NOT_STAR: "{userTag}, you cannot star an empty message.",
     CHANNEL_TOPIC_UPDATED: "Channel Topic Updated",
     CHANNEL_TOPIC_UPDATED_MSG: "Channel topic in channel: **{channel}** was updated",
     CHANNEL_OLD_TOPIC: "Old Topic",
