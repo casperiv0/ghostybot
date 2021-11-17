@@ -1,9 +1,7 @@
 /* eslint-disable */
-const withPWA = require("next-pwa");
 const { i18n } = require("./next-i18next.config");
 
-module.exports = withPWA({
-  webpack5: true,
+module.exports = {
   images: {
     domains: ["cdn.discordapp.com"] /* KEEP THIS OTHERWISE IMAGES WILL NOT LOAD */,
   },
@@ -34,6 +32,7 @@ module.exports = withPWA({
   },
   reactStrictMode: true,
   experimental: {
+    esmExternals: true,
     turboMode: true,
   },
   webpack: (config, { dev, isServer }) => {
@@ -51,9 +50,6 @@ module.exports = withPWA({
 
     return config;
   },
-  pwa: {
-    disable: process.env.NODE_ENV !== "production",
-    dest: "public",
-  },
+
   i18n,
-});
+};

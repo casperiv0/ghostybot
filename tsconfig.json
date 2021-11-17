@@ -51,7 +51,8 @@
       "@config/*": ["./src/config/*"],
       "assets/*": ["./src/assets/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
   "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]

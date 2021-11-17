@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { RESTPostOAuth2AccessTokenResult } from "discord-api-types";
 import jwt from "jsonwebtoken";
 import { NextApiResponse } from "next";

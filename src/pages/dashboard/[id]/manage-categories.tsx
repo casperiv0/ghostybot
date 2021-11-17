@@ -2,7 +2,6 @@ import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import * as React from "react";
 import Head from "next/head";
-import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { AlertMessage } from "@components/AlertMessage";

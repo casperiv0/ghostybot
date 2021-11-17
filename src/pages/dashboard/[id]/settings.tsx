@@ -2,7 +2,6 @@ import * as React from "react";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import { Channel, Role } from "discord.js";
-import fetch from "node-fetch";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";

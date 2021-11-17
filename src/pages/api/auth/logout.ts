@@ -1,5 +1,4 @@
 import { NextApiResponse } from "next";
-import fetch from "node-fetch";
 import { setCookie } from "nookies";
 import { ApiRequest } from "types/ApiRequest";
 

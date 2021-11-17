@@ -1,5 +1,4 @@
 import * as React from "react";
-import fetch from "node-fetch";
 import { parseCookies } from "nookies";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
