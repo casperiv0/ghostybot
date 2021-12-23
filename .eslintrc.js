@@ -19,5 +19,7 @@ module.exports = {
   },
   rules: {
     "no-template-curly-in-string": "off",
+    "@next/next/no-page-custom-font": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
   },
 };

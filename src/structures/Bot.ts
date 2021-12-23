@@ -2,7 +2,6 @@ import { Client, Collection } from "discord.js";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
-import AlexClient from "alexflipnote.js";
 import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
 import { EventHandler } from "handlers/EventHandler";
@@ -23,7 +22,6 @@ export class Bot extends Client {
   imdb!: ImdbClient;
   player: DistubePlayer;
   giveawayManager: MongoGiveawayManager;
-  alexClient!: AlexClient;
   pasteClient!: PasteClient;
   ctgs: CtgsClient = new CtgsClient();
 
@@ -31,10 +29,6 @@ export class Bot extends Client {
     super(discordConfig);
 
     this.utils = new Util(this);
-
-    if (process.env["ALEXFLIPNOTE_API_KEY"]) {
-      this.alexClient = new AlexClient(process.env["ALEXFLIPNOTE_API_KEY"]);
-    }
 
     if (process.env["PASTE_CLIENT_KEY"]) {
       this.pasteClient = new PasteClient(process.env["PASTE_CLIENT_KEY"]);
