@@ -14,6 +14,7 @@ const badges: Record<UserFlagsString, string> = {
   EARLY_VERIFIED_BOT_DEVELOPER: "<:botdeveloper:786916920245878796>",
   VERIFIED_BOT: "<:botTag:230105988211015680>",
   DISCORD_CERTIFIED_MODERATOR: "<:moderator:848459938946744320>",
+  BOT_HTTP_INTERACTIONS: "<:botTag:230105988211015680>",
 };
 
 export default badges;

@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 163 slash commands.
+GhostyBot has a total of 162 slash commands.
 
 ## Detailed command list
 
@@ -894,16 +894,6 @@ GhostyBot has a total of 163 slash commands.
 **Example usage:** /image pikachu ...
 
 **Options:** N/A
-
-[Back to top](#ghostybot-command-list)
-
-## image -> supreme
-
-**Description:** Display custom text as the Supreme logo
-
-**Example usage:** /image supreme ...
-
-**Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 
