@@ -56,7 +56,7 @@ export default class GitHubInfoCommand extends SubCommand {
       .setThumbnail(user.avatar_url);
 
     if (user.name) {
-      embed.setAuthor(user.name);
+      embed.setAuthor({ name: user.name });
     }
 
     await interaction.editReply({ embeds: [embed] });

@@ -53,7 +53,10 @@ export default class ReminderHelper extends Helper {
 
             const embed = this.bot.utils
               .baseEmbed({ author: guildUser })
-              .setAuthor(guildUser.tag, guildUser.displayAvatarURL({ dynamic: true }))
+              .setAuthor({
+                name: guildUser.tag,
+                iconURL: guildUser.displayAvatarURL({ dynamic: true }),
+              })
               .setTitle("Unmute")
               .setDescription(
                 `**${guildUser.tag}** was successfully **unmuted** from their temp mute`,

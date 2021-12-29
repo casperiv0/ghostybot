@@ -489,7 +489,10 @@ export class Util {
     const avatar = user?.displayAvatarURL({ dynamic: true });
     const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
-    return new DJS.MessageEmbed().setFooter(username, avatar).setColor("#5865f2").setTimestamp();
+    return new DJS.MessageEmbed()
+      .setFooter({ text: username, iconURL: avatar })
+      .setColor("#5865f2")
+      .setTimestamp();
   }
 
   parseMessage(

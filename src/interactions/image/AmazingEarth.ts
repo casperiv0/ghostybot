@@ -30,7 +30,7 @@ export default class AmazingEarthCommand extends SubCommand {
       .setTitle(`${title}`)
       .setURL(url)
       .setImage(image)
-      .setFooter(`👍 ${upvotes} - 💬 ${comments}`);
+      .setFooter({ text: `👍 ${upvotes} - 💬 ${comments}` });
 
     await interaction.editReply({ embeds: [embed] });
   }

@@ -30,7 +30,7 @@ export default class MoneyLeaderboardCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.guild?.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
-      .setFooter(lang.ECONOMY.BOTH_COUNTED);
+      .setFooter({ text: lang.ECONOMY.BOTH_COUNTED });
 
     data.forEach(async (item, idx) => {
       const userId = item.user_id;

@@ -57,7 +57,7 @@ export default class WeatherInfoCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setAuthor(`${data.name} (${country}) ${lang.UTIL.WEATHER}`, flag)
+      .setAuthor({ name: `${data.name} (${country}) ${lang.UTIL.WEATHER}`, iconURL: flag })
       .setDescription(
         `
   ${bold(lang.UTIL.MAIN)}: ${main}

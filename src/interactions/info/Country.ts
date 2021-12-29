@@ -54,7 +54,7 @@ export default class CountryInfoCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setAuthor(name)
+      .setAuthor({ name })
       .setTitle(nativeName)
 
       .setDescription(

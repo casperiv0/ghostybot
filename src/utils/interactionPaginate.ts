@@ -18,9 +18,9 @@ export async function interactionPaginate(
   const v = await interaction.reply({
     fetchReply: true,
     embeds: [
-      embeds[0].setFooter(
-        `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
-      ),
+      embeds[0].setFooter({
+        text: `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
+      }),
     ],
   });
 
@@ -82,9 +82,11 @@ export async function interactionPaginate(
     if (page !== -1) {
       currentPage?.edit({
         embeds: [
-          embeds[page].setFooter(
-            `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, { long: true })})`,
-          ),
+          embeds[page].setFooter({
+            text: `Page: ${page + 1} / ${embeds.length} (Times out in ${ms(TIMEOUT, {
+              long: true,
+            })})`,
+          }),
         ],
       });
     }
@@ -95,7 +97,7 @@ export async function interactionPaginate(
 
     if (currentPage?.embeds[0]) {
       currentPage
-        ?.edit({ embeds: [currentPage.embeds[0].setFooter("Timed out")] })
+        ?.edit({ embeds: [currentPage.embeds[0].setFooter({ text: "Timed out" })] })
         .catch(() => null);
     }
   });

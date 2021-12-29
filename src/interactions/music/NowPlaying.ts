@@ -30,7 +30,7 @@ export default class NowPlayingCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(song.name ?? lang.UTIL.UNKNOWN)
       .setURL(song.url)
-      .setAuthor(`🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} `)
+      .setAuthor({ name: `🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} ` })
       .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`)
       .addField(
         lang.MUSIC.INFORMATION,

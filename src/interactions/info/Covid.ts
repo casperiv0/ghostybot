@@ -69,10 +69,10 @@ export default class CovidInfoCommand extends SubCommand {
       .addField(lang.COVID.CRITICAL, this.bot.utils.formatNumber(country.critical), true)
       .addField(lang.COVID.TESTS, this.bot.utils.formatNumber(country.tests), true)
       .setThumbnail(country.countryInfo?.flag || "")
-      .setFooter(
-        `${lang.COVID.LAST_UPDATED}: ${time(new Date(country.updated), "f")}`,
-        interaction.user.displayAvatarURL({ dynamic: true }),
-      );
+      .setFooter({
+        text: `${lang.COVID.LAST_UPDATED}: ${time(new Date(country.updated), "f")}`,
+        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+      });
 
     await interaction.editReply({ embeds: [embed] });
   }

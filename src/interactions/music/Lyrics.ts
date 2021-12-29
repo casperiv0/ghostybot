@@ -58,7 +58,7 @@ export default class LyricsCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setAuthor(artist.toString(), artistImageURL, artistURL)
+      .setAuthor({ name: artist.toString(), iconURL: artistImageURL, url: artistURL })
       .setTitle(songTitle.toString())
       .setDescription(songLyrics)
       .setURL(url);
