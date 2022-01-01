@@ -46,7 +46,7 @@
     "@discordjs/voice": "^0.7.5",
     "@iamtraction/google-translate": "^1.1.2",
     "bluebird": "^3.7.2",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "ctgs.js": "^1.1.0",
     "dayjs": "^1.10.7",
     "discord-giveaways": "5.0.1",
