@@ -35,7 +35,7 @@ export enum APIs {
   YtComment = "https://some-random-api.ml/canvas/youtube-comment?username=",
 
   // info
-  Country = "https://restcountries.eu/rest/v2/name/",
+  Country = "https://restcountries.com/v2/name/",
   Covid = "https://disease.sh/v3/covid-19/all",
   GitHub = "https://api.github.com/users/",
   IP = "https://ipwhois.app/json/",
