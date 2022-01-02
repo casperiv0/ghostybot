@@ -53,7 +53,7 @@ export default class WeatherInfoCommand extends SubCommand {
     const windDeg = this.getWindDirection(data.wind.deg, lang);
 
     const country = data.sys.country.toString();
-    const flag = `https://www.countryflags.io/${country}/flat/64.png`;
+    const flag = `https://flagcdn.com/w40/${country.toLowerCase()}.png`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
