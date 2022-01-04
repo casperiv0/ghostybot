@@ -590,13 +590,13 @@ export class Util {
     string: Str,
     values: Values,
   ): string {
-    const regex = /\{[a-z0-9]\w+\}/gi;
+    const regex = /\{[a-z0-9_-]\w+\}/gi;
     const keys = string.match(regex) ?? [];
 
     keys.forEach((key) => {
       const parsedKey = key.replace("{", "").replace("}", "");
       const value = values[parsedKey];
-      string = string.replace(key, String(value)) as Str;
+      string = string.replaceAll(key, String(value)) as Str;
     });
 
     return string;

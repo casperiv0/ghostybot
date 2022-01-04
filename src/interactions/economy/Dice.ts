@@ -25,15 +25,15 @@ export default class DiceCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setTitle(`🎲 ${lang.ECONOMY.DICE_LANDED.replace("{roll}", `${roll}`)}`);
+      .setTitle(`🎲 ${this.bot.utils.translate(lang.ECONOMY.DICE_LANDED, { roll })}`);
 
     if (roll === 6) {
-      embed.setDescription(`🎉 ${lang.ECONOMY.DICE_WON.replace("{price}", `${price}`)}`);
+      embed.setDescription(`🎉 ${this.bot.utils.translate(lang.ECONOMY.DICE_WON, { price })}`);
       this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
         money: user.money + price,
       });
     } else {
-      embed.setDescription(`❌ ${lang.ECONOMY.DICE_LOST.replace("{price}", `${price}`)}`);
+      embed.setDescription(`❌ ${this.bot.utils.translate(lang.ECONOMY.DICE_LOST, { price })}`);
     }
 
     await interaction.reply({ embeds: [embed] });

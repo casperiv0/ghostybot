@@ -53,20 +53,18 @@ export default class RemoveCommand extends SubCommand {
     if (songNo < 1) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace(
-          "{totalQueue}",
-          `${queue.songs.length - 1}`,
-        ),
+        content: this.bot.utils.translate(lang.MUSIC.BETWEEN_1_TOTALQUEUE, {
+          totalQueue: queue.songs.length - 1,
+        }),
       });
     }
 
     if (songNo >= queue.songs.length) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.MUSIC.BETWEEN_1_TOTALQUEUE.replace(
-          "{totalQueue}",
-          `${queue.songs.length - 1}`,
-        ),
+        content: this.bot.utils.translate(lang.MUSIC.BETWEEN_1_TOTALQUEUE, {
+          totalQueue: queue.songs.length - 1,
+        }),
       });
     }
 

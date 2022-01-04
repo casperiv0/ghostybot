@@ -30,19 +30,21 @@ export default class BetCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(
-        lang.GAMES.BETS_ON.replace("{member_1}", interaction.user.username).replace(
-          "{member_2}",
-          user.username,
-        ),
+        this.bot.utils.translate(lang.GAMES.BETS_ON, {
+          member_1: interaction.user.username,
+          member_2: user.username,
+        }),
       )
       .setDescription(
         number > 0.5
-          ? lang.GAMES.WON_BET.replace("{member_1}", interaction.user.username)
-              .replace("{member_2}", user.username)
-              .replace("{member_1}", interaction.user.username)
-          : lang.GAMES.LOST_BET.replace("{member_1}", interaction.user.username)
-              .replace("{member_2}", user.username)
-              .replace("{member_1}", interaction.user.username),
+          ? this.bot.utils.translate(lang.GAMES.WON_BET, {
+              member_1: interaction.user.username,
+              member_2: user.username,
+            })
+          : this.bot.utils.translate(lang.GAMES.LOST_BET, {
+              member_1: interaction.user.username,
+              member_2: user.username,
+            }),
       );
 
     await interaction.reply({ embeds: [embed] });

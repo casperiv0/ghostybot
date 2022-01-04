@@ -62,7 +62,7 @@ export default class UserInfoCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setTitle(lang.UTIL.USER_INFO.replace("{username}", username))
+      .setTitle(this.bot.utils.translate(lang.UTIL.USER_INFO, { username }))
       .setDescription(
         `
 ${bold("ID")}: ${inlineCode(id)}

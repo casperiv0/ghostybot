@@ -54,10 +54,10 @@ export default class GiveXP extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.LEVELS.GIVE_XP_SUCCESS.replace("{member}", user.tag).replace(
-        "{amount}",
-        amount.toString(),
-      ),
+      content: this.bot.utils.translate(lang.LEVELS.GIVE_XP_SUCCESS, {
+        member: user.tag,
+        amount,
+      }),
     });
   }
 }
