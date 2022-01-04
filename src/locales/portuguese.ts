@@ -564,11 +564,6 @@ const LANG: typeof import("./english").default = {
     MAX_EMOJI: "Limite de emojis atingido para esse servidor!",
     STICKY_LONG: "Sua mensagem fixada não pode ser maior que 1800 caracteres!",
     STICKY_READ: "__***:warning: Mensagem Fixa, Leia Antes de Digitar! :warning:***__",
-    ALREADY_MUTED: "Usuário já mutado!",
-    CAN_NOT_MUTED: "Usuário não pode ser mutado",
-    TEMP_MUTED:
-      "Você foi **mutado temporáriamente** de **{guildName}**, Motivo: **{reason}**, Tempo: **{time}**",
-    SUCCESS_MUTED: "{muteMemberTag} fou mutado com sucesso por {time}. Motivo: **{reason}**",
     PROVIDE_VALID_USERID: "Por favor informe um id de usuário",
     SUC_UNBAN: "**{bannedUsername}** foi desbanido do servidor com sucesso.",
     NOT_IN_VOICE_OR_NOT_DEAF:

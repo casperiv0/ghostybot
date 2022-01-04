@@ -56,6 +56,5 @@
   "bot_language": "Bot language",
   "timezone": "Timezone",
   "bot_prefix": "Bot Prefix",
-  "auto_delete_commands": "Auto delete commands",
-  "muted_role": "Muted Role"
+  "auto_delete_commands": "Auto delete commands"
 }

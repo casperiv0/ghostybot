@@ -56,6 +56,5 @@
   "bot_language": "Язык бота",
   "timezone": "Часовой пояс",
   "bot_prefix": "Префикс бота",
-  "auto_delete_commands": "Авто-удаление команд",
-  "muted_role": "Мьют-роль"
+  "auto_delete_commands": "Авто-удаление команд"
 }

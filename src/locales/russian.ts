@@ -564,11 +564,6 @@ const LANG: typeof import("./english").default = {
     STICKY_LONG: "Ваше липкое сообщение не может быть длиннее 1800 символов!",
     STICKY_READ:
       "__***:warning: Липкое сообщение, прочитайте его перед тем, как печатать! :warning:***__",
-    ALREADY_MUTED: "Пользователь уже замучен!",
-    CAN_NOT_MUTED: "Пользователь не может быть замучен",
-    TEMP_MUTED:
-      "Вы были **временно замучены** на **{guildName}**. Причина: **{reason}**. Время: **{time}**",
-    SUCCESS_MUTED: "{muteMemberTag} был успешно замучен на {time}. Причина: **{reason}**",
     PROVIDE_VALID_USERID: "Пожалуйста, укажите ID пользователя!",
     SUC_UNBAN: "**{bannedUsername}** был успешно разбанен на сервере.",
     NOT_IN_VOICE_OR_NOT_DEAF: "Пользователь не в голосовом канале или не замучен",

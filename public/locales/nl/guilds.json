@@ -56,6 +56,5 @@
   "bot_language": "Bot taal",
   "timezone": "Tijdzone",
   "bot_prefix": "Bot Prefix",
-  "auto_delete_commands": "Automatisch verwijderen van commando's",
-  "muted_role": "Muted rol"
+  "auto_delete_commands": "Automatisch verwijderen van commando's"
 }

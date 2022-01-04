@@ -51,19 +51,19 @@ export default class MuteCommand extends SubCommand {
     ) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ADMIN.CAN_NOT_MUTED,
+        content: lang.ADMIN.MUTE_CANNOT_MUTE,
       });
     }
 
     if (typeof member.communicationDisabledUntilTimestamp === "number") {
-      return interaction.reply({ ephemeral: true, content: lang.ADMIN.ALREADY_MUTED });
+      return interaction.reply({ ephemeral: true, content: lang.ADMIN.MUTE_ALREADY_MUTED });
     }
 
-    const content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", member.user.tag)
+    const content = lang.ADMIN.MUTE_SUCCESS.replace("{muteMemberTag}", member.user.tag)
       .replace("{time}", time)
       .replace("{reason}", reason);
 
-    const dmContent = lang.ADMIN.TEMP_MUTED.replace("{guildName}", interaction.guild!.name)
+    const dmContent = lang.ADMIN.MUTE_SUCCESS_DM.replace("{guildName}", interaction.guild!.name)
       .replace("{reason}", reason)
       .replace("{time}", time);
 

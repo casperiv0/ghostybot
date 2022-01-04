@@ -56,6 +56,5 @@
   "bot_language": "Idioma do bot",
   "timezone": "Fuso horário",
   "bot_prefix": "Prefixo do bot",
-  "auto_delete_commands": "Auto deletar comandos",
-  "muted_role": "Mutar comandos"
+  "auto_delete_commands": "Auto deletar comandos"
 }
