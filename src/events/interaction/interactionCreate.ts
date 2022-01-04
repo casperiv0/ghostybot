@@ -72,7 +72,9 @@ export default class InteractionEvent extends Event {
       if (dbGuild?.disabled_categories.includes(topLevelName)) {
         return interaction.reply({
           ephemeral: true,
-          content: lang.MESSAGE.CATEGORY_DISABLED.replace("{category}", topLevelName),
+          content: this.bot.utils.translate(lang.MESSAGE.CATEGORY_DISABLED, {
+            category: topLevelName,
+          }),
         });
       }
 

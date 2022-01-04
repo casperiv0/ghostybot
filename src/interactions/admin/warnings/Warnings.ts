@@ -51,7 +51,7 @@ export default class WarningsCommand extends SubCommand {
       if (!warning) {
         return interaction.reply({
           ephemeral: true,
-          content: lang.ADMIN.WARN_NOT_FOUND.replace("{memberTag}", user.tag),
+          content: this.bot.utils.translate(lang.ADMIN.WARN_NOT_FOUND, { memberTag: user.tag }),
         });
       }
 
@@ -65,7 +65,7 @@ export default class WarningsCommand extends SubCommand {
     }
 
     embed
-      .setTitle(lang.ADMIN.MEMBER_WARNS.replace("{memberTag}", user.tag))
+      .setTitle(this.bot.utils.translate(lang.ADMIN.MEMBER_WARNS, { memberTag: user.tag }))
       .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings?.length || 0).toString())
       .setThumbnail(user.displayAvatarURL({ dynamic: true }));
 

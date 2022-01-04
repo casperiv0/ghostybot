@@ -60,7 +60,7 @@ export default class VolumeCommand extends SubCommand {
 
     this.bot.player.setVolume(interaction.guildId!, newVol);
     await interaction.reply({
-      content: lang.MUSIC.VOL_SUCCESS.replace("{vol}", newVol.toString()),
+      content: this.bot.utils.translate(lang.MUSIC.VOL_SUCCESS, { vol: newVol }),
     });
   }
 }

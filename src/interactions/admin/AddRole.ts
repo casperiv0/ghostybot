@@ -46,14 +46,16 @@ export default class AddRoleCommand extends SubCommand {
     if (interaction.guild!.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
     if (interaction.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", user.username),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {
+          member: user.username,
+        }),
       });
     }
 
@@ -66,10 +68,10 @@ export default class AddRoleCommand extends SubCommand {
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ROLES.ADDED_ROLE_TO.replace("{role}", role.name).replace(
-        "{member}",
-        user.username,
-      ),
+      content: this.bot.utils.translate(lang.ROLES.ADDED_ROLE_TO, {
+        role: role.name,
+        member: user.username,
+      }),
     });
 
     await needsRole.roles.add(role.id);

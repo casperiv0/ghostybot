@@ -15,7 +15,7 @@ export default class PingInteraction extends Command {
     lang: typeof import("@locales/english").default,
   ) {
     return interaction.reply({
-      content: lang.UTIL.MY_PING.replace("{ping}", Math.round(this.bot.ws.ping).toString()),
+      content: this.bot.utils.translate(lang.UTIL.MY_PING, { ping: Math.round(this.bot.ws.ping) }),
     });
   }
 }

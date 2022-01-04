@@ -77,10 +77,10 @@ export default class PayCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.PAY_SUCCESS.replace("{member}", user.tag).replace(
-        "{amount}",
-        `${amount}`,
-      ),
+      content: this.bot.utils.translate(lang.ECONOMY.PAY_SUCCESS, {
+        member: user.tag,
+        amount,
+      }),
     });
   }
 }

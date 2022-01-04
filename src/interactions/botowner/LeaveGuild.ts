@@ -53,7 +53,7 @@ export default class LeaveGuildCommand extends SubCommand {
       await guild.leave();
 
       await interaction.reply({
-        content: lang.GUILD.LEFT.replace("{guild_name}", guild.name),
+        content: this.bot.utils.translate(lang.GUILD.LEFT, { guild_name: guild.name }),
       });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");

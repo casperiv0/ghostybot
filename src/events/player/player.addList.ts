@@ -16,14 +16,12 @@ export default class PlayerAddListEvent extends Event {
       const lang = await bot.utils.getGuildLang(channel?.guild?.id);
       if (!playlist) return;
 
-      const embed = bot.utils
-        .baseEmbed({ author: playlist.user ?? null })
-        .setTitle(
-          lang.MUSIC.ADDED_PL_TO_QUEUE.replace(
-            "{length}",
-            playlist.songs.length.toString(),
-          ).replace("{name}", playlist.name),
-        );
+      const embed = bot.utils.baseEmbed({ author: playlist.user ?? null }).setTitle(
+        this.bot.utils.translate(lang.MUSIC.ADDED_PL_TO_QUEUE, {
+          length: playlist.songs.length,
+          name: playlist.name,
+        }),
+      );
 
       return channel?.send({ embeds: [embed] });
     } catch (err) {

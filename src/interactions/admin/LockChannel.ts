@@ -56,10 +56,10 @@ export default class LockChannelCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ADMIN.LOCKED_CHANNEL_REASON.replace("{channel}", `${channel}`).replace(
-        "{lockReason}",
-        reason,
-      ),
+      content: this.bot.utils.translate(lang.ADMIN.LOCKED_CHANNEL_REASON, {
+        channel: channel.toString(),
+        lockReason: reason,
+      }),
     });
   }
 }

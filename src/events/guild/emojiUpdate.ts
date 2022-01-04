@@ -20,9 +20,11 @@ export default class EmojiUpdateEvent extends Event {
       let msg = "";
 
       if (oldEm.name !== newEm.name) {
-        msg = lang.EVENTS.EMOJI_RENAMED_MSG.replace("{emoji_name}", oldEm.name)
-          .replace("{new_name}", newEm.name)
-          .replace("{emoji}", `${newEm}`);
+        msg = this.bot.utils.translate(lang.EVENTS.EMOJI_RENAMED_MSG, {
+          emoji_name: oldEm.name,
+          new_name: newEm.name,
+          emoji: newEm.toString(),
+        });
       } else {
         return;
       }

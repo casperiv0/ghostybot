@@ -45,7 +45,7 @@ export default class WithdrawCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.WITHDRAW_AMOUNT.replace("{amount}", `${amount}`),
+      content: this.bot.utils.translate(lang.ECONOMY.WITHDRAW_AMOUNT, { amount }),
     });
   }
 }

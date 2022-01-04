@@ -39,10 +39,9 @@ export default class VerifyCommand extends Command {
       } else {
         interaction.reply({
           ephemeral: true,
-          content: lang.UTIL.VERIFY_CHANNEL.replace(
-            "{channel}",
-            `<#${guild.verify_data.channel_id}>`,
-          ),
+          content: this.bot.utils.translate(lang.UTIL.VERIFY_CHANNEL, {
+            channel: `<#${guild.verify_data.channel_id}>`,
+          }),
         });
       }
     } else {

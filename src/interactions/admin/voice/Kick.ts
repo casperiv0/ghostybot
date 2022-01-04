@@ -65,18 +65,20 @@ export default class VoiceKickCommand extends SubCommand {
 
     await user
       .send({
-        content: lang.ADMIN.YOU_DISC.replace("{guildName}", `${interaction.guild?.name}`).replace(
-          "{reason}",
+        content: this.bot.utils.translate(lang.ADMIN.YOU_DISC, {
+          guildName: interaction.guild!.name,
           reason,
-        ),
+        }),
       })
       .catch(() => null);
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.USER_DISC.replace("{kickUserTag}", user.tag)
-        .replace("{kickUserVoiceChannel}", `${member.voice.channel}`)
-        .replace("{reason}", reason),
+      content: this.bot.utils.translate(lang.ADMIN.USER_DISC, {
+        kickUserTag: user.tag,
+        kickUserVoiceChannel: member.voice.channel.toString(),
+        reason,
+      }),
     });
   }
 }

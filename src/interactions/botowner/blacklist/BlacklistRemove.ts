@@ -54,10 +54,10 @@ export default class BlacklistRemove extends SubCommand {
     await BlacklistedModel.findByIdAndDelete(dbUser._id);
 
     await interaction.editReply({
-      content: lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", user?.tag).replace(
-        "{type}",
-        lang.BOT_OWNER.UNBLACKLISTED,
-      ),
+      content: this.bot.utils.translate(lang.BOT_OWNER.BLACKLISTED_SUCCESS, {
+        member: user.tag,
+        type: lang.BOT_OWNER.UNBLACKLISTED,
+      }),
     });
   }
 }

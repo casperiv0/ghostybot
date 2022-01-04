@@ -17,7 +17,11 @@ export default class GuildChannelTopicUpdateEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_TOPIC_UPDATED)
-        .setDescription(lang.EVENTS.CHANNEL_TOPIC_UPDATED_MSG.replace("{channel}", channel.name))
+        .setDescription(
+          this.bot.utils.translate(lang.EVENTS.CHANNEL_TOPIC_UPDATED_MSG, {
+            channel: channel.name,
+          }),
+        )
         .setColor("ORANGE")
         .addField(lang.EVENTS.CHANNEL_OLD_TOPIC, oldTopic || lang.GLOBAL.NONE)
         .addField(lang.EVENTS.CHANNEL_NEW_TOPIC, newTopic || lang.GLOBAL.NONE)

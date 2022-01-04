@@ -19,9 +19,11 @@ export default class ChannelUpdateEvent extends Event {
       let msg = "";
       const type = newChannel.type === "GUILD_CATEGORY" ? "Category" : "Channel";
       if (oldChannel.name !== newChannel.name) {
-        msg = lang.EVENTS.CHANNEL_RENAME_MSG.replace("{channel_type}", type)
-          .replace("{channel}", oldChannel.name)
-          .replace("{new_channel}", newChannel.name);
+        msg = this.bot.utils.translate(lang.EVENTS.CHANNEL_RENAME_MSG, {
+          channel_type: type,
+          channel: oldChannel.name,
+          new_channel: newChannel.name,
+        });
       } else {
         return;
       }

@@ -54,16 +54,19 @@ export default class VoiceDeafenCommand extends SubCommand {
 
     await user
       .send({
-        content: lang.ADMIN.DEAFEN_SUCCESS_DM.replace(
-          "{guild}",
-          `${interaction.guild?.name}`,
-        ).replace("{reason}", reason),
+        content: this.bot.utils.translate(lang.ADMIN.DEAFEN_SUCCESS_DM, {
+          guild: interaction.guild!.name,
+          reason,
+        }),
       })
       .catch(() => null);
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.DEAFEN_SUCCESS.replace("{member}", user.tag).replace("{reason}", reason),
+      content: this.bot.utils.translate(lang.ADMIN.DEAFEN_SUCCESS, {
+        member: user.tag,
+        reason,
+      }),
     });
   }
 }

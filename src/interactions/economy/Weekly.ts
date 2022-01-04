@@ -32,7 +32,7 @@ export default class WeeklyCommand extends SubCommand {
 
       await interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.WEEKLY_ERROR.replace("{time}", time(dateTime, "R")),
+        content: this.bot.utils.translate(lang.ECONOMY.WEEKLY_ERROR, { time: time(dateTime, "R") }),
       });
     } else {
       await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
@@ -42,7 +42,7 @@ export default class WeeklyCommand extends SubCommand {
 
       await interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.WEEKLY_SUCCESS.replace("{amount}", `${amount}`),
+        content: this.bot.utils.translate(lang.ECONOMY.WEEKLY_SUCCESS, { amount }),
       });
     }
   }

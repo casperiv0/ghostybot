@@ -31,7 +31,7 @@ export default class DailyCommand extends SubCommand {
 
       await interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.DAILY_ERROR.replace("{time}", time(dateTime, "R")),
+        content: this.bot.utils.translate(lang.ECONOMY.DAILY_ERROR, { time: time(dateTime, "R") }),
       });
     } else {
       this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
@@ -41,7 +41,7 @@ export default class DailyCommand extends SubCommand {
 
       await interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.DAILY_SUCCESS.replace("{amount}", `${amount}`),
+        content: this.bot.utils.translate(lang.ECONOMY.DAILY_SUCCESS, { amount }),
       });
     }
   }

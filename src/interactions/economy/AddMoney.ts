@@ -53,7 +53,7 @@ export default class AddMoneyCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.ADDED_MONEY.replace("{amount}", amount.toString()),
+      content: this.bot.utils.translate(lang.ECONOMY.ADDED_MONEY, { amount }),
     });
   }
 }

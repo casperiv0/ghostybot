@@ -47,7 +47,9 @@ export default class UnlockChannelCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ADMIN.SUC_UNLOCK.replace("{channel}", channel.toString()),
+      content: this.bot.utils.translate(lang.ADMIN.SUC_UNLOCK, {
+        channel: channel.toString(),
+      }),
     });
   }
 }

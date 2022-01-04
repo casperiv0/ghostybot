@@ -55,15 +55,15 @@ export default class MuteCommand extends SubCommand {
       });
     }
 
-    const content = lang.ADMIN.MUTE_SUCCESS.replace("{tag}", member.user.tag).replace(
-      "{reason}",
+    const content = this.bot.utils.translate(lang.ADMIN.MUTE_SUCCESS, {
+      tag: member.user.tag,
       reason,
-    );
+    });
 
-    const dmContent = lang.ADMIN.MUTE_SUCCESS_DM.replace(
-      "{guild}",
-      interaction.guild!.name,
-    ).replace("{reason}", reason);
+    const dmContent = this.bot.utils.translate(lang.ADMIN.MUTE_SUCCESS_DM, {
+      guild: interaction.guild!.name,
+      reason,
+    });
 
     const parsedTime = ms(time);
     if (parsedTime < 60000 || isNaN(parsedTime)) {

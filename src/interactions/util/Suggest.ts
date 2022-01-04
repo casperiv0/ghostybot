@@ -36,7 +36,9 @@ export default class SuggestCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(lang.UTIL.NEW_SUGGESTION)
       .setDescription(suggestion)
-      .setAuthor({ name: lang.UTIL.CREATED_BY.replace("{member}", interaction.user.tag) });
+      .setAuthor({
+        name: this.bot.utils.translate(lang.UTIL.CREATED_BY, { member: interaction.user.tag }),
+      });
 
     const channel = this.bot.channels.cache.get(suggestChannel);
     if (!channel) return;

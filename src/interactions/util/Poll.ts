@@ -27,7 +27,9 @@ export default class PollCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setAuthor({ name: lang.UTIL.CREATED_BY.replace("{member}", interaction.user.tag) })
+      .setAuthor({
+        name: this.bot.utils.translate(lang.UTIL.CREATED_BY, { member: interaction.user.tag }),
+      })
       .setDescription(question);
 
     embed.footer = null;

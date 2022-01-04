@@ -56,14 +56,16 @@ export default class TempRoleCommand extends SubCommand {
     if (interaction.guild!.me!.roles.highest.comparePositionTo(parsedRole) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
     if (interaction.guild!.me!.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", needsRole.user.username),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {
+          member: needsRole.user.username,
+        }),
       });
     }
 
@@ -92,9 +94,11 @@ export default class TempRoleCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ADMIN.ADDED_ROLE_TO.replace("{roleName}", role.name)
-        .replace("{time}", time)
-        .replace("{userTag}", needsRole.user.tag),
+      content: this.bot.utils.translate(lang.ADMIN.ADDED_ROLE_TO, {
+        roleName: role.name,
+        time,
+        userTag: needsRole.user.tag,
+      }),
     });
   }
 }

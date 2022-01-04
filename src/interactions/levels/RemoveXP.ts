@@ -54,10 +54,10 @@ export default class GiveXP extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.LEVELS.REMOVED_XP.replace("{amount}", amount.toString()).replace(
-        "{userTag}",
-        user.tag,
-      ),
+      content: this.bot.utils.translate(lang.LEVELS.REMOVED_XP, {
+        amount,
+        userTag: user.tag,
+      }),
     });
   }
 }

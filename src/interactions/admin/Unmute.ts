@@ -46,7 +46,9 @@ export default class UnmuteCommand extends SubCommand {
 
     interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.SUC_UNMUTE.replace("{mutedMemberTag}", member.user.tag),
+      content: this.bot.utils.translate(lang.ADMIN.SUC_UNMUTE, {
+        mutedMemberTag: member.user.tag,
+      }),
     });
 
     this.bot.emit("guildMuteRemove", interaction.guild, {

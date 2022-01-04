@@ -77,7 +77,7 @@ export default class SlotsCommand extends SubCommand {
       .setDescription(`${items[numbers[0]]} ${items[numbers[1]]} ${items[numbers[2]]}`);
 
     if (hasWon) {
-      embed.setTitle(lang.ECONOMY.WON_SLOTS.replace("{amount}", `${amount}`));
+      embed.setTitle(this.bot.utils.translate(lang.ECONOMY.WON_SLOTS, { amount }));
       await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
         money: user.money + amount,
       });
