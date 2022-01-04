@@ -567,12 +567,6 @@ const LANG: typeof import("./english").default = {
     STICKY_LONG: "Deine Angepinnte Nachricht kann nicht länger als 1880 Zeichen sein!",
     STICKY_READ:
       "__***:warning: Angepinnte Nachricht, Lies das bevor du etwas schreibst! :warning:***__",
-    ALREADY_MUTED: "Benutzer ist bereits stunmmgeschalten!",
-    CAN_NOT_MUTED: "Benutzer kann nicht stunmmgeschalten werden",
-    TEMP_MUTED:
-      "Du wurdest **temporär stunmmgeschalten** vom Server **{guildName}**, Grund: **{reason}**, Zeit: **{time}**",
-    SUCCESS_MUTED:
-      "{muteMemberTag} wurde erfolgreich für {time} stummgeschalten. Grund: **{reason}**",
     PROVIDE_VALID_USERID: "Gib bitte eine ID von einem Benutzer an",
     SUC_UNBAN: "**{bannedUsername}** wurde erfolgreich vom Server entbannt.",
     NOT_IN_VOICE_OR_NOT_DEAF: "Benutzer ist in keinem Sprachkanal oder nicht stummgeschalten",

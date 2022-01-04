@@ -58,7 +58,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
   const [prefix, setPrefix] = React.useState(guild.prefix || "");
   const [tz, setTz] = React.useState(guild.timezone || "");
   const [autoDelCmd, setAutoDelCmd] = React.useState<boolean>(guild.auto_delete_cmd ?? false);
-  const [mutedRoleId, setMutedRoleId] = React.useState(guild.muted_role_id || "");
   const router = useRouter();
   const { t } = useTranslation("guilds");
   const { t: commonT } = useTranslation("common");
@@ -335,14 +334,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
       label: t("auto_delete_commands"),
     },
-    {
-      type: "select",
-      id: "muted_role_id",
-      value: mutedRoleId,
-      onChange: (e) => setMutedRoleId(e.target.value),
-      data: guild.roles,
-      label: t("muted_role"),
-    },
   ];
 
   async function onSubmit(e: React.FormEvent) {
@@ -370,7 +361,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             prefix,
             timezone: tz,
             auto_delete_cmd: autoDelCmd,
-            muted_role_id: mutedRoleId,
             verify_data: verifyData,
           }),
         },

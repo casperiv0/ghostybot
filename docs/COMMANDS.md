@@ -83,7 +83,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin mute ...
 
-**Options:** user (USER / Required), reason (STRING / Optional), time (STRING / Optional)
+**Options:** user (USER / Required), time (STRING / Required), reason (STRING / Optional)
 
 [Back to top](#ghostybot-command-list)
 

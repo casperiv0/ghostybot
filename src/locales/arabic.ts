@@ -560,11 +560,6 @@ const LANG: typeof import("./english").default = {
     MAX_EMOJI: "Maximum emoji count reached for this guild!",
     STICKY_LONG: "Your sticky message can not be longer than 1800 characters!",
     STICKY_READ: "__***:warning: Sticky Message, Read Before Typing! :warning:***__",
-    ALREADY_MUTED: "User is already muted!",
-    CAN_NOT_MUTED: "User can't be muted",
-    TEMP_MUTED:
-      "You've been **temporary muted** from **{guildName}**, Reason: **{reason}**, Time: **{time}**",
-    SUCCESS_MUTED: "{muteMemberTag} was successfully muted for {time}. Reason: **{reason}**",
     PROVIDE_VALID_USERID: "Please provide a user id",
     SUC_UNBAN: "**{bannedUsername}** was successfully unbanned from the server.",
     NOT_IN_VOICE_OR_NOT_DEAF: "User is not in a voice channel or isn't deafened",
