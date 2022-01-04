@@ -1,4 +1,5 @@
 import * as DJS from "discord.js";
+import ms from "ms";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -7,11 +8,16 @@ export default class MuteCommand extends SubCommand {
     super(bot, {
       commandName: "admin",
       name: "mute",
-      description: "Mute/tempmute a user",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES, DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      description: "Timeout a user",
+      botPermissions: [
+        DJS.Permissions.FLAGS.MANAGE_ROLES,
+        DJS.Permissions.FLAGS.MANAGE_CHANNELS,
+        DJS.Permissions.FLAGS.MODERATE_MEMBERS,
+      ],
       memberPermissions: [
         DJS.Permissions.FLAGS.MANAGE_ROLES,
         DJS.Permissions.FLAGS.MANAGE_CHANNELS,
+        DJS.Permissions.FLAGS.MODERATE_MEMBERS,
       ],
       options: [
         {
@@ -21,14 +27,14 @@ export default class MuteCommand extends SubCommand {
           required: true,
         },
         {
-          name: "reason",
-          description: "The mute reason",
+          name: "time",
+          description: "How long the user will be muted (Min. 1 minute)",
           type: "STRING",
-          required: false,
+          required: true,
         },
         {
-          name: "time",
-          description: "How long the user will be muted (Default: Until manually unmuted)",
+          name: "reason",
+          description: "The mute reason",
           type: "STRING",
           required: false,
         },
@@ -41,11 +47,15 @@ export default class MuteCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
+    const member = interaction.options.getMember("user", true);
+    const time = interaction.options.getString("time", true);
     const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
-    const time = interaction.options.getString("time");
 
-    const member = await this.bot.utils.findMember(interaction, [user.id]);
-    if (!member || member.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)) {
+    if (
+      !member ||
+      !("timeout" in member) ||
+      member.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)
+    ) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CAN_NOT_MUTED,
@@ -61,36 +71,25 @@ export default class MuteCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.ADMIN.ALREADY_MUTED });
     }
 
-    let content;
-    let dmContent;
-    if (time) {
-      content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", user.tag)
-        .replace("{time}", time)
-        .replace("{reason}", reason);
+    const content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", user.tag)
+      .replace("{time}", time)
+      .replace("{reason}", reason);
 
-      dmContent = lang.ADMIN.TEMP_MUTED.replace("{guildName}", interaction.guild!.name)
-        .replace("{reason}", reason)
-        .replace("{time}", time);
-    } else {
-      dmContent = lang.ADMIN.MUTE_SUCCESS_DM.replace("{guild}", interaction.guild!.name).replace(
-        "{reason}",
-        reason,
-      );
+    const dmContent = lang.ADMIN.TEMP_MUTED.replace("{guildName}", interaction.guild!.name)
+      .replace("{reason}", reason)
+      .replace("{time}", time);
 
-      content = lang.ADMIN.MUTE_SUCCESS.replace("{tag}", user.tag).replace("{reason}", reason);
+    const parsedTime = ms(time);
+    if (parsedTime < 60000 || isNaN(parsedTime)) {
+      return interaction.reply({ ephemeral: true, content: "Must be longer than 1 minute" });
     }
+
+    await member.timeout(parsedTime, reason);
 
     await interaction.reply({ content, ephemeral: true });
     await user.send({
       content: dmContent,
     });
-
-    await this.bot.utils.updateMuteChannelPerms(interaction.guild!, user.id, {
-      SEND_MESSAGES: false,
-      ADD_REACTIONS: false,
-      CONNECT: false,
-    });
-    await member.roles.add(muteRole);
 
     this.bot.emit("guildMuteAdd", interaction.guild, {
       member,
