@@ -47,13 +47,15 @@ export default class VoiceMuteCommand extends SubCommand {
 
     await user
       .send({
-        content: lang.ADMIN.YOU_UNMUTED.replace("{guildName}", `${interaction.guild?.name}`),
+        content: this.bot.utils.translate(lang.ADMIN.YOU_UNMUTED, {
+          guildName: interaction.guild!.name,
+        }),
       })
       .catch(() => null);
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.USER_SUC_UNMUTED.replace("{unmuteUserTag}", user.tag),
+      content: this.bot.utils.translate(lang.ADMIN.USER_SUC_UNMUTED, { unmuteUserTag: user.tag }),
     });
   }
 }

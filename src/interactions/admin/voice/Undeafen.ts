@@ -47,13 +47,17 @@ export default class VoiceUndeafenCommand extends SubCommand {
 
     await user
       .send({
-        content: lang.ADMIN.UNDEAFENED_USER.replace("{guildName}", `${interaction.guild?.name}`),
+        content: this.bot.utils.translate(lang.ADMIN.UNDEAFENED_USER, {
+          guildName: interaction.guild!.name,
+        }),
       })
       .catch(() => null);
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.UNDEAFENED.replace("{undeafenUserTag}", user.tag),
+      content: this.bot.utils.translate(lang.ADMIN.UNDEAFENED, {
+        undeafenUserTag: user.tag,
+      }),
     });
   }
 }

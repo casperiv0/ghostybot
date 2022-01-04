@@ -60,9 +60,11 @@ export default class WarnCommand extends SubCommand {
     const warnings = await this.bot.utils.getUserWarnings(member.user.id, interaction.guildId!);
 
     await interaction.reply({
-      content: lang.ADMIN.USER_WARNED.replace("{memberTag}", member.user.tag)
-        .replace("{reason}", reason)
-        .replace("{warningsTotal}", warnings ? `${warnings.length}` : "0"),
+      content: this.bot.utils.translate(lang.ADMIN.USER_WARNED, {
+        memberTag: member.user.tag,
+        reason,
+        warningsTotal: warnings ? warnings.length : 0,
+      }),
     });
   }
 }

@@ -30,7 +30,7 @@ export default class IMDBInfoCommand extends SubCommand {
 
     if (!movie) {
       return interaction.editReply({
-        content: lang.UTIL.DB_NOT_FOUND.replace("{search}", query),
+        content: this.bot.utils.translate(lang.UTIL.DB_NOT_FOUND, { search: query }),
       });
     }
 

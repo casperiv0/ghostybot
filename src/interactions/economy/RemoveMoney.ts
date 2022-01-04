@@ -53,7 +53,7 @@ export default class RemoveMoneyCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.REMOVED_MONEY.replace("{amount}", amount.toString()),
+      content: this.bot.utils.translate(lang.ECONOMY.REMOVED_MONEY, { amount }),
     });
   }
 }

@@ -66,10 +66,10 @@ export default class RobCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.ROB_SUCCESS.replace("{amount}", `${amount}`).replace(
-        "{member}",
-        user.tag,
-      ),
+      content: this.bot.utils.translate(lang.ECONOMY.ROB_SUCCESS, {
+        amount,
+        member: user.tag,
+      }),
     });
   }
 }

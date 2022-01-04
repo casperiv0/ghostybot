@@ -46,14 +46,16 @@ export default class RemoveRoleCommand extends SubCommand {
     if (interaction.guild!.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH.replace("{role}", role.name),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
     if (interaction.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", user.username),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {
+          member: user.username,
+        }),
       });
     }
 
@@ -61,10 +63,10 @@ export default class RemoveRoleCommand extends SubCommand {
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.REMOVED_ROLE.replace("{roleName}", role.name).replace(
-        "{needsRole}",
-        `${user?.tag}`,
-      ),
+      content: this.bot.utils.translate(lang.ADMIN.REMOVED_ROLE, {
+        roleName: role.name,
+        needsRole: user.tag,
+      }),
     });
   }
 }

@@ -45,7 +45,7 @@ export default class DepositCommand extends SubCommand {
     });
 
     await interaction.reply({
-      content: lang.ECONOMY.DEPOSITED_AMOUNT.replace("{amount}", `${amount}`),
+      content: this.bot.utils.translate(lang.ECONOMY.DEPOSITED_AMOUNT, { amount }),
     });
   }
 }

@@ -29,7 +29,7 @@ export default class EnlargeCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setTitle(lang.UTIL.ENLARGED_EMOJI.replace("{emoji}", emoji));
+      .setTitle(this.bot.utils.translate(lang.UTIL.ENLARGED_EMOJI, { emoji }));
 
     if (custom?.id) {
       embed.setImage(

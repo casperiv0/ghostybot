@@ -47,7 +47,11 @@ export default class ViewRemindersCommand extends SubCommand {
 
         const embed = this.bot.utils
           .baseEmbed(interaction)
-          .setTitle(lang.REMINDER.USER_REMINDERS.replace("{memberUsername}", guildUser.username))
+          .setTitle(
+            this.bot.utils.translate(lang.REMINDER.USER_REMINDERS, {
+              memberUsername: guildUser.username,
+            }),
+          )
           .setDescription(mappedReminders.join("\n\n"));
 
         embeds.push(embed);

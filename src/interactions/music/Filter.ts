@@ -64,9 +64,9 @@ export default class FilterCommand extends SubCommand {
     this.bot.player.setFilter(interaction.guildId!, filter);
 
     if (didEnableFilter) {
-      await interaction.reply(lang.MUSIC.SUC_APPLIED_FILTER.replace("{filter}", filter));
+      await interaction.reply(this.bot.utils.translate(lang.MUSIC.SUC_APPLIED_FILTER, { filter }));
     } else {
-      await interaction.reply(lang.MUSIC.SUC_REM_FILTER.replace("{filter}", filter));
+      await interaction.reply(this.bot.utils.translate(lang.MUSIC.SUC_REM_FILTER, { filter }));
     }
   }
 

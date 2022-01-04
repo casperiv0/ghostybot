@@ -20,7 +20,7 @@ export default class HappinessCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(lang.GAMES.IQ_TEST)
-      .setDescription(lang.GAMES.IQ_IS.replace("{iq}", `${iq}`));
+      .setDescription(this.bot.utils.translate(lang.GAMES.IQ_IS, { iq }));
 
     await interaction.reply({ embeds: [embed] });
   }

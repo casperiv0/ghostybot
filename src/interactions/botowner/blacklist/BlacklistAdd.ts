@@ -60,7 +60,7 @@ export default class BlacklistAdd extends SubCommand {
     const existing = await BlacklistedModel.findOne({ user_id: user.id });
     if (existing) {
       return interaction.editReply({
-        content: lang.BOT_OWNER.ALREADY_BLD.replace("{member}", user?.tag),
+        content: this.bot.utils.translate(lang.BOT_OWNER.ALREADY_BLD, { member: user.tag }),
       });
     }
 
@@ -69,10 +69,10 @@ export default class BlacklistAdd extends SubCommand {
     });
 
     await interaction.editReply({
-      content: lang.BOT_OWNER.BLACKLISTED_SUCCESS.replace("{member}", user?.tag).replace(
-        "{type}",
-        lang.BOT_OWNER.BLACKLISTED,
-      ),
+      content: this.bot.utils.translate(lang.BOT_OWNER.BLACKLISTED_SUCCESS, {
+        member: user.tag,
+        type: lang.BOT_OWNER.BLACKLISTED,
+      }),
     });
   }
 }

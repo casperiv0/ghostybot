@@ -46,7 +46,9 @@ export default class BanCommand extends SubCommand {
     if (interaction.guild!.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ROLES.MY_ROLE_MUST_BE_HIGHER.replace("{member}", member.user?.tag),
+        content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {
+          member: member.user.tag,
+        }),
       });
     }
 
@@ -57,20 +59,20 @@ export default class BanCommand extends SubCommand {
 
     try {
       await user.send({
-        content: lang.MEMBER.DM_BAN_MESSAGE.replace(
-          "{guild_name}",
-          interaction.guild?.name!,
-        ).replace("{ban_reason}", reason),
+        content: this.bot.utils.translate(lang.MEMBER.DM_BAN_MESSAGE, {
+          guild_name: interaction.guild!.name,
+          ban_reason: reason,
+        }),
       });
       // eslint-disable-next-line no-empty
     } catch {}
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.MEMBER.GUILD_BAN_MESSAGE.replace("{member}", user.username).replace(
-        "{ban_reason}",
-        reason,
-      ),
+      content: this.bot.utils.translate(lang.MEMBER.GUILD_BAN_MESSAGE, {
+        member: user.username,
+        ban_reason: reason,
+      }),
     });
   }
 

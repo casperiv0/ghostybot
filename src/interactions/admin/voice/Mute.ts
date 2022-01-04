@@ -54,16 +54,19 @@ export default class VoiceMuteCommand extends SubCommand {
 
     await user
       .send({
-        content: lang.ADMIN.YOU_MUTED.replace("{guildName}", `${interaction.guild?.name}`).replace(
-          "{reason}",
+        content: this.bot.utils.translate(lang.ADMIN.YOU_MUTED, {
+          guildName: interaction.guild!.name,
           reason,
-        ),
+        }),
       })
       .catch(() => null);
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.USER_MUTED.replace("{muteUserTag}", user.tag).replace("{reason}", reason),
+      content: this.bot.utils.translate(lang.ADMIN.USER_MUTED, {
+        muteUserTag: user.tag,
+        reason,
+      }),
     });
   }
 }

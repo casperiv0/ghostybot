@@ -22,7 +22,9 @@ export default class RemoveStickyCommand extends SubCommand {
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.STICKY_CLEAR.replace("{channel}", `${interaction.channel}`),
+      content: this.bot.utils.translate(lang.ADMIN.STICKY_CLEAR, {
+        channel: interaction.channel!.toString(),
+      }),
     });
   }
 }

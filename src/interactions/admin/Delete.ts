@@ -36,7 +36,7 @@ export default class DeleteCommand extends SubCommand {
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.ADMIN.DELETE_DELETED.replace("{amount}", amount.toString()),
+      content: this.bot.utils.translate(lang.ADMIN.DELETE_DELETED, { amount }),
     });
 
     await (interaction.channel as any)?.bulkDelete(amount);

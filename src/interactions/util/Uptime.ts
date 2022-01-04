@@ -21,7 +21,7 @@ export default class UptimeCommand extends SubCommand {
     const relativeUp = time(uptime, "R");
 
     await interaction.reply({
-      content: `${lang.UTIL.BOT_UPTIME.replace("{botUpSince}", botUpSince)} (${relativeUp})`,
+      content: `${this.bot.utils.translate(lang.UTIL.BOT_UPTIME, { botUpSince })} (${relativeUp})`,
     });
   }
 }

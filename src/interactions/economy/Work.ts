@@ -32,7 +32,9 @@ export default class WorkCommand extends SubCommand {
 
       await interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.ALREADY_WORKED.replace("{time}", time(dateTime, "R")),
+        content: this.bot.utils.translate(lang.ECONOMY.ALREADY_WORKED, {
+          time: time(dateTime, "R"),
+        }),
       });
     } else {
       const { name, amount } = jobs[Math.floor(Math.random() * jobs.length)];
@@ -41,9 +43,11 @@ export default class WorkCommand extends SubCommand {
         .baseEmbed(interaction)
         .setTitle(lang.ECONOMY.WORK)
         .setDescription(
-          `${lang.ECONOMY.WORKED.replace("{member}", interaction.user.username)
-            .replace("{job_name}", name)
-            .replace("{amount}", `${amount}`)} 💰`,
+          `${this.bot.utils.translate(lang.ECONOMY.WORKED, {
+            member: interaction.user.username,
+            job_name: name,
+            amount,
+          })} 💰`,
         );
 
       await interaction.reply({ ephemeral: true, embeds: [embed] });

@@ -64,7 +64,11 @@ export default class CreateRoleCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${lang.ADMIN.CREATED_ROLE_CREATED}: ${name}`)
-      .setDescription(lang.ADMIN.CREATED_ROLE_ADDED.replace("{roleName}", name));
+      .setDescription(
+        this.bot.utils.translate(lang.ADMIN.CREATED_ROLE_ADDED, {
+          roleName: name,
+        }),
+      );
 
     return interaction.reply({ ephemeral: true, embeds: [embed] });
   }

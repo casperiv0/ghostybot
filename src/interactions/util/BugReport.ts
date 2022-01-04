@@ -43,7 +43,7 @@ export default class BugReportCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setTitle(lang.UTIL.BUG_REPORT.replace("{member}", interaction.user.tag))
+      .setTitle(this.bot.utils.translate(lang.UTIL.BUG_REPORT, { member: interaction.user.tag }))
       .setDescription(bug);
 
     const ch = this.bot.channels.cache.get(

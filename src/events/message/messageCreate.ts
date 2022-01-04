@@ -67,10 +67,10 @@ export default class MessageEvent extends Event {
               .baseEmbed(message)
               .setTitle("AFK!")
               .setDescription(
-                lang.MESSAGE.USER_IS_AFK.replace("{tag}", member.user.tag).replace(
-                  "{reason}",
-                  `${user?.afk.reason}`,
-                ),
+                this.bot.utils.translate(lang.MESSAGE.USER_IS_AFK, {
+                  tag: member.user.tag,
+                  reason: user.afk.reason ?? lang.GLOBAL.NOT_SPECIFIED,
+                }),
               );
 
             message.channel.send({ embeds: [embed] });
@@ -87,9 +87,11 @@ export default class MessageEvent extends Event {
           },
         });
 
-        const embed = bot.utils
-          .baseEmbed(message)
-          .setDescription(lang.MESSAGE.NOT_AFK_ANYMORE.replace("{tag}", message.author.tag));
+        const embed = bot.utils.baseEmbed(message).setDescription(
+          this.bot.utils.translate(lang.MESSAGE.NOT_AFK_ANYMORE, {
+            tag: message.author.tag,
+          }),
+        );
 
         const msg = await message.channel.send({ embeds: [embed] });
 

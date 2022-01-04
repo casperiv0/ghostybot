@@ -73,7 +73,7 @@ export default class CreateReminderCommand extends SubCommand {
 
     await interaction.reply({
       ephemeral: true,
-      content: lang.REMINDER.SUCCESS.replace("{time}", time),
+      content: this.bot.utils.translate(lang.REMINDER.SUCCESS, { time }),
       components: [row],
     });
   }

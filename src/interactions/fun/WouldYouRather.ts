@@ -24,10 +24,10 @@ export default class WouldYouRatherCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(data.title)
       .setDescription(
-        `${lang.GAMES.WYR_QUESTIONS.replace("{question1}", reply1.question).replace(
-          "{question2}",
-          reply2.question,
-        )}\n\n\n${data.description || ""}`,
+        `${this.bot.utils.translate(lang.GAMES.WYR_QUESTIONS, {
+          question1: reply1.question,
+          question2: reply2.question,
+        })}\n\n\n${data.description || ""}`,
       )
       .addField(lang.GAMES.VOTES, this.bot.utils.formatNumber(data.total_votes), true);
 

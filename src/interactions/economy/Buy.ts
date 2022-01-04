@@ -47,7 +47,7 @@ export default class BuyCommand extends SubCommand {
     if (!item) {
       return interaction.reply({
         ephemeral: true,
-        content: lang.ECONOMY.NOT_FOUND_STORE.replace("{query}", rawItem),
+        content: this.bot.utils.translate(lang.ECONOMY.NOT_FOUND_STORE, { query: rawItem }),
       });
     }
 
@@ -78,10 +78,10 @@ export default class BuyCommand extends SubCommand {
     }
 
     interaction.reply({
-      content: lang.ECONOMY.BUY_SUCCESS.replace("{item}", item.name).replace(
-        "{price}",
-        `${item.price}`,
-      ),
+      content: this.bot.utils.translate(lang.ECONOMY.BUY_SUCCESS, {
+        item: item.name,
+        price: item.price,
+      }),
     });
   }
 }

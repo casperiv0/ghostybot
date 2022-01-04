@@ -40,7 +40,7 @@ export default class WeatherInfoCommand extends SubCommand {
 
     if (data.cod === "404") {
       return interaction.editReply({
-        content: lang.UTIL.C_NOT_FOUND.replace("{query}", query),
+        content: this.bot.utils.translate(lang.UTIL.C_NOT_FOUND, { query }),
       });
     }
 

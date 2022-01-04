@@ -38,7 +38,7 @@ export default class NpmInfoCommand extends SubCommand {
 
     if (foundPackages.length <= 0) {
       return interaction.editReply({
-        content: lang.UTIL.NPM_NOT_FOUND.replace("{query}", query),
+        content: this.bot.utils.translate(lang.UTIL.NPM_NOT_FOUND, { query }),
       });
     }
 
@@ -77,7 +77,7 @@ export default class NpmInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(lang.UTIL.NPM_SEARCH)
-      .setDescription(lang.UTIL.NPM_TOP_5.replace("{query}", query));
+      .setDescription(this.bot.utils.translate(lang.UTIL.NPM_TOP_5, { query }));
 
     foundPackages.forEach((pkg) => {
       embed.addField(
