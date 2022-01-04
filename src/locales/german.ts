@@ -45,6 +45,7 @@ const LANG: typeof import("./english").default = {
     GUILD_BAN_MESSAGE: `{member} wurde erfolgreich vom Server gebannt. Grund: **{ban_reason}**. ${LOCALE.also_send_dm}`,
     BOT_DATA: " Bot-Daten werden nicht gespeichert, daher kann ich diese Daten nicht abrufen",
     PERMISSIONS: "Berechtigungen",
+    PENDING: "Pending",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Meine Rolle ist nicht hoch genug für die **{role}** Rolle!",

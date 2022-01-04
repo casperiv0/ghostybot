@@ -41,6 +41,7 @@ const LANG: typeof import("./english").default = {
       "{member} لقد تم تبنيده بنجاح . السبب: **{ban_reason}**. لقد قمت بارسال رسالة اليه .",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
     PERMISSIONS: "Permissions",
+    PENDING: "Pending",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "رتبتي ليست اعلي من رول  **{role}** ",

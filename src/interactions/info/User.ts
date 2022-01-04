@@ -70,6 +70,7 @@ ${banner?.banner ? `${lang.MEMBER.BANNER}: ${banner.bannerURL({ dynamic: true, s
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${createdAtR})
+${bold(lang.MEMBER.PENDING)}: ${member.pending}
 `,
       )
 

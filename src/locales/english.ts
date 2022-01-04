@@ -41,6 +41,7 @@ export default {
       "{member} was successfully banned from the server. Reason: **{ban_reason}**. I have also send a DM letting the person know.",
     BOT_DATA: "Bot data does not save, therefore I cannot fetch his data",
     PERMISSIONS: "Permissions",
+    PENDING: "Pending",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "My role is not high enough than **{role}** role!",

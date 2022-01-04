@@ -3,7 +3,7 @@
 > **This list only shows slash commands! Regular are considered deprecated for GhostyBot.**
 
 This command list was automatically generated in [this file](https://github.com/Dev-CasperTheGhost/ghostybot/tree/main/src/scripts/generateCommandList.ts).
-GhostyBot has a total of 162 slash commands.
+GhostyBot has a total of 165 slash commands.
 
 ## Detailed command list
 
@@ -807,6 +807,16 @@ GhostyBot has a total of 162 slash commands.
 
 [Back to top](#ghostybot-command-list)
 
+## image -> achievement
+
+**Description:** Render a Minecraft achievement
+
+**Example usage:** /image achievement ...
+
+**Options:** text (STRING / Required), icon (INTEGER / Optional), title (STRING / Optional)
+
+[Back to top](#ghostybot-command-list)
+
 ## image -> amazing-earth
 
 **Description:** Amazing images of light and landscape
@@ -894,6 +904,26 @@ GhostyBot has a total of 162 slash commands.
 **Example usage:** /image pikachu ...
 
 **Options:** N/A
+
+[Back to top](#ghostybot-command-list)
+
+## image -> pornhub
+
+**Description:** Render an image as the Pornhub logo
+
+**Example usage:** /image pornhub ...
+
+**Options:** left-text (STRING / Required), right-text (STRING / Required)
+
+[Back to top](#ghostybot-command-list)
+
+## image -> supreme
+
+**Description:** Render an image as the Supreme logo
+
+**Example usage:** /image supreme ...
+
+**Options:** text (STRING / Required)
 
 [Back to top](#ghostybot-command-list)
 

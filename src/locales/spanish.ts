@@ -41,6 +41,7 @@ const LANG: typeof import("./english").default = {
       "{member} Ha sido baneado de este servidor. Razón: **{ban_reason}**. Tambien le he enviado un DM al usuario para hacerle saber.",
     BOT_DATA: "Datos del bot no guardados, por lo tanto no puedo buscar esa informacion",
     PERMISSIONS: "Permissions",
+    PENDING: "Pending",
   },
   ROLES: {
     MY_ROLE_NOT_HIGH_ENOUGH: "Mi rol no es mas alto que el rol **{role}**!",

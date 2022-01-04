@@ -33,6 +33,9 @@ export enum APIs {
   Thrash = "https://api.no-api-key.com/api/v2/delete?image=",
   Tweet = "https://nekobot.xyz/api/imagegen?type=tweet&text=",
   YtComment = "https://some-random-api.ml/canvas/youtube-comment?username=",
+  Supreme = "https://api.xaliks.xyz/render/supreme?text=",
+  Pornhub = "https://api.xaliks.xyz/render/pornhub",
+  Achievement = "https://api.xaliks.xyz/render/achievement",
 
   // info
   Country = "https://restcountries.eu/rest/v2/name/",
