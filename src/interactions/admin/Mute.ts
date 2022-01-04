@@ -3,22 +3,16 @@ import ms from "ms";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
+const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
+
 export default class MuteCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
       commandName: "admin",
       name: "mute",
       description: "Timeout a user",
-      botPermissions: [
-        DJS.Permissions.FLAGS.MANAGE_ROLES,
-        DJS.Permissions.FLAGS.MANAGE_CHANNELS,
-        DJS.Permissions.FLAGS.MODERATE_MEMBERS,
-      ],
-      memberPermissions: [
-        DJS.Permissions.FLAGS.MANAGE_ROLES,
-        DJS.Permissions.FLAGS.MANAGE_CHANNELS,
-        DJS.Permissions.FLAGS.MODERATE_MEMBERS,
-      ],
+      botPermissions: permissions,
+      memberPermissions: permissions,
       options: [
         {
           name: "user",
@@ -46,7 +40,6 @@ export default class MuteCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const user = interaction.options.getUser("user", true);
     const member = interaction.options.getMember("user", true);
     const time = interaction.options.getString("time", true);
     const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
@@ -62,16 +55,11 @@ export default class MuteCommand extends SubCommand {
       });
     }
 
-    const muteRole = await this.bot.utils.findOrCreateMutedRole(interaction.guild!);
-    if (!muteRole) {
-      return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
-    }
-
-    if (member?.roles.cache.find((r) => r.id === muteRole?.id)) {
+    if (typeof member.communicationDisabledUntilTimestamp === "number") {
       return interaction.reply({ ephemeral: true, content: lang.ADMIN.ALREADY_MUTED });
     }
 
-    const content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", user.tag)
+    const content = lang.ADMIN.SUCCESS_MUTED.replace("{muteMemberTag}", member.user.tag)
       .replace("{time}", time)
       .replace("{reason}", reason);
 
@@ -87,7 +75,7 @@ export default class MuteCommand extends SubCommand {
     await member.timeout(parsedTime, reason);
 
     await interaction.reply({ content, ephemeral: true });
-    await user.send({
+    await member.user.send({
       content: dmContent,
     });
 

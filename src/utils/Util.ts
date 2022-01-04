@@ -335,20 +335,6 @@ export class Util {
     return webhook;
   }
 
-  async findOrCreateMutedRole(guild: DJS.Guild): Promise<DJS.Role | undefined> {
-    const dbGuild = await this.getGuildById(guild.id);
-
-    return (
-      guild.roles.cache.find((r) => r.id === dbGuild?.muted_role_id) ||
-      guild.roles.cache.find((r) => r.name === "muted") ||
-      guild.roles.create({
-        name: "muted",
-        color: "GREY",
-        reason: "Mute a user",
-      })
-    );
-  }
-
   async updateMuteChannelPerms(
     guild: DJS.Guild,
     memberId: DJS.Snowflake,

@@ -18,15 +18,6 @@ const userSchema = new Schema({
       reason: null,
     },
   },
-  mute: {
-    type: Object,
-    default: {
-      muted: false,
-      time: String,
-      ends_at: Number,
-      reason: String,
-    },
-  },
   temproles: {
     type: Object,
     default: {
