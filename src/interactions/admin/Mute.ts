@@ -55,17 +55,15 @@ export default class MuteCommand extends SubCommand {
       });
     }
 
-    if (typeof member.communicationDisabledUntilTimestamp === "number") {
-      return interaction.reply({ ephemeral: true, content: lang.ADMIN.MUTE_ALREADY_MUTED });
-    }
+    const content = lang.ADMIN.MUTE_SUCCESS.replace("{tag}", member.user.tag).replace(
+      "{reason}",
+      reason,
+    );
 
-    const content = lang.ADMIN.MUTE_SUCCESS.replace("{muteMemberTag}", member.user.tag)
-      .replace("{time}", time)
-      .replace("{reason}", reason);
-
-    const dmContent = lang.ADMIN.MUTE_SUCCESS_DM.replace("{guildName}", interaction.guild!.name)
-      .replace("{reason}", reason)
-      .replace("{time}", time);
+    const dmContent = lang.ADMIN.MUTE_SUCCESS_DM.replace(
+      "{guild}",
+      interaction.guild!.name,
+    ).replace("{reason}", reason);
 
     const parsedTime = ms(time);
     if (parsedTime < 60000 || isNaN(parsedTime)) {

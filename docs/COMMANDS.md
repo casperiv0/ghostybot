@@ -79,7 +79,7 @@ GhostyBot has a total of 165 slash commands.
 
 ## admin -> mute
 
-**Description:** Mute/tempmute a user
+**Description:** Timeout a user
 
 **Example usage:** /admin mute ...
 
@@ -179,7 +179,7 @@ GhostyBot has a total of 165 slash commands.
 
 ## admin -> unmute
 
-**Description:** Unmute a user
+**Description:** Remove a timeout from a user
 
 **Example usage:** /admin unmute ...
 
