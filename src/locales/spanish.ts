@@ -539,12 +539,12 @@ const LANG: typeof import("./english").default = {
     MUTE_SUCCESS_DM: "You've been **muted** from **{guild}**, Reason: **{reason}**",
     MUTE_SUCCESS:
       "**{tag}** was successfully muted from the server. Reason: **{reason}**. I have also send a DM letting the person know.",
-    BAN_BANNED_BY: "**Banned By:**",
-    NUKE_NUKED: "Channel was successfully nuked",
-    NUKE_CANCELED: "Nuke command was canceled",
-    NUKE_CONFIRM: "Are you sure you want to nuke this channel? y/n",
-    CHANNEL_CANNOT_BE_DELETED: "That channel cannot be deleted",
-    TEXT_OR_VALID_CHANNEL: "Please provide text or a valid channel!",
+    BAN_BANNED_BY: "**Baneado por:**",
+    NUKE_NUKED: "El canal ha sido nukeado correctamente",
+    NUKE_CANCELED: "El comando nuke ha sido cancelado",
+    NUKE_CONFIRM: "¿Estás seguro de que deseas nukear este canal? y/n",
+    CHANNEL_CANNOT_BE_DELETED: "Ese canal no puede ser eliminado",
+    TEXT_OR_VALID_CHANNEL: "¡Debes proporcionar un canal de text válido!",
     DEFAULT_ANNOUNCE_CHANNEL:
       "You can also set a default channel using `set announce-channel <channel mention>`",
     CHANNEL_ALREADY_LOCKED: "That channel is already locked!",
