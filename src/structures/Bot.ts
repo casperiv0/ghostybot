@@ -51,7 +51,6 @@ export class Bot extends Client {
     });
 
     this.giveawayManager = new MongoGiveawayManager(this, {
-      // updateCountdownEvery: 10000,
       storage: undefined,
       default: {
         embedColor: "#5865f2",

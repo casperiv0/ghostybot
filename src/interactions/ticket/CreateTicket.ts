@@ -29,10 +29,9 @@ export default class CreateTicket extends SubCommand {
 
     if (!guild?.ticket_data.enabled) {
       return interaction.editReply({
-        content: lang.TICKET.NOT_ENABLED.replace(
-          "{botName}",
-          `${process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}`,
-        ),
+        content: this.bot.utils.translate(lang.TICKET.NOT_ENABLED, {
+          botName: process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]!,
+        }),
       });
     }
 
@@ -72,24 +71,32 @@ export default class CreateTicket extends SubCommand {
         : undefined;
 
     const channel = await interaction.guild?.channels.create(
-      lang.TICKET.TICKET.replace("{Id}", `${ticketId}`),
+      this.bot.utils.translate(lang.TICKET.TICKET, {
+        Id: ticketId,
+      }),
       {
         type: "GUILD_TEXT",
         nsfw: false,
-        topic: lang.TICKET.TICKET_FOR.replace("{member}", interaction.user.tag),
+        topic: this.bot.utils.translate(lang.TICKET.TICKET_FOR, { member: interaction.user.tag }),
         permissionOverwrites: DEFAULT_PERMS,
         parent: parentId as DJS.Snowflake | undefined,
       },
     );
 
-    await channel?.permissionOverwrites.create(interaction.guild!.id, {
+    if (!channel) {
+      return interaction.editReply({ content: lang.GLOBAL.ERROR });
+    }
+
+    await channel.permissionOverwrites.create(interaction.guild!.id, {
       VIEW_CHANNEL: false,
     });
 
-    channel?.send({ content: `${lang.TICKET.CREATED} <@${interaction.user.id}>` });
+    channel.send({ content: `${lang.TICKET.CREATED} <@${interaction.user.id}>` });
 
     await interaction.editReply({
-      content: lang.TICKET.CREATED_IN.replace("{channel}", channel?.toString()!),
+      content: this.bot.utils.translate(lang.TICKET.CREATED_IN, {
+        channel: channel.toString(),
+      }),
     });
   }
 }

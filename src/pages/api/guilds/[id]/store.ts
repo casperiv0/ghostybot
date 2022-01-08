@@ -44,7 +44,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       if (guild.store?.find((x) => x.name === name)) {
         return res.status(400).json({
-          error: lang.ECONOMY.ALREADY_EXISTS.replace("{item}", name),
+          error: req.bot.utils.translate(lang.ECONOMY.ALREADY_EXISTS, { item: name }),
           status: "error",
         });
       }
@@ -64,7 +64,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       return res.json({
         status: "success",
-        message: lang.ECONOMY.REMOVED_FROM_STORE.replace("{item}", `${query.name}`),
+        message: req.bot.utils.translate(lang.ECONOMY.REMOVED_FROM_STORE, {
+          item: query.name as string,
+        }),
       });
     }
     default: {
