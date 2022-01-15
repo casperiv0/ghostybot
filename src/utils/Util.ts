@@ -602,7 +602,7 @@ export class Util {
     return string;
   }
 
-  hasSendPermissions(resolveable: DJS.Message | DJS.TextChannel) {
+  hasSendPermissions(resolveable: DJS.Message | DJS.GuildTextBasedChannel) {
     const ch = "channel" in resolveable ? resolveable.channel : resolveable;
     if (!("permissionsFor" in ch)) return false;
     if (ch instanceof DJS.ThreadChannel || ch instanceof DJS.DMChannel) {
