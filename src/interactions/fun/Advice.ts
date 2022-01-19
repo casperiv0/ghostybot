@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -21,7 +21,7 @@ export default class AdviceCommand extends SubCommand {
 
   async execute(interaction: DJS.ChatInputCommandInteraction) {
     await interaction.deferReply();
-    const data = (await fetch(this.APIs.Advice).then((res) => res.json())) as Data;
+    const data = (await request(this.APIs.Advice).then((res) => res.body.json())) as Data;
 
     await interaction.editReply({ content: data.slip.advice });
   }

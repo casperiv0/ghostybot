@@ -1,3 +1,4 @@
+import process from "node:process";
 import * as DJS from "discord.js";
 import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";

@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 
 export interface Choice extends DJS.ApplicationCommandOptionChoice {
   /**
@@ -13,7 +13,7 @@ export const animalChoices: Choice[] = [
     name: "Cat",
     value: "cat",
     async fetchUrl() {
-      const data = (await (await fetch("https://nekos.life/api/v2/img/meow")).json()) as {
+      const data = (await (await request("https://nekos.life/api/v2/img/meow")).body.json()) as {
         url: string;
       };
       return data.url;
@@ -23,7 +23,9 @@ export const animalChoices: Choice[] = [
     name: "Dog",
     value: "dog",
     async fetchUrl() {
-      const data = (await (await fetch("https://dog.ceo/api/breeds/image/random")).json()) as {
+      const data = (await (
+        await request("https://dog.ceo/api/breeds/image/random")
+      ).body.json()) as {
         message: string;
       };
       return data.message;
@@ -33,7 +35,9 @@ export const animalChoices: Choice[] = [
     name: "Fox",
     value: "fox",
     async fetchUrl() {
-      const data = (await (await fetch("https://randomfox.ca/floof")).json()) as { image: string };
+      const data = (await (await request("https://randomfox.ca/floof")).body.json()) as {
+        image: string;
+      };
       return data.image;
     },
   },
@@ -41,7 +45,9 @@ export const animalChoices: Choice[] = [
     name: "Kangaroo",
     value: "kangaroo",
     async fetchUrl() {
-      const data = (await (await fetch("https://some-random-api.ml/animal/kangaroo")).json()) as {
+      const data = (await (
+        await request("https://some-random-api.ml/animal/kangaroo")
+      ).body.json()) as {
         image: string;
       };
       return data.image;
@@ -51,7 +57,7 @@ export const animalChoices: Choice[] = [
     name: "Koala",
     value: "koala",
     async fetchUrl() {
-      const data = (await (await fetch("https://some-random-api.ml/img/koala")).json()) as {
+      const data = (await (await request("https://some-random-api.ml/img/koala")).body.json()) as {
         link: string;
       };
       return data.link;
@@ -61,7 +67,7 @@ export const animalChoices: Choice[] = [
     name: "Lizard",
     value: "lizard",
     async fetchUrl() {
-      const data = (await (await fetch("https://nekos.life/api/v2/img/lizard")).json()) as {
+      const data = (await (await request("https://nekos.life/api/v2/img/lizard")).body.json()) as {
         url: string;
       };
       return data.url;
@@ -71,7 +77,7 @@ export const animalChoices: Choice[] = [
     name: "Panda",
     value: "panda",
     async fetchUrl() {
-      const data = (await (await fetch("https://some-random-api.ml/img/panda")).json()) as {
+      const data = (await (await request("https://some-random-api.ml/img/panda")).body.json()) as {
         link: string;
       };
       return data.link;
@@ -81,7 +87,9 @@ export const animalChoices: Choice[] = [
     name: "Red Panda",
     value: "red-panda",
     async fetchUrl() {
-      const data = (await (await fetch("https://some-random-api.ml/animal/red_panda")).json()) as {
+      const data = (await (
+        await request("https://some-random-api.ml/animal/red_panda")
+      ).body.json()) as {
         image: string;
       };
       return data.image;
@@ -91,7 +99,7 @@ export const animalChoices: Choice[] = [
     name: "Racoon",
     value: "racoon",
     async fetchUrl() {
-      const data = (await (await fetch("https://some-random-api.ml/img/racoon")).json()) as {
+      const data = (await (await request("https://some-random-api.ml/img/racoon")).body.json()) as {
         link: string;
       };
       return data.link;
@@ -102,7 +110,9 @@ export const animalChoices: Choice[] = [
     name: "Shibe",
     value: "panda",
     async fetchUrl() {
-      const [data] = (await (await fetch("http://shibe.online/api/shibes")).json()) as string[];
+      const [data] = (await (
+        await request("http://shibe.online/api/shibes")
+      ).body.json()) as string[];
       return data;
     },
   },

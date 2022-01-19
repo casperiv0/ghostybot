@@ -1,3 +1,4 @@
+import process from "node:process";
 import * as DJS from "discord.js";
 import { hyperlink, inlineCode } from "@discordjs/builders";
 import dayjs from "dayjs";

@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -28,11 +28,11 @@ export default class TweetCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = (await fetch(
+    const data = (await request(
       `${this.APIs.Tweet}${encodeURIComponent(text)}&username=${encodeURIComponent(
         interaction.user.username,
       )}`,
-    ).then((res) => res.json())) as { message: string };
+    ).then((res) => res.body.json())) as { message: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

@@ -1,6 +1,7 @@
+import process from "node:process";
 import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -32,7 +33,7 @@ export default class WeatherInfoCommand extends SubCommand {
     const url = `${this.APIs.Weather}${encodeURIComponent(query)}&appid=${
       process.env["OPEN_WEATHER_MAP_API_KEY"]
     }&units=metric`;
-    const data = (await fetch(url).then((res) => res.json())) as WeatherData;
+    const data = (await request(url).then((res) => res.body.json())) as WeatherData;
 
     if (data.cod === 401) {
       return interaction.editReply({ content: lang.GLOBAL.ERROR });

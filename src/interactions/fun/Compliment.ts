@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class ComplimentCommand extends SubCommand {
@@ -18,7 +18,7 @@ export default class ComplimentCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = (await fetch(this.APIs.Compliment).then((res) => res.json())) as {
+    const data = (await request(this.APIs.Compliment).then((res) => res.body.json())) as {
       compliment: string;
     };
 

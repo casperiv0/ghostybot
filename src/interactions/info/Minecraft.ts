@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -32,7 +32,7 @@ export default class MinecraftInfoCommand extends SubCommand {
       query,
     )}`;
 
-    const data = (await fetch(url).then((res) => res.json())) as any;
+    const data = await request(url).then((res) => res.body.json());
 
     if (data.error) {
       return interaction.editReply({ content: lang.UTIL.MC_NOT_FOUND });

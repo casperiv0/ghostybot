@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -27,9 +27,9 @@ export default class PokemonInfoCommand extends SubCommand {
     await interaction.deferReply();
     const query = interaction.options.getString("query", true).toLowerCase();
 
-    const data = (await fetch(`${this.APIs.Pokemon}${encodeURIComponent(query)}`).then((res) =>
-      res.json(),
-    )) as any;
+    const data = await request(`${this.APIs.Pokemon}${encodeURIComponent(query)}`).then((res) =>
+      res.body.json(),
+    );
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
