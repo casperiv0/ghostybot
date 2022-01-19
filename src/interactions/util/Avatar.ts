@@ -13,7 +13,7 @@ export default class AvatarCommand extends SubCommand {
           name: "user",
           required: false,
           description: "The user you want to see the avatar of",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
         },
       ],
     });

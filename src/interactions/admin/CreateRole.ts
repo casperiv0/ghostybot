@@ -32,13 +32,13 @@ export default class CreateRoleCommand extends SubCommand {
         {
           name: "name",
           description: "The name for the new role",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "color",
           description: "The color for the new role",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           choices: Object.entries(colors).map(([name, value]) => ({
             name,

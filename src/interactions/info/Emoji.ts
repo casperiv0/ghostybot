@@ -14,7 +14,7 @@ export default class EmojiInfoCommand extends SubCommand {
           description: "The emoji you want more information about",
           name: "emoji",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

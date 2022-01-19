@@ -13,7 +13,7 @@ export default class UnbanCommand extends SubCommand {
       options: [
         {
           name: "user-id",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The user id of the banned member",
         },

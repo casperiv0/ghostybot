@@ -15,7 +15,7 @@ export default class BlacklistAdd extends SubCommand {
       options: [
         {
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user that needs to be blacklisted",
           required: true,
         },

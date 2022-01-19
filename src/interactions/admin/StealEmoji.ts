@@ -14,13 +14,13 @@ export default class StealEmojiCommand extends SubCommand {
       options: [
         {
           name: "emoji",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The emoji you want to add",
         },
         {
           name: "name",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The name of the emoji",
         },

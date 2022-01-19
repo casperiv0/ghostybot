@@ -12,13 +12,13 @@ export default class DocsInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "branch",
           description: "The branch",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           choices: [
             {

@@ -13,7 +13,7 @@ export default class RemoveReminderCommand extends SubCommand {
           description: "The id of the reminder you want to delete",
           name: "id",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

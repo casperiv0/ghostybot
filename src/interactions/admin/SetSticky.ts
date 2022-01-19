@@ -16,7 +16,7 @@ export default class SetStickyCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The text you want as a sticky message",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

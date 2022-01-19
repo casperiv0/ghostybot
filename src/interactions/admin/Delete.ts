@@ -14,7 +14,7 @@ export default class DeleteCommand extends SubCommand {
         {
           name: "amount",
           description: "Min: 1. Max: 100",
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
           required: true,
         },
       ],

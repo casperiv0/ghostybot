@@ -10,13 +10,13 @@ export default class PayCommand extends SubCommand {
       description: "Give money to a user",
       options: [
         {
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
           name: "user",
           description: "The user you want to give money too",
         },
         {
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
           required: true,
           name: "amount",
           description: "The amount you want to give to the user",

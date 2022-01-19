@@ -12,7 +12,7 @@ export default class MDNInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

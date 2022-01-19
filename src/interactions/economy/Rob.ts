@@ -10,13 +10,13 @@ export default class RobCommand extends SubCommand {
       description: "Rob up to 1000 coins from somebody",
       options: [
         {
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
           name: "user",
           description: "The user you want to rob",
         },
         {
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
           required: true,
           name: "amount",
           description: "The amount you want to rob from the user",

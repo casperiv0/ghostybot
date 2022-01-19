@@ -11,7 +11,7 @@ export default class MessageEvent extends Event {
   async execute(bot: Bot, message: DJS.Message) {
     try {
       if (!message?.guild?.available) return;
-      if (message.channel.type === "DM") return;
+      if (message.channel.type === DJS.ChannelType.DM) return;
       if (!bot.utils.hasSendPermissions(message)) return;
 
       if (!bot.user) return;

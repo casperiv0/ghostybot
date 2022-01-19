@@ -23,13 +23,13 @@ export default class Eval extends SubCommand {
       commandName: "bot-owner",
       options: [
         {
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "code",
           description: "The code you want to execute",
           required: true,
         },
         {
-          type: "Boolean",
+          type: DJS.ApplicationCommandOptionType.Boolean,
           name: "ephemeral",
           description: "Whether the command should be sent with ephemeral: true",
           required: false,

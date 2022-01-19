@@ -16,7 +16,7 @@ export default class UnmuteCommand extends SubCommand {
         {
           name: "user",
           description: "The user to unmute",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
       ],

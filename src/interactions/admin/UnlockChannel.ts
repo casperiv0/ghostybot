@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
+import { threadChannels } from "./LockChannel";
 
 export default class UnlockChannelCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -18,7 +19,6 @@ export default class UnlockChannelCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel?.type!)) {
       return {
         ok: false,

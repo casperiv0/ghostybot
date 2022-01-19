@@ -12,7 +12,7 @@ export default class BetCommand extends SubCommand {
         {
           description: "The user you want to bet on",
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
       ],

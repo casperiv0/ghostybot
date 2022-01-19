@@ -2,6 +2,7 @@ import process from "node:process";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { OverwriteType } from "discord-api-types";
 
 export default class CreateTicket extends SubCommand {
   constructor(bot: Bot) {
@@ -60,7 +61,7 @@ export default class CreateTicket extends SubCommand {
 
     if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
       DEFAULT_PERMS.push({
-        type: "Role",
+        type: OverwriteType.Role,
         id: guild.ticket_data.role_id as DJS.Snowflake,
         allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
       });
@@ -76,7 +77,7 @@ export default class CreateTicket extends SubCommand {
         Id: ticketId,
       }),
       {
-        type: "GuildText",
+        type: DJS.ChannelType.GuildText,
         nsfw: false,
         topic: this.bot.utils.translate(lang.TICKET.TICKET_FOR, { member: interaction.user.tag }),
         permissionOverwrites: DEFAULT_PERMS,

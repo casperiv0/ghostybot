@@ -13,7 +13,7 @@ export default class DepositCommand extends SubCommand {
           description: "The amount you want to deposit",
           name: "amount",
           required: true,
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });

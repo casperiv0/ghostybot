@@ -17,7 +17,7 @@ export default class LoopCommand extends SubCommand {
       description: "Loop a song that is playing",
       options: [
         {
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
           name: "type",
           required: true,
           description: "The loop type",

@@ -18,7 +18,7 @@ export default class WebCommand extends SubCommand {
       options: [
         {
           name: "url",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The URL of the website",
         },

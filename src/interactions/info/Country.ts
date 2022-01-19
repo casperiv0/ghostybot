@@ -14,7 +14,7 @@ export default class CountryInfoCommand extends SubCommand {
         {
           name: "country",
           description: "The country you want to get information about",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

@@ -13,7 +13,7 @@ export default class WithdrawCommand extends SubCommand {
           description: "The amount you want to withdraw",
           name: "amount",
           required: true,
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });

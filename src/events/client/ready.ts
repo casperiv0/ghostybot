@@ -18,23 +18,23 @@ export default class ReadyEvent extends Event {
 
     const statuses: DJS.ActivitiesOptions[] = [
       {
-        type: "Listening",
+        type: DJS.ActivityType.Listening,
         name: "/help",
       },
       {
-        type: "Watching",
+        type: DJS.ActivityType.Watching,
         name: `${userCount} users`,
       },
       {
-        type: "Watching",
+        type: DJS.ActivityType.Watching,
         name: `${serverCount} servers`,
       },
       {
-        type: "Watching",
+        type: DJS.ActivityType.Watching,
         name: "https://discord.gg/XxHrtkA",
       },
       {
-        type: "Watching",
+        type: DJS.ActivityType.Watching,
         name: "https://ghostybot.caspertheghost.me",
       },
     ];

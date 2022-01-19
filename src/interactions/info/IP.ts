@@ -13,7 +13,7 @@ export default class IPInfoCommand extends SubCommand {
         {
           name: "ip",
           description: "The IP address you want to lookup",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

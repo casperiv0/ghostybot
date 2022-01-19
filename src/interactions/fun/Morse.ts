@@ -13,7 +13,7 @@ export default class MorseCommand extends SubCommand {
       options: [
         {
           name: "text",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The text you want to transform",
           required: true,
         },

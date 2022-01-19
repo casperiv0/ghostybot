@@ -13,13 +13,13 @@ export default class GiveXP extends SubCommand {
         {
           name: "user",
           description: "The user you want to give XP",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "amount",
           description: "The amount you want to give",
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
           required: true,
         },
       ],

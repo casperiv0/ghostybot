@@ -13,7 +13,7 @@ export default class BuyCommand extends SubCommand {
           description: "The store item",
           name: "item",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

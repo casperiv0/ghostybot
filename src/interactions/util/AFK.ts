@@ -11,7 +11,7 @@ export default class AFKCommand extends SubCommand {
       options: [
         {
           name: "reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           description: "The reason why you're going afk",
         },

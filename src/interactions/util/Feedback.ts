@@ -15,7 +15,7 @@ export default class FeedbackCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The feedback description",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

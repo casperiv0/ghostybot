@@ -15,13 +15,13 @@ export default class WarningsCommand extends SubCommand {
           name: "user",
           required: true,
           description: "The user you want to see their warnings of",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
         },
         {
           name: "warning-id",
           required: false,
           description: "The id of a warning",
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
       ],
     });

@@ -15,7 +15,7 @@ export default class ChannelDeleteEvent extends Event {
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(channel.guild.id);
 
-      const type = channel.type === "GuildCategory" ? "Category" : "Channel";
+      const type = channel.type === DJS.ChannelType.GuildCategory ? "Category" : "Channel";
       const msg = this.bot.utils.translate(lang.EVENTS.CHANNEL_DELETED_MSG, {
         channel_type: type,
         channel: channel.name,

@@ -15,7 +15,7 @@ export default class GitHubInfoCommand extends SubCommand {
           description: "The GitHub username",
           name: "username",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

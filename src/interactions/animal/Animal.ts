@@ -12,7 +12,7 @@ export default class AnimalCommand extends Command {
         {
           name: "type",
           description: "The type of the animal",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           choices: animalChoices.map((v) => ({ name: v.name, value: v.value })),
         },

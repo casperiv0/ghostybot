@@ -13,13 +13,13 @@ export default class BMICommand extends SubCommand {
           name: "height",
           required: true,
           description: "Your height in centimeters",
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
         {
           name: "weight",
           required: true,
           description: "Your weight in kilograms",
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });

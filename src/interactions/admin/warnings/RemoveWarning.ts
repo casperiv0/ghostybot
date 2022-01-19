@@ -16,13 +16,13 @@ export default class RemoveWarningCommand extends SubCommand {
           name: "user",
           required: true,
           description: "The user you want to remove a warning of",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
         },
         {
           name: "warning-id",
           required: true,
           description: "The id of a warning",
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
       ],
     });

@@ -13,7 +13,7 @@ export default class SupremeCommand extends SubCommand {
           name: "text",
           description: "The text your want to render",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

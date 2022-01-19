@@ -13,7 +13,7 @@ export default class HugCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
       ],

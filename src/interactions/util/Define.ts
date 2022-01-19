@@ -14,7 +14,7 @@ export default class DefineCommand extends SubCommand {
           name: "word",
           required: true,
           description: "The word you want to get defined",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

@@ -14,7 +14,7 @@ export default class TweetCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The text that needs to be displayed",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

@@ -13,19 +13,19 @@ export default class AchievementCommand extends SubCommand {
           name: "text",
           description: "The text your want to render in the achievement",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
         {
           name: "icon",
           description: "An icon number from 1 to 45",
           required: false,
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
         {
           name: "title",
           description: "The title of the achievement",
           required: false,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

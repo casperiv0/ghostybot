@@ -13,13 +13,13 @@ export default class TranslateCommand extends SubCommand {
         {
           name: "language",
           description: "The language you want to translate to",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "sentence",
           description: "The sentence you want to translate",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

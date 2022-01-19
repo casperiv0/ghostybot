@@ -13,13 +13,13 @@ export default class WarnCommand extends SubCommand {
         {
           name: "user",
           description: "The user to warn",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The warn reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],

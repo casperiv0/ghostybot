@@ -15,7 +15,7 @@ export default class WeatherInfoCommand extends SubCommand {
         {
           name: "query",
           description: "Can be a country, city, state",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

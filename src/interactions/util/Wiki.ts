@@ -14,7 +14,7 @@ export default class WikiCommand extends SubCommand {
           name: "query",
           required: true,
           description: "The query",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

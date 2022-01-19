@@ -12,7 +12,7 @@ export default class IMDBInfoCommand extends SubCommand {
         {
           name: "query",
           description: "What you're looking for",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

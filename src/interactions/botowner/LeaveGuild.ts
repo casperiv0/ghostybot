@@ -12,7 +12,7 @@ export default class LeaveGuildCommand extends SubCommand {
       commandName: "bot-owner",
       options: [
         {
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "id",
           description: "The id of the guild",
           required: true,

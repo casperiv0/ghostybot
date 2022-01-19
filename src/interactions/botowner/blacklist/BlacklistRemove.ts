@@ -15,7 +15,7 @@ export default class BlacklistRemove extends SubCommand {
       options: [
         {
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user that needs to be unblacklisted",
           required: true,
         },

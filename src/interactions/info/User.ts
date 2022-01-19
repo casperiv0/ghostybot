@@ -15,7 +15,7 @@ export default class UserInfoCommand extends SubCommand {
           description: "The user you want more information about",
           name: "user",
           required: false,
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
         },
       ],
     });

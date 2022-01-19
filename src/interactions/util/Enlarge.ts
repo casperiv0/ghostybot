@@ -12,7 +12,7 @@ export default class EnlargeCommand extends SubCommand {
       options: [
         {
           name: "emoji",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The emoji you want to enlarge",
         },

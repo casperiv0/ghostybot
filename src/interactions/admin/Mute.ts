@@ -17,19 +17,19 @@ export default class MuteCommand extends SubCommand {
         {
           name: "user",
           description: "The user to mute",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "time",
           description: "How long the user will be muted (Min. 1 minute)",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "reason",
           description: "The mute reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],

@@ -13,13 +13,13 @@ export default class AnnounceCommand extends SubCommand {
         {
           name: "text",
           description: "The announcement message",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "channel",
           description: "A channel (Default: announcement channel set in dashboard)",
-          type: "Channel",
+          type: DJS.ApplicationCommandOptionType.Channel,
           required: false,
         },
       ],

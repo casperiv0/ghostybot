@@ -15,19 +15,19 @@ export default class TempRoleCommand extends SubCommand {
         {
           name: "user",
           description: "The user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to add",
-          type: "Role",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
         {
           name: "time",
           description: "The amount of time (Eg: 2d, 40h, 10min, etc.)",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

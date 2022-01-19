@@ -15,7 +15,7 @@ export default class BugReportCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The bug description",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

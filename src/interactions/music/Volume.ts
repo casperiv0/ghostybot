@@ -14,7 +14,7 @@ export default class VolumeCommand extends SubCommand {
           description: "The new volume",
           name: "volume",
           required: true,
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });

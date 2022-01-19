@@ -14,13 +14,13 @@ export default class VoiceDeafenCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice deafen",
           required: true,
         },
         {
           name: "reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The reason why you want to deafen the user",
           required: false,
         },

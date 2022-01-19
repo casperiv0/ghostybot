@@ -14,25 +14,28 @@ export default class PastebinCommand extends SubCommand {
           name: "code",
           required: true,
           description: "This will be the paste code",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
+          autocomplete: true,
         },
         {
           name: "extension",
           required: false,
           description: "The file extension",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
+          autocomplete: true,
         },
         {
           name: "filename",
           required: false,
           description: "This will be the name of the paste",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
+          autocomplete: true,
         },
         {
-          type: "String",
           name: "expire-date",
           required: false,
           description: "When the paste will expire",
+          type: DJS.ApplicationCommandOptionType.String,
           choices: [
             {
               name: "Never",

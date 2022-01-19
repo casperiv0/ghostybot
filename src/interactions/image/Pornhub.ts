@@ -13,13 +13,13 @@ export default class PornhubCommand extends SubCommand {
           name: "left-text",
           description: "The left text your want to render",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
         {
           name: "right-text",
           description: "The right text your want to render",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

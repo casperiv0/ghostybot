@@ -14,13 +14,13 @@ export default class RemoveRoleCommand extends SubCommand {
         {
           name: "user",
           description: "The user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to remove",
-          type: "Role",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
       ],

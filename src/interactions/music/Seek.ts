@@ -15,7 +15,7 @@ export default class SeekCommand extends SubCommand {
           description: "seconds/minutes/hours (eg: 200s, 10s, 1h)",
           name: "time",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

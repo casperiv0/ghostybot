@@ -14,7 +14,7 @@ export default class CovidInfoCommand extends SubCommand {
         {
           name: "country",
           description: "The country you want extra information of",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],

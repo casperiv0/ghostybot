@@ -14,7 +14,7 @@ export default class InviteInfoCommand extends SubCommand {
           description: "The invite code",
           name: "code",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

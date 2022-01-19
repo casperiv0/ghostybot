@@ -12,13 +12,13 @@ export default class SayCommand extends SubCommand {
       options: [
         {
           name: "text",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The text",
         },
         {
           name: "embed",
-          type: "Boolean",
+          type: DJS.ApplicationCommandOptionType.Boolean,
           required: false,
           description: "Send the text in an embed",
         },

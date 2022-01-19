@@ -11,7 +11,7 @@ export default class PollCommand extends SubCommand {
       options: [
         {
           name: "question",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The question",
         },

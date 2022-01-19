@@ -13,7 +13,7 @@ export default class MinecraftInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The server IP",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

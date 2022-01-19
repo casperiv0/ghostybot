@@ -17,7 +17,7 @@ export default class ChannelUpdateEvent extends Event {
       const lang = await bot.utils.getGuildLang(newChannel.guild.id);
 
       let msg = "";
-      const type = newChannel.type === "GuildCategory" ? "Category" : "Channel";
+      const type = newChannel.type === DJS.ChannelType.GuildCategory ? "Category" : "Channel";
       if (oldChannel.name !== newChannel.name) {
         msg = this.bot.utils.translate(lang.EVENTS.CHANNEL_RENAME_MSG, {
           channel_type: type,

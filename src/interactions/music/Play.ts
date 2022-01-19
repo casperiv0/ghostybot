@@ -13,7 +13,7 @@ export default class PlayCommand extends SubCommand {
           description: "The URL or query to the song",
           name: "query",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

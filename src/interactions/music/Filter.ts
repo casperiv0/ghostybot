@@ -12,7 +12,7 @@ export default class FilterCommand extends SubCommand {
       description: "Set or remove a filter for the current queue",
       options: [
         {
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "filter",
           required: true,
           description: "The filter to set or remove",

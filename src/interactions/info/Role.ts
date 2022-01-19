@@ -15,7 +15,7 @@ export default class RoleInfoCommand extends SubCommand {
           description: "The role you want more information about",
           name: "role",
           required: true,
-          type: "Role",
+          type: DJS.ApplicationCommandOptionType.Role,
         },
       ],
     });

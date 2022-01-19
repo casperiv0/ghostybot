@@ -14,13 +14,13 @@ export default class VoiceKickCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice kick",
           required: true,
         },
         {
           name: "reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The reason why you want to kick the user",
           required: false,
         },

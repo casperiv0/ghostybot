@@ -16,13 +16,13 @@ export default class CreateReminderCommand extends SubCommand {
         {
           name: "time",
           description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "message",
           description: "The message you want the bot to remind you of",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

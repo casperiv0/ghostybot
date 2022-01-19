@@ -11,7 +11,7 @@ export default class ProfileCommand extends SubCommand {
       description: "See the profile of a user",
       options: [
         {
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their profile of",

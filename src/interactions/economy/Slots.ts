@@ -12,7 +12,7 @@ export default class SlotsCommand extends SubCommand {
       description: "Play the slots machine",
       options: [
         {
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
           required: false,
           name: "amount",
           description: "An amount you want to bet",

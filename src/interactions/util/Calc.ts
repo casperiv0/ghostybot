@@ -17,7 +17,7 @@ export default class CalculateCommand extends SubCommand {
           name: "calculation",
           required: true,
           description: "What you want to calculate",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

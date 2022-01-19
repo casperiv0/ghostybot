@@ -12,7 +12,7 @@ export default class GiveXP extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
       ],

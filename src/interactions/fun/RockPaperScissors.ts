@@ -11,7 +11,7 @@ export default class RockPaperScissorsCommand extends SubCommand {
       options: [
         {
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "item",
           description: "Rock? Paper? Scissors?",
           choices: [

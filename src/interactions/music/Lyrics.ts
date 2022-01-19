@@ -12,7 +12,7 @@ export default class LyricsCommand extends SubCommand {
       description: "Get lyrics for a song",
       options: [
         {
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "query",
           description: "The title of the song (Default: currently playing song)",
           required: false,

@@ -14,7 +14,7 @@ export default class AsciiCommand extends SubCommand {
         {
           name: "text",
           description: "The text you want to transform",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

@@ -13,19 +13,19 @@ export default class StartGiveaway extends SubCommand {
       options: [
         {
           name: "time",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "When the giveaway should end",
           required: true,
         },
         {
           name: "prize",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The giveaway prize",
           required: true,
         },
         {
           name: "winner-count",
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
           description: "The amount of people that can win (Default: 1)",
         },
       ],

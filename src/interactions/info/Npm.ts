@@ -14,7 +14,7 @@ export default class NpmInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The search query",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

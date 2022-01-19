@@ -16,7 +16,7 @@ export default class ChannelInfoCommand extends SubCommand {
           description: "The channel you want more information about",
           name: "channel",
           required: false,
-          type: "Channel",
+          type: DJS.ApplicationCommandOptionType.Channel,
         },
       ],
     });

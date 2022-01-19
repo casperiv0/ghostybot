@@ -14,7 +14,7 @@ export default class EndGiveaway extends SubCommand {
           description: "The messageId of the giveaway",
           name: "message-id",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

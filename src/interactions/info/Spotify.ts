@@ -12,7 +12,7 @@ export default class SpotifyInfoCommand extends SubCommand {
       options: [
         {
           name: "type",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The type you want to search for",
           required: true,
           choices: [
@@ -37,7 +37,7 @@ export default class SpotifyInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The search query",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],

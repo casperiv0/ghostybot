@@ -132,7 +132,11 @@ async function createNewReaction(reaction: IReaction, bot: Bot): Promise<DJS.Mes
     | null;
 
   if (!channel) return "Channel was not found.";
-  if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) {
+  // 0 = GUILD_TEXT, 5 = GUILD_NEWS
+  // i cannot import `ChannelType` because:
+  // type error: Cannot access ambient const enums when the '--isolatedModules' flag is provided.
+  // next.js auto-adds `isolatedModules: true` to the tsconfig :/
+  if (![0, 5].includes(channel.type)) {
     return "Channel must be a text channel.";
   }
 

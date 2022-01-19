@@ -27,7 +27,7 @@
     "strictNullChecks": true,
     "alwaysStrict": true,
     "allowJs": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noUnusedLocals": true,
     "noImplicitOverride": false,
     "strictBindCallApply": true,

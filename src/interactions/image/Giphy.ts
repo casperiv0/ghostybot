@@ -16,7 +16,7 @@ export default class GiphyCommand extends SubCommand {
           name: "query",
           description: "A search query for the image",
           required: true,
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

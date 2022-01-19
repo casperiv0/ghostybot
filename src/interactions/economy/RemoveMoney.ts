@@ -11,13 +11,13 @@ export default class RemoveMoneyCommand extends SubCommand {
       memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
       options: [
         {
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           name: "user",
           description: "The user you want to remove money to",
           required: true,
         },
         {
-          type: "Number",
+          type: DJS.ApplicationCommandOptionType.Number,
           name: "amount",
           description: "The amount you want to remove",
           required: true,

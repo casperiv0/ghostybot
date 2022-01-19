@@ -13,13 +13,13 @@ export default class MagikCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
         {
           name: "intensity",
           description: "The intensity of the Magik",
-          type: "Integer",
+          type: DJS.ApplicationCommandOptionType.Integer,
           required: false,
         },
       ],

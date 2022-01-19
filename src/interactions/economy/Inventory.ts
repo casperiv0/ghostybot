@@ -10,7 +10,7 @@ export default class InventoryCommand extends SubCommand {
       description: "See the inventory of a user",
       options: [
         {
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their inventory of",

@@ -14,7 +14,7 @@ export default class VoiceUndeafenCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice undeafen",
           required: true,
         },

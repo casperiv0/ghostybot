@@ -10,7 +10,7 @@ export default class Ball8Command extends SubCommand {
       description: "8Ball",
       options: [
         {
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The question that needs to be answered",
           name: "question",
           required: true,

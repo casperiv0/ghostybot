@@ -3,6 +3,12 @@ import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
+export const threadChannels = [
+  DJS.ChannelType.GuildNewsThread,
+  DJS.ChannelType.GuildPublicThread,
+  DJS.ChannelType.GuildPrivateThread,
+];
+
 export default class LockChannelCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -15,7 +21,7 @@ export default class LockChannelCommand extends SubCommand {
         {
           name: "reason",
           description: "The reason why the channel should be locked",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -26,7 +32,6 @@ export default class LockChannelCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel?.type!)) {
       return {
         ok: false,

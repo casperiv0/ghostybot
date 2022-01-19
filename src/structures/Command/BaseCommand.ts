@@ -16,7 +16,7 @@ export interface BaseCommandOptions {
   botPermissions?: bigint[];
 
   /** options for the command, choices, required, add more options, etc.  */
-  options?: DJS.ApplicationCommandOptionData[];
+  options?: (DJS.ApplicationCommandOption | DJS.ApplicationCommandOptionData)[];
 }
 
 export type ValidateReturn = {

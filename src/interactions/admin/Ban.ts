@@ -14,13 +14,13 @@ export default class BanCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "User",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The ban reason",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],

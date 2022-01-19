@@ -14,7 +14,7 @@ export default class SuggestCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The suggestion description",
-          type: "String",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

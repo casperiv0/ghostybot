@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "lib": ["ESNext", "dom", "dom.iterable", "ES2020.BigInt"],
+    "strict": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo.web",
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".vscode",
+    ".github",
+    "**/*.md",
+    "public/*.js",
+    "events/**/*.ts",
+    "interactions/**/*.ts"
+  ],
+  "include": [
+    "typings/next-env.d.ts",
+    "typings/*.d.ts",
+    "src/pages/**/*.ts",
+    "src/pages/**/*.tsx",
+    "src/dashboard/**/*.tsx"
+  ]
+}
