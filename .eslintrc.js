@@ -22,4 +22,19 @@ module.exports = {
     "@next/next/no-page-custom-font": "off",
     "@typescript-eslint/consistent-type-imports": "off",
   },
+  overrides: [
+    {
+      files: ["src/interactions/**"],
+      rules: {
+        "no-restricted-globals": [
+          "error",
+          {
+            /* eslint-disable */
+            name: "fetch",
+            message: 'Import request from `undici` instead (`import { request } from "undici"`)',
+          },
+        ],
+      },
+    },
+  ],
 };

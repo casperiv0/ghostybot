@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import timeoutSignal from "timeout-signal";
 import URL from "node:url";
 import { Bot } from "structures/Bot";
@@ -59,7 +59,7 @@ export default class WebCommand extends SubCommand {
   async isAvailable(url: string) {
     let available = false;
     try {
-      await fetch(url, { signal: timeoutSignal(2_000) });
+      await request(url, { method: "GET", signal: timeoutSignal(2_000) });
 
       return (available = true);
     } catch {
@@ -70,7 +70,7 @@ export default class WebCommand extends SubCommand {
   }
 
   async isNsfw(url: string) {
-    const res = await fetch(PORN_BLACKLIST_LIST_URL).then((res) => res.text());
+    const res = await request(PORN_BLACKLIST_LIST_URL).then((res) => res.body.text());
 
     const parsed = URL.parse(url);
     const list = [
@@ -83,9 +83,10 @@ export default class WebCommand extends SubCommand {
 
     const includes = list.includes(parsed.host!);
     const includesPorn = await (
-      await fetch(url, {
+      await request(url, {
         signal: timeoutSignal(2_500),
-      }).then((res) => res.text())
+        method: "GET",
+      }).then((res) => res.body.text())
     ).includes("porn");
 
     if (!includes && !includesPorn) return false;

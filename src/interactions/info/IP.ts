@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -28,8 +28,8 @@ export default class IPInfoCommand extends SubCommand {
 
     const ip = interaction.options.getString("ip", true);
 
-    const data = (await fetch(`${this.APIs.IP}${ip}?lang=${lang.UTIL.IP_LOC}`).then((res) =>
-      res.json(),
+    const data = (await request(`${this.APIs.IP}${ip}?lang=${lang.UTIL.IP_LOC}`).then((res) =>
+      res.body.json(),
     )) as ReturnResponse;
 
     if (data.success) {

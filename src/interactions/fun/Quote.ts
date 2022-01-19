@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -25,7 +25,7 @@ export default class QuoteCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = (await fetch(this.APIs.Quote).then((r) => r.json())) as Data;
+    const data = (await request(this.APIs.Quote).then((r) => r.body.json())) as Data;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

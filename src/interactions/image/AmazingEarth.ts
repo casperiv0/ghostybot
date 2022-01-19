@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class AmazingEarthCommand extends SubCommand {
@@ -15,7 +15,7 @@ export default class AmazingEarthCommand extends SubCommand {
   async execute(interaction: DJS.CommandInteraction) {
     await interaction.deferReply();
 
-    const data = (await fetch(this.APIs.AmazingEarth).then((res) => res.json())) as any;
+    const data = (await request(this.APIs.AmazingEarth).then((res) => res.body.json())) as any;
 
     const [children] = data[0].data.children;
     const permaLink = children.data.permalink;

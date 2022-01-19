@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { hyperlink } from "@discordjs/builders";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -29,7 +29,7 @@ export default class GitHubInfoCommand extends SubCommand {
     const username = interaction.options.getString("username", true);
 
     const url = `${this.APIs.GitHub}${encodeURIComponent(username)}`;
-    const user = (await fetch(url).then((res) => res.json())) as any;
+    const user = (await request(url).then((res) => res.body.json())) as any;
 
     if (user?.message === "Not Found") {
       return interaction.editReply({ content: lang.UTIL.GH_NOT_FOUND });

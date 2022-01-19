@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -52,7 +52,7 @@ export default class GiphyCommand extends SubCommand {
     const rating = "pg-13";
     const randomInt = Math.floor(Math.random() * 100);
     const url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${q}&lang=en&rating=${rating}&limit=${limit}&offset=${randomInt}`;
-    const res = (await (await fetch(url)).json()) as any;
+    const res = await (await request(url)).body.json();
     const [data] = res.data;
 
     if (!data) {

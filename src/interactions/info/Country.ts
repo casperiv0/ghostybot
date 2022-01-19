@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { bold } from "@discordjs/builders";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -29,9 +29,9 @@ export default class CountryInfoCommand extends SubCommand {
 
     const countryQuery = interaction.options.getString("country", true);
 
-    const data = (await fetch(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then((r) =>
-      r.json(),
-    )) as any;
+    const data = await request(`${this.APIs.Country}${encodeURIComponent(countryQuery)}`).then(
+      (r) => r.body.json(),
+    );
 
     const [country] = data;
 

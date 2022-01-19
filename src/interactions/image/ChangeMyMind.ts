@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class ChangeMyMindCommand extends SubCommand {
@@ -28,8 +28,8 @@ export default class ChangeMyMindCommand extends SubCommand {
 
     const text = interaction.options.getString("text", true);
 
-    const data = (await fetch(`${this.APIs.ChangeMyMind}${encodeURIComponent(text)}`).then((res) =>
-      res.json(),
+    const data = (await request(`${this.APIs.ChangeMyMind}${encodeURIComponent(text)}`).then(
+      (res) => res.body.json(),
     )) as { message: string };
 
     const embed = this.bot.utils

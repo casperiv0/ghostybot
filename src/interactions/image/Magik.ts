@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { SubCommand } from "structures/Command/SubCommand";
 
 export default class MagikCommand extends SubCommand {
@@ -35,11 +35,11 @@ export default class MagikCommand extends SubCommand {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const intensity = interaction.options.getInteger("intensity") ?? Math.floor(Math.random() * 10);
 
-    const data = (await fetch(
+    const data = (await request(
       `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user?.displayAvatarURL({
         format: "png",
       })}`,
-    ).then((res) => res.json())) as { message: string };
+    ).then((res) => res.body.json())) as { message: string };
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

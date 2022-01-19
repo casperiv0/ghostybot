@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
 import { Song } from "distube";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -38,9 +38,9 @@ export default class LyricsCommand extends SubCommand {
 
     await interaction.deferReply();
 
-    const data = (await fetch(
+    const data = await request(
       `http://api.xaliks.xyz/info/lyrics?query=${encodeURIComponent(title)}`,
-    ).then((v) => v.json())) as any;
+    ).then((v) => v.body.json());
 
     if (!data.lyrics) {
       return interaction.editReply({

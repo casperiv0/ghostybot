@@ -1,4 +1,5 @@
 import * as DJS from "discord.js";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command/Command";
 
@@ -27,7 +28,7 @@ export default class MDNInteraction extends Command {
       const query = interaction.options.getString("query", true);
 
       const url = `${this.APIs.MDN}${query}`;
-      const data = await fetch(url).then((res) => res.json());
+      const data = await request(url).then((res) => res.body.json());
 
       if (!data || data?.message || data?.code) {
         return interaction.editReply({ content: lang.UTIL.MDN_NOT_FOUND });

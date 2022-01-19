@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
@@ -32,11 +32,11 @@ export default class CovidInfoCommand extends SubCommand {
     let country: any;
 
     if (!query) {
-      country = await (await fetch(this.APIs.Covid)).json();
+      country = await (await request(this.APIs.Covid)).body.json();
     } else {
       country = await (
-        await fetch(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)
-      ).json();
+        await request(`https://disease.sh/v3/covid-19/countries/${encodeURIComponent(query)}`)
+      ).body.json();
     }
 
     if (country.message) {

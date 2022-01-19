@@ -1,6 +1,6 @@
 import { time } from "@discordjs/builders";
 import * as DJS from "discord.js";
-import fetch from "node-fetch";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -28,8 +28,8 @@ export default class NpmInfoCommand extends SubCommand {
     await interaction.deferReply();
 
     const query = interaction.options.getString("query", true);
-    const data = (await fetch(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(
-      (res) => res.json(),
+    const data = (await request(`http://registry.npmjs.com/-/v1/search?text=${query}&size=5`).then(
+      (res) => res.body.json(),
     )) as any;
 
     const foundPackages = data.objects.map(({ package: pkg, searchScore }) => {
@@ -50,8 +50,8 @@ export default class NpmInfoCommand extends SubCommand {
       const updatedAt = time(new Date(foundPackage.date), "F");
 
       const maintainers = foundPackage.maintainers.map(({ username }) => username).join(", ");
-      const downloads = (await fetch(`${this.APIs.npm}${foundPackage.name}`)
-        .then((res) => res.json())
+      const downloads = (await request(`${this.APIs.npm}${foundPackage.name}`)
+        .then((res) => res.body.json())
         .catch(() => null)) as { downloads: number } | null;
 
       const embed = this.bot.utils

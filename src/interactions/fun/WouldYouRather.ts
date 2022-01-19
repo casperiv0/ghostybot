@@ -1,4 +1,5 @@
 import * as DJS from "discord.js";
+import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -17,7 +18,7 @@ export default class WouldYouRatherCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = await fetch("http://api.xaliks.xyz/random/wyr").then((res) => res.json());
+    const data = await request("http://api.xaliks.xyz/random/wyr").then((res) => res.body.json());
     const [reply1, reply2] = data.questions;
 
     const embed = this.bot.utils
