@@ -12,14 +12,14 @@ export default class Rank extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: "User",
           required: false,
         },
       ],
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId);
 
     const user = interaction.options.getUser("user") ?? interaction.user;

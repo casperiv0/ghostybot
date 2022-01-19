@@ -14,14 +14,14 @@ export default class WikiCommand extends SubCommand {
           name: "query",
           required: true,
           description: "The query",
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const query = interaction.options.getString("query", true);

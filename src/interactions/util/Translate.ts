@@ -13,13 +13,13 @@ export default class TranslateCommand extends SubCommand {
         {
           name: "language",
           description: "The language you want to translate to",
-          type: "STRING",
+          type: "String",
           required: true,
         },
         {
           name: "sentence",
           description: "The sentence you want to translate",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -27,7 +27,7 @@ export default class TranslateCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const language = interaction.options.getString("language", true);

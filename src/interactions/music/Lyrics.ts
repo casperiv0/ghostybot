@@ -12,7 +12,7 @@ export default class LyricsCommand extends SubCommand {
       description: "Get lyrics for a song",
       options: [
         {
-          type: "STRING",
+          type: "String",
           name: "query",
           description: "The title of the song (Default: currently playing song)",
           required: false,
@@ -22,7 +22,7 @@ export default class LyricsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);

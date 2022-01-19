@@ -26,7 +26,7 @@ export default class GuildMemberRemoveEvent extends Event {
       if (leaveData.channel_id) {
         if (!member.guild.channels.cache.find((ch) => ch.id === leaveData.channel_id)) return;
 
-        const avatar = member.user.displayAvatarURL({ dynamic: true });
+        const avatar = member.user.displayAvatarURL();
 
         const embed = bot.utils
           .baseEmbed({ author: member.user })

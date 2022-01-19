@@ -10,7 +10,7 @@ export default class InventoryCommand extends SubCommand {
       description: "See the inventory of a user",
       options: [
         {
-          type: "USER",
+          type: "User",
           required: false,
           name: "user",
           description: "The user you want to see their inventory of",
@@ -20,7 +20,7 @@ export default class InventoryCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

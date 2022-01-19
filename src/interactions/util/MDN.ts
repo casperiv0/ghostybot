@@ -11,7 +11,7 @@ export default class MDNInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -19,7 +19,7 @@ export default class MDNInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     try {
@@ -38,7 +38,7 @@ export default class MDNInteraction extends Command {
         color: "#5865f2",
         footer: {
           text: interaction.user.username,
-          icon_url: interaction.user?.displayAvatarURL({ dynamic: true }),
+          icon_url: interaction.user?.displayAvatarURL(),
         },
       });
 

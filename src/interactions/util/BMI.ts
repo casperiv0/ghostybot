@@ -13,20 +13,20 @@ export default class BMICommand extends SubCommand {
           name: "height",
           required: true,
           description: "Your height in centimeters",
-          type: "NUMBER",
+          type: "Number",
         },
         {
           name: "weight",
           required: true,
           description: "Your weight in kilograms",
-          type: "NUMBER",
+          type: "Number",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const height = interaction.options.getNumber("height", true);

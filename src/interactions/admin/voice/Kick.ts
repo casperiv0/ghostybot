@@ -14,13 +14,13 @@ export default class VoiceKickCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "USER",
+          type: "User",
           description: "The user you want to voice kick",
           required: true,
         },
         {
           name: "reason",
-          type: "STRING",
+          type: "String",
           description: "The reason why you want to kick the user",
           required: false,
         },
@@ -29,7 +29,7 @@ export default class VoiceKickCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

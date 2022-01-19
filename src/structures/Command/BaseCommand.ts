@@ -47,12 +47,12 @@ export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseComm
   }
 
   validate?(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn>;
 
   abstract execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<unknown>;
 }

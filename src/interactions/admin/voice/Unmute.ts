@@ -14,7 +14,7 @@ export default class VoiceMuteCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "USER",
+          type: "User",
           description: "The user you want to voice unmute",
           required: true,
         },
@@ -23,7 +23,7 @@ export default class VoiceMuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

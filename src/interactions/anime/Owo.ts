@@ -14,7 +14,7 @@ export default class OwoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const data = (await fetch(this.APIs.Owo).then((res) => res.json())) as { path: string };

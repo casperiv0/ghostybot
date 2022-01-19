@@ -14,14 +14,14 @@ export default class ReRollGiveaway extends SubCommand {
           description: "The messageId of the giveaway",
           name: "message-id",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const messageId = interaction.options.getString("message-id", true) as DJS.Snowflake;

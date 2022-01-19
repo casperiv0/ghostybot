@@ -13,13 +13,13 @@ export default class GiveXP extends SubCommand {
         {
           name: "user",
           description: "The user you want to remove XP",
-          type: "USER",
+          type: "User",
           required: true,
         },
         {
           name: "amount",
           description: "The amount you want to remove",
-          type: "NUMBER",
+          type: "Number",
           required: true,
         },
       ],
@@ -27,7 +27,7 @@ export default class GiveXP extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getNumber("amount", true);

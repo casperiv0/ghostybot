@@ -13,13 +13,13 @@ export default class BlockCommand extends SubCommand {
           name: "text",
           description: "The text that you want to transform",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const text = interaction.options.getString("text", true);
 
     const blocks = text

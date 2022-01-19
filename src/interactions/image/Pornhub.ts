@@ -13,20 +13,20 @@ export default class PornhubCommand extends SubCommand {
           name: "left-text",
           description: "The left text your want to render",
           required: true,
-          type: "STRING",
+          type: "String",
         },
         {
           name: "right-text",
           description: "The right text your want to render",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

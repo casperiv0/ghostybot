@@ -12,7 +12,7 @@ export default class InteractionEvent extends Event {
     super(bot, "interactionCreate");
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+  async execute(bot: Bot, interaction: DJS.ChatInputCommandInteraction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
@@ -131,7 +131,7 @@ export default class InteractionEvent extends Event {
     }
   }
 
-  isSubCommandDisabled(dbGuild: IGuild, interaction: DJS.CommandInteraction) {
+  isSubCommandDisabled(dbGuild: IGuild, interaction: DJS.ChatInputCommandInteraction) {
     const commands = dbGuild.disabled_commands;
 
     const command = this.getCommandName(interaction);
@@ -139,7 +139,7 @@ export default class InteractionEvent extends Event {
     return commands.includes(command);
   }
 
-  getCommandName(interaction: DJS.CommandInteraction) {
+  getCommandName(interaction: DJS.ChatInputCommandInteraction) {
     let command: string;
 
     const commandName = interaction.commandName;

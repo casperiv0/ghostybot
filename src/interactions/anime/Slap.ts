@@ -13,7 +13,7 @@ export default class SlapCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: "User",
           required: false,
         },
       ],
@@ -21,7 +21,7 @@ export default class SlapCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

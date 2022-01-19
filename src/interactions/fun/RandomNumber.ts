@@ -11,7 +11,7 @@ export default class RandomNumberCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     await interaction.reply({
       content: (Math.floor(Math.random() * 1000000) + 1).toString(),
     });

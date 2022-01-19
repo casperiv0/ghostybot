@@ -15,20 +15,20 @@ export default class WarningsCommand extends SubCommand {
           name: "user",
           required: true,
           description: "The user you want to see their warnings of",
-          type: "USER",
+          type: "User",
         },
         {
           name: "warning-id",
           required: false,
           description: "The id of a warning",
-          type: "INTEGER",
+          type: "Integer",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -67,7 +67,7 @@ export default class WarningsCommand extends SubCommand {
     embed
       .setTitle(this.bot.utils.translate(lang.ADMIN.MEMBER_WARNS, { memberTag: user.tag }))
       .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings?.length || 0).toString())
-      .setThumbnail(user.displayAvatarURL({ dynamic: true }));
+      .setThumbnail(user.displayAvatarURL());
 
     await interaction.reply({ ephemeral: true, embeds: [embed] });
   }

@@ -15,7 +15,7 @@ export default class LockChannelCommand extends SubCommand {
         {
           name: "reason",
           description: "The reason why the channel should be locked",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -23,7 +23,7 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
@@ -38,7 +38,7 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const reason = interaction.options.getString("reason", true);

@@ -16,20 +16,20 @@ export default class RemoveWarningCommand extends SubCommand {
           name: "user",
           required: true,
           description: "The user you want to remove a warning of",
-          type: "USER",
+          type: "User",
         },
         {
           name: "warning-id",
           required: true,
           description: "The id of a warning",
-          type: "INTEGER",
+          type: "Integer",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

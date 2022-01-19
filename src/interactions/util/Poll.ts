@@ -11,7 +11,7 @@ export default class PollCommand extends SubCommand {
       options: [
         {
           name: "question",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The question",
         },
@@ -20,7 +20,7 @@ export default class PollCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const question = interaction.options.getString("question", true);

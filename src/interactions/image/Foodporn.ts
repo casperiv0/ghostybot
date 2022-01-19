@@ -12,7 +12,7 @@ export default class FoodpornCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     await interaction.deferReply();
 
     const data = (await fetch(this.APIs.FoodPorn).then((res) => res.json())) as any;

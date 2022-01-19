@@ -16,14 +16,14 @@ export default class SetStickyCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The text you want as a sticky message",
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);

@@ -13,7 +13,7 @@ export default class IPInfoCommand extends SubCommand {
         {
           name: "ip",
           description: "The IP address you want to lookup",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -21,7 +21,7 @@ export default class IPInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

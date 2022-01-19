@@ -13,7 +13,7 @@ export default class MinecraftInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The server IP",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -21,7 +21,7 @@ export default class MinecraftInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

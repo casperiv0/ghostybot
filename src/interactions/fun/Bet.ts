@@ -12,7 +12,7 @@ export default class BetCommand extends SubCommand {
         {
           description: "The user you want to bet on",
           name: "user",
-          type: "USER",
+          type: "User",
           required: true,
         },
       ],
@@ -20,7 +20,7 @@ export default class BetCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

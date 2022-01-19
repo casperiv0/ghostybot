@@ -12,7 +12,7 @@ export default class AnimalCommand extends Command {
         {
           name: "type",
           description: "The type of the animal",
-          type: "STRING",
+          type: "String",
           required: true,
           choices: animalChoices.map((v) => ({ name: v.name, value: v.value })),
         },
@@ -21,7 +21,7 @@ export default class AnimalCommand extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     try {

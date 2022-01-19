@@ -12,7 +12,7 @@ export default class EnlargeCommand extends SubCommand {
       options: [
         {
           name: "emoji",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The emoji you want to enlarge",
         },
@@ -21,7 +21,7 @@ export default class EnlargeCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);

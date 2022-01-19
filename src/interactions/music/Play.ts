@@ -13,14 +13,14 @@ export default class PlayCommand extends SubCommand {
           description: "The URL or query to the song",
           name: "query",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const query = interaction.options.getString("query");

@@ -18,7 +18,7 @@ export default class WebCommand extends SubCommand {
       options: [
         {
           name: "url",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The URL of the website",
         },
@@ -27,7 +27,7 @@ export default class WebCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const url = interaction.options.getString("url", true);

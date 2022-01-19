@@ -15,19 +15,19 @@ export default class TempRoleCommand extends SubCommand {
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: "User",
           required: true,
         },
         {
           name: "role",
           description: "The role you want to add",
-          type: "ROLE",
+          type: "Role",
           required: true,
         },
         {
           name: "time",
           description: "The amount of time (Eg: 2d, 40h, 10min, etc.)",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -35,7 +35,7 @@ export default class TempRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

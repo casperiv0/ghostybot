@@ -13,14 +13,14 @@ export default class AvatarCommand extends SubCommand {
           name: "user",
           required: false,
           description: "The user you want to see the avatar of",
-          type: "USER",
+          type: "User",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -41,7 +41,6 @@ export default class AvatarCommand extends SubCommand {
 
   getAvatar(user: DJS.User, format: DJS.AllowedImageFormat | "gif") {
     return user.displayAvatarURL({
-      dynamic: true,
       size: 4096,
       format: format as DJS.AllowedImageFormat,
     });

@@ -13,19 +13,19 @@ export default class CtgsCommand extends SubCommand {
           name: "slug",
           required: true,
           description: "The slug, the part after the domain",
-          type: "STRING",
+          type: "String",
         },
         {
           name: "url",
           required: true,
           description: "The URL where it should be redirected to",
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const slug = interaction.options.getString("slug", true);
     const url = interaction.options.getString("url", true);
     const data = await this.bot.ctgs.new(slug, url).catch((e) => e?.message ?? e);

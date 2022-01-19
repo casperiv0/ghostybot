@@ -13,13 +13,13 @@ export default class AnnounceCommand extends SubCommand {
         {
           name: "text",
           description: "The announcement message",
-          type: "STRING",
+          type: "String",
           required: true,
         },
         {
           name: "channel",
           description: "A channel (Default: announcement channel set in dashboard)",
-          type: "CHANNEL",
+          type: "Channel",
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class AnnounceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);

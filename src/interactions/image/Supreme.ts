@@ -13,14 +13,14 @@ export default class SupremeCommand extends SubCommand {
           name: "text",
           description: "The text your want to render",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

@@ -14,13 +14,13 @@ export default class RemoveRoleCommand extends SubCommand {
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: "User",
           required: true,
         },
         {
           name: "role",
           description: "The role you want to remove",
-          type: "ROLE",
+          type: "Role",
           required: true,
         },
       ],
@@ -28,7 +28,7 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     if (!interaction.guild?.me) return;

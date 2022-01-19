@@ -12,7 +12,7 @@ export default class SlotsCommand extends SubCommand {
       description: "Play the slots machine",
       options: [
         {
-          type: "NUMBER",
+          type: "Number",
           required: false,
           name: "amount",
           description: "An amount you want to bet",
@@ -22,7 +22,7 @@ export default class SlotsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     let amount = Number(interaction.options.getNumber("amount"));

@@ -15,7 +15,7 @@ export default class GiphyCommand extends SubCommand {
           name: "query",
           description: "A search query for the image",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
@@ -39,7 +39,7 @@ export default class GiphyCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

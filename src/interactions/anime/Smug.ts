@@ -13,7 +13,7 @@ export default class SmugCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const data = await this.bot.neko.sfw.smug();

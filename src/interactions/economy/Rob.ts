@@ -10,13 +10,13 @@ export default class RobCommand extends SubCommand {
       description: "Rob up to 1000 coins from somebody",
       options: [
         {
-          type: "USER",
+          type: "User",
           required: true,
           name: "user",
           description: "The user you want to rob",
         },
         {
-          type: "NUMBER",
+          type: "Number",
           required: true,
           name: "amount",
           description: "The amount you want to rob from the user",
@@ -26,7 +26,7 @@ export default class RobCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

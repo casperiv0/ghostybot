@@ -13,13 +13,13 @@ export default class MagikCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: "User",
           required: false,
         },
         {
           name: "intensity",
           description: "The intensity of the Magik",
-          type: "INTEGER",
+          type: "Integer",
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class MagikCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

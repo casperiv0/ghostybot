@@ -11,7 +11,7 @@ export default class LmgtfyCommand extends SubCommand {
       options: [
         {
           required: true,
-          type: "STRING",
+          type: "String",
           name: "query",
           description: "The search query",
         },
@@ -19,7 +19,7 @@ export default class LmgtfyCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const query = interaction.options.getString("query", true);
     const url = `${this.APIs.Lmgtfy}${encodeURIComponent(query)}`;
 

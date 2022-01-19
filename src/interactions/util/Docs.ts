@@ -11,13 +11,13 @@ export default class DocsInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "STRING",
+          type: "String",
           required: true,
         },
         {
           name: "branch",
           description: "The branch",
-          type: "STRING",
+          type: "String",
           required: false,
           choices: [
             {
@@ -35,7 +35,7 @@ export default class DocsInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     try {
@@ -55,7 +55,7 @@ export default class DocsInteraction extends Command {
         color: "#5865f2",
         footer: {
           text: interaction.user.username,
-          icon_url: interaction.user?.displayAvatarURL({ dynamic: true }),
+          icon_url: interaction.user?.displayAvatarURL(),
         },
       });
 

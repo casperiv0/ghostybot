@@ -32,13 +32,13 @@ export default class CreateRoleCommand extends SubCommand {
         {
           name: "name",
           description: "The name for the new role",
-          type: "STRING",
+          type: "String",
           required: true,
         },
         {
           name: "color",
           description: "The color for the new role",
-          type: "STRING",
+          type: "String",
           required: false,
           choices: Object.entries(colors).map(([name, value]) => ({
             name,
@@ -50,7 +50,7 @@ export default class CreateRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const name = interaction.options.getString("name", true);

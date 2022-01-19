@@ -14,7 +14,7 @@ export default class BlacklistAdd extends SubCommand {
       options: [
         {
           name: "user",
-          type: "USER",
+          type: "User",
           description: "The user that needs to be blacklisted",
           required: true,
         },
@@ -23,7 +23,7 @@ export default class BlacklistAdd extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
@@ -37,7 +37,7 @@ export default class BlacklistAdd extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });

@@ -12,13 +12,13 @@ export default class SayCommand extends SubCommand {
       options: [
         {
           name: "text",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The text",
         },
         {
           name: "embed",
-          type: "BOOLEAN",
+          type: "Boolean",
           required: false,
           description: "Send the text in an embed",
         },
@@ -26,7 +26,7 @@ export default class SayCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const embed = interaction.options.getBoolean("embed");
     const text = interaction.options.getString("text", true);
 

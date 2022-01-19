@@ -13,7 +13,7 @@ export default class CreateTicket extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
@@ -59,7 +59,7 @@ export default class CreateTicket extends SubCommand {
 
     if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
       DEFAULT_PERMS.push({
-        type: "role",
+        type: "Role",
         id: guild.ticket_data.role_id as DJS.Snowflake,
         allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
       });
@@ -75,7 +75,7 @@ export default class CreateTicket extends SubCommand {
         Id: ticketId,
       }),
       {
-        type: "GUILD_TEXT",
+        type: "GuildText",
         nsfw: false,
         topic: this.bot.utils.translate(lang.TICKET.TICKET_FOR, { member: interaction.user.tag }),
         permissionOverwrites: DEFAULT_PERMS,

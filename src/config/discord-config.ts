@@ -26,15 +26,12 @@ export const discordConfig: DJS.ClientOptions = {
     ...DJS.Options.defaultMakeCacheSettings,
     MessageManager: {
       maxSize: 2,
-      sweepInterval: 60 * 60,
     },
     ThreadManager: {
       maxSize: 2,
-      sweepInterval: 60 * 60,
     },
     ThreadMemberManager: {
       maxSize: 2,
-      sweepInterval: 60 * 60,
     },
   }),
 };

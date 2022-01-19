@@ -13,13 +13,13 @@ export default class WarnCommand extends SubCommand {
         {
           name: "user",
           description: "The user to warn",
-          type: "USER",
+          type: "User",
           required: true,
         },
         {
           name: "reason",
           description: "The warn reason",
-          type: "STRING",
+          type: "String",
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class WarnCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

@@ -13,14 +13,14 @@ export default class RemoveReminderCommand extends SubCommand {
           description: "The id of the reminder you want to delete",
           name: "id",
           required: true,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     let id = interaction.options.getString("id", true);

@@ -22,7 +22,7 @@ export class Util {
       count += 1;
 
       interaction.options.options?.forEach((option) => {
-        if (option.type === "SUB_COMMAND") {
+        if (option.type === "Subcommand") {
           count += 1;
         }
       });
@@ -472,7 +472,7 @@ export class Util {
   ): DJS.MessageEmbed {
     const user = "author" in message ? message.author : message.user;
 
-    const avatar = user?.displayAvatarURL({ dynamic: true });
+    const avatar = user?.displayAvatarURL();
     const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
     return new DJS.MessageEmbed()
@@ -532,7 +532,7 @@ export class Util {
    */
   formatBotPermissions(
     permissions: bigint[],
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const neededPerms: bigint[] = [];
@@ -552,7 +552,7 @@ export class Util {
 
   formatMemberPermissions(
     permissions: bigint[],
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const neededPerms: bigint[] = [];

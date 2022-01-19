@@ -14,14 +14,14 @@ export default class ChangeMyMindCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The text that needs to be displayed",
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

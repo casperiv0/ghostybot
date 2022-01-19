@@ -14,7 +14,7 @@ export default class DeleteCommand extends SubCommand {
         {
           name: "amount",
           description: "Min: 1. Max: 100",
-          type: "INTEGER",
+          type: "Integer",
           required: true,
         },
       ],
@@ -22,7 +22,7 @@ export default class DeleteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getInteger("amount", true);

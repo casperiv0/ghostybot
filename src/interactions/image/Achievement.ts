@@ -13,26 +13,26 @@ export default class AchievementCommand extends SubCommand {
           name: "text",
           description: "The text your want to render in the achievement",
           required: true,
-          type: "STRING",
+          type: "String",
         },
         {
           name: "icon",
           description: "An icon number from 1 to 45",
           required: false,
-          type: "INTEGER",
+          type: "Integer",
         },
         {
           name: "title",
           description: "The title of the achievement",
           required: false,
-          type: "STRING",
+          type: "String",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

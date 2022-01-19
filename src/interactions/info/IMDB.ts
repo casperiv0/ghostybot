@@ -12,7 +12,7 @@ export default class IMDBInfoCommand extends SubCommand {
         {
           name: "query",
           description: "What you're looking for",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -20,7 +20,7 @@ export default class IMDBInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

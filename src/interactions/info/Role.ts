@@ -15,14 +15,14 @@ export default class RoleInfoCommand extends SubCommand {
           description: "The role you want more information about",
           name: "role",
           required: true,
-          type: "ROLE",
+          type: "Role",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const role = interaction.options.getRole("role", true);

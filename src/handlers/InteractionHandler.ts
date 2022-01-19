@@ -55,7 +55,7 @@ export class InteractionHandler {
           commandName = interaction.name;
 
           const data: ApplicationCommandData = {
-            type: "CHAT_INPUT",
+            type: "ChatInput",
             name: interaction.name,
             description: interaction.options.description ?? "Empty description",
             options: interaction.options.options ?? [],
@@ -75,7 +75,7 @@ export class InteractionHandler {
         const cmds = subCommands[topLevelName];
 
         const data: ApplicationCommandData = {
-          type: "CHAT_INPUT",
+          type: "ChatInput",
           name: topLevelName,
           description: `${topLevelName} commands`,
           // @ts-expect-error ignore
@@ -102,7 +102,7 @@ export class InteractionHandler {
         groupCache.push(groupData);
 
         const data: ApplicationCommandData = {
-          type: "CHAT_INPUT",
+          type: "ChatInput",
           name: topLevelName,
           description: `${topLevelName} commands`,
           options: [...groupCache, ...subCommands[topLevelName].map((v) => v.options)],

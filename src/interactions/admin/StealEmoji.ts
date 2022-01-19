@@ -14,13 +14,13 @@ export default class StealEmojiCommand extends SubCommand {
       options: [
         {
           name: "emoji",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The emoji you want to add",
         },
         {
           name: "name",
-          type: "STRING",
+          type: "String",
           required: true,
           description: "The name of the emoji",
         },
@@ -29,7 +29,7 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);
@@ -85,7 +85,12 @@ export default class StealEmojiCommand extends SubCommand {
     });
   }
 
-  async createEmoji(interaction: DJS.CommandInteraction, url: string, name: string, lang: any) {
+  async createEmoji(
+    interaction: DJS.ChatInputCommandInteraction,
+    url: string,
+    name: string,
+    lang: any,
+  ) {
     try {
       await interaction.guild?.emojis.create(url, name);
     } catch (e) {

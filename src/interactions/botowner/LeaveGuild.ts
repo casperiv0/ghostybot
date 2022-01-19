@@ -11,7 +11,7 @@ export default class LeaveGuildCommand extends SubCommand {
       commandName: "bot-owner",
       options: [
         {
-          type: "STRING",
+          type: "String",
           name: "id",
           description: "The id of the guild",
           required: true,
@@ -21,7 +21,7 @@ export default class LeaveGuildCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
@@ -35,7 +35,7 @@ export default class LeaveGuildCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     try {

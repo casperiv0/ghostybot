@@ -15,14 +15,14 @@ export default class HelpInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     try {
       const LINK = hyperlink(lang.HELP.CLICK_ME, HELP_URL_GH);
 
       const menu = this.createSelectMenu();
-      const actionRow = new DJS.MessageActionRow().addComponents(menu);
+      const actionRow = new DJS.ActionRow().addComponents(menu);
 
       const embed = this.bot.utils
         .baseEmbed({
@@ -43,7 +43,7 @@ export default class HelpInteraction extends Command {
   // todo: add function to find categories instead coming from a file
   // todo: add translations
   private createSelectMenu() {
-    const menu = new DJS.MessageSelectMenu()
+    const menu = new DJS.SelectMenuComponent()
       .setCustomId("HELP_CATEGORIES")
       .setPlaceholder("Select a category")
       .setMinValues(0)

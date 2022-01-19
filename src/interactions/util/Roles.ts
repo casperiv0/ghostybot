@@ -16,7 +16,7 @@ export default class RolesCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const roles = [...(interaction.guild?.roles.cache ?? new DJS.Collection()).values()];
 
     if (roles.length <= 0) {

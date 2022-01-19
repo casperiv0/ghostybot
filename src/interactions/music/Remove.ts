@@ -14,14 +14,14 @@ export default class RemoveCommand extends SubCommand {
           description: "The position of the song in the queue",
           name: "track-number",
           required: true,
-          type: "INTEGER",
+          type: "Integer",
         },
       ],
     });
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -36,7 +36,7 @@ export default class RemoveCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const songNo = interaction.options.getInteger("track-number", true);

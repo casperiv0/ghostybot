@@ -14,7 +14,7 @@ export default class CountryInfoCommand extends SubCommand {
         {
           name: "country",
           description: "The country you want to get information about",
-          type: "STRING",
+          type: "String",
           required: true,
         },
       ],
@@ -22,7 +22,7 @@ export default class CountryInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

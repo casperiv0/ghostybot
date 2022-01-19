@@ -17,7 +17,7 @@ export default class WorkCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

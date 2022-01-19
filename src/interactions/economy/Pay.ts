@@ -10,13 +10,13 @@ export default class PayCommand extends SubCommand {
       description: "Give money to a user",
       options: [
         {
-          type: "USER",
+          type: "User",
           required: true,
           name: "user",
           description: "The user you want to give money too",
         },
         {
-          type: "NUMBER",
+          type: "Number",
           required: true,
           name: "amount",
           description: "The amount you want to give to the user",
@@ -26,7 +26,7 @@ export default class PayCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

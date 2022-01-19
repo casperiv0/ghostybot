@@ -13,14 +13,14 @@ export default class WithdrawCommand extends SubCommand {
           description: "The amount you want to withdraw",
           name: "amount",
           required: true,
-          type: "NUMBER",
+          type: "Number",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

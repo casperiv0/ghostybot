@@ -15,14 +15,14 @@ export default class UserInfoCommand extends SubCommand {
           description: "The user you want more information about",
           name: "user",
           required: false,
-          type: "USER",
+          type: "User",
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -66,7 +66,7 @@ export default class UserInfoCommand extends SubCommand {
       .setDescription(
         `
 ${bold("ID")}: ${inlineCode(id)}
-${banner?.banner ? `${lang.MEMBER.BANNER}: ${banner.bannerURL({ dynamic: true, size: 4096 })}` : ""}
+${banner?.banner ? `${lang.MEMBER.BANNER}: ${banner.bannerURL({ size: 4096 })}` : ""}
 ${bold(lang.MEMBER.TAG)}: ${tag}
 ${bold(lang.MEMBER.BADGES)}: ${userFlags}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${createdAtR})
@@ -82,7 +82,7 @@ ${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${joinedAtR})
 `,
       )
       .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)
-      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }));
+      .setThumbnail(member.user.displayAvatarURL());
 
     await interaction.reply({ embeds: [embed] });
   }

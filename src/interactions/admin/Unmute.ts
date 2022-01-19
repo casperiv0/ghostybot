@@ -16,7 +16,7 @@ export default class UnmuteCommand extends SubCommand {
         {
           name: "user",
           description: "The user to unmute",
-          type: "USER",
+          type: "User",
           required: true,
         },
       ],
@@ -24,10 +24,10 @@ export default class UnmuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const member = interaction.options.getMember("user", true);
+    const member = interaction.options.getMember("user");
     if (!member || !("timeout" in member)) {
       return interaction.reply({
         ephemeral: true,
