@@ -1,3 +1,4 @@
+import process from "node:process";
 import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { request } from "undici";

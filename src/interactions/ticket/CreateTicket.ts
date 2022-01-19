@@ -1,3 +1,4 @@
+import process from "node:process";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";

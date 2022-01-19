@@ -1,3 +1,4 @@
+import process from "node:process";
 import * as DJS from "discord.js";
 import BlacklistedModel from "models/Blacklisted.model";
 import { Bot } from "structures/Bot";
