@@ -10,10 +10,10 @@ export interface BaseCommandOptions {
   description: string;
 
   /** the required permissions needed for the `interaction.member` */
-  memberPermissions?: bigint[];
+  readonly memberPermissions?: bigint[];
 
   /** the required permissions needed for the bot */
-  botPermissions?: bigint[];
+  readonly botPermissions?: bigint[];
 
   /** options for the command, choices, required, add more options, etc.  */
   options?: (DJS.ApplicationCommandOption | DJS.ApplicationCommandOptionData)[];
@@ -29,9 +29,9 @@ export type ValidateReturn = {
 
 export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseCommandOptions> {
   protected _options: TOptions;
-  bot: Bot;
-  name: string;
-  APIs: typeof APIs = APIs;
+  public bot: Bot;
+  public name: string;
+  public APIs: typeof APIs = APIs;
 
   constructor(bot: Bot, options: TOptions) {
     this.bot = bot;

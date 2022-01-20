@@ -46,8 +46,7 @@ export async function interactionPaginate(
     return ALL_EMOJIS.includes(reaction.emoji.name);
   };
 
-  // @ts-expect-error ignore
-  const collector = currentPage.createReactionCollector({ filter, time: TIMEOUT });
+  const collector = currentPage?.createReactionCollector({ filter, time: TIMEOUT });
   if (!collector) return console.error("No collector");
 
   collector.on("collect", async (reaction) => {

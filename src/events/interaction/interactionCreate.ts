@@ -112,8 +112,7 @@ export default class InteractionEvent extends Event {
       if (command.validate) {
         const { ok, error } = await command.validate(interaction, lang);
 
-        if (!ok) {
-          // @ts-expect-error this works!
+        if (!ok && error) {
           return interaction.reply(error);
         }
       }

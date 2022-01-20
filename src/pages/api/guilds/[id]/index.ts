@@ -98,10 +98,10 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       return res.json({
         guild: { ...g.toJSON(), ...guild, reactions },
         botCommands: commands.map((v) => {
-          delete v.memberPermissions;
-          delete v.botPermissions;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { memberPermissions, botPermissions, ...rest } = v;
 
-          return v;
+          return rest;
         }),
         status: "success",
       });

@@ -19,7 +19,7 @@
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "start:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev": "nodemon",
-    "test-tsc": "tsc --noEmit",
+    "test-tsc": "tsc --project tsconfig.json --noEmit",
     "prepare": "husky install",
     "prebuild": "rimraf dist"
   },
@@ -51,7 +51,7 @@
     "dayjs": "^1.10.7",
     "discord-giveaways": "5.0.1",
     "discord-logs": "^2.0.1",
-    "discord.js": "^14.0.0-dev.1642605909.5b4dbc3",
+    "discord.js": "^14.0.0-dev.1642637196.1c6c944",
     "distube": "^3.2.0",
     "dotenv": "^14.2.0",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",
@@ -112,6 +112,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.12.0",
+    "tslib": "^2.3.1",
     "typescript": "^4.5.4",
     "zlib-sync": "^0.1.7"
   },
