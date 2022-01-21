@@ -13,7 +13,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin add-role ...
 
-**Options:** user (USER / Required), role (ROLE / Required)
+**Options:** user (6 / Required), role (8 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -23,7 +23,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin announce ...
 
-**Options:** text (STRING / Required), channel (CHANNEL / Optional)
+**Options:** text (3 / Required), channel (7 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -33,7 +33,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin ban ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -43,7 +43,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin create-role ...
 
-**Options:** name (STRING / Required), color (STRING / Optional)
+**Options:** name (3 / Required), color (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -53,7 +53,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin delete ...
 
-**Options:** amount (INTEGER / Required)
+**Options:** amount (4 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -63,7 +63,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin kick ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -73,7 +73,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin lock-channel ...
 
-**Options:** reason (STRING / Required)
+**Options:** reason (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -83,7 +83,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin mute ...
 
-**Options:** user (USER / Required), time (STRING / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), time (3 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -103,7 +103,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin remove-role ...
 
-**Options:** user (USER / Required), role (ROLE / Required)
+**Options:** user (6 / Required), role (8 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -123,7 +123,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin say ...
 
-**Options:** text (STRING / Required), embed (BOOLEAN / Optional)
+**Options:** text (3 / Required), embed (5 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -133,7 +133,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin sticky set ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -143,7 +143,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin steal-emoji ...
 
-**Options:** emoji (STRING / Required), name (STRING / Required)
+**Options:** emoji (3 / Required), name (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -153,7 +153,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin temp-role ...
 
-**Options:** user (USER / Required), role (ROLE / Required), time (STRING / Required)
+**Options:** user (6 / Required), role (8 / Required), time (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -163,7 +163,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin unban ...
 
-**Options:** user-id (STRING / Required)
+**Options:** user-id (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -183,7 +183,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin unmute ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -193,7 +193,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin voice deafen ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -203,7 +203,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin voice kick ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -213,7 +213,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin voice mute ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -223,7 +223,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin voice undeafen ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -233,7 +233,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin voice unmute ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -243,7 +243,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin warnings remove ...
 
-**Options:** user (USER / Required), warning-id (INTEGER / Required)
+**Options:** user (6 / Required), warning-id (4 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -253,7 +253,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin warn ...
 
-**Options:** user (USER / Required), reason (STRING / Optional)
+**Options:** user (6 / Required), reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -263,7 +263,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /admin warnings view ...
 
-**Options:** user (USER / Required), warning-id (INTEGER / Optional)
+**Options:** user (6 / Required), warning-id (4 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -273,7 +273,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /animal ...
 
-**Options:** type (STRING / Required)
+**Options:** type (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -293,7 +293,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime cuddle ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -303,7 +303,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime feed ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -313,7 +313,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime hug ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -323,7 +323,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime kiss ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -343,7 +343,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime pat ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -353,7 +353,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime poke ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -363,7 +363,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /anime slap ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -383,7 +383,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /bot-owner blacklist add ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -393,7 +393,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /bot-owner blacklist remove ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -403,7 +403,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /bot-owner eval ...
 
-**Options:** code (STRING / Required), ephemeral (BOOLEAN / Optional)
+**Options:** code (3 / Required), ephemeral (5 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -413,7 +413,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /bot-owner leave-guild ...
 
-**Options:** id (STRING / Required)
+**Options:** id (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -423,7 +423,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy add-money ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -433,7 +433,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy balance ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -443,7 +443,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy buy ...
 
-**Options:** item (STRING / Required)
+**Options:** item (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -463,7 +463,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy deposit ...
 
-**Options:** amount (NUMBER / Required)
+**Options:** amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -483,7 +483,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy inventory ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -503,7 +503,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy pay ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -513,7 +513,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy profile ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -523,7 +523,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy remove-money ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -533,7 +533,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy rob ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -543,7 +543,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy slots ...
 
-**Options:** amount (NUMBER / Optional)
+**Options:** amount (10 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -573,7 +573,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /economy withdraw ...
 
-**Options:** amount (NUMBER / Required)
+**Options:** amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -593,7 +593,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun 8ball ...
 
-**Options:** question (STRING / Required)
+**Options:** question (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -613,7 +613,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun ascii ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -623,7 +623,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun bet ...
 
-**Options:** user (USER / Required)
+**Options:** user (6 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -633,7 +633,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun block ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -693,7 +693,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun lmgtfy ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -713,7 +713,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun morse ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -763,7 +763,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /fun rock-paper-scissors ...
 
-**Options:** item (STRING / Required)
+**Options:** item (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -783,7 +783,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /giveaway end ...
 
-**Options:** message-id (STRING / Required)
+**Options:** message-id (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -793,7 +793,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /giveaway reroll ...
 
-**Options:** message-id (STRING / Required)
+**Options:** message-id (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -803,7 +803,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /giveaway start ...
 
-**Options:** time (STRING / Required), prize (STRING / Required), winner-count (INTEGER / Optional)
+**Options:** time (3 / Required), prize (3 / Required), winner-count (4 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -813,7 +813,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image achievement ...
 
-**Options:** text (STRING / Required), icon (INTEGER / Optional), title (STRING / Optional)
+**Options:** text (3 / Required), icon (4 / Optional), title (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -833,7 +833,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image change-my-mind ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -843,7 +843,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image clyde ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -863,7 +863,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image giphy ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -873,7 +873,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image imgfy ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -883,7 +883,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image invert ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -893,7 +893,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image magik ...
 
-**Options:** user (USER / Optional), intensity (INTEGER / Optional)
+**Options:** user (6 / Optional), intensity (4 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -913,7 +913,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image pornhub ...
 
-**Options:** left-text (STRING / Required), right-text (STRING / Required)
+**Options:** left-text (3 / Required), right-text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -923,7 +923,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image supreme ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -933,7 +933,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image threshold ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -943,7 +943,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image trash ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -953,7 +953,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image tweet ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -963,7 +963,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /image yt-comment ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -983,7 +983,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info channel ...
 
-**Options:** channel (CHANNEL / Optional)
+**Options:** channel (7 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -993,7 +993,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info country ...
 
-**Options:** country (STRING / Required)
+**Options:** country (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1003,7 +1003,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info covid ...
 
-**Options:** country (STRING / Optional)
+**Options:** country (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1013,7 +1013,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info emoji ...
 
-**Options:** emoji (STRING / Required)
+**Options:** emoji (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1023,7 +1023,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info github ...
 
-**Options:** username (STRING / Required)
+**Options:** username (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1043,7 +1043,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info imdb ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1053,7 +1053,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info invite ...
 
-**Options:** code (STRING / Required)
+**Options:** code (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1063,7 +1063,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info ip ...
 
-**Options:** ip (STRING / Required)
+**Options:** ip (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1073,7 +1073,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info minecraft ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1083,7 +1083,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info npm ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1093,7 +1093,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info playstore ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1103,7 +1103,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info pokemon ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1113,7 +1113,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info role ...
 
-**Options:** role (ROLE / Required)
+**Options:** role (8 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1123,7 +1123,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info spotify ...
 
-**Options:** type (STRING / Required), query (STRING / Required)
+**Options:** type (3 / Required), query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1133,7 +1133,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info user ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1143,7 +1143,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /info weather ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1153,7 +1153,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /levels give-xp ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1173,7 +1173,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /levels rank ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1183,7 +1183,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /levels remove-xp ...
 
-**Options:** user (USER / Required), amount (NUMBER / Required)
+**Options:** user (6 / Required), amount (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1193,7 +1193,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /levels xp ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1213,7 +1213,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music filter ...
 
-**Options:** filter (STRING / Required)
+**Options:** filter (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1223,7 +1223,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music loop ...
 
-**Options:** type (INTEGER / Required)
+**Options:** type (4 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1233,7 +1233,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music lyrics ...
 
-**Options:** query (STRING / Optional)
+**Options:** query (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1263,7 +1263,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music play ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1283,7 +1283,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music remove ...
 
-**Options:** track-number (INTEGER / Required)
+**Options:** track-number (4 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1303,7 +1303,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music seek ...
 
-**Options:** time (STRING / Required)
+**Options:** time (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1343,7 +1343,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /music volume ...
 
-**Options:** volume (NUMBER / Required)
+**Options:** volume (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1353,7 +1353,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /reminders create ...
 
-**Options:** time (STRING / Required), message (STRING / Required)
+**Options:** time (3 / Required), message (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1363,7 +1363,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /reminders edit ...
 
-**Options:** id (STRING / Required), time (STRING / Required), message (STRING / Required)
+**Options:** id (3 / Required), time (3 / Required), message (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1373,7 +1373,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /reminders delete ...
 
-**Options:** id (STRING / Required)
+**Options:** id (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1383,7 +1383,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /reminders view ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1413,7 +1413,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util afk ...
 
-**Options:** reason (STRING / Optional)
+**Options:** reason (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1423,7 +1423,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util avatar ...
 
-**Options:** user (USER / Optional)
+**Options:** user (6 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1433,7 +1433,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util bmi ...
 
-**Options:** height (NUMBER / Required), weight (NUMBER / Required)
+**Options:** height (10 / Required), weight (10 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1453,7 +1453,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util bug-report ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1463,7 +1463,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util calculate ...
 
-**Options:** calculation (STRING / Required)
+**Options:** calculation (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1473,7 +1473,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util ctgs ...
 
-**Options:** slug (STRING / Required), url (STRING / Required)
+**Options:** slug (3 / Required), url (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1483,7 +1483,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util define ...
 
-**Options:** word (STRING / Required)
+**Options:** word (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1493,7 +1493,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /docs ...
 
-**Options:** query (STRING / Required), branch (STRING / Optional)
+**Options:** query (3 / Required), branch (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1513,7 +1513,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util enlarge ...
 
-**Options:** emoji (STRING / Required)
+**Options:** emoji (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1523,7 +1523,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util feedback ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1543,7 +1543,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /mdn ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1553,7 +1553,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util pastebin ...
 
-**Options:** code (STRING / Required), extension (STRING / Optional), filename (STRING / Optional), expire-date (STRING / Optional)
+**Options:** code (3 / Required), extension (3 / Optional), filename (3 / Optional), expire-date (3 / Optional)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1573,7 +1573,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util poll ...
 
-**Options:** question (STRING / Required)
+**Options:** question (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1603,7 +1603,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util suggest ...
 
-**Options:** text (STRING / Required)
+**Options:** text (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1613,7 +1613,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util translate ...
 
-**Options:** language (STRING / Required), sentence (STRING / Required)
+**Options:** language (3 / Required), sentence (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1643,7 +1643,7 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util web ...
 
-**Options:** url (STRING / Required)
+**Options:** url (3 / Required)
 
 [Back to top](#ghostybot-command-list)
 
@@ -1653,6 +1653,6 @@ GhostyBot has a total of 165 slash commands.
 
 **Example usage:** /util wiki ...
 
-**Options:** query (STRING / Required)
+**Options:** query (3 / Required)
 
 [Back to top](#ghostybot-command-list)

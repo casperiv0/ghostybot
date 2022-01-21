@@ -107,7 +107,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       try {
         const command = await discordGuild?.commands.create({
-          type: "ChatInput",
+          // 1 = ChatInput
+          type: 1,
           name: commandName,
           description: body.description,
         });
@@ -178,7 +179,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       await discordGuild?.commands.edit(commandId, {
-        type: "ChatInput",
+        // 1 = ChatInput
+        type: 1,
         name,
         description: body.description,
       });

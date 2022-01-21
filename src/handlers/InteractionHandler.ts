@@ -1,9 +1,9 @@
+import * as DJS from "discord.js";
 import glob from "glob";
 import { resolveFile, validateFile } from "utils/HandlersUtil";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
-import { ApplicationCommandData } from "discord.js";
 
 export class InteractionHandler {
   bot: Bot;
@@ -54,8 +54,8 @@ export class InteractionHandler {
         } else {
           commandName = interaction.name;
 
-          const data: ApplicationCommandData = {
-            type: "ChatInput",
+          const data: DJS.ApplicationCommandData = {
+            type: DJS.ApplicationCommandType.ChatInput,
             name: interaction.name,
             description: interaction.options.description ?? "Empty description",
             options: interaction.options.options ?? [],
@@ -74,8 +74,8 @@ export class InteractionHandler {
       for (const topLevelName in subCommands) {
         const cmds = subCommands[topLevelName];
 
-        const data: ApplicationCommandData = {
-          type: "ChatInput",
+        const data: DJS.ApplicationCommandData = {
+          type: DJS.ApplicationCommandType.ChatInput,
           name: topLevelName,
           description: `${topLevelName} commands`,
           // @ts-expect-error ignore
@@ -93,7 +93,7 @@ export class InteractionHandler {
         const [topLevelName, cmds] = commandGroups[groupName];
 
         const groupData = {
-          type: "SUB_COMMAND_GROUP",
+          type: DJS.ApplicationCommandOptionType.SubcommandGroup,
           name: groupName,
           description: `${groupName} sub commands`,
           options: cmds.map((v) => v.options),
@@ -101,8 +101,8 @@ export class InteractionHandler {
 
         groupCache.push(groupData);
 
-        const data: ApplicationCommandData = {
-          type: "ChatInput",
+        const data: DJS.ApplicationCommandData = {
+          type: DJS.ApplicationCommandType.ChatInput,
           name: topLevelName,
           description: `${topLevelName} commands`,
           options: [...groupCache, ...subCommands[topLevelName].map((v) => v.options)],
@@ -115,7 +115,7 @@ export class InteractionHandler {
     }
   }
 
-  async createCommand(data: ApplicationCommandData) {
+  async createCommand(data: DJS.ApplicationCommandData) {
     if (process.env.DEV_MODE === "true") {
       const g = await this.bot.guilds.fetch("841737902065057823");
       await g.commands.create(data).catch(console.error);

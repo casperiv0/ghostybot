@@ -13,7 +13,7 @@ const data = buildSync({
   platform: "node",
   entryPoints: paths,
   target: "node16",
-  format: "cjs",
+  format: "esm",
   logLevel: "info",
 });
 
