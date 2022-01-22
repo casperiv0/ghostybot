@@ -1,12 +1,25 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
-import { Collection } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
 
 type TCommand = Command | SubCommand;
-type Commands = Collection<string, TCommand>;
+type Commands = DJS.Collection<string, TCommand>;
+
+const types = {
+  1: "Subcommand",
+  2: "SubcommandGroup",
+  3: "String",
+  4: "Integer",
+  5: "Boolean",
+  6: "User",
+  7: "Channel",
+  8: "Role",
+  9: "Mentionable",
+  10: "Number",
+} as const;
 
 export default (bot: Bot) => {
   const detailedCommandList = mapDetailedCommands(bot.interactions);
@@ -24,7 +37,7 @@ function subCommandItem(cmd: TCommand) {
   const groupName = cmd instanceof SubCommand ? cmd.options.groupName : null;
   const topLevelName = cmd instanceof SubCommand ? cmd.options.commandName : "";
 
-  return `## ${topLevelName}${groupName ? `-> ${groupName}` : ""} ${topLevelName ? " -> " : ""} ${
+  return `## ${topLevelName}${groupName ? `-> ${groupName}` : ""} ${topLevelName ? "->" : ""} ${
     cmd.name
   }
 
@@ -38,7 +51,7 @@ function subCommandItem(cmd: TCommand) {
           .map((v) => {
             const requiredText = "required" in v && v.required ? "Required" : "Optional";
 
-            return `${v.name} (${v.type} / ${requiredText})`;
+            return `${v.name} (${types[v.type]} / ${requiredText})`;
           })
           .join(", ")
       : "N/A"
