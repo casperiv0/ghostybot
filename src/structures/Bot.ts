@@ -4,12 +4,12 @@ import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
 import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
-import { EventHandler } from "handlers/EventHandler";
+import { EventHandler } from "#handlers/EventHandler";
 
-import { MongoGiveawayManager } from "handlers/GiveawayManager";
-import { logger } from "utils/logger";
-import { Util } from "utils/Util";
-import { discordConfig } from "@config/discord-config";
+import { MongoGiveawayManager } from "#handlers/GiveawayManager";
+import { logger } from "#utils/logger";
+import { Util } from "#utils/Util";
+import { discordConfig } from "#config/discord-config";
 import { SubCommand } from "./Command/SubCommand";
 import { Command } from "./Command/Command";
 

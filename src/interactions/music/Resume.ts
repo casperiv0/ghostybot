@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/BaseCommand";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { ValidateReturn } from "#structures/Command/BaseCommand";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class RemoveCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -14,7 +14,7 @@ export default class RemoveCommand extends SubCommand {
 
   async validate(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
       allowAuthor: true,
@@ -29,7 +29,7 @@ export default class RemoveCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
     if (!queue) {

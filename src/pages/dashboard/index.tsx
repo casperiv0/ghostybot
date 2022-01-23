@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { AlertMessage } from "@components/AlertMessage";
-import { Guild } from "types/Guild";
+import { Guild } from "#types/Guild";
 import { Loader } from "@components/Loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";

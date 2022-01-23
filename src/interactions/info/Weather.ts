@@ -2,8 +2,8 @@ import process from "node:process";
 import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { request } from "undici";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class WeatherInfoCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -24,7 +24,7 @@ export default class WeatherInfoCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     await interaction.deferReply();
 
@@ -79,7 +79,7 @@ export default class WeatherInfoCommand extends SubCommand {
     await interaction.editReply({ embeds: [embed] });
   }
 
-  getWindDirection(v: number, lang: typeof import("@locales/english").default) {
+  getWindDirection(v: number, lang: typeof import("#locales/english").default) {
     if (v === 0) {
       return lang.OTHER.WIND_DIRECTIONS.NORTH;
     } else if (v > 0 && v < 90) {

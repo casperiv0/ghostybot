@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class Ball8Command extends SubCommand {
   constructor(bot: Bot) {
@@ -21,7 +21,7 @@ export default class Ball8Command extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const answers = lang.OTHER.ANSWERS;
     const question = interaction.options.getString("question", true);

@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class TrashCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -21,7 +21,7 @@ export default class TrashCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const image = `${this.APIs.Thrash}${user.displayAvatarURL({ format: "png" })}`;

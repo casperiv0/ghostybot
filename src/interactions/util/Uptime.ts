@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 import { time } from "@discordjs/builders";
 
 export default class UptimeCommand extends SubCommand {
@@ -14,7 +14,7 @@ export default class UptimeCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const uptime = new Date(Date.now() - (this.bot.uptime ?? 0));
     const botUpSince = time(uptime, "f");

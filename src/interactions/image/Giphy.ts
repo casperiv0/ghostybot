@@ -1,9 +1,9 @@
 import process from "node:process";
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
+import { Bot } from "#structures/Bot";
 import { request } from "undici";
-import { ValidateReturn } from "structures/Command/BaseCommand";
-import { SubCommand } from "structures/Command/SubCommand";
+import { ValidateReturn } from "#structures/Command/BaseCommand";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class GiphyCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -24,7 +24,7 @@ export default class GiphyCommand extends SubCommand {
 
   async validate(
     _: DJS.CommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ): Promise<ValidateReturn> {
     if (!process.env["GIPHY_API_KEY"]) {
       return {
@@ -41,7 +41,7 @@ export default class GiphyCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     await interaction.deferReply();
 

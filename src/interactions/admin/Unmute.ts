@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
 
@@ -25,7 +25,7 @@ export default class UnmuteCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const member = interaction.options.getMember("user");
     if (!member || !("timeout" in member)) {

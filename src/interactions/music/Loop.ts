@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/BaseCommand";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { ValidateReturn } from "#structures/Command/BaseCommand";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 const loopTypes = [
   { value: 0, name: "0 (Disabled)" },
@@ -31,7 +31,7 @@ export default class LoopCommand extends SubCommand {
 
   async validate(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
       allowAuthor: true,
@@ -46,7 +46,7 @@ export default class LoopCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const type = interaction.options.getInteger("type", true);
 

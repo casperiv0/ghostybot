@@ -1,9 +1,9 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
 import fs from "fs";
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { Command } from "structures/Command/Command";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { Command } from "#structures/Command/Command";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 type TCommand = Command | SubCommand;
 type Commands = DJS.Collection<string, TCommand>;

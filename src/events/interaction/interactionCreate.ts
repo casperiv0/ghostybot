@@ -1,9 +1,9 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { Event } from "structures/Event";
-import { IGuild } from "models/Guild.model";
-import { SubCommand } from "structures/Command/SubCommand";
-import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
+import { Bot } from "#structures/Bot";
+import { Event } from "#structures/Event";
+import { IGuild } from "#models/Guild.model";
+import { SubCommand } from "#structures/Command/SubCommand";
+import BlacklistedModel, { IBlacklist } from "#models/Blacklisted.model";
 import { handleCategories } from "src/interactions/util/Help";
 import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
 

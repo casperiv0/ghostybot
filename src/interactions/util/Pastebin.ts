@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { ApiPasteFormat, ExpireDate } from "pastebin-api";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class PastebinCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -77,7 +77,7 @@ export default class PastebinCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const code = interaction.options.getString("code", true);
     const extension = interaction.options.getString("extension");

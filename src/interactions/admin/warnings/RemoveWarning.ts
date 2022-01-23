@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import WarningModel from "models/Warning.model";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import WarningModel from "#models/Warning.model";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class RemoveWarningCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -30,7 +30,7 @@ export default class RemoveWarningCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
     const id = interaction.options.getInteger("warning-id", true);

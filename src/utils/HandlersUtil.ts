@@ -1,10 +1,10 @@
 import { resolve } from "path";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
-import { Event } from "structures/Event";
-import { Feature } from "structures/Feature";
-import { Helper } from "structures/Helper";
-import { Command } from "structures/Command/Command";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
+import { Event } from "#structures/Event";
+import { Feature } from "#structures/Feature";
+import { Helper } from "#structures/Helper";
+import { Command } from "#structures/Command/Command";
 
 type Structures = Event | Feature | Helper | SubCommand | Command;
 

@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { bold } from "@discordjs/builders";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class ProfileCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -22,7 +22,7 @@ export default class ProfileCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
     if (user.bot) {

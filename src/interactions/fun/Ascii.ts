@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import figlet from "figlet";
 import { codeBlock } from "@discordjs/builders";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class AsciiCommand extends SubCommand {
   constructor(bot: Bot) {

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Modal, closeModal } from "./index";
-import { logger } from "utils/logger";
+import { logger } from "#utils/logger";
 import { AlertMessage } from "../AlertMessage";
 import { useRouter } from "next/router";
-import { Guild } from "types/Guild";
+import { Guild } from "#types/Guild";
 import { useTranslation } from "react-i18next";
 
 interface Props {

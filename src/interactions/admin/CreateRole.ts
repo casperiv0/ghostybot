@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 const colors = {
   WHITE: 0xffffff,
@@ -51,7 +51,7 @@ export default class CreateRoleCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const name = interaction.options.getString("name", true);
     const color = (interaction.options.getString("color") ?? "BLUE") as DJS.ColorResolvable;

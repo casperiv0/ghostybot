@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { Event } from "structures/Event";
+import { Bot } from "#structures/Bot";
+import { Event } from "#structures/Event";
 
 /**
  * @deprecated this event will be deprecated once message intents arrive

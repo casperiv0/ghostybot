@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import ms from "ms";
 import { v4 } from "uuid";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export const CANCEL_REMINDER_ID = "CANCEL_REMINDER" as const;
 
@@ -31,7 +31,7 @@ export default class CreateReminderCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);
     const msg = interaction.options.getString("message", true);

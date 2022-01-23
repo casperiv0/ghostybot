@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { Command } from "structures/Command/Command";
+import { Bot } from "#structures/Bot";
+import { Command } from "#structures/Command/Command";
 
 export default class VerifyCommand extends Command {
   constructor(bot: Bot) {
@@ -12,7 +12,7 @@ export default class VerifyCommand extends Command {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const guild = await this.bot.utils.getGuildById(interaction.guildId);
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id]);

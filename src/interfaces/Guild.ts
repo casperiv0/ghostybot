@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { GuildData, SlashCommand } from "models/Guild.model";
-import { IReaction } from "models/Reactions.model";
+import { GuildData, SlashCommand } from "#models/Guild.model";
+import { IReaction } from "#models/Reactions.model";
 
 // @ts-expect-error ignore
 export interface Guild<R extends boolean = false> extends GuildData, DJS.Guild {

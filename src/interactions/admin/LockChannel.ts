@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { ValidateReturn } from "structures/Command/BaseCommand";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { ValidateReturn } from "#structures/Command/BaseCommand";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export const threadChannels = [
   DJS.ChannelType.GuildNewsThread,
@@ -30,7 +30,7 @@ export default class LockChannelCommand extends SubCommand {
 
   async validate(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ): Promise<ValidateReturn> {
     if (threadChannels.includes(interaction.channel?.type!)) {
       return {
@@ -44,7 +44,7 @@ export default class LockChannelCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const reason = interaction.options.getString("reason", true);
     const channel = interaction.channel as DJS.TextChannel;

@@ -6,15 +6,15 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { logger } from "utils/logger";
+import { logger } from "#utils/logger";
 import { openModal } from "@components/modal";
 import { CreateCommandModal } from "@components/modal/create-command";
 import { EditCommandModal } from "@components/modal/edit-command";
 import { AlertMessage } from "@components/AlertMessage";
-import { Guild } from "types/Guild";
+import { Guild } from "#types/Guild";
 import { Loader } from "@components/Loader";
 import { useSlashStore } from "src/dashboard/state/slashState";
-import { SlashCommand } from "models/Guild.model";
+import { SlashCommand } from "#models/Guild.model";
 
 interface Props {
   guild: Guild | null;

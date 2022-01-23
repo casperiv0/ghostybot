@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { Helper } from "structures/Helper";
-import UserModel, { IUser, Reminder } from "models/User.model";
+import { Bot } from "#structures/Bot";
+import { Helper } from "#structures/Helper";
+import UserModel, { IUser, Reminder } from "#models/User.model";
 
 export default class ReminderHelper extends Helper {
   private TEN_SECOND_INTERVAL = 10_000;

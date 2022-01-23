@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "structures/Bot";
-import { SubCommand } from "structures/Command/SubCommand";
+import { Bot } from "#structures/Bot";
+import { SubCommand } from "#structures/Command/SubCommand";
 
 export default class AddMoneyCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -28,7 +28,7 @@ export default class AddMoneyCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const amount = interaction.options.getNumber("amount", true);
     const user = interaction.options.getUser("user", true);

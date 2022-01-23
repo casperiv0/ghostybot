@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Guild } from "types/Guild";
+import { Guild } from "#types/Guild";
 import { AddReactionRole } from "@components/modal/add-reaction-role";
-import { IReaction, Reaction } from "models/Reactions.model";
+import { IReaction, Reaction } from "#models/Reactions.model";
 import { useTranslation } from "next-i18next";
 
 interface Props {

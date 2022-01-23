@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import ReactionsModel, { Reaction } from "models/Reactions.model";
-import { Bot } from "structures/Bot";
-import { Event } from "structures/Event";
+import ReactionsModel, { Reaction } from "#models/Reactions.model";
+import { Bot } from "#structures/Bot";
+import { Event } from "#structures/Event";
 
 const neededPerms = [
   DJS.Permissions.FLAGS.MANAGE_MESSAGES,

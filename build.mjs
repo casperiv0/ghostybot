@@ -12,9 +12,9 @@ const data = buildSync({
   outdir: "dist",
   platform: "node",
   entryPoints: paths,
-  target: "node16",
+  target: "esnext",
   format: "esm",
-  logLevel: "info",
+  logLevel: "debug",
 });
 
 if (data.warnings.length > 0) {

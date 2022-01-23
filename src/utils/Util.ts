@@ -1,12 +1,12 @@
 import * as DJS from "discord.js";
 import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
-import { Bot } from "structures/Bot";
-import UserModel, { IUser, UserData } from "models/User.model";
-import WarningModal, { IWarning } from "models/Warning.model";
-import GuildModel, { GuildData, IGuild } from "models/Guild.model";
-import { ApiRequest } from "types/ApiRequest";
-import StickyModel, { Sticky } from "models/Sticky.model";
+import { Bot } from "#structures/Bot";
+import UserModel, { IUser, UserData } from "#models/User.model";
+import WarningModal, { IWarning } from "#models/Warning.model";
+import GuildModel, { GuildData, IGuild } from "#models/Guild.model";
+import { ApiRequest } from "#types/ApiRequest";
+import StickyModel, { Sticky } from "#models/Sticky.model";
 
 export class Util {
   bot: Bot;
@@ -290,7 +290,7 @@ export class Util {
 
   async getGuildLang(
     guildId: string | undefined | null,
-  ): Promise<typeof import("@locales/english").default> {
+  ): Promise<typeof import("#locales/english").default> {
     const guild = await this.getGuildById(guildId);
 
     return import(`../locales/${guild?.locale ?? "english"}`).then((f) => f.default);
@@ -533,7 +533,7 @@ export class Util {
   formatBotPermissions(
     permissions: bigint[],
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const neededPerms: bigint[] = [];
 
@@ -553,7 +553,7 @@ export class Util {
   formatMemberPermissions(
     permissions: bigint[],
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("@locales/english").default,
+    lang: typeof import("#locales/english").default,
   ) {
     const neededPerms: bigint[] = [];
 
