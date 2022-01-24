@@ -1,9 +1,9 @@
 import * as DJS from "discord.js";
 import glob from "glob";
-import { resolveFile, validateFile } from "#utils/HandlersUtil";
-import { Bot } from "#structures/Bot";
-import { Command } from "#structures/Command/Command";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
+import { Bot } from "structures/Bot";
+import { Command } from "structures/Command/Command";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export class InteractionHandler {
   bot: Bot;

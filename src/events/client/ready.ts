@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { Event } from "#structures/Event";
-import { HelperHandler } from "#handlers/HelperHandler";
-import { InteractionHandler } from "#handlers/InteractionHandler";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
+import { HelperHandler } from "handlers/HelperHandler";
+import { InteractionHandler } from "handlers/InteractionHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {

@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { request } from "undici";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 interface Data {
   slip: {

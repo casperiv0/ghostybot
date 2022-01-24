@@ -5,12 +5,12 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { AlertMessage } from "@components/AlertMessage";
-import { Guild } from "#types/Guild";
+import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { SubCommandOptions } from "#structures/Command/SubCommand";
-import { BaseCommandOptions } from "#structures/Command/BaseCommand";
+import { SubCommandOptions } from "structures/Command/SubCommand";
+import { BaseCommandOptions } from "structures/Command/BaseCommand";
 
 interface Props {
   guild: Guild | null;

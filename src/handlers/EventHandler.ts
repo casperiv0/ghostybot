@@ -1,8 +1,8 @@
 import glob from "glob";
 import {} from "distube";
-import { Bot } from "#structures/Bot";
-import { Event } from "#structures/Event";
-import { resolveFile, validateFile } from "#utils/HandlersUtil";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
 
 const types = ["channel", "client", "guild", "message", "player", "sb"];
 

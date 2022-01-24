@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
+import { Bot } from "structures/Bot";
 import { request } from "undici";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { SubCommand } from "structures/Command/SubCommand";
 
 interface Data {
   attachments: {

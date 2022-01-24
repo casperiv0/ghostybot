@@ -1,7 +1,7 @@
 import { TextChannel } from "discord.js";
 import { DisTubeError } from "distube";
-import { Bot } from "#structures/Bot";
-import { Event } from "#structures/Event";
+import { Bot } from "structures/Bot";
+import { Event } from "structures/Event";
 
 export default class PlayerErrorEvent extends Event {
   constructor(bot: Bot) {

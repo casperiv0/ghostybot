@@ -1,8 +1,8 @@
 import { time } from "@discordjs/builders";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
-import { interactionPaginate } from "#utils/interactionPaginate";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
+import { interactionPaginate } from "utils/interactionPaginate";
 
 export default class ViewRemindersCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -23,7 +23,7 @@ export default class ViewRemindersCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const guildUser = interaction.options.getUser("user") ?? interaction.user;
 

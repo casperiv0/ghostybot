@@ -38,17 +38,17 @@
     "typeRoots": ["./node_modules/@types", "./typings"],
     "baseUrl": ".",
     "paths": {
-      "#structures/*": ["./src/structures/*"],
-      "#handlers/*": ["./src/handlers/*"],
-      "#models/*": ["./src/models/*"],
-      "#types/*": ["./src/interfaces/*"],
-      "#utils/*": ["./src/utils/*"],
+      "structures/*": ["./src/structures/*"],
+      "handlers/*": ["./src/handlers/*"],
+      "models/*": ["./src/models/*"],
+      "types/*": ["./src/interfaces/*"],
+      "utils/*": ["./src/utils/*"],
       "@components/*": ["./src/dashboard/components/*"],
       "@commands/*": ["./src/commands/*"],
       "@scripts/*": ["./src/scripts/*"],
-      "#locales/*": ["./src/locales/*"],
-      "#config/*": ["./src/config/*"],
-      "#assets/*": ["./src/assets/*"]
+      "@locales/*": ["./src/locales/*"],
+      "@config/*": ["./src/config/*"],
+      "assets/*": ["./src/assets/*"]
     },
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo"

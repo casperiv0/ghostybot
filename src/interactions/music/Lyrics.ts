@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import { Song } from "distube";
 import { request } from "undici";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class LyricsCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -23,7 +23,7 @@ export default class LyricsCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
     const np = queue?.songs[0];

@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
+import { Bot } from "structures/Bot";
 import { request } from "undici";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class MagikCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -28,7 +28,7 @@ export default class MagikCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 

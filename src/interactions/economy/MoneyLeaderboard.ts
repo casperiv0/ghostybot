@@ -1,10 +1,10 @@
 import { setTimeout } from "node:timers";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
-import UserModel, { IUser } from "#models/User.model";
-import places from "#assets/json/places.json";
+import UserModel, { IUser } from "models/User.model";
+import places from "assets/json/places.json";
 
 export default class MoneyLeaderboardCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -17,7 +17,7 @@ export default class MoneyLeaderboardCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 

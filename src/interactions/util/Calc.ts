@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import { codeBlock } from "@discordjs/builders";
 import { create, all } from "mathjs";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 const math = create(all);
 
@@ -25,7 +25,7 @@ export default class CalculateCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const calculation = interaction.options.getString("calculation", true);
 

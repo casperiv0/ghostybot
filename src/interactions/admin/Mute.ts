@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import ms from "ms";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
 
@@ -38,7 +38,7 @@ export default class MuteCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const member = interaction.options.getMember("user");
     const time = interaction.options.getString("time", true);

@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
-import morseCode from "#assets/ts/morse";
+import morseCode from "assets/ts/morse";
 
 export default class MorseCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -23,7 +23,7 @@ export default class MorseCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);
 

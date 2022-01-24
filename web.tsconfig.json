@@ -17,9 +17,7 @@
     "**/*.md",
     "public/*.js",
     "events/**/*.ts",
-    "interactions/**/*.ts",
-    "structures/**/*.ts",
-    "handlers/**/*.ts"
+    "interactions/**/*.ts"
   ],
   "include": [
     "typings/next-env.d.ts",

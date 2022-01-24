@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class RemoveReminderCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -21,7 +21,7 @@ export default class RemoveReminderCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     let id = interaction.options.getString("id", true);
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

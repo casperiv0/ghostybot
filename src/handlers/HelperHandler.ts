@@ -1,7 +1,7 @@
 import glob from "glob";
-import { Bot } from "#structures/Bot";
-import { Helper } from "#structures/Helper";
-import { resolveFile, validateFile } from "#utils/HandlersUtil";
+import { Bot } from "structures/Bot";
+import { Helper } from "structures/Helper";
+import { resolveFile, validateFile } from "utils/HandlersUtil";
 
 export class HelperHandler {
   bot: Bot;

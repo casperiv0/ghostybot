@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { bold, time } from "@discordjs/builders";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 import { APIRole } from "discord-api-types";
 
 export default class RoleInfoCommand extends SubCommand {
@@ -23,7 +23,7 @@ export default class RoleInfoCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const role = interaction.options.getRole("role", true);
 

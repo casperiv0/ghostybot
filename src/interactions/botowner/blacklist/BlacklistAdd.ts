@@ -1,9 +1,9 @@
 import process from "node:process";
 import * as DJS from "discord.js";
-import BlacklistedModel from "#models/Blacklisted.model";
-import { Bot } from "#structures/Bot";
-import { ValidateReturn } from "#structures/Command/BaseCommand";
-import { SubCommand } from "#structures/Command/SubCommand";
+import BlacklistedModel from "models/Blacklisted.model";
+import { Bot } from "structures/Bot";
+import { ValidateReturn } from "structures/Command/BaseCommand";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class BlacklistAdd extends SubCommand {
   constructor(bot: Bot) {
@@ -25,7 +25,7 @@ export default class BlacklistAdd extends SubCommand {
 
   async validate(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
     const isOwner = owners?.includes(interaction.user.id);
@@ -39,7 +39,7 @@ export default class BlacklistAdd extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
 

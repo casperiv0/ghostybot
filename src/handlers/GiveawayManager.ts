@@ -1,5 +1,5 @@
 import { GiveawayData, GiveawaysManager } from "discord-giveaways";
-import GiveawayModel from "#models/Giveaway.model";
+import GiveawayModel from "models/Giveaway.model";
 
 export class MongoGiveawayManager extends GiveawaysManager {
   async getAllGiveaways() {

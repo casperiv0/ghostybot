@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Modal, closeModal } from "./index";
-import { logger } from "#utils/logger";
+import { logger } from "utils/logger";
 import { AlertMessage } from "../AlertMessage";
 import { useTranslation } from "react-i18next";
 import { useSlashStore } from "src/dashboard/state/slashState";

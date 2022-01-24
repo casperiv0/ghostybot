@@ -1,9 +1,9 @@
-import { Bot } from "#structures/Bot";
+import { Bot } from "structures/Bot";
 import * as DJS from "discord.js";
-import ReactionsModel, { IReaction, Reaction } from "#models/Reactions.model";
+import ReactionsModel, { IReaction, Reaction } from "models/Reactions.model";
 import { isValidObjectId } from "mongoose";
 import { NextApiResponse } from "next";
-import { ApiRequest } from "#types/ApiRequest";
+import { ApiRequest } from "types/ApiRequest";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;

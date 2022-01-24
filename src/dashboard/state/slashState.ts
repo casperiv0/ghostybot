@@ -1,4 +1,4 @@
-import { SlashCommand } from "#models/Guild.model";
+import { SlashCommand } from "models/Guild.model";
 import create from "zustand";
 
 interface SlashStore {

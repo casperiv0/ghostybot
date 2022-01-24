@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
+import { Bot } from "structures/Bot";
 import { hyperlink } from "@discordjs/builders";
-import { Command } from "#structures/Command/Command";
-import categories from "#assets/json/categories.json";
+import { Command } from "structures/Command/Command";
+import categories from "assets/json/categories.json";
 
 const HELP_URL_GH = "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md";
 
@@ -16,7 +16,7 @@ export default class HelpInteraction extends Command {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     try {
       const LINK = hyperlink(lang.HELP.CLICK_ME, HELP_URL_GH);

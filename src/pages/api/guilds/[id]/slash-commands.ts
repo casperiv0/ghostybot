@@ -1,7 +1,7 @@
 import DJS from "discord.js";
 import { NextApiResponse } from "next";
-import { ApiRequest } from "#types/ApiRequest";
-import { Constants } from "#utils/constants";
+import { ApiRequest } from "types/ApiRequest";
+import { Constants } from "utils/constants";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;

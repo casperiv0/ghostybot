@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import { hyperlink } from "@discordjs/builders";
 import { request } from "undici";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class OwoCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -15,7 +15,7 @@ export default class OwoCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const data = (await request(this.APIs.Owo).then((res) => res.body.json())) as { path: string };
 

@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
-import UserModel, { IUser } from "#models/User.model";
-import places from "#assets/json/places.json";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
+import UserModel, { IUser } from "models/User.model";
+import places from "assets/json/places.json";
 
 export default class GiveXP extends SubCommand {
   constructor(bot: Bot) {
@@ -15,7 +15,7 @@ export default class GiveXP extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 

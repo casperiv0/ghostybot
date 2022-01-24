@@ -1,6 +1,6 @@
-import { APIs } from "#config/APIs";
+import { APIs } from "@config/APIs";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
+import { Bot } from "structures/Bot";
 
 export interface BaseCommandOptions {
   /** the name of the command */
@@ -48,11 +48,11 @@ export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseComm
 
   validate?(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn>;
 
   abstract execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ): Promise<unknown>;
 }

@@ -2,8 +2,8 @@ import * as DJS from "discord.js";
 import { request } from "undici";
 import timeoutSignal from "timeout-signal";
 import URL from "node:url";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 const PORN_BLACKLIST_LIST_URL =
   "https://raw.githubusercontent.com/blocklistproject/Lists/master/porn.txt";
@@ -28,7 +28,7 @@ export default class WebCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const url = interaction.options.getString("url", true);
 

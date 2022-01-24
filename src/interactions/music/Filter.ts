@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { ValidateReturn } from "#structures/Command/BaseCommand";
-import { SubCommand } from "#structures/Command/SubCommand";
-import filters from "#assets/json/filters.json";
+import { Bot } from "structures/Bot";
+import { ValidateReturn } from "structures/Command/BaseCommand";
+import { SubCommand } from "structures/Command/SubCommand";
+import filters from "assets/json/filters.json";
 
 export default class FilterCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -46,7 +46,7 @@ export default class FilterCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const filter = interaction.options.getString("filter", true);
 

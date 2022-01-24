@@ -1,7 +1,7 @@
 import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class SmugCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -14,7 +14,7 @@ export default class SmugCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const data = await this.bot.neko.sfw.smug();
     const link = hyperlink(lang.IMAGE.CLICK_TO_VIEW, data.url);

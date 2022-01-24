@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 const items = ["🍒", "🍓", "🍉", "🍌", "🍪", "🍏", "🍎"];
 
@@ -23,7 +23,7 @@ export default class SlotsCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     let amount = Number(interaction.options.getNumber("amount"));
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

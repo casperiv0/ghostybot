@@ -1,8 +1,8 @@
 import * as DJS from "discord.js";
 import { bold } from "@discordjs/builders";
 import { request } from "undici";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class CountryInfoCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -23,7 +23,7 @@ export default class CountryInfoCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 

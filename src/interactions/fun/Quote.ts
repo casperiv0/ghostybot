@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { request } from "undici";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 interface Data {
   id: string;
@@ -21,7 +21,7 @@ export default class QuoteCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 

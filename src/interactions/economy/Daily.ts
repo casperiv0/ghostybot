@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { time } from "@discordjs/builders";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class DailyCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -14,7 +14,7 @@ export default class DailyCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
     if (!user) {

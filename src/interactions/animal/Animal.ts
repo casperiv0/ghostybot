@@ -1,6 +1,6 @@
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { Command } from "#structures/Command/Command";
+import { Bot } from "structures/Bot";
+import { Command } from "structures/Command/Command";
 import { animalChoices, Choice } from "./choices";
 
 export default class AnimalCommand extends Command {
@@ -22,7 +22,7 @@ export default class AnimalCommand extends Command {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     try {
       const type = interaction.options.getString("type", true);

@@ -1,7 +1,7 @@
 import process from "node:process";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
 import { OverwriteType } from "discord-api-types";
 
 export default class CreateTicket extends SubCommand {
@@ -16,7 +16,7 @@ export default class CreateTicket extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
 

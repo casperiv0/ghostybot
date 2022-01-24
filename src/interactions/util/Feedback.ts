@@ -1,8 +1,8 @@
 import process from "node:process";
 import * as DJS from "discord.js";
-import { Bot } from "#structures/Bot";
-import { ValidateReturn } from "#structures/Command/BaseCommand";
-import { SubCommand } from "#structures/Command/SubCommand";
+import { Bot } from "structures/Bot";
+import { ValidateReturn } from "structures/Command/BaseCommand";
+import { SubCommand } from "structures/Command/SubCommand";
 
 export default class FeedbackCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -38,7 +38,7 @@ export default class FeedbackCommand extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     const feedback = interaction.options.getString("text", true);
 

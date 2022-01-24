@@ -1,8 +1,8 @@
 import { NextApiResponse } from "next";
 import { Permissions } from "discord.js";
-import hiddenGuildItems from "#assets/json/hidden-items.json";
-import { ApiRequest } from "#types/ApiRequest";
-import { Guild } from "#types/Guild";
+import hiddenGuildItems from "assets/json/hidden-items.json";
+import { ApiRequest } from "types/ApiRequest";
+import { Guild } from "types/Guild";
 
 const extraHidden = ["voiceStats", "stageInstances", "bans", "commands"];
 

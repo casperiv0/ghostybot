@@ -2,9 +2,9 @@ import process from "node:process";
 import * as DJS from "discord.js";
 import { codeBlock, inlineCode } from "@discordjs/builders";
 import { inspect } from "util";
-import { Bot } from "#structures/Bot";
-import { SubCommand } from "#structures/Command/SubCommand";
-import { ValidateReturn } from "#structures/Command/BaseCommand";
+import { Bot } from "structures/Bot";
+import { SubCommand } from "structures/Command/SubCommand";
+import { ValidateReturn } from "structures/Command/BaseCommand";
 
 const classified = [
   "this.bot.config",
@@ -40,7 +40,7 @@ export default class Eval extends SubCommand {
 
   async validate(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
     const isOwner = owners?.includes(interaction.user.id);
@@ -54,7 +54,7 @@ export default class Eval extends SubCommand {
 
   async execute(
     interaction: DJS.ChatInputCommandInteraction,
-    lang: typeof import("#locales/english").default,
+    lang: typeof import("@locales/english").default,
   ) {
     try {
       const ephemeral = interaction.options.getBoolean("ephemeral") ?? false;

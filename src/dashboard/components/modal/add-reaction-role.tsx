@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Guild } from "#types/Guild";
+import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
-import { Reaction } from "#models/Reactions.model";
+import { Reaction } from "models/Reactions.model";
 
 interface Props {
   guild: Guild<true>;
