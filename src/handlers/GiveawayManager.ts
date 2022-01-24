@@ -13,13 +13,13 @@ export class MongoGiveawayManager extends GiveawaysManager {
   }
 
   async editGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
-    await GiveawayModel.findOneAndUpdate({ messageID: messageId }, giveawayData).exec();
+    await GiveawayModel.findOneAndUpdate({ messageId }, giveawayData).exec();
 
     return true;
   }
 
   async deleteGiveaway(messageId: string): Promise<boolean> {
-    await GiveawayModel.findOneAndDelete({ messageID: messageId }).exec();
+    await GiveawayModel.findOneAndDelete({ messageId }).exec();
 
     return true;
   }

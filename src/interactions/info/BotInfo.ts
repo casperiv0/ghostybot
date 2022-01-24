@@ -75,7 +75,7 @@ export default class BotInfoCommand extends SubCommand {
         lang.BOT.SYSTEM_INFO,
         `
 **${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
-**${lang.BOT.DJS_V}:** v13`,
+**${lang.BOT.DJS_V}:** v14`,
         true,
       )
       .addField(

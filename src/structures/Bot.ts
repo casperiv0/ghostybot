@@ -50,7 +50,6 @@ export class Bot extends Client {
       },
     });
 
-    // @ts-expect-error ignore
     this.giveawayManager = new MongoGiveawayManager(this, {
       storage: undefined,
       default: {

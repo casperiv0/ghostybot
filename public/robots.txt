@@ -7,3 +7,4 @@ Host: https://ghostbot.tk
 
 # Sitemaps
 Sitemap: https://ghostbot.tk/sitemap.xml
+Sitemap: https://ghostbot.tk/sitemap-0.xml

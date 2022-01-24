@@ -4,6 +4,7 @@ const { i18n } = require("./next-i18next.config");
 module.exports = {
   typescript: {
     tsconfigPath: "./web.tsconfig.json",
+    ignoreBuildErrors: true,
   },
   images: {
     domains: ["cdn.discordapp.com"] /* KEEP THIS OTHERWISE IMAGES WILL NOT LOAD */,
