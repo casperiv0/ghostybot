@@ -1,19 +1,19 @@
-import { Guild, Permissions, User } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export default class GuildBanAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "guildBanAdd");
+    super(bot, DJS.Constants.Events.GUILD_BAN_ADD);
   }
 
-  async execute(bot: Bot, guild: Guild, user: User) {
+  async execute(bot: Bot, guild: DJS.Guild, user: DJS.User) {
     try {
       if (!guild) return;
       if (
         !guild.me?.permissions.has([
-          Permissions.FLAGS.MANAGE_WEBHOOKS,
-          Permissions.FLAGS.VIEW_AUDIT_LOG,
+          DJS.Permissions.FLAGS.VIEW_AUDIT_LOG,
+          DJS.Permissions.FLAGS.MANAGE_WEBHOOKS,
         ])
       ) {
         return;

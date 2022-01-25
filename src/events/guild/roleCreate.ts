@@ -1,13 +1,13 @@
-import { Role } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export default class RoleCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "roleCreate");
+    super(bot, DJS.Constants.Events.GUILD_ROLE_CREATE);
   }
 
-  async execute(bot: Bot, role: Role) {
+  async execute(bot: Bot, role: DJS.Role) {
     try {
       if (!role.guild) return;
       if (!role.guild.available) return;

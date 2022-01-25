@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class EmojiDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "emojiDelete");
+    super(bot, DJS.Constants.Events.GUILD_EMOJI_DELETE);
   }
 
   async execute(bot: Bot, emoji: DJS.GuildEmoji) {

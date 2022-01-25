@@ -9,7 +9,7 @@ import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "interactionCreate");
+    super(bot, DJS.Constants.Events.INTERACTION_CREATE);
   }
 
   async execute(bot: Bot, interaction: DJS.ChatInputCommandInteraction) {

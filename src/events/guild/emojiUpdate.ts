@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class EmojiUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "emojiUpdate");
+    super(bot, DJS.Constants.Events.GUILD_EMOJI_UPDATE);
   }
 
   async execute(bot: Bot, oldEm: DJS.GuildEmoji, newEm: DJS.GuildEmoji) {

@@ -1,13 +1,13 @@
-import { GuildMember, TextChannel, Permissions } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export default class GuildMemberRemoveEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "guildMemberRemove");
+    super(bot, DJS.Constants.Events.GUILD_MEMBER_REMOVE);
   }
 
-  async execute(bot: Bot, member: GuildMember) {
+  async execute(bot: Bot, member: DJS.GuildMember) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -42,7 +42,7 @@ export default class GuildMemberRemoveEvent extends Event {
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;
-        if (!(ch as TextChannel)?.permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!ch.permissionsFor(bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
           return;
         }
 

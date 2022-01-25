@@ -7,7 +7,7 @@ import { Event } from "structures/Event";
  */
 export default class MessageUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "messageUpdate");
+    super(bot, DJS.Constants.Events.MESSAGE_UPDATE);
   }
 
   async execute(bot: Bot, oldMsg: DJS.Message, newMsg: DJS.Message) {

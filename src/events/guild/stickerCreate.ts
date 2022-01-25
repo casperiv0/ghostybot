@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class StickerCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "stickerCreate");
+    super(bot, DJS.Constants.Events.GUILD_STICKER_CREATE);
   }
 
   async execute(bot: Bot, sticker: DJS.Sticker) {

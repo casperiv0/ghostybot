@@ -1,13 +1,13 @@
-import { Role } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export default class RoleUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "roleUpdate");
+    super(bot, DJS.Constants.Events.GUILD_ROLE_UPDATE);
   }
 
-  async execute(bot: Bot, oldRole: Role, newRole: Role) {
+  async execute(bot: Bot, oldRole: DJS.Role, newRole: DJS.Role) {
     try {
       if (!newRole.guild) return;
       if (!newRole.guild.available) return;

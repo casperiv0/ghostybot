@@ -1,4 +1,5 @@
 import * as DJS from "discord.js";
+import { DiscordAPIError, HTTPError } from "@discordjs/rest";
 import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
@@ -160,7 +161,7 @@ export class Util {
   }
 
   async sendErrorLog(err: unknown, type: "warning" | "error"): Promise<void> {
-    const error = err as DJS.DiscordAPIError | DJS.HTTPError | Error;
+    const error = err as DiscordAPIError | HTTPError | Error;
 
     try {
       if (error.message?.includes("Missing Access")) return;
@@ -189,8 +190,9 @@ export class Util {
       };
 
       const code = "code" in error ? error.code : "N/A";
-      const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
-      const requestData: any = "requestData" in error ? error.requestData : { json: {} };
+
+      const httpStatus = "status" in error ? error.status : "N/A";
+      const requestData = "requestBody" in error ? error.requestBody : { json: {} };
 
       const name = error.name || "N/A";
       let stack = error.stack || error;

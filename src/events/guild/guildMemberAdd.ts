@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class GuildMemberAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, "guildMemberAdd");
+    super(bot, DJS.Constants.Events.GUILD_MEMBER_ADD);
   }
 
   async execute(bot: Bot, member: DJS.GuildMember) {
