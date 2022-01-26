@@ -48,7 +48,11 @@ export default class ProfileCommand extends SubCommand {
   ${bold(lang.ECONOMY.BANK)}: ${this.bot.utils.formatNumber(bank)}
       `,
       )
-      .addField(bold(lang.ECONOMY.INV_ITEMS), inventory.length.toString(), true);
+      .addField({
+        name: bold(lang.ECONOMY.INV_ITEMS),
+        value: inventory.length.toString(),
+        inline: true,
+      });
 
     await interaction.reply({ embeds: [embed] });
   }

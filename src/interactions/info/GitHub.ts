@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { hyperlink } from "@discordjs/builders";
+import { bold, hyperlink } from "@discordjs/builders";
 import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
@@ -46,13 +46,21 @@ export default class GitHubInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
-      .addField("**Twitter**", twitter, true)
-      .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following.toString(), true)
-      .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers.toString(), true)
-      .addField(`**${lang.UTIL.GH_WEBSITE}**`, website, true)
-      .addField(`**${lang.UTIL.GH_LOCATION}**`, location, true)
-      .addField(`${lang.GLOBAL.URL}`, user.html_url)
-      .setDescription(`${lang.UTIL.GH_BIO}: ${bio}`)
+      .addField({ name: bold("Twitter"), value: twitter, inline: true })
+      .addField({
+        name: bold(lang.UTIL.GH_FOLLOWING),
+        value: user.following.toString(),
+        inline: true,
+      })
+      .addField({
+        name: bold(lang.UTIL.GH_FOLLOWERS),
+        value: user.followers.toString(),
+        inline: true,
+      })
+      .addField({ name: bold(lang.UTIL.GH_WEBSITE), value: website, inline: true })
+      .addField({ name: bold(lang.UTIL.GH_LOCATION), value: location, inline: true })
+      .addField({ name: lang.GLOBAL.URL, value: user.html_url })
+      .setDescription(bio)
       .setThumbnail(user.avatar_url);
 
     if (user.name) {

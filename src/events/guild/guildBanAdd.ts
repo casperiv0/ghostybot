@@ -33,9 +33,9 @@ export default class GuildBanAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.BAN_ADD)
-        .addField(lang.EVENTS.BANNED_MEMBER, bannedMember)
+        .addField({ name: lang.EVENTS.BANNED_MEMBER, value: bannedMember })
         .setDescription(audit.reason ?? lang.GLOBAL.NOT_SPECIFIED)
-        .setColor("RED");
+        .setColor(DJS.Util.resolveColor("RED"));
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

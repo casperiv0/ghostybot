@@ -33,7 +33,7 @@ export default class EmojiUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Emoji Updated")
         .setDescription(msg)
-        .setColor("ORANGE")
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

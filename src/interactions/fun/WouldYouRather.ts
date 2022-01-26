@@ -30,10 +30,14 @@ export default class WouldYouRatherCommand extends SubCommand {
           question2: reply2.question,
         })}\n\n\n${data.description || ""}`,
       )
-      .addField(lang.GAMES.VOTES, this.bot.utils.formatNumber(data.total_votes), true);
+      .addField({
+        name: lang.GAMES.VOTES,
+        value: this.bot.utils.formatNumber(data.total_votes),
+        inline: true,
+      });
 
     if (data.author) {
-      embed.addField(lang.UTIL.AUTHOR, data.author, true);
+      embed.addField({ name: lang.UTIL.AUTHOR, value: data.author, inline: true });
     }
 
     return interaction.editReply({ embeds: [embed] });

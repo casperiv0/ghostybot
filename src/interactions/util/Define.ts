@@ -36,8 +36,8 @@ export default class DefineCommand extends SubCommand {
         const embed = this.bot.utils
           .baseEmbed(interaction)
           .setTitle(this.bot.utils.translate(lang.UTIL.DEF_FOR_WORD, { word }))
-          .addField(lang.UTIL.CATEGORY, data.category)
-          .addField(lang.UTIL.DEFINITION, data.definition);
+          .addField({ name: lang.UTIL.CATEGORY, value: data.category })
+          .addField({ name: lang.UTIL.DEFINITION, value: data.definition });
 
         interaction.reply({ embeds: [embed] });
       }

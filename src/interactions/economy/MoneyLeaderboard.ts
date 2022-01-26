@@ -39,13 +39,13 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       const isInPlace = [0, 1, 2].includes(idx);
 
       if (member) {
-        embed.addField(
-          member.user.username,
-          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].total)} ${
+        embed.addField({
+          name: member.user.username,
+          value: `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].total)} ${
             lang.ECONOMY.TOTAL_BALANCE
           }`,
-          true,
-        );
+          inline: true,
+        });
       }
     });
 

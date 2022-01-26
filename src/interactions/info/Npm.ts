@@ -59,16 +59,16 @@ export default class NpmInfoCommand extends SubCommand {
         .setURL(foundPackage.links.npm)
         .setTitle(foundPackage.name)
         .setDescription(foundPackage?.description ?? lang.GLOBAL.NONE)
-        .addField(lang.UTIL.VERSION, foundPackage.version, true)
-        .addField(lang.UTIL.LAST_MODIFIED, updatedAt, true)
-        .addField(lang.UTIL.MAINTAINERS, maintainers);
+        .addField({ name: lang.UTIL.VERSION, value: foundPackage.version, inline: true })
+        .addField({ name: lang.UTIL.LAST_MODIFIED, value: updatedAt, inline: true })
+        .addField({ name: lang.UTIL.MAINTAINERS, value: maintainers });
 
       if (downloads?.downloads) {
-        embed.addField(
-          lang.UTIL.DOWNLOADS,
-          `${this.bot.utils.formatNumber(downloads.downloads)}/week`,
-          true,
-        );
+        embed.addField({
+          name: lang.UTIL.DOWNLOADS,
+          value: `${this.bot.utils.formatNumber(downloads.downloads)}/week`,
+          inline: true,
+        });
       }
 
       return interaction.editReply({ embeds: [embed] });
@@ -80,14 +80,14 @@ export default class NpmInfoCommand extends SubCommand {
       .setDescription(this.bot.utils.translate(lang.UTIL.NPM_TOP_5, { query }));
 
     foundPackages.forEach((pkg) => {
-      embed.addField(
-        pkg.name,
-        `
+      embed.addField({
+        name: pkg.name,
+        value: `
 **${lang.UTIL.VERSION}:** ${pkg.version}
 **${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
 [**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
-        `,
-      );
+         `,
+      });
     });
 
     await interaction.editReply({ embeds: [embed] });

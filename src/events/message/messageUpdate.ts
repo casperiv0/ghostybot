@@ -39,9 +39,9 @@ export default class MessageUpdateEvent extends Event {
             newMsg.author?.tag || newMsg.author?.id || "Unknown"
           }** was edited [jump to message](${messageLink})`,
         )
-        .addField("**Old Message**", `${pOldMsg}`)
-        .addField("**New Message**", `${PNewMsg}`)
-        .setColor("ORANGE")
+        .addField({ name: "**Old Message**", value: pOldMsg.toString() })
+        .addField({ name: "**New Message**", value: PNewMsg.toString() })
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

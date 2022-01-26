@@ -24,7 +24,7 @@ export default class EmojiDeleteEvent extends Event {
             emoji: emoji.toString(),
           }),
         )
-        .setColor("RED")
+        .setColor(DJS.Util.resolveColor("RED"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

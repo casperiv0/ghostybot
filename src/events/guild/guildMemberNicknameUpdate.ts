@@ -1,4 +1,4 @@
-import { GuildMember } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,7 +7,7 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
     super(bot, "guildMemberNicknameUpdate");
   }
 
-  async execute(bot: Bot, member: GuildMember, oldNick: string, newNick: string) {
+  async execute(bot: Bot, member: DJS.GuildMember, oldNick: string, newNick: string) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -21,10 +21,10 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
-        .setColor("ORANGE")
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setTitle("Member Update: `Nickname`")
         .setDescription(`${member}'s **nickname** was changed.`)
-        .addField("Nickname", `${oldNickname} ➔ ${newNickname}`);
+        .addField({ name: "Nickname", value: `${oldNickname} ➔ ${newNickname}` });
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

@@ -53,14 +53,14 @@ export default class GuildInfoCommand extends SubCommand {
 **${lang.MEMBER.JOINED_AT}:** ${joinedAt}
 **${lang.MEMBER.CREATED_ON}:** ${time(new Date(guild.createdAt), "F")}`,
       )
-      .addField(
-        `**📈 ${lang.POKEMON.STATS}**`,
-        `
+      .addField({
+        name: `**📈 ${lang.POKEMON.STATS}**`,
+        value: `
 **${lang.GUILD.ROLES_C}:** ${roles}
 **${lang.GUILD.CHANNEL_C}:** ${channels}
 **${lang.GUILD.EMOJI_C}:** ${emojis}
 **${lang.GUILD.MEMBER_C}:** ${guild.memberCount}`,
-      );
+      });
 
     if (inviteBanner !== null) {
       embed.setImage(inviteBanner);

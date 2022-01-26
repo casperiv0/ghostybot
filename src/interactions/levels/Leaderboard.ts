@@ -34,11 +34,11 @@ export default class GiveXP extends SubCommand {
         const isInPlace = [0, 1, 2].includes(idx);
 
         if (member) {
-          embed.addField(
-            member.user.username,
-            `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].xp)}xp`,
-            true,
-          );
+          embed.addField({
+            name: member.user.username,
+            value: `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].xp)}xp`,
+            inline: true,
+          });
         }
       }),
     );

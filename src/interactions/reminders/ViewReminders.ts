@@ -34,7 +34,7 @@ export default class ViewRemindersCommand extends SubCommand {
       return interaction.reply({ content: lang.REMINDER.NO_ACTIVE_REM });
     }
 
-    const embeds: DJS.MessageEmbed[] = [];
+    const embeds: DJS.Embed[] = [];
 
     for (let i = 0; i < dbUser.reminder.reminders.length; i++) {
       if (i % 25 === 0) {

@@ -31,7 +31,7 @@ export default class HelpInteraction extends Command {
         .setDescription(
           `You can view all the slash commands [here](${HELP_URL_GH}). Due to some limitations it is hard to implement a new help command within Discord`,
         )
-        .addField(lang.HELP.FULL_CMD_LIST, LINK);
+        .addField({ name: lang.HELP.FULL_CMD_LIST, value: LINK });
 
       return interaction.reply({ embeds: [embed], components: [actionRow] });
     } catch (err) {
@@ -50,13 +50,13 @@ export default class HelpInteraction extends Command {
       .setMaxValues(1);
 
     categories.forEach((category) => {
-      menu.addOptions([
-        {
-          label: this.toCapitalize(category),
-          description: `${this.toCapitalize(category)} commands`,
-          value: category,
-        },
-      ]);
+      const option = new DJS.SelectMenuOption({
+        label: this.toCapitalize(category),
+        description: `${this.toCapitalize(category)} commands`,
+        value: category,
+      });
+
+      menu.addOptions(option);
     });
 
     return menu;
@@ -82,10 +82,10 @@ export function handleCategories(interaction: DJS.SelectMenuInteraction, bot: Bo
     .baseEmbed(interaction)
     .setTitle(`${category} commands`)
     .setDescription(commands.map((command) => `\`${command.name}\``).join(" "))
-    .addField(
-      "Note",
-      `This does not include all commands within the ${category} category. [Please click here to view **all** commands.](${HELP_URL_GH})`,
-    );
+    .addField({
+      name: "Note",
+      value: `This does not include all commands within the ${category} category. [Please click here to view **all** commands.](${HELP_URL_GH})`,
+    });
 
   interaction.reply({
     ephemeral: true,

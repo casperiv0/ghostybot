@@ -22,9 +22,9 @@ export default class GuildChannelTopicUpdateEvent extends Event {
             channel: channel.name,
           }),
         )
-        .setColor("ORANGE")
-        .addField(lang.EVENTS.CHANNEL_OLD_TOPIC, oldTopic || lang.GLOBAL.NONE)
-        .addField(lang.EVENTS.CHANNEL_NEW_TOPIC, newTopic || lang.GLOBAL.NONE)
+        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .addField({ name: lang.EVENTS.CHANNEL_OLD_TOPIC, value: oldTopic || lang.GLOBAL.NONE })
+        .addField({ name: lang.EVENTS.CHANNEL_NEW_TOPIC, value: newTopic || lang.GLOBAL.NONE })
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

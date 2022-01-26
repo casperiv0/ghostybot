@@ -32,7 +32,7 @@ export default class PollCommand extends SubCommand {
       })
       .setDescription(question);
 
-    embed.footer = null;
+    embed.footer = undefined;
 
     const sentMessage = await interaction.reply({ fetchReply: true, embeds: [embed] });
 

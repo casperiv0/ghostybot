@@ -48,26 +48,34 @@ export default class CovidInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(title)
-      .addField(
-        lang.COVID.TOTAL,
-        `
+      .addField({
+        name: lang.COVID.TOTAL,
+        value: `
 **${lang.COVID.CASES}:** ${this.bot.utils.formatNumber(country.cases)}
 **${lang.COVID.RECOVERED}:** ${this.bot.utils.formatNumber(country.recovered)}
 **${lang.COVID.DEATHS}:** ${this.bot.utils.formatNumber(country.deaths)}
 **${lang.COVID.TOTAL_POP}:** ${this.bot.utils.formatNumber(country.population)}`,
-        true,
-      )
-      .addField(
-        "Today",
-        `
+        inline: true,
+      })
+      .addField({
+        name: "Today",
+        value: `
 **${lang.COVID.CASES}:** ${this.bot.utils.formatNumber(country.todayCases)}
 **${lang.COVID.RECOVERED}:** ${this.bot.utils.formatNumber(country.todayRecovered)}
 **${lang.COVID.DEATHS}:** ${this.bot.utils.formatNumber(country.todayDeaths)}
-    `,
-        true,
-      )
-      .addField(lang.COVID.CRITICAL, this.bot.utils.formatNumber(country.critical), true)
-      .addField(lang.COVID.TESTS, this.bot.utils.formatNumber(country.tests), true)
+   `,
+        inline: true,
+      })
+      .addField({
+        name: lang.COVID.CRITICAL,
+        value: this.bot.utils.formatNumber(country.critical),
+        inline: true,
+      })
+      .addField({
+        name: lang.COVID.TESTS,
+        value: this.bot.utils.formatNumber(country.tests),
+        inline: true,
+      })
       .setThumbnail(country.countryInfo?.flag || "")
       .setFooter({
         text: `${lang.COVID.LAST_UPDATED}: ${time(new Date(country.updated), "f")}`,

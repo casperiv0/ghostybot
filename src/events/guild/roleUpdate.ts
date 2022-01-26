@@ -27,7 +27,7 @@ export default class RoleUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Role Updated")
         .setDescription(msg)
-        .setColor("ORANGE")
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

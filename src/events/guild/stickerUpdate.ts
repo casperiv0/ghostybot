@@ -20,19 +20,22 @@ export default class StickerDeleteEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_UPDATED)
-        .setColor("ORANGE")
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setImage(newSticker.url)
         .setTimestamp();
 
       if (old.name !== newSticker.name) {
-        embed.addField(lang.EVENTS.NAME_UPDATED, `${old.name} -> ${newSticker.name}`);
+        embed.addField({
+          name: lang.EVENTS.NAME_UPDATED,
+          value: `${old.name} -> ${newSticker.name}`,
+        });
       }
 
       if (old.description !== newSticker.description) {
-        embed.addField(
-          lang.EVENTS.DESCRIPTION_UPDATED,
-          `${old.description} -> ${newSticker.description}`,
-        );
+        embed.addField({
+          name: lang.EVENTS.DESCRIPTION_UPDATED,
+          value: `${old.description} -> ${newSticker.description}`,
+        });
       }
 
       await webhook.send({ embeds: [embed] });

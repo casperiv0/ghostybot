@@ -18,7 +18,7 @@ export default class RoleCreateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("New role Created")
         .setDescription(`Role: **${role}** was created`)
-        .setColor("GREEN")
+        .setColor(DJS.Util.resolveColor("GREEN"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

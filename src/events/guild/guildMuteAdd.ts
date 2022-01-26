@@ -1,10 +1,10 @@
-import { Guild, GuildMember, User } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export interface MuteData {
-  member: GuildMember;
-  executor: User;
+  member: DJS.GuildMember;
+  executor: DJS.User;
   reason: string;
   time?: string;
   tempMute?: boolean;
@@ -15,7 +15,7 @@ export default class GuildMemberMuteAddEvent extends Event {
     super(bot, "guildMuteAdd");
   }
 
-  async execute(bot: Bot, guild: Guild, mute: MuteData) {
+  async execute(bot: Bot, guild: DJS.Guild, mute: MuteData) {
     try {
       if (!guild) return;
       if (!guild.available) return;
@@ -27,13 +27,13 @@ export default class GuildMemberMuteAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle("User muted")
-        .addField("Tag", member.user.tag, true)
-        .addField("Executed by", executor.tag, true)
-        .addField("Reason", reason)
-        .setColor("ORANGE");
+        .addField({ name: "Tag", value: member.user.tag, inline: true })
+        .addField({ name: "Executed by", value: executor.tag, inline: true })
+        .addField({ name: "Reason", value: reason })
+        .setColor(DJS.Util.resolveColor("ORANGE"));
 
       if (tempMute && time) {
-        embed.addField("Muted for", time);
+        embed.addField({ name: "Muted for", value: time });
       }
 
       await webhook.send({ embeds: [embed] });

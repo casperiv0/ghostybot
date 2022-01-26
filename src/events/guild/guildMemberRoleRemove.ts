@@ -18,7 +18,7 @@ export default class GuildMemberRoleRemoveEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
-        .setColor("ORANGE")
+        .setColor(DJS.Util.resolveColor("ORANGE"))
         .setTitle("Member Update: `Role Remove`")
         .setDescription(`${member} was **removed** from ${role} role.`);
 

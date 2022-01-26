@@ -37,9 +37,9 @@ export default class BMICommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.user.username} ${lang.UTIL.BMI}`)
-      .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`, true)
-      .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`, true)
-      .addField(`${lang.UTIL.BMI}`, bmi);
+      .addField({ name: lang.UTIL.BMI_WEIGHT, value: `${weight}kg`, inline: true })
+      .addField({ name: lang.UTIL.BMI_HEIGHT, value: `${height}cm`, inline: true })
+      .addField({ name: lang.UTIL.BMI, value: bmi });
 
     await interaction.reply({ embeds: [embed] });
   }

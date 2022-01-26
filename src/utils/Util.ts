@@ -23,7 +23,7 @@ export class Util {
       count += 1;
 
       interaction.options.options?.forEach((option) => {
-        if (option.type === "Subcommand") {
+        if (option.type === DJS.ApplicationCommandOptionType.Subcommand) {
           count += 1;
         }
       });
@@ -214,13 +214,13 @@ export class Util {
       }
 
       const embed = this.baseEmbed(message)
-        .addField("Name", name, true)
-        .addField("Code", code.toString(), true)
-        .addField("httpStatus", httpStatus.toString(), true)
-        .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", codeBlock(jsonString?.substr(0, 2045)))
+        .addField({ name: "Name", value: name, inline: true })
+        .addField({ name: "Code", value: code.toString(), inline: true })
+        .addField({ name: "httpStatus", value: httpStatus.toString(), inline: true })
+        .addField({ name: "Timestamp", value: this.bot.logger.now, inline: true })
+        .addField({ name: "Request data", value: codeBlock(jsonString?.substring(0, 2045)) })
         .setDescription(codeBlock(stack as string))
-        .setColor(type === "error" ? "RED" : "ORANGE");
+        .setColor(DJS.Util.resolveColor(type === "error" ? "RED" : "ORANGE"));
 
       channel.send({ embeds: [embed] });
     } catch (e) {
@@ -466,20 +466,18 @@ export class Util {
           })
           .join(", ")} permissions!`,
       )
-      .setColor("ORANGE");
+      .setColor(DJS.Util.resolveColor("ORANGE"));
   }
 
-  baseEmbed(
-    message: DJS.Message | DJS.Interaction | { author: DJS.User | null },
-  ): DJS.MessageEmbed {
+  baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }): DJS.Embed {
     const user = "author" in message ? message.author : message.user;
 
     const avatar = user?.displayAvatarURL();
     const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
-    return new DJS.MessageEmbed()
+    return new DJS.Embed()
       .setFooter({ text: username, iconURL: avatar })
-      .setColor("#5865f2")
+      .setColor(DJS.Util.resolveColor("#5865f2"))
       .setTimestamp();
   }
 

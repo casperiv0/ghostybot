@@ -66,8 +66,8 @@ export default class CreateReminderCommand extends SubCommand {
     const button = new DJS.ButtonComponent()
       .setCustomId(`${CANCEL_REMINDER_ID}_${reminderId}`)
       .setLabel("Cancel reminder")
-      .setStyle("DANGER")
-      .setEmoji("🛑");
+      .setStyle(DJS.ButtonStyle.Danger)
+      .setEmoji({ name: "🛑" });
 
     const row = new DJS.ActionRow().addComponents(button);
 

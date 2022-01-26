@@ -1,3 +1,4 @@
+import { bold } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
@@ -58,15 +59,18 @@ export default class WarningsCommand extends SubCommand {
       const warnedOn = warning?.date ? new Date(warning?.date)?.toLocaleString() : "N/A";
       embed
         .setTitle(`${lang.ADMIN.WARNING} ${id}`)
-        .addField(`**${lang.EVENTS.REASON}**`, warning?.reason || lang.GLOBAL.NOT_SPECIFIED)
-        .addField(`**${lang.ADMIN.WARNED_ON}**`, warnedOn);
+        .addField({
+          name: bold(lang.EVENTS.REASON),
+          value: warning?.reason || lang.GLOBAL.NOT_SPECIFIED,
+        })
+        .addField({ name: bold(lang.ADMIN.WARNED_ON), value: warnedOn });
 
       return interaction.reply({ ephemeral: true, embeds: [embed] });
     }
 
     embed
       .setTitle(this.bot.utils.translate(lang.ADMIN.MEMBER_WARNS, { memberTag: user.tag }))
-      .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings?.length || 0).toString())
+      .addField({ name: bold(lang.ADMIN.TOTAL_WARNS), value: (warnings?.length || 0).toString() })
       .setThumbnail(user.displayAvatarURL());
 
     await interaction.reply({ ephemeral: true, embeds: [embed] });

@@ -36,7 +36,9 @@ export default class ChannelInfoCommand extends SubCommand {
     const topic = (channel as DJS.TextChannel)?.topic ?? lang.GLOBAL.NONE;
     const type = lang.UTIL.CHANNEL_TYPES[channel.type];
     const createdAt =
-      "createdAt" in channel ? time(new Date(channel.createdAt), "F") : lang.UTIL.UNKNOWN;
+      "createdAt" in channel && channel.createdAt
+        ? time(new Date(channel.createdAt), "F")
+        : lang.UTIL.UNKNOWN;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
@@ -54,7 +56,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}
       const regions = lang.OTHER.REGIONS;
       const region = regions[(channel as DJS.VoiceChannel)?.rtcRegion ?? "us-central"];
 
-      embed.addField(lang.GUILD.REGION, region);
+      embed.addField({ name: lang.GUILD.REGION, value: region });
     }
 
     await interaction.editReply({ embeds: [embed] });

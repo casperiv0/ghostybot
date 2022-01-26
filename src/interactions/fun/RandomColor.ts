@@ -18,7 +18,7 @@ export default class RandomJokeCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setThumbnail(preview)
-      .setColor(color)
+      .setColor(DJS.Util.resolveColor(color))
       .setTitle(color);
 
     interaction.reply({ embeds: [embed] });

@@ -37,9 +37,21 @@ export default class BalanceCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${user.username} ${lang.ECONOMY.BALANCE}`)
-      .addField(lang.ECONOMY.MONEY, this.bot.utils.formatNumber(dbUser.money), true)
-      .addField(lang.ECONOMY.BANK, this.bot.utils.formatNumber(dbUser.bank), true)
-      .addField(lang.COVID.TOTAL, this.bot.utils.formatNumber(dbUser.bank + dbUser.money), true);
+      .addField({
+        name: lang.ECONOMY.MONEY,
+        value: this.bot.utils.formatNumber(dbUser.money),
+        inline: true,
+      })
+      .addField({
+        name: lang.ECONOMY.BANK,
+        value: this.bot.utils.formatNumber(dbUser.bank),
+        inline: true,
+      })
+      .addField({
+        name: lang.COVID.TOTAL,
+        value: this.bot.utils.formatNumber(dbUser.bank + dbUser.money),
+        inline: true,
+      });
 
     await interaction.reply({ embeds: [embed] });
   }

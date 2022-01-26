@@ -41,13 +41,13 @@ export default class IMDBInfoCommand extends SubCommand {
       .setTitle(movie.title)
       .setThumbnail(movie.poster)
       .setDescription(movie.plot)
-      .addField(`${lang.UTIL.DB_RATINGS}`, movie.rating.toString(), true)
-      .addField(`${lang.UTIL.DB_COUNTRY}`, movie.country, true)
-      .addField(`${lang.UTIL.DB_GENRES}`, movie.genres, true)
-      .addField(`${lang.UTIL.DB_AWARDS}`, movie.awards, true)
-      .addField(`${lang.UTIL.DB_LANGS}`, movie.languages, true)
-      .addField(`${lang.UTIL.DB_RELEASED}`, released, true)
-      .addField(`${lang.BOT_OWNER.EVAL_TYPE}`, movie.type, true);
+      .addField({ name: lang.UTIL.DB_RATINGS, value: movie.rating.toString(), inline: true })
+      .addField({ name: lang.UTIL.DB_COUNTRY, value: movie.country, inline: true })
+      .addField({ name: lang.UTIL.DB_GENRES, value: movie.genres, inline: true })
+      .addField({ name: lang.UTIL.DB_AWARDS, value: movie.awards, inline: true })
+      .addField({ name: lang.UTIL.DB_LANGS, value: movie.languages, inline: true })
+      .addField({ name: lang.UTIL.DB_RELEASED, value: released, inline: true })
+      .addField({ name: lang.BOT_OWNER.EVAL_TYPE, value: movie.type, inline: true });
 
     await interaction.editReply({ embeds: [embed] });
   }

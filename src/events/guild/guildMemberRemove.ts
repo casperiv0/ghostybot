@@ -38,7 +38,7 @@ export default class GuildMemberRemoveEvent extends Event {
               guild: member.guild,
             }),
           )
-          .setColor("RED");
+          .setColor(DJS.Util.resolveColor("RED"));
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;

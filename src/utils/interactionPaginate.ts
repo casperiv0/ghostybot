@@ -1,4 +1,4 @@
-import { CommandInteraction, Message, MessageEmbed, MessageReaction, User } from "discord.js";
+import { CommandInteraction, Message, Embed, MessageReaction, User } from "discord.js";
 import ms from "ms";
 import { Bot } from "structures/Bot";
 
@@ -10,7 +10,7 @@ const TIMEOUT = 60 * 1000 * 5; // 5minutes
 
 export async function interactionPaginate(
   interaction: CommandInteraction,
-  embeds: MessageEmbed[],
+  embeds: Embed[],
   bot: Bot,
 ) {
   let page = 0;

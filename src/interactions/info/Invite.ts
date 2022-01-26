@@ -60,9 +60,9 @@ export default class InviteInfoCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(`${lang.UTIL.INVITE}: ${invite.code}`)
       .setDescription(invite.guild?.description || lang.UTIL.NO_DESCRIPTION)
-      .addField(
-        lang.UTIL.GENERAL_INFO,
-        `
+      .addField({
+        name: lang.UTIL.GENERAL_INFO,
+        value: `
 **${lang.UTIL.USES}:**: ${usesStr}
 **${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${
           invite.guild?.id ?? lang.UTIL.UNKNOWN
@@ -70,13 +70,13 @@ export default class InviteInfoCommand extends SubCommand {
 **${lang.UTIL.CHANNEL}:** ${invite.channel.name}
 **${lang.UTIL.INVITER}:** ${inviter}
       `,
-      )
-      .addField(
-        lang.INVITE.EXPIRATION,
-        `
+      })
+      .addField({
+        name: lang.INVITE.EXPIRATION,
+        value: `
 **${lang.INVITE.EXPIRES_AT}:** ${expiresAt}
 **${lang.INVITE.EXPIRED_AT}:** ${expiredAt}`,
-      );
+      });
 
     if (invite.guild?.icon) {
       const extension = invite.guild.icon.startsWith("a_") ? "gif" : "webp";

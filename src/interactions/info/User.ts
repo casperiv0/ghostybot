@@ -74,14 +74,13 @@ ${bold(lang.MEMBER.PENDING)}: ${member.pending}
 `,
       )
 
-      .addField(
-        lang.UTIL.GUILD_INFO,
-        `
-${bold(lang.MEMBER.NICKNAME)}: ${nickname}
+      .addField({
+        name: lang.UTIL.GUILD_INFO,
+        value: `${bold(lang.MEMBER.NICKNAME)}: ${nickname}
 ${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${joinedAtR})
-`,
-      )
-      .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)
+  `,
+      })
+      .addField({ name: bold(`${lang.MEMBER.ROLES} (${roleCount})`), value: roles })
       .setThumbnail(member.user.displayAvatarURL());
 
     await interaction.reply({ embeds: [embed] });

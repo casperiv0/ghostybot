@@ -51,7 +51,7 @@ export default class DocsInteraction extends Command {
         return interaction.editReply({ content: lang.UTIL.DOC_NOT_FOUND });
       }
 
-      const embed = new DJS.MessageEmbed({
+      const embed = new DJS.Embed({
         ...data,
         color: "#5865f2",
         footer: {

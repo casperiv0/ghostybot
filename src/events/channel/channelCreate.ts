@@ -26,7 +26,7 @@ export default class ChannelCreateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_CREATED)
         .setDescription(msg)
-        .setColor("GREEN")
+        .setColor(DJS.Util.resolveColor("GREEN"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

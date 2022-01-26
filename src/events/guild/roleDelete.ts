@@ -18,7 +18,7 @@ export default class RoleDeleteEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Role deleted")
         .setDescription(`Role: **${role.name}** was deleted`)
-        .setColor("RED")
+        .setColor(DJS.Util.resolveColor("RED"))
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

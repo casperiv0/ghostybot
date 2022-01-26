@@ -52,12 +52,14 @@ export default class ReminderHelper extends Helper {
               .baseEmbed({ author: usr })
               .setTitle("Reminder finished")
               .setDescription(`Your timer of **${time}** has ended`)
-              .addField("Reminder message", msg);
+              .addField({ name: "Reminder message", value: msg });
 
+            if (!channel.isText()) return;
             if (!channel.permissionsFor(guild.me!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
               return;
             }
-            (channel as DJS.TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });
+
+            channel.send({ content: `<@${user.user_id}>`, embeds: [embed] });
           });
       });
     }, this.TEN_SECOND_INTERVAL);

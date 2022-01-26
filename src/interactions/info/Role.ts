@@ -39,7 +39,7 @@ export default class RoleInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(bold(role.name))
-      .setColor(color)
+      .setColor(DJS.Util.resolveColor(color))
       .setDescription(
         `
 ${bold(lang.UTIL.POSITION)}: ${position}
@@ -48,8 +48,8 @@ ${bold("ID")}: ${role.id}
 ${bold(lang.UTIL.HEX_COLOR)}: ${hexColor}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}`,
       )
-      .addField(lang.UTIL.ROLE_MENTION, `<@&${role.id}>`)
-      .addField(lang.MEMBER.PERMISSIONS, permissions);
+      .addField({ name: lang.UTIL.ROLE_MENTION, value: role.toString() })
+      .addField({ name: lang.MEMBER.PERMISSIONS, value: permissions });
 
     interaction.reply({ embeds: [embed] });
   }

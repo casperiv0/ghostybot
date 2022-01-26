@@ -111,8 +111,11 @@ export default class MessageEvent extends Event {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
-              .addField(lang.LEVELS.NEW_LEVEL, newLevel.toString())
-              .addField(lang.LEVELS.TOTAL_XP, bot.utils.formatNumber(user.xp + xp));
+              .addField({ name: lang.LEVELS.NEW_LEVEL, value: newLevel.toString() })
+              .addField({
+                name: lang.LEVELS.TOTAL_XP,
+                value: bot.utils.formatNumber(user.xp + xp),
+              });
 
             const ch = message.channel;
             if (
@@ -141,12 +144,13 @@ export default class MessageEvent extends Event {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
-          .addField("Help command", "/help")
-          .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
-          .addField(
-            lang.BOT.DASHBOARD,
-            process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.caspertheghost.me",
-          );
+          .addField({ name: "Help command", value: "/help" })
+          .addField({ name: lang.MESSAGE.SUPPORT, value: "https://discord.gg/XxHrtkA" })
+          .addField({
+            name: lang.BOT.DASHBOARD,
+            value:
+              process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.caspertheghost.me",
+          });
 
         return message.channel.send({ embeds: [embed] });
       }
@@ -184,11 +188,12 @@ export default class MessageEvent extends Event {
       .setDescription(
         "Regular commands are now fully removed from GhostyBot. Please use slash commands instead.",
       )
-      .addField(
-        "Why slash commands",
-        "Discord has announced a new [Intent](https://support-dev.discord.com/hc/en-us/articles/4404772028055) which will require all/most verified bots to transition over to slash commands. I think this is a good privacy change.",
-      )
-      .addField(lang.HELP.FULL_CMD_LIST, LINK);
+      .addField({
+        name: "Why slash commands",
+        value:
+          "Discord has announced a new [Intent](https://support-dev.discord.com/hc/en-us/articles/4404772028055) which will require all/most verified bots to transition over to slash commands. I think this is a good privacy change.",
+      })
+      .addField({ name: lang.HELP.FULL_CMD_LIST, value: LINK });
 
     await message.channel.send({ embeds: [embed] });
   }

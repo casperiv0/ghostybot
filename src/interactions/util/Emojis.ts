@@ -1,11 +1,7 @@
+import type { APIEmbedField } from "discord-api-types";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
-
-interface Field {
-  name: string;
-  value: string;
-}
 
 export default class EmojisCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -34,7 +30,7 @@ export default class EmojisCommand extends SubCommand {
     });
 
     const embed = this.bot.utils.baseEmbed(interaction);
-    const fields: Field[] = [];
+    const fields: APIEmbedField[] = [];
 
     for (let i = 0; i < nonAnimated.length; i++) {
       if (i % 20 === 0) {
@@ -52,7 +48,7 @@ export default class EmojisCommand extends SubCommand {
       }
     }
 
-    embed.addFields(fields);
+    embed.addFields(...fields);
 
     await interaction.reply({ embeds: [embed] });
   }

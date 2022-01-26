@@ -48,12 +48,12 @@ export default class MinecraftInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(query)
-      .addField(lang.MEMBER.STATUS, status, true)
-      .addField(lang.UTIL.PLAYERS, players, true)
-      .addField(lang.UTIL.MAX_PLAYERS, maxPlayers, true)
-      .addField(lang.UTIL.VERSION, version, true)
-      .addField(lang.UTIL.PORT, port, true)
-      .addField(lang.UTIL.DESCRIPTION, description);
+      .addField({ name: lang.MEMBER.STATUS, value: status, inline: true })
+      .addField({ name: lang.UTIL.PLAYERS, value: players, inline: true })
+      .addField({ name: lang.UTIL.MAX_PLAYERS, value: maxPlayers, inline: true })
+      .addField({ name: lang.UTIL.VERSION, value: version, inline: true })
+      .addField({ name: lang.UTIL.PORT, value: port, inline: true })
+      .addField({ name: lang.UTIL.DESCRIPTION, value: description });
 
     await interaction.editReply({ embeds: [embed] });
   }
