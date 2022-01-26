@@ -33,10 +33,8 @@ export default class GuildInfoCommand extends SubCommand {
     const joinedAt = member?.joinedAt ? time(new Date(member.joinedAt), "F") : lang.UTIL.UNKNOWN;
 
     const owner = await guild.fetchOwner();
-    const inviteBanner = guild.bannerURL({
-      size: 2048,
-      format: "png",
-    });
+    const inviteBanner = guild.bannerURL({ size: 2048 });
+    const guildIcon = guild.iconURL({ size: 1024 });
 
     const verLevel = verLevels[guild.verificationLevel];
     const mfaLevel = mfaLevels[guild.mfaLevel];
@@ -62,12 +60,12 @@ export default class GuildInfoCommand extends SubCommand {
 **${lang.GUILD.MEMBER_C}:** ${guild.memberCount}`,
       });
 
-    if (inviteBanner !== null) {
+    if (inviteBanner) {
       embed.setImage(inviteBanner);
     }
 
-    if (guild.icon !== null) {
-      embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
+    if (guildIcon) {
+      embed.setThumbnail(guildIcon);
     }
 
     await interaction.editReply({ embeds: [embed] });

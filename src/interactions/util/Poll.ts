@@ -32,8 +32,6 @@ export default class PollCommand extends SubCommand {
       })
       .setDescription(question);
 
-    embed.footer = undefined;
-
     const sentMessage = await interaction.reply({ fetchReply: true, embeds: [embed] });
 
     if (sentMessage instanceof DJS.Message) {

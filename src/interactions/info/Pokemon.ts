@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import { request } from "undici";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { bold } from "@discordjs/builders";
 
 export default class PokemonInfoCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -44,14 +45,14 @@ export default class PokemonInfoCommand extends SubCommand {
       .addField({ name: lang.POKEMON.GENDER, value: data.gender.join(" / "), inline: true })
       .addField({ name: lang.POKEMON.EGG_GROUPS, value: data.egg_groups.join(", "), inline: true })
       .addField({
-        name: `**${lang.POKEMON.FAMILY}:**`,
+        name: bold(lang.POKEMON.FAMILY),
         value: `
 **${lang.POKEMON.EVO_STAGE}:** ${data.family.evolutionStage}
 **${lang.POKEMON.EVO_LINE}:** ${data.family.evolutionLine.join(" -> ")}
         `,
       })
       .addField({
-        name: `**${lang.POKEMON.STATS}:**`,
+        name: bold(lang.POKEMON.STATS),
         value: `
 **${lang.POKEMON.HP}:** ${data.stats.hp}
 **${lang.POKEMON.ATTACK}:** ${data.stats.attack}

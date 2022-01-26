@@ -37,7 +37,7 @@ function subCommandItem(cmd: TCommand) {
   const groupName = cmd instanceof SubCommand ? cmd.options.groupName : null;
   const topLevelName = cmd instanceof SubCommand ? cmd.options.commandName : "";
 
-  return `## ${topLevelName}${groupName ? `-> ${groupName}` : ""} ${topLevelName ? "->" : ""} ${
+  return `## ${topLevelName}${groupName ? `-> ${groupName}` : ""}${topLevelName ? " -> " : ""}${
     cmd.name
   }
 

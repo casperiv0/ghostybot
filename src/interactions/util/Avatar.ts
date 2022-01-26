@@ -25,10 +25,11 @@ export default class AvatarCommand extends SubCommand {
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
 
-    const png = this.getAvatar(user, "png");
-    const webp = this.getAvatar(user, "webp");
-    const jpg = this.getAvatar(user, "jpg");
-    const gif = this.getAvatar(user, "gif");
+    const url = user.displayAvatarURL({ size: 4096 });
+    const png = this.getAvatar(url, "png");
+    const webp = this.getAvatar(url, "webp");
+    const jpg = this.getAvatar(url, "jpg");
+    const gif = this.getAvatar(url, "gif");
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
@@ -39,10 +40,7 @@ export default class AvatarCommand extends SubCommand {
     await interaction.reply({ embeds: [embed] });
   }
 
-  getAvatar(user: DJS.User, format: DJS.AllowedImageFormat | "gif") {
-    return user.displayAvatarURL({
-      size: 4096,
-      format: format as DJS.AllowedImageFormat,
-    });
+  getAvatar(url: string, format: "png" | "webp" | "jpg" | "gif") {
+    return url.replace(".webp", `.${format}`);
   }
 }

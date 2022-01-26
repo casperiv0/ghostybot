@@ -316,7 +316,7 @@ export class Util {
     }
 
     await (channel as DJS.TextChannel).createWebhook(`audit-logs-${channelId}`, {
-      avatar: this.bot.user.displayAvatarURL({ format: "png" }),
+      avatar: this.bot.user.displayAvatarURL(),
     });
   }
 

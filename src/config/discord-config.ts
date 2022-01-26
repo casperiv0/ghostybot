@@ -20,7 +20,10 @@ export const discordConfig: DJS.ClientOptions = {
     // todo: remove this partial once message intents arrive.
     DJS.Constants.PartialTypes.MESSAGE,
   ],
-  restRequestTimeout: 25000,
+  // @ts-expect-error https://github.com/discordjs/discord.js/pull/7349
+  rest: {
+    timeout: 25000,
+  },
   allowedMentions: { parse: ["roles", "users"] },
   makeCache: DJS.Options.cacheWithLimits({
     ...DJS.Options.defaultMakeCacheSettings,

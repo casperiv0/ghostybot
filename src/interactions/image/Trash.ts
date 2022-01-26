@@ -24,7 +24,7 @@ export default class TrashCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
-    const image = `${this.APIs.Thrash}${user.displayAvatarURL({ format: "png" })}`;
+    const image = `${this.APIs.Thrash}${user.displayAvatarURL({ extension: "png" })}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
