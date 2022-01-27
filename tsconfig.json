@@ -6,7 +6,7 @@
     "checkJs": false,
     "noImplicitThis": true,
     "noUnusedParameters": true,
-    "traceResolution": true,
+    "traceResolution": false,
     "allowUnreachableCode": false,
     "outDir": "dist",
     "declaration": false,
