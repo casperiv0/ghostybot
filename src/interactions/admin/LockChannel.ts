@@ -29,7 +29,7 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     if (threadChannels.includes(interaction.channel?.type!)) {
@@ -43,20 +43,20 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const reason = interaction.options.getString("reason", true);
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (!channel?.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (!channel?.permissionsFor(interaction.guildId)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,
       });
     }
 
-    await channel.permissionOverwrites.create(interaction.guildId!, {
+    await channel.permissionOverwrites.create(interaction.guildId, {
       SEND_MESSAGES: false,
     });
 

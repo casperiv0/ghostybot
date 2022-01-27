@@ -27,7 +27,7 @@ export default class WebCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const url = interaction.options.getString("url", true);

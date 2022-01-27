@@ -20,13 +20,13 @@ export default class BuyCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const rawItem = interaction.options.getString("item", true);
 
-    const guild = await this.bot.utils.getGuildById(interaction.guildId!);
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const guild = await this.bot.utils.getGuildById(interaction.guildId);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     const inventory = user?.inventory;
 
     if (!guild?.store) {
@@ -66,12 +66,12 @@ export default class BuyCommand extends SubCommand {
     }
 
     if (!inventory) {
-      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         inventory: [item.name],
         money: user.money - item.price,
       });
     } else {
-      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         inventory: [...inventory, item.name],
         money: user.money - item.price,
       });

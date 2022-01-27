@@ -21,11 +21,11 @@ export default class SuggestCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const suggestion = interaction.options.getString("text", true);
-    const guild = await this.bot.utils.getGuildById(interaction.guildId!);
+    const guild = await this.bot.utils.getGuildById(interaction.guildId);
     const suggestChannel = guild?.suggest_channel;
 
     if (!suggestChannel) {

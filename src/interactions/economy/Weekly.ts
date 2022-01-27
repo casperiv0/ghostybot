@@ -16,10 +16,10 @@ export default class WeeklyCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -35,7 +35,7 @@ export default class WeeklyCommand extends SubCommand {
         content: this.bot.utils.translate(lang.ECONOMY.WEEKLY_ERROR, { time: time(dateTime, "R") }),
       });
     } else {
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         money: user.money + amount,
         weekly: Date.now(),
       });

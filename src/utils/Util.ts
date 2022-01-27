@@ -532,7 +532,7 @@ export class Util {
    */
   formatBotPermissions(
     permissions: bigint[],
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const neededPerms: bigint[] = [];
@@ -552,7 +552,7 @@ export class Util {
 
   formatMemberPermissions(
     permissions: bigint[],
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const neededPerms: bigint[] = [];

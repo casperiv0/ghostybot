@@ -17,10 +17,10 @@ export default class WorkCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -52,7 +52,7 @@ export default class WorkCommand extends SubCommand {
 
       await interaction.reply({ ephemeral: true, embeds: [embed] });
 
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         money: user.money + amount,
         work: Date.now(),
       });

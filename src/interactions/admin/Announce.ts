@@ -27,7 +27,7 @@ export default class AnnounceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);
@@ -39,7 +39,7 @@ export default class AnnounceCommand extends SubCommand {
         content: "Channel type must be type of `text` or `news`",
       });
     }
-    const guild = await this.bot.utils.getGuildById(interaction.guildId!);
+    const guild = await this.bot.utils.getGuildById(interaction.guildId);
     const announceChannel = guild?.announcement_channel;
 
     const actualChannel = channel?.id ? channel.id : announceChannel;

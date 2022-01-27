@@ -20,11 +20,11 @@ export default class PlayCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const query = interaction.options.getString("query");
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
     if (queue && !this.bot.utils.isBotInSameChannel(interaction)) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
     }

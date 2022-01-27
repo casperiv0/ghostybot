@@ -20,10 +20,10 @@ export default class DepositCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -39,7 +39,7 @@ export default class DepositCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.ECONOMY.NOT_ENOUGH_MONEY });
     }
 
-    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
       bank: user.bank + Number(amount),
       money: user.money - Number(amount),
     });

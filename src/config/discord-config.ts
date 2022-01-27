@@ -20,7 +20,6 @@ export const discordConfig: DJS.ClientOptions = {
     // todo: remove this partial once message intents arrive.
     DJS.Constants.PartialTypes.MESSAGE,
   ],
-  // @ts-expect-error https://github.com/discordjs/discord.js/pull/7349
   rest: {
     timeout: 25000,
   },

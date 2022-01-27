@@ -26,7 +26,7 @@ export default class RobCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -47,8 +47,8 @@ export default class RobCommand extends SubCommand {
       return interaction.reply({ content: lang.ECONOMY.BETWEEN_1_1000 });
     }
 
-    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId!);
-    const robber = await this.bot.utils.getUserById(user.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId);
+    const robber = await this.bot.utils.getUserById(user.id, interaction.guildId);
 
     if (!dbUser || !robber) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
@@ -58,10 +58,10 @@ export default class RobCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.ECONOMY.MEMBER_NO_MONEY });
     }
 
-    await this.bot.utils.updateUserById(user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(user.id, interaction.guildId, {
       money: dbUser.money - amount,
     });
-    await this.bot.utils.updateUserById(user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(user.id, interaction.guildId, {
       money: robber.money + Number(amount),
     });
 

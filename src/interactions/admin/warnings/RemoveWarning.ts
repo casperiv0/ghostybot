@@ -29,7 +29,7 @@ export default class RemoveWarningCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -44,7 +44,7 @@ export default class RemoveWarningCommand extends SubCommand {
 
     await interaction.deferReply({ ephemeral: true });
 
-    const warnings = await this.bot.utils.getUserWarnings(user.id, interaction.guildId!);
+    const warnings = await this.bot.utils.getUserWarnings(user.id, interaction.guildId);
 
     if (!warnings[0]) {
       return interaction.reply({

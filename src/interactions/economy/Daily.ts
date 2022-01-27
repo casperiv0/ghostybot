@@ -13,10 +13,10 @@ export default class DailyCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -34,7 +34,7 @@ export default class DailyCommand extends SubCommand {
         content: this.bot.utils.translate(lang.ECONOMY.DAILY_ERROR, { time: time(dateTime, "R") }),
       });
     } else {
-      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         daily: Date.now(),
         money: currentMoney + amount,
       });

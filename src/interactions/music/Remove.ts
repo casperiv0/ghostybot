@@ -21,7 +21,7 @@ export default class RemoveCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -36,11 +36,11 @@ export default class RemoveCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const songNo = interaction.options.getInteger("track-number", true);
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
 
     if (!queue || !queue.playing) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });

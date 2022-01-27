@@ -22,12 +22,12 @@ export default class ViewRemindersCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const guildUser = interaction.options.getUser("user") ?? interaction.user;
 
-    const dbUser = await this.bot.utils.getUserById(guildUser.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(guildUser.id, interaction.guildId);
     if (!dbUser) return;
 
     if (!dbUser.reminder.hasReminder === true || dbUser.reminder.reminders?.length <= 0) {

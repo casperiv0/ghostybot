@@ -19,7 +19,7 @@ export default class Rank extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.ChatInputCommandInteraction) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId);
 
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -27,7 +27,7 @@ export default class Rank extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.BOT_DATA });
     }
 
-    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId);
     if (!dbUser) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }

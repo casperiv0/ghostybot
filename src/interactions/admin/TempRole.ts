@@ -35,7 +35,7 @@ export default class TempRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -78,9 +78,9 @@ export default class TempRoleCommand extends SubCommand {
 
     needsRole.roles.add(parsedRole);
 
-    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId);
 
-    await this.bot.utils.updateUserById(needsRole.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(needsRole.user.id, interaction.guildId, {
       temproles: {
         hasTempRoles: true,
         tempRoles: [

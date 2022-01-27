@@ -29,7 +29,7 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);
@@ -86,7 +86,7 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async createEmoji(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     url: string,
     name: string,
     lang: any,

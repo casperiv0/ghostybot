@@ -13,7 +13,7 @@ export default class UptimeCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const uptime = new Date(Date.now() - (this.bot.uptime ?? 0));

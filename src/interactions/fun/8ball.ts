@@ -20,7 +20,7 @@ export default class Ball8Command extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const answers = lang.OTHER.ANSWERS;

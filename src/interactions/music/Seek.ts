@@ -22,7 +22,7 @@ export default class SeekCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -37,7 +37,7 @@ export default class SeekCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = ms(interaction.options.getString("time", true));
@@ -50,7 +50,7 @@ export default class SeekCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.MUST_BE_IN_VC });
     }
 
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
     if (!queue || !queue.playing) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
     }
@@ -59,7 +59,7 @@ export default class SeekCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
     }
 
-    this.bot.player.seek(interaction.guildId!, time);
+    this.bot.player.seek(interaction.guildId, time);
     await interaction.reply({ content: "Done!", ephemeral: true });
   }
 }

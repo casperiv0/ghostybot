@@ -25,7 +25,7 @@ export default class RockPaperScissorsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const input = interaction.options.getString("item", true).toLowerCase();
@@ -37,12 +37,12 @@ export default class RockPaperScissorsCommand extends SubCommand {
 
     const hasWon = this.checkWon(inp!.toLowerCase(), reply.toLowerCase());
     if (hasWon === true) {
-      const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+      const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
       if (!user) {
         return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
       }
 
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         money: user.money + 50,
       });
     }

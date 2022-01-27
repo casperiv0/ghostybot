@@ -29,7 +29,7 @@ export default class WarningsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -42,7 +42,7 @@ export default class WarningsCommand extends SubCommand {
       });
     }
 
-    const warnings = await this.bot.utils.getUserWarnings(user.id, interaction.guildId!);
+    const warnings = await this.bot.utils.getUserWarnings(user.id, interaction.guildId);
 
     const embed = this.bot.utils.baseEmbed(interaction);
 

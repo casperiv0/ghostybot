@@ -27,7 +27,7 @@ export default class WarnCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -55,9 +55,9 @@ export default class WarnCommand extends SubCommand {
       });
     }
 
-    await this.bot.utils.addWarning(member.user.id, interaction.guildId!, reason);
+    await this.bot.utils.addWarning(member.user.id, interaction.guildId, reason);
 
-    const warnings = await this.bot.utils.getUserWarnings(member.user.id, interaction.guildId!);
+    const warnings = await this.bot.utils.getUserWarnings(member.user.id, interaction.guildId);
 
     await interaction.reply({
       content: this.bot.utils.translate(lang.ADMIN.USER_WARNED, {

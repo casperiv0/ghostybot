@@ -30,7 +30,7 @@ export default class LoopCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -45,12 +45,12 @@ export default class LoopCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const type = interaction.options.getInteger("type", true);
 
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
     if (!queue || !queue.playing) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
     }
@@ -59,13 +59,16 @@ export default class LoopCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
     }
 
-    this.bot.player.setRepeatMode(interaction.guildId!, Number(type));
+    this.bot.player.setRepeatMode(interaction.guildId, Number(type));
 
     await interaction.reply({ content: "🔁" });
   }
 
-  didEnableFilter(interaction: DJS.ChatInputCommandInteraction, filterToCheck: string): boolean {
-    const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
+  didEnableFilter(
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
+    filterToCheck: string,
+  ): boolean {
+    const queueFilters = this.bot.player.getQueue(interaction.guildId)?.filters;
 
     return !queueFilters?.includes(filterToCheck) ?? true;
   }

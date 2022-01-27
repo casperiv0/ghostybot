@@ -19,8 +19,12 @@ export default class InteractionEvent extends Event {
       return handleCategories(interaction, bot);
     }
 
-    if (interaction.isButton() && interaction.customId.startsWith(CANCEL_REMINDER_ID)) {
-      const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    if (
+      interaction.isButton() &&
+      interaction.inGuild() &&
+      interaction.customId.startsWith(CANCEL_REMINDER_ID)
+    ) {
+      const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
 
       if (user) {
         const id = interaction.customId.replace(`${CANCEL_REMINDER_ID}_`, "");
@@ -65,7 +69,7 @@ export default class InteractionEvent extends Event {
         return interaction.reply({ content: command.response });
       }
 
-      const dbGuild = await bot.utils.getGuildById(interaction.guildId!);
+      const dbGuild = await bot.utils.getGuildById(interaction.guildId);
       const topLevelName =
         command instanceof SubCommand ? command.options.commandName : command.name;
 

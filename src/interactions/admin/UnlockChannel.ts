@@ -16,7 +16,7 @@ export default class UnlockChannelCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     if (threadChannels.includes(interaction.channel?.type!)) {
@@ -30,19 +30,19 @@ export default class UnlockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (channel?.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (channel?.permissionsFor(interaction.guildId)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHAN_NOT_LOCK,
       });
     }
 
-    await channel.permissionOverwrites.create(interaction.guildId!, {
+    await channel.permissionOverwrites.create(interaction.guildId, {
       SEND_MESSAGES: true,
     });
 

@@ -45,12 +45,12 @@ export default class FilterCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const filter = interaction.options.getString("filter", true);
 
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
     if (!queue || !queue.playing) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
     }
@@ -61,7 +61,7 @@ export default class FilterCommand extends SubCommand {
 
     const didEnableFilter = this.didEnableFilter(interaction, filter);
 
-    this.bot.player.setFilter(interaction.guildId!, filter);
+    this.bot.player.setFilter(interaction.guildId, filter);
 
     if (didEnableFilter) {
       await interaction.reply(this.bot.utils.translate(lang.MUSIC.SUC_APPLIED_FILTER, { filter }));
@@ -70,8 +70,11 @@ export default class FilterCommand extends SubCommand {
     }
   }
 
-  didEnableFilter(interaction: DJS.ChatInputCommandInteraction, filterToCheck: string): boolean {
-    const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
+  didEnableFilter(
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
+    filterToCheck: string,
+  ): boolean {
+    const queueFilters = this.bot.player.getQueue(interaction.guildId)?.filters;
 
     return !queueFilters?.includes(filterToCheck) ?? true;
   }

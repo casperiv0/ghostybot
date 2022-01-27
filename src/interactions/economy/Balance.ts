@@ -20,7 +20,7 @@ export default class BalanceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -29,7 +29,7 @@ export default class BalanceCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.BOT_DATA });
     }
 
-    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId);
     if (!dbUser) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }

@@ -21,7 +21,7 @@ export default class VolumeCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -36,12 +36,12 @@ export default class VolumeCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const newVol = interaction.options.getNumber("volume", true);
 
-    const queue = this.bot.player.getQueue(interaction.guildId!);
+    const queue = this.bot.player.getQueue(interaction.guildId);
     if (!queue || !queue.playing) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.NO_QUEUE });
     }
@@ -58,7 +58,7 @@ export default class VolumeCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BETWEEN_0_100 });
     }
 
-    this.bot.player.setVolume(interaction.guildId!, newVol);
+    this.bot.player.setVolume(interaction.guildId, newVol);
     await interaction.reply({
       content: this.bot.utils.translate(lang.MUSIC.VOL_SUCCESS, { vol: newVol }),
     });

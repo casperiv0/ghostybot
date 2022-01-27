@@ -16,12 +16,12 @@ export default class MoneyLeaderboardCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 
-    const data = (await UserModel.find({ guild_id: interaction.guildId! }))
+    const data = (await UserModel.find({ guild_id: interaction.guildId }))
       .map((v: IUser) => {
         return { total: v.money + v.bank, ...v.toJSON() };
       })

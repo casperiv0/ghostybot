@@ -20,11 +20,11 @@ export default class RemoveReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     let id = interaction.options.getString("id", true);
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) return;
 
     if (user?.reminder.hasReminder === false) {
@@ -32,7 +32,7 @@ export default class RemoveReminderCommand extends SubCommand {
     }
 
     if (id === "all") {
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         reminder: {
           hasReminder: false,
           reminders: [],
@@ -56,7 +56,7 @@ export default class RemoveReminderCommand extends SubCommand {
       }
     }
 
-    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
       reminder: {
         hasReminder: user.reminder.reminders?.length - 1 > 0,
         reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),

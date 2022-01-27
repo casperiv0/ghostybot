@@ -22,11 +22,11 @@ export default class SlotsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     let amount = Number(interaction.options.getNumber("amount"));
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -78,13 +78,13 @@ export default class SlotsCommand extends SubCommand {
 
     if (hasWon) {
       embed.setTitle(this.bot.utils.translate(lang.ECONOMY.WON_SLOTS, { amount }));
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         money: user.money + amount,
       });
     } else {
       const removalCount = amount ? amount : 0;
       embed.setTitle(lang.ECONOMY.LOST_SLOTS);
-      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+      await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
         money: user.money - removalCount,
       });
     }

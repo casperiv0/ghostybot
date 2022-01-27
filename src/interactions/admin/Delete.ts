@@ -22,7 +22,7 @@ export default class DeleteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getInteger("amount", true);

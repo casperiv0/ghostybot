@@ -26,13 +26,13 @@ export default class PayCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
     const amount = interaction.options.getNumber("amount", true);
 
-    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId!);
+    const dbUser = await this.bot.utils.getUserById(user.id, interaction.guildId);
     if (!dbUser) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
@@ -41,8 +41,8 @@ export default class PayCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MEMBER.BOT_DATA });
     }
 
-    const receiver = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
-    const sender = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const receiver = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
+    const sender = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
 
     if (!receiver || !sender) {
       return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
@@ -69,10 +69,10 @@ export default class PayCommand extends SubCommand {
       });
     }
 
-    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
       money: receiver.money + amount,
     });
-    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
       money: sender.money - amount,
     });
 

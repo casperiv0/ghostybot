@@ -30,7 +30,7 @@ export default class CreateReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);
@@ -41,12 +41,12 @@ export default class CreateReminderCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.INVALID_DATE });
     }
 
-    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
+    const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId);
     if (!user) return;
     const reminders = typeof user.reminder.reminders === "object" ? user.reminder.reminders : [];
     const reminderId = v4();
 
-    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
+    await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId, {
       reminder: {
         hasReminder: true,
         reminders: [
