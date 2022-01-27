@@ -66,7 +66,7 @@ export default class VoiceKickCommand extends SubCommand {
     await user
       .send({
         content: this.bot.utils.translate(lang.ADMIN.YOU_DISC, {
-          guildName: interaction.guild!.name,
+          guildName: interaction.guild.name,
           reason,
         }),
       })

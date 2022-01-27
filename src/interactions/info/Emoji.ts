@@ -27,7 +27,7 @@ export default class EmojiInfoCommand extends SubCommand {
     await interaction.deferReply();
 
     const emoji = interaction.options.getString("emoji", true);
-    const foundEmoji = this.findEmoji(interaction.guild!, emoji);
+    const foundEmoji = this.findEmoji(interaction.guild, emoji);
 
     if (!foundEmoji) {
       return interaction.editReply({

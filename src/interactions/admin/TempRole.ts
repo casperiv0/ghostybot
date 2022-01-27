@@ -42,7 +42,7 @@ export default class TempRoleCommand extends SubCommand {
     const role = interaction.options.getRole("role", true);
     const time = interaction.options.getString("time", true);
     // @ts-expect-error ignore
-    const parsedRole = new DJS.Role(this.bot, role as any, interaction.guild!);
+    const parsedRole = new DJS.Role(this.bot, role as any, interaction.guild);
 
     const needsRole = await this.bot.utils.findMember(interaction, [user.id]);
 
@@ -53,14 +53,14 @@ export default class TempRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(parsedRole) < 0) {
+    if (interaction.guild.me!.roles.highest.comparePositionTo(parsedRole) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+    if (interaction.guild.me!.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {

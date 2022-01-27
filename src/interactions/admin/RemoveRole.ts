@@ -43,7 +43,7 @@ export default class RemoveRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
+    if (interaction.guild.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),

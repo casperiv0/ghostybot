@@ -61,7 +61,7 @@ export default class MuteCommand extends SubCommand {
     });
 
     const dmContent = this.bot.utils.translate(lang.ADMIN.MUTE_SUCCESS_DM, {
-      guild: interaction.guild!.name,
+      guild: interaction.guild.name,
       reason,
     });
 

@@ -13,7 +13,7 @@ import { discordConfig } from "@config/discord-config";
 import { SubCommand } from "./Command/SubCommand";
 import { Command } from "./Command/Command";
 
-export class Bot extends Client {
+export class Bot<Ready extends boolean = boolean> extends Client<Ready> {
   interactions: Collection<string, SubCommand | Command> = new Collection();
 
   logger: typeof logger = logger;

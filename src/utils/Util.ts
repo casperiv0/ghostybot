@@ -538,9 +538,7 @@ export class Util {
     const neededPerms: bigint[] = [];
 
     permissions.forEach((perm) => {
-      if (
-        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!)?.has(perm)
-      ) {
+      if (!interaction.channel?.permissionsFor(interaction.guild?.me!)?.has(perm)) {
         neededPerms.push(perm);
       }
     });

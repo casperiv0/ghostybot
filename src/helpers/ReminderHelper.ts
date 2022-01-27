@@ -54,8 +54,9 @@ export default class ReminderHelper extends Helper {
               .setDescription(`Your timer of **${time}** has ended`)
               .addField({ name: "Reminder message", value: msg });
 
+            if (!guild.me) return;
             if (!channel.isText()) return;
-            if (!channel.permissionsFor(guild.me!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+            if (!channel.permissionsFor(guild.me)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
               return;
             }
 

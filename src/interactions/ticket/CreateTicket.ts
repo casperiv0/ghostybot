@@ -89,7 +89,7 @@ export default class CreateTicket extends SubCommand {
       return interaction.editReply({ content: lang.GLOBAL.ERROR });
     }
 
-    await channel.permissionOverwrites.create(interaction.guild!.id, {
+    await channel.permissionOverwrites.create(interaction.guild.id, {
       VIEW_CHANNEL: false,
     });
 

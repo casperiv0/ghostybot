@@ -14,7 +14,7 @@ export default class MessageReactionAddEvent extends Event {
     super(bot, DJS.Constants.Events.MESSAGE_REACTION_ADD);
   }
 
-  async execute(bot: Bot, react: DJS.MessageReaction, user: DJS.User) {
+  async execute(bot: Bot<true>, react: DJS.MessageReaction, user: DJS.User) {
     try {
       // ignore bots
       if (user.bot) return;
@@ -53,7 +53,7 @@ export default class MessageReactionAddEvent extends Event {
       if (!channel) return;
       if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
-      if (!channel?.permissionsFor(bot.user?.id!)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
+      if (!channel?.permissionsFor(bot.user.id)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
         return;
       }
 

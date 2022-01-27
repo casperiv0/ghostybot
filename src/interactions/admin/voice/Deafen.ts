@@ -55,7 +55,7 @@ export default class VoiceDeafenCommand extends SubCommand {
     await user
       .send({
         content: this.bot.utils.translate(lang.ADMIN.DEAFEN_SUCCESS_DM, {
-          guild: interaction.guild!.name,
+          guild: interaction.guild.name,
           reason,
         }),
       })

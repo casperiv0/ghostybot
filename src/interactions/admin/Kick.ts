@@ -43,7 +43,7 @@ export default class KickCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
+    if (interaction.guild.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, { member: user.tag }),
@@ -55,7 +55,7 @@ export default class KickCommand extends SubCommand {
     try {
       await user.send({
         content: this.bot.utils.translate(lang.ADMIN.KICK_SUCCESS_DM, {
-          guild_name: interaction.guild!.name,
+          guild_name: interaction.guild.name,
           ban_reason: reason,
         }),
       });

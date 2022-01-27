@@ -7,7 +7,7 @@ export default class GuildMemberRemoveEvent extends Event {
     super(bot, DJS.Constants.Events.GUILD_MEMBER_REMOVE);
   }
 
-  async execute(bot: Bot, member: DJS.GuildMember) {
+  async execute(bot: Bot<true>, member: DJS.GuildMember) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -42,7 +42,7 @@ export default class GuildMemberRemoveEvent extends Event {
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;
-        if (!ch.permissionsFor(bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!ch.permissionsFor(bot.user)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
           return;
         }
 

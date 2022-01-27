@@ -48,7 +48,7 @@ export default class VoiceMuteCommand extends SubCommand {
     await user
       .send({
         content: this.bot.utils.translate(lang.ADMIN.YOU_UNMUTED, {
-          guildName: interaction.guild!.name,
+          guildName: interaction.guild.name,
         }),
       })
       .catch(() => null);

@@ -7,7 +7,7 @@ export default class GuildMemberAddEvent extends Event {
     super(bot, DJS.Constants.Events.GUILD_MEMBER_ADD);
   }
 
-  async execute(bot: Bot, member: DJS.GuildMember) {
+  async execute(bot: Bot<true>, member: DJS.GuildMember) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -43,8 +43,8 @@ export default class GuildMemberAddEvent extends Event {
         const ch = bot.channels.cache.get(welcomeData.channel_id);
         if (!ch || !ch.isText()) return;
 
-        const hasSendMessagePerms = (ch as DJS.TextChannel)
-          ?.permissionsFor(bot.user!)
+        const hasSendMessagePerms = ch
+          .permissionsFor(bot.user)
           ?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
         if (!hasSendMessagePerms) return;
 
