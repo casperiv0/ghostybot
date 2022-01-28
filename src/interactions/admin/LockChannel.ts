@@ -47,7 +47,14 @@ export default class LockChannelCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const reason = interaction.options.getString("reason", true);
-    const channel = interaction.channel as DJS.TextChannel;
+    const channel = interaction.channel;
+
+    if (!channel?.isText()) {
+      return interaction.reply({
+        ephemeral: true,
+        content: "Invalid channel",
+      });
+    }
 
     if (!channel?.permissionsFor(interaction.guildId)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
       return interaction.reply({

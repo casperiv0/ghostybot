@@ -26,14 +26,17 @@ export default class MessageUpdateEvent extends Event {
       if (newMsg.author?.id === bot.user?.id) return;
       if (oldMsg.content === newMsg.content) return;
 
-      const pOldMsg = oldMsg.content.length > 1024 ? `${oldMsg.content.slice(0, 1010)}...` : oldMsg;
-      const PNewMsg = newMsg.content.length > 1024 ? `${newMsg.content.slice(0, 1010)}...` : newMsg;
+      const pOldMsg =
+        oldMsg.content.length > 1024 ? `${oldMsg.content.substring(0, 1010)}...` : oldMsg;
+      const PNewMsg =
+        newMsg.content.length > 1024 ? `${newMsg.content.substring(0, 1010)}...` : newMsg;
 
       const messageLink = `https://discord.com/channels/${newMsg.guild.id}/${newMsg.channel.id}/${newMsg.id}`;
+      const name = newMsg.channel.isText() ? newMsg.channel.name : "N/A";
 
       const embed = bot.utils
         .baseEmbed(newMsg)
-        .setTitle(`Message updated in **${(newMsg.channel as DJS.TextChannel).name}**`)
+        .setTitle(`Message updated in **${name}**`)
         .setDescription(
           `Message send by **${
             newMsg.author?.tag || newMsg.author?.id || "Unknown"

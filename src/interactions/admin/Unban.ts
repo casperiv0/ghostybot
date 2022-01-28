@@ -26,8 +26,7 @@ export default class UnbanCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const userId = interaction.options.getString("user-id", true);
-
-    const bannedUser = await interaction.guild?.members.unban(userId as DJS.Snowflake);
+    const bannedUser = await interaction.guild?.members.unban(userId);
 
     if (!bannedUser) {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });

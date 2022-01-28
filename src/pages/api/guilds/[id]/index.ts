@@ -1,4 +1,4 @@
-import DJS, { Role, Snowflake } from "discord.js";
+import type { Role, Snowflake } from "discord.js";
 import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import { ApiRequest } from "types/ApiRequest";
@@ -17,7 +17,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
   switch (method) {
     case "GET": {
-      const discordGuild = await req.bot.guilds.fetch(query.id as DJS.Snowflake);
+      const discordGuild = await req.bot.guilds.fetch(query.id as string);
       const guild = await req.bot.utils.handleApiRequest(
         `/guilds/${query.id}`,
         { type: "Bot", data: process.env["DISCORD_BOT_TOKEN"]! },

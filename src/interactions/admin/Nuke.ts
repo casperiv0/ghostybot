@@ -35,9 +35,12 @@ export default class RemoveRoleCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const channel = interaction.channel as DJS.TextChannel;
-    if (!channel) {
-      return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
+    const channel = interaction.channel;
+    if (!channel?.isText()) {
+      return interaction.reply({
+        ephemeral: true,
+        content: "Invalid channel",
+      });
     }
 
     if (!channel.deletable) {

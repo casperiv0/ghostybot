@@ -12,7 +12,7 @@ export default class InteractionEvent extends Event {
     super(bot, DJS.Constants.Events.INTERACTION_CREATE);
   }
 
-  async execute(bot: Bot, interaction: DJS.ChatInputCommandInteraction) {
+  async execute(bot: Bot, interaction: DJS.Interaction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
@@ -42,7 +42,7 @@ export default class InteractionEvent extends Event {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
-    if (!interaction.isCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
     if (!interaction.inGuild()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);

@@ -18,7 +18,11 @@ export default class CloseTicket extends SubCommand {
   ) {
     const channel = await interaction.guild?.channels.fetch(interaction.channelId);
 
-    if (!(channel as DJS.TextChannel).name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ""))) {
+    if (!channel?.isText()) {
+      return interaction.reply({ ephemeral: true, content: lang.TICKET.CANNOT_DO_ACTION });
+    }
+
+    if (!channel.name.startsWith(lang.TICKET.TICKET.replace("#{Id}", ""))) {
       return interaction.reply({ ephemeral: true, content: lang.TICKET.CANNOT_DO_ACTION });
     }
 

@@ -3,8 +3,6 @@ import { bold, time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const voiceChannel = ["GUILD_VOICE", "GUILD_STAGE_VOICE"];
-
 export default class ChannelInfoCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
@@ -33,7 +31,9 @@ export default class ChannelInfoCommand extends SubCommand {
       return interaction.editReply({ content: lang.GLOBAL.ERROR });
     }
 
-    const topic = (channel as DJS.TextChannel)?.topic ?? lang.GLOBAL.NONE;
+    const topic = "topic" in channel ? channel.topic : lang.GLOBAL.NONE;
+    const name = "name" in channel ? channel.name : "N/A";
+
     const type = lang.UTIL.CHANNEL_TYPES[channel.type];
     const createdAt =
       "createdAt" in channel && channel.createdAt
@@ -42,7 +42,7 @@ export default class ChannelInfoCommand extends SubCommand {
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
-      .setTitle(`${(channel as DJS.TextChannel)?.name}`)
+      .setTitle(name)
       .setDescription(
         `
 ${bold("ID")}: ${channel.id}
@@ -52,9 +52,9 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}
   `,
       );
 
-    if (voiceChannel.includes(channel.type as any)) {
+    if (channel.isVoice()) {
       const regions = lang.OTHER.REGIONS;
-      const region = regions[(channel as DJS.VoiceChannel)?.rtcRegion ?? "us-central"];
+      const region = regions[channel.rtcRegion ?? "us-central"];
 
       embed.addField({ name: lang.GUILD.REGION, value: region });
     }
