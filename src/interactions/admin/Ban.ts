@@ -8,8 +8,8 @@ export default class BanCommand extends SubCommand {
       commandName: "admin",
       name: "ban",
       description: "Ban a user from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.BanMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.BanMembers],
       options: [
         {
           name: "user",
@@ -79,8 +79,8 @@ export default class BanCommand extends SubCommand {
   bannable(member: DJS.GuildMember) {
     if (member.bannable) return true;
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.BAN_MEMBERS)) return false;
-    if (member.permissions.has(DJS.Permissions.FLAGS.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.BanMembers)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.Administrator)) return false;
 
     return true;
   }

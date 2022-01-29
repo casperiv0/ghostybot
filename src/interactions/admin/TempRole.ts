@@ -9,8 +9,8 @@ export default class TempRoleCommand extends SubCommand {
       commandName: "admin",
       name: "temp-role",
       description: "Give someone a role for a period of time",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",

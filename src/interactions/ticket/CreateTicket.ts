@@ -10,7 +10,7 @@ export default class CreateTicket extends SubCommand {
       commandName: "tickets",
       name: "create",
       description: "Open a new ticket",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageGuild],
     });
   }
 
@@ -51,11 +51,11 @@ export default class CreateTicket extends SubCommand {
     const DEFAULT_PERMS: DJS.OverwriteResolvable[] = [
       {
         id: interaction.user.id,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       },
       {
         id: this.bot.user?.id!,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       },
     ];
 
@@ -63,7 +63,7 @@ export default class CreateTicket extends SubCommand {
       DEFAULT_PERMS.push({
         type: OverwriteType.Role,
         id: guild.ticket_data.role_id as DJS.Snowflake,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       });
     }
 
@@ -90,7 +90,7 @@ export default class CreateTicket extends SubCommand {
     }
 
     await channel.permissionOverwrites.create(interaction.guild.id, {
-      VIEW_CHANNEL: false,
+      ViewChannel: false,
     });
 
     channel.send({ content: `${lang.TICKET.CREATED} <@${interaction.user.id}>` });

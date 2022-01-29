@@ -8,7 +8,7 @@ export default class GiveXP extends SubCommand {
       name: "remove-xp",
       commandName: "levels",
       description: "Remove xp from a user",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "user",

@@ -10,7 +10,7 @@ export default class RemoveWarningCommand extends SubCommand {
       groupName: "warnings",
       name: "remove",
       description: "Remove a warning from a user",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "user",

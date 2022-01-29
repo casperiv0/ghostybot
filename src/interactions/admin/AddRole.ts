@@ -8,8 +8,8 @@ export default class AddRoleCommand extends SubCommand {
       commandName: "admin",
       name: "add-role",
       description: "Add a role to a user",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",

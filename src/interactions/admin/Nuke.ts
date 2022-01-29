@@ -12,8 +12,8 @@ export default class RemoveRoleCommand extends SubCommand {
       name: "nuke",
       description:
         "Nuke the current channel. Note: The channel will instantly be deleted and re-created.",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.ADMINISTRATOR],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.Administrator],
     });
   }
 

@@ -52,7 +52,7 @@
     "dayjs": "^1.10.7",
     "discord-giveaways": "5.1.0",
     "discord-logs": "^2.0.1",
-    "discord.js": "^14.0.0-dev.1643371380.00ce1c5",
+    "discord.js": "^14.0.0-dev.1643414820.fbb1d03",
     "distube": "^3.2.2",
     "dotenv": "^14.3.2",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",

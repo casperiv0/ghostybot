@@ -9,8 +9,8 @@ export default class StealEmojiCommand extends SubCommand {
       commandName: "admin",
       name: "steal-emoji",
       description: "Add an emoji from a different guild to this guild",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageEmojisAndStickers],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageEmojisAndStickers],
       options: [
         {
           name: "emoji",

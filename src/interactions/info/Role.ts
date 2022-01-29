@@ -55,7 +55,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}`,
   }
 
   getPermissions(role: DJS.Role | APIRole, lang) {
-    const perms = new DJS.Permissions(role.permissions as any);
+    const perms = new DJS.PermissionsBitField(role.permissions as any);
 
     return perms.toArray().length <= 0
       ? lang.GLOBAL.NONE

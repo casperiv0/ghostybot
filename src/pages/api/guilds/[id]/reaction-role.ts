@@ -140,7 +140,7 @@ async function createNewReaction(reaction: IReaction, bot: Bot): Promise<DJS.Mes
     return "Channel must be a text channel.";
   }
 
-  if (!channel.permissionsFor(bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+  if (!channel.permissionsFor(bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
     return "Bot does not have `SEND_MESSAGES` permissions in this channel.";
   }
 

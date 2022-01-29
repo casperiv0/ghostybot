@@ -15,8 +15,8 @@ export default class LockChannelCommand extends SubCommand {
       commandName: "admin",
       name: "lock-channel",
       description: "Lock the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageChannels],
       options: [
         {
           name: "reason",
@@ -56,7 +56,7 @@ export default class LockChannelCommand extends SubCommand {
       });
     }
 
-    if (!channel?.permissionsFor(interaction.guildId)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (!channel?.permissionsFor(interaction.guildId)?.has(DJS.PermissionFlagsBits.SendMessages)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,
@@ -64,7 +64,7 @@ export default class LockChannelCommand extends SubCommand {
     }
 
     await channel.permissionOverwrites.create(interaction.guildId, {
-      SEND_MESSAGES: false,
+      SendMessages: false,
     });
 
     await interaction.reply({

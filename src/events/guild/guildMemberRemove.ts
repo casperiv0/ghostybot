@@ -42,7 +42,7 @@ export default class GuildMemberRemoveEvent extends Event {
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;
-        if (!ch.permissionsFor(bot.user)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!ch.permissionsFor(bot.user)?.has(DJS.PermissionFlagsBits.SendMessages)) {
           return;
         }
 

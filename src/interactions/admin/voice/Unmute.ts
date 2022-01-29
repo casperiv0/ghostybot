@@ -9,8 +9,8 @@ export default class VoiceMuteCommand extends SubCommand {
       groupName: "voice",
       name: "unmute",
       description: "Unmute a user that is in a voice channel",
-      botPermissions: [DJS.Permissions.FLAGS.MUTE_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MUTE_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.MuteMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.MuteMembers],
       options: [
         {
           name: "user",

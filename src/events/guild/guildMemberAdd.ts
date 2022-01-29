@@ -45,7 +45,7 @@ export default class GuildMemberAddEvent extends Event {
 
         const hasSendMessagePerms = ch
           .permissionsFor(bot.user)
-          ?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
+          ?.has(DJS.PermissionFlagsBits.SendMessages);
         if (!hasSendMessagePerms) return;
 
         ch.send({ embeds: [embed] });
@@ -54,7 +54,7 @@ export default class GuildMemberAddEvent extends Event {
       if (
         !member.pending &&
         welcomeData.role_id &&
-        member.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)
+        member.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageRoles)
       ) {
         member.roles.add(welcomeData.role_id);
       }

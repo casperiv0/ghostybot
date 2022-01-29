@@ -1,20 +1,21 @@
 import { UserFlagsString } from "discord.js";
 
 const badges: Record<UserFlagsString, string> = {
-  BUG_HUNTER_LEVEL_1: "<:bughunter:585765206769139723>",
-  BUG_HUNTER_LEVEL_2: "<:bughunter:585765206769139723>",
-  VERIFIED_BOT: "<:botTag:230105988211015680>",
-  BOT_HTTP_INTERACTIONS: "<:botTag:230105988211015680>",
-  CERTIFIED_MODERATOR: "<:moderator:848459938946744320>",
-  HYPESQUAD: "<:hypesquad_events:585765895939424258>",
-  HYPESQUAD_ONLINE_HOUSE_1: "<:bravery:585763004218343426>",
-  HYPESQUAD_ONLINE_HOUSE_2: "<:brilliance:585763004495298575>",
-  HYPESQUAD_ONLINE_HOUSE_3: "<:balance:585763004574859273>",
-  PARTNER: "<:partnernew:754032603081998336>",
-  PREMIUM_EARLY_SUPPORTER: "<:supporter:585763690868113455>",
-  STAFF: "<:stafftools:314348604095594498>",
-  VERIFIED_DEVELOPER: "<:botdeveloper:786916920245878796>",
-  TEAM_PSEUDO_USER: "",
+  BugHunterLevel1: "<:bughunter:585765206769139723>",
+  BugHunterLevel2: "<:bughunter:585765206769139723>",
+  VerifiedBot: "<:botTag:230105988211015680>",
+  BotHTTPInteractions: "<:botTag:230105988211015680>",
+  CertifiedModerator: "<:moderator:848459938946744320>",
+  Hypesquad: "<:hypesquad_events:585765895939424258>",
+  HypeSquadOnlineHouse1: "<:bravery:585763004218343426>",
+  HypeSquadOnlineHouse2: "<:brilliance:585763004495298575>",
+  HypeSquadOnlineHouse3: "<:balance:585763004574859273>",
+  Partner: "<:partnernew:754032603081998336>",
+  PremiumEarlySupporter: "<:supporter:585763690868113455>",
+  Staff: "<:stafftools:314348604095594498>",
+  VerifiedDeveloper: "<:botdeveloper:786916920245878796>",
+  TeamPseudoUser: "",
+  None: "",
 };
 
 export default badges;

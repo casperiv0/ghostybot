@@ -180,7 +180,7 @@ export class Util {
 
       if (
         !channel ||
-        !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
+        !channel.permissionsFor(this.bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)
       ) {
         return this.bot.logger.error("ERR_LOG", error?.stack || `${error}`);
       }
@@ -305,7 +305,7 @@ export class Util {
     if (
       !(channel as DJS.TextChannel)
         .permissionsFor(this.bot.user?.id)
-        ?.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)
+        ?.has(DJS.PermissionFlagsBits.ManageWebhooks)
     ) {
       return;
     }
@@ -323,7 +323,7 @@ export class Util {
   async getWebhook(guild: DJS.Guild): Promise<DJS.Webhook | undefined> {
     if (!guild) return;
     if (!guild.me) return;
-    if (!guild.me.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return undefined;
+    if (!guild.me.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return undefined;
 
     const webhooks = await guild.fetchWebhooks().catch(() => null);
     if (!webhooks) return undefined;
@@ -438,7 +438,7 @@ export class Util {
       const member = await guild.members.fetch(data.id);
       if (!member) return Promise.reject("Not in this guild");
 
-      if (!member.permissions.has("ADMINISTRATOR")) {
+      if (!member.permissions.has(DJS.PermissionFlagsBits.Administrator)) {
         return Promise.reject("Not an administrator for this guild");
       }
     }
@@ -456,8 +456,8 @@ export class Util {
         `❌ I need ${permissions
           .map((p) => {
             const perms: string[] = [];
-            Object.keys(DJS.Permissions.FLAGS).map((key) => {
-              if (DJS.Permissions.FLAGS[key] === p) {
+            Object.keys(DJS.PermissionFlagsBits).map((key) => {
+              if (DJS.PermissionFlagsBits[key] === p) {
                 perms.push(`\`${lang?.[key]}\``);
               }
             });
@@ -571,8 +571,8 @@ export class Util {
         neededPerms
           .map((p) => {
             const perms: string[] = [];
-            Object.keys(DJS.Permissions.FLAGS).map((key) => {
-              if (DJS.Permissions.FLAGS[key] === p) {
+            Object.keys(DJS.PermissionFlagsBits).map((key) => {
+              if (DJS.PermissionFlagsBits[key] === p) {
                 perms.push(`\`${lang.PERMISSIONS[key]}\``);
               }
             });
@@ -607,7 +607,7 @@ export class Util {
       return true;
     }
 
-    return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
+    return ch.permissionsFor(this.bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages);
   }
 
   escapeMarkdown(message: string): string {

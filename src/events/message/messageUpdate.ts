@@ -13,7 +13,7 @@ export default class MessageUpdateEvent extends Event {
   async execute(bot: Bot, oldMsg: DJS.Message, newMsg: DJS.Message) {
     try {
       if (!newMsg.guild?.available) return;
-      if (!newMsg.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+      if (!newMsg.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(newMsg.guild);
       if (!webhook) return;

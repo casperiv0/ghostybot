@@ -9,7 +9,7 @@ export default class StartGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "start",
       description: "Start a new giveaway",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "time",

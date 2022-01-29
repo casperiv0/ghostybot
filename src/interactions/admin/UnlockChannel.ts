@@ -10,8 +10,8 @@ export default class UnlockChannelCommand extends SubCommand {
       commandName: "admin",
       name: "unlock-channel",
       description: "Unlock the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageChannels],
     });
   }
 
@@ -42,7 +42,7 @@ export default class UnlockChannelCommand extends SubCommand {
       });
     }
 
-    if (channel?.permissionsFor(interaction.guildId)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (channel?.permissionsFor(interaction.guildId)?.has(DJS.PermissionFlagsBits.SendMessages)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHAN_NOT_LOCK,
@@ -50,7 +50,7 @@ export default class UnlockChannelCommand extends SubCommand {
     }
 
     await channel.permissionOverwrites.create(interaction.guildId, {
-      SEND_MESSAGES: true,
+      SendMessages: true,
     });
 
     await interaction.reply({

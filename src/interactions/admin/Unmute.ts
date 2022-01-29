@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.ModerateMembers];
 
 export default class UnmuteCommand extends SubCommand {
   constructor(bot: Bot) {

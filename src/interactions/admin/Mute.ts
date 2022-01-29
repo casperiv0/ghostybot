@@ -3,7 +3,7 @@ import ms from "ms";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.ModerateMembers];
 
 export default class MuteCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -47,7 +47,7 @@ export default class MuteCommand extends SubCommand {
     if (
       !member ||
       !("timeout" in member) ||
-      member.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)
+      member.permissions.has(DJS.PermissionFlagsBits.ManageRoles)
     ) {
       return interaction.reply({
         ephemeral: true,

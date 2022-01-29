@@ -4,9 +4,9 @@ import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 const neededPerms = [
-  DJS.Permissions.FLAGS.MANAGE_MESSAGES,
-  DJS.Permissions.FLAGS.MANAGE_ROLES,
-  DJS.Permissions.FLAGS.READ_MESSAGE_HISTORY,
+  DJS.PermissionFlagsBits.ManageMessages,
+  DJS.PermissionFlagsBits.ManageRoles,
+  DJS.PermissionFlagsBits.ReadMessageHistory,
 ];
 
 export default class MessageReactionAddEvent extends Event {
@@ -53,7 +53,7 @@ export default class MessageReactionAddEvent extends Event {
       if (!channel) return;
       if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
-      if (!channel?.permissionsFor(bot.user.id)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
+      if (!channel?.permissionsFor(bot.user.id)?.has(DJS.PermissionFlagsBits.ViewChannel)) {
         return;
       }
 

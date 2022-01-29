@@ -40,7 +40,7 @@ export default class MessageEvent extends Event {
         if (
           !message.channel
             ?.permissionsFor(message.guild.me)
-            ?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)
+            ?.has(DJS.PermissionFlagsBits.ViewChannel)
         ) {
           return;
         }
@@ -121,7 +121,7 @@ export default class MessageEvent extends Event {
             if (
               !ch
                 .permissionsFor(message.guild.me)
-                .has([DJS.Permissions.FLAGS.SEND_MESSAGES, DJS.Permissions.FLAGS.EMBED_LINKS])
+                .has([DJS.PermissionFlagsBits.SendMessages, DJS.PermissionFlagsBits.EmbedLinks])
             ) {
               return;
             }
@@ -156,11 +156,13 @@ export default class MessageEvent extends Event {
       }
 
       if (
-        !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
+        !message.channel
+          .permissionsFor(message.guild.me)
+          ?.has(DJS.PermissionFlagsBits.EmbedLinks) &&
         bot.user.id !== message.author.id
       ) {
         return message.channel.send({
-          content: `Error: I need \`${DJS.Permissions.FLAGS.EMBED_LINKS}\` to work!`,
+          content: `Error: I need \`${DJS.PermissionFlagsBits.EmbedLinks}\` to work!`,
         });
       }
 

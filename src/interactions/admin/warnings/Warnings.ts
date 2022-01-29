@@ -9,7 +9,7 @@ export default class WarningsCommand extends SubCommand {
       groupName: "warnings",
       commandName: "admin",
       name: "view",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       description: "View warnings of a user",
       options: [
         {

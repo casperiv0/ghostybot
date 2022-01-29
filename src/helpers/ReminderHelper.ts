@@ -56,7 +56,7 @@ export default class ReminderHelper extends Helper {
 
             if (!guild.me) return;
             if (!channel.isText()) return;
-            if (!channel.permissionsFor(guild.me)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+            if (!channel.permissionsFor(guild.me)?.has(DJS.PermissionFlagsBits.SendMessages)) {
               return;
             }
 

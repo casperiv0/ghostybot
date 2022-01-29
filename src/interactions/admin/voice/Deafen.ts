@@ -9,8 +9,8 @@ export default class VoiceDeafenCommand extends SubCommand {
       groupName: "voice",
       name: "deafen",
       description: "Deafen a user that is in a voice channel",
-      botPermissions: [DJS.Permissions.FLAGS.DEAFEN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.DEAFEN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.DeafenMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.DeafenMembers],
       options: [
         {
           name: "user",
