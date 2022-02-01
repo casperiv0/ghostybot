@@ -52,7 +52,7 @@
     "discord-giveaways": "5.1.0",
     "discord-logs": "^2.0.1",
     "discord.js": "^13.6.0",
-    "distube": "^3.2.1",
+    "distube": "^3.3.0",
     "dotenv": "^14.3.2",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",
     "ffmpeg": "0.0.4",
