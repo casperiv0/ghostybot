@@ -484,11 +484,11 @@ export default {
     ATTACK: "Saldırı",
     DEFENSE: "Savunma",
     SP_ATK: "Tekil Oyuncu Saldırı",
-    SP_DEF: "Tekil Oyuncu Savunma,
+    SP_DEF: "Tekil Oyuncu Savunma",
     SPEED: "Hız",
     TOTAL: "Toplam",
     NOT_FOUND:
-      "{query} ile hiçbir pokémon bulunamadı. Lütfen doğru yazımı kullanın ve daha sonra tekrar deneyin.",
+      "{query} ile hiçbir pokemon bulunamadı. Lütfen doğru yazımı kullanın ve daha sonra tekrar deneyin.",
   },
   REMINDER: {
     SUCCESS: "Başarılı! {time} içinde sana **bu kanalda** bildiri atacağım.",
