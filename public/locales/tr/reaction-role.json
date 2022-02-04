@@ -1,0 +1,11 @@
+{
+  "manage_reaction_roles": "Tepki Rollerini Yönetin.",
+  "reaction_role": "Tepki Rolü",
+  "add_emoji_and_role": "Emoji ve Rol ekleyin.",
+  "channel_note": "Not: Mesaj gönderildiğinde kanal değiştirilemez.",
+  "no_roles_yet": "Henüz Rol yok.",
+  "channel": "Kanal",
+  "roles": "Roller",
+  "no_reaction_roles": "Bu sunucu henüz herhangi bir tepki rolüne sahip değil.",
+  "add_reaction_role": "Tepki Rolü ekle"
+}
