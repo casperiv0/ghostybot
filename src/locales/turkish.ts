@@ -36,7 +36,8 @@ export default {
     NICKNAME: "Kullanıcı adı",
     NOT_FOUND: "Üye bulunamadı",
     CANNOT_BE_BANNED: "Bu üye yasaklanamaz",
-    DM_BAN_MESSAGE: "Siz **{guild_name}** adlı sunucudan başarıyla **banladınız**, Sebep: **{ban_reason}**",
+    DM_BAN_MESSAGE:
+      "Siz **{guild_name}** adlı sunucudan başarıyla **banladınız**, Sebep: **{ban_reason}**",
     GUILD_BAN_MESSAGE:
       "{member} sunucudan başarıyla yasaklandı. Sebep: **{ban_reason}**. Ayrıca kişiye bilgi vermek için bir DM gönderdim.",
     BOT_DATA: "Bot verileri kaydedilmiyor, bu nedenle verilerini getiremiyorum",
@@ -198,7 +199,8 @@ export default {
     INV_EMPTY: "Kullanıcının envanteri boş.",
     INVENTORY: "Envanter",
     INV_ITEMS: "Envanter Eşyaları",
-    VIEW_INVENTORY: "Envanter öğelerini görüntülemek için `{prefix}inventory <user>` komutunu kullanın.",
+    VIEW_INVENTORY:
+      "Envanter öğelerini görüntülemek için `{prefix}inventory <user>` komutunu kullanın.",
     MONEY_LEADERBOARD: "Para Lider Tablosu",
     TOTAL_BALANCE: "Toplam Bakiye",
     BOTH_COUNTED: "Banka ve Para her ikisi de sayılır.",
@@ -214,8 +216,7 @@ export default {
     MEMBER_NO_MONEY: "Kullanıcının hiç parası yok, bu nedenle bu kullanıcıyı soyamazsınız.",
     ROB_SUCCESS: "**{member}** adlı kişiden başarıyla **{amount}coin** çalındı",
     STORE: "Mağaza",
-    MANAGE_STORE_PERMS:
-      "Mağazayı yönetmek için doğru izinlere sahip değilsiniz!",
+    MANAGE_STORE_PERMS: "Mağazayı yönetmek için doğru izinlere sahip değilsiniz!",
     PROVIDE_VALID_ITEM: "Lütfen eklemek/kaldırmak için geçerli bir öğe sağlayın!",
     PRICE: "Fiyat",
     ALREADY_EXISTS: "**{item}** mağazada zaten var!",
@@ -525,8 +526,7 @@ export default {
     DEAFEN_SUCCESS_DM: "**{guild}**'den **sağırlaştırıldınız**, Sebep: **{reason}**",
     DELETE_PROVIDE_AMOUNT: "Tutar geçerli bir sayı olmalı ve 100'ün altında 0 arasında olmalıdır.",
     DELETE_DELETED: "{amount} ileti silindi.",
-    DELETE_ERROR:
-      "Mesajlar silinirken hata oluştu, 14 günden eski olmamasına dikkat edin.",
+    DELETE_ERROR: "Mesajlar silinirken hata oluştu, 14 günden eski olmamasına dikkat edin.",
     KICK_CANNOT_KICK: "O kişi atılamaz.",
     KICK_SUCCESS_DM: "**{guild}**'den **atıldınız**, Sebep: **{reason}**",
     KICK_SUCCESS:
@@ -613,7 +613,8 @@ export default {
     CHANNEL_CREATED_MSG: "{channel_type}: **{channel}** oluşturuldu.",
     CHANNEL_DELETED: "Kanal silindi.",
     CHANNEL_DELETED_MSG: "{channel_type}: **{channel}** silindi.",
-    CHANNEL_RENAME_MSG: "{channel_type}: **{channel}**, **{new_channel}** olarak yeniden adlandırıldı.",
+    CHANNEL_RENAME_MSG:
+      "{channel_type}: **{channel}**, **{new_channel}** olarak yeniden adlandırıldı.",
     CHANNEL_RENAME: "Kanalı yeniden adlandır.",
     CHANNEL_TOPIC_UPDATED: "Kanal konusu güncellendi.",
     CHANNEL_TOPIC_UPDATED_MSG: "Kanaldaki kanal konusu: **{channel}** güncellendi.",
@@ -623,7 +624,8 @@ export default {
     EMOJI_CREATED: "Yeni emoji oluşturuldu.",
     EMOJI_DELETED_MSG: "Emoji: **{emoji}** silindi.",
     EMOJI_DELETED: "Emoji Silindi.",
-    EMOJI_RENAMED_MSG: "Emoji: **{emoji_name}**, **{new_name}** olarak yeniden adlandırıldı. ({emoji})",
+    EMOJI_RENAMED_MSG:
+      "Emoji: **{emoji_name}**, **{new_name}** olarak yeniden adlandırıldı. ({emoji})",
     BANNED_MEMBER: "Yasaklı üye",
     NOT_FOUND: "Bulunamadı.",
     BAN_ADD: "Üye Yasaklandı.",
@@ -648,13 +650,15 @@ export default {
     OWNER_ONLY: "Bu komut sadece sunucu sahibi tarafından kullanılabilir!",
     INCORRECT_ARGS: "Yanlış komut kullanımı",
     REQUIRED_ARGS: "Daha fazla argüman sağlamalısınız: {args}",
-    COOLDOWN_AMOUNT: "**{command}** komutunu kullanmadan önce lütfen **{time}** saniye daha bekleyin.",
+    COOLDOWN_AMOUNT:
+      "**{command}** komutunu kullanmadan önce lütfen **{time}** saniye daha bekleyin.",
     BAD_WORD:
       "{mention}, yöneticinin belirlediği kötü bir kelime kullandınız. Bu nedenle mesajınız silindi.",
     EXAMPLE: "Örnek:",
     SUPPORT: "Destek",
     NEED_PERMS: "Şunlara ihtiyacınız var: {perms} izinler",
-    MUST_BE_DATE: "Bu bağımsız değişken türü bir **tarih** olmalıdır. Örneğin: `1h`, `2days`, `5min`",
+    MUST_BE_DATE:
+      "Bu bağımsız değişken türü bir **tarih** olmalıdır. Örneğin: `1h`, `2days`, `5min`",
     MUST_BE_NUMBER: "Bu bağımsız değişken türü bir **sayı** olmalıdır.",
   },
   GIVEAWAY: {
