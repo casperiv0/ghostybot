@@ -283,7 +283,7 @@ export class Util {
 		options = { length: 15, indicator: '🔘', line: '▬' },
 	) {
 		return `${formattedCurrentTime} | ${options.indicator}${options.line.repeat(
-			length - 1,
+			options.length - 1,
 		)} | ${formattedDuration}`;
 	}
 
