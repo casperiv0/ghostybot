@@ -278,6 +278,7 @@ export class Util {
   }
 
   async createProgressBar(
+<<<<<<< HEAD
     formattedCurrentTime: string,
     formattedDuration: string | undefined,
     options = { length: 15, indicator: "🔘", line: "▬" },
@@ -286,6 +287,16 @@ export class Util {
       length - 1,
     )} | ${formattedDuration}`;
   }
+=======
+		formattedCurrentTime: string,
+		formattedDuration: string | undefined,
+		options = { length: 15, indicator: '🔘', line: '▬' },
+	) {
+		return `${formattedCurrentTime} | ${options.indicator}${options.line.repeat(
+			options.length - 1,
+		)} | ${formattedDuration}`;
+	}
+>>>>>>> 1e3ba03f54ba9fbb0ea46aa1d23a8dd704407524
 
   async findRole(message: DJS.Message, arg: DJS.Snowflake): Promise<DJS.Role | null> {
     if (!message.guild) return null;
