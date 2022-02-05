@@ -276,16 +276,16 @@ export class Util {
       this.sendErrorLog(e, "error");
     }
   }
-  
+
   async createProgressBar(
-		formattedCurrentTime: string,
-		formattedDuration: string | undefined,
-		options = { length: 15, indicator: '🔘', line: '▬' },
-	) {
-		return `${formattedCurrentTime} | ${options.indicator}${options.line.repeat(
-			length - 1,
-		)} | ${formattedDuration}`;
-	}
+    formattedCurrentTime: string,
+    formattedDuration: string | undefined,
+    options = { length: 15, indicator: "🔘", line: "▬" },
+  ) {
+    return `${formattedCurrentTime} | ${options.indicator}${options.line.repeat(
+      length - 1,
+    )} | ${formattedDuration}`;
+  }
 
   async findRole(message: DJS.Message, arg: DJS.Snowflake): Promise<DJS.Role | null> {
     if (!message.guild) return null;
