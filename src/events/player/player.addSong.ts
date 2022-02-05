@@ -21,7 +21,13 @@ export default class PlayerAddSongEvent extends Event {
           this.bot.utils.translate(lang.MUSIC.ADDED_TO_QUEUE, {
             song: song.name as string,
           }),
-        )
+        ).setDescription(
+					`
+				${await this.bot.utils.createProgressBar(
+						queue.formattedCurrentTime,
+						song.formattedDuration,
+					)}`,
+				)
         .setAuthor({
           name: this.bot.utils.translate(lang.MUSIC.REQUESTED_BY, {
             user: song.user?.username!,
