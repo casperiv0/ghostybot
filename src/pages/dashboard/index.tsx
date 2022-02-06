@@ -49,11 +49,8 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
 
       <div className="grid">
         {guilds.map((guild) => {
-          // take the first letter of all the letters
-          const [firstLetter] = guild.name.split("");
-
-          // take the second word, then the first character of that word
-          const secondLetter = guild.name.split(" ")[1]?.split("")[0];
+          
+          //Taking the 2 first letters (or 1) is now easier!
 
           return (
             <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "#"}>
@@ -65,8 +62,7 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
               >
                 {guild.icon === null ? (
                   <div className="guild-card-img no-image">
-                    {firstLetter}
-                    {secondLetter}
+                    {guild?.nameAcronym}
                   </div>
                 ) : (
                   <Image
