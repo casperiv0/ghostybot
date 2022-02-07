@@ -49,7 +49,6 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
 
       <div className="grid">
         {guilds.map((guild) => {
-          
           return (
             <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "#"}>
               <a
@@ -59,9 +58,7 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
                 aria-label={!guild.inGuild ? t("bot_in_guild") : undefined}
               >
                 {guild.icon === null ? (
-                  <div className="guild-card-img no-image">
-                    {guild.nameAcronym}
-                  </div>
+                  <div className="guild-card-img no-image">{guild.nameAcronym}</div>
                 ) : (
                   <Image
                     alt={guild.name}
