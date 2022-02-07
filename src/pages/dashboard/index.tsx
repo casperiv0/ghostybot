@@ -50,8 +50,6 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
       <div className="grid">
         {guilds.map((guild) => {
           
-          //Taking the 2 first letters (or 1) is now easier!
-
           return (
             <Link key={guild.id} href={guild.inGuild ? `/dashboard/${guild.id}` : "#"}>
               <a
@@ -62,7 +60,7 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
               >
                 {guild.icon === null ? (
                   <div className="guild-card-img no-image">
-                    {guild?.nameAcronym}
+                    {guild.nameAcronym}
                   </div>
                 ) : (
                   <Image
