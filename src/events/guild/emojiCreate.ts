@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class EmojiCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_EMOJI_CREATE);
+    super(bot, DJS.Events.GuildEmojiCreate);
   }
 
   async execute(bot: Bot, emoji: DJS.GuildEmoji) {
@@ -25,7 +25,7 @@ export default class EmojiCreateEvent extends Event {
             emoji: emoji.toString(),
           }),
         )
-        .setColor(DJS.Util.resolveColor("GREEN"))
+        .setColor(DJS.Colors.Green)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

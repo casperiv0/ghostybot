@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class StickerDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_STICKER_UPDATE);
+    super(bot, DJS.Events.GuildStickerUpdate);
   }
 
   async execute(bot: Bot, old: DJS.Sticker, newSticker: DJS.Sticker) {
@@ -20,7 +20,7 @@ export default class StickerDeleteEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_UPDATED)
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setImage(newSticker.url)
         .setTimestamp();
 

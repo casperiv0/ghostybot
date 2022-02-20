@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class EmojiDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_EMOJI_DELETE);
+    super(bot, DJS.Events.GuildEmojiDelete);
   }
 
   async execute(bot: Bot, emoji: DJS.GuildEmoji) {
@@ -24,7 +24,7 @@ export default class EmojiDeleteEvent extends Event {
             emoji: emoji.toString(),
           }),
         )
-        .setColor(DJS.Util.resolveColor("RED"))
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

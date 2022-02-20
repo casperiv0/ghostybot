@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class GuildBanAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_BAN_ADD);
+    super(bot, DJS.Events.GuildBanAdd);
   }
 
   async execute(bot: Bot, guild: DJS.Guild, user: DJS.User) {
@@ -35,7 +35,7 @@ export default class GuildBanAddEvent extends Event {
         .setTitle(lang.EVENTS.BAN_ADD)
         .addField({ name: lang.EVENTS.BANNED_MEMBER, value: bannedMember })
         .setDescription(audit.reason ?? lang.GLOBAL.NOT_SPECIFIED)
-        .setColor(DJS.Util.resolveColor("RED"));
+        .setColor(DJS.Colors.Red);
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class GuildMemberRemoveEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_MEMBER_REMOVE);
+    super(bot, DJS.Events.GuildMemberRemove);
   }
 
   async execute(bot: Bot<true>, member: DJS.GuildMember) {
@@ -38,7 +38,7 @@ export default class GuildMemberRemoveEvent extends Event {
               guild: member.guild,
             }),
           )
-          .setColor(DJS.Util.resolveColor("RED"));
+          .setColor(DJS.Colors.Red);
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;

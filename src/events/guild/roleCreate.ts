@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class RoleCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_ROLE_CREATE);
+    super(bot, DJS.Events.GuildRoleCreate);
   }
 
   async execute(bot: Bot, role: DJS.Role) {
@@ -18,7 +18,7 @@ export default class RoleCreateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("New role Created")
         .setDescription(`Role: **${role}** was created`)
-        .setColor(DJS.Util.resolveColor("GREEN"))
+        .setColor(DJS.Colors.Green)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

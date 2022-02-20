@@ -25,7 +25,7 @@ export default class GuildTicketCloseEvent extends Event {
         .setTitle("Ticket closed")
         .setDescription(topic)
         .addField({ name: "Closed by", value: executor.tag, inline: true })
-        .setColor(DJS.Util.resolveColor("ORANGE"));
+        .setColor(DJS.Colors.Orange);
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

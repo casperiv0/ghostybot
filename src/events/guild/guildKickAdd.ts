@@ -29,7 +29,7 @@ export default class GuildKickAddEvent extends Event {
         .addField({ name: lang.MEMBER.TAG, value: member.user.tag, inline: true })
         .addField({ name: lang.EVENTS.EXECUTED_BY, value: executor.tag, inline: true })
         .addField({ name: lang.EVENTS.REASON, value: reason ?? lang.GLOBAL.NOT_SPECIFIED })
-        .setColor(DJS.Util.resolveColor("ORANGE"));
+        .setColor(DJS.Colors.Orange);
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

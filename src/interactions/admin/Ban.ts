@@ -53,7 +53,7 @@ export default class BanCommand extends SubCommand {
     }
 
     await member.ban({
-      days: 7,
+      deleteMessageDays: 7,
       reason: `${lang.ADMIN.BAN_BANNED_BY}: ${interaction.user.tag}\n**${lang.GLOBAL.REASON}:** ${reason}`,
     });
 

@@ -6,7 +6,7 @@ import { InteractionHandler } from "handlers/InteractionHandler";
 
 export default class ReadyEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CLIENT_READY, true);
+    super(bot, DJS.Events.ClientReady, true);
   }
 
   async execute(bot: Bot) {

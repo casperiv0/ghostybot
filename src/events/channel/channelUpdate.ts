@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class ChannelUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CHANNEL_UPDATE);
+    super(bot, DJS.Events.ChannelUpdate);
   }
 
   async execute(bot: Bot, oldChannel: DJS.GuildChannel, newChannel: DJS.GuildChannel) {
@@ -32,7 +32,7 @@ export default class ChannelUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_RENAME)
         .setDescription(msg)
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

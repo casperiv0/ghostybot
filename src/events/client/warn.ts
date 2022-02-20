@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class WarnEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.WARN);
+    super(bot, DJS.Events.Warn);
   }
 
   async execute(bot: Bot, error: any) {

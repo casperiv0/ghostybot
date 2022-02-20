@@ -7,7 +7,7 @@ import { Event } from "structures/Event";
  */
 export default class MessageUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.MESSAGE_UPDATE);
+    super(bot, DJS.Events.MessageUpdate);
   }
 
   async execute(bot: Bot, oldMsg: DJS.Message, newMsg: DJS.Message) {
@@ -44,7 +44,7 @@ export default class MessageUpdateEvent extends Event {
         )
         .addField({ name: "**Old Message**", value: pOldMsg.toString() })
         .addField({ name: "**New Message**", value: PNewMsg.toString() })
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

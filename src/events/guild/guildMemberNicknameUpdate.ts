@@ -21,7 +21,7 @@ export default class GuildMemberNicknameUpdateEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setTitle("Member Update: `Nickname`")
         .setDescription(`${member}'s **nickname** was changed.`)
         .addField({ name: "Nickname", value: `${oldNickname} ➔ ${newNickname}` });

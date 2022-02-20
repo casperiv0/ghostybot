@@ -1,4 +1,4 @@
-import type { APIEmbedField } from "discord-api-types";
+import type { APIEmbedField } from "discord-api-types/v10";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";

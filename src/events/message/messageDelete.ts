@@ -7,7 +7,7 @@ import { Event } from "structures/Event";
  */
 export default class MessageDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.MESSAGE_DELETE);
+    super(bot, DJS.Events.MessageDelete);
   }
 
   async execute(bot: Bot, message: DJS.Message) {
@@ -25,7 +25,7 @@ export default class MessageDeleteEvent extends Event {
         .baseEmbed(message)
         .setTitle("Message deleted")
         .setDescription(`Message: \`${message.content}\` was deleted in ${message.channel}`)
-        .setColor(DJS.Util.resolveColor("RED"))
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       if (message.attachments.size > 0) {

@@ -22,7 +22,7 @@ export default class GuildMemberRemoveEvent extends Event {
         .setTitle("User unmuted")
         .addField({ name: "Tag", value: member.user.tag, inline: true })
         .addField({ name: "Executed by", value: executor.tag, inline: true })
-        .setColor(DJS.Util.resolveColor("ORANGE"));
+        .setColor(DJS.Colors.Orange);
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

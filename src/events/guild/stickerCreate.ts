@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class StickerCreateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_STICKER_CREATE);
+    super(bot, DJS.Events.GuildStickerCreate);
   }
 
   async execute(bot: Bot, sticker: DJS.Sticker) {
@@ -20,7 +20,7 @@ export default class StickerCreateEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_CREATED)
-        .setColor(DJS.Util.resolveColor("GREEN"))
+        .setColor(DJS.Colors.Green)
         .setImage(sticker.url)
         .setTimestamp();
 

@@ -34,7 +34,7 @@ export class Util {
 
   async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
     try {
-      let user: IUser | undefined = await UserModel.findOne({ user_id: userId, guild_id: guildId });
+      let user: any = await UserModel.findOne({ user_id: userId, guild_id: guildId });
 
       if (!user) {
         user = await this.addUser(userId, guildId);
@@ -220,7 +220,7 @@ export class Util {
         .addField({ name: "Timestamp", value: this.bot.logger.now, inline: true })
         .addField({ name: "Request data", value: codeBlock(jsonString?.substring(0, 2045)) })
         .setDescription(codeBlock(stack as string))
-        .setColor(DJS.Util.resolveColor(type === "error" ? "RED" : "ORANGE"));
+        .setColor(type === "error" ? DJS.Colors.Red : DJS.Colors.Orange);
 
       channel.send({ embeds: [embed] });
     } catch (e) {
@@ -466,7 +466,7 @@ export class Util {
           })
           .join(", ")} permissions!`,
       )
-      .setColor(DJS.Util.resolveColor("ORANGE"));
+      .setColor(DJS.Colors.Orange);
   }
 
   baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }): DJS.Embed {

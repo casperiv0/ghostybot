@@ -48,8 +48,8 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
             }
 
             const validObjectId = isValidObjectId(reaction._id);
-            const dbReaction: IReaction =
-              validObjectId && (await ReactionsModel.findById(reaction._id));
+            const dbReaction =
+              validObjectId && ((await ReactionsModel.findById(reaction._id)) as IReaction);
 
             if (dbReaction) {
               await updateReactionMessage(reaction, req.bot);

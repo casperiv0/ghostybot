@@ -5,7 +5,7 @@ import { Event } from "structures/Event";
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.MESSAGE_CREATE);
+    super(bot, DJS.Events.MessageCreate);
   }
 
   async execute(bot: Bot, message: DJS.Message) {

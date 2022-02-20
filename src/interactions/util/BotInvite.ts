@@ -13,8 +13,8 @@ export default class BotInviteCommand extends SubCommand {
 
   async execute(interaction: DJS.ChatInputCommandInteraction) {
     const invite = this.bot.generateInvite({
-      scopes: ["bot", "applications.commands"],
-      permissions: `${8}`,
+      scopes: [DJS.OAuth2Scopes.Bot, DJS.OAuth2Scopes.ApplicationsCommands],
+      permissions: DJS.PermissionFlagsBits.Administrator,
     });
 
     await interaction.reply({ content: invite });

@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class RoleDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_ROLE_DELETE);
+    super(bot, DJS.Events.GuildRoleDelete);
   }
 
   async execute(bot: Bot, role: DJS.Role) {
@@ -18,7 +18,7 @@ export default class RoleDeleteEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Role deleted")
         .setDescription(`Role: **${role.name}** was deleted`)
-        .setColor(DJS.Util.resolveColor("RED"))
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

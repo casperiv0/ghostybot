@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class RoleUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_ROLE_UPDATE);
+    super(bot, DJS.Events.GuildRoleUpdate);
   }
 
   async execute(bot: Bot, oldRole: DJS.Role, newRole: DJS.Role) {
@@ -27,7 +27,7 @@ export default class RoleUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Role Updated")
         .setDescription(msg)
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

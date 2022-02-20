@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class GuildDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_DELETE);
+    super(bot, DJS.Events.GuildDelete);
   }
 
   async execute(bot: Bot, guild: DJS.Guild) {

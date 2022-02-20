@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class EmojiUpdateEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.GUILD_EMOJI_UPDATE);
+    super(bot, DJS.Events.GuildEmojiUpdate);
   }
 
   async execute(bot: Bot, oldEm: DJS.GuildEmoji, newEm: DJS.GuildEmoji) {
@@ -33,7 +33,7 @@ export default class EmojiUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Emoji Updated")
         .setDescription(msg)
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

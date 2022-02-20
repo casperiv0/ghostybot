@@ -30,7 +30,7 @@ export default class GuildMemberMuteAddEvent extends Event {
         .addField({ name: "Tag", value: member.user.tag, inline: true })
         .addField({ name: "Executed by", value: executor.tag, inline: true })
         .addField({ name: "Reason", value: reason })
-        .setColor(DJS.Util.resolveColor("ORANGE"));
+        .setColor(DJS.Colors.Orange);
 
       if (tempMute && time) {
         embed.addField({ name: "Muted for", value: time });

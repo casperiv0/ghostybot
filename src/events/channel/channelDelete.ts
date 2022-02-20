@@ -4,7 +4,7 @@ import { Event } from "structures/Event";
 
 export default class ChannelDeleteEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.CHANNEL_DELETE);
+    super(bot, DJS.Events.ChannelDelete);
   }
 
   async execute(bot: Bot, channel: DJS.GuildChannel) {
@@ -25,7 +25,7 @@ export default class ChannelDeleteEvent extends Event {
         .baseEmbed({ author: bot?.user })
         .setTitle(lang.EVENTS.CHANNEL_DELETED)
         .setDescription(msg)
-        .setColor(DJS.Util.resolveColor("RED"))
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

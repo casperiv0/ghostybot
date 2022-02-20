@@ -11,7 +11,7 @@ const neededPerms = [
 
 export default class MessageReactionAddEvent extends Event {
   constructor(bot: Bot) {
-    super(bot, DJS.Constants.Events.MESSAGE_REACTION_ADD);
+    super(bot, DJS.Events.MessageReactionAdd);
   }
 
   async execute(bot: Bot<true>, react: DJS.MessageReaction, user: DJS.User) {

@@ -22,7 +22,7 @@ export default class GuildChannelTopicUpdateEvent extends Event {
             channel: channel.name,
           }),
         )
-        .setColor(DJS.Util.resolveColor("ORANGE"))
+        .setColor(DJS.Colors.Orange)
         .addField({ name: lang.EVENTS.CHANNEL_OLD_TOPIC, value: oldTopic || lang.GLOBAL.NONE })
         .addField({ name: lang.EVENTS.CHANNEL_NEW_TOPIC, value: newTopic || lang.GLOBAL.NONE })
         .setTimestamp();

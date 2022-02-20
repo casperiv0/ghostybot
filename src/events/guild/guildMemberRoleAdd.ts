@@ -18,7 +18,7 @@ export default class GuildMemberRoleAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
-        .setColor(DJS.Util.resolveColor("GREEN"))
+        .setColor(DJS.Colors.Green)
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${member} was **given** the ${role} role.`);
 
