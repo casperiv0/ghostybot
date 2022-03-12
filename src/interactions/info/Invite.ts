@@ -67,7 +67,7 @@ export default class InviteInfoCommand extends SubCommand {
 **${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${
           invite.guild?.id ?? lang.UTIL.UNKNOWN
         })
-**${lang.UTIL.CHANNEL}:** ${invite.channel.name}
+**${lang.UTIL.CHANNEL}:** ${invite.channel?.name ?? lang.UTIL.UNKNOWN}
 **${lang.UTIL.INVITER}:** ${inviter}
       `,
       })

@@ -15,7 +15,7 @@ const badges: Record<UserFlagsString, string> = {
   Staff: "<:stafftools:314348604095594498>",
   VerifiedDeveloper: "<:botdeveloper:786916920245878796>",
   TeamPseudoUser: "",
-  None: "",
+  Spammer: "",
 };
 
 export default badges;
