@@ -1,3 +1,4 @@
+import * as DJS from "discord.js";
 import { NextApiResponse } from "next";
 import { ApiRequest } from "types/ApiRequest";
 import { Constants } from "utils/constants";
@@ -106,8 +107,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       try {
         const command = await discordGuild?.commands.create({
-          // 1 = ChatInput
-          type: 1,
+          type: DJS.ApplicationCommandType.ChatInput,
           name: commandName,
           description: body.description,
         });
@@ -178,8 +178,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       await discordGuild?.commands.edit(commandId, {
-        // 1 = ChatInput
-        type: 1,
+        type: DJS.ApplicationCommandType.ChatInput,
         name,
         description: body.description,
       });
