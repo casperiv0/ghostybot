@@ -55,5 +55,5 @@
     "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
-  "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["typings/next-env.d.ts", "./*.js", "typings/*.d.ts", "**/*.ts", "**/*.tsx"]
 }

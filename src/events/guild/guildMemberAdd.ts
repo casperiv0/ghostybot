@@ -22,7 +22,7 @@ export default class GuildMemberAddEvent extends Event {
       **Id:** {user.id}
       `;
 
-      if (welcomeData.ignore_bots === true && member.user.bot === true) return;
+      if (welcomeData.ignore_bots && member.user.bot) return;
 
       if (welcomeData.channel_id) {
         if (!member.guild.channels.cache.find((ch) => ch.id === welcomeData.channel_id)) return;

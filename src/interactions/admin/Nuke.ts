@@ -21,7 +21,7 @@ export default class RemoveRoleCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    if (threadChannels.includes(interaction.channel?.type!)) {
+    if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,
         error: { ephemeral: true, content: lang.ADMIN.CANNOT_USE_CMD_THREAD },

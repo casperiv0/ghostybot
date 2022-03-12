@@ -1,7 +1,7 @@
 import process from "node:process";
 import * as DJS from "discord.js";
 import { codeBlock, inlineCode } from "@discordjs/builders";
-import { inspect } from "util";
+import { inspect } from "node:util";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 import { ValidateReturn } from "structures/Command/BaseCommand";

@@ -1,5 +1,5 @@
 const TARGET_FILE = "./docs/COMMANDS.md";
-import fs from "fs";
+import fs from "node:fs";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command/Command";

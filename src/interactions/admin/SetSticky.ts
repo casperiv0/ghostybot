@@ -47,7 +47,8 @@ export default class SetStickyCommand extends SubCommand {
       .catch(() => null)) as DJS.TextChannel | null;
 
     const stickyMessage = await channel?.send({ content: msg });
+    if (!stickyMessage) return;
 
-    await this.bot.utils.addSticky(stickyMessage?.id!, interaction.channelId, msg);
+    await this.bot.utils.addSticky(stickyMessage.id, interaction.channelId, msg);
   }
 }

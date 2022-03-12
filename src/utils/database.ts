@@ -18,7 +18,9 @@ async function database() {
 
     console.error(error);
 
-    logger.error("database", error?.message!);
+    if (error) {
+      logger.error("database", error.message);
+    }
   }
 }
 

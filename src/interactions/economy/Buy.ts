@@ -51,7 +51,7 @@ export default class BuyCommand extends SubCommand {
       });
     }
 
-    if (inventory && inventory?.includes(item.name)) {
+    if (inventory?.includes(item.name)) {
       return interaction.reply({
         content: lang.ECONOMY.ALREADY_OWN_ITEM,
         ephemeral: true,
