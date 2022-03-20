@@ -5,6 +5,7 @@ import PasteClient from "pastebin-api";
 import DistubePlayer from "distube";
 import { CtgsClient } from "ctgs.js";
 import { EventHandler } from "handlers/EventHandler";
+import { YtDlpPlugin } from "@distube/yt-dlp";
 
 import { MongoGiveawayManager } from "handlers/GiveawayManager";
 import { logger } from "utils/logger";
@@ -45,9 +46,8 @@ export class Bot extends Client {
       customFilters: {
         cursed: "vibrato=f=6.5,tremolo,aresample=48000,asetrate=48000*1.25",
       },
-      ytdlOptions: {
-        filter: "audioonly",
-      },
+      youtubeDL: false,
+      plugins: [new YtDlpPlugin()],
     });
 
     this.giveawayManager = new MongoGiveawayManager(this, {

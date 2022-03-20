@@ -46,7 +46,7 @@
     "@discordjs/voice": "^0.8.0",
     "@iamtraction/google-translate": "^1.1.2",
     "bluebird": "^3.7.2",
-    "chalk": "^5.0.1",
+    "chalk": "4.1.2",
     "ctgs.js": "^1.1.0",
     "dayjs": "^1.11.0",
     "discord-giveaways": "5.1.1",
@@ -82,7 +82,8 @@
     "uuid": "^8.3.2",
     "wikijs": "^6.3.3",
     "word-definition": "^2.1.6",
-    "zustand": "^3.7.1"
+    "zustand": "^3.7.1",
+    "@distube/yt-dlp": "^1.0.2"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^3.0.0",
