@@ -57,7 +57,7 @@ function GhostyBot({ Component, pageProps }: AppProps) {
     }
   }, [router]);
 
-  if (loading === true) {
+  if (loading) {
     return <Loader full />;
   }
 

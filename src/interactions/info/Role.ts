@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import { bold, time } from "@discordjs/builders";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
-import { APIRole } from "discord-api-types";
+import { APIRole } from "discord-api-types/v10";
 
 export default class RoleInfoCommand extends SubCommand {
   constructor(bot: Bot) {

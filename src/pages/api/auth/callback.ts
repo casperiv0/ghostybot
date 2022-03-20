@@ -1,4 +1,4 @@
-import { RESTPostOAuth2AccessTokenResult } from "discord-api-types";
+import type { RESTPostOAuth2AccessTokenResult } from "discord-api-types/v10";
 import jwt from "jsonwebtoken";
 import { NextApiResponse } from "next";
 import { setCookie } from "nookies";

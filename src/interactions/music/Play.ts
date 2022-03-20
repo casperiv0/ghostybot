@@ -23,7 +23,7 @@ export default class PlayCommand extends SubCommand {
     interaction: DJS.CommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
-    const query = interaction.options.getString("query");
+    const query = interaction.options.getString("query", true);
     const queue = this.bot.player.getQueue(interaction.guildId!);
     if (queue && !this.bot.utils.isBotInSameChannel(interaction)) {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });

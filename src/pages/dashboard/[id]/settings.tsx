@@ -5,7 +5,7 @@ import { Channel, Role } from "discord.js";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import fs from "fs";
+import fs from "node:fs";
 import { AlertMessage } from "@components/AlertMessage";
 import timezones from "assets/json/timezones.json";
 import { Switch } from "@components/Switch";

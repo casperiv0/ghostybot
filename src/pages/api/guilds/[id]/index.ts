@@ -3,7 +3,7 @@ import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import { ApiRequest } from "types/ApiRequest";
 import ReactionsModel, { IReaction } from "models/Reactions.model";
-import { APIChannel } from "discord-api-types";
+import type { APIChannel } from "discord-api-types/v10";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
