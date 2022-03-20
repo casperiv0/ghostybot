@@ -68,7 +68,7 @@ _Not required, some may be required for some commands_
 4. Create a bot at [Discord Developers](https://discord.com/developers/applications) and grab the tokens
 5. Copy your tokens and paste into `.env` [more info about the .env](#env)
 6. Modify `.env` where needed [more info about .env](#env)
-7. Run `npm run build` to create the dashboard, if you have `enabled: false` for the dashboard, skip this step
+7. Run `npm run build` to create the dashboard and bot
 8. Run the bot: `npm start`
    - Using pm2: `pm2 start src/index.js --name ghostybot`
 
