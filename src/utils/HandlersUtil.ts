@@ -1,4 +1,4 @@
-import { resolve } from "path";
+import { resolve } from "node:path";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 import { Event } from "structures/Event";

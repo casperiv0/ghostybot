@@ -53,7 +53,7 @@ export default class CreateTicket extends SubCommand {
         allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
       },
       {
-        id: this.bot.user?.id!,
+        id: this.bot.user!.id,
         allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
       },
     ];

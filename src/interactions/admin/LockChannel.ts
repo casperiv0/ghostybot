@@ -27,7 +27,7 @@ export default class LockChannelCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
-    if (threadChannels.includes(interaction.channel?.type!)) {
+    if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,
         error: { ephemeral: true, content: lang.ADMIN.CANNOT_USE_CMD_THREAD },

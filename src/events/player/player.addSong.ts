@@ -24,7 +24,7 @@ export default class PlayerAddSongEvent extends Event {
         )
         .setAuthor({
           name: this.bot.utils.translate(lang.MUSIC.REQUESTED_BY, {
-            user: song.user?.username!,
+            user: song.user!.username,
           }),
         });
 

@@ -49,7 +49,9 @@ function checkValid() {
   const v = parseFloat(process.versions.node);
 
   if (v < 14) {
-    throw Error("[ERROR]: This bot requires version 14 of nodejs! Please upgrade to version 14");
+    throw new Error(
+      "[ERROR]: This bot requires version 14 of nodejs! Please upgrade to version 14",
+    );
   }
 
   ENV_OPTIONS.filter((v) => !v.dashboard).forEach((option) => {
@@ -68,7 +70,7 @@ function checkValid() {
 
     ENV_OPTIONS.filter((v) => v.dashboard).forEach((opt) => {
       if (!opt.value) {
-        throw Error(`[ERROR][DASHBOARD]: "${opt.name}" is required for the dashboard ${msg}`);
+        throw new Error(`[ERROR][DASHBOARD]: "${opt.name}" is required for the dashboard ${msg}`);
       }
     });
   }

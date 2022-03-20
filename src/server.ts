@@ -1,6 +1,6 @@
 import { Bot } from "structures/Bot";
-import { createServer } from "http";
-import { parse } from "url";
+import { createServer } from "node:http";
+import { parse } from "node:url";
 import next from "next";
 import { ApiRequest } from "types/ApiRequest";
 

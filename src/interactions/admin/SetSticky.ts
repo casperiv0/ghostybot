@@ -48,6 +48,6 @@ export default class SetStickyCommand extends SubCommand {
 
     const stickyMessage = await channel?.send({ content: msg });
 
-    await this.bot.utils.addSticky(stickyMessage?.id!, interaction.channelId, msg);
+    await this.bot.utils.addSticky(stickyMessage!.id, interaction.channelId, msg);
   }
 }

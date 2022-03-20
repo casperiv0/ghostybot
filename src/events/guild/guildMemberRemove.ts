@@ -21,7 +21,7 @@ export default class GuildMemberRemoveEvent extends Event {
     **Id:** {user.id}
     `;
 
-      if (leaveData.ignore_bots === true && member.user.bot === true) return;
+      if (leaveData.ignore_bots && member.user.bot) return;
 
       if (leaveData.channel_id) {
         if (!member.guild.channels.cache.find((ch) => ch.id === leaveData.channel_id)) return;
