@@ -203,7 +203,7 @@ export class Util {
       }
 
       if (jsonString?.length >= 2048) {
-        jsonString = jsonString ? `${jsonString?.substr(0, 2045)}...` : "";
+        jsonString = jsonString ? `${jsonString?.slice(0, 2045)}...` : "";
       }
 
       if (typeof stack === "string" && stack.length >= 2048) {
@@ -216,7 +216,7 @@ export class Util {
         .addField("Code", code.toString(), true)
         .addField("httpStatus", httpStatus.toString(), true)
         .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", codeBlock(jsonString?.substr(0, 2045)))
+        .addField("Request data", codeBlock(jsonString?.slice(0, 2045)))
         .setDescription(codeBlock(stack as string))
         .setColor(type === "error" ? "RED" : "ORANGE");
 

@@ -68,7 +68,7 @@ export default class LyricsCommand extends SubCommand {
     }
 
     if (embed.description!.length >= 2048) {
-      embed.setDescription(`${songLyrics.substr(0, 2045)}...`);
+      embed.setDescription(`${songLyrics.slice(0, 2045)}...`);
     }
 
     await interaction.editReply({ embeds: [embed] });
