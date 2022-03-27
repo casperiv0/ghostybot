@@ -30,7 +30,6 @@
         "no-restricted-globals": [
           "error",
           {
-            /* eslint-disable */
             "name": "fetch",
             "message": "Import request from `undici` instead (`import { request } from \"undici\"`)"
           },

@@ -19,31 +19,27 @@ export default class LeaderboardCommand extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = (await UserModel.find({ guild_id: interaction.guildId!, xp: { $ne: 0 } })).sort(
-      (a: IUser, b: IUser) => b.xp - a.xp,
-    );
+    const dbData = await UserModel.find({ guild_id: interaction.guildId!, xp: { $ne: 0 } });
+    const sortedData = dbData.sort((a: IUser, b: IUser) => b.xp - a.xp).slice(0, 10);
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.guild?.name} ${lang.LEVELS.LEADERBOARD}`);
 
-    let idx = 0;
-    for (const user of data) {
+    for (let i = 0; i < sortedData.length; i++) {
+      const user = sortedData[i];
       const member = await interaction.guild?.members.fetch(user.user_id).catch(() => null);
 
       if (member) {
-        const isInPlace = [0, 1, 2].includes(idx);
+        const isInPlace = [0, 1, 2].includes(i);
+        const place = isInPlace ? places[i] : "";
 
         embed.addField(
           member.user.username,
-          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(user.xp)}xp`,
+          `${place} ${this.bot.utils.formatNumber(user.xp)}xp`,
           true,
         );
-
-        ++idx;
       }
-
-      if (idx === data.slice(0, 10).length - 1) break;
     }
 
     await interaction.editReply({ embeds: [embed] });
