@@ -4,7 +4,7 @@ import { SubCommand } from "structures/Command/SubCommand";
 import UserModel, { IUser } from "models/User.model";
 import places from "assets/json/places.json";
 
-export default class GiveXP extends SubCommand {
+export default class LeaderboardCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
       name: "leaderboard",

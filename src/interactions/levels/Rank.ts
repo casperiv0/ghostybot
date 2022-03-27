@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-export default class Rank extends SubCommand {
+export default class RankCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
       name: "rank",
