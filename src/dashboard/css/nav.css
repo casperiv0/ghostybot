@@ -61,7 +61,7 @@
   background: var(--dark);
   box-shadow: 0 8px 18px 0 rgba(0, 0, 0, 0.2);
   top: 2.5rem;
-  right: 0rem;
+  right: 0;
   min-width: 200px;
   transition: 200ms;
   transform-origin: top right;
