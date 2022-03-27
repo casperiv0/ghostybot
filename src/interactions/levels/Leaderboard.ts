@@ -4,7 +4,7 @@ import { SubCommand } from "structures/Command/SubCommand";
 import UserModel, { IUser } from "models/User.model";
 import places from "assets/json/places.json";
 
-export default class GiveXP extends SubCommand {
+export default class LeaderboardCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
       name: "leaderboard",
@@ -19,29 +19,32 @@ export default class GiveXP extends SubCommand {
   ) {
     await interaction.deferReply();
 
-    const data = (await UserModel.find({ guild_id: interaction.guildId! }))
-      .sort((a: IUser, b: IUser) => b.xp - a.xp)
-      .splice(0, 10);
+    const data = (await UserModel.find({ guild_id: interaction.guildId!, xp: { $ne: 0 } })).sort(
+      (a: IUser, b: IUser) => b.xp - a.xp,
+    );
 
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.guild?.name} ${lang.LEVELS.LEADERBOARD}`);
 
-    await Promise.all(
-      data.map(async (item: IUser, idx: number) => {
-        const userId = item.user_id;
-        const member = await this.bot.utils.findMember(interaction, [userId]);
+    let idx = 0;
+    for (const user of data) {
+      const member = await interaction.guild?.members.fetch(user.user_id).catch(() => null);
+
+      if (member) {
         const isInPlace = [0, 1, 2].includes(idx);
 
-        if (member) {
-          embed.addField(
-            member.user.username,
-            `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].xp)}xp`,
-            true,
-          );
-        }
-      }),
-    );
+        embed.addField(
+          member.user.username,
+          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(user.xp)}xp`,
+          true,
+        );
+
+        ++idx;
+      }
+
+      if (idx === data.slice(0, 10).length - 1) break;
+    }
 
     await interaction.editReply({ embeds: [embed] });
   }
