@@ -104,7 +104,7 @@
     "@typescript-eslint/parser": "^5.15.0",
     "cross-env": "^7.0.3",
     "discord-api-types": "^0.30.0",
-    "esbuild": "^0.14.27",
+    "esbuild": "^0.14.28",
     "eslint": "^8.11.0",
     "globby": "^13.1.1",
     "husky": "^7.0.4",
