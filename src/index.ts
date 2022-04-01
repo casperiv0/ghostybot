@@ -6,7 +6,6 @@ P.Promise.config({
 });
 
 import "utils/checkValid";
-import "utils/database";
 import logs from "discord-logs";
 import { Bot } from "structures/Bot";
 
