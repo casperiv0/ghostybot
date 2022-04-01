@@ -54,8 +54,8 @@ export default class EditReminderCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NO_REMINDER_SET });
     }
 
-    const reminder = user.reminder.reminders.find((r) => r.id === id);
-    const updated = user.reminder.reminders.filter((r) => r.id !== id);
+    const reminder = user.reminder.reminders.find((r) => r.shortId === id);
+    const updated = user.reminder.reminders.filter((r) => r.shortId !== id);
 
     if (!reminder) {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NOT_FOUND });
@@ -66,7 +66,7 @@ export default class EditReminderCommand extends SubCommand {
       ends_at: Date.now() + ms(time),
       msg,
       channel_id: reminder.channel_id,
-      id: reminder.id,
+      shortId: reminder.shortId,
     };
 
     this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {

@@ -25,7 +25,7 @@ export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) =
 
     setName(command.name);
     setCmdRes(command.response);
-    setDescription(command.description);
+    setDescription(command.description ?? "");
   }, [command]);
 
   async function onSubmit(e: React.FormEvent) {

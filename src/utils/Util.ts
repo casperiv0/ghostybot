@@ -83,11 +83,15 @@ export class Util {
   }
 
   async addUser(userId: string, guildId: string | undefined, data?: any) {
+    if (!guildId) return null;
+
     try {
       const user = await prisma.users.create({
-        user_id: userId,
-        guild_id: guildId,
-        ...data,
+        data: {
+          user_id: userId,
+          guild_id: guildId,
+          ...data,
+        },
       });
 
       return user;
@@ -99,7 +103,7 @@ export class Util {
   async updateUserById(
     userId: string,
     guildId: string | undefined,
-    data: Partial<Prisma.usersUpdateInput>,
+    data: Partial<Prisma.usersUpdateManyArgs["data"]>,
   ) {
     try {
       const user = await this.getUserById(userId, guildId);

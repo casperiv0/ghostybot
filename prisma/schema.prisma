@@ -93,10 +93,9 @@ type UsersReminder {
 }
 
 type UsersReminderReminders {
-  id         String @map("_id")
   channel_id String
   ends_at    Float
-  shortId    String
+  shortId    String?
   msg        String
   time       String
 }
@@ -118,7 +117,8 @@ type StickyData {
 }
 
 model blacklisteds {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  user_id String
 }
 
 model bots {
@@ -199,19 +199,19 @@ model stickies {
 
 model users {
   id        String         @id @default(auto()) @map("_id") @db.ObjectId
-  afk       UsersAfk
-  bank      Int
+  afk       UsersAfk?
+  bank      Int            @default(0)
   daily     Float?
   guild_id  String
   inventory String[]
-  money     Int
+  money     Int            @default(0)
   mute      UsersMute?
   reminder  UsersReminder
   temproles UsersTemproles
   user_id   String
   weekly    Float?
   work      Float?
-  xp        Int
+  xp        Int            @default(0)
 }
 
 model warnings {

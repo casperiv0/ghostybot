@@ -1,6 +1,5 @@
 import { Bot } from "structures/Bot";
 import * as DJS from "discord.js";
-import { isValidObjectId } from "mongoose";
 import { NextApiResponse } from "next";
 import { ApiRequest } from "types/ApiRequest";
 import { prisma } from "utils/prisma";
@@ -44,15 +43,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               errored = true;
               return res.status(400).json({
                 error: "Each reaction must have at least 1 emoji to react to.",
-                status: "error",
-              });
-            }
-
-            const validObjectId = isValidObjectId(reaction.id);
-
-            if (!validObjectId) {
-              return res.status(400).json({
-                error: "Invalid objectId",
                 status: "error",
               });
             }
@@ -110,13 +100,6 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "DELETE": {
       const id = typeof req.body === "string" ? JSON.parse(req.body)?.id : req.body.id;
-
-      if (!isValidObjectId(id)) {
-        return res.status(400).json({
-          error: "Invalid objectId",
-          status: "error",
-        });
-      }
 
       const reaction = await prisma.reactions.findUnique({
         where: { id },

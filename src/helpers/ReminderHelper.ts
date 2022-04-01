@@ -12,11 +12,9 @@ export default class ReminderHelper extends Helper {
 
   async execute() {
     setInterval(async () => {
-      const reminders = await prisma.users.findMany({
-        where: { reminder: { hasReminder: true } },
-      });
-
-      if (!reminders.length) return;
+      const users = await prisma.users.findMany();
+      const reminders = users.filter((v) => v.reminder.hasReminder);
+      if (reminders.length <= 0) return;
 
       reminders.forEach((user) => {
         user.reminder.reminders

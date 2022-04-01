@@ -46,20 +46,18 @@ export default class CreateReminderCommand extends SubCommand {
     const reminders = typeof user.reminder.reminders === "object" ? user.reminder.reminders : [];
     const reminderId = v4();
 
+    const reminder = {
+      ends_at: Date.now() + ms(time),
+      msg,
+      channel_id: interaction.channelId!,
+      time,
+      shortId: v4().slice(0, 8),
+    };
+
     await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
       reminder: {
         hasReminder: true,
-        reminders: [
-          ...reminders,
-          {
-            ends_at: Date.now() + ms(time),
-            msg,
-            channel_id: interaction.channelId!,
-            time,
-            id: v4().slice(0, 8),
-            _id: reminderId,
-          },
-        ],
+        reminders: [...reminders, reminder],
       },
     });
 

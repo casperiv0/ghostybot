@@ -5,6 +5,7 @@ import { SubCommand } from "structures/Command/SubCommand";
 import { handleCategories } from "src/interactions/util/Help";
 import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
 import { guilds } from "@prisma/client";
+import { prisma } from "utils/prisma";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -27,7 +28,7 @@ export default class InteractionEvent extends Event {
         await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
           reminder: {
             hasReminder: user.reminder.reminders.length - 1 > 0,
-            reminders: user.reminder.reminders.filter((reminder) => reminder.shortId !== id),
+            reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),
           },
         });
 
@@ -45,8 +46,7 @@ export default class InteractionEvent extends Event {
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));
 
-      // todo
-      const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
+      const blacklistedUsers = await prisma.blacklisteds.findMany();
       if (blacklistedUsers) {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === interaction.user.id);
 
