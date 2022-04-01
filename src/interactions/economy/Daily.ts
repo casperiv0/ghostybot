@@ -23,8 +23,8 @@ export default class DailyCommand extends SubCommand {
 
     const timeout = 60 * 60 * 24 * 1000; /* 24h timeout */
     const amount = 500;
-    const currentMoney = user?.money;
-    const daily = user?.daily;
+    const currentMoney = user.money;
+    const daily = user.daily;
 
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
       const dateTime = new Date(Date.now() + timeout - (Date.now() - daily));

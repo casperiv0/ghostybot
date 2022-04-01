@@ -41,20 +41,20 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
   const lastRef = React.useCallback(
     (node) => {
       if (length > botCommands.length) return;
-      if (observer.current) observer.current?.disconnect();
+      if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           setLength((p) => p + 20);
         }
       });
-      if (node) observer.current?.observe(node);
+      if (node) observer.current.observe(node);
     },
     [length, botCommands],
   );
 
   React.useEffect(() => {
     const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
+    setMessage((query.message && `${query.message}`) || null);
   }, [router]);
 
   function handleSearch(value: string) {
@@ -107,7 +107,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("manage_commands")}
+          {guild.name} - {t("manage_commands")}
         </h4>
 
         <div>
@@ -132,7 +132,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
       </div>
 
       <div className="grid">
-        {botCommands?.slice(0, length)?.map((cmd, idx) => {
+        {botCommands.slice(0, length).map((cmd, idx) => {
           const topLevelName = "commandName" in cmd ? cmd.commandName : cmd.name;
           const groupName = "groupName" in cmd ? cmd.groupName : null;
 
@@ -142,7 +142,7 @@ const ManageCommands: React.FC<Props> = ({ botCommands, guild, isAuth, error }: 
             ? `${cmd.commandName}-${cmd.name}`
             : cmd.name;
 
-          const isDisabled = guild.disabled_commands?.some((c2) => fullName === c2);
+          const isDisabled = guild.disabled_commands.includes(fullName);
 
           if (filter === "@disabled" && !isDisabled) return null;
           if (filter === "@enabled" && isDisabled) return null;
@@ -178,7 +178,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

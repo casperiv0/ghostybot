@@ -118,7 +118,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       if (body?.audit_channel) {
-        await req.bot.utils.createWebhook(body.audit_channel, g?.audit_channel);
+        await req.bot.utils.createWebhook(body.audit_channel, g.audit_channel);
       }
 
       await req.bot.utils.updateGuildById(guildId.toString(), body);

@@ -3,10 +3,10 @@ import create from "zustand";
 
 interface SlashStore {
   items: SlashCommand[];
-  setItems: (items: SlashCommand[]) => void;
+  setItems(items: SlashCommand[]): void;
 
   message: string | null;
-  setMessage: (str: string) => void;
+  setMessage(str: string): void;
 }
 
 export const useSlashStore = create<SlashStore>((set) => ({

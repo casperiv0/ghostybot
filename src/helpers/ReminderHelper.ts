@@ -30,7 +30,7 @@ export default class ReminderHelper extends Helper {
             if (!channel) {
               await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
-                  hasReminder: !(user.reminder.reminders?.length - 1 === 0),
+                  hasReminder: !(user.reminder.reminders.length - 1 === 0),
                   reminders: user.reminder.reminders.filter(
                     (rem: Reminder) => rem._id !== reminderId,
                   ),
@@ -41,7 +41,7 @@ export default class ReminderHelper extends Helper {
 
             await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
-                hasReminder: !(user.reminder.reminders?.length - 1 === 0),
+                hasReminder: !(user.reminder.reminders.length - 1 === 0),
                 reminders: user.reminder.reminders.filter(
                   (rem: Reminder) => rem._id !== reminderId,
                 ),
@@ -54,7 +54,7 @@ export default class ReminderHelper extends Helper {
               .setDescription(`Your timer of **${time}** has ended`)
               .addField("Reminder message", msg);
 
-            if (!channel.permissionsFor(guild.me!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+            if (!channel.permissionsFor(guild.me!).has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
               return;
             }
             (channel as DJS.TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });

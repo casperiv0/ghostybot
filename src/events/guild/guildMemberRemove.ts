@@ -15,7 +15,7 @@ export default class GuildMemberRemoveEvent extends Event {
       const leaveData = guild?.leave_data;
       if (!leaveData?.enabled) return;
       const message =
-        leaveData?.message ||
+        leaveData.message ||
         `**Username:** {user.username}
     **Tag:** {user.tag}
     **Id:** {user.id}
@@ -42,7 +42,7 @@ export default class GuildMemberRemoveEvent extends Event {
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
         if (!ch || !ch.isText()) return;
-        if (!(ch as TextChannel)?.permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!(ch as TextChannel).permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
           return;
         }
 

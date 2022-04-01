@@ -51,7 +51,7 @@ export default class BugReportCommand extends SubCommand {
       process.env["BUG_REPORTS_CHANNEL_ID"] as DJS.Snowflake,
     ) as DJS.TextChannel;
 
-    await ch?.send({ embeds: [embed] });
+    await ch.send({ embeds: [embed] });
     interaction.reply({ ephemeral: true, content: lang.UTIL.BUG_REPORTED });
   }
 }

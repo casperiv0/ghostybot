@@ -53,7 +53,7 @@ export default class MessageReactionAddEvent extends Event {
       if (!channel) return;
       if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
-      if (!channel?.permissionsFor(bot.user!.id)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
+      if (!channel.permissionsFor(bot.user!.id)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
         return;
       }
 

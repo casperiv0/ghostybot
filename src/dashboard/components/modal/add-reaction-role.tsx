@@ -5,9 +5,9 @@ import { Reaction } from "models/Reactions.model";
 
 interface Props {
   guild: Guild<true>;
-  close: () => void;
-  onAdd: (reaction: Reaction) => void;
-  onUpdate: (prev: Reaction, reaction: Reaction) => void;
+  close(): void;
+  onAdd(reaction: Reaction): void;
+  onUpdate(prev: Reaction, reaction: Reaction): void;
 
   editData: Reaction | null;
 }

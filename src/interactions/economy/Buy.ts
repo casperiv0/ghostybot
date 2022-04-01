@@ -40,9 +40,9 @@ export default class BuyCommand extends SubCommand {
       return interaction.reply({ content: lang.GLOBAL.ERROR });
     }
 
-    const item = guild?.store?.filter(
+    const [item] = guild.store.filter(
       (storeItem) => storeItem.name.toLowerCase() === rawItem.toLowerCase(),
-    )[0];
+    );
 
     if (!item) {
       return interaction.reply({
@@ -58,7 +58,7 @@ export default class BuyCommand extends SubCommand {
       });
     }
 
-    if (!user?.money !== null && user?.money < item.price) {
+    if (!user.money !== null && user.money < item.price) {
       return interaction.reply({
         content: lang.ECONOMY.NOT_ENOUGH_MONEY,
         ephemeral: true,

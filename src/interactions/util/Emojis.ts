@@ -24,7 +24,7 @@ export default class EmojisCommand extends SubCommand {
     const animated: string[] = [];
     const emojis = interaction.guild?.emojis.cache ?? new DJS.Collection();
 
-    if (emojis?.size <= 0) {
+    if (emojis.size <= 0) {
       return interaction.reply({ ephemeral: true, content: "This guild does not have any emojis" });
     }
 

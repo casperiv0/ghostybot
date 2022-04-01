@@ -28,7 +28,7 @@ export default class GuildBanAddEvent extends Event {
 
       const lang = await bot.utils.getGuildLang(guild.id);
 
-      const bannedMember = user.id === target?.id ? target?.tag : lang.EVENTS.NOT_FOUND;
+      const bannedMember = user.id === target?.id ? target.tag : lang.EVENTS.NOT_FOUND;
 
       const embed = bot.utils
         .baseEmbed({ author: bot.user })

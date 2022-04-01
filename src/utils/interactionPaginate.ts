@@ -97,7 +97,7 @@ export async function interactionPaginate(
 
     if (currentPage?.embeds[0]) {
       currentPage
-        ?.edit({ embeds: [currentPage.embeds[0].setFooter({ text: "Timed out" })] })
+        .edit({ embeds: [currentPage.embeds[0].setFooter({ text: "Timed out" })] })
         .catch(() => null);
     }
   });

@@ -16,7 +16,7 @@ export default class GuildMemberAddEvent extends Event {
       if (!welcomeData?.enabled) return;
 
       const message =
-        welcomeData?.message ||
+        welcomeData.message ||
         `**Username:** {user.username}
       **Tag:** {user.tag}
       **Id:** {user.id}
@@ -44,7 +44,7 @@ export default class GuildMemberAddEvent extends Event {
         if (!ch || !ch.isText()) return;
 
         const hasSendMessagePerms = (ch as DJS.TextChannel)
-          ?.permissionsFor(bot.user!)
+          .permissionsFor(bot.user!)
           ?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
         if (!hasSendMessagePerms) return;
 

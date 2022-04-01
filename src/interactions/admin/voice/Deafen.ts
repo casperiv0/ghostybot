@@ -43,7 +43,7 @@ export default class VoiceDeafenCommand extends SubCommand {
       });
     }
 
-    if (!member.voice.channel || member?.voice?.serverDeaf) {
+    if (!member.voice.channel || member.voice.serverDeaf) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.DEAFEN_ALREADY_DEAFENED,

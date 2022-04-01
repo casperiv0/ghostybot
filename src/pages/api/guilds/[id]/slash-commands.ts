@@ -55,7 +55,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      const gSlashCommand = await discordGuild.commands.fetch(command?.slash_cmd_id);
+      const gSlashCommand = await discordGuild.commands.fetch(command.slash_cmd_id);
 
       return res.json({
         command: {
@@ -91,7 +91,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (guild.slash_commands?.find((x) => x.name === commandName)) {
+      if (guild.slash_commands.find((x) => x.name === commandName)) {
         return res.json({
           error: "This command name already exists for this guild",
           status: "error",
@@ -106,7 +106,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       try {
-        const command = await discordGuild?.commands.create({
+        const command = await discordGuild.commands.create({
           type: "CHAT_INPUT",
           name: commandName,
           description: body.description,
@@ -177,7 +177,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      await discordGuild?.commands.edit(commandId, {
+      await discordGuild.commands.edit(commandId, {
         type: "CHAT_INPUT",
         name,
         description: body.description,
@@ -208,11 +208,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      const filtered = guild.slash_commands?.filter(
-        (cmd) => cmd.slash_cmd_id !== command?.slash_cmd_id,
+      const filtered = guild.slash_commands.filter(
+        (cmd) => cmd.slash_cmd_id !== command.slash_cmd_id,
       );
 
-      discordGuild.commands.delete(command?.slash_cmd_id);
+      discordGuild.commands.delete(command.slash_cmd_id);
 
       await req.bot.utils.updateGuildById(`${query.id}`, { slash_commands: filtered });
 

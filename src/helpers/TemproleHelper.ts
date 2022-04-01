@@ -24,7 +24,7 @@ export default class TemproleHelper extends Helper {
 
             await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               temproles: {
-                hasTempRoles: !(user.temproles.tempRoles?.length - 1 === 0),
+                hasTempRoles: !(user.temproles.tempRoles.length - 1 === 0),
                 tempRoles: user.temproles.tempRoles.filter((r) => r.roleId !== tempRole.roleId),
               },
             });

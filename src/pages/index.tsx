@@ -68,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/auth`, {
     method: "POST",
     headers: {
-      Auth: cookies?.token,
+      Auth: cookies.token,
     },
   });
 

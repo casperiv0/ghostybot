@@ -51,7 +51,7 @@ export default class FeedbackCommand extends SubCommand {
       process.env["FEEDBACK_CHANNEL_ID"] as DJS.Snowflake,
     ) as DJS.TextChannel;
 
-    await ch?.send({ embeds: [embed] });
+    await ch.send({ embeds: [embed] });
     await interaction.reply({ ephemeral: true, content: lang.UTIL.FEEDBACK_SEND });
   }
 }

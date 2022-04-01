@@ -48,7 +48,7 @@ const Guild: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
     <>
       <Head>
         <title>
-          Viewing {guild?.name} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
+          Viewing {guild.name} - {process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]}
         </title>
       </Head>
       <div className="page-title">
@@ -104,7 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

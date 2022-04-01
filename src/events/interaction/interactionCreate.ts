@@ -118,7 +118,7 @@ export default class InteractionEvent extends Event {
         }
       }
 
-      await command?.execute(interaction, lang);
+      await command.execute(interaction, lang);
     } catch (e) {
       if (interaction.replied) return;
       bot.utils.sendErrorLog(e, "error");

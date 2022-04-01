@@ -33,15 +33,15 @@ export default class InventoryCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
-    const inventory = dbUser?.inventory;
+    const inventory = dbUser.inventory;
 
-    if (!inventory || !inventory?.[0]) {
+    if (!inventory || !inventory[0]) {
       return interaction.reply({
         content: lang.ECONOMY.INV_EMPTY,
       });
     }
 
-    const mapped = inventory?.map((item) => item).join(",\n ");
+    const mapped = inventory.map((item) => item).join(",\n ");
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

@@ -49,7 +49,7 @@ export default class InviteInfoCommand extends SubCommand {
       : lang.INVITE.NOT_EXPIRE;
 
     const inviter = invite.inviter
-      ? `${invite.inviter?.username}#${invite.inviter.discriminator} (${invite.inviter.id})`
+      ? `${invite.inviter.username}#${invite.inviter.discriminator} (${invite.inviter.id})`
       : lang.UTIL.UNKNOWN;
 
     const uses = invite.uses ? this.bot.utils.formatNumber(invite.uses) : null;

@@ -45,7 +45,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
   React.useEffect(() => {
     const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
+    setMessage((query.message && `${query.message}`) || null);
   }, [router]);
 
   async function deleteCommand(name: string) {
@@ -108,7 +108,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
 
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("manage_slash_commands")}
+          {guild.name} - {t("manage_slash_commands")}
         </h4>
 
         <div>
@@ -130,7 +130,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
           <CreateCommandModal guildId={guild.id} />
           <EditCommandModal command={tempCommand} guildId={guild.id} />
 
-          {state.items?.length > 0 ? (
+          {state.items.length > 0 ? (
             <table>
               <thead>
                 <tr>
@@ -140,7 +140,7 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
                 </tr>
               </thead>
               <tbody>
-                {state.items?.map((cmd, idx) => {
+                {state.items.map((cmd, idx) => {
                   return (
                     <tr key={idx}>
                       <td>{cmd.name}</td>
@@ -171,15 +171,13 @@ const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) =
       ) : (
         <AlertMessage
           message={
-            <>
-              <a
-                href={
-                  "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=applications.commands+bot&permissions=8"
-                }
-              >
-                {t("re_authorize")}
-              </a>
-            </>
+            <a
+              href={
+                "https://discord.com/oauth2/authorize?client_id=632843197600759809&scope=applications.commands+bot&permissions=8"
+              }
+            >
+              {t("re_authorize")}
+            </a>
           }
         />
       )}
@@ -193,7 +191,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

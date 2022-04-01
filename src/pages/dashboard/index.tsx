@@ -22,7 +22,7 @@ const Dashboard: React.FC<Props> = ({ isAuth, guilds }: Props) => {
 
   React.useEffect(() => {
     const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
+    setMessage((query.message && `${query.message}`) || null);
 
     if (!isAuth) {
       router.push("/api/auth/login");
@@ -84,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = parseCookies(ctx);
   const res = await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds`, {
     headers: {
-      Auth: cookies?.token,
+      Auth: cookies.token,
     },
   });
 

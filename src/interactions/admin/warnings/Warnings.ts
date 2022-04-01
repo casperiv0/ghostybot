@@ -55,10 +55,10 @@ export default class WarningsCommand extends SubCommand {
         });
       }
 
-      const warnedOn = warning?.date ? new Date(warning?.date)?.toLocaleString() : "N/A";
+      const warnedOn = warning.date ? new Date(warning.date).toLocaleString() : "N/A";
       embed
         .setTitle(`${lang.ADMIN.WARNING} ${id}`)
-        .addField(`**${lang.EVENTS.REASON}**`, warning?.reason || lang.GLOBAL.NOT_SPECIFIED)
+        .addField(`**${lang.EVENTS.REASON}**`, warning.reason || lang.GLOBAL.NOT_SPECIFIED)
         .addField(`**${lang.ADMIN.WARNED_ON}**`, warnedOn);
 
       return interaction.reply({ ephemeral: true, embeds: [embed] });
@@ -66,7 +66,7 @@ export default class WarningsCommand extends SubCommand {
 
     embed
       .setTitle(this.bot.utils.translate(lang.ADMIN.MEMBER_WARNS, { memberTag: user.tag }))
-      .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings?.length || 0).toString())
+      .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings.length || 0).toString())
       .setThumbnail(user.displayAvatarURL({ dynamic: true }));
 
     await interaction.reply({ ephemeral: true, embeds: [embed] });

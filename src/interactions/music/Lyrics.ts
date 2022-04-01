@@ -27,7 +27,7 @@ export default class LyricsCommand extends SubCommand {
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
     const np = queue?.songs[0];
-    const title = interaction.options.getString("query") ?? (np as Song)?.name;
+    const title = interaction.options.getString("query") ?? (np as Song).name;
 
     if (!title) {
       return interaction.reply({

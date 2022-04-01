@@ -74,6 +74,7 @@ export default class Eval extends SubCommand {
         });
       }
 
+      // eslint-disable-next-line no-eval
       let evaluatedCode = await eval(code);
       const typeOf = typeof evaluatedCode;
 

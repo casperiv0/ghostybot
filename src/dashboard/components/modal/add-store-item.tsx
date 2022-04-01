@@ -49,7 +49,7 @@ export const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
 
   return (
     <Modal id="addStoreItem" title={t("add_store_item")}>
-      {response?.error ? <AlertMessage message={response?.error} /> : null}
+      {response?.error ? <AlertMessage message={response.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">

@@ -5,7 +5,7 @@ export interface Choice extends DJS.ApplicationCommandOptionChoice {
   /**
    * @returns the URL to the image
    */
-  fetchUrl: () => Promise<string>;
+  fetchUrl(): Promise<string>;
 }
 
 export const animalChoices: Choice[] = [

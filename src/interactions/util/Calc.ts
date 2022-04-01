@@ -29,7 +29,7 @@ export default class CalculateCommand extends SubCommand {
   ) {
     const calculation = interaction.options.getString("calculation", true);
 
-    const result = math?.evaluate?.(calculation);
+    const result = math.evaluate(calculation);
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

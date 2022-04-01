@@ -9,7 +9,7 @@ export default class ChannelDeleteEvent extends Event {
 
   async execute(bot: Bot, channel: DJS.GuildChannel) {
     try {
-      if (!channel.guild?.available) return;
+      if (!channel.guild.available) return;
       if (!channel.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;
@@ -22,7 +22,7 @@ export default class ChannelDeleteEvent extends Event {
       });
 
       const embed = bot.utils
-        .baseEmbed({ author: bot?.user })
+        .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_DELETED)
         .setDescription(msg)
         .setColor("RED")

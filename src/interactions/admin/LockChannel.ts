@@ -44,7 +44,7 @@ export default class LockChannelCommand extends SubCommand {
     const reason = interaction.options.getString("reason", true);
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (!channel?.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (!channel.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,

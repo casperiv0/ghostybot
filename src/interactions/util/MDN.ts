@@ -39,7 +39,7 @@ export default class MDNInteraction extends Command {
         color: "#5865f2",
         footer: {
           text: interaction.user.username,
-          icon_url: interaction.user?.displayAvatarURL({ dynamic: true }),
+          icon_url: interaction.user.displayAvatarURL({ dynamic: true }),
         },
       });
 

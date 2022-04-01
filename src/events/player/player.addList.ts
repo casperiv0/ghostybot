@@ -11,9 +11,9 @@ export default class PlayerAddListEvent extends Event {
     try {
       const channel = queue.textChannel;
 
-      if (!channel?.guild?.available) return;
+      if (!channel?.guild.available) return;
       if (!bot.utils.hasSendPermissions(channel)) return;
-      const lang = await bot.utils.getGuildLang(channel?.guild?.id);
+      const lang = await bot.utils.getGuildLang(channel.guild.id);
       if (!playlist) return;
 
       const embed = bot.utils.baseEmbed({ author: playlist.user ?? null }).setTitle(
@@ -23,7 +23,7 @@ export default class PlayerAddListEvent extends Event {
         }),
       );
 
-      return channel?.send({ embeds: [embed] });
+      return channel.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

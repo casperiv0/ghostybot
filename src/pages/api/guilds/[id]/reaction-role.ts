@@ -39,7 +39,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
         await Promise.all(
           reactions.map(async (reaction) => {
-            if (!reaction.reactions || reaction.reactions?.length <= 0) {
+            if (!reaction.reactions || reaction.reactions.length <= 0) {
               errored = true;
               return res.status(400).json({
                 error: "Each reaction must have at least 1 emoji to react to.",

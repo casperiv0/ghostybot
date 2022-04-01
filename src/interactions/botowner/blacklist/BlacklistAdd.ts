@@ -52,7 +52,7 @@ export default class BlacklistAdd extends SubCommand {
     }
 
     const owners = process.env["OWNERS"];
-    if (owners?.includes(user?.id)) {
+    if (owners?.includes(user.id)) {
       return interaction.editReply({
         content: lang.BOT_OWNER.CANNOT_BL_OWNER,
       });

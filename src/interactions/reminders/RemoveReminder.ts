@@ -27,7 +27,7 @@ export default class RemoveReminderCommand extends SubCommand {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
     if (!user) return;
 
-    if (!user?.reminder.hasReminder) {
+    if (!user.reminder.hasReminder) {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NO_REMINDER_SET });
     }
 
@@ -58,7 +58,7 @@ export default class RemoveReminderCommand extends SubCommand {
 
     await this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
       reminder: {
-        hasReminder: user.reminder.reminders?.length - 1 > 0,
+        hasReminder: user.reminder.reminders.length - 1 > 0,
         reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),
       },
     });

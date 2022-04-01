@@ -23,7 +23,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
   const [reactions, setReactions] = React.useState<IReaction[]>(guild?.reactions ?? []);
   const [state, setState] = React.useState<State>({ state: "idle", message: null });
 
-  const { t: t } = useTranslation("reaction-role");
+  const { t } = useTranslation("reaction-role");
   const { t: commonT } = useTranslation("common");
 
   async function deleteReaction(reaction: IReaction) {
@@ -100,13 +100,13 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
     <>
       <Head>
         <title>
-          {guild?.name} - {t("Manage reaction roles")}
+          {guild.name} - {t("Manage reaction roles")}
         </title>
       </Head>
 
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("manage_reaction_roles")}
+          {guild.name} - {t("manage_reaction_roles")}
         </h4>
 
         <div>
@@ -173,7 +173,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}?reactions=true`,
       {
         headers: {
-          auth: cookies?.token,
+          auth: cookies.token,
         },
       },
     )

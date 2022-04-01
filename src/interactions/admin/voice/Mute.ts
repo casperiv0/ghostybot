@@ -43,7 +43,7 @@ export default class VoiceMuteCommand extends SubCommand {
       });
     }
 
-    if (!member.voice.channel || member?.voice?.serverMute) {
+    if (!member.voice.channel || member.voice.serverMute) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.USER_NOT_VOICE_OR_MUTED,

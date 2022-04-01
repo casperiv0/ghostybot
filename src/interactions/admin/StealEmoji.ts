@@ -50,7 +50,7 @@ export default class StealEmojiCommand extends SubCommand {
 
     if (customEmoji?.id) {
       const link = `https://cdn.discordapp.com/emojis/${customEmoji.id}.${
-        customEmoji?.animated ? "gif" : "png"
+        customEmoji.animated ? "gif" : "png"
       }`;
 
       const error = await this.createEmoji(interaction, link, name, lang);

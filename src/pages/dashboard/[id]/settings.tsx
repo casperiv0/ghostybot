@@ -27,7 +27,7 @@ export interface Field {
   enabled: boolean;
   id: string;
   title: string;
-  onChecked: () => void;
+  onChecked(): void;
   fields: FieldItem[];
 }
 
@@ -46,11 +46,11 @@ export interface State {
 const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
   const [state, setState] = React.useState<State>({ state: "idle", message: null });
 
-  const [welcomeData, setWelcomeData] = React.useState(guild?.welcome_data ?? {});
-  const [leaveData, setLeaveData] = React.useState(guild?.leave_data ?? {});
-  const [levelData, setLevelData] = React.useState(guild?.level_data ?? {});
-  const [verifyData, setVerifyData] = React.useState(guild?.verify_data ?? {});
-  const [ticketData, setTicketData] = React.useState(guild?.ticket_data ?? {});
+  const [welcomeData, setWelcomeData] = React.useState(guild.welcome_data ?? {});
+  const [leaveData, setLeaveData] = React.useState(guild.leave_data ?? {});
+  const [levelData, setLevelData] = React.useState(guild.level_data ?? {});
+  const [verifyData, setVerifyData] = React.useState(guild.verify_data ?? {});
+  const [ticketData, setTicketData] = React.useState(guild.ticket_data ?? {});
   const [suggestChannel, setSuggestChannel] = React.useState(guild.suggest_channel || "");
   const [announceChannel, setAnnounceChannel] = React.useState(guild.announcement_channel || "");
   const [language, setLanguage] = React.useState(guild.locale || "");
@@ -70,13 +70,13 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
 
   const fields: Field[] = [
     {
-      enabled: welcomeData?.enabled ?? false,
+      enabled: welcomeData.enabled ?? false,
       id: "welcome",
       title: t("welcome"),
       onChecked: () => {
         setWelcomeData((prev) => ({
           ...prev,
-          enabled: !welcomeData?.enabled,
+          enabled: !welcomeData.enabled,
         }));
       },
       fields: [
@@ -84,7 +84,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
           type: "select",
           id: "welcome_channel",
           label: t("welcome_channel"),
-          value: welcomeData?.channel_id || "",
+          value: welcomeData.channel_id || "",
           onChange: (e) =>
             setWelcomeData((prev) => ({
               ...prev,
@@ -95,7 +95,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "select",
           id: "welcome_role",
-          value: welcomeData?.role_id || "",
+          value: welcomeData.role_id || "",
           onChange: (e) =>
             setWelcomeData((prev) => ({
               ...prev,
@@ -107,7 +107,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "textarea",
           id: "welcome_message",
-          value: welcomeData?.message || "",
+          value: welcomeData.message || "",
           onChange: (e) =>
             setWelcomeData((prev) => ({
               ...prev,
@@ -118,7 +118,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "switch",
           id: "welcome_ignore_bots",
-          value: `${welcomeData?.ignore_bots ?? false}`,
+          value: `${welcomeData.ignore_bots ?? false}`,
           onChange: () =>
             setWelcomeData((prev) => ({
               ...prev,
@@ -129,13 +129,13 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
     },
     {
-      enabled: leaveData?.enabled ?? false,
+      enabled: leaveData.enabled ?? false,
       id: "leave_data",
       title: t("leave_message"),
       onChecked: () => {
         setLeaveData((prev) => ({
           ...prev,
-          enabled: !leaveData?.enabled,
+          enabled: !leaveData.enabled,
         }));
       },
       fields: [
@@ -143,7 +143,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
           type: "select",
           id: "leave_channel",
           label: t("leave_channel"),
-          value: leaveData?.channel_id || "",
+          value: leaveData.channel_id || "",
           onChange: (e) =>
             setLeaveData((prev) => ({
               ...prev,
@@ -154,7 +154,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "textarea",
           id: "leave_message",
-          value: leaveData?.message || "",
+          value: leaveData.message || "",
           onChange: (e) =>
             setLeaveData((prev) => ({
               ...prev,
@@ -165,7 +165,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "switch",
           id: "leave_ignore_bots",
-          value: `${leaveData?.ignore_bots ?? false}`,
+          value: `${leaveData.ignore_bots ?? false}`,
           onChange: () =>
             setLeaveData((prev) => ({
               ...prev,
@@ -176,20 +176,20 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
     },
     {
-      enabled: levelData?.enabled ?? false,
+      enabled: levelData.enabled ?? false,
       id: "level_data",
       title: t("levels"),
       onChecked: () => {
         setLevelData((prev) => ({
           ...prev,
-          enabled: !levelData?.enabled,
+          enabled: !levelData.enabled,
         }));
       },
       fields: [
         {
           type: "textarea",
           id: "level_message",
-          value: levelData?.message || "",
+          value: levelData.message || "",
           onChange: (e) =>
             setLevelData((prev) => ({
               ...prev,
@@ -200,20 +200,20 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
     },
     {
-      enabled: ticketData?.enabled ?? false,
+      enabled: ticketData.enabled ?? false,
       id: "ticket_data",
       title: t("tickets"),
       onChecked: () => {
         setTicketData((prev) => ({
           ...prev,
-          enabled: !ticketData?.enabled,
+          enabled: !ticketData.enabled,
         }));
       },
       fields: [
         {
           type: "select",
           id: "ticket_role",
-          value: ticketData?.role_id || "",
+          value: ticketData.role_id || "",
           onChange: (e) =>
             setTicketData((prev) => ({
               ...prev,
@@ -225,7 +225,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "select",
           id: "ticket_parent_id",
-          value: ticketData?.parent_id || "",
+          value: ticketData.parent_id || "",
           onChange: (e) =>
             setTicketData((prev) => ({
               ...prev,
@@ -237,20 +237,20 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       ],
     },
     {
-      enabled: verifyData?.enabled ?? false,
+      enabled: verifyData.enabled ?? false,
       id: "verify_data",
       title: t("verification"),
       onChecked: () => {
         setVerifyData((prev) => ({
           ...prev,
-          enabled: !verifyData?.enabled,
+          enabled: !verifyData.enabled,
         }));
       },
       fields: [
         {
           type: "select",
           id: "verify_channel_id",
-          value: verifyData?.channel_id || "",
+          value: verifyData.channel_id || "",
           onChange: (e) =>
             setVerifyData((prev) => ({
               ...prev,
@@ -262,7 +262,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           type: "select",
           id: "verify_role_id",
-          value: verifyData?.role_id || "",
+          value: verifyData.role_id || "",
           onChange: (e) =>
             setVerifyData((prev) => ({
               ...prev,
@@ -402,12 +402,12 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
     <>
       <Head>
         <title>
-          {guild?.name} - {t("settings")}
+          {guild.name} - {t("settings")}
         </title>
       </Head>
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("settings")}
+          {guild.name} - {t("settings")}
         </h4>
         <Link href={`/dashboard/${guild.id}`}>
           <a href={`/dashboard/${guild.id}`} className="btn btn-primary">
@@ -451,7 +451,7 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
                     onChange={field.onChecked}
                   />
                 </header>
-                {field.fields?.map((item, idx) => {
+                {field.fields.map((item, idx) => {
                   return (
                     <div className="form-group" key={`field-${idx}`}>
                       {item.type !== "switch" ? (
@@ -550,7 +550,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

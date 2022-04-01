@@ -32,7 +32,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
   React.useEffect(() => {
     const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
+    setMessage((query.message && `${query.message}`) || null);
   }, [router]);
 
   function handleSearch(value: string) {
@@ -98,7 +98,7 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
       {message ? <AlertMessage type="success" message={message} /> : null}
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("manage_categories")}
+          {guild.name} - {t("manage_categories")}
         </h4>
 
         <div>
@@ -124,9 +124,9 @@ const ManageCategories = ({ guild, isAuth, error }: Props) => {
 
       <div className="grid">
         {filtered
-          ?.filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
-          ?.map((category, idx) => {
-            const isDisabled = guild.disabled_categories?.find((c) => c === category);
+          .filter((category) => !["botowner", "exempt", "disabled", "custom"].includes(category))
+          .map((category, idx) => {
+            const isDisabled = guild.disabled_categories.find((c) => c === category);
             return (
               <div id={`${idx}`} key={category} className="card cmd-card">
                 <p>{category}</p>
@@ -153,7 +153,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

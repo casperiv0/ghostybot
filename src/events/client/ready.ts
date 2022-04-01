@@ -54,7 +54,7 @@ export default class ReadyEvent extends Event {
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];
 
-      bot?.user?.setActivity(status.value, { type: status.type });
+      bot.user?.setActivity(status.value, { type: status.type });
     }, 60_000);
   }
 }

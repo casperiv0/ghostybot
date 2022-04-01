@@ -46,7 +46,7 @@ export default class WebCommand extends SubCommand {
 
     const isNSFW = await this.isNsfw(url);
 
-    if (!(interaction.channel as DJS.TextChannel)?.nsfw && isNSFW) {
+    if (!(interaction.channel as DJS.TextChannel).nsfw && isNSFW) {
       return interaction.reply({ content: lang.UTIL.WEB_NSFW });
     }
 

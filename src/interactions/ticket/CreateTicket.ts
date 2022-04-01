@@ -58,7 +58,7 @@ export default class CreateTicket extends SubCommand {
       },
     ];
 
-    if (guild.ticket_data?.role_id !== null && guild.ticket_data?.role_id !== "Disabled") {
+    if (guild.ticket_data.role_id !== null && guild.ticket_data.role_id !== "Disabled") {
       DEFAULT_PERMS.push({
         type: "role",
         id: guild.ticket_data.role_id as DJS.Snowflake,

@@ -36,7 +36,7 @@ export default class MagikCommand extends SubCommand {
     const intensity = interaction.options.getInteger("intensity") ?? Math.floor(Math.random() * 10);
 
     const data = (await request(
-      `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user?.displayAvatarURL({
+      `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user.displayAvatarURL({
         format: "png",
       })}`,
     ).then((res) => res.body.json())) as { message: string };

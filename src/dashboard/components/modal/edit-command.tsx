@@ -77,7 +77,7 @@ export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) =
 
   return (
     <Modal id="edit-command" title={t("update_command")}>
-      {response?.error ? <AlertMessage message={response?.error} /> : null}
+      {response?.error ? <AlertMessage message={response.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">

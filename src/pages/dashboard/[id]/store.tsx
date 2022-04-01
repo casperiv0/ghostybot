@@ -33,7 +33,7 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
 
   React.useEffect(() => {
     const { query } = router;
-    setMessage((query?.message && `${query.message}`) || null);
+    setMessage((query.message && `${query.message}`) || null);
   }, [router]);
 
   async function deleteItem(name: string) {
@@ -82,12 +82,12 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
       <AddStoreItem guild={guild} />
       <Head>
         <title>
-          {guild?.name} - {t("store")}
+          {guild.name} - {t("store")}
         </title>
       </Head>
       <div className="page-title">
         <h4>
-          {guild?.name} - {t("store")}
+          {guild.name} - {t("store")}
         </h4>
 
         <div>
@@ -102,7 +102,7 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
         </div>
       </div>
 
-      {guild?.store?.length > 0 ? (
+      {guild.store.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -112,7 +112,7 @@ const Store: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {guild?.store?.map((item, idx) => {
+            {guild.store.map((item, idx) => {
               return (
                 <tr key={idx}>
                   <td className="cmd-response">{item.name}</td>
@@ -139,7 +139,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const data = (await (
     await fetch(`${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${ctx.query.id}`, {
       headers: {
-        auth: cookies?.token,
+        auth: cookies.token,
       },
     })
   ).json()) as any;

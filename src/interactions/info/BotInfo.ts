@@ -23,7 +23,7 @@ export default class BotInfoCommand extends SubCommand {
     await interaction.deferReply();
 
     const uptime = dayjs
-      .duration(this.bot?.uptime ?? 0)
+      .duration(this.bot.uptime ?? 0)
       .format(" D [days], H [hrs], m [mins], s [secs]");
 
     const userCount = this.bot.utils.formatNumber(

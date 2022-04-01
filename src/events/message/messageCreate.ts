@@ -10,15 +10,15 @@ export default class MessageEvent extends Event {
 
   async execute(bot: Bot, message: DJS.Message) {
     try {
-      if (!message?.guild?.available) return;
+      if (!message.guild?.available) return;
       if (message.channel.type === "DM") return;
       if (!bot.utils.hasSendPermissions(message)) return;
 
       if (!bot.user) return;
-      if (!message.guild?.me) return;
+      if (!message.guild.me) return;
 
-      const guildId = message?.guild?.id;
-      const userId = message?.author?.id;
+      const guildId = message.guild.id;
+      const userId = message.author.id;
 
       const guild = await bot.utils.getGuildById(guildId);
       // an error occurred
@@ -28,7 +28,7 @@ export default class MessageEvent extends Event {
       const user = await bot.utils.getUserById(userId, guildId);
       const mentions = message.mentions.members;
 
-      if (guild?.ignored_channels?.includes(message.channel.id)) return;
+      if (guild.ignored_channels.includes(message.channel.id)) return;
 
       // sticky
       const sticky = await bot.utils.getSticky(message.channel.id);
@@ -36,18 +36,16 @@ export default class MessageEvent extends Event {
 
       if (isSticky) {
         if (!sticky) return;
-        if (message.author.bot || message.content === sticky?.message) return;
+        if (message.author.bot || message.content === sticky.message) return;
         if (
-          !message.channel
-            ?.permissionsFor(message.guild.me)
-            ?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)
+          !message.channel.permissionsFor(message.guild.me).has(DJS.Permissions.FLAGS.VIEW_CHANNEL)
         ) {
           return;
         }
 
         const msg = await message.channel.messages.fetch(sticky.message_id);
         if (msg) {
-          msg.deletable && msg?.delete();
+          msg.deletable && msg.delete();
         }
 
         const stickyMessage = await message.channel.send({
@@ -58,11 +56,11 @@ export default class MessageEvent extends Event {
       }
 
       // check if mention user is afk
-      if (mentions && mentions?.size > 0) {
+      if (mentions && mentions.size > 0) {
         mentions.forEach(async (member) => {
           const user = await bot.utils.getUserById(member.user.id, guildId);
 
-          if (user?.afk?.is_afk) {
+          if (user?.afk.is_afk) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle("AFK!")
@@ -107,7 +105,7 @@ export default class MessageEvent extends Event {
         const newLevel = bot.utils.calculateXp(user.xp + xp);
 
         if (newLevel > level) {
-          if (guild?.level_data.enabled) {
+          if (guild.level_data.enabled) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
@@ -128,7 +126,7 @@ export default class MessageEvent extends Event {
 
             setTimeout(() => {
               if (!msg) return;
-              msg.deletable && msg?.delete();
+              msg.deletable && msg.delete();
             }, 10_000);
           }
         }
@@ -152,7 +150,7 @@ export default class MessageEvent extends Event {
       }
 
       if (
-        !message.channel.permissionsFor(message.guild.me)?.has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
+        !message.channel.permissionsFor(message.guild.me).has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
         bot.user.id !== message.author.id
       ) {
         return message.channel.send({

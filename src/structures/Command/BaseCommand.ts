@@ -19,13 +19,13 @@ export interface BaseCommandOptions {
   options?: DJS.ApplicationCommandOptionData[];
 }
 
-export type ValidateReturn = {
+export interface ValidateReturn {
   /** whether or not the validation was ok */
   ok: boolean;
 
   /** if the validation was **not** ok, include an error */
   error?: DJS.MessagePayload | DJS.InteractionReplyOptions;
-};
+}
 
 export abstract class BaseCommand<TOptions extends BaseCommandOptions = BaseCommandOptions> {
   protected _options: TOptions;

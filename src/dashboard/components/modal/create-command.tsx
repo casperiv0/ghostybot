@@ -55,7 +55,7 @@ export const CreateCommandModal: React.FC<Props> = ({ guildId }: Props) => {
 
   return (
     <Modal id="createCommandModal" title={t("create_command")}>
-      {response?.error ? <AlertMessage message={response?.error} /> : null}
+      {response?.error ? <AlertMessage message={response.error} /> : null}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="name">

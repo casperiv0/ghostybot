@@ -23,7 +23,7 @@ export default class MessageUpdateEvent extends Event {
       if (!oldMsg.content || !newMsg.content) {
         return;
       }
-      if (newMsg.author?.id === bot.user?.id) return;
+      if (newMsg.author.id === bot.user?.id) return;
       if (oldMsg.content === newMsg.content) return;
 
       const pOldMsg = oldMsg.content.length > 1024 ? `${oldMsg.content.slice(0, 1010)}...` : oldMsg;
@@ -36,7 +36,7 @@ export default class MessageUpdateEvent extends Event {
         .setTitle(`Message updated in **${(newMsg.channel as DJS.TextChannel).name}**`)
         .setDescription(
           `Message send by **${
-            newMsg.author?.tag || newMsg.author?.id || "Unknown"
+            newMsg.author.tag || newMsg.author.id || "Unknown"
           }** was edited [jump to message](${messageLink})`,
         )
         .addField("**Old Message**", `${pOldMsg}`)

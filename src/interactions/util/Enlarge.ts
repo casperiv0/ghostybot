@@ -33,7 +33,7 @@ export default class EnlargeCommand extends SubCommand {
 
     if (custom?.id) {
       embed.setImage(
-        `https://cdn.discordapp.com/emojis/${custom.id}.${custom?.animated ? "gif" : "png"}`,
+        `https://cdn.discordapp.com/emojis/${custom.id}.${custom.animated ? "gif" : "png"}`,
       );
 
       return interaction.reply({ embeds: [embed] });

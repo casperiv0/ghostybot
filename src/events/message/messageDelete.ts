@@ -19,7 +19,7 @@ export default class MessageDeleteEvent extends Event {
       const webhook = await bot.utils.getWebhook(message.guild);
       if (!webhook) return;
 
-      if (message.author?.id === bot.user?.id) return;
+      if (message.author.id === bot.user?.id) return;
 
       const embed = bot.utils
         .baseEmbed(message)

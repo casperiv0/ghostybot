@@ -35,7 +35,7 @@ export default class UnlockChannelCommand extends SubCommand {
   ) {
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (channel?.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (channel.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHAN_NOT_LOCK,

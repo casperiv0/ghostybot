@@ -163,15 +163,15 @@ export class Util {
     const error = err as DJS.DiscordAPIError | DJS.HTTPError | Error;
 
     try {
-      if (error.message?.includes("Missing Access")) return;
-      if (error.message?.includes("Unknown Message")) return;
-      if (error.stack?.includes?.("DeprecationWarning: Listening to events on the Db class")) {
+      if (error.message.includes("Missing Access")) return;
+      if (error.message.includes("Unknown Message")) return;
+      if (error.stack?.includes("DeprecationWarning: Listening to events on the Db class")) {
         return;
       }
 
       const channelId = process.env["ERRORLOGS_CHANNEL_ID"] as DJS.Snowflake | undefined;
       if (!channelId) {
-        return this.bot.logger.error("ERR_LOG", error?.stack || `${error}`);
+        return this.bot.logger.error("ERR_LOG", error.stack || `${error}`);
       }
 
       const channel = (this.bot.channels.cache.get(channelId) ||
@@ -181,7 +181,7 @@ export class Util {
         !channel ||
         !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
       ) {
-        return this.bot.logger.error("ERR_LOG", error?.stack || `${error}`);
+        return this.bot.logger.error("ERR_LOG", error.stack || `${error}`);
       }
 
       const message = {
@@ -202,8 +202,8 @@ export class Util {
         jsonString = "";
       }
 
-      if (jsonString?.length >= 2048) {
-        jsonString = jsonString ? `${jsonString?.slice(0, 2045)}...` : "";
+      if (jsonString.length >= 2048) {
+        jsonString = jsonString ? `${jsonString.slice(0, 2045)}...` : "";
       }
 
       if (typeof stack === "string" && stack.length >= 2048) {
@@ -216,7 +216,7 @@ export class Util {
         .addField("Code", code.toString(), true)
         .addField("httpStatus", httpStatus.toString(), true)
         .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", codeBlock(jsonString?.slice(0, 2045)))
+        .addField("Request data", codeBlock(jsonString.slice(0, 2045)))
         .setDescription(codeBlock(stack as string))
         .setColor(type === "error" ? "RED" : "ORANGE");
 
@@ -256,7 +256,6 @@ export class Util {
         const fetched = await message.guild.members.fetch(arg).catch(() => null);
 
         if (fetched) {
-          // eslint-disable-next-line
           member = fetched;
         }
       }
@@ -270,8 +269,8 @@ export class Util {
     } catch (e) {
       const error = e instanceof Error ? e : null;
 
-      if (error?.message?.includes("DiscordAPIError: Unknown Member")) return undefined;
-      if (error?.message?.includes("is not a snowflake.")) return undefined;
+      if (error?.message.includes("DiscordAPIError: Unknown Member")) return undefined;
+      if (error?.message.includes("is not a snowflake.")) return undefined;
 
       this.sendErrorLog(e, "error");
     }
@@ -302,7 +301,7 @@ export class Util {
     if (!this.bot.user) return;
     if (
       !(channel as DJS.TextChannel)
-        .permissionsFor(this.bot.user?.id)
+        .permissionsFor(this.bot.user.id)
         ?.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)
     ) {
       return;
@@ -329,7 +328,7 @@ export class Util {
     const g = await this.getGuildById(guild.id);
     if (!g) return undefined;
 
-    const webhook = webhooks.find((w) => w.name === `audit-logs-${g?.audit_channel}`);
+    const webhook = webhooks.find((w) => w.name === `audit-logs-${g.audit_channel}`);
     if (!webhook) return undefined;
 
     return webhook;
@@ -456,7 +455,7 @@ export class Util {
             const perms: string[] = [];
             Object.keys(DJS.Permissions.FLAGS).map((key) => {
               if (DJS.Permissions.FLAGS[key] === p) {
-                perms.push(`\`${lang?.[key]}\``);
+                perms.push(`\`${lang[key]}\``);
               }
             });
 
@@ -539,7 +538,7 @@ export class Util {
 
     permissions.forEach((perm) => {
       if (
-        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!)?.has(perm)
+        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!).has(perm)
       ) {
         neededPerms.push(perm);
       }
@@ -561,7 +560,7 @@ export class Util {
       if (
         !(interaction.channel as DJS.TextChannel)
           .permissionsFor(interaction.member as any)
-          ?.has(perm)
+          .has(perm)
       ) {
         neededPerms.push(perm);
       }
@@ -634,7 +633,7 @@ export class Util {
     return Number.parseFloat(String(n)).toLocaleString("be-BE");
   }
 
-  encode(obj: { [key: string]: unknown }) {
+  encode(obj: Record<string, unknown>) {
     let string = "";
 
     for (const [key, value] of Object.entries(obj)) {

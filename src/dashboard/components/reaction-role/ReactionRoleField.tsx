@@ -8,8 +8,8 @@ interface Props {
   index: number;
   guild: Guild<true>;
   reaction: IReaction;
-  deleteReaction: (r: IReaction) => void;
-  updateReaction: (r: IReaction) => void;
+  deleteReaction(r: IReaction): void;
+  updateReaction(r: IReaction): void;
 }
 
 export const ReactionRoleField = ({
@@ -23,7 +23,7 @@ export const ReactionRoleField = ({
   const [data, setData] = React.useState<Reaction[]>([]);
   const [show, setShow] = React.useState(false);
 
-  const { t: t } = useTranslation("reaction-role");
+  const { t } = useTranslation("reaction-role");
   const { t: commonT } = useTranslation("common");
 
   React.useEffect(() => {

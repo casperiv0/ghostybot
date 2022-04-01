@@ -11,9 +11,9 @@ export default class PlayerAddSongEvent extends Event {
     try {
       const channel = queue.textChannel;
 
-      if (!channel?.guild?.available) return;
+      if (!channel?.guild.available) return;
       if (!bot.utils.hasSendPermissions(channel)) return;
-      const lang = await bot.utils.getGuildLang(channel?.guild?.id);
+      const lang = await bot.utils.getGuildLang(channel.guild.id);
 
       const embed = bot.utils
         .baseEmbed({ author: song.user ?? null })
@@ -32,7 +32,7 @@ export default class PlayerAddSongEvent extends Event {
         embed.setImage(song.thumbnail);
       }
 
-      return channel?.send({ embeds: [embed] });
+      return channel.send({ embeds: [embed] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

@@ -42,7 +42,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         });
       }
 
-      if (guild.store?.find((x) => x.name === name)) {
+      if (guild.store.find((x) => x.name === name)) {
         return res.status(400).json({
           error: req.bot.utils.translate(lang.ECONOMY.ALREADY_EXISTS, { item: name }),
           status: "error",
@@ -56,7 +56,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       return res.json({ status: "success" });
     }
     case "DELETE": {
-      const filtered = guild.store?.filter(
+      const filtered = guild.store.filter(
         (item: StoreItem) => item.name.toLowerCase() !== (query.name as string).toLowerCase(),
       );
 
