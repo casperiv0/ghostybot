@@ -3,7 +3,6 @@ import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
 import { ApiRequest } from "types/ApiRequest";
-import StickyModel, { Sticky } from "models/Sticky.model";
 import { prisma } from "./prisma";
 import { Prisma } from "@prisma/client";
 
@@ -381,21 +380,23 @@ export class Util {
 
   async addSticky(messageId: string, channelId: string, message: string) {
     try {
-      const sticky = new StickyModel({
-        message_id: messageId,
-        message,
-        channel_id: channelId,
+      await prisma.stickies.create({
+        data: {
+          message_id: messageId,
+          message,
+          channel_id: channelId,
+        },
       });
-
-      await sticky.save();
     } catch (error) {
       this.bot.logger.error("add_sticky", error);
     }
   }
 
-  async getSticky(channelId: string): Promise<Sticky | undefined> {
+  async getSticky(channelId: string) {
     try {
-      const sticky = await StickyModel.findOne({ channel_id: channelId });
+      const sticky = await prisma.stickies.findFirst({
+        where: { channel_id: channelId },
+      });
 
       return sticky;
     } catch (error) {
@@ -405,7 +406,9 @@ export class Util {
 
   async removeSticky(channelId: string) {
     try {
-      await StickyModel.deleteMany({ channel_id: channelId });
+      await prisma.stickies.deleteMany({
+        where: { channel_id: channelId },
+      });
     } catch (e) {
       console.error(e);
     }

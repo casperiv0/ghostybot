@@ -31,7 +31,7 @@ type GuildsLevelData {
 }
 
 type GuildsSlashCommands {
-  description  String
+  description  String?
   name         String
   response     String
   slash_cmd_id String
@@ -129,7 +129,31 @@ model bots {
 }
 
 model giveaways {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  messageId         String   @unique
+  channelId         String
+  guildId           String
+  startAt           Int?
+  endAt             Int?
+  ended             Boolean?
+  winnerCount       Int?
+  prize             String?
+  messages          Json?
+  thumbnail         String?
+  hostedBy          String?
+  winnerIds         Json?
+  reaction          Json?
+  botsCanWin        Boolean?
+  embedColor        Json?
+  embedColorEnd     Json?
+  exemptPermissions Json?
+  exemptMembers     String?
+  bonusEntries      String?
+  extraData         Json?
+  lastChance        Json?
+  pauseOptions      Json?
+  isDrop            Boolean?
+  allowedMentions   Json?
 }
 
 model guilds {
@@ -149,7 +173,6 @@ model guilds {
   verify_data          GuildsVerifyData?
   welcome_data         GuildsWelcomeData?
   ticket_data          GuildsTicketData?
-  sticky_data          StickyData?
   locale               String                 @default("english")
   muted_role_id        String?
   slash_commands       GuildsSlashCommands[]
@@ -168,7 +191,10 @@ model reactions {
 }
 
 model stickies {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  channel_id String
+  message    String
+  message_id String
 }
 
 model users {

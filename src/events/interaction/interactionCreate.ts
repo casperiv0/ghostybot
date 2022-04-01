@@ -2,7 +2,6 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { SubCommand } from "structures/Command/SubCommand";
-import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import { handleCategories } from "src/interactions/util/Help";
 import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
 import { guilds } from "@prisma/client";
@@ -46,6 +45,7 @@ export default class InteractionEvent extends Event {
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));
 
+      // todo
       const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
       if (blacklistedUsers) {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === interaction.user.id);

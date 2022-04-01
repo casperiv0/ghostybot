@@ -2,6 +2,7 @@ import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
+import { prisma } from "utils/prisma";
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
@@ -51,8 +52,13 @@ export default class MessageEvent extends Event {
         const stickyMessage = await message.channel.send({
           content: sticky.message,
         });
-        sticky.message_id = stickyMessage.id;
-        await sticky.save();
+
+        await prisma.stickies.update({
+          where: { id: sticky.id },
+          data: {
+            message_id: stickyMessage.id,
+          },
+        });
       }
 
       // check if mention user is afk
