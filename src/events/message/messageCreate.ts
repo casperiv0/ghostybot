@@ -105,7 +105,7 @@ export default class MessageEvent extends Event {
         const newLevel = bot.utils.calculateXp(user.xp + xp);
 
         if (newLevel > level) {
-          if (guild.level_data.enabled) {
+          if (guild.level_data?.enabled) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
@@ -162,7 +162,7 @@ export default class MessageEvent extends Event {
       const [prefix, ...cmdName] = cmd.split("");
       const command = cmdName.join("");
 
-      if (prefix === guild.prefix && command === "help") {
+      if (prefix === "!" && command === "help") {
         await this.helpCommand(message, lang);
       }
     } catch (err) {

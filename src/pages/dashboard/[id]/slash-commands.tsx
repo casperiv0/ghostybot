@@ -14,7 +14,7 @@ import { AlertMessage } from "@components/AlertMessage";
 import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { useSlashStore } from "src/dashboard/state/slashState";
-import { SlashCommand } from "models/Guild.model";
+import { GuildsSlashCommands } from "@prisma/client";
 
 interface Props {
   guild: Guild | null;
@@ -24,7 +24,7 @@ interface Props {
 
 const CustomSlashCommands: React.FC<Props> = ({ guild, isAuth, error }: Props) => {
   const [message, setMessage] = React.useState<string | null>(null);
-  const [tempCommand, setTempCommand] = React.useState<SlashCommand | null>(null);
+  const [tempCommand, setTempCommand] = React.useState<GuildsSlashCommands | null>(null);
 
   const router = useRouter();
   const { t } = useTranslation("guilds");

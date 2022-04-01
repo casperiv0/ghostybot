@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import WarningModel from "models/Warning.model";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { prisma } from "utils/prisma";
 
 export default class RemoveWarningCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -53,14 +53,15 @@ export default class RemoveWarningCommand extends SubCommand {
     }
 
     const warning = warnings[id - 1];
-
     if (!warning) {
       return interaction.editReply({
         content: "That warning was not found",
       });
     }
 
-    await WarningModel.findByIdAndDelete(warning._id).catch(() => null);
+    await prisma.warnings.deleteMany({
+      where: { id: warning.id },
+    });
 
     await interaction.editReply({ content: "Successfully removed the warning." });
   }

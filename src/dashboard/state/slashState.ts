@@ -1,9 +1,9 @@
-import { SlashCommand } from "models/Guild.model";
+import type { GuildsSlashCommands } from "@prisma/client";
 import create from "zustand";
 
 interface SlashStore {
-  items: SlashCommand[];
-  setItems(items: SlashCommand[]): void;
+  items: GuildsSlashCommands[];
+  setItems(items: GuildsSlashCommands[]): void;
 
   message: string | null;
   setMessage(str: string): void;
@@ -11,7 +11,7 @@ interface SlashStore {
 
 export const useSlashStore = create<SlashStore>((set) => ({
   items: [],
-  setItems: (items: SlashCommand[]) => set({ items }),
+  setItems: (items: GuildsSlashCommands[]) => set({ items }),
 
   message: null,
   setMessage: (v: string) => set({ message: v }),

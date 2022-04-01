@@ -1,11 +1,11 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
-import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
 import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import { handleCategories } from "src/interactions/util/Help";
 import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
+import { guilds } from "@prisma/client";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
@@ -28,7 +28,7 @@ export default class InteractionEvent extends Event {
         await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
           reminder: {
             hasReminder: user.reminder.reminders.length - 1 > 0,
-            reminders: user.reminder.reminders.filter((reminder) => reminder._id !== id),
+            reminders: user.reminder.reminders.filter((reminder) => reminder.shortId !== id),
           },
         });
 
@@ -131,7 +131,7 @@ export default class InteractionEvent extends Event {
     }
   }
 
-  isSubCommandDisabled(dbGuild: IGuild, interaction: DJS.CommandInteraction) {
+  isSubCommandDisabled(dbGuild: guilds, interaction: DJS.CommandInteraction) {
     const commands = dbGuild.disabled_commands;
 
     const command = this.getCommandName(interaction);

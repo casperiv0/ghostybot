@@ -17,7 +17,7 @@ export default class VerifyCommand extends Command {
     const guild = await this.bot.utils.getGuildById(interaction.guildId);
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id]);
 
-    if (guild?.verify_data.enabled) {
+    if (guild?.verify_data?.enabled) {
       const isCorrectChannel = interaction.channelId === guild.verify_data.channel_id;
 
       if (isCorrectChannel) {

@@ -2,8 +2,8 @@ import { setTimeout } from "node:timers";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { prisma } from "utils/prisma";
 
-import UserModel, { IUser } from "models/User.model";
 import places from "assets/json/places.json";
 
 export default class MoneyLeaderboardCommand extends SubCommand {
@@ -16,16 +16,17 @@ export default class MoneyLeaderboardCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 
-    const data = (await UserModel.find({ guild_id: interaction.guildId! }))
-      .map((v: IUser) => {
-        return { total: v.money + v.bank, ...v.toJSON() };
+    const data = (
+      await prisma.users.findMany({
+        where: { guild_id: interaction.guildId },
       })
-      .sort((a, b) => b.total - a.total)
+    )
+      .sort((a, b) => b.bank + b.money - (a.bank + a.money))
       .splice(0, 10);
 
     const embed = this.bot.utils
@@ -37,11 +38,12 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       const userId = item.user_id;
       const member = await this.bot.utils.findMember(interaction, [userId]);
       const isInPlace = [0, 1, 2].includes(idx);
+      const total = item.bank + item.money;
 
       if (member) {
         embed.addField(
           member.user.username,
-          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(data[idx].total)} ${
+          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(total)} ${
             lang.ECONOMY.TOTAL_BALANCE
           }`,
           true,

@@ -31,7 +31,7 @@ type GuildsLevelData {
 }
 
 type GuildsSlashCommands {
-  description  String?
+  description  String
   name         String
   response     String
   slash_cmd_id String
@@ -96,14 +96,14 @@ type UsersReminderReminders {
   id         String @map("_id")
   channel_id String
   ends_at    Float
-  id_        Int    @map("id")
+  shortId    String
   msg        String
   time       String
 }
 
 type UsersTemproles {
   hasTempRoles Boolean
-  tempRoles    TempRole?
+  tempRoles    TempRole[]
 }
 
 type TempRole {

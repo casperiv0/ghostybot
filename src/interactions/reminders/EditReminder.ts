@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import ms from "ms";
-import { Reminder } from "models/User.model";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -62,13 +61,12 @@ export default class EditReminderCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NOT_FOUND });
     }
 
-    const newReminder: Reminder = {
+    const newReminder = {
       time,
       ends_at: Date.now() + ms(time),
       msg,
       channel_id: reminder.channel_id,
       id: reminder.id,
-      _id: reminder._id,
     };
 
     this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {

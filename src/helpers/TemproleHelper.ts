@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Helper } from "structures/Helper";
-import UserModel, { IUser } from "models/User.model";
+import { prisma } from "utils/prisma";
 
 export default class TemproleHelper extends Helper {
   private TEN_SECOND_INTERVAL = 10_000;
@@ -12,12 +12,14 @@ export default class TemproleHelper extends Helper {
 
   async execute() {
     setInterval(async () => {
-      const roles = await UserModel.find({ "temproles.hasTempRoles": true });
-      if (!roles) return;
+      const roles = await prisma.users.findMany({
+        where: { temproles: { hasTempRoles: true } },
+      });
+      if (!roles.length) return;
 
-      roles.forEach(async (user: IUser) => {
+      roles.forEach(async (user) => {
         user.temproles.tempRoles
-          .filter((r) => r.ms <= Date.now())
+          ?.filter((r) => r.ms <= Date.now())
           .forEach(async (tempRole) => {
             const guild = this.bot.guilds.cache.get(user.guild_id);
             if (!guild) return;

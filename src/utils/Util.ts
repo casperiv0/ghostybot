@@ -2,8 +2,6 @@ import * as DJS from "discord.js";
 import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
-import UserModel, { IUser, UserData } from "models/User.model";
-import WarningModal, { IWarning } from "models/Warning.model";
 import { ApiRequest } from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
 import { prisma } from "./prisma";
@@ -32,13 +30,14 @@ export class Util {
     return count;
   }
 
-  async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
-    try {
-      let user: IUser | undefined = await UserModel.findOne({ user_id: userId, guild_id: guildId });
+  async getUserById(userId: string, guildId: string | undefined) {
+    if (!guildId) return null;
 
-      if (!user) {
-        user = await this.addUser(userId, guildId);
-      }
+    try {
+      const user =
+        (await prisma.users.findFirst({
+          where: { user_id: userId, guild_id: guildId },
+        })) ?? (await this.addUser(userId, guildId));
 
       return user;
     } catch (error) {
@@ -46,15 +45,26 @@ export class Util {
     }
   }
 
-  async getUserWarnings(userId: string, guildId: string | undefined): Promise<IWarning[]> {
-    return WarningModal.find({ user_id: userId, guild_id: guildId });
+  async getUserWarnings(userId: string, guildId: string | undefined) {
+    const warnings = await prisma.warnings.findMany({
+      where: { user_id: userId, guild_id: guildId },
+    });
+
+    return warnings;
   }
 
   async addWarning(userId: string, guildId: string | undefined, reason: string) {
-    try {
-      const warning = new WarningModal({ guild_id: guildId, user_id: userId, reason });
+    if (!guildId) return;
 
-      await warning.save();
+    try {
+      await prisma.warnings.create({
+        data: {
+          guild_id: guildId,
+          user_id: userId,
+          reason,
+          date: Date.now(),
+        },
+      });
     } catch (error) {
       this.bot.logger.error("ADD_WARNING", error);
     }
@@ -62,21 +72,24 @@ export class Util {
 
   async removeUserWarnings(userId: string, guildId: string | undefined) {
     try {
-      await WarningModal.deleteMany({ user_id: userId, guild_id: guildId });
+      await prisma.warnings.deleteMany({
+        where: {
+          user_id: userId,
+          guild_id: guildId,
+        },
+      });
     } catch (error) {
       this.bot.logger.error("REMOVE_USER_WARNINGS", error);
     }
   }
 
-  async addUser(
-    userId: string,
-    guildId: string | undefined,
-    data?: Partial<UserData>,
-  ): Promise<IUser | undefined> {
+  async addUser(userId: string, guildId: string | undefined, data?: any) {
     try {
-      const user: IUser = new UserModel({ user_id: userId, guild_id: guildId, ...data });
-
-      await user.save();
+      const user = await prisma.users.create({
+        user_id: userId,
+        guild_id: guildId,
+        ...data,
+      });
 
       return user;
     } catch (error) {
@@ -87,8 +100,8 @@ export class Util {
   async updateUserById(
     userId: string,
     guildId: string | undefined,
-    data: Partial<UserData>,
-  ): Promise<void> {
+    data: Partial<Prisma.usersUpdateInput>,
+  ) {
     try {
       const user = await this.getUserById(userId, guildId);
 
@@ -97,15 +110,20 @@ export class Util {
         return;
       }
 
-      await UserModel.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
+      await prisma.users.updateMany({
+        where: { user_id: userId, guild_id: guildId },
+        data,
+      });
     } catch (e) {
       console.error(e);
     }
   }
 
-  async removeUser(userId: string, guildId: string): Promise<void> {
+  async removeUser(userId: string, guildId: string) {
     try {
-      await UserModel.findOneAndDelete({ user_id: userId, guild_id: guildId });
+      await prisma.users.deleteMany({
+        where: { user_id: userId, guild_id: guildId },
+      });
     } catch (error) {
       this.bot.logger.error("REMOVE_USER", error);
     }
@@ -153,7 +171,7 @@ export class Util {
         await this.addGuild(guildId);
       }
 
-      await prisma.guilds.update({
+      await prisma.guilds.updateMany({
         where: { guild_id: guildId },
         data,
       });
@@ -164,7 +182,7 @@ export class Util {
 
   async removeGuild(guildId: string): Promise<void> {
     try {
-      await prisma.guilds.delete({ where: { guild_id: guildId } });
+      await prisma.guilds.deleteMany({ where: { guild_id: guildId } });
     } catch (error) {
       this.bot.logger.error("REMOVE_GUILD", error);
     }
