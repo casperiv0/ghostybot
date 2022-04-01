@@ -33,7 +33,7 @@ export default class EditReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const id = interaction.options.getString("id", true);

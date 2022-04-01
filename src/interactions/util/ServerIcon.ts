@@ -12,7 +12,7 @@ export default class ServerIconCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const icon = interaction.guild?.iconURL({ dynamic: true, size: 2048 });

@@ -21,7 +21,7 @@ export default class DadJokeCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
     await interaction.deferReply();
 
     const data = (await request(this.APIs.DadJoke).then((res) => res.body.json())) as Data;

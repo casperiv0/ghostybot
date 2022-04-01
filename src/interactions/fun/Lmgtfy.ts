@@ -19,7 +19,7 @@ export default class LmgtfyCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
     const query = interaction.options.getString("query", true);
     const url = `${this.APIs.Lmgtfy}${encodeURIComponent(query)}`;
 

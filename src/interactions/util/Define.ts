@@ -21,7 +21,7 @@ export default class DefineCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const word = interaction.options.getString("word", true);

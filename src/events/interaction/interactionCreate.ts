@@ -12,14 +12,18 @@ export default class InteractionEvent extends Event {
     super(bot, "interactionCreate");
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+  async execute(bot: Bot, interaction: DJS.Interaction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
       return handleCategories(interaction, bot);
     }
 
-    if (interaction.isButton() && interaction.customId.startsWith(CANCEL_REMINDER_ID)) {
+    if (
+      interaction.isButton() &&
+      interaction.inGuild() &&
+      interaction.customId.startsWith(CANCEL_REMINDER_ID)
+    ) {
       const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
 
       if (user) {
@@ -28,7 +32,7 @@ export default class InteractionEvent extends Event {
         await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
           reminder: {
             hasReminder: user.reminder.reminders.length - 1 > 0,
-            reminders: user.reminder.reminders.filter((reminder) => reminder.id !== id),
+            reminders: user.reminder.reminders.filter((reminder) => reminder.shortId !== id),
           },
         });
 

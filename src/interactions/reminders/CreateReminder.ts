@@ -30,7 +30,7 @@ export default class CreateReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);

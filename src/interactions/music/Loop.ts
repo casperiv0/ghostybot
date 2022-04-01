@@ -30,7 +30,7 @@ export default class LoopCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -45,7 +45,7 @@ export default class LoopCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const type = interaction.options.getInteger("type", true);
@@ -64,7 +64,7 @@ export default class LoopCommand extends SubCommand {
     await interaction.reply({ content: "🔁" });
   }
 
-  didEnableFilter(interaction: DJS.CommandInteraction, filterToCheck: string): boolean {
+  didEnableFilter(interaction: DJS.CommandInteraction<"cached">, filterToCheck: string): boolean {
     const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
 
     return !queueFilters?.includes(filterToCheck) ?? true;

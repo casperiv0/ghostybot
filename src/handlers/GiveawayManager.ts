@@ -1,4 +1,4 @@
-import { GiveawayData, GiveawaysManager } from "discord-giveaways";
+import { GiveawaysManager } from "discord-giveaways";
 import { prisma } from "utils/prisma";
 
 export class MongoGiveawayManager extends GiveawaysManager {
@@ -6,15 +6,15 @@ export class MongoGiveawayManager extends GiveawaysManager {
     return prisma.giveaways.findMany();
   }
 
-  async saveGiveaway(_: string, giveawayData: GiveawayData) {
+  async saveGiveaway(messageId: string, giveawayData: any) {
     const created = await prisma.giveaways.create({
-      data: giveawayData,
+      data: { messageId, ...giveawayData },
     });
 
     return created;
   }
 
-  async editGiveaway(messageId: string, giveawayData: GiveawayData): Promise<boolean> {
+  async editGiveaway(messageId: string, giveawayData: any): Promise<boolean> {
     await prisma.giveaways.updateMany({
       where: { messageId },
       data: giveawayData,

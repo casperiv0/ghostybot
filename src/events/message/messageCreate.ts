@@ -66,7 +66,7 @@ export default class MessageEvent extends Event {
         mentions.forEach(async (member) => {
           const user = await bot.utils.getUserById(member.user.id, guildId);
 
-          if (user?.afk.is_afk) {
+          if (user?.afk?.is_afk) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle("AFK!")
@@ -83,7 +83,7 @@ export default class MessageEvent extends Event {
       }
 
       // remove AFK from user if they send a message
-      if (!message.author.bot && user?.afk.is_afk === true) {
+      if (!message.author.bot && user?.afk?.is_afk) {
         await bot.utils.updateUserById(userId, guildId, {
           afk: {
             is_afk: false,

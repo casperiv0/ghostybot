@@ -22,7 +22,7 @@ export default class ViewRemindersCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const guildUser = interaction.options.getUser("user") ?? interaction.user;
@@ -40,9 +40,9 @@ export default class ViewRemindersCommand extends SubCommand {
       if (i % 25 === 0) {
         const mappedReminders = dbUser.reminder.reminders.slice(i, i + 25).map((reminder) => {
           return `**${lang.REMINDER.MESSAGE}** ${reminder.msg}
-    **${lang.REMINDER.TIME}** ${reminder.time}
-    **ID:** ${reminder.id}
-    **${lang.REMINDER.ENDS_IN}** ${time(new Date(reminder.ends_at), "R")}`;
+**${lang.REMINDER.TIME}** ${reminder.time}
+**ID:** ${reminder.shortId}
+**${lang.REMINDER.ENDS_IN}** ${time(new Date(reminder.ends_at), "R")}`;
         });
 
         const embed = this.bot.utils
