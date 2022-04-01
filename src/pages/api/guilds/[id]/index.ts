@@ -1,9 +1,10 @@
-import DJS, { Role, Snowflake } from "discord.js";
+import DJS, { Role } from "discord.js";
 import { NextApiResponse } from "next";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import { ApiRequest } from "types/ApiRequest";
-import ReactionsModel, { IReaction } from "models/Reactions.model";
 import type { APIChannel } from "discord-api-types/v10";
+import { prisma } from "utils/prisma";
+import { reactions } from "@prisma/client";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -86,9 +87,14 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         guild[item] = undefined;
       });
 
-      let reactions: null | IReaction[] = null;
+      let reactions: reactions[] | null = null;
       if (req.query.reactions) {
-        reactions = await ReactionsModel.find({ guild_id: query.id as Snowflake });
+        const _reactions = await prisma.reactions.findMany({
+          where: {
+            guild_id: query.id as string,
+          },
+        });
+        reactions = _reactions;
       }
 
       const commands = req.bot.interactions.map((v) => {

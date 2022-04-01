@@ -1,15 +1,15 @@
 import * as React from "react";
 import { Guild } from "types/Guild";
 import { AddReactionRole } from "@components/modal/add-reaction-role";
-import { IReaction, Reaction } from "models/Reactions.model";
 import { useTranslation } from "next-i18next";
+import { reactions, ReactionsReactions } from "@prisma/client";
 
 interface Props {
   index: number;
   guild: Guild<true>;
-  reaction: IReaction;
-  deleteReaction(r: IReaction): void;
-  updateReaction(r: IReaction): void;
+  reaction: reactions;
+  deleteReaction(r: reactions): void;
+  updateReaction(r: reactions): void;
 }
 
 export const ReactionRoleField = ({
@@ -20,7 +20,7 @@ export const ReactionRoleField = ({
   updateReaction,
 }: Props) => {
   const [channelId, setChannelId] = React.useState("");
-  const [data, setData] = React.useState<Reaction[]>([]);
+  const [data, setData] = React.useState<ReactionsReactions[]>([]);
   const [show, setShow] = React.useState(false);
 
   const { t } = useTranslation("reaction-role");
@@ -37,22 +37,21 @@ export const ReactionRoleField = ({
   }, [reaction]);
 
   React.useEffect(() => {
-    // @ts-expect-error ignore
     updateReaction({ ...reaction, channel_id: channelId });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId]);
 
-  const [editData, setEditData] = React.useState<Reaction | null>(null);
+  const [editData, setEditData] = React.useState<ReactionsReactions | null>(null);
 
-  function alreadyExists(d: Reaction) {
+  function alreadyExists(d: ReactionsReactions) {
     const emoji = data.find((v) => v.emoji === d.emoji);
     const roleId = data.find((v) => v.role_id === d.role_id);
 
     return emoji && roleId;
   }
 
-  function updateReactionRole(prev: Reaction, newData: Reaction) {
+  function updateReactionRole(prev: ReactionsReactions, newData: ReactionsReactions) {
     if (!newData.emoji.trim() || !newData.role_id || newData.role_id === "Disabled") return;
     if (alreadyExists(newData)) return;
 
@@ -69,7 +68,6 @@ export const ReactionRoleField = ({
     setShow(false);
     setEditData(null);
 
-    // @ts-expect-error ignore
     updateReaction({ ...reaction, reactions: newD! });
   }
 
@@ -78,11 +76,10 @@ export const ReactionRoleField = ({
 
     setData(newD);
 
-    // @ts-expect-error ignore
     updateReaction({ ...reaction, reactions: newD! });
   }
 
-  function addReactionRole(d: Reaction) {
+  function addReactionRole(d: ReactionsReactions) {
     if (!d.emoji.trim() || !d.role_id || d.role_id === "Disabled") return;
     if (alreadyExists(d)) return;
 
@@ -91,7 +88,6 @@ export const ReactionRoleField = ({
     setShow(false);
     setData(newD);
 
-    // @ts-expect-error ignore
     updateReaction({ ...reaction, reactions: newD });
   }
 
