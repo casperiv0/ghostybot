@@ -88,7 +88,7 @@
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^3.0.0",
-    "@casper124578/eslint-config-next": "^3.0.0",
+    "@casper124578/eslint-config-next": "^4.1.0",
     "@casper124578/eslint-config-react": "^3.0.0",
     "@types/bluebird": "^3.5.36",
     "@types/figlet": "^1.5.4",
