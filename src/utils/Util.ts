@@ -4,9 +4,10 @@ import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
 import UserModel, { IUser, UserData } from "models/User.model";
 import WarningModal, { IWarning } from "models/Warning.model";
-import GuildModel, { GuildData, IGuild } from "models/Guild.model";
 import { ApiRequest } from "types/ApiRequest";
 import StickyModel, { Sticky } from "models/Sticky.model";
+import { prisma } from "./prisma";
+import { Prisma } from "@prisma/client";
 
 export class Util {
   bot: Bot;
@@ -110,13 +111,14 @@ export class Util {
     }
   }
 
-  async getGuildById(guildId: string | undefined | null): Promise<IGuild | undefined> {
-    try {
-      let guild = await GuildModel.findOne({ guild_id: guildId });
+  async getGuildById(guildId: string | undefined | null) {
+    if (!guildId) return null;
 
-      if (!guild && guildId) {
-        guild = await this.addGuild(guildId);
-      }
+    try {
+      const guild =
+        (await prisma.guilds.findFirst({
+          where: { guild_id: guildId },
+        })) ?? (await this.addGuild(guildId));
 
       return guild;
     } catch (error) {
@@ -124,11 +126,15 @@ export class Util {
     }
   }
 
-  async addGuild(guildId: string | undefined): Promise<IGuild | undefined> {
-    try {
-      const guild: IGuild = new GuildModel({ guild_id: guildId });
+  async addGuild(guildId: string | undefined) {
+    if (!guildId) return null;
 
-      await guild.save();
+    try {
+      const guild = await prisma.guilds.create({
+        data: {
+          guild_id: guildId,
+        },
+      });
 
       return guild;
     } catch (error) {
@@ -136,7 +142,9 @@ export class Util {
     }
   }
 
-  async updateGuildById(guildId: string | undefined, data: Partial<GuildData>) {
+  async updateGuildById(guildId: string | undefined, data: Partial<Prisma.guildsUpdateInput>) {
+    if (!guildId) return;
+
     try {
       // check if guild exists
       const guild = await this.getGuildById(guildId);
@@ -145,7 +153,10 @@ export class Util {
         await this.addGuild(guildId);
       }
 
-      await GuildModel.findOneAndUpdate({ guild_id: guildId }, data);
+      await prisma.guilds.update({
+        where: { guild_id: guildId },
+        data,
+      });
     } catch (e) {
       console.error(e);
     }
@@ -153,7 +164,7 @@ export class Util {
 
   async removeGuild(guildId: string): Promise<void> {
     try {
-      await GuildModel.findOneAndDelete({ guild_id: guildId });
+      await prisma.guilds.delete({ where: { guild_id: guildId } });
     } catch (error) {
       this.bot.logger.error("REMOVE_GUILD", error);
     }

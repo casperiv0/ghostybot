@@ -136,4 +136,5 @@ const guildSchema = new Schema({
   },
 });
 
-export default models.Guild || model("Guild", guildSchema);
+// export default models.Guild || model("Guild", guildSchema);
+export default {} as unknown;
