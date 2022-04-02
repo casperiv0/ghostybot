@@ -42,7 +42,7 @@ export default class TempRoleCommand extends SubCommand {
     const role = interaction.options.getRole("role", true);
     const time = interaction.options.getString("time", true);
     // @ts-expect-error ignore
-    const parsedRole = new DJS.Role(this.bot, role as any, interaction.guild!);
+    const parsedRole = new DJS.Role(this.bot, role, interaction.guild!);
 
     const needsRole = await this.bot.utils.findMember(interaction, [user.id]);
 

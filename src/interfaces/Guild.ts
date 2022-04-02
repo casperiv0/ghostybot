@@ -4,7 +4,7 @@ import * as DJS from "discord.js";
 // @ts-expect-error ignore
 export interface Guild<R extends boolean = false> extends guilds, DJS.Guild {
   inGuild: boolean;
-  channels: DJS.Channel[];
+  channels: DJS.GuildTextBasedChannel[];
   roles: DJS.Role[];
   categories: DJS.CategoryChannel[];
   permissions: unknown;

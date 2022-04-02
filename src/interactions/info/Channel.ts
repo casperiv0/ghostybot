@@ -50,7 +50,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}
   `,
       );
 
-    if (voiceChannel.includes(channel.type as any)) {
+    if (voiceChannel.includes(channel.type)) {
       const regions = lang.OTHER.REGIONS;
       const region = regions[(channel as DJS.VoiceChannel).rtcRegion ?? "us-central"];
 

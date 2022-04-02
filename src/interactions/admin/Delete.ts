@@ -39,6 +39,6 @@ export default class DeleteCommand extends SubCommand {
       content: this.bot.utils.translate(lang.ADMIN.DELETE_DELETED, { amount }),
     });
 
-    await (interaction.channel as any)?.bulkDelete(amount);
+    await interaction.channel?.bulkDelete(amount);
   }
 }

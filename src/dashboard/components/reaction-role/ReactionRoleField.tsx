@@ -121,7 +121,7 @@ export const ReactionRoleField = ({
         >
           {guild.channels.map((r) => (
             <option key={r.id} value={r.id}>
-              {(r as any).name}
+              {r.name}
             </option>
           ))}
         </select>
