@@ -23,7 +23,7 @@ export default class ChannelInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -50,7 +50,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}
   `,
       );
 
-    if (voiceChannel.includes(channel.type as any)) {
+    if (voiceChannel.includes(channel.type)) {
       const regions = lang.OTHER.REGIONS;
       const region = regions[(channel as DJS.VoiceChannel).rtcRegion ?? "us-central"];
 

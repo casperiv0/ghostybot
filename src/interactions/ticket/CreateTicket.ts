@@ -14,7 +14,7 @@ export default class CreateTicket extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
@@ -28,7 +28,7 @@ export default class CreateTicket extends SubCommand {
     const ticketId = ticketChannels.size + 1;
     let hasActiveTicket = false;
 
-    if (!guild?.ticket_data.enabled) {
+    if (!guild?.ticket_data?.enabled) {
       return interaction.editReply({
         content: this.bot.utils.translate(lang.TICKET.NOT_ENABLED, {
           botName: process.env["NEXT_PUBLIC_DASHBOARD_BOTNAME"]!,

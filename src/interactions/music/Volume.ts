@@ -21,7 +21,7 @@ export default class VolumeCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -36,7 +36,7 @@ export default class VolumeCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const newVol = interaction.options.getNumber("volume", true);

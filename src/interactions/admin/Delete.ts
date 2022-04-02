@@ -22,7 +22,7 @@ export default class DeleteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getInteger("amount", true);
@@ -39,6 +39,6 @@ export default class DeleteCommand extends SubCommand {
       content: this.bot.utils.translate(lang.ADMIN.DELETE_DELETED, { amount }),
     });
 
-    await (interaction.channel as any)?.bulkDelete(amount);
+    await interaction.channel?.bulkDelete(amount);
   }
 }

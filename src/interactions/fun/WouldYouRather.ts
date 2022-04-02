@@ -13,7 +13,7 @@ export default class WouldYouRatherCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

@@ -1,6 +1,5 @@
 import * as DJS from "discord.js";
 import ms from "ms";
-import { Reminder } from "models/User.model";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -34,7 +33,7 @@ export default class EditReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const id = interaction.options.getString("id", true);
@@ -55,20 +54,19 @@ export default class EditReminderCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NO_REMINDER_SET });
     }
 
-    const reminder = user.reminder.reminders.find((r) => r.id === id);
-    const updated = user.reminder.reminders.filter((r) => r.id !== id);
+    const reminder = user.reminder.reminders.find((r) => r.shortId === id);
+    const updated = user.reminder.reminders.filter((r) => r.shortId !== id);
 
     if (!reminder) {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NOT_FOUND });
     }
 
-    const newReminder: Reminder = {
+    const newReminder = {
       time,
       ends_at: Date.now() + ms(time),
       msg,
       channel_id: reminder.channel_id,
-      id: reminder.id,
-      _id: reminder._id,
+      shortId: reminder.shortId,
     };
 
     this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {

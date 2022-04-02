@@ -1,25 +1,29 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
-import { IGuild } from "models/Guild.model";
 import { SubCommand } from "structures/Command/SubCommand";
-import BlacklistedModel, { IBlacklist } from "models/Blacklisted.model";
 import { handleCategories } from "src/interactions/util/Help";
 import { CANCEL_REMINDER_ID } from "src/interactions/reminders/CreateReminder";
+import { guilds } from "@prisma/client";
+import { prisma } from "utils/prisma";
 
 export default class InteractionEvent extends Event {
   constructor(bot: Bot) {
     super(bot, "interactionCreate");
   }
 
-  async execute(bot: Bot, interaction: DJS.CommandInteraction) {
+  async execute(bot: Bot, interaction: DJS.Interaction) {
     const lang = await this.bot.utils.getGuildLang(interaction.guild?.id);
 
     if (interaction.isSelectMenu() && interaction.customId === "HELP_CATEGORIES") {
       return handleCategories(interaction, bot);
     }
 
-    if (interaction.isButton() && interaction.customId.startsWith(CANCEL_REMINDER_ID)) {
+    if (
+      interaction.isButton() &&
+      interaction.inGuild() &&
+      interaction.customId.startsWith(CANCEL_REMINDER_ID)
+    ) {
       const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);
 
       if (user) {
@@ -28,7 +32,7 @@ export default class InteractionEvent extends Event {
         await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
           reminder: {
             hasReminder: user.reminder.reminders.length - 1 > 0,
-            reminders: user.reminder.reminders.filter((reminder) => reminder._id !== id),
+            reminders: user.reminder.reminders.filter((reminder) => reminder.shortId !== id),
           },
         });
 
@@ -46,7 +50,7 @@ export default class InteractionEvent extends Event {
     try {
       const command = bot.interactions.get(this.getCommandName(interaction));
 
-      const blacklistedUsers: IBlacklist[] = await BlacklistedModel.find();
+      const blacklistedUsers = await prisma.blacklisteds.findMany();
       if (blacklistedUsers) {
         const isBlacklisted = blacklistedUsers.find((u) => u.user_id === interaction.user.id);
 
@@ -131,7 +135,7 @@ export default class InteractionEvent extends Event {
     }
   }
 
-  isSubCommandDisabled(dbGuild: IGuild, interaction: DJS.CommandInteraction) {
+  isSubCommandDisabled(dbGuild: guilds, interaction: DJS.CommandInteraction) {
     const commands = dbGuild.disabled_commands;
 
     const command = this.getCommandName(interaction);

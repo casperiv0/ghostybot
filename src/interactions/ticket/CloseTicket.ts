@@ -13,7 +13,7 @@ export default class CloseTicket extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = await interaction.guild?.channels.fetch(interaction.channelId);

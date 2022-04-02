@@ -19,7 +19,7 @@ export default class RankCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId);
 
     const user = interaction.options.getUser("user") ?? interaction.user;

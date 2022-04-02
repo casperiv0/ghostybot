@@ -1,9 +1,9 @@
 import process from "node:process";
 import * as DJS from "discord.js";
-import BlacklistedModel from "models/Blacklisted.model";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
+import { prisma } from "utils/prisma";
 
 export default class BlacklistRemove extends SubCommand {
   constructor(bot: Bot) {
@@ -24,7 +24,7 @@ export default class BlacklistRemove extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
@@ -38,21 +38,23 @@ export default class BlacklistRemove extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
 
     const user = interaction.options.getUser("user", true);
 
-    const dbUser = await BlacklistedModel.findOne({ user_id: user.id });
-    if (!dbUser) {
+    const existing = await prisma.blacklisteds.findFirst({ where: { user_id: user.id } });
+    if (!existing) {
       return interaction.editReply({
         content: lang.BOT_OWNER.NOT_BLD,
       });
     }
 
-    await BlacklistedModel.findByIdAndDelete(dbUser._id);
+    await prisma.blacklisteds.deleteMany({
+      where: { user_id: user.id },
+    });
 
     await interaction.editReply({
       content: this.bot.utils.translate(lang.BOT_OWNER.BLACKLISTED_SUCCESS, {

@@ -22,7 +22,7 @@ export default class LeaveGuildCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
@@ -36,7 +36,7 @@ export default class LeaveGuildCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     try {

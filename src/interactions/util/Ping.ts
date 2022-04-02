@@ -11,7 +11,7 @@ export default class PingInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     return interaction.reply({

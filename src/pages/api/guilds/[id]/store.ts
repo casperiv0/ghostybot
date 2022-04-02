@@ -1,6 +1,5 @@
 import { NextApiResponse } from "next";
 import { ApiRequest } from "types/ApiRequest";
-import { StoreItem } from "models/Guild.model";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -57,7 +56,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "DELETE": {
       const filtered = guild.store.filter(
-        (item: StoreItem) => item.name.toLowerCase() !== (query.name as string).toLowerCase(),
+        (item) => item.name.toLowerCase() !== (query.name as string).toLowerCase(),
       );
 
       await req.bot.utils.updateGuildById(`${query.id}`, { store: filtered });

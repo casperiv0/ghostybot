@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
-import ReactionsModel, { Reaction } from "models/Reactions.model";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
+import { prisma } from "utils/prisma";
 
 const neededPerms = [
   DJS.Permissions.FLAGS.MANAGE_MESSAGES,
@@ -32,15 +32,13 @@ export default class MessageReactionAddEvent extends Event {
       const member = guild.members.cache.get(user.id);
       if (!member) return;
 
-      const dbReaction = await ReactionsModel.findOne({
-        guild_id: guild.id,
-        message_id: react.message.id,
+      const dbReaction = await prisma.reactions.findFirst({
+        where: { guild_id: guild.id, message_id: react.message.id },
       });
+
       if (!dbReaction) return;
 
-      const reaction = dbReaction.reactions.find(
-        (r: Reaction) => r.emoji === react.emoji.toString(),
-      );
+      const reaction = dbReaction.reactions.find((r) => r.emoji === react.emoji.toString());
       if (!reaction) return;
 
       if (!member.roles.cache.has(reaction.role_id)) {

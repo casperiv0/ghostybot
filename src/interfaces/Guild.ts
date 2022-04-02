@@ -1,14 +1,13 @@
+import type { GuildsSlashCommands, guilds, reactions } from "@prisma/client";
 import * as DJS from "discord.js";
-import { GuildData, SlashCommand } from "models/Guild.model";
-import { IReaction } from "models/Reactions.model";
 
 // @ts-expect-error ignore
-export interface Guild<R extends boolean = false> extends GuildData, DJS.Guild {
+export interface Guild<R extends boolean = false> extends guilds, DJS.Guild {
   inGuild: boolean;
-  channels: DJS.Channel[];
+  channels: DJS.GuildTextBasedChannel[];
   roles: DJS.Role[];
   categories: DJS.CategoryChannel[];
   permissions: unknown;
-  slash_commands: SlashCommand[];
-  reactions: R extends true ? IReaction[] : null;
+  slash_commands: GuildsSlashCommands[];
+  reactions: R extends true ? reactions[] : null;
 }

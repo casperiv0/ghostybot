@@ -13,6 +13,13 @@ import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import {
+  GuildsLeaveData,
+  GuildsLevelData,
+  GuildsTicketData,
+  GuildsVerifyData,
+  GuildsWelcomeData,
+} from "@prisma/client";
 
 export interface FieldItem {
   type: "select" | "input" | "textarea" | "switch";
@@ -46,16 +53,17 @@ export interface State {
 const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverError }: Props) => {
   const [state, setState] = React.useState<State>({ state: "idle", message: null });
 
-  const [welcomeData, setWelcomeData] = React.useState(guild.welcome_data ?? {});
-  const [leaveData, setLeaveData] = React.useState(guild.leave_data ?? {});
-  const [levelData, setLevelData] = React.useState(guild.level_data ?? {});
-  const [verifyData, setVerifyData] = React.useState(guild.verify_data ?? {});
-  const [ticketData, setTicketData] = React.useState(guild.ticket_data ?? {});
+  const [welcomeData, setWelcomeData] = React.useState(
+    guild.welcome_data ?? ({} as GuildsWelcomeData),
+  );
+  const [leaveData, setLeaveData] = React.useState(guild.leave_data ?? ({} as GuildsLeaveData));
+  const [levelData, setLevelData] = React.useState(guild.level_data ?? ({} as GuildsLevelData));
+  const [verifyData, setVerifyData] = React.useState(guild.verify_data ?? ({} as GuildsVerifyData));
+  const [ticketData, setTicketData] = React.useState(guild.ticket_data ?? ({} as GuildsTicketData));
   const [suggestChannel, setSuggestChannel] = React.useState(guild.suggest_channel || "");
   const [announceChannel, setAnnounceChannel] = React.useState(guild.announcement_channel || "");
   const [language, setLanguage] = React.useState(guild.locale || "");
   const [auditChannel, setAuditChannel] = React.useState(guild.audit_channel || "");
-  const [prefix, setPrefix] = React.useState(guild.prefix || "");
   const [tz, setTz] = React.useState(guild.timezone || "");
   const [autoDelCmd, setAutoDelCmd] = React.useState<boolean>(guild.auto_delete_cmd ?? false);
   const router = useRouter();
@@ -317,13 +325,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
       label: t("timezone"),
     },
     {
-      type: "input",
-      id: "prefix",
-      value: prefix,
-      onChange: (e) => setPrefix(e.target.value),
-      label: t("bot_prefix"),
-    },
-    {
       type: "select",
       id: "auto_delete_cmd",
       value: `${autoDelCmd}`,
@@ -358,7 +359,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             announcement_channel: announceChannel,
             locale: language,
             audit_channel: auditChannel,
-            prefix,
             timezone: tz,
             auto_delete_cmd: autoDelCmd,
             verify_data: verifyData,

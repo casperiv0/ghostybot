@@ -2,6 +2,7 @@ import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
+import { prisma } from "utils/prisma";
 
 export default class MessageEvent extends Event {
   constructor(bot: Bot) {
@@ -51,8 +52,13 @@ export default class MessageEvent extends Event {
         const stickyMessage = await message.channel.send({
           content: sticky.message,
         });
-        sticky.message_id = stickyMessage.id;
-        await sticky.save();
+
+        await prisma.stickies.update({
+          where: { id: sticky.id },
+          data: {
+            message_id: stickyMessage.id,
+          },
+        });
       }
 
       // check if mention user is afk
@@ -60,7 +66,7 @@ export default class MessageEvent extends Event {
         mentions.forEach(async (member) => {
           const user = await bot.utils.getUserById(member.user.id, guildId);
 
-          if (user?.afk.is_afk) {
+          if (user?.afk?.is_afk) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle("AFK!")
@@ -77,7 +83,7 @@ export default class MessageEvent extends Event {
       }
 
       // remove AFK from user if they send a message
-      if (!message.author.bot && user?.afk.is_afk === true) {
+      if (!message.author.bot && user?.afk?.is_afk) {
         await bot.utils.updateUserById(userId, guildId, {
           afk: {
             is_afk: false,
@@ -105,7 +111,7 @@ export default class MessageEvent extends Event {
         const newLevel = bot.utils.calculateXp(user.xp + xp);
 
         if (newLevel > level) {
-          if (guild.level_data.enabled) {
+          if (guild.level_data?.enabled) {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
@@ -162,7 +168,7 @@ export default class MessageEvent extends Event {
       const [prefix, ...cmdName] = cmd.split("");
       const command = cmdName.join("");
 
-      if (prefix === guild.prefix && command === "help") {
+      if (prefix === "!" && command === "help") {
         await this.helpCommand(message, lang);
       }
     } catch (err) {

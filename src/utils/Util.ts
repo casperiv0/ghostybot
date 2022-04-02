@@ -2,11 +2,9 @@ import * as DJS from "discord.js";
 import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
-import UserModel, { IUser, UserData } from "models/User.model";
-import WarningModal, { IWarning } from "models/Warning.model";
-import GuildModel, { GuildData, IGuild } from "models/Guild.model";
 import { ApiRequest } from "types/ApiRequest";
-import StickyModel, { Sticky } from "models/Sticky.model";
+import { prisma } from "./prisma";
+import { Prisma } from "@prisma/client";
 
 export class Util {
   bot: Bot;
@@ -31,13 +29,14 @@ export class Util {
     return count;
   }
 
-  async getUserById(userId: string, guildId: string | undefined): Promise<IUser | undefined> {
-    try {
-      let user: IUser | undefined = await UserModel.findOne({ user_id: userId, guild_id: guildId });
+  async getUserById(userId: string, guildId: string | undefined) {
+    if (!guildId) return null;
 
-      if (!user) {
-        user = await this.addUser(userId, guildId);
-      }
+    try {
+      const user =
+        (await prisma.users.findFirst({
+          where: { user_id: userId, guild_id: guildId },
+        })) ?? (await this.addUser(userId, guildId));
 
       return user;
     } catch (error) {
@@ -45,15 +44,26 @@ export class Util {
     }
   }
 
-  async getUserWarnings(userId: string, guildId: string | undefined): Promise<IWarning[]> {
-    return WarningModal.find({ user_id: userId, guild_id: guildId });
+  async getUserWarnings(userId: string, guildId: string | undefined) {
+    const warnings = await prisma.warnings.findMany({
+      where: { user_id: userId, guild_id: guildId },
+    });
+
+    return warnings;
   }
 
   async addWarning(userId: string, guildId: string | undefined, reason: string) {
-    try {
-      const warning = new WarningModal({ guild_id: guildId, user_id: userId, reason });
+    if (!guildId) return;
 
-      await warning.save();
+    try {
+      await prisma.warnings.create({
+        data: {
+          guild_id: guildId,
+          user_id: userId,
+          reason,
+          date: Date.now(),
+        },
+      });
     } catch (error) {
       this.bot.logger.error("ADD_WARNING", error);
     }
@@ -61,21 +71,28 @@ export class Util {
 
   async removeUserWarnings(userId: string, guildId: string | undefined) {
     try {
-      await WarningModal.deleteMany({ user_id: userId, guild_id: guildId });
+      await prisma.warnings.deleteMany({
+        where: {
+          user_id: userId,
+          guild_id: guildId,
+        },
+      });
     } catch (error) {
       this.bot.logger.error("REMOVE_USER_WARNINGS", error);
     }
   }
 
-  async addUser(
-    userId: string,
-    guildId: string | undefined,
-    data?: Partial<UserData>,
-  ): Promise<IUser | undefined> {
-    try {
-      const user: IUser = new UserModel({ user_id: userId, guild_id: guildId, ...data });
+  async addUser(userId: string, guildId: string | undefined, data?: any) {
+    if (!guildId) return null;
 
-      await user.save();
+    try {
+      const user = await prisma.users.create({
+        data: {
+          user_id: userId,
+          guild_id: guildId,
+          ...data,
+        },
+      });
 
       return user;
     } catch (error) {
@@ -86,8 +103,8 @@ export class Util {
   async updateUserById(
     userId: string,
     guildId: string | undefined,
-    data: Partial<UserData>,
-  ): Promise<void> {
+    data: Partial<Prisma.usersUpdateManyArgs["data"]>,
+  ) {
     try {
       const user = await this.getUserById(userId, guildId);
 
@@ -96,27 +113,33 @@ export class Util {
         return;
       }
 
-      await UserModel.findOneAndUpdate({ user_id: userId, guild_id: guildId }, data);
+      await prisma.users.updateMany({
+        where: { user_id: userId, guild_id: guildId },
+        data,
+      });
     } catch (e) {
       console.error(e);
     }
   }
 
-  async removeUser(userId: string, guildId: string): Promise<void> {
+  async removeUser(userId: string, guildId: string) {
     try {
-      await UserModel.findOneAndDelete({ user_id: userId, guild_id: guildId });
+      await prisma.users.deleteMany({
+        where: { user_id: userId, guild_id: guildId },
+      });
     } catch (error) {
       this.bot.logger.error("REMOVE_USER", error);
     }
   }
 
-  async getGuildById(guildId: string | undefined | null): Promise<IGuild | undefined> {
-    try {
-      let guild = await GuildModel.findOne({ guild_id: guildId });
+  async getGuildById(guildId: string | undefined | null) {
+    if (!guildId) return null;
 
-      if (!guild && guildId) {
-        guild = await this.addGuild(guildId);
-      }
+    try {
+      const guild =
+        (await prisma.guilds.findFirst({
+          where: { guild_id: guildId },
+        })) ?? (await this.addGuild(guildId));
 
       return guild;
     } catch (error) {
@@ -124,11 +147,15 @@ export class Util {
     }
   }
 
-  async addGuild(guildId: string | undefined): Promise<IGuild | undefined> {
-    try {
-      const guild: IGuild = new GuildModel({ guild_id: guildId });
+  async addGuild(guildId: string | undefined) {
+    if (!guildId) return null;
 
-      await guild.save();
+    try {
+      const guild = await prisma.guilds.create({
+        data: {
+          guild_id: guildId,
+        },
+      });
 
       return guild;
     } catch (error) {
@@ -136,7 +163,9 @@ export class Util {
     }
   }
 
-  async updateGuildById(guildId: string | undefined, data: Partial<GuildData>) {
+  async updateGuildById(guildId: string | undefined, data: Partial<Prisma.guildsUpdateInput>) {
+    if (!guildId) return;
+
     try {
       // check if guild exists
       const guild = await this.getGuildById(guildId);
@@ -145,7 +174,10 @@ export class Util {
         await this.addGuild(guildId);
       }
 
-      await GuildModel.findOneAndUpdate({ guild_id: guildId }, data);
+      await prisma.guilds.updateMany({
+        where: { guild_id: guildId },
+        data,
+      });
     } catch (e) {
       console.error(e);
     }
@@ -153,7 +185,7 @@ export class Util {
 
   async removeGuild(guildId: string): Promise<void> {
     try {
-      await GuildModel.findOneAndDelete({ guild_id: guildId });
+      await prisma.guilds.deleteMany({ where: { guild_id: guildId } });
     } catch (error) {
       this.bot.logger.error("REMOVE_GUILD", error);
     }
@@ -352,21 +384,23 @@ export class Util {
 
   async addSticky(messageId: string, channelId: string, message: string) {
     try {
-      const sticky = new StickyModel({
-        message_id: messageId,
-        message,
-        channel_id: channelId,
+      await prisma.stickies.create({
+        data: {
+          message_id: messageId,
+          message,
+          channel_id: channelId,
+        },
       });
-
-      await sticky.save();
     } catch (error) {
       this.bot.logger.error("add_sticky", error);
     }
   }
 
-  async getSticky(channelId: string): Promise<Sticky | undefined> {
+  async getSticky(channelId: string) {
     try {
-      const sticky = await StickyModel.findOne({ channel_id: channelId });
+      const sticky = await prisma.stickies.findFirst({
+        where: { channel_id: channelId },
+      });
 
       return sticky;
     } catch (error) {
@@ -376,7 +410,9 @@ export class Util {
 
   async removeSticky(channelId: string) {
     try {
-      await StickyModel.deleteMany({ channel_id: channelId });
+      await prisma.stickies.deleteMany({
+        where: { channel_id: channelId },
+      });
     } catch (e) {
       console.error(e);
     }

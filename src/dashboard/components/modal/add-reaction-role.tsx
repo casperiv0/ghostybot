@@ -1,15 +1,15 @@
 import * as React from "react";
 import { Guild } from "types/Guild";
 import { useTranslation } from "react-i18next";
-import { Reaction } from "models/Reactions.model";
+import { ReactionsReactions } from "@prisma/client";
 
 interface Props {
   guild: Guild<true>;
   close(): void;
-  onAdd(reaction: Reaction): void;
-  onUpdate(prev: Reaction, reaction: Reaction): void;
+  onAdd(reaction: ReactionsReactions): void;
+  onUpdate(prev: ReactionsReactions, reaction: ReactionsReactions): void;
 
-  editData: Reaction | null;
+  editData: ReactionsReactions | null;
 }
 
 export const AddReactionRole: React.FC<Props> = ({

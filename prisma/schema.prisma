@@ -1,0 +1,223 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type GuildsBanData {
+  enabled Boolean
+  message String
+}
+
+type GuildsCustomCommands {
+  name     String
+  response String
+}
+
+type GuildsLeaveData {
+  channel_id  String?
+  enabled     Boolean
+  ignore_bots Boolean?
+  message     String
+}
+
+type GuildsLevelData {
+  enabled Boolean
+  message String
+}
+
+type GuildsSlashCommands {
+  description  String?
+  name         String
+  response     String
+  slash_cmd_id String
+}
+
+type GuildsStarboardsData {
+  channel_id String?
+  emoji      String
+  enabled    Boolean
+}
+
+type GuildsStore {
+  name  String
+  price Int
+}
+
+type GuildsTicketData {
+  enabled    Boolean
+  channel_id String?
+  parent_id  String?
+  role_id    String?
+}
+
+type GuildsVerifyData {
+  channel_id String?
+  emoji      String
+  enabled    Boolean
+  role_id    String?
+}
+
+type GuildsWelcomeData {
+  channel_id  String?
+  enabled     Boolean
+  ignore_bots Boolean?
+  message     String
+  role_id     String?
+}
+
+type ReactionsReactions {
+  emoji   String
+  role_id String
+}
+
+type UsersAfk {
+  is_afk Boolean
+  reason String?
+}
+
+type UsersMute {
+  ends_at Int?
+  muted   Boolean
+  reason  String?
+  time    String?
+}
+
+type UsersReminder {
+  hasReminder Boolean
+  reminders   UsersReminderReminders[]
+}
+
+type UsersReminderReminders {
+  channel_id String
+  ends_at    Float
+  shortId    String?
+  msg        String
+  time       String
+}
+
+type UsersTemproles {
+  hasTempRoles Boolean
+  tempRoles    TempRole[]
+}
+
+type TempRole {
+  ms     Int
+  roleId String
+}
+
+type StickyData {
+  channel_id String
+  message    String
+  message_id String
+}
+
+model blacklisteds {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  user_id String
+}
+
+model bots {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  bot_id          String
+  total_used_cmds Int
+  used_since_up   Int
+}
+
+model giveaways {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  messageId         String   @unique
+  channelId         String
+  guildId           String
+  startAt           Int?
+  endAt             Int?
+  ended             Boolean?
+  winnerCount       Int?
+  prize             String?
+  messages          Json?
+  thumbnail         String?
+  hostedBy          String?
+  winnerIds         Json?
+  reaction          Json?
+  botsCanWin        Boolean?
+  embedColor        Json?
+  embedColorEnd     Json?
+  exemptPermissions Json?
+  exemptMembers     String?
+  bonusEntries      String?
+  extraData         Json?
+  lastChance        Json?
+  pauseOptions      Json?
+  isDrop            Boolean?
+  allowedMentions   Json?
+}
+
+model guilds {
+  id                   String                 @id @default(auto()) @map("_id") @db.ObjectId
+  guild_id             String
+  announcement_channel String?
+  audit_channel        String?
+  auto_delete_cmd      Boolean                @default(false)
+  blacklistedwords     String[]
+  custom_commands      GuildsCustomCommands[]
+  disabled_categories  String[]
+  disabled_commands    String[]
+  ignored_channels     String[]
+  ban_data             GuildsBanData?
+  leave_data           GuildsLeaveData?
+  level_data           GuildsLevelData?
+  verify_data          GuildsVerifyData?
+  welcome_data         GuildsWelcomeData?
+  ticket_data          GuildsTicketData?
+  locale               String                 @default("english")
+  muted_role_id        String?
+  slash_commands       GuildsSlashCommands[]
+  store                GuildsStore[]
+  suggest_channel      String?
+  timezone             String                 @default("America/New_York")
+}
+
+model reactions {
+  id         String               @id @default(auto()) @map("_id") @db.ObjectId
+  channel_id String
+  editable   Boolean?
+  guild_id   String
+  message_id String
+  reactions  ReactionsReactions[]
+}
+
+model stickies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  channel_id String
+  message    String
+  message_id String
+}
+
+model users {
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  afk       UsersAfk?
+  bank      Int            @default(0)
+  daily     Float?
+  guild_id  String
+  inventory String[]
+  money     Int            @default(0)
+  mute      UsersMute?
+  reminder  UsersReminder
+  temproles UsersTemproles
+  user_id   String
+  weekly    Float?
+  work      Float?
+  xp        Int            @default(0)
+}
+
+model warnings {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  date     Float
+  guild_id String
+  reason   String
+  user_id  String
+}

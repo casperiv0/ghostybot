@@ -26,7 +26,7 @@ export default class SayCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction) {
+  async execute(interaction: DJS.CommandInteraction<"cached">) {
     const embed = interaction.options.getBoolean("embed");
     const text = interaction.options.getString("text", true);
 

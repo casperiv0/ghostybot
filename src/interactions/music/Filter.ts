@@ -45,7 +45,7 @@ export default class FilterCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const filter = interaction.options.getString("filter", true);
@@ -70,7 +70,7 @@ export default class FilterCommand extends SubCommand {
     }
   }
 
-  didEnableFilter(interaction: DJS.CommandInteraction, filterToCheck: string): boolean {
+  didEnableFilter(interaction: DJS.CommandInteraction<"cached">, filterToCheck: string): boolean {
     const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
 
     return !queueFilters?.includes(filterToCheck) ?? true;

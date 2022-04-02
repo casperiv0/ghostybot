@@ -15,7 +15,7 @@ export default class UnlockChannelCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
@@ -30,7 +30,7 @@ export default class UnlockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = interaction.channel as DJS.TextChannel;

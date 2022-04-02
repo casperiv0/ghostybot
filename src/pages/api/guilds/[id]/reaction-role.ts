@@ -1,9 +1,9 @@
 import { Bot } from "structures/Bot";
 import * as DJS from "discord.js";
-import ReactionsModel, { IReaction, Reaction } from "models/Reactions.model";
-import { isValidObjectId } from "mongoose";
 import { NextApiResponse } from "next";
 import { ApiRequest } from "types/ApiRequest";
+import { prisma } from "utils/prisma";
+import { reactions, ReactionsReactions } from "@prisma/client";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
@@ -26,7 +26,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     case "POST": {
       try {
         const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-        const reactions = body.reactions as IReaction[];
+        const reactions = body.reactions as reactions[];
 
         if (!reactions) {
           return res.status(400).json({
@@ -47,9 +47,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               });
             }
 
-            const validObjectId = isValidObjectId(reaction._id);
-            const dbReaction: IReaction =
-              validObjectId && (await ReactionsModel.findById(reaction._id));
+            const dbReaction = await prisma.reactions.findUnique({
+              where: { id: reaction.id },
+            });
 
             if (dbReaction) {
               await updateReactionMessage(reaction, req.bot);
@@ -77,8 +77,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
                 editable: false,
               };
 
-              const newReaction = new ReactionsModel(obj);
-              await newReaction.save();
+              const newReaction = await prisma.reactions.create({
+                data: obj,
+              });
+
+              return newReaction;
             }
           }),
         );
@@ -97,7 +100,10 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "DELETE": {
       const id = typeof req.body === "string" ? JSON.parse(req.body)?.id : req.body.id;
-      const reaction = isValidObjectId(id) && (await ReactionsModel.findById(id));
+
+      const reaction = await prisma.reactions.findUnique({
+        where: { id },
+      });
 
       if (!reaction) {
         return res.status(404).json({
@@ -112,7 +118,9 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       const message = await channel?.messages.fetch(reaction.message_id).catch(() => null);
       message?.deletable && (await message.delete());
 
-      await ReactionsModel.findByIdAndDelete(id);
+      await prisma.reactions.deleteMany({
+        where: { id },
+      });
 
       return res.json({ status: "success" });
     }
@@ -125,7 +133,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 /**
  * send a new message with the embed for users to click on the reactions
  */
-async function createNewReaction(reaction: IReaction, bot: Bot): Promise<DJS.Message | string> {
+async function createNewReaction(reaction: reactions, bot: Bot): Promise<DJS.Message | string> {
   const channel = (await bot.channels.fetch(reaction.channel_id).catch(() => null)) as
     | DJS.TextChannel
     | DJS.NewsChannel
@@ -164,7 +172,7 @@ async function createNewReaction(reaction: IReaction, bot: Bot): Promise<DJS.Mes
   return message;
 }
 
-async function updateReactionMessage(reaction: IReaction, bot: Bot): Promise<DJS.Message | string> {
+async function updateReactionMessage(reaction: reactions, bot: Bot): Promise<DJS.Message | string> {
   const channel = (await bot.channels
     .fetch(reaction.channel_id)
     .catch(() => null)) as DJS.TextChannel | null;
@@ -199,7 +207,7 @@ async function updateReactionMessage(reaction: IReaction, bot: Bot): Promise<DJS
   return message;
 }
 
-async function _createDescription(reactions: Reaction[], guild: DJS.Guild) {
+async function _createDescription(reactions: ReactionsReactions[], guild: DJS.Guild) {
   const strings: string[] = [];
 
   for (let i = 0; i < reactions.length; i++) {

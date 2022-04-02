@@ -28,7 +28,7 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     if (!interaction.guild?.me) return;

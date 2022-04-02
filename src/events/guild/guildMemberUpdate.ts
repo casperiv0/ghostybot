@@ -13,7 +13,7 @@ export default class GuildMemberUpdateEvent extends Event {
       if (!newMember.guild.available || !oldMember.guild.available) return;
       const guild = await bot.utils.getGuildById(newMember.guild.id);
       if (!guild) return;
-      if (!guild.welcome_data.enabled) return;
+      if (!guild.welcome_data?.enabled) return;
       const welcomeData = guild.welcome_data;
 
       // member passed membership screening

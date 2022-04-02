@@ -20,14 +20,14 @@ export default class AFKCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const guildId = interaction.guild?.id;
     const userId = interaction.user.id;
     const user = await this.bot.utils.getUserById(userId, guildId);
 
-    if (user?.afk.is_afk) {
+    if (user?.afk?.is_afk) {
       await this.bot.utils.updateUserById(userId, guildId, {
         afk: { is_afk: false, reason: null },
       });

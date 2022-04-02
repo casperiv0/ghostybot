@@ -12,7 +12,7 @@ export default class QueueCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);

@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Helper } from "structures/Helper";
-import UserModel, { IUser, Reminder } from "models/User.model";
+import { prisma } from "utils/prisma";
 
 export default class ReminderHelper extends Helper {
   private TEN_SECOND_INTERVAL = 10_000;
@@ -12,17 +12,18 @@ export default class ReminderHelper extends Helper {
 
   async execute() {
     setInterval(async () => {
-      const reminders = await UserModel.find({ "reminder.hasReminder": true });
-      if (!reminders) return;
+      const users = await prisma.users.findMany();
+      const reminders = users.filter((v) => v.reminder.hasReminder);
+      if (reminders.length <= 0) return;
 
-      reminders.forEach((user: IUser) => {
+      reminders.forEach((user) => {
         user.reminder.reminders
           .filter((r) => r.ends_at <= Date.now())
-          .forEach(async (reminder: Reminder) => {
+          .forEach(async (reminder) => {
             const guild = this.bot.guilds.cache.get(user.guild_id);
             if (!guild) return;
 
-            const { channel_id, msg, time, _id: reminderId } = reminder;
+            const { channel_id, msg, time, shortId: reminderId } = reminder;
             const usr =
               this.bot.users.cache.get(user.user_id) || (await this.bot.users.fetch(user.user_id));
             const channel = guild.channels.cache.get(channel_id);
@@ -31,9 +32,7 @@ export default class ReminderHelper extends Helper {
               await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
                   hasReminder: !(user.reminder.reminders.length - 1 === 0),
-                  reminders: user.reminder.reminders.filter(
-                    (rem: Reminder) => rem._id !== reminderId,
-                  ),
+                  reminders: user.reminder.reminders.filter((rem) => rem.shortId !== reminderId),
                 },
               });
               return;
@@ -42,9 +41,7 @@ export default class ReminderHelper extends Helper {
             await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               reminder: {
                 hasReminder: !(user.reminder.reminders.length - 1 === 0),
-                reminders: user.reminder.reminders.filter(
-                  (rem: Reminder) => rem._id !== reminderId,
-                ),
+                reminders: user.reminder.reminders.filter((rem) => rem.shortId !== reminderId),
               },
             });
 

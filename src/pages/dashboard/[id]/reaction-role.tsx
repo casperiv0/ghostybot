@@ -8,10 +8,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { AlertMessage } from "@components/AlertMessage";
-import { IReaction } from "models/Reactions.model";
 import { ReactionRoleField } from "@components/reaction-role/ReactionRoleField";
 import { State } from "./settings";
 import { useTranslation } from "next-i18next";
+import type { reactions } from "@prisma/client";
 
 interface Props {
   guild: Guild<true> | null;
@@ -20,31 +20,31 @@ interface Props {
 }
 
 const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
-  const [reactions, setReactions] = React.useState<IReaction[]>(guild?.reactions ?? []);
+  const [reactions, setReactions] = React.useState<reactions[]>(guild?.reactions ?? []);
   const [state, setState] = React.useState<State>({ state: "idle", message: null });
 
   const { t } = useTranslation("reaction-role");
   const { t: commonT } = useTranslation("common");
 
-  async function deleteReaction(reaction: IReaction) {
-    setReactions((p) => p.filter((v) => v._id !== reaction._id));
+  async function deleteReaction(reaction: reactions) {
+    setReactions((p) => p.filter((v) => v.id !== reaction.id));
 
     await fetch(
       `${process.env["NEXT_PUBLIC_DASHBOARD_URL"]}/api/guilds/${guild?.id}/reaction-role`,
       {
         method: "DELETE",
         body: JSON.stringify({
-          id: reaction._id,
+          id: reaction.id,
         }),
       },
     );
   }
 
-  function updateReaction(reaction: IReaction) {
-    if (reactions.find((v) => v._id === reaction._id)) {
+  function updateReaction(reaction: reactions) {
+    if (reactions.find((v) => v.id === reaction.id)) {
       setReactions((prev) =>
         prev.map((v) => {
-          if (v._id === reaction._id) {
+          if (v.id === reaction.id) {
             v = reaction;
           }
 
@@ -116,8 +116,8 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
             </a>
           </Link>
           <button
-            //   @ts-expect-error ignore
-            onClick={() => setReactions((p) => [...p, { editable: true, _id: v4() }])}
+            // @ts-expect-error this is a temporary creation
+            onClick={() => setReactions((p) => [...p, { editable: true, id: v4() }])}
             className="btn btn-primary ml-5"
           >
             {t("add_reaction_role")}
@@ -142,7 +142,7 @@ const ReactionRolePage = ({ error, isAuth, guild }: Props) => {
                 index={idx}
                 guild={guild}
                 reaction={reaction}
-                key={reaction._id + idx}
+                key={reaction.id + idx}
                 deleteReaction={deleteReaction}
                 updateReaction={updateReaction}
               />

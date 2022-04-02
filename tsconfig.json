@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
     "checkJs": false,
@@ -55,5 +55,8 @@
     "tsBuildInfoFile": ".tsbuildinfo"
   },
   "exclude": ["node_modules", ".next", ".vscode", ".github", "**/*.md", "public/*.js"],
-  "include": ["typings/next-env.d.ts", "typings/*.d.ts", "**/*.ts", "**/*.tsx", "./*.js"]
+  "include": ["typings/*.d.ts", "**/*.ts", "**/*.tsx", "./*.js"],
+  "ts-node": {
+    "swc": true
+  }
 }

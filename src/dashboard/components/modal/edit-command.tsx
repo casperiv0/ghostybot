@@ -2,12 +2,12 @@ import * as React from "react";
 import { Modal, closeModal } from "./index";
 import { logger } from "utils/logger";
 import { AlertMessage } from "../AlertMessage";
-import { SlashCommand } from "models/Guild.model";
 import { useTranslation } from "react-i18next";
 import { useSlashStore } from "src/dashboard/state/slashState";
+import type { GuildsSlashCommands } from "@prisma/client";
 
 interface Props {
-  command: SlashCommand | null;
+  command: GuildsSlashCommands | null;
   guildId: string;
 }
 
@@ -25,17 +25,18 @@ export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) =
 
     setName(command.name);
     setCmdRes(command.response);
-    setDescription(command.description);
+    setDescription(command.description ?? "");
   }, [command]);
 
   async function onSubmit(e: React.FormEvent) {
+    if (!command) return;
     e.preventDefault();
 
-    const commandData = {
+    const commandData: GuildsSlashCommands = {
       name,
       response: cmdRes,
       description,
-      commandId: command?.slash_cmd_id,
+      // commandId: command?.slash_cmd_id,
       slash_cmd_id: command?.slash_cmd_id,
     };
 
@@ -60,7 +61,7 @@ export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) =
         state.setItems(
           state.items.map((v) => {
             if (v.slash_cmd_id === command?.slash_cmd_id) {
-              v = commandData as SlashCommand;
+              v = commandData;
             }
 
             return v;

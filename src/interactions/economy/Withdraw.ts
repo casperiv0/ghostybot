@@ -20,7 +20,7 @@ export default class WithdrawCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

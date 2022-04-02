@@ -51,7 +51,7 @@ export default class CreateRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const name = interaction.options.getString("name", true);

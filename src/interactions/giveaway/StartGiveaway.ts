@@ -33,7 +33,7 @@ export default class StartGiveaway extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);
@@ -44,7 +44,7 @@ export default class StartGiveaway extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MESSAGE.MUST_BE_DATE });
     }
 
-    await this.bot.giveawayManager.start(interaction.channel as any, {
+    await this.bot.giveawayManager.start(interaction.channel!, {
       duration: ms(time),
       prize,
       winnerCount: +winnerCount,

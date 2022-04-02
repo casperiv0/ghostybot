@@ -37,7 +37,7 @@ export default class BugReportCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
     const bug = interaction.options.getString("text", true);
