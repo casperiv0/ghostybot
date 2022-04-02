@@ -21,10 +21,7 @@ export default class LeaderboardCommand extends SubCommand {
 
     const data = (
       await prisma.users.findMany({
-        where: {
-          guild_id: interaction.guildId,
-          xp: { gt: 0 },
-        },
+        where: { guild_id: interaction.guildId, xp: { gt: 0 } },
       })
     )
       .sort((a, b) => b.xp - a.xp)

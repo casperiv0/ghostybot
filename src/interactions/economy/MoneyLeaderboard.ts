@@ -23,7 +23,7 @@ export default class MoneyLeaderboardCommand extends SubCommand {
 
     const data = (
       await prisma.users.findMany({
-        where: { guild_id: interaction.guildId },
+        where: { guild_id: interaction.guildId, OR: [{ bank: { gt: 0 } }, { money: { gt: 0 } }] },
       })
     )
       .sort((a, b) => b.bank + b.money - (a.bank + a.money))
