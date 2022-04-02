@@ -82,7 +82,7 @@ type UsersAfk {
 
 type UsersMute {
   ends_at Int?
-  muted   Boolean
+  muted   Boolean?
   reason  String?
   time    String?
 }
