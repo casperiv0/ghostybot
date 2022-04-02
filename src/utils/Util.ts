@@ -40,7 +40,7 @@ export class Util {
 
       return user;
     } catch (error) {
-      this.bot.logger.error("GET_USER_BY_ID", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -65,7 +65,7 @@ export class Util {
         },
       });
     } catch (error) {
-      this.bot.logger.error("ADD_WARNING", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -78,7 +78,7 @@ export class Util {
         },
       });
     } catch (error) {
-      this.bot.logger.error("REMOVE_USER_WARNINGS", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -96,7 +96,7 @@ export class Util {
 
       return user;
     } catch (error) {
-      this.bot.logger.error("ADD_USER", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -117,8 +117,8 @@ export class Util {
         where: { user_id: userId, guild_id: guildId },
         data,
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -128,7 +128,7 @@ export class Util {
         where: { user_id: userId, guild_id: guildId },
       });
     } catch (error) {
-      this.bot.logger.error("REMOVE_USER", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -143,7 +143,7 @@ export class Util {
 
       return guild;
     } catch (error) {
-      this.bot.logger.error("GET_GUILD_BY_ID", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -159,7 +159,7 @@ export class Util {
 
       return guild;
     } catch (error) {
-      this.bot.logger.error("ADD_GUILD", error);
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -178,8 +178,8 @@ export class Util {
         where: { guild_id: guildId },
         data,
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      this.sendErrorLog(error, "error");
     }
   }
 
@@ -187,7 +187,7 @@ export class Util {
     try {
       await prisma.guilds.deleteMany({ where: { guild_id: guildId } });
     } catch (error) {
-      this.bot.logger.error("REMOVE_GUILD", error);
+      this.sendErrorLog(error, "error");
     }
   }
 

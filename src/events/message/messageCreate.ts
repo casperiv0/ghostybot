@@ -106,6 +106,8 @@ export default class MessageEvent extends Event {
 
       // level
       if (!message.author.bot && user) {
+        if (user.xp >= Infinity) return;
+
         const xp = Math.ceil(Math.random() * (5 * 10));
         const level = bot.utils.calculateXp(user.xp);
         const newLevel = bot.utils.calculateXp(user.xp + xp);
