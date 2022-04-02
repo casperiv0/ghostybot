@@ -206,8 +206,8 @@ model users {
   inventory String[]
   money     Int            @default(0)
   mute      UsersMute?
-  reminder  UsersReminder
-  temproles UsersTemproles
+  reminder  UsersReminder?
+  temproles UsersTemproles?
   user_id   String
   weekly    Float?
   work      Float?
