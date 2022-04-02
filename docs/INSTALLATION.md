@@ -47,7 +47,6 @@ _Not required, some may be required for some commands_
 - `GIPHY_API_KEY`: the key for the giphy API
 - `BUG_REPORTS_CHANNEL_ID`: discord channelId for your bug-reports channel
 - `ERRORLOGS_CHANNEL_ID`: discord channelId for your error-logs channel
-- `ALEXFLIPNOTE_API_KEY`: the key for the alexFlipNote API
 - `OPEN_WEATHER_MAP_API_KEY`: the key for the openweathermap API
 - `PASTE_CLIENT_KEY`: the key for the pastebin API
 
