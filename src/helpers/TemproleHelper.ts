@@ -18,11 +18,11 @@ export default class TemproleHelper extends Helper {
       if (!roles.length) return;
 
       roles.forEach(async (user) => {
-        user.temproles.tempRoles
+        user.temproles?.tempRoles
           ?.filter((r) => r.ms <= Date.now())
           .forEach(async (tempRole) => {
             const guild = this.bot.guilds.cache.get(user.guild_id);
-            if (!guild) return;
+            if (!guild || !user.temproles) return;
 
             await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
               temproles: {

@@ -13,15 +13,15 @@ export default class ReminderHelper extends Helper {
   async execute() {
     setInterval(async () => {
       const users = await prisma.users.findMany();
-      const reminders = users.filter((v) => v.reminder.hasReminder);
+      const reminders = users.filter((v) => v.reminder?.hasReminder);
       if (reminders.length <= 0) return;
 
       reminders.forEach((user) => {
-        user.reminder.reminders
+        user.reminder?.reminders
           .filter((r) => r.ends_at <= Date.now())
           .forEach(async (reminder) => {
             const guild = this.bot.guilds.cache.get(user.guild_id);
-            if (!guild) return;
+            if (!guild || !user.reminder) return;
 
             const { channel_id, msg, time, shortId: reminderId } = reminder;
             const usr =

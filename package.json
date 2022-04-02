@@ -19,7 +19,7 @@
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "start:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev": "nodemon",
-    "test-tsc": "tsc --noEmit",
+    "test-tsc": "npx prisma generate && tsc --noEmit",
     "prepare": "husky install",
     "prebuild": "rimraf dist"
   },

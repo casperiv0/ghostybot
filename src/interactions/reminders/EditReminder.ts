@@ -50,7 +50,7 @@ export default class EditReminderCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
-    if (!user.reminder.hasReminder) {
+    if (!user.reminder?.hasReminder) {
       return interaction.reply({ ephemeral: true, content: lang.REMINDER.NO_REMINDER_SET });
     }
 

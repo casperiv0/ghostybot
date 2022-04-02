@@ -30,7 +30,7 @@ export default class ViewRemindersCommand extends SubCommand {
     const dbUser = await this.bot.utils.getUserById(guildUser.id, interaction.guildId!);
     if (!dbUser) return;
 
-    if (!dbUser.reminder.hasReminder || dbUser.reminder.reminders.length <= 0) {
+    if (!dbUser.reminder?.hasReminder || dbUser.reminder.reminders.length <= 0) {
       return interaction.reply({ content: lang.REMINDER.NO_ACTIVE_REM });
     }
 

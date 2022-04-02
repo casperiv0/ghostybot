@@ -84,7 +84,7 @@ export default class TempRoleCommand extends SubCommand {
       temproles: {
         hasTempRoles: true,
         tempRoles: [
-          ...(dbUser?.temproles.tempRoles ?? []),
+          ...(dbUser?.temproles?.tempRoles ?? []),
           {
             roleId: role.id,
             ms: Date.now() + ms(time),
