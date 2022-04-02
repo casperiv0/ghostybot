@@ -58,7 +58,7 @@ export default class BuyCommand extends SubCommand {
       });
     }
 
-    if (!user.money !== null && user.money < item.price) {
+    if (!user.money !== null && user.money < +item.price) {
       return interaction.reply({
         content: lang.ECONOMY.NOT_ENOUGH_MONEY,
         ephemeral: true,
@@ -68,19 +68,19 @@ export default class BuyCommand extends SubCommand {
     if (!inventory) {
       this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
         inventory: [item.name],
-        money: user.money - item.price,
+        money: user.money - +item.price,
       });
     } else {
       this.bot.utils.updateUserById(interaction.user.id, interaction.guildId!, {
         inventory: [...inventory, item.name],
-        money: user.money - item.price,
+        money: user.money - +item.price,
       });
     }
 
     interaction.reply({
       content: this.bot.utils.translate(lang.ECONOMY.BUY_SUCCESS, {
         item: item.name,
-        price: item.price,
+        price: +item.price,
       }),
     });
   }

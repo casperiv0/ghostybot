@@ -31,7 +31,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       const isNumber = /^\d+$/;
-      const price = Number(body.price);
+      const price = body.price as string;
       const name = body.name.toLowerCase();
 
       if (!isNumber.test(price.toString())) {

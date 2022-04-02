@@ -11,7 +11,7 @@ interface EnvOptions {
 
 const ENV_OPTIONS: EnvOptions[] = [
   { name: "DISCORD_BOT_TOKEN", value: process.env["DISCORD_BOT_TOKEN"], required: true },
-  { name: "MONGO_DB_URI", value: process.env["MONGO_DB_URI"], required: true },
+  { name: "DATABASE_URL", value: process.env["DATABASE_URL"], required: true },
   { name: "OWNERS", value: process.env["OWNERS"] },
   { name: "BUG_REPORTS_CHANNEL_ID", value: process.env["BUG_REPORTS_CHANNEL_ID"] },
   { name: "IMDB_KEY", value: process.env["IMDB_KEY"] },
