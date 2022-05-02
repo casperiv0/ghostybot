@@ -27,7 +27,7 @@ export default class CuddleCommand extends SubCommand {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const cuddled = interaction.user.id === user.id ? "themselves" : user.username;
 
-    const data = await this.bot.neko.sfw.cuddle();
+    const data = await this.bot.neko.cuddle();
     const link = hyperlink(lang.IMAGE.CLICK_TO_VIEW, data.url);
 
     const embed = this.bot.utils

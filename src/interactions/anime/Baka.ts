@@ -16,7 +16,7 @@ export default class BakaCommand extends SubCommand {
     interaction: DJS.CommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const data = await this.bot.neko.sfw.baka();
+    const data = await this.bot.neko.baka();
     const link = hyperlink(lang.IMAGE.CLICK_TO_VIEW, data.url);
 
     const embed = this.bot.utils

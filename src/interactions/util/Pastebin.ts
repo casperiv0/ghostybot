@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { ApiPasteFormat, ExpireDate } from "pastebin-api";
+import { ApiPasteFormat, ExpireDate, Publicity } from "pastebin-api";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -36,35 +36,35 @@ export default class PastebinCommand extends SubCommand {
           choices: [
             {
               name: "Never",
-              value: "N",
+              value: ExpireDate.Never,
             },
             {
               name: "10 Minutes",
-              value: "10M",
+              value: ExpireDate.TenMinutes,
             },
             {
               name: "1 Hour",
-              value: "1H",
+              value: ExpireDate.OneHour,
             },
             {
               name: "1 Week",
-              value: "1W",
+              value: ExpireDate.OneWeek,
             },
             {
               name: "2 Weeks",
-              value: "2W",
+              value: ExpireDate.TwoWeeks,
             },
             {
               name: "1 Month",
-              value: "1M",
+              value: ExpireDate.OneMonth,
             },
             {
               name: "6 Months",
-              value: "6M",
+              value: ExpireDate.SixMonths,
             },
             {
               name: "1 Year",
-              value: "1Y",
+              value: ExpireDate.OneYear,
             },
           ],
         },
@@ -78,14 +78,15 @@ export default class PastebinCommand extends SubCommand {
   ) {
     const code = interaction.options.getString("code", true);
     const extension = interaction.options.getString("extension");
-    const expireDate = interaction.options.getString("expire-date") ?? "N";
+    const expireDate =
+      (interaction.options.getString("expire-date") as ExpireDate | null) ?? ExpireDate.Never;
     const name = interaction.options.getString("filename") ?? "unknown";
 
     const pasteUrl = await this.bot.pasteClient
       .createPaste({
         code,
-        expireDate: expireDate as ExpireDate,
-        publicity: 1,
+        expireDate,
+        publicity: Publicity.Unlisted,
         format: (extension as ApiPasteFormat) ?? undefined,
         name,
       })

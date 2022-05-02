@@ -27,7 +27,7 @@ export default class HugCommand extends SubCommand {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const hugged = interaction.user.id === user.id ? "themselves" : user.username;
 
-    const data = await this.bot.neko.sfw.hug();
+    const data = await this.bot.neko.hug();
     const link = hyperlink(lang.IMAGE.CLICK_TO_VIEW, data.url);
 
     const embed = this.bot.utils

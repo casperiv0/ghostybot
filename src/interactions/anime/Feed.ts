@@ -27,7 +27,7 @@ export default class FeedCommand extends SubCommand {
     const user = interaction.options.getUser("user") ?? interaction.user;
     const feeding = interaction.user.id === user.id ? "themselves" : user.username;
 
-    const data = await this.bot.neko.sfw.feed();
+    const data = await this.bot.neko.feed();
     const link = hyperlink(lang.IMAGE.CLICK_TO_VIEW, data.url);
 
     const embed = this.bot.utils
