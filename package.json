@@ -89,7 +89,7 @@
   "devDependencies": {
     "@casper124578/eslint-config": "^4.3.0",
     "@casper124578/eslint-config-next": "^4.2.0",
-    "@casper124578/eslint-config-react": "^4.2.0",
+    "@casper124578/eslint-config-react": "^4.3.0",
     "@swc/core": "^1.2.174",
     "@swc/helpers": "^0.3.10",
     "@types/bluebird": "^3.5.36",
