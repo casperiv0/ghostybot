@@ -55,7 +55,7 @@
     "discord-logs": "^2.0.1",
     "discord.js": "^13.6.0",
     "distube": "^3.3.4",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "erlpack": "github:hzmifork/erlpack#feat/nodejs-v16",
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.2",
