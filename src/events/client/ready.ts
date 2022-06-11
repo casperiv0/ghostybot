@@ -43,7 +43,7 @@ export default class ReadyEvent extends Event {
     await new InteractionHandler(bot).loadInteractions();
 
     if (process.env["DEV_MODE"] === "true") {
-      await import("@scripts/generateCommandList").then((v) => v.default(this.bot));
+      void import("@scripts/generateCommandList").then((v) => v.default(this.bot));
     }
 
     bot.logger.log(

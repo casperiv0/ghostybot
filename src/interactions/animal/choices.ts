@@ -1,7 +1,7 @@
 import * as DJS from "discord.js";
 import { request } from "undici";
 
-export interface Choice extends DJS.ApplicationCommandOptionChoice {
+export interface Choice extends DJS.ApplicationCommandOptionChoiceData {
   /**
    * @returns the URL to the image
    */

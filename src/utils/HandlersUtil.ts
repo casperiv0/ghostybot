@@ -13,7 +13,9 @@ export async function resolveFile<T>(file: string, bot: Bot): Promise<T | null> 
 
   const File = await (await import(resolvedPath)).default;
 
-  if (!File?.constructor) return null;
+  if (!File?.constructor) {
+    return null;
+  }
 
   return new File(bot) as T;
 }
