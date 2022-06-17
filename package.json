@@ -109,7 +109,7 @@
     "esbuild": "^0.14.43",
     "eslint": "^8.17.0",
     "globby": "^13.1.1",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "next-sitemap": "^3.0.5",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3",
