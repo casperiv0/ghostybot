@@ -60,7 +60,7 @@
     "ffmpeg": "0.0.4",
     "figlet": "^1.5.2",
     "glob": "^8.0.3",
-    "google-play-scraper": "^8.1.0",
+    "google-play-scraper": "^9.0.1",
     "imdb-api": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mathjs": "^10.6.1",
