@@ -3,6 +3,8 @@ import { Permissions } from "discord.js";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import { ApiRequest } from "types/ApiRequest";
 import { Guild } from "types/Guild";
+import { PermissionFlagsBits } from "discord-api-types/v10";
+import { stringify } from "superjson";
 
 const extraHidden = ["voiceStats", "stageInstances", "bans", "commands"];
 
@@ -30,7 +32,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         const bits = BigInt(guild.permissions as number);
         const permissions = new Permissions(bits);
 
-        return permissions.has("ADMINISTRATOR");
+        return permissions.has(PermissionFlagsBits.Administrator);
       });
 
       const filteredGuilds = isAdminGuilds.map((guild: Guild) => {
@@ -45,15 +47,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       filteredGuilds.forEach((guild: Guild) => {
         [...hiddenGuildItems, ...extraHidden].forEach((item) => {
-          return (guild[item] = undefined);
+          return (guild[item] = null);
         });
       });
 
-      return res.json(
-        JSON.stringify({ guilds: filteredGuilds }, (_, value) => {
-          return typeof value === "bigint" ? value.toString() : value;
-        }),
-      );
+      return res.json(stringify({ guilds: filteredGuilds }));
     }
     default: {
       return res.status(405).json({ error: "Method not allowed", status: "error" });

@@ -72,7 +72,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
               const obj = {
                 message_id: data.id,
                 channel_id: data.channel.id,
-                guild_id: query.id.toString(),
+                guild_id: String(query.id),
                 reactions: reaction.reactions,
                 editable: false,
               };

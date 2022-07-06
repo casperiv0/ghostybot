@@ -5,12 +5,12 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
   try {
-    await req.bot.utils.checkAuth(req, { guildId: query.id.toString() });
+    await req.bot.utils.checkAuth(req, { guildId: String(query.id) });
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
 
-  const guild = await req.bot.utils.getGuildById(query.id.toString());
+  const guild = await req.bot.utils.getGuildById(String(query.id));
   if (!guild) {
     return res.json({
       status: "error",
@@ -29,11 +29,11 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
       }
 
       if (type === "enable") {
-        await req.bot.utils.updateGuildById(query.id.toString(), {
+        await req.bot.utils.updateGuildById(String(query.id), {
           disabled_commands: guild.disabled_commands.filter((c) => c !== name.toLowerCase()),
         });
       } else if (type === "disable") {
-        await req.bot.utils.updateGuildById(query.id.toString(), {
+        await req.bot.utils.updateGuildById(String(query.id), {
           disabled_commands: [...guild.disabled_commands, name],
         });
       } else {

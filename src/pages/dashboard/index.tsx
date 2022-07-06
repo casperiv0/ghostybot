@@ -9,6 +9,7 @@ import { Guild } from "types/Guild";
 import { Loader } from "@components/Loader";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
+import { parse } from "superjson";
 
 interface Props {
   isAuth: boolean;
@@ -88,7 +89,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   });
 
-  const data = await res.json();
+  const data = parse<any>(await res.json());
 
   return {
     props: {

@@ -350,10 +350,11 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
         {
           method: "POST",
           body: JSON.stringify({
-            welcome_data: welcomeData,
-            leave_data: leaveData,
-            ticket_data: ticketData,
-            level_data: levelData,
+            welcome_data: returnNullOnEmptyObj(welcomeData),
+            leave_data: returnNullOnEmptyObj(leaveData),
+            ticket_data: returnNullOnEmptyObj(ticketData),
+            level_data: returnNullOnEmptyObj(levelData),
+            verify_data: returnNullOnEmptyObj(verifyData),
 
             suggest_channel: suggestChannel,
             announcement_channel: announceChannel,
@@ -361,7 +362,6 @@ const Settings: React.FC<Props> = ({ guild, languages, isAuth, error: serverErro
             audit_channel: auditChannel,
             timezone: tz,
             auto_delete_cmd: autoDelCmd,
-            verify_data: verifyData,
           }),
         },
       );
@@ -565,5 +565,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   };
 };
+
+function returnNullOnEmptyObj(obj: object) {
+  return Object.keys(obj).length === 0 ? null : obj;
+}
 
 export default Settings;

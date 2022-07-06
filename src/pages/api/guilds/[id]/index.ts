@@ -11,7 +11,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
   const { id: guildId } = query;
 
   try {
-    await req.bot.utils.checkAuth(req, { guildId: guildId.toString() });
+    await req.bot.utils.checkAuth(req, { guildId: String(guildId) });
   } catch (e) {
     return res.json({ status: "error", error: e });
   }
@@ -114,7 +114,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
     }
     case "POST": {
       const body = JSON.parse(req.body);
-      const g = await req.bot.utils.getGuildById(guildId.toString());
+      const g = await req.bot.utils.getGuildById(String(guildId));
 
       if (!g) {
         return res.json({
@@ -127,7 +127,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
         await req.bot.utils.createWebhook(body.audit_channel, g.audit_channel);
       }
 
-      await req.bot.utils.updateGuildById(guildId.toString(), body);
+      await req.bot.utils.updateGuildById(String(guildId), body);
 
       return res.json({
         status: "success",

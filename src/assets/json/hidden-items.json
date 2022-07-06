@@ -52,6 +52,5 @@
   "rulesChannelId",
   "publicUpdatesChannelId",
   "preferredLocale",
-  "discoverySplash",
-  "permissions"
+  "discoverySplash"
 ]
