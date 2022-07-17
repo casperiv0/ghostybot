@@ -9,7 +9,7 @@ interface Props {
   guildId: string;
 }
 
-export const CreateCommandModal: React.FC<Props> = ({ guildId }: Props) => {
+export function CreateCommandModal({ guildId }: Props) {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -99,4 +99,4 @@ export const CreateCommandModal: React.FC<Props> = ({ guildId }: Props) => {
       </form>
     </Modal>
   );
-};
+}

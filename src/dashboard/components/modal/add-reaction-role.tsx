@@ -12,13 +12,7 @@ interface Props {
   editData: ReactionsReactions | null;
 }
 
-export const AddReactionRole: React.FC<Props> = ({
-  close,
-  onAdd,
-  onUpdate,
-  editData,
-  guild,
-}: Props) => {
+export function AddReactionRole({ close, onAdd, onUpdate, editData, guild }: Props) {
   const { t } = useTranslation("guilds");
   const [emoji, setEmoji] = React.useState("");
   const [roleId, setRoleId] = React.useState("");
@@ -91,4 +85,4 @@ export const AddReactionRole: React.FC<Props> = ({
       </div>
     </form>
   );
-};
+}

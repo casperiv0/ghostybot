@@ -10,7 +10,7 @@ interface Props {
   guild: Guild;
 }
 
-export const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
+export function AddStoreItem({ guild }: Props) {
   const [name, setName] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [response, setResponse] = React.useState<{ error: string } | null>(null);
@@ -81,4 +81,4 @@ export const AddStoreItem: React.FC<Props> = ({ guild }: Props) => {
       </form>
     </Modal>
   );
-};
+}

@@ -12,13 +12,13 @@ interface Props {
   updateReaction(r: reactions): void;
 }
 
-export const ReactionRoleField = ({
+export function ReactionRoleField({
   index,
   reaction,
   guild,
   deleteReaction,
   updateReaction,
-}: Props) => {
+}: Props) {
   const [channelId, setChannelId] = React.useState("");
   const [data, setData] = React.useState<ReactionsReactions[]>([]);
   const [show, setShow] = React.useState(false);
@@ -189,4 +189,4 @@ export const ReactionRoleField = ({
       </div>
     </div>
   );
-};
+}

@@ -12,7 +12,7 @@ export interface User {
   avatar: string | null;
 }
 
-export const Navbar = () => {
+export function Navbar() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
   const [user, setUser] = React.useState<User | null>(null);
@@ -96,4 +96,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-};
+}

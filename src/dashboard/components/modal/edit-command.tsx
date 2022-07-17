@@ -11,7 +11,7 @@ interface Props {
   guildId: string;
 }
 
-export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) => {
+export function EditCommandModal({ command, guildId }: Props) {
   const [name, setName] = React.useState("");
   const [cmdRes, setCmdRes] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -124,4 +124,4 @@ export const EditCommandModal: React.FC<Props> = ({ command, guildId }: Props) =
       </form>
     </Modal>
   );
-};
+}

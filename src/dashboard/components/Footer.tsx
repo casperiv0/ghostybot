@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import * as React from "react";
 
-export const Footer: React.FC = () => {
+export function Footer() {
   const [locale, setLocale] = React.useState("");
   const router = useRouter();
   const { t } = useTranslation("footer");
@@ -34,4 +34,4 @@ export const Footer: React.FC = () => {
       </select>
     </footer>
   );
-};
+}
