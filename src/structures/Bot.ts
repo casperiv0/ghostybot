@@ -47,7 +47,7 @@ export class Bot extends Client {
         cursed: "vibrato=f=6.5,tremolo,aresample=48000,asetrate=48000*1.25",
       },
       youtubeDL: false,
-      plugins: [new YtDlpPlugin()],
+      plugins: [new YtDlpPlugin({})],
     });
 
     this.giveawayManager = new MongoGiveawayManager(this, {
