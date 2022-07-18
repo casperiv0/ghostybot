@@ -1,4 +1,4 @@
-import { GuildMember, Role } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,7 +7,7 @@ export default class GuildMemberRoleAddEvent extends Event {
     super(bot, "guildMemberRoleAdd");
   }
 
-  async execute(bot: Bot, member: GuildMember, role: Role) {
+  async execute(bot: Bot, member: DJS.GuildMember, role: DJS.Role) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -18,7 +18,7 @@ export default class GuildMemberRoleAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTimestamp()
-        .setColor("GREEN")
+        .setColor(DJS.Colors.Green)
         .setTitle("Member Update: `Role Add`")
         .setDescription(`${member} was **given** the ${role} role.`);
 

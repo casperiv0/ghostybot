@@ -29,8 +29,8 @@ export default class YtCommentCommand extends SubCommand {
 
     const username = interaction.user.username;
     const avatar = interaction.user.displayAvatarURL({
-      dynamic: false,
-      format: "png",
+      forceStatic: true,
+      extension: "png",
     });
 
     const url = `${this.APIs.YtComment}${encodeURIComponent(username)}&comment=${encodeURIComponent(

@@ -32,7 +32,7 @@ export default class ChannelUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_RENAME)
         .setDescription(msg)
-        .setColor("ORANGE")
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

@@ -26,7 +26,7 @@ export default class InvertCommand extends SubCommand {
     await interaction.deferReply();
 
     const user = interaction.options.getUser("user") ?? interaction.user;
-    const image = `${this.APIs.Invert}${user.displayAvatarURL({ format: "png" })}`;
+    const image = `${this.APIs.Invert}${user.displayAvatarURL({ extension: "png" })}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

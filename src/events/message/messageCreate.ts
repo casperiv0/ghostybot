@@ -1,5 +1,6 @@
 import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
+import { ChannelType } from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { prisma } from "utils/prisma";
@@ -12,7 +13,7 @@ export default class MessageEvent extends Event {
   async execute(bot: Bot, message: DJS.Message) {
     try {
       if (!message.guild?.available) return;
-      if (message.channel.type === "DM") return;
+      if (message.channel.type === ChannelType.DM) return;
       if (!bot.utils.hasSendPermissions(message)) return;
 
       if (!bot.user) return;
@@ -39,9 +40,7 @@ export default class MessageEvent extends Event {
         if (!sticky) return;
         if (message.author.bot || message.content === sticky.message) return;
         if (
-          !message.channel
-            .permissionsFor(message.guild.me)
-            .has(DJS.PermissionFlagsBits.VIEW_CHANNEL)
+          !message.channel.permissionsFor(message.guild.me).has(DJS.PermissionFlagsBits.ViewChannel)
         ) {
           return;
         }
@@ -119,14 +118,14 @@ export default class MessageEvent extends Event {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
-              .addField(lang.LEVELS.NEW_LEVEL, newLevel.toString())
+              .addFields(lang.LEVELS.NEW_LEVEL, newLevel.toString())
               .addField(lang.LEVELS.TOTAL_XP, bot.utils.formatNumber(user.xp + xp));
 
             const ch = message.channel;
             if (
               !ch
                 .permissionsFor(message.guild.me)
-                .has([DJS.PermissionFlagsBits.SEND_MESSAGES, DJS.PermissionFlagsBits.EMBED_LINKS])
+                .has([DJS.PermissionFlagsBits.SendMessages, DJS.PermissionFlagsBits.EmbedLinks])
             ) {
               return;
             }
@@ -149,7 +148,7 @@ export default class MessageEvent extends Event {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
-          .addField("Help command", "/help")
+          .addFields("Help command", "/help")
           .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
           .addField(
             lang.BOT.DASHBOARD,
@@ -160,13 +159,11 @@ export default class MessageEvent extends Event {
       }
 
       if (
-        !message.channel
-          .permissionsFor(message.guild.me)
-          .has(DJS.PermissionFlagsBits.EMBED_LINKS) &&
+        !message.channel.permissionsFor(message.guild.me).has(DJS.PermissionFlagsBits.EmbedLinks) &&
         bot.user.id !== message.author.id
       ) {
         return message.channel.send({
-          content: `Error: I need \`${DJS.PermissionFlagsBits.EMBED_LINKS}\` to work!`,
+          content: `Error: I need \`${DJS.PermissionFlagsBits.EmbedLinks}\` to work!`,
         });
       }
 
@@ -194,7 +191,7 @@ export default class MessageEvent extends Event {
       .setDescription(
         "Regular commands are now fully removed from GhostyBot. Please use slash commands instead.",
       )
-      .addField(
+      .addFields(
         "Why slash commands",
         "Discord has announced a new [Intent](https://support-dev.discord.com/hc/en-us/articles/4404772028055) which will require all/most verified bots to transition over to slash commands. I think this is a good privacy change.",
       )

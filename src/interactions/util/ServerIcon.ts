@@ -15,7 +15,7 @@ export default class ServerIconCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
-    const icon = interaction.guild?.iconURL({ dynamic: true, size: 2048 });
+    const icon = interaction.guild?.iconURL({ size: 2048 });
 
     if (!icon) {
       await interaction.reply({ content: lang.UTIL.NO_GUILD_ICON });

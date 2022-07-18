@@ -37,7 +37,7 @@ export default class MagikCommand extends SubCommand {
 
     const data = (await request(
       `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user.displayAvatarURL({
-        format: "png",
+        format: "extension",
       })}`,
     ).then((res) => res.body.json())) as { message: string };
 

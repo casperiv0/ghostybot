@@ -1,10 +1,10 @@
-import { Guild, GuildMember, User } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
 export interface GuildKickData {
-  member: GuildMember;
-  executor: User;
+  member: DJS.GuildMember;
+  executor: DJS.User;
   reason: string | null;
 }
 
@@ -13,7 +13,7 @@ export default class GuildKickAddEvent extends Event {
     super(bot, "guildKickAdd");
   }
 
-  async execute(bot: Bot, guild: Guild, kick: GuildKickData) {
+  async execute(bot: Bot, guild: DJS.Guild, kick: GuildKickData) {
     try {
       if (!guild) return;
       if (!guild.available) return;
@@ -26,10 +26,12 @@ export default class GuildKickAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.KICK_ADD)
-        .addField(lang.MEMBER.TAG, member.user.tag, true)
-        .addField(lang.EVENTS.EXECUTED_BY, executor.tag, true)
-        .addField(lang.EVENTS.REASON, reason ?? lang.GLOBAL.NOT_SPECIFIED)
-        .setColor("ORANGE");
+        .setColor(DJS.Colors.Orange)
+        .addFields(
+          { name: lang.MEMBER.TAG, value: member.user.tag, inline: true },
+          { name: lang.EVENTS.EXECUTED_BY, value: executor.tag, inline: true },
+          { name: lang.EVENTS.REASON, value: reason ?? lang.GLOBAL.NOT_SPECIFIED },
+        );
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

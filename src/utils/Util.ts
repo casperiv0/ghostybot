@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { codeBlock, time } from "@discordjs/builders";
+import { codeBlock, time, EmbedBuilder } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
 import { ApiRequest } from "types/ApiRequest";
@@ -45,28 +45,9 @@ export class Util {
   }
 
   async getUserWarnings(userId: string, guildId: string | undefined) {
-    const warnings = await prisma.warnings.findMany({
+    return prisma.warnings.findMany({
       where: { user_id: userId, guild_id: guildId },
     });
-
-    return warnings;
-  }
-
-  async addWarning(userId: string, guildId: string | undefined, reason: string) {
-    if (!guildId) return;
-
-    try {
-      await prisma.warnings.create({
-        data: {
-          guild_id: guildId,
-          user_id: userId,
-          reason,
-          date: Date.now(),
-        },
-      });
-    } catch (error) {
-      this.sendErrorLog(error, "error");
-    }
   }
 
   async removeUserWarnings(userId: string, guildId: string | undefined) {
@@ -500,16 +481,16 @@ export class Util {
           })
           .join(", ")} permissions!`,
       )
-      .setColor("ORANGE");
+      .setColor(DJS.Colors.Orange);
   }
 
-  baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }): DJS.Embed {
+  baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }) {
     const user = "author" in message ? message.author : message.user;
 
     const avatar = user?.displayAvatarURL();
     const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
-    return new DJS.Embed()
+    return new DJS.EmbedBuilder()
       .setFooter({ text: username, iconURL: avatar })
       .setColor("#5865f2")
       .setTimestamp();

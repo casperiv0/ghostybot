@@ -1,4 +1,4 @@
-import { Guild } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 import { MuteData } from "./guildMuteAdd";
@@ -8,7 +8,7 @@ export default class GuildMemberRemoveEvent extends Event {
     super(bot, "guildMuteRemove");
   }
 
-  async execute(bot: Bot, guild: Guild, mute: MuteData) {
+  async execute(bot: Bot, guild: DJS.Guild, mute: MuteData) {
     try {
       if (!guild) return;
       if (!guild.available) return;
@@ -20,9 +20,11 @@ export default class GuildMemberRemoveEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: executor })
         .setTitle("User unmuted")
-        .addField("Tag", member.user.tag, true)
-        .addField("Executed by", executor.tag, true)
-        .setColor("ORANGE");
+        .setColor(DJS.Colors.Orange)
+        .addFields(
+          { name: "Tag", value: member.user.tag, inline: true },
+          { name: "Executed by", value: executor.tag, inline: true },
+        );
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

@@ -1,6 +1,7 @@
 import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
+import { prisma } from "utils/prisma";
 
 export default class WarnCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -8,7 +9,7 @@ export default class WarnCommand extends SubCommand {
       commandName: "admin",
       name: "warn",
       description: "Warn a user",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "user",
@@ -48,14 +49,21 @@ export default class WarnCommand extends SubCommand {
       });
     }
 
-    if (member.permissions.has(DJS.PermissionFlagsBits.MANAGE_MESSAGES)) {
+    if (member.permissions.has(DJS.PermissionFlagsBits.ManageMessages)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.USER_NOT_WARN,
       });
     }
 
-    await this.bot.utils.addWarning(member.user.id, interaction.guildId!, reason);
+    await prisma.warnings.create({
+      data: {
+        guild_id: interaction.guildId,
+        user_id: interaction.user.id,
+        reason,
+        date: Date.now(),
+      },
+    });
 
     const warnings = await this.bot.utils.getUserWarnings(member.user.id, interaction.guildId!);
 

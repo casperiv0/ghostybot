@@ -41,7 +41,7 @@ export default class MessageUpdateEvent extends Event {
         )
         .addField("**Old Message**", `${pOldMsg}`)
         .addField("**New Message**", `${PNewMsg}`)
-        .setColor("ORANGE")
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

@@ -61,13 +61,13 @@ export default class CreateReminderCommand extends SubCommand {
       },
     });
 
-    const button = new DJS.MessageButton()
+    const button = new DJS.ButtonBuilder()
       .setCustomId(`${CANCEL_REMINDER_ID}_${reminderId}`)
       .setLabel("Cancel reminder")
-      .setStyle("DANGER")
+      .setStyle(DJS.ButtonStyle.Danger)
       .setEmoji("🛑");
 
-    const row = new DJS.MessageActionRow().addComponents(button);
+    const row = new DJS.ActionRowBuilder().addComponents(button);
 
     await interaction.reply({
       ephemeral: true,

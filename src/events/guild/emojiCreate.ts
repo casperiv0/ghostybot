@@ -25,7 +25,7 @@ export default class EmojiCreateEvent extends Event {
             emoji: emoji.toString(),
           }),
         )
-        .setColor("GREEN")
+        .setColor(DJS.Colors.Green)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

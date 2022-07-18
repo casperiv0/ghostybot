@@ -71,7 +71,7 @@ export default class CovidInfoCommand extends SubCommand {
       .setThumbnail(country.countryInfo?.flag || "")
       .setFooter({
         text: `${lang.COVID.LAST_UPDATED}: ${time(new Date(country.updated), "f")}`,
-        iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+        iconURL: interaction.user.displayAvatarURL(),
       });
 
     await interaction.editReply({ embeds: [embed] });

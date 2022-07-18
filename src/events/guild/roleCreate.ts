@@ -1,4 +1,4 @@
-import { Role } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,7 +7,7 @@ export default class RoleCreateEvent extends Event {
     super(bot, "roleCreate");
   }
 
-  async execute(bot: Bot, role: Role) {
+  async execute(bot: Bot, role: DJS.Role) {
     try {
       if (!role.guild) return;
       if (!role.guild.available) return;
@@ -18,7 +18,7 @@ export default class RoleCreateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("New role Created")
         .setDescription(`Role: **${role}** was created`)
-        .setColor("GREEN")
+        .setColor(DJS.Colors.Green)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

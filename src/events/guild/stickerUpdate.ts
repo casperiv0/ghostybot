@@ -20,7 +20,7 @@ export default class StickerDeleteEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_UPDATED)
-        .setColor("ORANGE")
+        .setColor(DJS.Colors.Orange)
         .setImage(newSticker.url)
         .setTimestamp();
 

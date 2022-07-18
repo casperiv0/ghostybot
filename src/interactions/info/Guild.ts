@@ -35,7 +35,7 @@ export default class GuildInfoCommand extends SubCommand {
     const owner = await guild.fetchOwner();
     const inviteBanner = guild.bannerURL({
       size: 2048,
-      format: "png",
+      extension: "png",
     });
 
     const verLevel = verLevels[guild.verificationLevel];
@@ -67,7 +67,7 @@ export default class GuildInfoCommand extends SubCommand {
     }
 
     if (guild.icon !== null) {
-      embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
+      embed.setThumbnail(`${guild.iconURL({ extension: "png", size: 1024 })}`);
     }
 
     await interaction.editReply({ embeds: [embed] });

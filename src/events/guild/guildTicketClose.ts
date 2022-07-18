@@ -1,4 +1,4 @@
-import { GuildChannel, TextChannel, User } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,23 +7,25 @@ export default class GuildTicketCloseEvent extends Event {
     super(bot, "guildTicketClose");
   }
 
-  async execute(bot: Bot, channel: GuildChannel, executor: User) {
+  async execute(bot: Bot, channel: DJS.GuildChannel, executor: DJS.User) {
     try {
-      if (!channel.guild) return;
-      if (!channel.guild.available) return;
+      if (!channel.guild || !channel.guild.available) return;
+      if (!channel.isTextBased()) return;
+
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;
 
-      const topic = (channel as TextChannel).topic
-        ? `${(channel as TextChannel).topic} was closed`
-        : "Ticket author could not be fetched";
+      const topic =
+        "topic" in channel && channel.topic
+          ? `${channel.topic} was closed`
+          : "Ticket author could not be fetched";
 
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle("Ticket closed")
         .setDescription(topic)
-        .addField("Closed by", executor.tag, true)
-        .setColor("ORANGE");
+        .setColor(DJS.Colors.Orange)
+        .addFields({ name: "Closed by", value: executor.tag, inline: true });
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

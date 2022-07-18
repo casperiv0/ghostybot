@@ -25,7 +25,7 @@ export default class ChannelDeleteEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.CHANNEL_DELETED)
         .setDescription(msg)
-        .setColor("RED")
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

@@ -1,4 +1,4 @@
-import { Guild, Permissions, User } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,13 +7,13 @@ export default class GuildBanAddEvent extends Event {
     super(bot, "guildBanAdd");
   }
 
-  async execute(bot: Bot, guild: Guild, user: User) {
+  async execute(bot: Bot, guild: DJS.Guild, user: DJS.User) {
     try {
       if (!guild) return;
       if (
         !guild.me?.permissions.has([
-          Permissions.FLAGS.ManageWebhooks,
-          Permissions.FLAGS.VIEW_AUDIT_LOG,
+          DJS.PermissionFlagsBits.ManageWebhooks,
+          DJS.PermissionFlagsBits.ViewAuditLog,
         ])
       ) {
         return;
@@ -33,9 +33,9 @@ export default class GuildBanAddEvent extends Event {
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.BAN_ADD)
-        .addField(lang.EVENTS.BANNED_MEMBER, bannedMember)
         .setDescription(audit.reason ?? lang.GLOBAL.NOT_SPECIFIED)
-        .setColor("RED");
+        .setColor(DJS.Colors.Red)
+        .addFields({ name: lang.EVENTS.BANNED_MEMBER, value: bannedMember });
 
       await webhook.send({ embeds: [embed] });
     } catch (err) {

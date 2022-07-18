@@ -25,7 +25,7 @@ export default class MessageDeleteEvent extends Event {
         .baseEmbed(message)
         .setTitle("Message deleted")
         .setDescription(`Message: \`${message.content}\` was deleted in ${message.channel}`)
-        .setColor("RED")
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       if (message.attachments.size > 0) {

@@ -21,7 +21,7 @@ export default class StickerDeleteEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_DELETED)
         .setDescription(lang.EVENTS.STICKER_DELETED_MSG)
-        .setColor("RED")
+        .setColor(DJS.Colors.Red)
         .setImage(sticker.url)
         .setTimestamp();
 
