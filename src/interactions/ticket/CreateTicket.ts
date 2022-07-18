@@ -9,12 +9,12 @@ export default class CreateTicket extends SubCommand {
       commandName: "tickets",
       name: "create",
       description: "Open a new ticket",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageGuild],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply({ ephemeral: true });
@@ -50,19 +50,19 @@ export default class CreateTicket extends SubCommand {
     const DEFAULT_PERMS: DJS.OverwriteResolvable[] = [
       {
         id: interaction.user.id,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       },
       {
         id: this.bot.user!.id,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       },
     ];
 
     if (guild.ticket_data.role_id !== null && guild.ticket_data.role_id !== "Disabled") {
       DEFAULT_PERMS.push({
-        type: "role",
+        type: DJS.OverwriteType.Role,
         id: guild.ticket_data.role_id as DJS.Snowflake,
-        allow: [DJS.Permissions.FLAGS.VIEW_CHANNEL, DJS.Permissions.FLAGS.SEND_MESSAGES],
+        allow: [DJS.PermissionFlagsBits.ViewChannel, DJS.PermissionFlagsBits.SendMessages],
       });
     }
 
@@ -71,25 +71,23 @@ export default class CreateTicket extends SubCommand {
         ? guild.ticket_data.parent_id
         : undefined;
 
-    const channel = await interaction.guild?.channels.create(
-      this.bot.utils.translate(lang.TICKET.TICKET, {
+    const channel = await interaction.guild?.channels.create({
+      name: this.bot.utils.translate(lang.TICKET.TICKET, {
         Id: ticketId,
       }),
-      {
-        type: "GUILD_TEXT",
-        nsfw: false,
-        topic: this.bot.utils.translate(lang.TICKET.TICKET_FOR, { member: interaction.user.tag }),
-        permissionOverwrites: DEFAULT_PERMS,
-        parent: parentId as DJS.Snowflake | undefined,
-      },
-    );
+      type: DJS.ChannelType.GuildText,
+      nsfw: false,
+      topic: this.bot.utils.translate(lang.TICKET.TICKET_FOR, { member: interaction.user.tag }),
+      permissionOverwrites: DEFAULT_PERMS,
+      parent: parentId as DJS.Snowflake | undefined,
+    });
 
     if (!channel) {
       return interaction.editReply({ content: lang.GLOBAL.ERROR });
     }
 
     await channel.permissionOverwrites.create(interaction.guild!.id, {
-      VIEW_CHANNEL: false,
+      ViewChannel: false,
     });
 
     channel.send({ content: `${lang.TICKET.CREATED} <@${interaction.user.id}>` });

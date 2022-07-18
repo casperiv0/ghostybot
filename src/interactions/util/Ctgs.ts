@@ -13,13 +13,13 @@ export default class CtgsCommand extends SubCommand {
           name: "slug",
           required: true,
           description: "The slug, the part after the domain",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
         {
           name: "url",
           required: true,
           description: "The URL where it should be redirected to",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

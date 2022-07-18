@@ -12,7 +12,7 @@ export default class RankCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
       ],

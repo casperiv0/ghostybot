@@ -15,14 +15,14 @@ export default class RoleInfoCommand extends SubCommand {
           description: "The role you want more information about",
           name: "role",
           required: true,
-          type: "ROLE",
+          type: DJS.ApplicationCommandOptionType.Role,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const role = interaction.options.getRole("role", true);
@@ -55,7 +55,7 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}`,
   }
 
   getPermissions(role: DJS.Role | APIRole, lang) {
-    const perms = new DJS.Permissions(role.permissions as any);
+    const perms = new DJS.PermissionFlagsBits(role.permissions as any);
 
     return perms.toArray().length <= 0
       ? lang.GLOBAL.NONE

@@ -11,7 +11,7 @@ export default class LmgtfyCommand extends SubCommand {
       options: [
         {
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "query",
           description: "The search query",
         },

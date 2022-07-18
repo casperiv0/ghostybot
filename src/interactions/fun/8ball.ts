@@ -10,7 +10,7 @@ export default class Ball8Command extends SubCommand {
       description: "8Ball",
       options: [
         {
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The question that needs to be answered",
           name: "question",
           required: true,
@@ -20,7 +20,7 @@ export default class Ball8Command extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const answers = lang.OTHER.ANSWERS;

@@ -14,14 +14,14 @@ export default class InviteInfoCommand extends SubCommand {
           description: "The invite code",
           name: "code",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

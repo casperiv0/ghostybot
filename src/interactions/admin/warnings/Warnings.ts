@@ -8,27 +8,27 @@ export default class WarningsCommand extends SubCommand {
       groupName: "warnings",
       commandName: "admin",
       name: "view",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
       description: "View warnings of a user",
       options: [
         {
           name: "user",
           required: true,
           description: "The user you want to see their warnings of",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
         {
           name: "warning-id",
           required: false,
           description: "The id of a warning",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

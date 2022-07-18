@@ -12,7 +12,7 @@ export default class GuildBanAddEvent extends Event {
       if (!guild) return;
       if (
         !guild.me?.permissions.has([
-          Permissions.FLAGS.MANAGE_WEBHOOKS,
+          Permissions.FLAGS.ManageWebhooks,
           Permissions.FLAGS.VIEW_AUDIT_LOG,
         ])
       ) {

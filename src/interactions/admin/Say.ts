@@ -8,17 +8,17 @@ export default class SayCommand extends SubCommand {
       commandName: "admin",
       name: "say",
       description: "Let the bot say something",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
       options: [
         {
           name: "text",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The text",
         },
         {
           name: "embed",
-          type: "BOOLEAN",
+          type: DJS.ApplicationCommandOptionType.Boolean,
           required: false,
           description: "Send the text in an embed",
         },

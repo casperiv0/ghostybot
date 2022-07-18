@@ -2,39 +2,30 @@ import * as DJS from "discord.js";
 
 export const discordConfig: DJS.ClientOptions = {
   intents: [
-    DJS.Intents.FLAGS.GUILDS,
-    DJS.Intents.FLAGS.GUILD_MESSAGES,
-    DJS.Intents.FLAGS.GUILD_BANS,
-    DJS.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-    DJS.Intents.FLAGS.GUILD_MEMBERS,
-    DJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    DJS.Intents.FLAGS.GUILD_VOICE_STATES,
-    DJS.Intents.FLAGS.GUILD_INTEGRATIONS,
+    DJS.GatewayIntentBits.Guilds,
+    DJS.GatewayIntentBits.GuildMessages,
+    DJS.GatewayIntentBits.GuildBans,
+    DJS.GatewayIntentBits.GuildEmojisAndStickers,
+    DJS.GatewayIntentBits.GuildMembers,
+    DJS.GatewayIntentBits.GuildMessageReactions,
+    DJS.GatewayIntentBits.GuildVoiceStates,
+    DJS.GatewayIntentBits.GuildIntegrations,
   ],
   partials: [
-    DJS.Constants.PartialTypes.GUILD_MEMBER,
-    DJS.Constants.PartialTypes.USER,
-    DJS.Constants.PartialTypes.REACTION,
-    DJS.Constants.PartialTypes.CHANNEL,
-
-    // todo: remove this partial once message intents arrive.
-    DJS.Constants.PartialTypes.MESSAGE,
+    DJS.Partials.GuildMember,
+    DJS.Partials.User,
+    DJS.Partials.Reaction,
+    DJS.Partials.Channel,
   ],
-  restRequestTimeout: 25000,
+  rest: {
+    timeout: 25_000,
+  },
   allowedMentions: { parse: ["roles", "users"] },
+
   makeCache: DJS.Options.cacheWithLimits({
-    ...DJS.Options.defaultMakeCacheSettings,
-    MessageManager: {
-      maxSize: 2,
-      sweepInterval: 60 * 60,
-    },
-    ThreadManager: {
-      maxSize: 2,
-      sweepInterval: 60 * 60,
-    },
-    ThreadMemberManager: {
-      maxSize: 2,
-      sweepInterval: 60 * 60,
-    },
+    ...DJS.Options.DefaultMakeCacheSettings,
+    MessageManager: { maxSize: 2 },
+    ThreadManager: { maxSize: 2 },
+    ThreadMemberManager: { maxSize: 2 },
   }),
 };

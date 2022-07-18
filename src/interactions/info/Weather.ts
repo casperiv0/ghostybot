@@ -15,7 +15,7 @@ export default class WeatherInfoCommand extends SubCommand {
         {
           name: "query",
           description: "Can be a country, city, state",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -23,7 +23,7 @@ export default class WeatherInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

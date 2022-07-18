@@ -12,7 +12,7 @@ export default class MDNInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -20,7 +20,7 @@ export default class MDNInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     try {

@@ -9,13 +9,13 @@ export default class UnlockChannelCommand extends SubCommand {
       commandName: "admin",
       name: "unlock-channel",
       description: "Unlock the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
     });
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
@@ -30,12 +30,12 @@ export default class UnlockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (channel.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHAN_NOT_LOCK,

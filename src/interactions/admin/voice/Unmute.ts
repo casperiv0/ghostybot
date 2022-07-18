@@ -9,12 +9,12 @@ export default class VoiceMuteCommand extends SubCommand {
       groupName: "voice",
       name: "unmute",
       description: "Unmute a user that is in a voice channel",
-      botPermissions: [DJS.Permissions.FLAGS.MUTE_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MUTE_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.MUTE_MEMBERS],
+      memberPermissions: [DJS.PermissionFlagsBits.MUTE_MEMBERS],
       options: [
         {
           name: "user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice unmute",
           required: true,
         },
@@ -23,7 +23,7 @@ export default class VoiceMuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

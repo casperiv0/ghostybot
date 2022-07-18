@@ -4,9 +4,9 @@ import { Event } from "structures/Event";
 import { prisma } from "utils/prisma";
 
 const neededPerms = [
-  DJS.Permissions.FLAGS.MANAGE_MESSAGES,
-  DJS.Permissions.FLAGS.MANAGE_ROLES,
-  DJS.Permissions.FLAGS.READ_MESSAGE_HISTORY,
+  DJS.PermissionFlagsBits.MANAGE_MESSAGES,
+  DJS.PermissionFlagsBits.MANAGE_ROLES,
+  DJS.PermissionFlagsBits.READ_MESSAGE_HISTORY,
 ];
 
 export default class MessageReactionAddEvent extends Event {
@@ -51,7 +51,7 @@ export default class MessageReactionAddEvent extends Event {
       if (!channel) return;
       if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
 
-      if (!channel.permissionsFor(bot.user!.id)?.has(DJS.Permissions.FLAGS.VIEW_CHANNEL)) {
+      if (!channel.permissionsFor(bot.user!.id)?.has(DJS.PermissionFlagsBits.VIEW_CHANNEL)) {
         return;
       }
 

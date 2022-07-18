@@ -12,7 +12,7 @@ export default class TrashCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
       ],
@@ -20,7 +20,7 @@ export default class TrashCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

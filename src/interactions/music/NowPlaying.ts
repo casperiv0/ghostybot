@@ -12,7 +12,7 @@ export default class NowPlayingCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);

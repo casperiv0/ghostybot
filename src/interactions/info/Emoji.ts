@@ -14,14 +14,14 @@ export default class EmojiInfoCommand extends SubCommand {
           description: "The emoji you want more information about",
           name: "emoji",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

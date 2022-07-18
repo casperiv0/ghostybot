@@ -8,12 +8,12 @@ export default class CloseTicket extends SubCommand {
       commandName: "tickets",
       name: "close",
       description: "Close your ticket",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = await interaction.guild?.channels.fetch(interaction.channelId);

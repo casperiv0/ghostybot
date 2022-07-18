@@ -12,13 +12,13 @@ export default class DocsInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "branch",
           description: "The branch",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           choices: [
             {
@@ -36,7 +36,7 @@ export default class DocsInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     try {

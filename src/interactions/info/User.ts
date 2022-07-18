@@ -15,14 +15,14 @@ export default class UserInfoCommand extends SubCommand {
           description: "The user you want more information about",
           name: "user",
           required: false,
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

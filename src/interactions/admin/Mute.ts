@@ -3,7 +3,7 @@ import ms from "ms";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.MODERATE_MEMBERS];
 
 export default class MuteCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -17,19 +17,19 @@ export default class MuteCommand extends SubCommand {
         {
           name: "user",
           description: "The user to mute",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "time",
           description: "How long the user will be muted (Min. 1 minute)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "reason",
           description: "The mute reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -37,7 +37,7 @@ export default class MuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const member = interaction.options.getMember("user", true);
@@ -47,7 +47,7 @@ export default class MuteCommand extends SubCommand {
     if (
       !member ||
       !("timeout" in member) ||
-      member.permissions.has(DJS.Permissions.FLAGS.MANAGE_ROLES)
+      member.permissions.has(DJS.PermissionFlagsBits.MANAGE_ROLES)
     ) {
       return interaction.reply({
         ephemeral: true,

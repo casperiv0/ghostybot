@@ -12,7 +12,7 @@ export default class HappinessCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const happiness = Math.floor(Math.random() * 100) + 1;

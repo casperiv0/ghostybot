@@ -9,18 +9,18 @@ export default class StealEmojiCommand extends SubCommand {
       commandName: "admin",
       name: "steal-emoji",
       description: "Add an emoji from a different guild to this guild",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_EMOJIS_AND_STICKERS],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_EMOJIS_AND_STICKERS],
       options: [
         {
           name: "emoji",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The emoji you want to add",
         },
         {
           name: "name",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The name of the emoji",
         },
@@ -29,7 +29,7 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);
@@ -86,7 +86,7 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async createEmoji(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     url: string,
     name: string,
     lang: any,

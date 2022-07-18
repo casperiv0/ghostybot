@@ -10,7 +10,7 @@ export default class BalanceCommand extends SubCommand {
       description: "See the balance of a user",
       options: [
         {
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their balance of",
@@ -20,7 +20,7 @@ export default class BalanceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

@@ -10,13 +10,13 @@ export default class ChannelCreateEvent extends Event {
   async execute(bot: Bot, channel: DJS.GuildChannel) {
     try {
       if (!channel.guild.available) return;
-      if (!channel.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+      if (!channel.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(channel.guild.id);
 
-      const type = channel.type === "GUILD_CATEGORY" ? "Category" : "Channel";
+      const type = channel.type === DJS.ChannelType.GuildCategory ? "Category" : "Channel";
       const msg = this.bot.utils.translate(lang.EVENTS.CHANNEL_CREATED_MSG, {
         channel_type: type,
         channel: channel.name,

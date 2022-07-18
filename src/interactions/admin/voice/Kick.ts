@@ -9,18 +9,18 @@ export default class VoiceKickCommand extends SubCommand {
       groupName: "voice",
       name: "kick",
       description: "Kick a user that is in a voice channel",
-      botPermissions: [DJS.Permissions.FLAGS.MOVE_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MOVE_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.MOVE_MEMBERS],
+      memberPermissions: [DJS.PermissionFlagsBits.MOVE_MEMBERS],
       options: [
         {
           name: "user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice kick",
           required: true,
         },
         {
           name: "reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The reason why you want to kick the user",
           required: false,
         },
@@ -29,7 +29,7 @@ export default class VoiceKickCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -45,7 +45,7 @@ export default class VoiceKickCommand extends SubCommand {
 
     if (
       member.permissions.has(
-        DJS.Permissions.FLAGS.MOVE_MEMBERS || DJS.Permissions.FLAGS.ADMINISTRATOR,
+        DJS.PermissionFlagsBits.MOVE_MEMBERS || DJS.PermissionFlagsBits.ADMINISTRATOR,
       )
     ) {
       return interaction.reply({

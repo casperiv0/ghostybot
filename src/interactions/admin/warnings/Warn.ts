@@ -8,18 +8,18 @@ export default class WarnCommand extends SubCommand {
       commandName: "admin",
       name: "warn",
       description: "Warn a user",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
       options: [
         {
           name: "user",
           description: "The user to warn",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The warn reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class WarnCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -48,7 +48,7 @@ export default class WarnCommand extends SubCommand {
       });
     }
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.MANAGE_MESSAGES)) {
+    if (member.permissions.has(DJS.PermissionFlagsBits.MANAGE_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.USER_NOT_WARN,

@@ -14,14 +14,14 @@ export default class DefineCommand extends SubCommand {
           name: "word",
           required: true,
           description: "The word you want to get defined",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const word = interaction.options.getString("word", true);

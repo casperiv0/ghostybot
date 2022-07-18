@@ -17,14 +17,14 @@ export default class CalculateCommand extends SubCommand {
           name: "calculation",
           required: true,
           description: "What you want to calculate",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const calculation = interaction.options.getString("calculation", true);

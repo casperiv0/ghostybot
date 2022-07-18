@@ -9,25 +9,25 @@ export default class TempRoleCommand extends SubCommand {
       commandName: "admin",
       name: "temp-role",
       description: "Give someone a role for a period of time",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
       options: [
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to add",
-          type: "ROLE",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
         {
           name: "time",
           description: "The amount of time (Eg: 2d, 40h, 10min, etc.)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -35,7 +35,7 @@ export default class TempRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

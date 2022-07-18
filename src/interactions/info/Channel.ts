@@ -16,14 +16,14 @@ export default class ChannelInfoCommand extends SubCommand {
           description: "The channel you want more information about",
           name: "channel",
           required: false,
-          type: "CHANNEL",
+          type: DJS.ApplicationCommandOptionType.Channel,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

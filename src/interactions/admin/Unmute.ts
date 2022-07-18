@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.Permissions.FLAGS.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.MODERATE_MEMBERS];
 
 export default class UnmuteCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -16,7 +16,7 @@ export default class UnmuteCommand extends SubCommand {
         {
           name: "user",
           description: "The user to unmute",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
       ],
@@ -24,7 +24,7 @@ export default class UnmuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const member = interaction.options.getMember("user", true);

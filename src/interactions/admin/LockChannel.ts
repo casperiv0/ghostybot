@@ -9,13 +9,13 @@ export default class LockChannelCommand extends SubCommand {
       commandName: "admin",
       name: "lock-channel",
       description: "Lock the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
       options: [
         {
           name: "reason",
           description: "The reason why the channel should be locked",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -23,7 +23,7 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
@@ -38,13 +38,13 @@ export default class LockChannelCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const reason = interaction.options.getString("reason", true);
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (!channel.permissionsFor(interaction.guildId!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+    if (!channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SEND_MESSAGES)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,

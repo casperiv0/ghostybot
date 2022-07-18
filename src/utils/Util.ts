@@ -20,7 +20,7 @@ export class Util {
       count += 1;
 
       interaction.options.options?.forEach((option) => {
-        if (option.type === "SUB_COMMAND") {
+        if (option.type === DJS.ApplicationCommandOptionType.Subcommand) {
           count += 1;
         }
       });
@@ -211,7 +211,7 @@ export class Util {
 
       if (
         !channel ||
-        !channel.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)
+        !channel.permissionsFor(this.bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)
       ) {
         return this.bot.logger.error("ERR_LOG", error.stack || `${error}`);
       }
@@ -221,15 +221,15 @@ export class Util {
       };
 
       const code = "code" in error ? error.code : "N/A";
-      const httpStatus = "httpStatus" in error ? error.httpStatus : "N/A";
-      const requestData: any = "requestData" in error ? error.requestData : { json: {} };
+      const httpStatus = "status" in error ? error.status : "N/A";
+      const requestBody = "requestBody" in error ? error.requestBody : { json: {} };
 
       const name = error.name || "N/A";
       let stack = error.stack || error;
       let jsonString: string | undefined = "";
 
       try {
-        jsonString = JSON.stringify(requestData.json, null, 2);
+        jsonString = JSON.stringify(requestBody.json, null, 2);
       } catch {
         jsonString = "";
       }
@@ -334,7 +334,7 @@ export class Util {
     if (
       !(channel as DJS.TextChannel)
         .permissionsFor(this.bot.user.id)
-        ?.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)
+        ?.has(DJS.PermissionFlagsBits.ManageWebhooks)
     ) {
       return;
     }
@@ -344,15 +344,16 @@ export class Util {
       await webhooks.find((w) => w.name === `audit-logs-${oldChannelId}`)?.delete();
     }
 
-    await (channel as DJS.TextChannel).createWebhook(`audit-logs-${channelId}`, {
-      avatar: this.bot.user.displayAvatarURL({ format: "png" }),
+    await (channel as DJS.TextChannel).createWebhook({
+      name: `audit-logs-${channelId}`,
+      avatar: this.bot.user.displayAvatarURL({ extension: "png" }),
     });
   }
 
   async getWebhook(guild: DJS.Guild): Promise<DJS.Webhook | undefined> {
     if (!guild) return;
     if (!guild.me) return;
-    if (!guild.me.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return undefined;
+    if (!guild.me.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return undefined;
 
     const webhooks = await guild.fetchWebhooks().catch(() => null);
     if (!webhooks) return undefined;
@@ -471,7 +472,7 @@ export class Util {
       const member = await guild.members.fetch(data.id);
       if (!member) return Promise.reject("Not in this guild");
 
-      if (!member.permissions.has("ADMINISTRATOR")) {
+      if (!member.permissions.has(DJS.PermissionFlagsBits.Administrator)) {
         return Promise.reject("Not an administrator for this guild");
       }
     }
@@ -480,7 +481,7 @@ export class Util {
 
   errorEmbed(
     permissions: bigint[],
-    message: DJS.Message | DJS.CommandInteraction,
+    message: DJS.Message | DJS.ChatInputCommandInteraction,
     lang: Record<string, string>,
   ) {
     return this.baseEmbed(message)
@@ -489,8 +490,8 @@ export class Util {
         `❌ I need ${permissions
           .map((p) => {
             const perms: string[] = [];
-            Object.keys(DJS.Permissions.FLAGS).map((key) => {
-              if (DJS.Permissions.FLAGS[key] === p) {
+            Object.keys(DJS.PermissionFlagsBits).map((key) => {
+              if (DJS.PermissionFlagsBits[key] === p) {
                 perms.push(`\`${lang[key]}\``);
               }
             });
@@ -502,15 +503,13 @@ export class Util {
       .setColor("ORANGE");
   }
 
-  baseEmbed(
-    message: DJS.Message | DJS.Interaction | { author: DJS.User | null },
-  ): DJS.MessageEmbed {
+  baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }): DJS.Embed {
     const user = "author" in message ? message.author : message.user;
 
-    const avatar = user?.displayAvatarURL({ dynamic: true });
+    const avatar = user?.displayAvatarURL();
     const username = user?.username ?? this.bot.user?.username ?? "Unknown";
 
-    return new DJS.MessageEmbed()
+    return new DJS.Embed()
       .setFooter({ text: username, iconURL: avatar })
       .setColor("#5865f2")
       .setTimestamp();
@@ -557,9 +556,9 @@ export class Util {
     const voiceChannelId = member?.voice.channelId;
 
     if (!voiceChannelId) return false;
-    if (!message.guild?.me) return false;
+    if (!message.guild?.members.me) return false;
 
-    return message.guild.me.voice.channelId === voiceChannelId;
+    return message.guild.members.me.voice.channelId === voiceChannelId;
   }
 
   /**
@@ -567,14 +566,16 @@ export class Util {
    */
   formatBotPermissions(
     permissions: bigint[],
-    interaction: DJS.CommandInteraction,
+    interaction: DJS.ChatInputCommandInteraction,
     lang: typeof import("@locales/english").default,
   ) {
     const neededPerms: bigint[] = [];
 
     permissions.forEach((perm) => {
       if (
-        !(interaction.channel as DJS.TextChannel).permissionsFor(interaction.guild!.me!).has(perm)
+        !(interaction.channel as DJS.TextChannel)
+          .permissionsFor(interaction.guild!.members.me!)
+          .has(perm)
       ) {
         neededPerms.push(perm);
       }
@@ -608,8 +609,8 @@ export class Util {
         neededPerms
           .map((p) => {
             const perms: string[] = [];
-            Object.keys(DJS.Permissions.FLAGS).map((key) => {
-              if (DJS.Permissions.FLAGS[key] === p) {
+            Object.keys(DJS.PermissionFlagsBits).map((key) => {
+              if (DJS.PermissionFlagsBits[key] === p) {
                 perms.push(`\`${lang.PERMISSIONS[key]}\``);
               }
             });
@@ -644,11 +645,11 @@ export class Util {
       return true;
     }
 
-    return ch.permissionsFor(this.bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES);
+    return ch.permissionsFor(this.bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages);
   }
 
   escapeMarkdown(message: string): string {
-    return DJS.Util.escapeMarkdown(message, {
+    return DJS.Utils.escapeMarkdown(message, {
       codeBlock: true,
       spoiler: true,
       inlineCode: true,

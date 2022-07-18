@@ -13,7 +13,7 @@ export default class ViewRemindersCommand extends SubCommand {
       options: [
         {
           name: "user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to see their reminders of",
           required: false,
         },
@@ -22,7 +22,7 @@ export default class ViewRemindersCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const guildUser = interaction.options.getUser("user") ?? interaction.user;

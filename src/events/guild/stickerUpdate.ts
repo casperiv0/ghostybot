@@ -10,7 +10,7 @@ export default class StickerDeleteEvent extends Event {
   async execute(bot: Bot, old: DJS.Sticker, newSticker: DJS.Sticker) {
     try {
       if (!newSticker.guild) return;
-      if (!newSticker.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
+      if (!newSticker.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(newSticker.guild);

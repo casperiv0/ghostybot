@@ -11,7 +11,7 @@ export default class ProfileCommand extends SubCommand {
       description: "See the profile of a user",
       options: [
         {
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their profile of",
@@ -21,7 +21,7 @@ export default class ProfileCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

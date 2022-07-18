@@ -11,13 +11,13 @@ export default class RemoveRoleCommand extends SubCommand {
       name: "nuke",
       description:
         "Nuke the current channel. Note: The channel will instantly be deleted and re-created.",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.ADMINISTRATOR],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
+      memberPermissions: [DJS.PermissionFlagsBits.ADMINISTRATOR],
     });
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
@@ -32,7 +32,7 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = interaction.channel as DJS.TextChannel;

@@ -9,18 +9,18 @@ export default class VoiceDeafenCommand extends SubCommand {
       groupName: "voice",
       name: "deafen",
       description: "Deafen a user that is in a voice channel",
-      botPermissions: [DJS.Permissions.FLAGS.DEAFEN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.DEAFEN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.DEAFEN_MEMBERS],
+      memberPermissions: [DJS.PermissionFlagsBits.DEAFEN_MEMBERS],
       options: [
         {
           name: "user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           description: "The user you want to voice deafen",
           required: true,
         },
         {
           name: "reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The reason why you want to deafen the user",
           required: false,
         },
@@ -29,7 +29,7 @@ export default class VoiceDeafenCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

@@ -27,19 +27,19 @@ export default class CreateRoleCommand extends SubCommand {
       commandName: "admin",
       name: "create-role",
       description: "Create a new role",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
       options: [
         {
           name: "name",
           description: "The name for the new role",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "color",
           description: "The color for the new role",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           choices: Object.entries(colors).map(([name, value]) => ({
             name,
@@ -51,7 +51,7 @@ export default class CreateRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const name = interaction.options.getString("name", true);

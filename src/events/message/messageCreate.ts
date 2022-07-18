@@ -39,7 +39,9 @@ export default class MessageEvent extends Event {
         if (!sticky) return;
         if (message.author.bot || message.content === sticky.message) return;
         if (
-          !message.channel.permissionsFor(message.guild.me).has(DJS.Permissions.FLAGS.VIEW_CHANNEL)
+          !message.channel
+            .permissionsFor(message.guild.me)
+            .has(DJS.PermissionFlagsBits.VIEW_CHANNEL)
         ) {
           return;
         }
@@ -124,7 +126,7 @@ export default class MessageEvent extends Event {
             if (
               !ch
                 .permissionsFor(message.guild.me)
-                .has([DJS.Permissions.FLAGS.SEND_MESSAGES, DJS.Permissions.FLAGS.EMBED_LINKS])
+                .has([DJS.PermissionFlagsBits.SEND_MESSAGES, DJS.PermissionFlagsBits.EMBED_LINKS])
             ) {
               return;
             }
@@ -158,11 +160,13 @@ export default class MessageEvent extends Event {
       }
 
       if (
-        !message.channel.permissionsFor(message.guild.me).has(DJS.Permissions.FLAGS.EMBED_LINKS) &&
+        !message.channel
+          .permissionsFor(message.guild.me)
+          .has(DJS.PermissionFlagsBits.EMBED_LINKS) &&
         bot.user.id !== message.author.id
       ) {
         return message.channel.send({
-          content: `Error: I need \`${DJS.Permissions.FLAGS.EMBED_LINKS}\` to work!`,
+          content: `Error: I need \`${DJS.PermissionFlagsBits.EMBED_LINKS}\` to work!`,
         });
       }
 

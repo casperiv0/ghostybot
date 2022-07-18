@@ -13,14 +13,14 @@ export default class AvatarCommand extends SubCommand {
           name: "user",
           required: false,
           description: "The user you want to see the avatar of",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;

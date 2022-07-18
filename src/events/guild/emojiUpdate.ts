@@ -12,7 +12,7 @@ export default class EmojiUpdateEvent extends Event {
       if (!newEm.guild) return;
       if (!newEm.name || !oldEm.name) return;
 
-      if (!newEm.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+      if (!newEm.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
       const webhook = await bot.utils.getWebhook(newEm.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newEm.guild.id);

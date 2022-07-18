@@ -8,18 +8,18 @@ export default class GiveXPCommand extends SubCommand {
       name: "give-xp",
       commandName: "levels",
       description: "Give a user xp",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
       options: [
         {
           name: "user",
           description: "The user you want to give XP",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "amount",
           description: "The amount you want to give",
-          type: "NUMBER",
+          type: DJS.ApplicationCommandOptionType.Number,
           required: true,
         },
       ],
@@ -27,7 +27,7 @@ export default class GiveXPCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getNumber("amount", true);

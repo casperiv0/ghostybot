@@ -10,7 +10,7 @@ export default class StickerCreateEvent extends Event {
   async execute(bot: Bot, sticker: DJS.Sticker) {
     try {
       if (!sticker.guild) return;
-      if (!sticker.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
+      if (!sticker.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(sticker.guild);

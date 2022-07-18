@@ -8,13 +8,13 @@ export default class DeleteCommand extends SubCommand {
       commandName: "admin",
       name: "delete",
       description: "Delete up to 100 messages within 14 days",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_MESSAGES],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_MESSAGES],
       options: [
         {
           name: "amount",
           description: "Min: 1. Max: 100",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
           required: true,
         },
       ],
@@ -22,7 +22,7 @@ export default class DeleteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getInteger("amount", true);

@@ -8,19 +8,19 @@ export default class KickCommand extends SubCommand {
       commandName: "admin",
       name: "kick",
       description: "Kick a user from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.KICK_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.KICK_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.KICK_MEMBERS],
+      memberPermissions: [DJS.PermissionFlagsBits.KICK_MEMBERS],
       options: [
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The kick reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -28,7 +28,7 @@ export default class KickCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -80,8 +80,8 @@ export default class KickCommand extends SubCommand {
   kickable(member: DJS.GuildMember) {
     if (member.kickable) return true;
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.KICK_MEMBERS)) return false;
-    if (member.permissions.has(DJS.Permissions.FLAGS.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.KICK_MEMBERS)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.ADMINISTRATOR)) return false;
 
     return true;
   }

@@ -8,19 +8,19 @@ export default class BanCommand extends SubCommand {
       commandName: "admin",
       name: "ban",
       description: "Ban a user from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.BAN_MEMBERS],
+      memberPermissions: [DJS.PermissionFlagsBits.BAN_MEMBERS],
       options: [
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The ban reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -28,7 +28,7 @@ export default class BanCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -79,8 +79,8 @@ export default class BanCommand extends SubCommand {
   bannable(member: DJS.GuildMember) {
     if (member.bannable) return true;
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.BAN_MEMBERS)) return false;
-    if (member.permissions.has(DJS.Permissions.FLAGS.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.BAN_MEMBERS)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.ADMINISTRATOR)) return false;
 
     return true;
   }

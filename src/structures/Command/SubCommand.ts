@@ -1,4 +1,5 @@
 import { BaseCommand, BaseCommandOptions } from "./BaseCommand";
+import * as DJS from "discord.js";
 
 export interface SubCommandOptions extends BaseCommandOptions {
   /** top level command name (/top-level \<sub command\>) */
@@ -10,10 +11,10 @@ export interface SubCommandOptions extends BaseCommandOptions {
 
 export abstract class SubCommand extends BaseCommand<SubCommandOptions> {
   get options(): SubCommandOptions & {
-    type: "SUB_COMMAND";
+    type: DJS.ApplicationCommandOptionType.Subcommand;
   } {
     return {
-      type: "SUB_COMMAND",
+      type: DJS.ApplicationCommandOptionType.Subcommand,
       ...this._options,
     };
   }

@@ -8,19 +8,19 @@ export default class RemoveRoleCommand extends SubCommand {
       commandName: "admin",
       name: "remove-role",
       description: "Remove a role to a user",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
       options: [
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to remove",
-          type: "ROLE",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
       ],
@@ -28,7 +28,7 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     if (!interaction.guild?.me) return;

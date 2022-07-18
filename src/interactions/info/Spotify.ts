@@ -12,7 +12,7 @@ export default class SpotifyInfoCommand extends SubCommand {
       options: [
         {
           name: "type",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The type you want to search for",
           required: true,
           choices: [
@@ -37,7 +37,7 @@ export default class SpotifyInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The search query",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -45,7 +45,7 @@ export default class SpotifyInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();

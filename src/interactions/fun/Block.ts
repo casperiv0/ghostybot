@@ -13,7 +13,7 @@ export default class BlockCommand extends SubCommand {
           name: "text",
           description: "The text that you want to transform",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });

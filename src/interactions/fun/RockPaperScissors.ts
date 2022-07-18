@@ -11,7 +11,7 @@ export default class RockPaperScissorsCommand extends SubCommand {
       options: [
         {
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "item",
           description: "Rock? Paper? Scissors?",
           choices: [
@@ -25,7 +25,7 @@ export default class RockPaperScissorsCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const input = interaction.options.getString("item", true).toLowerCase();

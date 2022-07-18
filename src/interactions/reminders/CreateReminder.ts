@@ -16,13 +16,13 @@ export default class CreateReminderCommand extends SubCommand {
         {
           name: "time",
           description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "message",
           description: "The message you want the bot to remind you of",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -30,7 +30,7 @@ export default class CreateReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);

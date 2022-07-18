@@ -16,25 +16,28 @@ export default class ReadyEvent extends Event {
       bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0),
     );
 
-    const statuses: { type: Exclude<DJS.ActivityType, "CUSTOM">; value: string }[] = [
+    const statuses: {
+      type: DJS.ActivityType.Listening | DJS.ActivityType.Watching;
+      value: string;
+    }[] = [
       {
-        type: "LISTENING",
+        type: DJS.ActivityType.Listening,
         value: "/help",
       },
       {
-        type: "WATCHING",
+        type: DJS.ActivityType.Watching,
         value: `${userCount} users`,
       },
       {
-        type: "WATCHING",
+        type: DJS.ActivityType.Watching,
         value: `${serverCount} servers`,
       },
       {
-        type: "WATCHING",
+        type: DJS.ActivityType.Watching,
         value: "https://discord.gg/XxHrtkA",
       },
       {
-        type: "WATCHING",
+        type: DJS.ActivityType.Watching,
         value: "https://ghostybot.caspertheghost.me",
       },
     ];
@@ -54,7 +57,7 @@ export default class ReadyEvent extends Event {
     setInterval(() => {
       const status = statuses[Math.floor(Math.random() * statuses.length)];
 
-      bot.user?.setActivity(status.value, { type: status.type });
+      bot.user?.setActivity(status.value, { type: status.type! });
     }, 60_000);
   }
 }
