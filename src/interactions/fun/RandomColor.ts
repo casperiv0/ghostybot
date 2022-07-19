@@ -11,7 +11,7 @@ export default class RandomJokeCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const color = this.generateColor();
     const preview = `${this.APIs.RandomColor}${color.slice(1, color.length)}`;
 

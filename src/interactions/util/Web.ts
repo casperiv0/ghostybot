@@ -51,7 +51,7 @@ export default class WebCommand extends SubCommand {
     }
 
     const result = `${CAPTURE_URL}${url}`;
-    const attachment = new DJS.MessageAttachment(result, "capture.png");
+    const attachment = new DJS.AttachmentBuilder(result);
 
     await interaction.editReply({ files: [attachment] });
   }

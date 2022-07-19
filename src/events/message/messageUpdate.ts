@@ -39,8 +39,10 @@ export default class MessageUpdateEvent extends Event {
             newMsg.author.tag || newMsg.author.id || "Unknown"
           }** was edited [jump to message](${messageLink})`,
         )
-        .addField("**Old Message**", `${pOldMsg}`)
-        .addField("**New Message**", `${PNewMsg}`)
+        .addFields(
+          { name: "**Old Message**", value: `${pOldMsg}` },
+          { name: "**New Message**", value: `${PNewMsg}` },
+        )
         .setColor(DJS.Colors.Orange)
         .setTimestamp();
 

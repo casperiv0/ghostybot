@@ -30,8 +30,10 @@ export default class Ball8Command extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle("8Ball")
-      .addField(`${lang.GAMES.QUESTION}:`, question)
-      .addField(`${lang.GAMES.ANSWER}:`, answer);
+      .addFields(
+        { name: `${lang.GAMES.QUESTION}:`, value: question },
+        { name: `${lang.GAMES.ANSWER}:`, value: answer },
+      );
 
     await interaction.reply({ embeds: [embed] });
   }

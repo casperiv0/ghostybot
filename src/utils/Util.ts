@@ -484,7 +484,13 @@ export class Util {
       .setColor(DJS.Colors.Orange);
   }
 
-  baseEmbed(message: DJS.Message | DJS.Interaction | { author: DJS.User | null }) {
+  baseEmbed(
+    message:
+      | DJS.Message
+      | DJS.ChatInputCommandInteraction
+      | DJS.SelectMenuInteraction
+      | { author: DJS.User | null },
+  ) {
     const user = "author" in message ? message.author : message.user;
 
     const avatar = user?.displayAvatarURL();

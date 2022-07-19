@@ -25,7 +25,7 @@ export default class CtgsCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const slug = interaction.options.getString("slug", true);
     const url = interaction.options.getString("url", true);
     const data = await this.bot.ctgs.new(slug, url).catch((e) => e?.message ?? e);

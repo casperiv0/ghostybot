@@ -19,7 +19,7 @@ export default class BlockCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const text = interaction.options.getString("text", true);
 
     const blocks = text

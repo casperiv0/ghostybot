@@ -21,7 +21,7 @@ export default class AsciiCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const text = interaction.options.getString("text", true);
 
     figlet.text(text, (e, txt) => {

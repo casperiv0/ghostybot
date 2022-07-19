@@ -29,6 +29,7 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       .sort((a, b) => b.bank + b.money - (a.bank + a.money))
       .splice(0, 10);
 
+    const fields: DJS.APIEmbedField[] = [];
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.guild?.name} ${lang.ECONOMY.MONEY_LEADERBOARD}`)
@@ -41,13 +42,13 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       const total = item.bank + item.money;
 
       if (member) {
-        embed.addField(
-          member.user.username,
-          `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(total)} ${
+        fields.push({
+          name: member.user.username,
+          value: `${isInPlace ? places[idx] : ""} ${this.bot.utils.formatNumber(total)} ${
             lang.ECONOMY.TOTAL_BALANCE
           }`,
-          true,
-        );
+          inline: true,
+        });
       }
     });
 
@@ -55,6 +56,6 @@ export default class MoneyLeaderboardCommand extends SubCommand {
       setTimeout(resolve, 500);
     });
 
-    await interaction.editReply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed.addFields(fields)] });
   }
 }

@@ -1,4 +1,3 @@
-import { hyperlink } from "@discordjs/builders";
 import * as DJS from "discord.js";
 import { ChannelType } from "discord.js";
 import { Bot } from "structures/Bot";
@@ -118,8 +117,11 @@ export default class MessageEvent extends Event {
             const embed = bot.utils
               .baseEmbed(message)
               .setTitle(lang.LEVELS.LEVEL_UP)
-              .addFields(lang.LEVELS.NEW_LEVEL, newLevel.toString())
-              .addField(lang.LEVELS.TOTAL_XP, bot.utils.formatNumber(user.xp + xp));
+              .addFields(
+                { name: lang.LEVELS.NEW_LEVEL, value: newLevel.toString() },
+                { name: lang.LEVELS.TOTAL_XP, value: bot.utils.formatNumber(user.xp + xp) },
+                { name: lang.LEVELS.NEW_LEVEL, value: newLevel.toString() },
+              );
 
             const ch = message.channel;
             if (
@@ -148,55 +150,20 @@ export default class MessageEvent extends Event {
         const embed = bot.utils
           .baseEmbed(message)
           .setTitle("Quick Info")
-          .addFields("Help command", "/help")
-          .addField(lang.MESSAGE.SUPPORT, "https://discord.gg/XxHrtkA")
-          .addField(
-            lang.BOT.DASHBOARD,
-            process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.caspertheghost.me",
+          .addFields(
+            { name: "Help command", value: "/help" },
+            { name: lang.MESSAGE.SUPPORT, value: "https://discord.gg/XxHrtkA" },
+            {
+              name: lang.BOT.DASHBOARD,
+              value:
+                process.env["NEXT_PUBLIC_DASHBOARD_URL"] ?? "https://ghostybot.caspertheghost.me",
+            },
           );
 
         return message.channel.send({ embeds: [embed] });
       }
-
-      if (
-        !message.channel.permissionsFor(message.guild.me).has(DJS.PermissionFlagsBits.EmbedLinks) &&
-        bot.user.id !== message.author.id
-      ) {
-        return message.channel.send({
-          content: `Error: I need \`${DJS.PermissionFlagsBits.EmbedLinks}\` to work!`,
-        });
-      }
-
-      const [cmd] = message.content.trim().split(/ +/g);
-      const [prefix, ...cmdName] = cmd.split("");
-      const command = cmdName.join("");
-
-      if (prefix === "!" && command === "help") {
-        await this.helpCommand(message, lang);
-      }
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }
-  }
-
-  async helpCommand(message: DJS.Message, lang: any) {
-    const LINK = hyperlink(
-      "Click here for a full command list",
-      "https://github.com/Dev-CasperTheGhost/ghostybot/blob/main/docs/COMMANDS.md",
-    );
-
-    const embed = this.bot.utils
-      .baseEmbed(message)
-      .setTitle(lang.HELP.HELP)
-      .setDescription(
-        "Regular commands are now fully removed from GhostyBot. Please use slash commands instead.",
-      )
-      .addFields(
-        "Why slash commands",
-        "Discord has announced a new [Intent](https://support-dev.discord.com/hc/en-us/articles/4404772028055) which will require all/most verified bots to transition over to slash commands. I think this is a good privacy change.",
-      )
-      .addField(lang.HELP.FULL_CMD_LIST, LINK);
-
-    await message.channel.send({ embeds: [embed] });
   }
 }

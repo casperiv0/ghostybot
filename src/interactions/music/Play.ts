@@ -39,7 +39,7 @@ export default class PlayCommand extends SubCommand {
     }
 
     const perms = channel.permissionsFor(this.bot.user!);
-    if (!perms?.has([DJS.PermissionFlagsBits.CONNECT, DJS.PermissionFlagsBits.SPEAK])) {
+    if (!perms?.has([DJS.PermissionFlagsBits.Connect, DJS.PermissionFlagsBits.Speak])) {
       return { ok: false, error: { ephemeral: true, content: lang.MUSIC.NO_PERMS } };
     }
 

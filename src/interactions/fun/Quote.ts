@@ -31,8 +31,10 @@ export default class QuoteCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(lang.GAMES.QUOTE)
       .setDescription(data.content)
-      .addField(lang.UTIL.AUTHOR, `${data.author} (${data.id})`)
-      .addField(lang.GAMES.TAGS, data.tags.join(", "));
+      .addFields(
+        { name: lang.UTIL.AUTHOR, value: `${data.author} (${data.id})` },
+        { name: lang.GAMES.TAGS, value: data.tags.join(", ") },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

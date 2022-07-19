@@ -32,7 +32,9 @@ Thanks for inviting me to this Discord server!
 I am GhostyBot a special bot that can do a lot such as moderation, play games and music, etc!`,
         );
 
-      const row = new DJS.ActionRowBuilder().addComponents(BUTTONS);
+      const row = new DJS.ActionRowBuilder<DJS.MessageActionRowComponentBuilder>().addComponents(
+        BUTTONS,
+      );
 
       await guild.systemChannel.send({ embeds: [embed], components: [row] });
     }

@@ -17,6 +17,8 @@ export default class StickerDeleteEvent extends Event {
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newSticker.guild.id);
 
+      const fields: DJS.EmbedField[] = [];
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_UPDATED)
@@ -25,17 +27,22 @@ export default class StickerDeleteEvent extends Event {
         .setTimestamp();
 
       if (old.name !== newSticker.name) {
-        embed.addField(lang.EVENTS.NAME_UPDATED, `${old.name} -> ${newSticker.name}`);
+        fields.push({
+          inline: true,
+          name: lang.EVENTS.NAME_UPDATED,
+          value: `${old.name} -> ${newSticker.name}`,
+        });
       }
 
       if (old.description !== newSticker.description) {
-        embed.addField(
-          lang.EVENTS.DESCRIPTION_UPDATED,
-          `${old.description} -> ${newSticker.description}`,
-        );
+        fields.push({
+          inline: true,
+          name: lang.EVENTS.DESCRIPTION_UPDATED,
+          value: `${old.description} -> ${newSticker.description}`,
+        });
       }
 
-      await webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed.addFields(fields)] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

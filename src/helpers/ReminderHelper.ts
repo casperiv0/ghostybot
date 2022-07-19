@@ -49,9 +49,9 @@ export default class ReminderHelper extends Helper {
               .baseEmbed({ author: usr })
               .setTitle("Reminder finished")
               .setDescription(`Your timer of **${time}** has ended`)
-              .addField("Reminder message", msg);
+              .addFields({ name: "Reminder message", msg });
 
-            if (!channel.permissionsFor(guild.me!).has(DJS.PermissionFlagsBits.SEND_MESSAGES)) {
+            if (!channel.permissionsFor(guild.me!).has(DJS.PermissionFlagsBits.SendMessages)) {
               return;
             }
             (channel as DJS.TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });

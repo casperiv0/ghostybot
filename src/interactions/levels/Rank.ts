@@ -19,7 +19,7 @@ export default class RankCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const lang = await this.bot.utils.getGuildLang(interaction.guildId);
 
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -41,7 +41,7 @@ export default class RankCommand extends SubCommand {
       dbUser.xp + 1200
     }&previouslevelxp=${dbUser.xp}&custombg=2F3136&xpcolor=fff`;
 
-    const attach = new DJS.MessageAttachment(url, "rank.png");
+    const attach = new DJS.AttachmentBuilder(url).setName("rank.png");
 
     await interaction.reply({
       files: [attach],

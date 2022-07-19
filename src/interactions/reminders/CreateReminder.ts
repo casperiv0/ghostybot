@@ -67,7 +67,9 @@ export default class CreateReminderCommand extends SubCommand {
       .setStyle(DJS.ButtonStyle.Danger)
       .setEmoji("🛑");
 
-    const row = new DJS.ActionRowBuilder().addComponents(button);
+    const row = new DJS.ActionRowBuilder<DJS.MessageActionRowComponentBuilder>().addComponents(
+      button,
+    );
 
     await interaction.reply({
       ephemeral: true,

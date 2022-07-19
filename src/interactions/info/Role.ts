@@ -48,14 +48,16 @@ ${bold("ID")}: ${role.id}
 ${bold(lang.UTIL.HEX_COLOR)}: ${hexColor}
 ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt}`,
       )
-      .addField(lang.UTIL.ROLE_MENTION, `<@&${role.id}>`)
-      .addField(lang.MEMBER.PERMISSIONS, permissions);
+      .addFields(
+        { name: lang.UTIL.ROLE_MENTION, value: `<@&${role.id}>` },
+        { name: lang.MEMBER.PERMISSIONS, value: permissions },
+      );
 
     interaction.reply({ embeds: [embed] });
   }
 
   getPermissions(role: DJS.Role | APIRole, lang) {
-    const perms = new DJS.PermissionFlagsBits(role.permissions as any);
+    const perms = new DJS.PermissionsBitField(role.permissions as any);
 
     return perms.toArray().length <= 0
       ? lang.GLOBAL.NONE
