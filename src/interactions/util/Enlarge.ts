@@ -25,7 +25,7 @@ export default class EnlargeCommand extends SubCommand {
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);
-    const custom = DJS.Util.parseEmoji(emoji);
+    const custom = DJS.parseEmoji(emoji);
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

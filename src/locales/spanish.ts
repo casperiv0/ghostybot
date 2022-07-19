@@ -101,7 +101,7 @@ const LANG: typeof import("./english").default = {
     Stream: "Ir a vivir",
     ViewChannel: "Ver canal",
     SendMessages: "Enviar mensajes",
-    SEND_TTS_MESSAGES: "Enviar mensajes TTS",
+    SendTTSMessages: "Enviar mensajes TTS",
     ManageMessages: "Administrar mensajes",
     EmbedLinks: "Enlaces de incrustación",
     AttachFiles: "Adjuntar archivos",

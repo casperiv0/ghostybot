@@ -31,6 +31,9 @@ export default class KickCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
+    const me = this.bot.utils.getMe(interaction.guild);
+    if (!me) return;
+
     const user = interaction.options.getUser("user", true);
     const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
 
@@ -43,7 +46,7 @@ export default class KickCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(member.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, { member: user.tag }),

@@ -59,6 +59,7 @@ export default class WeatherInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setAuthor({ name: `${data.name} (${country}) ${lang.UTIL.WEATHER}`, iconURL: flag })
+      .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`)
       .setDescription(
         `
   ${bold(lang.UTIL.MAIN)}: ${main}
@@ -67,14 +68,13 @@ export default class WeatherInfoCommand extends SubCommand {
   ${bold(lang.UTIL.WIND_DEGREES)}: ${windDeg}
   `,
       )
-      .addField(
-        lang.UTIL.TEMPERATURE,
-        `
+      .addFields({
+        name: lang.UTIL.TEMPERATURE,
+        value: `
   ${bold(lang.UTIL.CURRENT_TEMP)}: ${temp}°C
   ${bold(lang.UTIL.FEELS_LIKE)}: ${feelsLike}°C
   `,
-      )
-      .setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
+      });
 
     await interaction.editReply({ embeds: [embed] });
   }

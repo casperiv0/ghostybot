@@ -3,6 +3,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
+import { threadChannels } from "./UnlockChannel";
 
 export default class RemoveRoleCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -20,7 +21,6 @@ export default class RemoveRoleCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,

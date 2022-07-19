@@ -67,7 +67,7 @@ export default class LyricsCommand extends SubCommand {
       embed.setThumbnail(songThumbnail);
     }
 
-    if (embed.description!.length >= 2048) {
+    if (embed.data.description!.length >= 2048) {
       embed.setDescription(`${songLyrics.slice(0, 2045)}...`);
     }
 

@@ -30,9 +30,8 @@ export default class PollCommand extends SubCommand {
       .setAuthor({
         name: this.bot.utils.translate(lang.UTIL.CREATED_BY, { member: interaction.user.tag }),
       })
-      .setDescription(question);
-
-    embed.footer = null;
+      .setDescription(question)
+      .setFooter(null);
 
     const sentMessage = await interaction.reply({ fetchReply: true, embeds: [embed] });
 

@@ -63,6 +63,7 @@ export default class UserInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(this.bot.utils.translate(lang.UTIL.USER_INFO, { username }))
+      .setThumbnail(member.user.displayAvatarURL())
       .setDescription(
         `
 ${bold("ID")}: ${inlineCode(id)}
@@ -73,16 +74,19 @@ ${bold(lang.MEMBER.CREATED_ON)}: ${createdAt} (${createdAtR})
 ${bold(lang.MEMBER.PENDING)}: ${member.pending}
 `,
       )
-
-      .addField(
-        lang.UTIL.GUILD_INFO,
-        `
+      .addFields(
+        {
+          name: lang.UTIL.GUILD_INFO,
+          value: `
 ${bold(lang.MEMBER.NICKNAME)}: ${nickname}
 ${bold(lang.MEMBER.JOINED_AT)}: ${joinedAt} (${joinedAtR})
 `,
-      )
-      .addField(bold(`${lang.MEMBER.ROLES} (${roleCount})`), roles)
-      .setThumbnail(member.user.displayAvatarURL());
+        },
+        {
+          name: bold(`${lang.MEMBER.ROLES} (${roleCount})`),
+          value: roles,
+        },
+      );
 
     await interaction.reply({ embeds: [embed] });
   }

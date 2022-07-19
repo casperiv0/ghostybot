@@ -46,9 +46,11 @@ export default class PlaystoreInfoCommand extends SubCommand {
       .setURL(app.url)
       .setTitle(`${app.title}`)
       .setDescription(app.summary)
-      .addField(lang.ECONOMY.PRICE, app.priceText, true)
-      .addField(lang.UTIL.DEVELOPER, app.developer, true)
-      .addField(lang.UTIL.SCORE, app.scoreText, true);
+      .addFields(
+        { name: lang.ECONOMY.PRICE, value: app.priceText, inline: true },
+        { name: lang.UTIL.DEVELOPER, value: app.developer, inline: true },
+        { name: lang.UTIL.SCORE, value: app.scoreText, inline: true },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

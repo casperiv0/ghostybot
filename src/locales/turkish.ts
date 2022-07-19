@@ -100,7 +100,7 @@ export default {
     Stream: "Canlı yayına geç.",
     ViewChannel: "Kanalları görüntüle",
     SendMessages: "Mesaj yolla",
-    SEND_TTS_MESSAGES: "TTS mesajları gönder",
+    SendTTSMessages: "TTS mesajları gönder",
     ManageMessages: "Mesajları yönet",
     EmbedLinks: "Gömülü bağlantılar",
     AttachFiles: "Dosyaları ekle",
