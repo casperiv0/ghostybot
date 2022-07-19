@@ -2,6 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
+import { threadChannels } from "./UnlockChannel";
 
 export default class LockChannelCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -9,8 +10,8 @@ export default class LockChannelCommand extends SubCommand {
       commandName: "admin",
       name: "lock-channel",
       description: "Lock the current channel",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageChannels],
       options: [
         {
           name: "reason",
@@ -26,7 +27,6 @@ export default class LockChannelCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,
@@ -44,7 +44,7 @@ export default class LockChannelCommand extends SubCommand {
     const reason = interaction.options.getString("reason", true);
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (!channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SEND_MESSAGES)) {
+    if (!channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHANNEL_ALREADY_LOCKED,
@@ -52,7 +52,7 @@ export default class LockChannelCommand extends SubCommand {
     }
 
     await channel.permissionOverwrites.create(interaction.guildId!, {
-      SEND_MESSAGES: false,
+      SendMessages: false,
     });
 
     await interaction.reply({

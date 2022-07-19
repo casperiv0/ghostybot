@@ -145,7 +145,7 @@ async function createNewReaction(reaction: reactions, bot: Bot): Promise<DJS.Mes
   }
 
   if (!channel.permissionsFor(bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
-    return "Bot does not have `SEND_MESSAGES` permissions in this channel.";
+    return "Bot does not have `SendMessages` permissions in this channel.";
   }
 
   const description = await _createDescription(reaction.reactions, channel.guild);

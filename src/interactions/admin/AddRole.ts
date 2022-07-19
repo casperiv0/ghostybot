@@ -8,8 +8,8 @@ export default class AddRoleCommand extends SubCommand {
       commandName: "admin",
       name: "add-role",
       description: "Add a role to a user",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",
@@ -31,7 +31,9 @@ export default class AddRoleCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
-    if (!interaction.guild?.me) return;
+    const me = this.bot.utils.getMe(interaction.guild);
+    if (!me) return;
+
     const user = interaction.options.getUser("user", true);
     const role = interaction.options.getRole("role", true);
 
@@ -43,14 +45,14 @@ export default class AddRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
+    if ((me?.roles.highest.comparePositionTo(role as DJS.Role) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
-    if (interaction.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(needsRole.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {

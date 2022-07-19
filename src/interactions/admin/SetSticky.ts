@@ -9,8 +9,8 @@ export default class SetStickyCommand extends SubCommand {
       groupName: "sticky",
       name: "set",
       description: "Set a new sticky message for the current channel",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_MESSAGES],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageMessages],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",

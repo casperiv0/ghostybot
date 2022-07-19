@@ -1,5 +1,5 @@
 import * as DJS from "discord.js";
-import { codeBlock, time, EmbedBuilder } from "@discordjs/builders";
+import { codeBlock, time } from "@discordjs/builders";
 import jwt from "jsonwebtoken";
 import { Bot } from "structures/Bot";
 import { ApiRequest } from "types/ApiRequest";
@@ -27,6 +27,20 @@ export class Util {
     });
 
     return count;
+  }
+
+  getMe(data: { guild: DJS.Guild } | DJS.Guild | null | undefined) {
+    if (!data) return null;
+
+    if ("guild" in data) {
+      return data.guild?.members.me ?? null;
+    }
+
+    if ("members" in data) {
+      return data.members.me ?? null;
+    }
+
+    return null;
   }
 
   async getUserById(userId: string, guildId: string | undefined) {
@@ -225,13 +239,24 @@ export class Util {
       }
 
       const embed = this.baseEmbed(message)
-        .addField("Name", name, true)
-        .addField("Code", code.toString(), true)
-        .addField("httpStatus", httpStatus.toString(), true)
-        .addField("Timestamp", this.bot.logger.now, true)
-        .addField("Request data", codeBlock(jsonString.slice(0, 2045)))
+
+        .addFields(
+          { name: "Name", value: name, inline: true },
+          {
+            name: "Code",
+            value: code.toString(),
+            inline: true,
+          },
+          {
+            name: "httpStatus",
+            value: httpStatus.toString(),
+            inline: true,
+          },
+          { name: "Timestamp", value: this.bot.logger.now, inline: true },
+          { name: "Request data", value: codeBlock(jsonString.slice(0, 2045)) },
+        )
         .setDescription(codeBlock(stack as string))
-        .setColor(type === "error" ? "RED" : "ORANGE");
+        .setColor(type === "error" ? DJS.Colors.Red : DJS.Colors.Orange);
 
       channel.send({ embeds: [embed] });
     } catch (e) {
@@ -333,8 +358,8 @@ export class Util {
 
   async getWebhook(guild: DJS.Guild): Promise<DJS.Webhook | undefined> {
     if (!guild) return;
-    if (!guild.me) return;
-    if (!guild.me.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return undefined;
+    const me = this.getMe(guild);
+    if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return undefined;
 
     const webhooks = await guild.fetchWebhooks().catch(() => null);
     if (!webhooks) return undefined;
@@ -636,7 +661,7 @@ export class Util {
   }
 
   escapeMarkdown(message: string): string {
-    return DJS.Utils.escapeMarkdown(message, {
+    return DJS.escapeMarkdown(message, {
       codeBlock: true,
       spoiler: true,
       inlineCode: true,

@@ -8,7 +8,7 @@ export default class RemoveMoneyCommand extends SubCommand {
       commandName: "economy",
       name: "remove-money",
       description: "Remove money to a user",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           type: DJS.ApplicationCommandOptionType.User,

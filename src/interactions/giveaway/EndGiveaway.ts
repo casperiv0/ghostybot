@@ -8,7 +8,7 @@ export default class EndGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "end",
       description: "End a giveaway",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           description: "The messageId of the giveaway",

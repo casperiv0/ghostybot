@@ -16,7 +16,9 @@ export default class MessageEvent extends Event {
       if (!bot.utils.hasSendPermissions(message)) return;
 
       if (!bot.user) return;
-      if (!message.guild.me) return;
+
+      const me = this.bot.utils.getMe(message.guild);
+      if (!me) return;
 
       const guildId = message.guild.id;
       const userId = message.author.id;
@@ -38,9 +40,7 @@ export default class MessageEvent extends Event {
       if (isSticky) {
         if (!sticky) return;
         if (message.author.bot || message.content === sticky.message) return;
-        if (
-          !message.channel.permissionsFor(message.guild.me).has(DJS.PermissionFlagsBits.ViewChannel)
-        ) {
+        if (!message.channel.permissionsFor(me).has(DJS.PermissionFlagsBits.ViewChannel)) {
           return;
         }
 
@@ -126,7 +126,7 @@ export default class MessageEvent extends Event {
             const ch = message.channel;
             if (
               !ch
-                .permissionsFor(message.guild.me)
+                .permissionsFor(me)
                 .has([DJS.PermissionFlagsBits.SendMessages, DJS.PermissionFlagsBits.EmbedLinks])
             ) {
               return;

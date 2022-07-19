@@ -8,8 +8,8 @@ export default class DeleteCommand extends SubCommand {
       commandName: "admin",
       name: "delete",
       description: "Delete up to 100 messages within 14 days",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_MESSAGES],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_MESSAGES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageMessages],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageMessages],
       options: [
         {
           name: "amount",

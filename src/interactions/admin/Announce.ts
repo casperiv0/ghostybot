@@ -8,7 +8,7 @@ export default class AnnounceCommand extends SubCommand {
       commandName: "admin",
       name: "announce",
       description: "Announce something with a cool embed",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",

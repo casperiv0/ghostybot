@@ -8,7 +8,7 @@ export default class ReRollGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "reroll",
       description: "Re-roll a giveaway",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           description: "The messageId of the giveaway",

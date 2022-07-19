@@ -8,8 +8,8 @@ export default class KickCommand extends SubCommand {
       commandName: "admin",
       name: "kick",
       description: "Kick a user from the current guild",
-      botPermissions: [DJS.PermissionFlagsBits.KICK_MEMBERS],
-      memberPermissions: [DJS.PermissionFlagsBits.KICK_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.KickMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.KickMembers],
       options: [
         {
           name: "user",
@@ -80,8 +80,8 @@ export default class KickCommand extends SubCommand {
   kickable(member: DJS.GuildMember) {
     if (member.kickable) return true;
 
-    if (member.permissions.has(DJS.PermissionFlagsBits.KICK_MEMBERS)) return false;
-    if (member.permissions.has(DJS.PermissionFlagsBits.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.KickMembers)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.Administrator)) return false;
 
     return true;
   }

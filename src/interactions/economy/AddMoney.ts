@@ -8,7 +8,7 @@ export default class AddMoneyCommand extends SubCommand {
       commandName: "economy",
       name: "add-money",
       description: "Add money to a user",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           type: DJS.ApplicationCommandOptionType.User,

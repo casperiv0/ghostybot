@@ -8,7 +8,7 @@ export default class GiveXPCommand extends SubCommand {
       name: "give-xp",
       commandName: "levels",
       description: "Give a user xp",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "user",

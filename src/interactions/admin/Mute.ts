@@ -3,7 +3,7 @@ import ms from "ms";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.PermissionFlagsBits.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.ModerateMembers];
 
 export default class MuteCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -40,14 +40,14 @@ export default class MuteCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
-    const member = interaction.options.getMember("user", true);
+    const member = interaction.options.getMember("user");
     const time = interaction.options.getString("time", true);
     const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
 
     if (
       !member ||
       !("timeout" in member) ||
-      member.permissions.has(DJS.PermissionFlagsBits.MANAGE_ROLES)
+      member.permissions.has(DJS.PermissionFlagsBits.ManageRoles)
     ) {
       return interaction.reply({
         ephemeral: true,

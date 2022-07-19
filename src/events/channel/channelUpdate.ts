@@ -10,14 +10,16 @@ export default class ChannelUpdateEvent extends Event {
   async execute(bot: Bot, oldChannel: DJS.GuildChannel, newChannel: DJS.GuildChannel) {
     try {
       if (!oldChannel.guild.available) return;
-      if (!oldChannel.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
+
+      const me = bot.utils.getMe(oldChannel);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(newChannel.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newChannel.guild.id);
 
       let msg = "";
-      const type = newChannel.type === "GUILD_CATEGORY" ? "Category" : "Channel";
+      const type = newChannel.type === DJS.ChannelType.GuildCategory ? "Category" : "Channel";
       if (oldChannel.name !== newChannel.name) {
         msg = this.bot.utils.translate(lang.EVENTS.CHANNEL_RENAME_MSG, {
           channel_type: type,

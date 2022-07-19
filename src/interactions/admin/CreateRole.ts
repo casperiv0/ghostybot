@@ -27,8 +27,8 @@ export default class CreateRoleCommand extends SubCommand {
       commandName: "admin",
       name: "create-role",
       description: "Create a new role",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "name",

@@ -8,8 +8,8 @@ export default class UnbanCommand extends SubCommand {
       commandName: "admin",
       name: "unban",
       description: "Unban a member from the current guild",
-      botPermissions: [DJS.PermissionFlagsBits.BAN_MEMBERS],
-      memberPermissions: [DJS.PermissionFlagsBits.BAN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.BanMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.BanMembers],
       options: [
         {
           name: "user-id",

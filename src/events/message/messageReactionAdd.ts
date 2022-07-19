@@ -22,8 +22,8 @@ export default class MessageReactionAddEvent extends Event {
 
       const { guild } = react.message;
       if (!guild?.available) return;
-
-      if (!guild.me?.permissions.has(neededPerms)) {
+      const me = this.bot.utils.getMe(react.message.guild);
+      if (!me?.permissions.has(neededPerms)) {
         return;
       }
 
@@ -49,7 +49,7 @@ export default class MessageReactionAddEvent extends Event {
 
       const channel = guild.channels.cache.get(dbReaction.channel_id) as DJS.TextChannel;
       if (!channel) return;
-      if (!channel.permissionsFor(guild.me).has([neededPerms])) return;
+      if (!channel.permissionsFor(me).has([neededPerms])) return;
 
       if (!channel.permissionsFor(bot.user!.id)?.has(DJS.PermissionFlagsBits.ViewChannel)) {
         return;

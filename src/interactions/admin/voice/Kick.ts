@@ -9,8 +9,8 @@ export default class VoiceKickCommand extends SubCommand {
       groupName: "voice",
       name: "kick",
       description: "Kick a user that is in a voice channel",
-      botPermissions: [DJS.PermissionFlagsBits.MOVE_MEMBERS],
-      memberPermissions: [DJS.PermissionFlagsBits.MOVE_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.MoveMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.MoveMembers],
       options: [
         {
           name: "user",
@@ -45,7 +45,7 @@ export default class VoiceKickCommand extends SubCommand {
 
     if (
       member.permissions.has(
-        DJS.PermissionFlagsBits.MOVE_MEMBERS || DJS.PermissionFlagsBits.ADMINISTRATOR,
+        DJS.PermissionFlagsBits.MoveMembers || DJS.PermissionFlagsBits.Administrator,
       )
     ) {
       return interaction.reply({

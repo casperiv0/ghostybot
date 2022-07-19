@@ -8,7 +8,7 @@ export default class CloseTicket extends SubCommand {
       commandName: "tickets",
       name: "close",
       description: "Close your ticket",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageGuild],
     });
   }
 

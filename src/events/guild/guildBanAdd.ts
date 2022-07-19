@@ -10,8 +10,10 @@ export default class GuildBanAddEvent extends Event {
   async execute(bot: Bot, guild: DJS.Guild, user: DJS.User) {
     try {
       if (!guild) return;
+
+      const me = bot.utils.getMe(guild);
       if (
-        !guild.me?.permissions.has([
+        !me?.permissions.has([
           DJS.PermissionFlagsBits.ManageWebhooks,
           DJS.PermissionFlagsBits.ViewAuditLog,
         ])

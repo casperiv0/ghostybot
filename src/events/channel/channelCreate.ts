@@ -10,7 +10,9 @@ export default class ChannelCreateEvent extends Event {
   async execute(bot: Bot, channel: DJS.GuildChannel) {
     try {
       if (!channel.guild.available) return;
-      if (!channel.guild.me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
+
+      const me = bot.utils.getMe(channel);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(channel.guild);
       if (!webhook) return;

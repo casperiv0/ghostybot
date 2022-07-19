@@ -9,8 +9,8 @@ export default class TempRoleCommand extends SubCommand {
       commandName: "admin",
       name: "temp-role",
       description: "Give someone a role for a period of time",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",
@@ -53,14 +53,15 @@ export default class TempRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(parsedRole) < 0) {
+    const me = this.bot.utils.getMe(interaction.guild);
+    if ((me?.roles.highest.comparePositionTo(parsedRole) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(needsRole.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {

@@ -41,20 +41,21 @@ export default class GuildMemberAddEvent extends Event {
           );
 
         const ch = bot.channels.cache.get(welcomeData.channel_id);
-        if (!ch || !ch.isText()) return;
+        if (!ch || !ch.isTextBased()) return;
 
         const hasSendMessagePerms = (ch as DJS.TextChannel)
           .permissionsFor(bot.user!)
-          ?.has(DJS.PermissionFlagsBits.SEND_MESSAGES);
+          ?.has(DJS.PermissionFlagsBits.SendMessages);
         if (!hasSendMessagePerms) return;
 
         ch.send({ embeds: [embed] });
       }
 
+      const me = bot.utils.getMe(member);
       if (
         !member.pending &&
         welcomeData.role_id &&
-        member.guild.me?.permissions.has(DJS.PermissionFlagsBits.MANAGE_ROLES)
+        me?.permissions.has(DJS.PermissionFlagsBits.ManageRoles)
       ) {
         member.roles.add(welcomeData.role_id);
       }

@@ -3,14 +3,20 @@ import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
 
+export const threadChannels = [
+  DJS.ChannelType.GuildNewsThread,
+  DJS.ChannelType.GuildPublicThread,
+  DJS.ChannelType.GuildPrivateThread,
+];
+
 export default class UnlockChannelCommand extends SubCommand {
   constructor(bot: Bot) {
     super(bot, {
       commandName: "admin",
       name: "unlock-channel",
       description: "Unlock the current channel",
-      botPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_CHANNELS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageChannels],
     });
   }
 
@@ -18,7 +24,6 @@ export default class UnlockChannelCommand extends SubCommand {
     interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,
@@ -35,7 +40,7 @@ export default class UnlockChannelCommand extends SubCommand {
   ) {
     const channel = interaction.channel as DJS.TextChannel;
 
-    if (channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SEND_MESSAGES)) {
+    if (channel.permissionsFor(interaction.guildId!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
       return interaction.reply({
         ephemeral: true,
         content: lang.ADMIN.CHAN_NOT_LOCK,
@@ -43,7 +48,7 @@ export default class UnlockChannelCommand extends SubCommand {
     }
 
     await channel.permissionOverwrites.create(interaction.guildId!, {
-      SEND_MESSAGES: true,
+      SendMessages: true,
     });
 
     await interaction.reply({

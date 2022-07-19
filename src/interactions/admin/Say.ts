@@ -8,7 +8,7 @@ export default class SayCommand extends SubCommand {
       commandName: "admin",
       name: "say",
       description: "Let the bot say something",
-      memberPermissions: [DJS.PermissionFlagsBits.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",

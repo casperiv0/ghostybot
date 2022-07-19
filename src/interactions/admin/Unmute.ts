@@ -2,7 +2,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
-const permissions = [DJS.PermissionFlagsBits.MODERATE_MEMBERS];
+const permissions = [DJS.PermissionFlagsBits.ModerateMembers];
 
 export default class UnmuteCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -24,10 +24,10 @@ export default class UnmuteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
+    interaction: DJS.ChatInputCommandInteraction<"cached">,
     lang: typeof import("@locales/english").default,
   ) {
-    const member = interaction.options.getMember("user", true);
+    const member = interaction.options.getMember("user");
     if (!member || !("timeout" in member)) {
       return interaction.reply({
         ephemeral: true,
