@@ -79,13 +79,15 @@ export default class SpotifyInfoCommand extends SubCommand {
           .setTitle(data.name)
           .setURL(data.url)
           .setThumbnail(data.album.images[0].url)
-          .addField(lang.MUSIC.DURATION, data.duration)
-          .addField(
-            lang.UTIL.SPOT_ALBUM,
-            `
+          .addFields(
+            { name: lang.MUSIC.DURATION, value: data.duration },
+            {
+              name: lang.UTIL.SPOT_ALBUM,
+              value: `
   **${lang.GLOBAL.NAME}:** [${data.album.name}](${data.album.url})
   **${lang.UTIL.RELEASE_DATE}:** ${data.album.release_date}
   **${lang.UTIL.SPOT_ARTISTS}:** ${artists}`,
+            },
           );
 
         return interaction.editReply({ embeds: [embed] });
@@ -99,9 +101,15 @@ export default class SpotifyInfoCommand extends SubCommand {
           .baseEmbed(interaction)
           .setTitle(data.name)
           .setURL(data.url)
-          .addField(lang.UTIL.GH_FOLLOWERS, this.bot.utils.formatNumber(data.followers), true)
-          .addField(lang.UTIL.SPOT_GENRES, genres, true)
-          .addField(lang.UTIL.SPOT_TOP, topTracks);
+          .addFields(
+            {
+              name: lang.UTIL.GH_FOLLOWERS,
+              value: this.bot.utils.formatNumber(data.followers),
+              inline: true,
+            },
+            { name: lang.UTIL.SPOT_GENRES, value: genres, inline: true },
+            { name: lang.UTIL.SPOT_TOP, value: topTracks },
+          );
 
         if (data.images.length > 0) {
           embed.setImage(data.images[0].url);
@@ -119,10 +127,16 @@ export default class SpotifyInfoCommand extends SubCommand {
           .baseEmbed(interaction)
           .setTitle(data.name)
           .setURL(data.url)
-          .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.total_tracks), true)
-          .addField(lang.UTIL.SPOT_TRACKS, tracks, true)
-          .addField(lang.UTIL.RELEASE_DATE, data.release_date, true)
-          .addField(lang.UTIL.SPOT_ARTISTS, artists, true)
+          .addFields(
+            {
+              name: lang.UTIL.TOTAL_TRACKS,
+              value: this.bot.utils.formatNumber(data.total_tracks),
+              inline: true,
+            },
+            { name: lang.UTIL.SPOT_TRACKS, value: tracks, inline: true },
+            { name: lang.UTIL.RELEASE_DATE, value: data.release_date, inline: true },
+            { name: lang.UTIL.SPOT_ARTISTS, value: artists, inline: true },
+          )
           .setImage(data.images[0].url);
 
         return interaction.editReply({ embeds: [embed] });
@@ -147,8 +161,14 @@ export default class SpotifyInfoCommand extends SubCommand {
           .setDescription(data.description || lang.UTIL.NO_DESCRIPTION)
           .setTitle(data.name)
           .setURL(data.url)
-          .addField(lang.UTIL.TOTAL_TRACKS, this.bot.utils.formatNumber(data.total_tracks), true)
-          .addField(lang.UTIL.SPOT_TRACKS, `${tracks}\n${length}`, true)
+          .addFields(
+            {
+              name: lang.UTIL.TOTAL_TRACKS,
+              value: this.bot.utils.formatNumber(data.total_tracks),
+              inline: true,
+            },
+            { name: lang.UTIL.SPOT_TRACKS, value: `${tracks}\n${length}`, inline: true },
+          )
           .setImage(data.images[0].url);
 
         return interaction.editReply({ embeds: [embed] });

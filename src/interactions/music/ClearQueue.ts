@@ -40,7 +40,7 @@ export default class ClearQueueCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
     }
 
-    this.bot.player.queues.delete(interaction.guildId!);
+    this.bot.player.queues.remove(interaction.guildId!);
     await interaction.reply({ content: lang.MUSIC.QUEUE_CLEARED });
   }
 }

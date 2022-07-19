@@ -25,8 +25,6 @@ export default class LoopCommand extends SubCommand {
         },
       ],
     });
-
-    this.didEnableFilter = this.didEnableFilter.bind(this);
   }
 
   async validate(
@@ -62,14 +60,5 @@ export default class LoopCommand extends SubCommand {
     this.bot.player.setRepeatMode(interaction.guildId!, Number(type));
 
     await interaction.reply({ content: "🔁" });
-  }
-
-  didEnableFilter(
-    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
-    filterToCheck: string,
-  ): boolean {
-    const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
-
-    return !queueFilters?.includes(filterToCheck) ?? true;
   }
 }

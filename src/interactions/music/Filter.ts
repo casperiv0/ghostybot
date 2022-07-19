@@ -61,7 +61,7 @@ export default class FilterCommand extends SubCommand {
 
     const didEnableFilter = this.didEnableFilter(interaction, filter);
 
-    this.bot.player.setFilter(interaction.guildId!, filter);
+    queue.filters.set([filter]);
 
     if (didEnableFilter) {
       await interaction.reply(this.bot.utils.translate(lang.MUSIC.SUC_APPLIED_FILTER, { filter }));
@@ -76,6 +76,6 @@ export default class FilterCommand extends SubCommand {
   ): boolean {
     const queueFilters = this.bot.player.getQueue(interaction.guildId!)?.filters;
 
-    return !queueFilters?.includes(filterToCheck) ?? true;
+    return !queueFilters?.has(filterToCheck) ?? true;
   }
 }

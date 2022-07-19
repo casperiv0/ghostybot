@@ -27,6 +27,7 @@ export default class LeaderboardCommand extends SubCommand {
       .sort((a, b) => b.xp - a.xp)
       .slice(0, 10);
 
+    const fields: DJS.APIEmbedField[] = [];
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.guild?.name} ${lang.LEVELS.LEADERBOARD}`);
@@ -39,11 +40,11 @@ export default class LeaderboardCommand extends SubCommand {
         const isInPlace = [0, 1, 2].includes(i);
         const place = isInPlace ? places[i] : "";
 
-        embed.addField(
-          member.user.username,
-          `${place} ${this.bot.utils.formatNumber(user.xp)}xp`,
-          true,
-        );
+        fields.push({
+          name: member.user.username,
+          value: `${place} ${this.bot.utils.formatNumber(user.xp)}xp`,
+          inline: true,
+        });
       }
     }
 
