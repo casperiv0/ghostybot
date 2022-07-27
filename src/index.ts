@@ -6,11 +6,11 @@ P.Promise.config({
 });
 
 import "utils/checkValid";
-import logs from "discord-logs";
+// import logs from "discord-logs";
 import { Bot } from "structures/Bot";
 
 const bot = new Bot();
-logs(bot);
+// logs(bot);
 
 if (process.env["DASHBOARD_ENABLED"] === "true") {
   // eslint-disable-next-line promise/catch-or-return

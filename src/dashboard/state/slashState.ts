@@ -9,7 +9,7 @@ interface SlashStore {
   setMessage(str: string): void;
 }
 
-export const useSlashStore = create<SlashStore>((set) => ({
+export const useSlashStore = create<SlashStore>()((set) => ({
   items: [],
   setItems: (items: GuildsSlashCommands[]) => set({ items }),
 
