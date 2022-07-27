@@ -8,18 +8,18 @@ export default class AnnounceCommand extends SubCommand {
       commandName: "admin",
       name: "announce",
       description: "Announce something with a cool embed",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",
           description: "The announcement message",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "channel",
           description: "A channel (Default: announcement channel set in dashboard)",
-          type: "CHANNEL",
+          type: DJS.ApplicationCommandOptionType.Channel,
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class AnnounceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);

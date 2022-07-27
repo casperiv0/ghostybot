@@ -11,9 +11,9 @@ export default class BotInviteCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const invite = this.bot.generateInvite({
-      scopes: ["bot", "applications.commands"],
+      scopes: [DJS.OAuth2Scopes.Bot, DJS.OAuth2Scopes.ApplicationsCommands],
       permissions: `${8}`,
     });
 

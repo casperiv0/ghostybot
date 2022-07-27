@@ -12,13 +12,13 @@ export default class DocsInteraction extends Command {
         {
           name: "query",
           description: "What do you want to search for",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "branch",
           description: "The branch",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
           choices: [
             {
@@ -36,7 +36,7 @@ export default class DocsInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     try {
@@ -51,12 +51,12 @@ export default class DocsInteraction extends Command {
         return interaction.editReply({ content: lang.UTIL.DOC_NOT_FOUND });
       }
 
-      const embed = new DJS.MessageEmbed({
+      const embed = new DJS.EmbedBuilder({
         ...data,
         color: "#5865f2",
         footer: {
           text: interaction.user.username,
-          icon_url: interaction.user.displayAvatarURL({ dynamic: true }),
+          icon_url: interaction.user.displayAvatarURL(),
         },
       });
 

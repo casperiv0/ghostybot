@@ -9,21 +9,21 @@ export default class SetStickyCommand extends SubCommand {
       groupName: "sticky",
       name: "set",
       description: "Set a new sticky message for the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageMessages],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",
           required: true,
           description: "The text you want as a sticky message",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const text = interaction.options.getString("text", true);

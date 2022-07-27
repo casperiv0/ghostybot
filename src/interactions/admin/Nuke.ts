@@ -3,6 +3,7 @@ import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { ValidateReturn } from "structures/Command/BaseCommand";
 import { SubCommand } from "structures/Command/SubCommand";
+import { threadChannels } from "./UnlockChannel";
 
 export default class RemoveRoleCommand extends SubCommand {
   constructor(bot: Bot) {
@@ -11,16 +12,15 @@ export default class RemoveRoleCommand extends SubCommand {
       name: "nuke",
       description:
         "Nuke the current channel. Note: The channel will instantly be deleted and re-created.",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_CHANNELS],
-      memberPermissions: [DJS.Permissions.FLAGS.ADMINISTRATOR],
+      botPermissions: [DJS.PermissionFlagsBits.ManageChannels],
+      memberPermissions: [DJS.PermissionFlagsBits.Administrator],
     });
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
-    const threadChannels = ["GUILD_NEWS_THREAD", "GUILD_PUBLIC_THREAD", "GUILD_PRIVATE_THREAD"];
     if (threadChannels.includes(interaction.channel!.type)) {
       return {
         ok: false,
@@ -32,7 +32,7 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const channel = interaction.channel as DJS.TextChannel;

@@ -10,7 +10,7 @@ export default class BalanceCommand extends SubCommand {
       description: "See the balance of a user",
       options: [
         {
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their balance of",
@@ -20,7 +20,7 @@ export default class BalanceCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -37,9 +37,19 @@ export default class BalanceCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${user.username} ${lang.ECONOMY.BALANCE}`)
-      .addField(lang.ECONOMY.MONEY, this.bot.utils.formatNumber(dbUser.money), true)
-      .addField(lang.ECONOMY.BANK, this.bot.utils.formatNumber(dbUser.bank), true)
-      .addField(lang.COVID.TOTAL, this.bot.utils.formatNumber(dbUser.bank + dbUser.money), true);
+      .addFields(
+        {
+          name: lang.ECONOMY.MONEY,
+          value: this.bot.utils.formatNumber(dbUser.money),
+          inline: true,
+        },
+        { name: lang.ECONOMY.BANK, value: this.bot.utils.formatNumber(dbUser.bank), inline: true },
+        {
+          name: lang.COVID.TOTAL,
+          value: this.bot.utils.formatNumber(dbUser.bank + dbUser.money),
+          inline: true,
+        },
+      );
 
     await interaction.reply({ embeds: [embed] });
   }

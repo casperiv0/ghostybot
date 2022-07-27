@@ -12,7 +12,7 @@ export default class RandomJokeCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     await interaction.reply({
       content: getRandomJoke({ exclude_tags: ["dirty", "racist", "marriage", "sex", "death"] })
         .body,

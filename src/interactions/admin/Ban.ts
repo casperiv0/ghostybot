@@ -8,19 +8,19 @@ export default class BanCommand extends SubCommand {
       commandName: "admin",
       name: "ban",
       description: "Ban a user from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.BanMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.BanMembers],
       options: [
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The ban reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -28,7 +28,7 @@ export default class BanCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -43,7 +43,8 @@ export default class BanCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
+    const me = this.bot.utils.getMe(interaction.guild);
+    if ((me?.roles.highest.comparePositionTo(member.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {
@@ -53,7 +54,7 @@ export default class BanCommand extends SubCommand {
     }
 
     await member.ban({
-      days: 7,
+      deleteMessageDays: 7,
       reason: `${lang.ADMIN.BAN_BANNED_BY}: ${interaction.user.tag}\n**${lang.GLOBAL.REASON}:** ${reason}`,
     });
 
@@ -79,8 +80,8 @@ export default class BanCommand extends SubCommand {
   bannable(member: DJS.GuildMember) {
     if (member.bannable) return true;
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.BAN_MEMBERS)) return false;
-    if (member.permissions.has(DJS.Permissions.FLAGS.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.BanMembers)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.Administrator)) return false;
 
     return true;
   }

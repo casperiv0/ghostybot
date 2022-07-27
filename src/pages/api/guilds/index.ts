@@ -1,5 +1,5 @@
 import { NextApiResponse } from "next";
-import { Permissions } from "discord.js";
+import { PermissionsBitField } from "discord.js";
 import hiddenGuildItems from "assets/json/hidden-items.json";
 import { ApiRequest } from "types/ApiRequest";
 import { Guild } from "types/Guild";
@@ -30,7 +30,7 @@ export default async function handler(req: ApiRequest, res: NextApiResponse) {
 
       const isAdminGuilds = guilds.filter((guild: Guild) => {
         const bits = BigInt(guild.permissions as number);
-        const permissions = new Permissions(bits);
+        const permissions = new PermissionsBitField(bits);
 
         return permissions.has(PermissionFlagsBits.Administrator);
       });

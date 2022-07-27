@@ -9,18 +9,18 @@ export default class StealEmojiCommand extends SubCommand {
       commandName: "admin",
       name: "steal-emoji",
       description: "Add an emoji from a different guild to this guild",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_EMOJIS_AND_STICKERS],
+      botPermissions: [DJS.PermissionFlagsBits.ManageEmojisAndStickers],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageEmojisAndStickers],
       options: [
         {
           name: "emoji",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The emoji you want to add",
         },
         {
           name: "name",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The name of the emoji",
         },
@@ -29,14 +29,14 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const emoji = interaction.options.getString("emoji", true);
     const name = interaction.options.getString("name", true);
 
     if (emoji.startsWith("https://cdn.discordapp.com/emojis/")) {
-      await interaction.guild?.emojis.create(emoji, name);
+      await interaction.guild?.emojis.create({ attachment: emoji, name });
 
       const embed = this.bot.utils
         .baseEmbed(interaction)
@@ -46,7 +46,7 @@ export default class StealEmojiCommand extends SubCommand {
       return interaction.reply({ embeds: [embed] });
     }
 
-    const customEmoji = DJS.Util.parseEmoji(emoji);
+    const customEmoji = DJS.parseEmoji(emoji);
 
     if (customEmoji?.id) {
       const link = `https://cdn.discordapp.com/emojis/${customEmoji.id}.${
@@ -86,13 +86,13 @@ export default class StealEmojiCommand extends SubCommand {
   }
 
   async createEmoji(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     url: string,
     name: string,
     lang: any,
   ) {
     try {
-      await interaction.guild?.emojis.create(url, name);
+      await interaction.guild?.emojis.create({ attachment: url, name });
     } catch (e) {
       if (String(e).includes("DiscordAPIError: Maximum number of emojis reached")) {
         return lang.ADMIN.MAX_EMOJI;

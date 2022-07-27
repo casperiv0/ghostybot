@@ -1,4 +1,4 @@
-import { Client, Collection } from "discord.js";
+import * as DJS from "discord.js";
 import NekoClient from "nekos.life";
 import { Client as ImdbClient } from "imdb-api";
 import PasteClient from "pastebin-api";
@@ -14,8 +14,8 @@ import { discordConfig } from "@config/discord-config";
 import { SubCommand } from "./Command/SubCommand";
 import { Command } from "./Command/Command";
 
-export class Bot extends Client {
-  interactions: Collection<string, SubCommand | Command> = new Collection();
+export class Bot extends DJS.Client {
+  interactions: DJS.Collection<string, SubCommand | Command> = new DJS.Collection();
 
   logger: typeof logger = logger;
   utils: Util;
@@ -46,7 +46,6 @@ export class Bot extends Client {
       customFilters: {
         cursed: "vibrato=f=6.5,tremolo,aresample=48000,asetrate=48000*1.25",
       },
-      youtubeDL: false,
       plugins: [new YtDlpPlugin({})],
     });
 

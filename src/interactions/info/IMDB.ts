@@ -12,7 +12,7 @@ export default class IMDBInfoCommand extends SubCommand {
         {
           name: "query",
           description: "What you're looking for",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -20,7 +20,7 @@ export default class IMDBInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -41,13 +41,43 @@ export default class IMDBInfoCommand extends SubCommand {
       .setTitle(movie.title)
       .setThumbnail(movie.poster)
       .setDescription(movie.plot)
-      .addField(`${lang.UTIL.DB_RATINGS}`, movie.rating.toString(), true)
-      .addField(`${lang.UTIL.DB_COUNTRY}`, movie.country, true)
-      .addField(`${lang.UTIL.DB_GENRES}`, movie.genres, true)
-      .addField(`${lang.UTIL.DB_AWARDS}`, movie.awards, true)
-      .addField(`${lang.UTIL.DB_LANGS}`, movie.languages, true)
-      .addField(`${lang.UTIL.DB_RELEASED}`, released, true)
-      .addField(`${lang.BOT_OWNER.EVAL_TYPE}`, movie.type, true);
+      .addFields(
+        {
+          name: `${lang.UTIL.DB_RATINGS}`,
+          value: movie.rating.toString(),
+          inline: true,
+        },
+        {
+          name: `${lang.UTIL.DB_COUNTRY}`,
+          value: movie.country,
+          inline: true,
+        },
+        {
+          name: `${lang.UTIL.DB_GENRES}`,
+          value: movie.genres,
+          inline: true,
+        },
+        {
+          name: `${lang.UTIL.DB_AWARDS}`,
+          value: movie.awards,
+          inline: true,
+        },
+        {
+          name: `${lang.UTIL.DB_LANGS}`,
+          value: movie.languages,
+          inline: true,
+        },
+        {
+          name: `${lang.UTIL.DB_RELEASED}`,
+          value: released,
+          inline: true,
+        },
+        {
+          name: `${lang.BOT_OWNER.EVAL_TYPE}`,
+          value: movie.type,
+          inline: true,
+        },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

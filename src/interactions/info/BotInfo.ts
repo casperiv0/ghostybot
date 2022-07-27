@@ -17,7 +17,7 @@ export default class BotInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -61,34 +61,36 @@ export default class BotInfoCommand extends SubCommand {
       **${lang.BOT.UPTIME}:** ${uptime}
       `,
       )
-      .addField(
-        lang.BOT.INFO,
-        `
+      .addFields(
+        {
+          name: lang.BOT.INFO,
+          value: `
 **${lang.BOT.USERS}:** ${inlineCode(userCount)}
 **${lang.BOT.GUILDS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.guilds.cache.size))}
 **${lang.BOT.CHANNELS}:** ${inlineCode(this.bot.utils.formatNumber(this.bot.channels.cache.size))}
 **${lang.BOT.COMMAND_COUNT}:** ${inlineCode(this.bot.utils.formatNumber(commandCount))}
 `,
-        true,
-      )
-      .addField(
-        lang.BOT.SYSTEM_INFO,
-        `
+          inline: true,
+        },
+        {
+          name: lang.BOT.SYSTEM_INFO,
+          value: `
 **${lang.BOT.RAM_USAGE}:**  ${ramUsage}MB
 **${lang.BOT.DJS_V}:** v13`,
-        true,
-      )
-      .addField(
-        "Links",
-        `
+          inline: true,
+        },
+        {
+          name: "Links",
+          value: `
 ${botDeveloper}
 ${contributors}
 ${botInvite}`,
-        true,
+          inline: true,
+        },
+        { name: lang.BOT.REPO, value: botRepo, inline: true },
+        { name: lang.UTIL.SUPPORT_SERVER, value: supportServer, inline: true },
+        { name: lang.BOT.DASHBOARD, value: dashboard, inline: true },
       )
-      .addField(lang.BOT.REPO, botRepo, true)
-      .addField(lang.UTIL.SUPPORT_SERVER, supportServer, true)
-      .addField(lang.BOT.DASHBOARD, dashboard, true)
       .setImage(
         "https://raw.githubusercontent.com/Dev-CasperTheGhost/ghostybot/main/.github/Ghostybot-banner.png",
       );

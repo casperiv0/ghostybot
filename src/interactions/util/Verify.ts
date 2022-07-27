@@ -11,7 +11,7 @@ export default class VerifyCommand extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const guild = await this.bot.utils.getGuildById(interaction.guildId);

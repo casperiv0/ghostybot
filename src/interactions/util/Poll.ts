@@ -11,7 +11,7 @@ export default class PollCommand extends SubCommand {
       options: [
         {
           name: "question",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The question",
         },
@@ -20,7 +20,7 @@ export default class PollCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const question = interaction.options.getString("question", true);
@@ -30,9 +30,8 @@ export default class PollCommand extends SubCommand {
       .setAuthor({
         name: this.bot.utils.translate(lang.UTIL.CREATED_BY, { member: interaction.user.tag }),
       })
-      .setDescription(question);
-
-    embed.footer = null;
+      .setDescription(question)
+      .setFooter(null);
 
     const sentMessage = await interaction.reply({ fetchReply: true, embeds: [embed] });
 

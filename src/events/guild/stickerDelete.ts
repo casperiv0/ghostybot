@@ -10,7 +10,9 @@ export default class StickerDeleteEvent extends Event {
   async execute(bot: Bot, sticker: DJS.Sticker) {
     try {
       if (!sticker.guild) return;
-      if (!sticker.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
+
+      const me = bot.utils.getMe(sticker.guild);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(sticker.guild);
@@ -21,7 +23,7 @@ export default class StickerDeleteEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_DELETED)
         .setDescription(lang.EVENTS.STICKER_DELETED_MSG)
-        .setColor("RED")
+        .setColor(DJS.Colors.Red)
         .setImage(sticker.url)
         .setTimestamp();
 

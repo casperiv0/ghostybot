@@ -28,7 +28,7 @@ export default class ReminderHelper extends Helper {
               this.bot.users.cache.get(user.user_id) || (await this.bot.users.fetch(user.user_id));
             const channel = guild.channels.cache.get(channel_id);
 
-            if (!channel) {
+            if (!channel || channel.type !== DJS.ChannelType.GuildText) {
               await this.bot.utils.updateUserById(user.user_id, user.guild_id, {
                 reminder: {
                   hasReminder: !(user.reminder.reminders.length - 1 === 0),
@@ -49,12 +49,15 @@ export default class ReminderHelper extends Helper {
               .baseEmbed({ author: usr })
               .setTitle("Reminder finished")
               .setDescription(`Your timer of **${time}** has ended`)
-              .addField("Reminder message", msg);
+              .addFields({ name: "Reminder message", value: msg });
 
-            if (!channel.permissionsFor(guild.me!).has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
+            const me = this.bot.utils.getMe(channel.guild);
+            if (!me) return;
+            if (!channel.permissionsFor(me).has(DJS.PermissionFlagsBits.SendMessages)) {
               return;
             }
-            (channel as DJS.TextChannel).send({ content: `<@${user.user_id}>`, embeds: [embed] });
+
+            channel.send({ content: `<@${user.user_id}>`, embeds: [embed] });
           });
       });
     }, this.TEN_SECOND_INTERVAL);

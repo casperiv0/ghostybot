@@ -14,7 +14,9 @@ export default class MessageDeleteEvent extends Event {
     try {
       if (!message.guild?.available) return;
       if (!message.guild) return;
-      if (!message.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+
+      const me = this.bot.utils.getMe(message.guild);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(message.guild);
       if (!webhook) return;
@@ -25,7 +27,7 @@ export default class MessageDeleteEvent extends Event {
         .baseEmbed(message)
         .setTitle("Message deleted")
         .setDescription(`Message: \`${message.content}\` was deleted in ${message.channel}`)
-        .setColor("RED")
+        .setColor(DJS.Colors.Red)
         .setTimestamp();
 
       if (message.attachments.size > 0) {

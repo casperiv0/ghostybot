@@ -8,19 +8,19 @@ export default class RemoveRoleCommand extends SubCommand {
       commandName: "admin",
       name: "remove-role",
       description: "Remove a role to a user",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to remove",
-          type: "ROLE",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
       ],
@@ -28,10 +28,12 @@ export default class RemoveRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
-    if (!interaction.guild?.me) return;
+    const me = this.bot.utils.getMe(interaction.guild);
+    if (!me) return;
+
     const user = interaction.options.getUser("user", true);
     const role = interaction.options.getRole("role", true);
 
@@ -43,14 +45,14 @@ export default class RemoveRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(role as DJS.Role) < 0) {
+    if ((me?.roles.highest.comparePositionTo(role as DJS.Role) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
-    if (interaction.guild.me.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(needsRole.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {

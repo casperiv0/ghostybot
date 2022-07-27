@@ -14,14 +14,14 @@ export default class DefineCommand extends SubCommand {
           name: "word",
           required: true,
           description: "The word you want to get defined",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const word = interaction.options.getString("word", true);
@@ -36,8 +36,10 @@ export default class DefineCommand extends SubCommand {
         const embed = this.bot.utils
           .baseEmbed(interaction)
           .setTitle(this.bot.utils.translate(lang.UTIL.DEF_FOR_WORD, { word }))
-          .addField(lang.UTIL.CATEGORY, data.category)
-          .addField(lang.UTIL.DEFINITION, data.definition);
+          .addFields(
+            { name: lang.UTIL.CATEGORY, value: data.category },
+            { name: lang.UTIL.DEFINITION, value: data.definition },
+          );
 
         interaction.reply({ embeds: [embed] });
       }

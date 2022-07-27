@@ -12,7 +12,7 @@ export default class AmazingEarthCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     await interaction.deferReply();
 
     const data = (await request(this.APIs.AmazingEarth).then((res) => res.body.json())) as any;

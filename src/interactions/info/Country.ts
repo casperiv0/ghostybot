@@ -14,7 +14,7 @@ export default class CountryInfoCommand extends SubCommand {
         {
           name: "country",
           description: "The country you want to get information about",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -22,7 +22,7 @@ export default class CountryInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -65,10 +65,16 @@ ${bold(lang.UTIL.CAPITAL)}: ${capital}
 ${bold(lang.UTIL.POPULATION)}: ${population}
 `,
       )
-      .addField(lang.UTIL.CALLING_CODES, callingCodes, true)
-      .addField(lang.UTIL.DOMAINS, domains, true)
-      .addField(lang.UTIL.DB_LANGS, languages, true)
-      .addField(lang.UTIL.TIMEZONES, timezones, false)
+      .addFields(
+        { name: lang.UTIL.CALLING_CODES, value: callingCodes, inline: true },
+        {
+          name: lang.UTIL.DOMAINS,
+          value: domains,
+          inline: true,
+        },
+        { name: lang.UTIL.DB_LANGS, value: languages, inline: true },
+        { name: lang.UTIL.TIMEZONES, value: timezones, inline: false },
+      )
       .setThumbnail(flag);
 
     await interaction.editReply({ embeds: [embed] });

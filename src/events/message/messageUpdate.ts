@@ -13,7 +13,8 @@ export default class MessageUpdateEvent extends Event {
   async execute(bot: Bot, oldMsg: DJS.Message, newMsg: DJS.Message) {
     try {
       if (!newMsg.guild?.available) return;
-      if (!newMsg.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+      const me = this.bot.utils.getMe(newMsg.guild);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
 
       const webhook = await bot.utils.getWebhook(newMsg.guild);
       if (!webhook) return;
@@ -39,9 +40,11 @@ export default class MessageUpdateEvent extends Event {
             newMsg.author.tag || newMsg.author.id || "Unknown"
           }** was edited [jump to message](${messageLink})`,
         )
-        .addField("**Old Message**", `${pOldMsg}`)
-        .addField("**New Message**", `${PNewMsg}`)
-        .setColor("ORANGE")
+        .addFields(
+          { name: "**Old Message**", value: `${pOldMsg}` },
+          { name: "**New Message**", value: `${PNewMsg}` },
+        )
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

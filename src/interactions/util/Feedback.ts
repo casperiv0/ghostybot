@@ -15,7 +15,7 @@ export default class FeedbackCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The feedback description",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
@@ -37,7 +37,7 @@ export default class FeedbackCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const feedback = interaction.options.getString("text", true);

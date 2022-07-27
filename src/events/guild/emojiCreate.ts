@@ -10,7 +10,9 @@ export default class EmojiCreateEvent extends Event {
   async execute(bot: Bot, emoji: DJS.GuildEmoji) {
     try {
       if (!emoji.guild) return;
-      if (!emoji.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
+
+      const me = bot.utils.getMe(emoji);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(emoji.guild);
@@ -25,7 +27,7 @@ export default class EmojiCreateEvent extends Event {
             emoji: emoji.toString(),
           }),
         )
-        .setColor("GREEN")
+        .setColor(DJS.Colors.Green)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

@@ -3,15 +3,15 @@ import { prisma } from "utils/prisma";
 
 export class MongoGiveawayManager extends GiveawaysManager {
   async getAllGiveaways() {
-    return prisma.giveaways.findMany();
+    return prisma.giveaways.findMany() as any;
   }
 
   async saveGiveaway(messageId: string, giveawayData: any) {
-    const created = await prisma.giveaways.create({
+    await prisma.giveaways.create({
       data: { messageId, ...giveawayData },
     });
 
-    return created;
+    return true;
   }
 
   async editGiveaway(messageId: string, giveawayData: any): Promise<boolean> {

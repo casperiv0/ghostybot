@@ -23,13 +23,13 @@ export default class Eval extends SubCommand {
       commandName: "bot-owner",
       options: [
         {
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           name: "code",
           description: "The code you want to execute",
           required: true,
         },
         {
-          type: "BOOLEAN",
+          type: DJS.ApplicationCommandOptionType.Boolean,
           name: "ephemeral",
           description: "Whether the command should be sent with ephemeral: true",
           required: false,
@@ -39,7 +39,7 @@ export default class Eval extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const owners = process.env["OWNERS"];
@@ -53,7 +53,7 @@ export default class Eval extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     try {

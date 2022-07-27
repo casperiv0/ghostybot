@@ -13,7 +13,7 @@ export default class WouldYouRatherCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -21,6 +21,7 @@ export default class WouldYouRatherCommand extends SubCommand {
     const data = await request("http://api.xaliks.xyz/random/wyr").then((res) => res.body.json());
     const [reply1, reply2] = data.questions;
 
+    const fields: DJS.APIEmbedField[] = [];
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(data.title)
@@ -30,12 +31,16 @@ export default class WouldYouRatherCommand extends SubCommand {
           question2: reply2.question,
         })}\n\n\n${data.description || ""}`,
       )
-      .addField(lang.GAMES.VOTES, this.bot.utils.formatNumber(data.total_votes), true);
+      .addFields({
+        name: lang.GAMES.VOTES,
+        value: this.bot.utils.formatNumber(data.total_votes),
+        inline: true,
+      });
 
     if (data.author) {
-      embed.addField(lang.UTIL.AUTHOR, data.author, true);
+      fields.push({ name: lang.UTIL.AUTHOR, value: data.author, inline: true });
     }
 
-    return interaction.editReply({ embeds: [embed] });
+    return interaction.editReply({ embeds: [embed.addFields(fields)] });
   }
 }

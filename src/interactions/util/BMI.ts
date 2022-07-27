@@ -13,20 +13,20 @@ export default class BMICommand extends SubCommand {
           name: "height",
           required: true,
           description: "Your height in centimeters",
-          type: "NUMBER",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
         {
           name: "weight",
           required: true,
           description: "Your weight in kilograms",
-          type: "NUMBER",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const height = interaction.options.getNumber("height", true);
@@ -37,9 +37,15 @@ export default class BMICommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${interaction.user.username} ${lang.UTIL.BMI}`)
-      .addField(`${lang.UTIL.BMI_WEIGHT}`, `${weight}kg`, true)
-      .addField(`${lang.UTIL.BMI_HEIGHT}`, `${height}cm`, true)
-      .addField(`${lang.UTIL.BMI}`, bmi);
+      .addFields(
+        { name: lang.UTIL.BMI_WEIGHT, value: `${weight}kg`, inline: true },
+        {
+          name: lang.UTIL.BMI_HEIGHT,
+          value: `${height}cm`,
+          inline: true,
+        },
+        { name: lang.UTIL.BMI, value: bmi },
+      );
 
     await interaction.reply({ embeds: [embed] });
   }

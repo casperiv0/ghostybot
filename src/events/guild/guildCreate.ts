@@ -13,13 +13,13 @@ export default class GuildCreateEvent extends Event {
 
     if (guild.systemChannel) {
       const BUTTONS = [
-        new DJS.MessageButton()
+        new DJS.ButtonBuilder()
           .setLabel("Open Dashboard")
-          .setStyle("LINK")
+          .setStyle(DJS.ButtonStyle.Link)
           .setURL("https://ghostybot.caspertheghost.me"),
-        new DJS.MessageButton()
+        new DJS.ButtonBuilder()
           .setLabel("Support Server")
-          .setStyle("LINK")
+          .setStyle(DJS.ButtonStyle.Link)
           .setURL("https://discord.gg/XxHrtkA"),
       ];
 
@@ -32,7 +32,9 @@ Thanks for inviting me to this Discord server!
 I am GhostyBot a special bot that can do a lot such as moderation, play games and music, etc!`,
         );
 
-      const row = new DJS.MessageActionRow().addComponents(BUTTONS);
+      const row = new DJS.ActionRowBuilder<DJS.MessageActionRowComponentBuilder>().addComponents(
+        BUTTONS,
+      );
 
       await guild.systemChannel.send({ embeds: [embed], components: [row] });
     }

@@ -8,27 +8,27 @@ export default class WarningsCommand extends SubCommand {
       groupName: "warnings",
       commandName: "admin",
       name: "view",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       description: "View warnings of a user",
       options: [
         {
           name: "user",
           required: true,
           description: "The user you want to see their warnings of",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
         {
           name: "warning-id",
           required: false,
           description: "The id of a warning",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -58,16 +58,21 @@ export default class WarningsCommand extends SubCommand {
       const warnedOn = warning.date ? new Date(warning.date).toLocaleString() : "N/A";
       embed
         .setTitle(`${lang.ADMIN.WARNING} ${id}`)
-        .addField(`**${lang.EVENTS.REASON}**`, warning.reason || lang.GLOBAL.NOT_SPECIFIED)
-        .addField(`**${lang.ADMIN.WARNED_ON}**`, warnedOn);
+        .addFields(
+          { name: `**${lang.EVENTS.REASON}**`, value: warning.reason || lang.GLOBAL.NOT_SPECIFIED },
+          { name: `**${lang.ADMIN.WARNED_ON}**`, value: warnedOn },
+        );
 
       return interaction.reply({ ephemeral: true, embeds: [embed] });
     }
 
     embed
       .setTitle(this.bot.utils.translate(lang.ADMIN.MEMBER_WARNS, { memberTag: user.tag }))
-      .addField(`**${lang.ADMIN.TOTAL_WARNS}**`, (warnings.length || 0).toString())
-      .setThumbnail(user.displayAvatarURL({ dynamic: true }));
+      .addFields({
+        name: `**${lang.ADMIN.TOTAL_WARNS}**`,
+        value: (warnings.length || 0).toString(),
+      })
+      .setThumbnail(user.displayAvatarURL());
 
     await interaction.reply({ ephemeral: true, embeds: [embed] });
   }

@@ -13,14 +13,14 @@ export default class DepositCommand extends SubCommand {
           description: "The amount you want to deposit",
           name: "amount",
           required: true,
-          type: "NUMBER",
+          type: DJS.ApplicationCommandOptionType.Number,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = await this.bot.utils.getUserById(interaction.user.id, interaction.guildId!);

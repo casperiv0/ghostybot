@@ -13,13 +13,13 @@ export default class MagikCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
         {
           name: "intensity",
           description: "The intensity of the Magik",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
           required: false,
         },
       ],
@@ -27,7 +27,7 @@ export default class MagikCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -37,7 +37,7 @@ export default class MagikCommand extends SubCommand {
 
     const data = (await request(
       `${this.APIs.Magik}${encodeURIComponent(intensity)}&image=${user.displayAvatarURL({
-        format: "png",
+        extension: "png",
       })}`,
     ).then((res) => res.body.json())) as { message: string };
 

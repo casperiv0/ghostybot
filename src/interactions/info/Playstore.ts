@@ -13,7 +13,7 @@ export default class PlaystoreInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The search query",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -21,7 +21,7 @@ export default class PlaystoreInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -46,9 +46,11 @@ export default class PlaystoreInfoCommand extends SubCommand {
       .setURL(app.url)
       .setTitle(`${app.title}`)
       .setDescription(app.summary)
-      .addField(lang.ECONOMY.PRICE, app.priceText, true)
-      .addField(lang.UTIL.DEVELOPER, app.developer, true)
-      .addField(lang.UTIL.SCORE, app.scoreText, true);
+      .addFields(
+        { name: lang.ECONOMY.PRICE, value: app.priceText, inline: true },
+        { name: lang.UTIL.DEVELOPER, value: app.developer, inline: true },
+        { name: lang.UTIL.SCORE, value: app.scoreText, inline: true },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

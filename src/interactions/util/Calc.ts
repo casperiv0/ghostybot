@@ -17,14 +17,14 @@ export default class CalculateCommand extends SubCommand {
           name: "calculation",
           required: true,
           description: "What you want to calculate",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const calculation = interaction.options.getString("calculation", true);
@@ -34,8 +34,10 @@ export default class CalculateCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(lang.GAMES.CALC)
-      .addField(lang.BOT_OWNER.EVAL_INPUT, codeBlock("js", calculation))
-      .addField(lang.BOT_OWNER.EVAL_OUTPUT, codeBlock("js", result));
+      .addFields(
+        { name: lang.BOT_OWNER.EVAL_INPUT, value: codeBlock("js", calculation) },
+        { name: lang.BOT_OWNER.EVAL_OUTPUT, value: codeBlock("js", result) },
+      );
 
     await interaction.reply({ embeds: [embed] });
   }

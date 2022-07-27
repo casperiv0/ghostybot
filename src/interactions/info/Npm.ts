@@ -14,7 +14,7 @@ export default class NpmInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The search query",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -22,7 +22,7 @@ export default class NpmInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -54,42 +54,46 @@ export default class NpmInfoCommand extends SubCommand {
         .then((res) => res.body.json())
         .catch(() => null)) as { downloads: number } | null;
 
+      const fields: DJS.APIEmbedField[] = [];
       const embed = this.bot.utils
         .baseEmbed(interaction)
         .setURL(foundPackage.links.npm)
         .setTitle(foundPackage.name)
         .setDescription(foundPackage?.description ?? lang.GLOBAL.NONE)
-        .addField(lang.UTIL.VERSION, foundPackage.version, true)
-        .addField(lang.UTIL.LAST_MODIFIED, updatedAt, true)
-        .addField(lang.UTIL.MAINTAINERS, maintainers);
+        .addFields(
+          { name: lang.UTIL.VERSION, value: foundPackage.version, inline: true },
+          { name: lang.UTIL.LAST_MODIFIED, value: updatedAt, inline: true },
+          { name: lang.UTIL.MAINTAINERS, value: maintainers },
+        );
 
       if (downloads?.downloads) {
-        embed.addField(
-          lang.UTIL.DOWNLOADS,
-          `${this.bot.utils.formatNumber(downloads.downloads)}/week`,
-          true,
-        );
+        fields.push({
+          name: lang.UTIL.DOWNLOADS,
+          value: `${this.bot.utils.formatNumber(downloads.downloads)}/week`,
+          inline: true,
+        });
       }
 
-      return interaction.editReply({ embeds: [embed] });
+      return interaction.editReply({ embeds: [embed.addFields(fields)] });
     }
 
+    const fields: DJS.APIEmbedField[] = [];
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(lang.UTIL.NPM_SEARCH)
       .setDescription(this.bot.utils.translate(lang.UTIL.NPM_TOP_5, { query }));
 
     foundPackages.forEach((pkg) => {
-      embed.addField(
-        pkg.name,
-        `
-**${lang.UTIL.VERSION}:** ${pkg.version}
-**${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
-[**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
-        `,
-      );
+      fields.push({
+        name: pkg.name,
+        value: `
+  **${lang.UTIL.VERSION}:** ${pkg.version}
+  **${lang.UTIL.AUTHOR}:** ${pkg?.publisher.username}
+  [**${lang.UTIL.VIEW_ON_NPM}**](${pkg.links.npm})
+          `,
+      });
     });
 
-    await interaction.editReply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed.addFields(fields)] });
   }
 }

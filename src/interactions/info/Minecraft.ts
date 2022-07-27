@@ -13,7 +13,7 @@ export default class MinecraftInfoCommand extends SubCommand {
         {
           name: "query",
           description: "The server IP",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -21,7 +21,7 @@ export default class MinecraftInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -48,12 +48,14 @@ export default class MinecraftInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(query)
-      .addField(lang.MEMBER.STATUS, status, true)
-      .addField(lang.UTIL.PLAYERS, players, true)
-      .addField(lang.UTIL.MAX_PLAYERS, maxPlayers, true)
-      .addField(lang.UTIL.VERSION, version, true)
-      .addField(lang.UTIL.PORT, port, true)
-      .addField(lang.UTIL.DESCRIPTION, description);
+      .addFields(
+        { name: lang.MEMBER.STATUS, value: status, inline: true },
+        { name: lang.UTIL.PLAYERS, value: players, inline: true },
+        { name: lang.UTIL.MAX_PLAYERS, value: maxPlayers, inline: true },
+        { name: lang.UTIL.VERSION, value: version, inline: true },
+        { name: lang.UTIL.PORT, value: port, inline: true },
+        { name: lang.UTIL.DESCRIPTION, value: description },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

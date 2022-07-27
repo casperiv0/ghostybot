@@ -1,4 +1,5 @@
 import * as DJS from "discord.js";
+import type { BaseImageURLOptions } from "@discordjs/rest";
 import { Bot } from "structures/Bot";
 import { SubCommand } from "structures/Command/SubCommand";
 
@@ -13,14 +14,14 @@ export default class AvatarCommand extends SubCommand {
           name: "user",
           required: false,
           description: "The user you want to see the avatar of",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -39,11 +40,7 @@ export default class AvatarCommand extends SubCommand {
     await interaction.reply({ embeds: [embed] });
   }
 
-  getAvatar(user: DJS.User, format: DJS.AllowedImageFormat | "gif") {
-    return user.displayAvatarURL({
-      dynamic: true,
-      size: 4096,
-      format: format as DJS.AllowedImageFormat,
-    });
+  getAvatar(user: DJS.User, extension: BaseImageURLOptions["extension"]) {
+    return user.displayAvatarURL({ size: 4096, extension });
   }
 }

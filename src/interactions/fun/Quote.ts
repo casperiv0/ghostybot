@@ -20,7 +20,7 @@ export default class QuoteCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -31,8 +31,10 @@ export default class QuoteCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(lang.GAMES.QUOTE)
       .setDescription(data.content)
-      .addField(lang.UTIL.AUTHOR, `${data.author} (${data.id})`)
-      .addField(lang.GAMES.TAGS, data.tags.join(", "));
+      .addFields(
+        { name: lang.UTIL.AUTHOR, value: `${data.author} (${data.id})` },
+        { name: lang.GAMES.TAGS, value: data.tags.join(", ") },
+      );
 
     await interaction.editReply({ embeds: [embed] });
   }

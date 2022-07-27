@@ -1,4 +1,4 @@
-import { GuildMember, TextChannel, Permissions } from "discord.js";
+import * as DJS from "discord.js";
 import { Bot } from "structures/Bot";
 import { Event } from "structures/Event";
 
@@ -7,7 +7,7 @@ export default class GuildMemberRemoveEvent extends Event {
     super(bot, "guildMemberRemove");
   }
 
-  async execute(bot: Bot, member: GuildMember) {
+  async execute(bot: Bot, member: DJS.GuildMember) {
     try {
       if (!member.guild) return;
       if (!member.guild.available) return;
@@ -26,7 +26,7 @@ export default class GuildMemberRemoveEvent extends Event {
       if (leaveData.channel_id) {
         if (!member.guild.channels.cache.find((ch) => ch.id === leaveData.channel_id)) return;
 
-        const avatar = member.user.displayAvatarURL({ dynamic: true });
+        const avatar = member.user.displayAvatarURL();
 
         const embed = bot.utils
           .baseEmbed({ author: member.user })
@@ -38,11 +38,11 @@ export default class GuildMemberRemoveEvent extends Event {
               guild: member.guild,
             }),
           )
-          .setColor("RED");
+          .setColor(DJS.Colors.Red);
 
         const ch = bot.channels.cache.get(leaveData.channel_id);
-        if (!ch || !ch.isText()) return;
-        if (!(ch as TextChannel).permissionsFor(bot.user!)?.has(Permissions.FLAGS.SEND_MESSAGES)) {
+        if (!ch || ch.type !== DJS.ChannelType.GuildText) return;
+        if (!ch.permissionsFor(bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
           return;
         }
 

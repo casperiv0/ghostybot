@@ -8,12 +8,12 @@ export default class UnbanCommand extends SubCommand {
       commandName: "admin",
       name: "unban",
       description: "Unban a member from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.BAN_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.BanMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.BanMembers],
       options: [
         {
           name: "user-id",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The user id of the banned member",
         },
@@ -22,7 +22,7 @@ export default class UnbanCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const userId = interaction.options.getString("user-id", true);

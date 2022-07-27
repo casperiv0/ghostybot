@@ -12,7 +12,7 @@ export default class NowPlayingCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
@@ -32,12 +32,12 @@ export default class NowPlayingCommand extends SubCommand {
       .setURL(song.url)
       .setAuthor({ name: `🎵 ${lang.MUSIC.NOW} ${lang.MUSIC.PLAYING} ` })
       .setDescription(`**${lang.MUSIC.DURATION}:** ${song.formattedDuration}`)
-      .addField(
-        lang.MUSIC.INFORMATION,
-        `
-**${lang.MUSIC.UPLOADER}:** ${song.uploader.name ?? lang.UTIL.UNKNOWN}
-**${lang.MUSIC.LIKES}:** ${this.bot.utils.formatNumber(song.likes)}`,
-      );
+      .addFields({
+        name: lang.MUSIC.INFORMATION,
+        value: `
+  **${lang.MUSIC.UPLOADER}:** ${song.uploader.name ?? lang.UTIL.UNKNOWN}
+  **${lang.MUSIC.LIKES}:** ${this.bot.utils.formatNumber(song.likes)}`,
+      });
 
     if (song.thumbnail) {
       embed.setImage(song.thumbnail);

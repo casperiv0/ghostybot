@@ -13,14 +13,14 @@ export default class PlayCommand extends SubCommand {
           description: "The URL or query to the song",
           name: "query",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const query = interaction.options.getString("query", true);
@@ -39,7 +39,7 @@ export default class PlayCommand extends SubCommand {
     }
 
     const perms = channel.permissionsFor(this.bot.user!);
-    if (!perms?.has([DJS.Permissions.FLAGS.CONNECT, DJS.Permissions.FLAGS.SPEAK])) {
+    if (!perms?.has([DJS.PermissionFlagsBits.Connect, DJS.PermissionFlagsBits.Speak])) {
       return { ok: false, error: { ephemeral: true, content: lang.MUSIC.NO_PERMS } };
     }
 

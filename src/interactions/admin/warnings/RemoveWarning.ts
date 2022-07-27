@@ -10,26 +10,26 @@ export default class RemoveWarningCommand extends SubCommand {
       groupName: "warnings",
       name: "remove",
       description: "Remove a warning from a user",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "user",
           required: true,
           description: "The user you want to remove a warning of",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
         },
         {
           name: "warning-id",
           required: true,
           description: "The id of a warning",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);

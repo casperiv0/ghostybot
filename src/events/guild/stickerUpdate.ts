@@ -10,32 +10,41 @@ export default class StickerDeleteEvent extends Event {
   async execute(bot: Bot, old: DJS.Sticker, newSticker: DJS.Sticker) {
     try {
       if (!newSticker.guild) return;
-      if (!newSticker.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) {
+
+      const me = this.bot.utils.getMe(newSticker.guild);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) {
         return;
       }
       const webhook = await bot.utils.getWebhook(newSticker.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newSticker.guild.id);
 
+      const fields: DJS.EmbedField[] = [];
+
       const embed = bot.utils
         .baseEmbed({ author: bot.user })
         .setTitle(lang.EVENTS.STICKER_UPDATED)
-        .setColor("ORANGE")
+        .setColor(DJS.Colors.Orange)
         .setImage(newSticker.url)
         .setTimestamp();
 
       if (old.name !== newSticker.name) {
-        embed.addField(lang.EVENTS.NAME_UPDATED, `${old.name} -> ${newSticker.name}`);
+        fields.push({
+          inline: true,
+          name: lang.EVENTS.NAME_UPDATED,
+          value: `${old.name} -> ${newSticker.name}`,
+        });
       }
 
       if (old.description !== newSticker.description) {
-        embed.addField(
-          lang.EVENTS.DESCRIPTION_UPDATED,
-          `${old.description} -> ${newSticker.description}`,
-        );
+        fields.push({
+          inline: true,
+          name: lang.EVENTS.DESCRIPTION_UPDATED,
+          value: `${old.description} -> ${newSticker.description}`,
+        });
       }
 
-      await webhook.send({ embeds: [embed] });
+      await webhook.send({ embeds: [embed.addFields(fields)] });
     } catch (err) {
       bot.utils.sendErrorLog(err, "error");
     }

@@ -14,14 +14,14 @@ export default class InviteInfoCommand extends SubCommand {
           description: "The invite code",
           name: "code",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -60,22 +60,24 @@ export default class InviteInfoCommand extends SubCommand {
       .baseEmbed(interaction)
       .setTitle(`${lang.UTIL.INVITE}: ${invite.code}`)
       .setDescription(invite.guild?.description || lang.UTIL.NO_DESCRIPTION)
-      .addField(
-        lang.UTIL.GENERAL_INFO,
-        `
+      .addFields(
+        {
+          name: lang.UTIL.GENERAL_INFO,
+          value: `
 **${lang.UTIL.USES}:**: ${usesStr}
 **${lang.UTIL.GUILD}:** ${invite.guild?.name ?? lang.UTIL.UNKNOWN} (${
-          invite.guild?.id ?? lang.UTIL.UNKNOWN
-        })
-**${lang.UTIL.CHANNEL}:** ${invite.channel.name}
+            invite.guild?.id ?? lang.UTIL.UNKNOWN
+          })
+**${lang.UTIL.CHANNEL}:** ${invite.channel?.name ?? lang.UTIL.UNKNOWN}
 **${lang.UTIL.INVITER}:** ${inviter}
       `,
-      )
-      .addField(
-        lang.INVITE.EXPIRATION,
-        `
+        },
+        {
+          name: lang.INVITE.EXPIRATION,
+          value: `
 **${lang.INVITE.EXPIRES_AT}:** ${expiresAt}
 **${lang.INVITE.EXPIRED_AT}:** ${expiredAt}`,
+        },
       );
 
     if (invite.guild?.icon) {

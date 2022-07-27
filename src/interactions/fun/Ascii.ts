@@ -14,14 +14,14 @@ export default class AsciiCommand extends SubCommand {
         {
           name: "text",
           description: "The text you want to transform",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction) {
     const text = interaction.options.getString("text", true);
 
     figlet.text(text, (e, txt) => {

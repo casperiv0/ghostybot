@@ -15,14 +15,14 @@ export default class GitHubInfoCommand extends SubCommand {
           description: "The GitHub username",
           name: "username",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -46,12 +46,26 @@ export default class GitHubInfoCommand extends SubCommand {
     const embed = this.bot.utils
       .baseEmbed(interaction)
       .setTitle(`${user.login} ${lang.ECONOMY.PROFILE}`)
-      .addField("**Twitter**", twitter, true)
-      .addField(`**${lang.UTIL.GH_FOLLOWING}**`, user.following.toString(), true)
-      .addField(`**${lang.UTIL.GH_FOLLOWERS}**`, user.followers.toString(), true)
-      .addField(`**${lang.UTIL.GH_WEBSITE}**`, website, true)
-      .addField(`**${lang.UTIL.GH_LOCATION}**`, location, true)
-      .addField(`${lang.GLOBAL.URL}`, user.html_url)
+      .addFields(
+        { name: "**Twitter**", value: twitter, inline: true },
+        {
+          name: `**${lang.UTIL.GH_FOLLOWING}**`,
+          value: user.following.toString(),
+          inline: true,
+        },
+        { name: `**${lang.UTIL.GH_FOLLOWERS}**`, value: user.followers.toString(), inline: true },
+        {
+          name: `**${lang.UTIL.GH_WEBSITE}**`,
+          value: website,
+          inline: true,
+        },
+        {
+          name: `**${lang.UTIL.GH_LOCATION}**`,
+          value: location,
+          inline: true,
+        },
+        { name: `${lang.GLOBAL.URL}`, value: user.html_url },
+      )
       .setDescription(`${lang.UTIL.GH_BIO}: ${bio}`)
       .setThumbnail(user.avatar_url);
 

@@ -8,19 +8,19 @@ export default class KickCommand extends SubCommand {
       commandName: "admin",
       name: "kick",
       description: "Kick a user from the current guild",
-      botPermissions: [DJS.Permissions.FLAGS.KICK_MEMBERS],
-      memberPermissions: [DJS.Permissions.FLAGS.KICK_MEMBERS],
+      botPermissions: [DJS.PermissionFlagsBits.KickMembers],
+      memberPermissions: [DJS.PermissionFlagsBits.KickMembers],
       options: [
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "reason",
           description: "The kick reason",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: false,
         },
       ],
@@ -28,9 +28,12 @@ export default class KickCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
+    const me = this.bot.utils.getMe(interaction.guild);
+    if (!me) return;
+
     const user = interaction.options.getUser("user", true);
     const reason = interaction.options.getString("reason") ?? lang.GLOBAL.NOT_SPECIFIED;
 
@@ -43,7 +46,7 @@ export default class KickCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(member.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(member.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, { member: user.tag }),
@@ -80,8 +83,8 @@ export default class KickCommand extends SubCommand {
   kickable(member: DJS.GuildMember) {
     if (member.kickable) return true;
 
-    if (member.permissions.has(DJS.Permissions.FLAGS.KICK_MEMBERS)) return false;
-    if (member.permissions.has(DJS.Permissions.FLAGS.ADMINISTRATOR)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.KickMembers)) return false;
+    if (member.permissions.has(DJS.PermissionFlagsBits.Administrator)) return false;
 
     return true;
   }

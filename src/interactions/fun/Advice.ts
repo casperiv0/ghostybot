@@ -19,7 +19,7 @@ export default class AdviceCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     await interaction.deferReply();
     const data = (await request(this.APIs.Advice).then((res) => res.body.json())) as Data;
 

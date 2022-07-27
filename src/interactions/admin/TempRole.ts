@@ -9,25 +9,25 @@ export default class TempRoleCommand extends SubCommand {
       commandName: "admin",
       name: "temp-role",
       description: "Give someone a role for a period of time",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_ROLES],
+      botPermissions: [DJS.PermissionFlagsBits.ManageRoles],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageRoles],
       options: [
         {
           name: "user",
           description: "The user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: true,
         },
         {
           name: "role",
           description: "The role you want to add",
-          type: "ROLE",
+          type: DJS.ApplicationCommandOptionType.Role,
           required: true,
         },
         {
           name: "time",
           description: "The amount of time (Eg: 2d, 40h, 10min, etc.)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -35,7 +35,7 @@ export default class TempRoleCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user", true);
@@ -53,14 +53,15 @@ export default class TempRoleCommand extends SubCommand {
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(parsedRole) < 0) {
+    const me = this.bot.utils.getMe(interaction.guild);
+    if ((me?.roles.highest.comparePositionTo(parsedRole) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_NOT_HIGH_ENOUGH, { role: role.name }),
       });
     }
 
-    if (interaction.guild!.me!.roles.highest.comparePositionTo(needsRole.roles.highest) < 0) {
+    if ((me?.roles.highest.comparePositionTo(needsRole.roles.highest) ?? 0) < 0) {
       return interaction.reply({
         ephemeral: true,
         content: this.bot.utils.translate(lang.ROLES.MY_ROLE_MUST_BE_HIGHER, {

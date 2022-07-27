@@ -12,7 +12,7 @@ export default class InvertCommand extends SubCommand {
         {
           name: "user",
           description: "A user",
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
         },
       ],
@@ -20,13 +20,13 @@ export default class InvertCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
 
     const user = interaction.options.getUser("user") ?? interaction.user;
-    const image = `${this.APIs.Invert}${user.displayAvatarURL({ format: "png" })}`;
+    const image = `${this.APIs.Invert}${user.displayAvatarURL({ extension: "png" })}`;
 
     const embed = this.bot.utils
       .baseEmbed(interaction)

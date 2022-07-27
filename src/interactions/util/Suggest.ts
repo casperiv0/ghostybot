@@ -14,14 +14,14 @@ export default class SuggestCommand extends SubCommand {
           name: "text",
           required: true,
           description: "The suggestion description",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const suggestion = interaction.options.getString("text", true);

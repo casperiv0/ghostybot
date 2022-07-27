@@ -9,23 +9,23 @@ export default class StartGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "start",
       description: "Start a new giveaway",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "time",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "When the giveaway should end",
           required: true,
         },
         {
           name: "prize",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           description: "The giveaway prize",
           required: true,
         },
         {
           name: "winner-count",
-          type: "INTEGER",
+          type: DJS.ApplicationCommandOptionType.Integer,
           description: "The amount of people that can win (Default: 1)",
         },
       ],
@@ -33,7 +33,7 @@ export default class StartGiveaway extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);

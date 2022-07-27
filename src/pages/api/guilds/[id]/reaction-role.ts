@@ -140,12 +140,12 @@ async function createNewReaction(reaction: reactions, bot: Bot): Promise<DJS.Mes
     | null;
 
   if (!channel) return "Channel was not found.";
-  if (!["GUILD_TEXT", "GUILD_NEWS"].includes(channel.type)) {
+  if (![DJS.ChannelType.GuildText, DJS.ChannelType.GuildNews].includes(channel.type)) {
     return "Channel must be a text channel.";
   }
 
-  if (!channel.permissionsFor(bot.user!)?.has(DJS.Permissions.FLAGS.SEND_MESSAGES)) {
-    return "Bot does not have `SEND_MESSAGES` permissions in this channel.";
+  if (!channel.permissionsFor(bot.user!)?.has(DJS.PermissionFlagsBits.SendMessages)) {
+    return "Bot does not have `SendMessages` permissions in this channel.";
   }
 
   const description = await _createDescription(reaction.reactions, channel.guild);

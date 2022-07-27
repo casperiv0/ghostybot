@@ -13,7 +13,7 @@ export default class ClearQueueCommand extends SubCommand {
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -28,7 +28,7 @@ export default class ClearQueueCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const queue = this.bot.player.getQueue(interaction.guildId!);
@@ -40,7 +40,7 @@ export default class ClearQueueCommand extends SubCommand {
       return interaction.reply({ ephemeral: true, content: lang.MUSIC.BOT_NOT_IN_VC });
     }
 
-    this.bot.player.queues.delete(interaction.guildId!);
+    this.bot.player.queues.remove(interaction.guildId!);
     await interaction.reply({ content: lang.MUSIC.QUEUE_CLEARED });
   }
 }

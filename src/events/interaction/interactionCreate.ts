@@ -42,7 +42,8 @@ export default class InteractionEvent extends Event {
       return interaction.reply({ ephemeral: true, content: lang.GLOBAL.ERROR });
     }
 
-    if (!interaction.isCommand()) return;
+    if (interaction.type !== DJS.InteractionType.ApplicationCommand) return;
+    if (interaction.commandType !== DJS.ApplicationCommandType.ChatInput) return;
     if (!interaction.inGuild()) return;
 
     await bot.application?.commands.fetch(interaction.commandId).catch(() => null);
@@ -135,7 +136,10 @@ export default class InteractionEvent extends Event {
     }
   }
 
-  isSubCommandDisabled(dbGuild: guilds, interaction: DJS.CommandInteraction) {
+  isSubCommandDisabled(
+    dbGuild: guilds,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
+  ) {
     const commands = dbGuild.disabled_commands;
 
     const command = this.getCommandName(interaction);
@@ -143,7 +147,7 @@ export default class InteractionEvent extends Event {
     return commands.includes(command);
   }
 
-  getCommandName(interaction: DJS.CommandInteraction) {
+  getCommandName(interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">) {
     let command: string;
 
     const commandName = interaction.commandName;

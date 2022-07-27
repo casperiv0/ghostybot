@@ -8,16 +8,16 @@ export default class AddMoneyCommand extends SubCommand {
       commandName: "economy",
       name: "add-money",
       description: "Add money to a user",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           name: "user",
           description: "The user you want to add money to",
           required: true,
         },
         {
-          type: "NUMBER",
+          type: DJS.ApplicationCommandOptionType.Number,
           name: "amount",
           description: "The amount you want to add",
           required: true,
@@ -27,7 +27,7 @@ export default class AddMoneyCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const amount = interaction.options.getNumber("amount", true);

@@ -13,7 +13,7 @@ export default class GuildInfoCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await interaction.deferReply();
@@ -35,7 +35,7 @@ export default class GuildInfoCommand extends SubCommand {
     const owner = await guild.fetchOwner();
     const inviteBanner = guild.bannerURL({
       size: 2048,
-      format: "png",
+      extension: "png",
     });
 
     const verLevel = verLevels[guild.verificationLevel];
@@ -53,21 +53,21 @@ export default class GuildInfoCommand extends SubCommand {
 **${lang.MEMBER.JOINED_AT}:** ${joinedAt}
 **${lang.MEMBER.CREATED_ON}:** ${time(new Date(guild.createdAt), "F")}`,
       )
-      .addField(
-        `**📈 ${lang.POKEMON.STATS}**`,
-        `
+      .addFields({
+        name: `**📈 ${lang.POKEMON.STATS}**`,
+        value: `
 **${lang.GUILD.ROLES_C}:** ${roles}
 **${lang.GUILD.CHANNEL_C}:** ${channels}
 **${lang.GUILD.EMOJI_C}:** ${emojis}
 **${lang.GUILD.MEMBER_C}:** ${guild.memberCount}`,
-      );
+      });
 
     if (inviteBanner !== null) {
       embed.setImage(inviteBanner);
     }
 
     if (guild.icon !== null) {
-      embed.setThumbnail(`${guild.iconURL({ format: "png", size: 1024 })}`);
+      embed.setThumbnail(`${guild.iconURL({ extension: "png", size: 1024 })}`);
     }
 
     await interaction.editReply({ embeds: [embed] });

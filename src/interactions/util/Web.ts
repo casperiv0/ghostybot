@@ -18,7 +18,7 @@ export default class WebCommand extends SubCommand {
       options: [
         {
           name: "url",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The URL of the website",
         },
@@ -27,7 +27,7 @@ export default class WebCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const url = interaction.options.getString("url", true);
@@ -51,7 +51,7 @@ export default class WebCommand extends SubCommand {
     }
 
     const result = `${CAPTURE_URL}${url}`;
-    const attachment = new DJS.MessageAttachment(result, "capture.png");
+    const attachment = new DJS.AttachmentBuilder(result);
 
     await interaction.editReply({ files: [attachment] });
   }

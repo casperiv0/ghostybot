@@ -1,4 +1,11 @@
-import { CommandInteraction, Message, MessageEmbed, MessageReaction, User } from "discord.js";
+import {
+  CommandInteraction,
+  Message,
+  EmbedBuilder,
+  MessageReaction,
+  User,
+  APIEmbed,
+} from "discord.js";
 import ms from "ms";
 import { Bot } from "structures/Bot";
 
@@ -10,7 +17,7 @@ const TIMEOUT = 60 * 1000 * 5; // 5minutes
 
 export async function interactionPaginate(
   interaction: CommandInteraction,
-  embeds: MessageEmbed[],
+  embeds: EmbedBuilder[],
   bot: Bot,
 ) {
   let page = 0;
@@ -97,7 +104,11 @@ export async function interactionPaginate(
 
     if (currentPage?.embeds[0]) {
       currentPage
-        .edit({ embeds: [currentPage.embeds[0].setFooter({ text: "Timed out" })] })
+        .edit({
+          embeds: [
+            new EmbedBuilder(currentPage.embeds[0] as APIEmbed).setFooter({ text: "Timed out" }),
+          ],
+        })
         .catch(() => null);
     }
   });

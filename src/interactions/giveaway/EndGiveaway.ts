@@ -8,20 +8,20 @@ export default class EndGiveaway extends SubCommand {
       commandName: "giveaway",
       name: "end",
       description: "End a giveaway",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           description: "The messageId of the giveaway",
           name: "message-id",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const messageId = interaction.options.getString("message-id", true) as DJS.Snowflake;

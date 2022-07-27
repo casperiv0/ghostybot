@@ -14,18 +14,18 @@ export default class EditReminderCommand extends SubCommand {
           description: "The id of the reminder you want to edit",
           name: "id",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
         {
           name: "time",
           description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "message",
           description: "The message you want the bot to remind you of",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -33,7 +33,7 @@ export default class EditReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const id = interaction.options.getString("id", true);

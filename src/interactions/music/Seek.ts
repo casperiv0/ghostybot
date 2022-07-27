@@ -15,14 +15,14 @@ export default class SeekCommand extends SubCommand {
           description: "seconds/minutes/hours (eg: 200s, 10s, 1h)",
           name: "time",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async validate(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ): Promise<ValidateReturn> {
     const member = await this.bot.utils.findMember(interaction, [interaction.user.id], {
@@ -37,7 +37,7 @@ export default class SeekCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = ms(interaction.options.getString("time", true));

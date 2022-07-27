@@ -16,13 +16,13 @@ export default class CreateReminderCommand extends SubCommand {
         {
           name: "time",
           description: "When the reminder should expire (eg: 1d, 10h, 20min, ..)",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
         {
           name: "message",
           description: "The message you want the bot to remind you of",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
         },
       ],
@@ -30,7 +30,7 @@ export default class CreateReminderCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const time = interaction.options.getString("time", true);
@@ -61,13 +61,15 @@ export default class CreateReminderCommand extends SubCommand {
       },
     });
 
-    const button = new DJS.MessageButton()
+    const button = new DJS.ButtonBuilder()
       .setCustomId(`${CANCEL_REMINDER_ID}_${reminderId}`)
       .setLabel("Cancel reminder")
-      .setStyle("DANGER")
+      .setStyle(DJS.ButtonStyle.Danger)
       .setEmoji("🛑");
 
-    const row = new DJS.MessageActionRow().addComponents(button);
+    const row = new DJS.ActionRowBuilder<DJS.MessageActionRowComponentBuilder>().addComponents(
+      button,
+    );
 
     await interaction.reply({
       ephemeral: true,

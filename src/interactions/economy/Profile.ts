@@ -11,7 +11,7 @@ export default class ProfileCommand extends SubCommand {
       description: "See the profile of a user",
       options: [
         {
-          type: "USER",
+          type: DJS.ApplicationCommandOptionType.User,
           required: false,
           name: "user",
           description: "The user you want to see their profile of",
@@ -21,7 +21,7 @@ export default class ProfileCommand extends SubCommand {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const user = interaction.options.getUser("user") ?? interaction.user;
@@ -48,7 +48,11 @@ export default class ProfileCommand extends SubCommand {
   ${bold(lang.ECONOMY.BANK)}: ${this.bot.utils.formatNumber(bank)}
       `,
       )
-      .addField(bold(lang.ECONOMY.INV_ITEMS), inventory.length.toString(), true);
+      .addFields({
+        name: bold(lang.ECONOMY.INV_ITEMS),
+        value: inventory.length.toString(),
+        inline: true,
+      });
 
     await interaction.reply({ embeds: [embed] });
   }

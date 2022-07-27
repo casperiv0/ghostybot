@@ -8,17 +8,17 @@ export default class SayCommand extends SubCommand {
       commandName: "admin",
       name: "say",
       description: "Let the bot say something",
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
       options: [
         {
           name: "text",
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
           required: true,
           description: "The text",
         },
         {
           name: "embed",
-          type: "BOOLEAN",
+          type: DJS.ApplicationCommandOptionType.Boolean,
           required: false,
           description: "Send the text in an embed",
         },
@@ -26,7 +26,7 @@ export default class SayCommand extends SubCommand {
     });
   }
 
-  async execute(interaction: DJS.CommandInteraction<"cached">) {
+  async execute(interaction: DJS.ChatInputCommandInteraction<"cached">) {
     const embed = interaction.options.getBoolean("embed");
     const text = interaction.options.getString("text", true);
 

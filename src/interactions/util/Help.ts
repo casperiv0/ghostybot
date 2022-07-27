@@ -15,14 +15,15 @@ export default class HelpInteraction extends Command {
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     try {
       const LINK = hyperlink(lang.HELP.CLICK_ME, HELP_URL_GH);
 
       const menu = this.createSelectMenu();
-      const actionRow = new DJS.MessageActionRow().addComponents(menu);
+      const actionRow =
+        new DJS.ActionRowBuilder<DJS.MessageActionRowComponentBuilder>().addComponents(menu);
 
       const embed = this.bot.utils
         .baseEmbed({
@@ -31,9 +32,12 @@ export default class HelpInteraction extends Command {
         .setDescription(
           `You can view all the slash commands [here](${HELP_URL_GH}). Due to some limitations it is hard to implement a new help command within Discord`,
         )
-        .addField(lang.HELP.FULL_CMD_LIST, LINK);
+        .addFields({ name: lang.HELP.FULL_CMD_LIST, value: LINK });
 
-      return interaction.reply({ embeds: [embed], components: [actionRow] });
+      return interaction.reply({
+        embeds: [embed],
+        components: [actionRow],
+      });
     } catch (err) {
       this.bot.utils.sendErrorLog(err, "error");
       return interaction.reply({ content: lang.GLOBAL.ERROR, ephemeral: true });
@@ -43,7 +47,7 @@ export default class HelpInteraction extends Command {
   // todo: add function to find categories instead coming from a file
   // todo: add translations
   private createSelectMenu() {
-    const menu = new DJS.MessageSelectMenu()
+    const menu = new DJS.SelectMenuBuilder()
       .setCustomId("HELP_CATEGORIES")
       .setPlaceholder("Select a category")
       .setMinValues(0)
@@ -82,10 +86,10 @@ export function handleCategories(interaction: DJS.SelectMenuInteraction, bot: Bo
     .baseEmbed(interaction)
     .setTitle(`${category} commands`)
     .setDescription(commands.map((command) => `\`${command.name}\``).join(" "))
-    .addField(
-      "Note",
-      `This does not include all commands within the ${category} category. [Please click here to view **all** commands.](${HELP_URL_GH})`,
-    );
+    .addFields({
+      name: "Note",
+      value: `This does not include all commands within the ${category} category. [Please click here to view **all** commands.](${HELP_URL_GH})`,
+    });
 
   interaction.reply({
     ephemeral: true,

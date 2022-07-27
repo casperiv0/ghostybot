@@ -9,13 +9,13 @@ export default class RemoveStickyCommand extends SubCommand {
       groupName: "sticky",
       name: "remove",
       description: "Remove the sticky message for the current channel",
-      botPermissions: [DJS.Permissions.FLAGS.MANAGE_MESSAGES],
-      memberPermissions: [DJS.Permissions.FLAGS.MANAGE_GUILD],
+      botPermissions: [DJS.PermissionFlagsBits.ManageMessages],
+      memberPermissions: [DJS.PermissionFlagsBits.ManageGuild],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     await this.bot.utils.removeSticky(interaction.channelId);

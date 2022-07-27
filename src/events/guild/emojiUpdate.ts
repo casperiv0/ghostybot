@@ -12,7 +12,8 @@ export default class EmojiUpdateEvent extends Event {
       if (!newEm.guild) return;
       if (!newEm.name || !oldEm.name) return;
 
-      if (!newEm.guild.me?.permissions.has(DJS.Permissions.FLAGS.MANAGE_WEBHOOKS)) return;
+      const me = bot.utils.getMe(newEm);
+      if (!me?.permissions.has(DJS.PermissionFlagsBits.ManageWebhooks)) return;
       const webhook = await bot.utils.getWebhook(newEm.guild);
       if (!webhook) return;
       const lang = await bot.utils.getGuildLang(newEm.guild.id);
@@ -33,7 +34,7 @@ export default class EmojiUpdateEvent extends Event {
         .baseEmbed({ author: bot.user })
         .setTitle("Emoji Updated")
         .setDescription(msg)
-        .setColor("ORANGE")
+        .setColor(DJS.Colors.Orange)
         .setTimestamp();
 
       await webhook.send({ embeds: [embed] });

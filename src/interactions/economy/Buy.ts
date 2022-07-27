@@ -13,14 +13,14 @@ export default class BuyCommand extends SubCommand {
           description: "The store item",
           name: "item",
           required: true,
-          type: "STRING",
+          type: DJS.ApplicationCommandOptionType.String,
         },
       ],
     });
   }
 
   async execute(
-    interaction: DJS.CommandInteraction<"cached">,
+    interaction: DJS.ChatInputCommandInteraction<"cached" | "raw">,
     lang: typeof import("@locales/english").default,
   ) {
     const rawItem = interaction.options.getString("item", true);
