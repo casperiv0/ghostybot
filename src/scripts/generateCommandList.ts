@@ -4,6 +4,7 @@ import { Collection } from "discord.js";
 import { Bot } from "structures/Bot";
 import { Command } from "structures/Command/Command";
 import { SubCommand } from "structures/Command/SubCommand";
+import { typeToString } from "utils/HandlersUtil";
 
 type TCommand = Command | SubCommand;
 type Commands = Collection<string, TCommand>;
@@ -38,7 +39,7 @@ function subCommandItem(cmd: TCommand) {
           .map((v) => {
             const requiredText = "required" in v && v.required ? "Required" : "Optional";
 
-            return `${v.name} (${v.type} / ${requiredText})`;
+            return `${v.name} (${typeToString(v.type)} / ${requiredText})`;
           })
           .join(", ")
       : "N/A"
