@@ -5,6 +5,7 @@ import { Event } from "structures/Event";
 import { Feature } from "structures/Feature";
 import { Helper } from "structures/Helper";
 import { Command } from "structures/Command/Command";
+import { ApplicationCommandOptionType } from "discord.js";
 
 type Structures = Event | Feature | Helper | SubCommand | Command;
 
@@ -47,5 +48,34 @@ function getType(item: Structures) {
   }
   if (item instanceof SubCommand) {
     return "SUB_COMMAND";
+  }
+}
+
+export function typeToString(type: ApplicationCommandOptionType): string {
+  switch (type) {
+    case ApplicationCommandOptionType.Subcommand:
+      return "Subcommand";
+    case ApplicationCommandOptionType.SubcommandGroup:
+      return "SubcommandGroup";
+    case ApplicationCommandOptionType.String:
+      return "String";
+    case ApplicationCommandOptionType.Integer:
+      return "Integer";
+    case ApplicationCommandOptionType.Boolean:
+      return "Boolean";
+    case ApplicationCommandOptionType.User:
+      return "User";
+    case ApplicationCommandOptionType.Channel:
+      return "Channel";
+    case ApplicationCommandOptionType.Role:
+      return "Role";
+    case ApplicationCommandOptionType.Mentionable:
+      return "Mentionable";
+    case ApplicationCommandOptionType.Number:
+      return "Number";
+    case ApplicationCommandOptionType.Attachment:
+      return "Attachment";
+    default:
+      throw new Error("Unreachable");
   }
 }
