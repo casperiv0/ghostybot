@@ -50,7 +50,7 @@
     "bluebird": "^3.7.2",
     "chalk": "4.1.2",
     "ctgs.js": "^1.1.0",
-    "dayjs": "^1.11.4",
+    "dayjs": "^1.11.5",
     "discord-giveaways": "^6.0.1",
     "discord-logs": "^2.0.1",
     "discord.js": "^14.2.0",
