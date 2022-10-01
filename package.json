@@ -52,7 +52,7 @@
     "ctgs.js": "^1.1.0",
     "dayjs": "^1.11.5",
     "discord-giveaways": "^6.0.1",
-    "discord-logs": "^2.0.1",
+    "discord-logs": "^2.2.1",
     "discord.js": "14.2",
     "distube": "^4.0.3",
     "dotenv": "^16.0.2",
