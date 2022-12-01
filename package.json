@@ -108,7 +108,7 @@
     "cross-env": "^7.0.3",
     "discord-api-types": "^0.37.6",
     "esbuild": "^0.15.7",
-    "eslint": "^8.23.0",
+    "eslint": "^8.28.0",
     "globby": "^13.1.2",
     "husky": "^8.0.1",
     "next-sitemap": "^3.1.21",
